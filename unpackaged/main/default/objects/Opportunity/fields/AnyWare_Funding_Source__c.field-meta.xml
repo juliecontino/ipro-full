@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnyWare_Funding_Source__c</fullName>
+    <label>AnyWare Funding Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Contract Capital</fullName>
+                <default>true</default>
+                <label>Contract Capital</label>
+            </value>
+            <value>
+                <fullName>IPro Media</fullName>
+                <default>false</default>
+                <label>IPro Media</label>
+            </value>
+            <value>
+                <fullName>Texas Star Bank</fullName>
+                <default>false</default>
+                <label>Texas Star Bank</label>
+            </value>
+            <value>
+                <fullName>Great America Financial Services</fullName>
+                <default>false</default>
+                <label>Great America Financial Services</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo Financial Leasing</fullName>
+                <default>false</default>
+                <label>Wells Fargo Financial Leasing</label>
+            </value>
+            <value>
+                <fullName>Comm3</fullName>
+                <default>false</default>
+                <label>Comm3</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

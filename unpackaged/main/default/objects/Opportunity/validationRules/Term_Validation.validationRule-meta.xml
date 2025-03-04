@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Term_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL( Sale_Type__c ,"AnyWare"), AnyWare_Term_2016__c ="")</errorConditionFormula>
+    <errorDisplayField>AnyWare_Term_2016__c</errorDisplayField>
+    <errorMessage>A term must be entered for this record. Use 60 as the default.</errorMessage>
+</ValidationRule>

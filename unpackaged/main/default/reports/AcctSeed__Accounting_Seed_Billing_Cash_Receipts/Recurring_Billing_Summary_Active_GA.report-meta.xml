@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>AcctSeed__Recurring_Billing__c.AcctSeed__Customer__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Recurring_Billing__c.Total_Funded_Unfunded__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Recurring_Billing__c.Total_Unfunded_Monthly_Charge__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Recurring_Billing__c.Total_Funded_Monthly_Charge__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>AcctSeed__Recurring_Billing__c.CCE__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Great America</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>AcctSeed__Recurring_Billing__c.CCE_Portfolio__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>GA-019130-0001</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Recurring Billing Summary-Active-GA</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$AcctSeed__Recurring_Billing__c$AcctSeed__Recurring_Billing_Line__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>AcctSeed__Recurring_Billing__c.AcctSeed__Customer__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Recurring_Billing__c.AcctSeed__Last_Billing_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

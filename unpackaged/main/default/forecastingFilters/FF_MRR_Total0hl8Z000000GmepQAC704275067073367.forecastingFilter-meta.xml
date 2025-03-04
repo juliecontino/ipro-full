@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ForecastingFilter xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterLogic>1 AND 2</filterLogic>
+    <forecastingType>MRR_Total</forecastingType>
+    <forecastingTypeSource>FTS_MRR_Total7sy8Z000000TPHhQAO832795207359161</forecastingTypeSource>
+    <isProtected>false</isProtected>
+    <masterLabel>FF_MRR_Total0hl8Z000000GmepQAC704275067073367</masterLabel>
+</ForecastingFilter>

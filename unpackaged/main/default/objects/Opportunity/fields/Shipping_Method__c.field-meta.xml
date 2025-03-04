@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Method__c</fullName>
+    <label>Shipping Method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Shipping_Carrier__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Next Day Priority</fullName>
+                <default>false</default>
+                <label>Next Day Priority</label>
+            </value>
+            <value>
+                <fullName>Next Day Standard</fullName>
+                <default>false</default>
+                <label>Next Day Standard</label>
+            </value>
+            <value>
+                <fullName>2nd Day</fullName>
+                <default>false</default>
+                <label>2nd Day</label>
+            </value>
+            <value>
+                <fullName>Regular Ground</fullName>
+                <default>false</default>
+                <label>Regular Ground</label>
+            </value>
+            <value>
+                <fullName>Via Technician</fullName>
+                <default>false</default>
+                <label>Via Technician</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>IPro Media</controllingFieldValue>
+            <valueName>Via Technician</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Federal Express</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Next Day Priority</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Federal Express</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Next Day Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Federal Express</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>2nd Day</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Federal Express</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Regular Ground</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

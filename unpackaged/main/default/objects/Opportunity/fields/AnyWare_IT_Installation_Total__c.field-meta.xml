@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnyWare_IT_Installation_Total__c</fullName>
+    <description>AnyWare IT installation total.</description>
+    <label>AnyWare IT Installation Total</label>
+    <summarizedField>OpportunityLineItem.MS_OP_Installation_Total__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityLineItem.GA_Billing_Group__c</field>
+        <operation>equals</operation>
+        <value>IT Services</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

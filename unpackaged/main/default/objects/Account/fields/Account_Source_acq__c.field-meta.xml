@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Source_acq__c</fullName>
+    <inlineHelpText>This field determines the source company that originated the account. This field cannot be edited except by a System Admin</inlineHelpText>
+    <label>Account Source ACQ</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPro</fullName>
+                <default>true</default>
+                <label>IPro</label>
+            </value>
+            <value>
+                <fullName>EON</fullName>
+                <default>false</default>
+                <label>EON</label>
+            </value>
+            <value>
+                <fullName>Comm3</fullName>
+                <default>false</default>
+                <label>Comm3</label>
+            </value>
+            <value>
+                <fullName>DTI</fullName>
+                <default>false</default>
+                <label>DTI</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

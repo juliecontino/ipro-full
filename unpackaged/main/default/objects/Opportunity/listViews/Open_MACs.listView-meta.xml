@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_MACs</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Opportunity_Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>Install_Complete__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>OPS_Category__c</field>
+        <operation>equals</operation>
+        <value>MAC</value>
+    </filters>
+    <filters>
+        <field>Pipeline_Status__c</field>
+        <operation>equals</operation>
+        <value>Primary Proposal</value>
+    </filters>
+    <label>Open MACs</label>
+</ListView>

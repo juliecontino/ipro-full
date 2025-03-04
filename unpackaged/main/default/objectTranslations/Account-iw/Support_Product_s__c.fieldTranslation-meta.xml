@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Support Product(s) --></label>
+        <name>Support_Product_s__c</name>
+        <picklistValues>
+            <masterLabel>67000001 Level 1: Software Assurance</masterLabel>
+            <translation><!-- 67000001 Level 1: Software Assurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000002 Level 2: Hardware Replacement - Controllers</masterLabel>
+            <translation><!-- 67000002 Level 2: Hardware Replacement - Controllers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000003 Level 3: Hardware Replacement - Sets</masterLabel>
+            <translation><!-- 67000003 Level 3: Hardware Replacement - Sets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000004 Level 4: Configuration Support</masterLabel>
+            <translation><!-- 67000004 Level 4: Configuration Support --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000005 Level 5: On-Site (8-5 Monday thru Friday)</masterLabel>
+            <translation><!-- 67000005 Level 5: On-Site (8-5 Monday thru Friday) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000006 Level 6: On-Site (7 x 24 x 365)</masterLabel>
+            <translation><!-- 67000006 Level 6: On-Site (7 x 24 x 365) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000007 Level 7: Streamline Ports</masterLabel>
+            <translation><!-- 67000007 Level 7: Streamline Ports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000101 Level 8A: Mitel Contact Center</masterLabel>
+            <translation><!-- 67000101 Level 8A: Mitel Contact Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000102 Level 8B: Mitel CSM</masterLabel>
+            <translation><!-- 67000102 Level 8B: Mitel CSM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000103 Level 8C: Call Recording</masterLabel>
+            <translation><!-- 67000103 Level 8C: Call Recording --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000104 Level 8D: UCA Stand-Alone</masterLabel>
+            <translation><!-- 67000104 Level 8D: UCA Stand-Alone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67000105 Level 8E: MCA Stand-Alone</masterLabel>
+            <translation><!-- 67000105 Level 8E: MCA Stand-Alone --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

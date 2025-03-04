@@ -1,0 +1,9 @@
+The following account was created without an AE assignment or Account Source ACQ
+
+Account Name: {!Account.Name}
+Account Detail Link: {!Account.Link}
+
+
+
+Automated Message from Salesforce
+Workflow Name: AE assignment

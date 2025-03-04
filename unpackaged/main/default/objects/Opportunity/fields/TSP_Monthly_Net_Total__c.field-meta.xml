@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TSP_Monthly_Net_Total__c</fullName>
+    <formula>Case (Sale_Type__c,
+   "TSP",( TSP_Monthly_Total_Filtered__c   +  TSP_Term_Discount__c  +  TSP_Promotional_Discount__c),
+   "AnyWare",( TSP_Monthly_Total_Filtered__c  +  TSP_Term_Discount__c  +  TSP_Promotional_Discount__c),
+   0.00)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>TSP Monthly Net Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

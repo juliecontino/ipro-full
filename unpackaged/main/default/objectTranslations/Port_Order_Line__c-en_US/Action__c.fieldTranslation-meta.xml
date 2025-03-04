@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Action --></label>
+        <name>Action__c</name>
+        <picklistValues>
+            <masterLabel>Disconnect</masterLabel>
+            <translation><!-- Disconnect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Port</masterLabel>
+            <translation><!-- Port --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

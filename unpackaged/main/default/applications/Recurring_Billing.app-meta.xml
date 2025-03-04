@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Billing</label>
+    <logo>SharedDocuments/IPro_Horizontal_Logo.png</logo>
+    <tabs>AcctSeed__Accounting_Help</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>AcctSeed__Recurring_Billing__c</tabs>
+    <tabs>AcctSeedERP__Sales_Order__c</tabs>
+    <tabs>AcctSeed__Billing__c</tabs>
+    <tabs>AcctSeedERP__Purchase_Order__c</tabs>
+    <tabs>AcctSeedERP__Warehouse__c</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>standard-Pricebook2</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>Help</tabs>
+    <tabs>Managed_Services_Contract__c</tabs>
+    <tabs>Quick_Account</tabs>
+    <tabs>Quick_Product</tabs>
+    <tabs>AcctSeed__Recurring_Billing_Line__c</tabs>
+    <tabs>Project_Calendar__c</tabs>
+    <tabs>Project_Notes__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

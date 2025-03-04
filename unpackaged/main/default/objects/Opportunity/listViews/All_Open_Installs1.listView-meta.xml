@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Open_Installs1</fullName>
+    <booleanFilter>((1 AND 2) AND (1 and 3) or (4 AND 5 ) or (4 and 6))</booleanFilter>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Contract_Number__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPS_Category__c</columns>
+    <columns>OP_Project_Manager__c</columns>
+    <columns>Install_Status_Opp__c</columns>
+    <columns>Project_Next_Step__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Estimated_Cut_over_Date__c</columns>
+    <columns>Install_Date_Completed__c</columns>
+    <columns>Install_Complete__c</columns>
+    <columns>Account_Source_ACQ__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>Install_Complete__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Install_Status_Opp__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Canceled</value>
+    </filters>
+    <filters>
+        <field>Install_Complete__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Install_Status_Opp__c</field>
+        <operation>equals</operation>
+        <value>Complete - Waiting on Port,Complete - Waiting on Contract Update</value>
+    </filters>
+    <filters>
+        <field>Install_Status_Opp__c</field>
+        <operation>equals</operation>
+        <value>Waiting on IPRO Management Decesion</value>
+    </filters>
+    <label>All Open Installs</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

@@ -1,0 +1,10 @@
+Steve,
+
+Please register the following Opportunity.
+
+Dealer: IPro Media, Inc.
+Account: {!Account.Name}
+Account Executive: {!Opportunity.OwnerFullName}
+
+Regards,
+{!Opportunity.OwnerFullName}

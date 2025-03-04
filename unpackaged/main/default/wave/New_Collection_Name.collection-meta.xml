@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveAnalyticAssetCollection xmlns="http://soap.sforce.com/2006/04/metadata">
+    <collectionType>static</collectionType>
+    <color>#fe9339</color>
+    <folder>New_Collection_Name</folder>
+    <items>
+        <asset>SFDC_TEST</asset>
+        <assetType>Report</assetType>
+        <sortOrder>500</sortOrder>
+    </items>
+    <label>New Collection Name</label>
+    <masterLabel>New Collection Name</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>ipro+prod@roycon-tech.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+</WaveAnalyticAssetCollection>

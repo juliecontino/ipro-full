@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>34.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>AcctSeed__Inventory_Balance__c</description>
+    <label>zaapit_tb_Inventory_Balance</label>
+    <packageVersions>
+        <majorNumber>3</majorNumber>
+        <minorNumber>2</minorNumber>
+        <namespace>AcctSeed</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>3</majorNumber>
+        <minorNumber>16</minorNumber>
+        <namespace>AcctSeedERP</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>440</minorNumber>
+        <namespace>zaapit</namespace>
+    </packageVersions>
+</ApexPage>

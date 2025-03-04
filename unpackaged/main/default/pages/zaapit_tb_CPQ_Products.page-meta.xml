@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>34.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>&lt;apex:include pageName=&quot;zaapit__zaapit_tb_GeneralWL&quot;/&gt;
+    &lt;!-- Thank you for looking :) please contact us for customizing this application --&gt;
+    
+&lt;/apex:page&gt;</description>
+    <label>zaapit_tb_CPQ_Products</label>
+    <packageVersions>
+        <majorNumber>3</majorNumber>
+        <minorNumber>2</minorNumber>
+        <namespace>AcctSeed</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>440</minorNumber>
+        <namespace>zaapit</namespace>
+    </packageVersions>
+</ApexPage>

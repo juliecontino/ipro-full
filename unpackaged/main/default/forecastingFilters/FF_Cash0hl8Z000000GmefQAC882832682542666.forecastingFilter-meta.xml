@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ForecastingFilter xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterLogic>1 AND 2</filterLogic>
+    <forecastingType>Cash</forecastingType>
+    <forecastingTypeSource>FTS_Cash7sy8Z000000TPHhQAO659608003312056</forecastingTypeSource>
+    <isProtected>false</isProtected>
+    <masterLabel>FF_Cash0hl8Z000000GmefQAC882832682542666</masterLabel>
+</ForecastingFilter>

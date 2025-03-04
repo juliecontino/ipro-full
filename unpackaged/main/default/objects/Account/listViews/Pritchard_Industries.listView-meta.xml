@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pritchard_Industries</fullName>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>PARENT_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Account_Alias__c</columns>
+    <columns>ACCOUNT.ADDRESS1_STREET</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>ACCOUNT.ADDRESS2_CITY</columns>
+    <columns>ACCOUNT.ADDRESS2_STATE</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Account_Executive__c</columns>
+    <columns>Opp_Count__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>ACCOUNT.NAME</field>
+        <operation>startsWith</operation>
+        <value>Pritchard Industries</value>
+    </filters>
+    <label>Pritchard Industries</label>
+    <language>en_US</language>
+</ListView>

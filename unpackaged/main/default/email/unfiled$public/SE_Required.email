@@ -1,0 +1,7 @@
+A new opportunity requires sales engineering
+
+
+{!Opportunity.OwnerFullName}
+{!Opportunity.Name}
+{!Opportunity.ContractId}
+{!Opportunity.CloseDate}

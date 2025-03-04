@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Composer_Master_Billing_Detail</fullName>
+    <availability>online</availability>
+    <description>Originally created by Conga Solution Manager. Date of last use of Update Button from Conga Solution record: https://ipromedia--apxtconga4.visualforce.com/a1h1W000002a9UQQAY
+05-Feb-2019 05:40:11 PM</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>false</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>660</height>
+    <isResizable>false</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Master Billing Detail</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://composer.congamerge.com?SolMgr=1
+&amp;sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;Id={!Account.Id}
+
+&amp;QueryId=[MasterBillingDetailS]a321W000002My2P</url>
+    <width>900</width>
+</WebLink>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Call_End_Short_Date__c</fullName>
+    <formula>Date(
+
+/* Year Logic */
+Value(left( Call_Term_timestamp__c,4))
+,
+
+/* Month Logic */
+
+VALUE(MID(Call_Term_timestamp__c, FIND("-",Call_Term_timestamp__c)+1, 2))
+
+
+,
+/* Day Logic */
+VALUE(MID(Call_Term_timestamp__c, FIND("-",Call_Term_timestamp__c)+4, 2))
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Call End Short Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

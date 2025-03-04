@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CCE__c</fullName>
+    <label>CCE</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPro Media</fullName>
+                <default>false</default>
+                <label>IPro Media</label>
+            </value>
+            <value>
+                <fullName>Great America</fullName>
+                <default>false</default>
+                <label>Great America</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo</fullName>
+                <default>false</default>
+                <label>Wells Fargo</label>
+            </value>
+            <value>
+                <fullName>Mitel</fullName>
+                <default>false</default>
+                <label>Mitel</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

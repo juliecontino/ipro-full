@@ -1,0 +1,20 @@
+Southwest Team,
+
+Please submit the following new prospect for a preliminary credit review:
+
+Account Information:
+
+{!Account.Name}
+{!Account.BillingAddress}
+{!Account.Phone}
+
+Opportunity Information:
+
+{!Opportunity.Sale_Type__c}
+{!Opportunity.AnyWare_Term__c}
+{!Opportunity.AnyWare_CPE_Funding_Amount__c}
+
+Feel free to call with any questions.
+
+Regards,
+Richie Bell

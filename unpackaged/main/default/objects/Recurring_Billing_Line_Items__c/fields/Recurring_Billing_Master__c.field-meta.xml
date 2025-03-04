@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_Billing_Master__c</fullName>
+    <label>Recurring Billing Master</label>
+    <referenceTo>Recurring_Billing_Master__c</referenceTo>
+    <relationshipLabel>Recurring Billing Line Items</relationshipLabel>
+    <relationshipName>Recurring_Billing_Line_Items</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

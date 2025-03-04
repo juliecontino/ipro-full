@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Tasks_Next_Two_Months_no_Weekend</fullName>
+    <booleanFilter>(1 AND 2) AND (3 or 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Date_D__c</columns>
+    <columns>Weekday__c</columns>
+    <columns>Text_Weekday__c</columns>
+    <columns>Number_of_Project_Tasks__c</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Text_Weekday__c</field>
+        <operation>notEqual</operation>
+        <value>Sunday</value>
+    </filters>
+    <filters>
+        <field>Text_Weekday__c</field>
+        <operation>notEqual</operation>
+        <value>Saturday</value>
+    </filters>
+    <filters>
+        <field>Date_D__c</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <filters>
+        <field>Date_D__c</field>
+        <operation>equals</operation>
+        <value>NEXT_MONTH</value>
+    </filters>
+    <label>Project Tasks Next Two Months no Weekend</label>
+    <language>en_US</language>
+</ListView>

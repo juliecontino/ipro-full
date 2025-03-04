@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Sales Contact --></label>
+        <name>Sales_Contact__c</name>
+        <picklistValues>
+            <masterLabel>Contractor</masterLabel>
+            <translation><!-- Contractor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ray Wagnon</masterLabel>
+            <translation><!-- Ray Wagnon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Richie Bell</masterLabel>
+            <translation><!-- Richie Bell --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scott Flynn</masterLabel>
+            <translation><!-- Scott Flynn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Steve Yeisley</masterLabel>
+            <translation><!-- Steve Yeisley --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

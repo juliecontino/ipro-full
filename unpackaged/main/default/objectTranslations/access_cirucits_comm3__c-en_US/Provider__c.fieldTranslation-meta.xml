@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Provider --></label>
+        <name>Provider__c</name>
+        <picklistValues>
+            <masterLabel>AT&amp;T</masterLabel>
+            <translation><!-- AT&amp;T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Broadcom</masterLabel>
+            <translation><!-- Broadcom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Comcast</masterLabel>
+            <translation><!-- Comcast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cox</masterLabel>
+            <translation><!-- Cox --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intelepeer</masterLabel>
+            <translation><!-- Intelepeer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spectrum</masterLabel>
+            <translation><!-- Spectrum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verizon</masterLabel>
+            <translation><!-- Verizon --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,9 @@
+<apex:page standardController="case">
+    <apex:form >
+        <apex:pageBlock title="Servers" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+         </apex:pageBlock>
+    </apex:form>
+</apex:page>

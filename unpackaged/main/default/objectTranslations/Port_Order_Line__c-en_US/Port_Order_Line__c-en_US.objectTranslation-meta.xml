@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Port Order Line</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Port Order Lines</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Port Order Line Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Port Order Line Layout - Community</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You are limited to 30 Lines per Port Order. You can create a new Port Order for additional lines, if needed. --></errorMessage>
+        <name>Limit_to_30_Records_per_Port_Order</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Port Order Status is already is Progress or Completed.  It must be a &quot;New&quot; Status --></errorMessage>
+        <name>Port_Order_in_Progress</name>
+    </validationRules>
+</CustomObjectTranslation>

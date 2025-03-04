@@ -1,0 +1,1260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Comm3_Commission_Approved</fullName>
+        <description>Comm3 Commission Approved</description>
+        <protected>false</protected>
+        
+        
+        <recipients>
+            <field>Commission_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Approvals/Commision_Approved_Comm3</template>
+    </alerts>
+    <alerts>
+        <fullName>Comm3_Commission_Rejected</fullName>
+        <description>Comm3 Commission Rejected</description>
+        <protected>false</protected>
+        
+        
+        <recipients>
+            <field>Commission_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Approvals/Commission_Rejected_Comm3</template>
+    </alerts>
+    <alerts>
+        <fullName>Commission_Approval_Alert</fullName>
+        <description>Commission Approval Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Commission_Approved_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Commission_Record_Submitted_for_Approval</fullName>
+        <description>Commission Record Submitted for Approval Comm3</description>
+        <protected>false</protected>
+        
+        
+        
+        
+        <recipients>
+            <field>Commission_Owner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Approvals/Commision_Submitted_for_Approval_Comm3</template>
+    </alerts>
+    <alerts>
+        <fullName>Commission_Rejection_Alert</fullName>
+        <description>Commission Rejection Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Commission_Rejected_Template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CCALC_2015_REC_IP_UPD_BC</fullName>
+        <description>Updates the Base Commission field for 2015 Recurring Independent Partner Commissions.</description>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity__r.AnyWare_CPE_Total__c * Commission_Owner__r.Base_Commission_Rate__c</formula>
+        <name>CCALC-2015-REC-IP-UPD-BC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_2018_Standard_Update_Base_Comm</fullName>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity__r.Net_Opportunity_Booking_Amount__c * 0.04</formula>
+        <name>CCALC-2018-Standard Update Base Comm</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MLT_INP_Update_Annual</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.01, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c 
+*0.01, 
+0.00)</formula>
+        <name>CCALC-MLT-INP-Update Annual</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MLT_INP_Update_Monthly</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.03, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c 
+*0.03, 
+0.00)</formula>
+        <name>CCALC-MLT-INP-Update Monthly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MLT_INP_Update_Quarterly</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.01, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c 
+*0.01, 
+0.00)</formula>
+        <name>CCALC-MLT-INP-Update Quarterly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MLT_Recast_Update_Annual</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.01, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c 
+*0.01, 
+0.00)</formula>
+        <name>CCALC-MLT-Recast-Update Annual</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MLT_Recast_Update_Monthly</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.10, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c 
+*0.10, 
+0.00)</formula>
+        <name>CCALC-MLT-Recast-Update Monthly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MLT_Recast_Update_Quarterly</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.01, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c 
+*0.01, 
+0.00)</formula>
+        <name>CCALC-MLT-Recast-Update Quarterly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MT_AEL_Update_Annual</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.01, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c  
+*0.01, 
+0.00)</formula>
+        <name>CCALC-MT-AEL-Update-Annual</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MT_AEL_Update_Monthly</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.08, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c
+*0.08, 
+0.00)</formula>
+        <name>CCALC-MT-AEL-Update-Monthly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_MT_AEL_Update_Quarterly</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c), 
+"Cash", Opportunity__r.Amount * 0.01, 
+"AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c
+*0.01, 
+0.00)</formula>
+        <name>CCALC-MT-AEL-Update-Quarterly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Res_AnyWare_DC_Update_Annual</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCALC-Res-AnyWare DC-Update Annual</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Res_AnyWare_DC_Update_Monthly</fullName>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity_DC_Total__c * 0.05</formula>
+        <name>CCALC-Res-AnyWare DC-Update Monthly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Res_AnyWare_DC_Update_Quarterly</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCALC-Res-AnyWare DC-Update Quarterly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Std_Std_Update_Annual</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c),
+  "Cash", Opportunity__r.Amount * 0.01,
+  "AnyWare",  Opportunity__r.Net_Opportunity_Booking_Amount__c 
+  *0.01,
+0.00)</formula>
+        <name>CCALC-Std-Std-Update Annual</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Std_Std_Update_Base</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c),
+  "Cash", Opportunity__r.Amount * 0.05,
+  "AnyWare", Opportunity__r.AnyWare_Net_CPE_Funding_Amount__c
+  *0.05,
+0.00)</formula>
+        <name>CCALC-Std-Std-Update Base</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Std_Std_Update_Qtrly</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c),
+  "Cash", Opportunity__r.Amount * 0.01,
+  "AnyWare",  Opportunity__r.Net_Opportunity_Booking_Amount__c 
+  *0.01,
+0.00)</formula>
+        <name>CCALC-Std-Std-Update Qtrly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCALC_Std_Std_Update_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>Opportunity__r.Opportunity_Amount__c</formula>
+        <name>CCALC-Std-Std-Update Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_AC</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-AC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_ACA</fullName>
+        <field>Annual_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-ACA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_BC</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text( Opportunity__r.AnyWare_Term__c ), 
+"Monthly", 0.00, 
+"12 Months", 0.00,
+"24 Months", (Opportunity__r.AnyWare_CA_Total__c  +  Opportunity__r.AnyWare_DC_Total__c) * 0.25,
+"36 Months", (Opportunity__r.AnyWare_CA_Total__c  +  Opportunity__r.AnyWare_DC_Total__c) * 0.50,
+"48 Months", (Opportunity__r.AnyWare_CA_Total__c  +  Opportunity__r.AnyWare_DC_Total__c) * 0.75,
+"60 Months", (Opportunity__r.AnyWare_CA_Total__c  +  Opportunity__r.AnyWare_DC_Total__c) * 1.00,
+0.00)</formula>
+        <name>CCLAC-2015-CA-Upd-BC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_BCA</fullName>
+        <field>Base_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-BCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_QC</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-QC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_QCA</fullName>
+        <field>Quarterly_Commission_Adjustment__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-QCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_CA_Upd_Quota_A</fullName>
+        <field>Quota_Point_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-CA-Upd-Quota A</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_AC</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-AC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_ACA</fullName>
+        <field>Annual_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-ACA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_BC</fullName>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity__r.Opportunity_Amount__c * 0.01</formula>
+        <name>CCLAC-2015-IP-Upd-BC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_BCA</fullName>
+        <field>Base_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-BCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_QC</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-QC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_QCA</fullName>
+        <field>Quarterly_Commission_Adjustment__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-QCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_IP_Upd_Quota_A</fullName>
+        <field>Quota_Point_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-IP-Upd-Quota A</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Neg_Upd_AC</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Neg-Upd-AC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Neg_Upd_ACA</fullName>
+        <field>Annual_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Neg-Upd-ACA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Neg_Upd_BC</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Neg-Upd-QC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Neg_Upd_QCA</fullName>
+        <field>Quarterly_Commission_Adjustment__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Neg-Upd-QCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Neg_Upd_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Neg-Upd-Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Neg_Upd_Quota_A</fullName>
+        <field>Quota_Point_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Neg-Upd-Quota A</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Standard_Update</fullName>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity__r.NOBA__c * 0.03</formula>
+        <name>CCLAC-2015-Std-Upd-BC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_AC</fullName>
+        <field>Annual_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-AC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_ACA</fullName>
+        <field>Annual_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-ACA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_BCA</fullName>
+        <field>Base_Commission_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-BCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_QC</fullName>
+        <field>Quarterly_Commission__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-QC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_QCA</fullName>
+        <field>Quarterly_Commission_Adjustment__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-QCA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_2015_Std_Upd_Quota_A</fullName>
+        <field>Quota_Point_Adjustments__c</field>
+        <formula>0.00</formula>
+        <name>CCLAC-2015-Std-Upd-Quota A</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CCLAC_OT_Installation_Update_Base</fullName>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity__r.AnyWare_Installation_Total__c  * 0.25</formula>
+        <name>CCLAC-OT-Installation Update Base</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CClac_MLT_Recast_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>Opportunity__r.Opportunity_Amount__c</formula>
+        <name>CClac-MLT-Recast Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CClac_Mlt_INP_Quota</fullName>
+        <field>Quota_Points__c</field>
+        <formula>Opportunity__r.Opportunity_Amount__c</formula>
+        <name>CClac-Mlt-INP-Quota</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>InstallationBaseComm3</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c),
+  "Cash", Opportunity__r.Amount * Commission_Owner__r.Base_Commission_Rate__c,
+  "AnyWare", (Opportunity__r.Net_Opportunity_Booking_Amount__c +  Opportunity__r.AnyWare_Installation_Total__c )*  Commission_Owner__r.Base_Commission_Rate__c,
+0.00)</formula>
+        <name>InstallationBaseComm3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Sales_Base_Commission_Comm3</fullName>
+        <field>Base_Commission__c</field>
+        <formula>CASE(Text(Opportunity__r.Sale_Type__c),
+  "Cash", Opportunity__r.Amount * Commission_Owner__r.Base_Commission_Rate__c,
+  "AnyWare", (Opportunity__r.Net_Opportunity_Booking_Amount__c +  Opportunity__r.AnyWare_Installation_Total__c )*  Commission_Owner__r.Base_Commission_Rate__c,
+0.00)</formula>
+        <name>Sales Base Commission Comm3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_AFP_Field_to_Rejected</fullName>
+        <description>Update the Approved for Payment field to Rejected.</description>
+        <field>Approved_For_Payment__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Update AFP Field to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Approved_For_Payment_Field</fullName>
+        <description>Change the value of the Approved for Payment field in the Commissions object to Submitted.</description>
+        <field>Approved_For_Payment__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Update Approved For Payment Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Base_Commission</fullName>
+        <field>Base_Commission__c</field>
+        <formula>(( OPP_Net_Booking_Amount__c /  Support_Contract_Billing_Frequency__c )
+-  Opportunity__r.Support_Cost_Amount_Comm3__c )
+ *   Commission_Owner__r.Revenue_Sharing_Commission_Rate__c</formula>
+        <name>Update Base Commission</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Base_Commission_Comm3</fullName>
+        <field>Base_Commission__c</field>
+        <formula>Opportunity__r.Net_Opportunity_Booking_Amount__c *0.04</formula>
+        <name>Update Base Commission Comm3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Commission_Approved_For_Payment</fullName>
+        <field>Approved_For_Payment__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Commission Approved For Payment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>2017-Comm3 Revenue Sharing Support</fullName>
+        <actions>
+            <name>Update_Base_Commission</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2017 Comm3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Comm3 Installation,Comm3 Revenue Sharing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Installation-Comm3,Revenue Sharing-Comm3</value>
+        </criteriaItems>
+        <description>Each partner get 20% of 60% of support renewals</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-2015-REC-IP</fullName>
+        <actions>
+            <name>CCALC_2015_REC_IP_UPD_BC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2015</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Residual</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Independent Partner</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-2018-Standard</fullName>
+        <actions>
+            <name>CCALC_2018_Standard_Update_Base_Comm</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2018 IPro</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>2018 One-Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Standard</value>
+        </criteriaItems>
+        <description>Calculates commissions for a 2018 Sales Plan-2018 One-Time-Standard commission of 4% of Net Opportunity Booking Amount</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-2018-Standard_Comm3</fullName>
+        <actions>
+            <name>Update_Base_Commission_Comm3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2018 Comm3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Comm3 Sales</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-Comm3</value>
+        </criteriaItems>
+        <description>Comm3 Calculates commissions for a 2018 Sales Plan-2018 One-Time-Standard commission of 4% of Net Opportunity Booking Amount</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-Multi-Tier-AE Logo</fullName>
+        <actions>
+            <name>CCALC_MT_AEL_Update_Annual</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_MT_AEL_Update_Monthly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_MT_AEL_Update_Quarterly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_Std_Std_Update_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Multi-Tier</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>AE Logo</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2014</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-Multi-Tier-Independent Partner</fullName>
+        <actions>
+            <name>CCALC_MLT_INP_Update_Annual</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_MLT_INP_Update_Monthly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_MLT_INP_Update_Quarterly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CClac_Mlt_INP_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Multi-Tier</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Independent Partner</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2014</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-Multi-Tier-Recast</fullName>
+        <actions>
+            <name>CCALC_MLT_Recast_Update_Annual</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_MLT_Recast_Update_Monthly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_MLT_Recast_Update_Quarterly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CClac_MLT_Recast_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Multi-Tier</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Recast</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2014</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-Multi-Tier-Standard</fullName>
+        <actions>
+            <name>CCALC_Std_Std_Update_Annual</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_Std_Std_Update_Base</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_Std_Std_Update_Qtrly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_Std_Std_Update_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Multi-Tier</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Standard</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2014</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCALC-Res-AnyWare DC</fullName>
+        <actions>
+            <name>CCALC_Res_AnyWare_DC_Update_Annual</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_Res_AnyWare_DC_Update_Monthly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCALC_Res_AnyWare_DC_Update_Quarterly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Residual</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>AnyWare Data Center</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2014</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-2015-Carrier Access</fullName>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_AC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_ACA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_BC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_BCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_QC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_QCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_CA_Upd_Quota_A</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2015</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>2015 One-Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>AnyWare Carrier Access</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-2015-Ind Partner</fullName>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_AC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_ACA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_BC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_BCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_QC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_QCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_IP_Upd_Quota_A</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2015</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>2015 One-Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Independent Partner</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-2015-Negotiated</fullName>
+        <actions>
+            <name>CCLAC_2015_Neg_Upd_AC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Neg_Upd_ACA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Neg_Upd_BC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Neg_Upd_QCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Neg_Upd_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Neg_Upd_Quota_A</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2015</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>2015 One-Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Negotiated</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-2015-Standard</fullName>
+        <actions>
+            <name>CCLAC_2015_Standard_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_AC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_ACA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_BCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_QC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_QCA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_Quota</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CCLAC_2015_Std_Upd_Quota_A</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2015</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>2015 One-Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Standard,Major Account</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-2017-Standard InstallationComm3</fullName>
+        <actions>
+            <name>InstallationBaseComm3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2017 Comm3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Comm3 Installation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Installation-Comm3</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-2017-Standard Sales Comm3</fullName>
+        <actions>
+            <name>Sales_Base_Commission_Comm3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2017 Comm3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>Comm3 Sales</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales-Comm3</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CCLAC-OT-Installation</fullName>
+        <actions>
+            <name>CCLAC_OT_Installation_Update_Base</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Category__c</field>
+            <operation>equals</operation>
+            <value>One-Time</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Commission_Type__c</field>
+            <operation>equals</operation>
+            <value>AnyWare Installation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Commissions__c.Sales_Plan_Year__c</field>
+            <operation>equals</operation>
+            <value>2014</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

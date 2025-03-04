@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CCE_Lease_Type__c</fullName>
+    <label>CCE Lease Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>CCE_Portfolio__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPro Media FMV Lease</fullName>
+                <default>false</default>
+                <label>IPro Media FMV Lease</label>
+            </value>
+            <value>
+                <fullName>IPro Media DBO Lease</fullName>
+                <default>false</default>
+                <label>IPro Media DBO Lease</label>
+            </value>
+            <value>
+                <fullName>IPro Media TSP</fullName>
+                <default>false</default>
+                <label>IPro Media TSP</label>
+            </value>
+            <value>
+                <fullName>IPro Media AnyWare</fullName>
+                <default>false</default>
+                <label>IPro Media AnyWare</label>
+            </value>
+            <value>
+                <fullName>Great America FMV Lease</fullName>
+                <default>false</default>
+                <label>Great America FMV Lease</label>
+            </value>
+            <value>
+                <fullName>Great America DBO Lease</fullName>
+                <default>false</default>
+                <label>Great America DBO Lease</label>
+            </value>
+            <value>
+                <fullName>Great America Government Lease</fullName>
+                <default>false</default>
+                <label>Great America Government Lease</label>
+            </value>
+            <value>
+                <fullName>Great America TSP</fullName>
+                <default>false</default>
+                <label>Great America TSP</label>
+            </value>
+            <value>
+                <fullName>Great America AnyWare</fullName>
+                <default>false</default>
+                <label>Great America AnyWare</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo FMV Lease</fullName>
+                <default>false</default>
+                <label>Wells Fargo FMV Lease</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo DBO Lease</fullName>
+                <default>false</default>
+                <label>Wells Fargo DBO Lease</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo Government Lease</fullName>
+                <default>false</default>
+                <label>Wells Fargo Government Lease</label>
+            </value>
+            <value>
+                <fullName>Mitel FMV Lease</fullName>
+                <default>false</default>
+                <label>Mitel FMV Lease</label>
+            </value>
+            <value>
+                <fullName>Mitel DBO Lease</fullName>
+                <default>false</default>
+                <label>Mitel DBO Lease</label>
+            </value>
+            <value>
+                <fullName>Mitel TSP</fullName>
+                <default>false</default>
+                <label>Mitel TSP</label>
+            </value>
+            <value>
+                <fullName>Wells Fargo AnyWare</fullName>
+                <default>false</default>
+                <label>Wells Fargo AnyWare</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>IPRO-1</controllingFieldValue>
+            <controllingFieldValue>TSB-1</controllingFieldValue>
+            <valueName>IPro Media FMV Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IPRO-1</controllingFieldValue>
+            <controllingFieldValue>TSB-1</controllingFieldValue>
+            <valueName>IPro Media DBO Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IPRO-1</controllingFieldValue>
+            <controllingFieldValue>TSB-1</controllingFieldValue>
+            <valueName>IPro Media TSP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>IPRO-1</controllingFieldValue>
+            <controllingFieldValue>TSB-1</controllingFieldValue>
+            <valueName>IPro Media AnyWare</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GA-019130-0000</controllingFieldValue>
+            <valueName>Great America FMV Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GA-019130-0000</controllingFieldValue>
+            <valueName>Great America DBO Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GA-019130-0000</controllingFieldValue>
+            <valueName>Great America Government Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GA-019130-0000</controllingFieldValue>
+            <valueName>Great America TSP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GA-019130-0001</controllingFieldValue>
+            <valueName>Great America AnyWare</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MTL-1</controllingFieldValue>
+            <valueName>Mitel FMV Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MTL-1</controllingFieldValue>
+            <valueName>Mitel DBO Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>MTL-1</controllingFieldValue>
+            <valueName>Mitel TSP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>WF-207778.0000</controllingFieldValue>
+            <valueName>Wells Fargo FMV Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>WF-207778.0000</controllingFieldValue>
+            <valueName>Wells Fargo DBO Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>WF-207778.0000</controllingFieldValue>
+            <valueName>Wells Fargo Government Lease</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>WF-207778.0000</controllingFieldValue>
+            <valueName>Wells Fargo AnyWare</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunitie_Comm3_OpenInstalls</fullName>
+    <columns>Opportunity_Alpha_Tag__c</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Contract_Number__c</columns>
+    <columns>Account_Alias__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OP_Project_Manager__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Install_Status_Opp__c</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>Opportunity_Amount__c</columns>
+    <columns>Install_Date_Completed__c</columns>
+    <columns>RB_SFDC__c</columns>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <columns>Project__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>equals</operation>
+        <value>Comm3</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>Install_Complete__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Install_Status_Opp__c</field>
+        <operation>notEqual</operation>
+        <value>Complete-Ready to Bill</value>
+    </filters>
+    <label>All Opportunities Comm3 Open Installs</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Group_Comm3</group>
+    </sharedTo>
+</ListView>

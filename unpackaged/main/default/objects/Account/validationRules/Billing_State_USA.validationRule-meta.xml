@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_State_USA</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND (
+OR(BillingCountry = "US", BillingCountry="United States",BillingCountry="us",BillingCountry="usa",BillingCountry="USA"),
+OR(
+LEN(BillingState) &lt; 2,
+NOT(
+CONTAINS("AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:" &amp;
+"IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:" &amp;
+"NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:" &amp;
+"WA:WV:WI:WY", BillingState)
+)))
+&amp;&amp; $Setup.rh2__PS_Settings__c.rh2__Run_Validation_Rule__c</errorConditionFormula>
+    <errorDisplayField>BillingState</errorDisplayField>
+    <errorMessage>Please enter valid 2-digit Billing State</errorMessage>
+</ValidationRule>

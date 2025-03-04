@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Opportunity$Name</field>
+    </columns>
+    <columns>
+        <field>Opportunity$SOW_CPQ_Status__c</field>
+    </columns>
+    <columns>
+        <field>Opportunity.AcctSeedERP__Sales_Order__r$Name</field>
+    </columns>
+    <columns>
+        <field>Opportunity.AcctSeedERP__Sales_Order__r.Purchase_Orders__r$Name</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Opportunity$SOW_CPQ_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>Sales Engineering Workflow OPP/SO/PO</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>OPPs_Sales_Order_PO_Orders__c</reportType>
+    <roleHierarchyFilter>President</roleHierarchyFilter>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Opportunity$CloseDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

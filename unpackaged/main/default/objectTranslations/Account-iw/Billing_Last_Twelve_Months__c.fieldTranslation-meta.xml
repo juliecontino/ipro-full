@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Billing Last Twelve Months --></help>
+        <label><!-- Billing Last Twelve Months --></label>
+        <name>Billing_Last_Twelve_Months__c</name>
+    </CustomFieldTranslation>

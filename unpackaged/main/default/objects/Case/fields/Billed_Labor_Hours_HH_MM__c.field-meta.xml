@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billed_Labor_Hours_HH_MM__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Billable Labor Hours in hours/minutes (00:45) = 45 minutes</inlineHelpText>
+    <label>Billed Labor Hours (HH:MM)</label>
+    <length>8</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Break Fix</fullName>
+        <default>false</default>
+        <label>Break Fix</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Move,Add or Change</fullName>
+        <default>false</default>
+        <label>Move,Add or Change</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Question</fullName>
+        <default>false</default>
+        <label>Question</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Training</fullName>
+        <default>false</default>
+        <label>Training</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Project</fullName>
+        <default>false</default>
+        <label>Project</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Chronic Issue</fullName>
+        <default>false</default>
+        <label>Chronic Issue</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Outage</fullName>
+        <default>false</default>
+        <label>Outage</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Multiple Occurrences</fullName>
+        <default>false</default>
+        <label>Multiple Occurrences</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Install</fullName>
+        <default>false</default>
+        <label>Install</label>
+    </standardValue>
+</StandardValueSet>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    <layouts>
+        <layout>Task Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Defer --></label>
+        <name>Defer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- EditDescription --></label>
+        <name>EditDescription</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- UpdatePriority --></label>
+        <name>UpdatePriority</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- UpdateStatus --></label>
+        <name>UpdateStatus</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- Site Survey --></description>
+        <label><!-- Site Survey --></label>
+        <name>Site_Survey</name>
+    </recordTypes>
+</CustomObjectTranslation>

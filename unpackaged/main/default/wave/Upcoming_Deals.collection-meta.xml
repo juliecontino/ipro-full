@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveAnalyticAssetCollection xmlns="http://soap.sforce.com/2006/04/metadata">
+    <collectionType>static</collectionType>
+    <color>#45c65a</color>
+    <folder>Upcoming_Deals</folder>
+    <items>
+        <asset>IPRO_Pipeline</asset>
+        <assetType>LightningDashboard</assetType>
+        <sortOrder>500</sortOrder>
+    </items>
+    <items>
+        <asset>MSCR_IPro</asset>
+        <assetType>Report</assetType>
+        <sortOrder>499</sortOrder>
+    </items>
+    <label>Upcoming Deals</label>
+    <masterLabel>Upcoming Deals</masterLabel>
+    <shares>
+        <accessLevel>Manage</accessLevel>
+        <sharedTo>ipro+prod@roycon-tech.com</sharedTo>
+        <sharedToType>User</sharedToType>
+    </shares>
+</WaveAnalyticAssetCollection>

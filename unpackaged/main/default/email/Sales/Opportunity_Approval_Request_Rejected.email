@@ -1,0 +1,15 @@
+The following opportunity's approval request was rejected. Please refer to the Approval History Comments for suggestions on remedies.
+
+Stage: {!Opportunity.StageName} 
+Account: {!Opportunity.Account} 
+Alias: {!Opportunity.Account_Alias__c} 
+Description: {!Opportunity.Name} 
+Amount: {!Opportunity.Opportunity_Booking_Amount__c} 
+Date: {!Opportunity.CloseDate} 
+Type: {!Opportunity.Sale_Type__c} 
+Ops Category: {!Opportunity.OPS_Category__c} 
+
+Link: {!Opportunity.Link} 
+
+Last Modified by: {!Opportunity.LastModifiedBy} 
+Approval Comments: {!ApprovalRequest.Comments}

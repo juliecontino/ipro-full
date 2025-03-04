@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>test</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>test</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/29.0/connection.js")}
+ // query the record
+var qr = sforce.connection.query("SELECT Id, SyncedQuoteId FROM Opportunity where Id='" + "{!Opportunity.Id}" + "'");
+var records = qr.getArray("records"); 
+// display the field from the query
+alert("SyncedQuoteId: " + qr.records.SyncedQuoteId);
+This next example updates the opportunity stage.</url>
+</WebLink>

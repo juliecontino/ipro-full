@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quota_Points_1__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL( Sale_Type__c, "Cash"), Cash_Quota_Points__c , 
+  IF (ISPICKVAL( Sale_Type__c, "AnyWare"),  AnyWare_Quota_Point__c ,
+ AnyWare_Net_CPE_Funding_Amount__c ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quota Points</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

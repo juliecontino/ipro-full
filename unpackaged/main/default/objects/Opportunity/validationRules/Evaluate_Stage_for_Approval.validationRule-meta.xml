@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Evaluate_Stage_for_Approval</fullName>
+    <active>true</active>
+    <description>Evaluate stage set to Closed Won for management approval.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(StageName, "Closed Won"),
+    Approved__c = FALSE,
+    NOT(ISPICKVAL(OPS_Category__c, "MAC"))
+)</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>The Opportunity must be Approved by Management before the stage can be changed to Closed Won.</errorMessage>
+</ValidationRule>

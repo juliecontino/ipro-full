@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verified_Count__c</fullName>
+    <label>Verified Count</label>
+    <summarizedField>Managed_Services_Contract__c.Verified_Count__c</summarizedField>
+    <summaryForeignKey>Managed_Services_Contract__c.Opportunity__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

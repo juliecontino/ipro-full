@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sort_Tel_Acct_Product_Code__c</fullName>
+    <externalId>false</externalId>
+    <formula>Telephone_Account_Number__c  + " " +  Product_Code__c</formula>
+    <label>Product Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

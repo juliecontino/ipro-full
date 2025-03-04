@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- 20. Microsoft 365 provider satisfaction --></label>
+        <name>X20_Microsoft_365_provider_satisfaction__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,4 @@
+Case : Case# {!Case.CaseNumber} 
+Subject: ({!Case.Subject})
+Case Owner: {!Case.OwnerFullName}
+Description:{!Case.Link}

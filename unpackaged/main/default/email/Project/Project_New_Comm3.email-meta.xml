@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Comm3</letterhead>
+    <name>Project: New Comm3</name>
+    <style>freeForm</style>
+    <subject>New Project Assignment:  {!AcctSeed__Project__c.Opportunity_Ops_Category__c} : {!AcctSeed__Project__c.Name}</subject>
+    <textOnly>A project has been assigned to: {!AcctSeed__Project__c.Project_Manager_OPS__c}
+Project Name: {!AcctSeed__Project__c.Name}
+Project Link: {!AcctSeed__Project__c.Link}
+Opportunifty: {!AcctSeed__Project__c.AcctSeed__Opportunity__c}
+OPs Category: {!AcctSeed__Project__c.Opportunity_Ops_Category__c}
+
+
+
+
+
+
+
+This is an automated message from Salesforce:
+Process Builder - Project Manager Assign from Opportunity-Comm3</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

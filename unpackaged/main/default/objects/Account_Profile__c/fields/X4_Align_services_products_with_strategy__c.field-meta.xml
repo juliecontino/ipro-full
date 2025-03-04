@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X4_Align_services_products_with_strategy__c</fullName>
+    <description>10/18 SH</description>
+    <inlineHelpText>How can we better align our services/products with your evolving strategy?</inlineHelpText>
+    <label>4. Align services/products with strategy</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

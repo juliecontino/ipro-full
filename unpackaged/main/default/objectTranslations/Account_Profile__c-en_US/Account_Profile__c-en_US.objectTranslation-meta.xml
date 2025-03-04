@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Profile</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Profiles</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Account Profile Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account QBR Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Sales Process --></label>
+        <name>Sales_Process</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- Quarterly Business Review --></description>
+        <label><!-- QBR --></label>
+        <name>QBR</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Default Account Profile --></description>
+        <label><!-- Standard --></label>
+        <name>Standard</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

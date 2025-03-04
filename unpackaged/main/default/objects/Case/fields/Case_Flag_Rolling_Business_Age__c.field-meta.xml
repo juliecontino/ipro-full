@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Flag_Rolling_Business_Age__c</fullName>
+    <externalId>false</externalId>
+    <formula>FLAGS__Case_Flag_Business_Age__c  +    Time_with_IPRO_Media__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Time flag has been set on case all-time</inlineHelpText>
+    <label>Case Flag Rolling Business Age</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

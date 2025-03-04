@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TAG_Call_Flag__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>TAG_Call_Flag</description>
+    <inlineHelpText>TAG_Call_Flag</inlineHelpText>
+    <label>TAG Call Flag</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

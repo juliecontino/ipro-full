@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TSP_Term__c</fullName>
+    <inlineHelpText>Enter the desired TotalSolution contract term here. Also use this field for TotalSolution support only contracts.</inlineHelpText>
+    <label>TSP Term</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>12 Months</fullName>
+                <default>false</default>
+                <label>12 Months</label>
+            </value>
+            <value>
+                <fullName>24 Months</fullName>
+                <default>false</default>
+                <label>24 Months</label>
+            </value>
+            <value>
+                <fullName>36 Months</fullName>
+                <default>false</default>
+                <label>36 Months</label>
+            </value>
+            <value>
+                <fullName>48 Months</fullName>
+                <default>false</default>
+                <label>48 Months</label>
+            </value>
+            <value>
+                <fullName>60 Months</fullName>
+                <default>false</default>
+                <label>60 Months</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Usage_Based_Billing_UBB_with_MBC__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Usage-Based Billing (UBB) with MBC</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

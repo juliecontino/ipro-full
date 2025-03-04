@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used to indicate on the PO notification that any additional work beyond the scope will not be paid unless a subsequent PO is administered</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>Independent Contractor PO Approval</name>
+    <style>freeForm</style>
+    <subject>Purchase Order has been Approved: {!AcctSeedERP__Purchase_Order__c.Name}</subject>
+    <textOnly>The attached Purchase Order has been approved. The see contractor note below:
+
+Purchase Order: {!AcctSeedERP__Purchase_Order__c.Name}
+Vendor: {!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c}
+Vendor Alias: {!AcctSeedERP__Purchase_Order__c.Vendor_Alias__c}
+
+Account: {!AcctSeedERP__Purchase_Order__c.Account__c}
+PO Amount: {!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Total__c}
+
+ATTENTION CONTRACTORS
+
+Any additional work requiring charges greater than the amount of the attached purchase order must be pre-approved by IPro Media.
+
+Contractors should obtain an amended purchase order amount. Invoices received in excess of the approved purchase order will not be paid.
+
+Thank you,
+
+IPro Media
+accounting@ipromedia.us
+(903) 482:8126
+
+
+
+
+
+
+
+This is an automated message from Salesforce:  PO Email Template</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MS_Lease_Schedule_A_Products__c</fullName>
+    <label>MS Lease Schedule A Products</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

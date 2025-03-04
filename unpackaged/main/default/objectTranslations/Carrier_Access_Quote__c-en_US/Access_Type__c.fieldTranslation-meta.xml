@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Access Type --></label>
+        <name>Access_Type__c</name>
+        <picklistValues>
+            <masterLabel>Private Line</masterLabel>
+            <translation><!-- Private Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Switched Ethernet</masterLabel>
+            <translation><!-- Switched Ethernet --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

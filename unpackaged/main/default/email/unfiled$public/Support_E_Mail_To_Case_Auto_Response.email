@@ -1,0 +1,103 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Thank you for submitting your support request online. Case #:
+{!Case.CaseNumber}: &quot;{!Case.Subject}&quot; has been created and you will
+be notified when an IPro Media Support Representative begins work on your case. 
+Our Service Level Response goals are as follows:</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Priority 1: 4 Business Hours (Outage to your IPro Service
+affecting critical business function or 50% of the service)</span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-size:9.0pt;
+font-family:"Arial","sans-serif";color:black'>NOTE: If you have a Priority 1
+case, please call in to (903) 482-8110 to have your case escalated.  Email is not
+a real time communication method and should not be used for Priority 1 outages.</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Priority 2: 8 Business Hours (Outage less than P1 level, but significant
+business impact or high visibility personnel)</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Priority 3: 3 Business Days (Non-outage services requests and
+changes, or small outages of individual devices)</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Priority 4: 5 Business Days (Project work, large scale service
+requests or changes)<br>
+<br>
+</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Support for your IPro Services are available during all regular
+business hours for non-business critical cases.  Support is available during
+extended hours for critical failures. All times listed are in Central Standard
+Time.</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Regular support hours: Monday - Friday, 8:00 AM-5:00 PM</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Extended support hours: 7 days per week excluding holidays, 6:00
+AM-10:00 PM</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>The first weekend of every month is reserved for system
+maintenance from Saturday night at 10pm through Sunday evening at 10pm for changes that may potentially impact the availability of the IPro Service.  Please contact us 2 weeks in advance of schedule maintenance windows if you need to have your services excluded from certain maintenance windows.</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>Thank You<br>
+IPro Media Customer Support</span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mitel_Product_Proposed__c</fullName>
+    <label>Mitel Product Proposed</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Mitel Communications Director</fullName>
+                <default>false</default>
+                <label>Mitel Communications Director</label>
+            </value>
+            <value>
+                <fullName>Mitel 5000</fullName>
+                <default>false</default>
+                <label>Mitel 5000</label>
+            </value>
+            <value>
+                <fullName>Mitel Application</fullName>
+                <default>false</default>
+                <label>Mitel Application</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

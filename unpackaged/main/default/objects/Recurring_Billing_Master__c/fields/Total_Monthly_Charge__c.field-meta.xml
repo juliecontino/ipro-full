@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Monthly_Charge__c</fullName>
+    <label>Total Monthly Charge</label>
+    <summarizedField>Recurring_Billing_Line_Items__c.Total_Monthly_Charge__c</summarizedField>
+    <summaryForeignKey>Recurring_Billing_Line_Items__c.Recurring_Billing_Master__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

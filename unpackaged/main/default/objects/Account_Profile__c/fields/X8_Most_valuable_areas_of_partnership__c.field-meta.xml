@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X8_Most_valuable_areas_of_partnership__c</fullName>
+    <description>10/30 SH: Which areas of our partnership have provided the most value to your business?</description>
+    <label>8. Most valuable areas of partnership</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

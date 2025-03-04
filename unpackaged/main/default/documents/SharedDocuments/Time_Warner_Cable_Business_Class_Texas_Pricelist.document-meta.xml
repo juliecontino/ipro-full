@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Price list for Internet access and service for Time Warner Cable Business Class.</description>
+    <internalUseOnly>false</internalUseOnly>
+    <keywords>TWC, Time Warner Cable, Business Class Texas</keywords>
+    <name>Time Warner Cable Business Class-Texas Pricelist</name>
+    <public>false</public>
+</Document>

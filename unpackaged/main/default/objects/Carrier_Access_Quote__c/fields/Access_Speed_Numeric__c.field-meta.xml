@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Speed_Numeric__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(Access_Speed__c),
+"T1 (1.544 MB)",1.5,
+"2xT1 (3 MB)",3,
+"3xT1 (4.5 MB)",4.5,
+"4xT1 (6 MB)",6,
+"5xT1 (7.5 MB)",7.5,
+"6xT1 (9 MB)",9,
+"7xT1 (10.5 MB",10.5,
+"8xT1 (12 MB",12,
+"5 Mbps",5,
+"10 Mbps",10,
+"20 Mbps",20,
+"50 Mbps",50,
+"100 Mbps",100,
+"250 Mbps",250,
+"500 Mbps",500,
+"600 Mbps",600,
+"1000 Mbps",1000,
+0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Access Speed Numeric</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

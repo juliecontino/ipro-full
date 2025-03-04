@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlowTriggerQBRAssignment__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>1/30/25 BM: Triggered by Flow: QBR Assignment Master Flow and reset by QBR Assignment User Sub-Flow.</description>
+    <label>FlowTriggerQBRAssignment</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

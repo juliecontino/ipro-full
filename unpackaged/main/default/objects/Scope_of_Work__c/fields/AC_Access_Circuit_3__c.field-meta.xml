@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AC_Access_Circuit_3__c</fullName>
+    <label>Access Circuit 3</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Analog Line</fullName>
+                <default>false</default>
+                <label>Analog Line</label>
+            </value>
+            <value>
+                <fullName>Best Effort Internet</fullName>
+                <default>false</default>
+                <label>Best Effort Internet</label>
+            </value>
+            <value>
+                <fullName>Bonded T1</fullName>
+                <default>false</default>
+                <label>Bonded T1</label>
+            </value>
+            <value>
+                <fullName>Direct Internet Access</fullName>
+                <default>false</default>
+                <label>Direct Internet Access</label>
+            </value>
+            <value>
+                <fullName>MPLS</fullName>
+                <default>false</default>
+                <label>MPLS</label>
+            </value>
+            <value>
+                <fullName>PRI</fullName>
+                <default>false</default>
+                <label>PRI</label>
+            </value>
+            <value>
+                <fullName>T1</fullName>
+                <default>false</default>
+                <label>T1</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

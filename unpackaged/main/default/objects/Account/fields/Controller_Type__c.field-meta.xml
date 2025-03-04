@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Controller_Type__c</fullName>
+    <label>Controller Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>3300</fullName>
+                <default>false</default>
+                <label>3300</label>
+            </value>
+            <value>
+                <fullName>5000</fullName>
+                <default>false</default>
+                <label>5000</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

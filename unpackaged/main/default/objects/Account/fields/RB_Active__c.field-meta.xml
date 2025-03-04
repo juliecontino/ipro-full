@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RB_Active__c</fullName>
+    <formula>!OR( Closed_Opportunity_Products__c &lt;&gt; 0,  RB_Total_Monthly_Charge__c &lt;&gt; 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>RB Active</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

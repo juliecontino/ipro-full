@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>Sales - First Contact from Lead</name>
+    <style>freeForm</style>
+    <subject>Introduction to IPro Media</subject>
+    <textOnly>Hello {!Lead.FirstName},
+
+Thank you for your interest in IPro Media&apos;s Communication Solutions.  I look forward to working with you to find out more on how we can assist your company with your communication needs.
+
+You can contact me at (903) 482-8110
+
+Also, check out our website at: www.ipromedia.us to find out more.
+
+Thanks again,
+
+{!Lead.OwnerFirstName} {!Lead.OwnerLastName}
+{!Lead.OwnerEmail}
+{!Lead.OwnerPhone}</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

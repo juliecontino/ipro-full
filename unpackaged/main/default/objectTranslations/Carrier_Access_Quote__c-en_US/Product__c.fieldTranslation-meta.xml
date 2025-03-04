@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+        <picklistValues>
+            <masterLabel>AT&amp;T Internet Access (DSL / U-Verse)</masterLabel>
+            <translation><!-- AT&amp;T Internet Access (DSL / U-Verse) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AT&amp;T Managed Internet Service (MIS)</masterLabel>
+            <translation><!-- AT&amp;T Managed Internet Service (MIS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AT&amp;T Network-Based IP-VPN Remote Access (Requires AVPN)</masterLabel>
+            <translation><!-- AT&amp;T Network-Based IP-VPN Remote Access (Requires AVPN) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AT&amp;T Virtual Private Network Service (AVPN)</masterLabel>
+            <translation><!-- AT&amp;T Virtual Private Network Service (AVPN) --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

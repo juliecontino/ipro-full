@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pipeline_Status__c</fullName>
+    <label>Pipeline Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Primary Proposal</fullName>
+                <default>false</default>
+                <label>Primary Proposal</label>
+            </value>
+            <value>
+                <fullName>Alternate Proposal</fullName>
+                <default>false</default>
+                <label>Alternate Proposal</label>
+            </value>
+            <value>
+                <fullName>Inactive Proposal</fullName>
+                <default>false</default>
+                <label>Inactive Proposal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Circuit_Type__c</fullName>
+    <description>9/10 SH: Created for Access Circuit transfer.</description>
+    <label>Circuit Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cable Modem</fullName>
+                <default>false</default>
+                <label>Cable Modem</label>
+            </value>
+            <value>
+                <fullName>DSL</fullName>
+                <default>false</default>
+                <label>DSL</label>
+            </value>
+            <value>
+                <fullName>T1 Internet</fullName>
+                <default>false</default>
+                <label>T1 Internet</label>
+            </value>
+            <value>
+                <fullName>T1 IP/VPN</fullName>
+                <default>false</default>
+                <label>T1 IP/VPN</label>
+            </value>
+            <value>
+                <fullName>Metro Fiber Internet</fullName>
+                <default>false</default>
+                <label>Metro Fiber Internet</label>
+            </value>
+            <value>
+                <fullName>Metro Fiber IP/VPN</fullName>
+                <default>false</default>
+                <label>Metro Fiber IP/VPN</label>
+            </value>
+            <value>
+                <fullName>Local DID</fullName>
+                <default>false</default>
+                <label>Local DID</label>
+            </value>
+            <value>
+                <fullName>Toll Free DID</fullName>
+                <default>false</default>
+                <label>Toll Free DID</label>
+            </value>
+            <value>
+                <fullName>POTS Line</fullName>
+                <default>false</default>
+                <label>POTS Line</label>
+            </value>
+            <value>
+                <fullName>eFax</fullName>
+                <default>false</default>
+                <label>eFax</label>
+            </value>
+            <value>
+                <fullName>FaxLync</fullName>
+                <default>false</default>
+                <label>FaxLync</label>
+            </value>
+            <value>
+                <fullName>T1 PRI</fullName>
+                <default>false</default>
+                <label>T1 PRI</label>
+            </value>
+            <value>
+                <fullName>International DID</fullName>
+                <default>false</default>
+                <label>International DID</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>Opportunity CPQ Completed</name>
+    <style>freeForm</style>
+    <subject>Opportunity Equipment Requisition Completed: {!Opportunity.Name}</subject>
+    <textOnly>The Equipment Requisition for this opportunity has been completed:
+
+Account Name: {!Opportunity.Account}
+Opportunity Name: {!Opportunity.Opportunity_Alpha_Tag__c}
+Opportunity Owner: {!Opportunity.OwnerFullName}
+OPs Category: {!Opportunity.OPS_Category__c}
+Link: {!Opportunity.Link}
+Last Modified by: {!Opportunity.LastModifiedBy}
+Notes: {!Material_Requistion__c.Notes__c}
+
+
+
+
+
+
+
+
+
+This is an automated message from Salesforce
+
+Workflow SOW CPQ Completed
+Email Template Sales: &quot;Opportunity CPQ Completed&quot;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

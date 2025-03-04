@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter any additional information relevant to the installation of the supporting access circuits. --></help>
+        <label><!-- Access Circuit Comments --></label>
+        <name>AC_Access_Circuit_Comments__c</name>
+    </CustomFieldTranslation>

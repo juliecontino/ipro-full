@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>(DEP) Account (Austin AE) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Austin Branch Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Controller) Layout</layout>
+        <sections>
+            <label><!-- Account Payable --></label>
+            <section>Account Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Section --></label>
+            <section>Support Section</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Dallas AE) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Service Information --></label>
+            <section>Service Information</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Dallas Branch Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- EON Information --></label>
+            <section>EON Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Financial Partner) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM --></label>
+            <section>SpringCM</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Houston AE) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Houston Branch Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- EON Information --></label>
+            <section>EON Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Inside Sales) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Major Accounts) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Operations Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Imported System Information --></label>
+            <section>Imported System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Project Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (SA Branch Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Sales Administrator) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Sales Engineer) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (San Antonio AE) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (San Antonio Branch Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Service Manager) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (Support Specialist) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Account (System Administrator) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Christmas --></label>
+            <section>Christmas</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Info --></label>
+            <section>Credit Info</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Partner --></label>
+            <section>Financial Partner</section>
+        </sections>
+        <sections>
+            <label><!-- G/L Variables --></label>
+            <section>G/L Variables</section>
+        </sections>
+        <sections>
+            <label><!-- Imported Account Info --></label>
+            <section>Imported Account Info</section>
+        </sections>
+        <sections>
+            <label><!-- Master Billing Info --></label>
+            <section>Master Billing Info</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM --></label>
+            <section>SpringCM</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>(DEP) Competitor Layout</layout>
+        <sections>
+            <label><!-- Account Payable --></label>
+            <section>Account Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Cash Disbursements --></label>
+            <section>Cash Disbursements</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM --></label>
+            <section>SpringCM</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account (Accounting ERP) Layout</layout>
+        <sections>
+            <label><!-- 1099 Information --></label>
+            <section>1099 Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Default PDF Format Information --></label>
+            <section>Default PDF Format Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payable Information --></label>
+            <section>Payable Information</section>
+        </sections>
+        <sections>
+            <label><!-- Stripe Information --></label>
+            <section>Stripe Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account (Accounting) Layout</layout>
+        <sections>
+            <label><!-- Account Payable Information --></label>
+            <section>Account Payable Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account (Default) Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Billing --></label>
+            <section>Billing</section>
+        </sections>
+        <sections>
+            <label><!-- Christmas --></label>
+            <section>Christmas</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Info --></label>
+            <section>Credit Info</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Partner --></label>
+            <section>Financial Partner</section>
+        </sections>
+        <sections>
+            <label><!-- G/L Variables --></label>
+            <section>G/L Variables</section>
+        </sections>
+        <sections>
+            <label><!-- Imported Account Info --></label>
+            <section>Imported Account Info</section>
+        </sections>
+        <sections>
+            <label><!-- Master Billing Info --></label>
+            <section>Master Billing Info</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing (Legacy) --></label>
+            <section>Recurring Billing (Legacy)</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM --></label>
+            <section>SpringCM</section>
+        </sections>
+        <sections>
+            <label><!-- Support Information --></label>
+            <section>Support Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Competitor Account Layout</layout>
+        <sections>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
+        </sections>
+        <sections>
+            <label><!-- Customer View (Grouped Account Hierarchy) - by ZaapIT --></label>
+            <section>Customer View (Grouped Account Hierarchy) - by ZaapIT</section>
+        </sections>
+        <sections>
+            <label><!-- Fiber Terminal --></label>
+            <section>Fiber Terminal</section>
+        </sections>
+        <sections>
+            <label><!-- Mitel TSP Lease Information --></label>
+            <section>Mitel TSP Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Summary --></label>
+            <section>Recurring Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM Documents --></label>
+            <section>SpringCM Documents</section>
+        </sections>
+        <sections>
+            <label><!-- WFFL --></label>
+            <section>WFFL</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Ipro Community</layout>
+        <sections>
+            <label><!-- Accounting --></label>
+            <section>Accounting</section>
+        </sections>
+        <sections>
+            <label><!-- Addresses --></label>
+            <section>Addresses</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Vendor Layout</layout>
+        <sections>
+            <label><!-- Account Payable --></label>
+            <section>Account Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Payable --></label>
+            <section>Accounts Payable</section>
+        </sections>
+        <sections>
+            <label><!-- Cash Disbursements --></label>
+            <section>Cash Disbursements</section>
+        </sections>
+        <sections>
+            <label><!-- SpringCM --></label>
+            <section>SpringCM</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Opportunity --></label>
+        <name>Create_Opportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Port Order --></label>
+        <name>Create_Port_Order</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create QBR --></label>
+        <name>Create_QBR</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log Task --></label>
+        <name>Log_Task</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Sales Process --></label>
+        <name>Sales_Process</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- Accounts that are Competitors of IPRO --></description>
+        <label><!-- Competitor --></label>
+        <name>Competitor</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Standard --></label>
+        <name>Standard</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Vendor --></label>
+        <name>Vendor</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid 2 digit billing country (example: US for United States and CA for Canda or MX for Mexico --></errorMessage>
+        <name>Billing_Country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid 2-digit billing state code for this Canadian Providence. Valid Entries are: (AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot;) --></errorMessage>
+        <name>Billing_State_Canada</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter valid 2-digit Billing State --></errorMessage>
+        <name>Billing_State_USA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid 2-digit Shipping Country (example: US for United States and CA for Canda or MX for Mexico) --></errorMessage>
+        <name>Shipping_Country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid 2-digit shipping state for this Canadian Providence. Valid Entries are:
+(AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot;) --></errorMessage>
+        <name>Shipping_State_Canada</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid 2-digit Shipping State --></errorMessage>
+        <name>Shipping_State_USA</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- AT_T_Pay --></label>
+        <name>AT_T_Pay</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Aged_Payables --></label>
+        <name>Aged_Payables</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- AltavistaNews --></label>
+        <name>AltavistaNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Billing_Statement --></label>
+        <name>Billing_Statement</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CSR --></label>
+        <name>CSR</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Client_P_L --></label>
+        <name>Client_P_L</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Closed_Opportunities --></label>
+        <name>Closed_Opportunities</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Closed_Opportunities_1 --></label>
+        <name>Closed_Opportunities_1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Closed_Products --></label>
+        <name>Closed_Products</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Closed_Products_By_PC --></label>
+        <name>Closed_Products_By_PC</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Composer_Account_Statement --></label>
+        <name>Conga_Composer_Account_Statement</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Composer_FNB_Master_Billing --></label>
+        <name>Conga_Composer_FNB_Master_Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Composer_Master_Billing_Detail --></label>
+        <name>Conga_Composer_Master_Billing_Detail</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Copy_Billing_Address_to_Shipping_Address_Flow --></label>
+        <name>Copy_Billing_Address_to_Shipping_Address_Flow</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Custom_Billing --></label>
+        <name>Custom_Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Forms --></label>
+        <name>Forms</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Gateway --></label>
+        <name>Gateway</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleNews --></label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- HooversProfile --></label>
+        <name>HooversProfile</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MBG1 --></label>
+        <name>MBG1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MBG2 --></label>
+        <name>MBG2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MCD --></label>
+        <name>MCD</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MOL --></label>
+        <name>MOL</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MSCR --></label>
+        <name>MSCR</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Master_Billing --></label>
+        <name>Master_Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Master_Billing2 --></label>
+        <name>Master_Billing2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Master_Billing_Summary --></label>
+        <name>Master_Billing_Summary</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- MiCollab --></label>
+        <name>MiCollab</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Open_Billings --></label>
+        <name>Open_Billings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- POs_for_Account --></label>
+        <name>POs_for_Account</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Parent_Master_Summary --></label>
+        <name>Print_Parent_Master_Summary</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Project_Timecards --></label>
+        <name>Project_Timecards</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RB_All --></label>
+        <name>RB_All</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RB_Comparison --></label>
+        <name>RB_Comparison</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RB_Equipment --></label>
+        <name>RB_Equipment</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RB_Funded --></label>
+        <name>RB_Funded</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RB_Service_Support --></label>
+        <name>RB_Service_Support</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RB_Unfunded --></label>
+        <name>RB_Unfunded</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Recurring_Billing_Detail_Report --></label>
+        <name>Recurring_Billing_Detail_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Router --></label>
+        <name>Router</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- System_Info_by_Account --></label>
+        <name>System_Info_by_Account</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Upload_Assets --></label>
+        <name>Upload_Assets</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Vendor_Contract_Audit_By_Account --></label>
+        <name>Vendor_Contract_Audit_By_Account</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- YahooMaps --></label>
+        <name>YahooMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- forms2 --></label>
+        <name>forms2</name>
+    </webLinks>
+</CustomObjectTranslation>

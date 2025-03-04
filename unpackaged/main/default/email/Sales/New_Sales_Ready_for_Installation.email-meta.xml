@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>New Sales Ready for Installation</name>
+    <style>freeForm</style>
+    <subject>Opportunity Install Ready For Project Assignment:{!Opportunity.Account}</subject>
+    <textOnly>An Opportunity as been approved as Closed Won and is ready for Installation assignment of Project Manager, Estimated Cut-over date, and Project Creation.
+
+Account Name: {!Opportunity.Account}
+
+Opportunity Name:
+{!Opportunity.Opportunity_Alpha_Tag__c}
+OPs Category: {!Opportunity.OPS_Category__c}
+Link: {!Opportunity.Link}
+Last Modified by: {!Opportunity.LastModifiedBy}
+
+
+
+
+
+
+
+
+This is an automated message from Salesforce
+
+Opportunity Approval Process</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

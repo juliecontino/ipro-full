@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Describe the Clients requirement for Wireless. Will the Mitel telephones need to work on the wireless network? --></help>
+        <label><!-- Wireless Comments --></label>
+        <name>Net_Wireless_Comments__c</name>
+    </CustomFieldTranslation>

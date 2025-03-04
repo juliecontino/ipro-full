@@ -1,0 +1,19 @@
+Contract Capital Credit:
+
+Please submit the following new prospect for a preliminary credit review:
+
+Account Information:
+
+Legal Name: {!Account.Name}
+Alias Name:  {!Account.Account_Alias__c}
+
+{!Account.ShippingAddress}
+{!Account.Phone}
+
+Opportunity Information:
+
+{!Opportunity.Sale_Type__c}
+{!Opportunity.AnyWare_Term__c}
+{!Opportunity.AnyWare_CPE_Funding_Amount__c}
+
+Comments:

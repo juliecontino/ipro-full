@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>SE_required_flow</flowApiName>
+    <label>test 1</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;AccountId&quot;:&quot;0018Z0000362MfFQAU&quot;,&quot;Annual_Commission_Adjustments__c&quot;:0,&quot;AnyWare_Funding_Factor__c&quot;:1,&quot;AnyWare_Funding_Source__c&quot;:&quot;Contract Capital&quot;,&quot;AnyWare_Term__c&quot;:&quot;60 Months&quot;,&quot;Approval_Status__c&quot;:&quot;None&quot;,&quot;Approved__c&quot;:false,&quot;Base_Commission_Adjustments__c&quot;:0,&quot;Billing_Verified__c&quot;:false,&quot;CloseDate&quot;:&quot;2023-09-20&quot;,&quot;Comm3_Support_Cost_Rate__c&quot;:35,&quot;Commission_Hold__c&quot;:false,&quot;Contract_Term__c&quot;:&quot;36&quot;,&quot;DSCORGPKG__Converted_from_Discoverorg_Data__c&quot;:false,&quot;Disable_Term_Discount__c&quot;:false,&quot;Discounts__c&quot;:0,&quot;Edit_AnyWare_Lease_Rate_Manually__c&quot;:false,&quot;Edit_Billing_Group_Manually__c&quot;:false,&quot;Edit_Opportunity_Amount_Manually__c&quot;:false,&quot;Financing_Down_Payments__c&quot;:&quot;0&quot;,&quot;Funded__c&quot;:false,&quot;Funding_Flag__c&quot;:&quot;20161231&quot;,&quot;Hide_from_Open_Install_Report__c&quot;:false,&quot;IPro_Flag__c&quot;:false,&quot;Install_Complete__c&quot;:false,&quot;Install_Record_Created__c&quot;:false,&quot;Install_Status_Opp__c&quot;:&quot;New&quot;,&quot;Install_Status__c&quot;:&quot;New&quot;,&quot;Installers_Calendar_Event_Added__c&quot;:false,&quot;Installers_Calendar_Event_Completion__c&quot;:false,&quot;Locked__c&quot;:false,&quot;Monthly_Recurring_Billing_Comm3__c&quot;:false,&quot;Name&quot;:&quot;test 4&quot;,&quot;Non_Commissioned_Opportunity__c&quot;:false,&quot;Non_Quota_Opportunity__c&quot;:false,&quot;Numeric_Term__c&quot;:1,&quot;OPS_Category__c&quot;:&quot;Installation&quot;,&quot;Other_MSRP__c&quot;:0,&quot;Other_Net_Dollars__c&quot;:0,&quot;OwnerId&quot;:&quot;00540000003Wb5JAAS&quot;,&quot;PF__c&quot;:false,&quot;Project_Record_Created__c&quot;:false,&quot;Quarterly_Commission_Adjustments__c&quot;:0,&quot;RB_Cat_5__c&quot;:false,&quot;RB_SFDC__c&quot;:false,&quot;RFP__c&quot;:false,&quot;Recurring_Billing_Active__c&quot;:false,&quot;Section_5320e_IP_Telephone__c&quot;:true,&quot;Section_5330e_IP_Telephone__c&quot;:true,&quot;Section_5340e_IP_Telephone__c&quot;:true,&quot;Section_5360_IP_Telephone__c&quot;:true,&quot;Section_6920_IP_Telephone__c&quot;:true,&quot;Section_6930IP_Telephone__c&quot;:true,&quot;Section_6940_IP_Telephone__c&quot;:true,&quot;Section_Carrier_Services__c&quot;:true,&quot;Section_E_Fax__c&quot;:true,&quot;Section_IPro_AnyWare_Program__c&quot;:true,&quot;Section_IPro_Media__c&quot;:true,&quot;Section_Network_Security__c&quot;:true,&quot;Signed_Contract__c&quot;:false,&quot;Solution_Engineer_Engaged__c&quot;:&quot;YES&quot;,&quot;StageName&quot;:&quot;30%&quot;,&quot;Support_Billed_Years_Number__c&quot;:1,&quot;Support_Contract_Term__c&quot;:&quot;One Year&quot;,&quot;TSP_Funding_Factor__c&quot;:1,&quot;TSP_Monthly_Access_Cost__c&quot;:0,&quot;TSP_Monthly_Access_Price__c&quot;:0}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Probability</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>0.3</numberValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Operations_Category__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>MAC</stringValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

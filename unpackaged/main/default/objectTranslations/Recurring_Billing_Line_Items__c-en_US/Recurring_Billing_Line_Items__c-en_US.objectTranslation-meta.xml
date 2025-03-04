@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Recurring Billing Line Items</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Recurring Billing Line Items</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Recurring Billing Line Items Layout</layout>
+        <sections>
+            <label><!-- Cat-5 Data --></label>
+            <section>Cat-5 Data</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Data --></label>
+            <section>Contract Data</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Independent Partner Data --></label>
+            <section>Independent Partner Data</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Forms --></label>
+        <name>Forms</name>
+    </webLinks>
+</CustomObjectTranslation>

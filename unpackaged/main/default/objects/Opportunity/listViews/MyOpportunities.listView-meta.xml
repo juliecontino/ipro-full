@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MyOpportunities</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.AMOUNT</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>Install_Status_Opp__c</columns>
+    <columns>Commission_Comments__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>contains</operation>
+        <value>mckool</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>notContain</operation>
+        <value>Closed Lost,Inactive</value>
+    </filters>
+    <label>My Opportunities</label>
+</ListView>

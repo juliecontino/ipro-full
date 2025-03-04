@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_Network_Router__c</fullName>
+    <inlineHelpText>Enter the Model of IPro Router to use or indicate the primary network router will be provided by the Client.</inlineHelpText>
+    <label>Network Router</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPro 3 Port</fullName>
+                <default>false</default>
+                <label>IPro 3 Port</label>
+            </value>
+            <value>
+                <fullName>IPro 6 Port</fullName>
+                <default>false</default>
+                <label>IPro 6 Port</label>
+            </value>
+            <value>
+                <fullName>Customer Provided</fullName>
+                <default>false</default>
+                <label>Customer Provided</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

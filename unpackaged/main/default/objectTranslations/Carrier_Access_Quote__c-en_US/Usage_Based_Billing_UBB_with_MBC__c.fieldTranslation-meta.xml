@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Usage-Based Billing (UBB) with MBC --></label>
+        <name>Usage_Based_Billing_UBB_with_MBC__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AC_Access_Circuit_Comments__c</fullName>
+    <inlineHelpText>Enter any additional information relevant to the installation of the supporting access circuits.</inlineHelpText>
+    <label>Access Circuit Comments</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

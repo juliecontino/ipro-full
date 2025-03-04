@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Sales User Permission Set Group</label>
+    <permissionSets>Account_Contact_Relationship_Permission_Set</permissionSets>
+    <permissionSets>Account_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Account_Team_Permission_Set</permissionSets>
+    <permissionSets>Activities_Permission_Set</permissionSets>
+    <permissionSets>Assets_Limited_Access_Permission_Set</permissionSets>
+    <permissionSets>Associated_Locations_Permission_Set</permissionSets>
+    <permissionSets>Calendar_Permission_Set</permissionSets>
+    <permissionSets>Campaign_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Campaign_Member_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Carrier_Access_Quote_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Case_Limited_Permission_Set</permissionSets>
+    <permissionSets>Contact_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Contract_Limited_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Dashboard_Non_Admin_Permission_Set</permissionSets>
+    <permissionSets>Email_Message_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Event_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Files_Permission_Set</permissionSets>
+    <permissionSets>Flow_Non_Admin_Permission_Set</permissionSets>
+    <permissionSets>IPRO_Console_Permission_Set</permissionSets>
+    <permissionSets>Lead_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Opportunity_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Opportunity_Products_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Port_Order_Lines_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Port_Orders_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Price_Books_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Products_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Quote_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Quote_Line_Items_Full_CRUD_Permission_Set</permissionSets>
+    <permissionSets>Report_Non_Admin_Permission_Set</permissionSets>
+    <permissionSets>Scope_of_Work_Full_CRUD_Perm_Set</permissionSets>
+    <permissionSets>Tasks_Full_CRUD_Perm_Set</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

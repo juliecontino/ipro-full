@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Email_to_All</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Send Email to All</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT('/soap/ajax/29.0/connection.js')}
+{!REQUIRESCRIPT('/soap/ajax/29.0/apex.js')}
+var records = {!GETRECORDIDS($ObjectType.Contact)};
+var recipients = [];
+if (records[0] == null) {
+alert("Please select at least one contact to email.");
+}
+else if(records.length &gt; 50) {
+alert("Please use a different mechanism to email more than 50 people at once.");
+}
+else {
+// Iterate through records
+for (var n=0; n &lt; records.length; n++) {
+// retrieve Contact based on the ID in records
+var contactLookup = sforce.connection.retrieve("Name,Email","Contact",[records[n]]);
+if(contactLookup[0].Email){
+// email is not empty so add to list
+recipients.push(contactLookup[0]);
+}
+}
+// Build the string for a mass email
+// Change the seperator between a semi-colon or comma, depending on email client
+var toEmailString = "";
+for (var n=0; n &lt; recipients.length; n++) {
+toEmailString = toEmailString + recipients[n].Email + ",";
+}
+// Remove last comma or semi-colon from string
+toEmailString = toEmailString.slice(0,toEmailString.length-1);
+// redirect to emailer
+window.location='/_ui/core/email/author/EmailAuthor?p24='+toEmailString;
+}</url>
+</WebLink>

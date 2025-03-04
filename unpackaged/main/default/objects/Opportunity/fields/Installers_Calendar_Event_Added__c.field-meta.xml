@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Installers_Calendar_Event_Added__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>mkneill 8/16/16 used to determine if an event has been created for the estimated completion date.  If not, an event is created when the expected installation date is filled out.  If it has been created, then the events dates are changed to the any modified date.</description>
+    <label>Installers Calendar Event Added</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

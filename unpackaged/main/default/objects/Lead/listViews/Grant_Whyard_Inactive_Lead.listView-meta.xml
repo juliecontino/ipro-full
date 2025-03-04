@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Grant_Whyard_Inactive_Lead</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Grant Whyard Inactive</label>
+    <language>en_US</language>
+    <queue>Grant_Whyard_Inactive</queue>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

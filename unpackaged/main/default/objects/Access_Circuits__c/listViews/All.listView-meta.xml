@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Primary_Carrier__c</columns>
+    <columns>Circuit_Type__c</columns>
+    <columns>Circuit_Down_Link_Speed__c</columns>
+    <columns>Circuit_Uplink_Speed__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Imported__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

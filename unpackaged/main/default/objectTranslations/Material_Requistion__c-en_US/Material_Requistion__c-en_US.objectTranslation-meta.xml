@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Material Requistion</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Material Requistions</value>
+    </caseValues>
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- MR Field Set --></label>
+        <name>MR_Field_Set</name>
+    </fieldSets>
+    <layouts>
+        <layout>Material Requistion Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Export --></label>
+        <name>Export</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Forms --></label>
+        <name>Forms</name>
+    </webLinks>
+</CustomObjectTranslation>

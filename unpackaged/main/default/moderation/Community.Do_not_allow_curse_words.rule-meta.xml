@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModerationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <action>Block</action>
+    <active>true</active>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>Title</fieldName>
+        <keywordList>Community.curse_words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>RawBody</fieldName>
+        <keywordList>Community.curse_words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedItem</entityName>
+        <fieldName>LinkUrl</fieldName>
+        <keywordList>Community.curse_words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedComment</entityName>
+        <fieldName>RawCommentBody</fieldName>
+        <keywordList>Community.curse_words</keywordList>
+    </entitiesAndFields>
+    <entitiesAndFields>
+        <entityName>FeedPollChoice</entityName>
+        <fieldName>ChoiceBody</fieldName>
+        <keywordList>Community.curse_words</keywordList>
+    </entitiesAndFields>
+    <masterLabel>Do not allow curse words</masterLabel>
+    <type>Content</type>
+    <userMessage>You can&apos;t use other inappropriate words in this community. Review your content and try again.</userMessage>
+</ModerationRule>

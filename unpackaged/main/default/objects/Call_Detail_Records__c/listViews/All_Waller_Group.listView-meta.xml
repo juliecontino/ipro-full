@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Waller_Group</fullName>
+    <columns>NAME</columns>
+    <columns>Account_Name__c</columns>
+    <columns>Access_Circuit_ID__c</columns>
+    <columns>Caller_Name__c</columns>
+    <columns>calling_number__c</columns>
+    <columns>called_number__c</columns>
+    <columns>Call_Orig_timestamp__c</columns>
+    <columns>Call_Term_timestamp__c</columns>
+    <columns>Call_Duration_Seconds__c</columns>
+    <columns>Call_Duration_Min_Sec_calculated__c</columns>
+    <columns>Call_Result__c</columns>
+    <columns>Source_Reference__c</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Name__c</field>
+        <operation>startsWith</operation>
+        <value>Waller Group</value>
+    </filters>
+    <label>All - Waller Group</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

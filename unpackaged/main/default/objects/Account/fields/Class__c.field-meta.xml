@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class__c</fullName>
+    <defaultValue>"Business"</defaultValue>
+    <description>Rev.io Class field</description>
+    <externalId>false</externalId>
+    <label>Class</label>
+    <length>25</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

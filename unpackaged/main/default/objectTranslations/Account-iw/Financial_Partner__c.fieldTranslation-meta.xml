@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Financial Partner --></label>
+        <name>Financial_Partner__c</name>
+        <picklistValues>
+            <masterLabel>Contract Capital</masterLabel>
+            <translation><!-- Contract Capital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Great America</masterLabel>
+            <translation><!-- Great America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPro Media</masterLabel>
+            <translation><!-- IPro Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Texas Star Bank</masterLabel>
+            <translation><!-- Texas Star Bank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wells Fargo</masterLabel>
+            <translation><!-- Wells Fargo --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

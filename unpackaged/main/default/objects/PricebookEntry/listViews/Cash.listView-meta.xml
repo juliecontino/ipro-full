@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cash</fullName>
+    <columns>PRODUCT.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT.NAME</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>Product2.Product_Notes__c</columns>
+    <columns>PRODUCT.DEFAULT_PRICE</columns>
+    <columns>PRODUCT.ACTIVE</columns>
+    <columns>Product2.GASA__c</columns>
+    <filterScope>Queue</filterScope>
+    <label>Cash</label>
+    <queue>Cash</queue>
+</ListView>

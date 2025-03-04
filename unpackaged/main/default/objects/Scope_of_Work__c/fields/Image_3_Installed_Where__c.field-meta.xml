@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Image_3_Installed_Where__c</fullName>
+    <label>Image 3 Installed Where</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPro Data Center</fullName>
+                <default>false</default>
+                <label>IPro Data Center</label>
+            </value>
+            <value>
+                <fullName>Client Data Center</fullName>
+                <default>false</default>
+                <label>Client Data Center</label>
+            </value>
+            <value>
+                <fullName>Client Premise</fullName>
+                <default>false</default>
+                <label>Client Premise</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

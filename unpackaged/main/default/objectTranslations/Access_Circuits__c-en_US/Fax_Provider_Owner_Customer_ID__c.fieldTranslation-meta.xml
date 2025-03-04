@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Fax Provider Owner Customer ID --></label>
+        <name>Fax_Provider_Owner_Customer_ID__c</name>
+    </CustomFieldTranslation>

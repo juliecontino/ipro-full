@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interface_Type__c</fullName>
+    <label>Interface Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Port_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Electrical - 100 Base TX</fullName>
+                <default>false</default>
+                <label>Electrical - 100 Base TX</label>
+            </value>
+            <value>
+                <fullName>Optical Single-Mode - 1000 Base LX</fullName>
+                <default>false</default>
+                <label>Optical Single-Mode - 1000 Base LX</label>
+            </value>
+            <value>
+                <fullName>Optical Multi-Mode - 1000 Base SX</fullName>
+                <default>false</default>
+                <label>Optical Multi-Mode - 1000 Base SX</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>None</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>Electrical - 100 Base TX</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>Optical Single-Mode - 1000 Base LX</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>Optical Multi-Mode - 1000 Base SX</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

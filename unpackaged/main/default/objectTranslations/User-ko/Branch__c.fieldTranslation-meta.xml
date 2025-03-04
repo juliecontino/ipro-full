@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Branch --></label>
+        <name>Branch__c</name>
+        <picklistValues>
+            <masterLabel>Atlanta</masterLabel>
+            <translation><!-- Atlanta --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Austin</masterLabel>
+            <translation><!-- Austin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dallas</masterLabel>
+            <translation><!-- Dallas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Houston</masterLabel>
+            <translation><!-- Houston --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pittsburgh</masterLabel>
+            <translation><!-- Pittsburgh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>San Antonio</masterLabel>
+            <translation><!-- San Antonio --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

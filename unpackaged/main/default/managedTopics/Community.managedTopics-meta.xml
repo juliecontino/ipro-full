@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagedTopics xmlns="http://soap.sforce.com/2006/04/metadata">
+    <managedTopic>
+        <fullName>Community.Featured:How To Use My Concord Fax Platform</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>How To Use My Concord Fax Platform</name>
+        <parentName></parentName>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Featured:How To Use My MiCollab Client</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>How To Use My MiCollab Client</name>
+        <parentName></parentName>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Featured:How To Use My Phone</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>How To Use My Phone</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Featured:How To Use My Voice Mail</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>How To Use My Voice Mail</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Featured:Training</fullName>
+        <managedTopicType>Featured</managedTopicType>
+        <name>Training</name>
+        <parentName></parentName>
+        <position>5</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Navigational:Ask The Moderator</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Ask The Moderator</name>
+        <parentName></parentName>
+        <position>4</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Navigational:General</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>General</name>
+        <parentName></parentName>
+        <position>0</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Navigational:How To Use My MiCollab Client</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>How To Use My MiCollab Client</name>
+        <parentName></parentName>
+        <position>3</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Navigational:How To Use My Phone</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>How To Use My Phone</name>
+        <parentName></parentName>
+        <position>1</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Navigational:How To Use My Voice Mail</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>How To Use My Voice Mail</name>
+        <parentName></parentName>
+        <position>2</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+    <managedTopic>
+        <fullName>Community.Navigational:Training</fullName>
+        <managedTopicType>Navigational</managedTopicType>
+        <name>Training</name>
+        <parentName></parentName>
+        <position>5</position>
+        <topicDescription> </topicDescription>
+    </managedTopic>
+</ManagedTopics>

@@ -1,0 +1,10 @@
+The following commission has been requested by {!Commissions__c.CreatedBy}:
+
+Number:   {!Commissions__c.Name}
+Account Name:   {!Account.Name}
+Opportunity:   {!Opportunity.Name}
+Category:   {!Commissions__c.Commission_Category__c}
+Type:   {!Commissions__c.Commission_Type__c}
+Base Amount:   {!Commissions__c.Base_Commission_Net__c}
+Quarterly Amount:   {!Commissions__c.Quarterly_Commission_Net__c}
+Annual Amount:   {!Commissions__c.Annual_Commission_Net__c}

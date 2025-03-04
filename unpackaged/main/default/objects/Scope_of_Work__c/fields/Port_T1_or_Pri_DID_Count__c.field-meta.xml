@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Port_T1_or_Pri_DID_Count__c</fullName>
+    <externalId>false</externalId>
+    <label>Port T1 or Pri DID Count</label>
+    <length>8</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The speed on sync circuits refers to both upload and download. The speed on async circuits only refers to the download speed. Upload speeds are usually between 10% to 25% of download speeds on async circuits. --></help>
+        <label><!-- Access Circuit 2 Speed --></label>
+        <name>AC_Access_Circuit_2_Speed__c</name>
+        <picklistValues>
+            <masterLabel>1.5 MB Async</masterLabel>
+            <translation><!-- 1.5 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1.5 MB Sync</masterLabel>
+            <translation><!-- 1.5 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10 MB Async</masterLabel>
+            <translation><!-- 10 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10 MB Sync</masterLabel>
+            <translation><!-- 10 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100 MB Async</masterLabel>
+            <translation><!-- 100 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100 MB Sync</masterLabel>
+            <translation><!-- 100 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20 MB Async</masterLabel>
+            <translation><!-- 20 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20 MB Sync</masterLabel>
+            <translation><!-- 20 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25 MB Async</masterLabel>
+            <translation><!-- 25 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25 MB Sync</masterLabel>
+            <translation><!-- 25 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3.0 MB Sync</masterLabel>
+            <translation><!-- 3.0 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4.5 MB Sync</masterLabel>
+            <translation><!-- 4.5 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 MB Async</masterLabel>
+            <translation><!-- 5 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 MB Async</masterLabel>
+            <translation><!-- 50 MB Async --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 MB Sync</masterLabel>
+            <translation><!-- 50 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6.0 MB Sync</masterLabel>
+            <translation><!-- 6.0 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7.5 MB Sync</masterLabel>
+            <translation><!-- 7.5 MB Sync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9.0 MB Sync</masterLabel>
+            <translation><!-- 9.0 MB Sync --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

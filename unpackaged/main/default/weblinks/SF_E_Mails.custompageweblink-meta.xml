@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>SF-E-Mails</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://na2.salesforce.com/6AC?src=4</url>
+</CustomPageWebLink>

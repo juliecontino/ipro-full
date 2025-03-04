@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Circuit Type --></label>
+        <name>Circuit_Type__c</name>
+        <picklistValues>
+            <masterLabel>Cable Modem</masterLabel>
+            <translation><!-- Cable Modem --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DSL</masterLabel>
+            <translation><!-- DSL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FaxLync</masterLabel>
+            <translation><!-- FaxLync --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International DID</masterLabel>
+            <translation><!-- International DID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local DID</masterLabel>
+            <translation><!-- Local DID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metro Fiber IP/VPN</masterLabel>
+            <translation><!-- Metro Fiber IP/VPN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metro Fiber Internet</masterLabel>
+            <translation><!-- Metro Fiber Internet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POTS Line</masterLabel>
+            <translation><!-- POTS Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 IP/VPN</masterLabel>
+            <translation><!-- T1 IP/VPN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 Internet</masterLabel>
+            <translation><!-- T1 Internet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 PRI</masterLabel>
+            <translation><!-- T1 PRI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toll Free DID</masterLabel>
+            <translation><!-- Toll Free DID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>eFax</masterLabel>
+            <translation><!-- eFax --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

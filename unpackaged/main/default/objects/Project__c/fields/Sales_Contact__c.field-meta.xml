@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Contact__c</fullName>
+    <label>Sales Contact</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Richie Bell</fullName>
+                <default>false</default>
+                <label>Richie Bell</label>
+            </value>
+            <value>
+                <fullName>Ray Wagnon</fullName>
+                <default>false</default>
+                <label>Ray Wagnon</label>
+            </value>
+            <value>
+                <fullName>Steve Yeisley</fullName>
+                <default>false</default>
+                <label>Steve Yeisley</label>
+            </value>
+            <value>
+                <fullName>Scott Flynn</fullName>
+                <default>false</default>
+                <label>Scott Flynn</label>
+            </value>
+            <value>
+                <fullName>Contractor</fullName>
+                <default>false</default>
+                <label>Contractor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

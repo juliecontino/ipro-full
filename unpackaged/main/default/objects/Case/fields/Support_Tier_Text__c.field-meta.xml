@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Tier_Text__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+
+  Account.Support_Tier_Text__c,
+
+  "Level1",  IMAGE("/servlet/servlet.FileDownload?file=0151W000002rvyj", "Red"),
+  "Level2",  IMAGE("/servlet/servlet.FileDownload?file=0151W000002rx5q", "Yellow"),
+  "Level3",  IMAGE("/servlet/servlet.FileDownload?file=0151W000002rx9T", "Green"),
+  "Level4",  IMAGE("/servlet/servlet.FileDownload?file=0151W000002rxD1", "Black"),
+"")</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SupportTier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

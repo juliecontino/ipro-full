@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Credit_Hold_Alert__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Account_Support_Hold__c = "True", IMAGE("/servlet/servlet.FileDownload?file=01540000002jafW", "Red"),"")</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Credit Hold Banner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunities_Comm3_Payments_Pending</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>Sale_Type__c</columns>
+    <columns>Contract_Number__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>NOBA__c</columns>
+    <columns>Install_Status_Opp__c</columns>
+    <columns>Install_Date_Completed__c</columns>
+    <columns>RB_SFDC__c</columns>
+    <columns>Bill_Number__c</columns>
+    <columns>Bill_Date__c</columns>
+    <columns>First_Billing_Cash_Receipt_Date__c</columns>
+    <columns>Net_Opportunity_Booking_Amount__c</columns>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>equals</operation>
+        <value>Comm3</value>
+    </filters>
+    <filters>
+        <field>First_Billing_Cash_Receipt_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>RB_SFDC__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Opportunities Comm3 Not Paid</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Group_Comm3</group>
+    </sharedTo>
+</ListView>

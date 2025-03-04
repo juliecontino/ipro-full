@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Opportunitie_Comm3_RecBill</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>NOBA__c</columns>
+    <columns>Install_Date_Completed__c</columns>
+    <columns>Billing_Method__c</columns>
+    <columns>RB_SFDC__c</columns>
+    <columns>Bill_Number__c</columns>
+    <columns>Bill_Date__c</columns>
+    <columns>OPPORTUNITY.LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>equals</operation>
+        <value>Comm3</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </filters>
+    <filters>
+        <field>Monthly_Recurring_Billing_Comm3__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Install_Complete__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Opportunities Comm3 Recurring Billin</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Group_Comm3</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X11_Pain_points_or_challenges_with_us__c</fullName>
+    <description>10/30 SH: Have there been any pain points or challenges in working with us?</description>
+    <label>11. Pain points or challenges with us</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

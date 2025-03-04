@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <aggregates>
+        <calculatedFormula>B1#Opportunity.Opportunity_Amount__c:SUM</calculatedFormula>
+        <datatype>currency</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>FULL_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>true</isCrossBlock>
+        <masterLabel>Total Sales</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>B1#Opportunity.Opportunity_Amount__c:SUM / B0#User.Monthly_Bonus_Quota__c:SUM * 100</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA2</developerName>
+        <downGroupingContext>FULL_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>true</isCrossBlock>
+        <masterLabel>% of Quota</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>IF(B1#Opportunity.Opportunity_Amount__c:SUM / B0#User.Monthly_Bonus_Quota__c:SUM &gt; 2, B1#Opportunity.Opportunity_Amount__c:SUM * 0.04, 
+IF(B1#Opportunity.Opportunity_Amount__c:SUM / B0#User.Monthly_Bonus_Quota__c:SUM &gt; 1.5, B1#Opportunity.Opportunity_Amount__c:SUM * 0.035,
+IF(B1#Opportunity.Opportunity_Amount__c:SUM / B0#User.Monthly_Bonus_Quota__c:SUM &gt; 1.25, B1#Opportunity.Opportunity_Amount__c:SUM * 0.03,
+IF(B1#Opportunity.Opportunity_Amount__c:SUM /B0#User.Monthly_Bonus_Quota__c:SUM &gt;= 1, B1#Opportunity.Opportunity_Amount__c:SUM * 0.025,
+0))))</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA3</developerName>
+        <downGroupingContext>FULL_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>true</isCrossBlock>
+        <masterLabel>Total Bonus</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <block>
+        <blockInfo>
+            <aggregateReferences>
+                <aggregate>FORMULA1</aggregate>
+            </aggregateReferences>
+            <aggregateReferences>
+                <aggregate>FORMULA2</aggregate>
+            </aggregateReferences>
+            <aggregateReferences>
+                <aggregate>FORMULA3</aggregate>
+            </aggregateReferences>
+            <blockId>B0</blockId>
+            <joinTable>u</joinTable>
+        </blockInfo>
+        <columns>
+            <field>FIRST_NAME</field>
+        </columns>
+        <columns>
+            <field>LAST_NAME</field>
+        </columns>
+        <columns>
+            <field>PROFILE</field>
+        </columns>
+        <columns>
+            <field>User.Monthly_Bonus_Quota__c</field>
+        </columns>
+        <filter>
+            <criteriaItems>
+                <column>USERNAME</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>false</isUnlocked>
+                <operator>equals</operator>
+                <value>winman@ipromedia.us</value>
+            </criteriaItems>
+        </filter>
+        <format>Summary</format>
+        <name>Employees</name>
+        <params>
+            <name>active</name>
+            <value>active</value>
+        </params>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>User</reportType>
+        <showGrandTotal>true</showGrandTotal>
+        <showSubTotals>true</showSubTotals>
+        <timeFrameFilter>
+            <dateColumn>LAST_LOGIN</dateColumn>
+            <interval>INTERVAL_CUSTOM</interval>
+        </timeFrameFilter>
+    </block>
+    <block>
+        <blockInfo>
+            <blockId>B1</blockId>
+            <joinTable>u</joinTable>
+        </blockInfo>
+        <columns>
+            <field>CLOSE_MONTH</field>
+        </columns>
+        <columns>
+            <field>CLOSE_DATE</field>
+        </columns>
+        <columns>
+            <field>ACCOUNT_NAME</field>
+        </columns>
+        <columns>
+            <field>OPPORTUNITY_NAME</field>
+        </columns>
+        <columns>
+            <aggregateTypes>Sum</aggregateTypes>
+            <field>Opportunity.Opportunity_Amount__c</field>
+        </columns>
+        <columns>
+            <aggregateTypes>Sum</aggregateTypes>
+            <field>Opportunity.AnyWare_Net_CPE_Funding_Amount__c</field>
+        </columns>
+        <filter>
+            <criteriaItems>
+                <column>FULL_NAME</column>
+                <columnToColumn>false</columnToColumn>
+                <isUnlocked>false</isUnlocked>
+                <operator>equals</operator>
+                <value>Wally Inman</value>
+            </criteriaItems>
+        </filter>
+        <format>Summary</format>
+        <name>Commissionable Opportunities</name>
+        <params>
+            <name>open</name>
+            <value>closedwon</value>
+        </params>
+        <params>
+            <name>probability</name>
+            <value>&gt;0</value>
+        </params>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>Opportunity</reportType>
+        <scope>organization</scope>
+        <showGrandTotal>true</showGrandTotal>
+        <showSubTotals>true</showSubTotals>
+        <timeFrameFilter>
+            <dateColumn>CLOSE_DATE</dateColumn>
+            <interval>INTERVAL_THISMONTH</interval>
+        </timeFrameFilter>
+    </block>
+    <blockInfo>
+        <blockId xsi:nil="true"/>
+        <joinTable>u</joinTable>
+    </blockInfo>
+    <format>MultiBlock</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FULL_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Monthly Bonus-This Month-Wally Inman</name>
+    <params>
+        <name>lsk</name>
+        <value>1</value>
+    </params>
+    <reportType>Opportunity</reportType>
+    <showDetails>true</showDetails>
+</Report>

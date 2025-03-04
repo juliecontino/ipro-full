@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Est_Cutover_Date_MonthYear__c</fullName>
+    <externalId>false</externalId>
+    <formula>text(Year( Estimated_Cut_over_Date__c ))&amp; "-" &amp; text(Month( Estimated_Cut_over_Date__c ))&amp; " " &amp;
+
+CASE(
+  MONTH( Estimated_Cut_over_Date__c  ),
+  1, "January",
+  2, "February",
+  3, "March",
+  4, "April",
+  5, "May",
+  6, "June",
+  7, "July",
+  8, "August",
+  9, "September",
+  10, "October",
+  11, "November",
+  12, "December",
+      "0-Unassigned"
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Est Cutover Date YearMonth</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

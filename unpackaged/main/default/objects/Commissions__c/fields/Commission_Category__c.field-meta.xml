@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commission_Category__c</fullName>
+    <label>Commission Category</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Sales_Plan_Year__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Multi-Tier</fullName>
+                <default>false</default>
+                <label>Multi-Tier</label>
+            </value>
+            <value>
+                <fullName>Residual</fullName>
+                <default>false</default>
+                <label>Residual</label>
+            </value>
+            <value>
+                <fullName>One-Time</fullName>
+                <default>false</default>
+                <label>One-Time</label>
+            </value>
+            <value>
+                <fullName>2015 One-Time</fullName>
+                <default>false</default>
+                <label>2015 One-Time</label>
+            </value>
+            <value>
+                <fullName>Comm3 Sales</fullName>
+                <default>false</default>
+                <label>Comm3 Sales</label>
+            </value>
+            <value>
+                <fullName>Comm3 Installation</fullName>
+                <default>false</default>
+                <label>Comm3 Installation</label>
+            </value>
+            <value>
+                <fullName>Comm3 Revenue Sharing</fullName>
+                <default>false</default>
+                <label>Comm3 Revenue Sharing</label>
+            </value>
+            <value>
+                <fullName>2018 One-Time</fullName>
+                <default>false</default>
+                <label>2018 One-Time</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>2014</controllingFieldValue>
+            <valueName>Multi-Tier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2014</controllingFieldValue>
+            <controllingFieldValue>2015</controllingFieldValue>
+            <valueName>Residual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2014</controllingFieldValue>
+            <valueName>One-Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2015</controllingFieldValue>
+            <valueName>2015 One-Time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2017 Comm3</controllingFieldValue>
+            <controllingFieldValue>2018 Comm3</controllingFieldValue>
+            <valueName>Comm3 Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2017 Comm3</controllingFieldValue>
+            <valueName>Comm3 Installation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2017 Comm3</controllingFieldValue>
+            <valueName>Comm3 Revenue Sharing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>2018 IPro</controllingFieldValue>
+            <valueName>2018 One-Time</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

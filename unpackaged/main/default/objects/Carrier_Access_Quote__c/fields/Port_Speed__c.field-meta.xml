@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Port_Speed__c</fullName>
+    <label>Port Speed</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Port_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>T1 (1.544 MB)</fullName>
+                <default>true</default>
+                <label>T1 (1.544 MB)</label>
+            </value>
+            <value>
+                <fullName>2xT1 (3 MB)</fullName>
+                <default>false</default>
+                <label>2xT1 (3 MB)</label>
+            </value>
+            <value>
+                <fullName>3xT1 (4.5 MB)</fullName>
+                <default>false</default>
+                <label>3xT1 (4.5 MB)</label>
+            </value>
+            <value>
+                <fullName>4xT1 (6 MB)</fullName>
+                <default>false</default>
+                <label>4xT1 (6 MB)</label>
+            </value>
+            <value>
+                <fullName>5xT1 (7.5 MB)</fullName>
+                <default>false</default>
+                <label>5xT1 (7.5 MB)</label>
+            </value>
+            <value>
+                <fullName>6xT1 (9 MB)</fullName>
+                <default>false</default>
+                <label>6xT1 (9 MB)</label>
+            </value>
+            <value>
+                <fullName>7xT1 (10.5 MB</fullName>
+                <default>false</default>
+                <label>7xT1 (10.5 MB</label>
+            </value>
+            <value>
+                <fullName>8xT1 (12 MB</fullName>
+                <default>false</default>
+                <label>8xT1 (12 MB</label>
+            </value>
+            <value>
+                <fullName>5 Mbps</fullName>
+                <default>false</default>
+                <label>5 Mbps</label>
+            </value>
+            <value>
+                <fullName>10 Mbps</fullName>
+                <default>false</default>
+                <label>10 Mbps</label>
+            </value>
+            <value>
+                <fullName>20 Mbps</fullName>
+                <default>false</default>
+                <label>20 Mbps</label>
+            </value>
+            <value>
+                <fullName>50 Mbps</fullName>
+                <default>false</default>
+                <label>50 Mbps</label>
+            </value>
+            <value>
+                <fullName>100 Mbps</fullName>
+                <default>false</default>
+                <label>100 Mbps</label>
+            </value>
+            <value>
+                <fullName>250 Mbps</fullName>
+                <default>false</default>
+                <label>250 Mbps</label>
+            </value>
+            <value>
+                <fullName>500 Mbps</fullName>
+                <default>false</default>
+                <label>500 Mbps</label>
+            </value>
+            <value>
+                <fullName>600 Mbps</fullName>
+                <default>false</default>
+                <label>600 Mbps</label>
+            </value>
+            <value>
+                <fullName>1000 Mbps</fullName>
+                <default>false</default>
+                <label>1000 Mbps</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>T1 (1.544 MB)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>2xT1 (3 MB)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>3xT1 (4.5 MB)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>4xT1 (6 MB)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>5xT1 (7.5 MB)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>6xT1 (9 MB)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>7xT1 (10.5 MB</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Private Line</controllingFieldValue>
+            <valueName>8xT1 (12 MB</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>5 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>10 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>20 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>50 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>100 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>250 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>500 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>600 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Switched Ethernet</controllingFieldValue>
+            <valueName>1000 Mbps</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

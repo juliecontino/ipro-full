@@ -1,0 +1,11 @@
+The order for licenses for the Opportunity listed below has been completed and is now ready for upload and installation:
+
+Customer:   {!AcctSeedERP__Sales_Order__c.AcctSeedERP__Customer__c}
+Opportunity Contract Number:   {!AcctSeedERP__Sales_Order__c.Opportunity_Contract_Number__c}
+Opportunity Contract Name:  {!AcctSeedERP__Sales_Order__c.Opportunity_Name__c}
+Sales Order Number:   {!AcctSeedERP__Sales_Order__c.Name}
+
+https://na2.salesforce.com/{!AcctSeedERP__Sales_Order__c.Id}
+
+Regards,
+VA Warehouse

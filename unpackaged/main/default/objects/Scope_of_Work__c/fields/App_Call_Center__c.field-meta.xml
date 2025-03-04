@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>App_Call_Center__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Select if the Client is implementing a new or converting an existing call center.</inlineHelpText>
+    <label>Call Center</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

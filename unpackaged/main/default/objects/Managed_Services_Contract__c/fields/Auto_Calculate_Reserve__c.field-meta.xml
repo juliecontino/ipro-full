@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Calculate_Reserve__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If checked, Salesforce will auto-calculate a 5% reserve.</description>
+    <inlineHelpText>If checked, Salesforce will auto-calculate a 5% reserve.</inlineHelpText>
+    <label>Auto Calculate Reserve?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

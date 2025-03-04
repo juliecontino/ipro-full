@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Training_Classrom__c</fullName>
+    <defaultValue>true</defaultValue>
+    <inlineHelpText>Classroom training is defined as a single-trainer training multiple general business users in a single session. Training classes should be limited to no more than 10 users.</inlineHelpText>
+    <label>Classrom</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

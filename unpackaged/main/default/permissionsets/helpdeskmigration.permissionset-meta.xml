@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>https://help-desk-migration.com</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Help Desk Migration</label>
+</PermissionSet>

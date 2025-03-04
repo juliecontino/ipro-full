@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Group__c</fullName>
+    <inlineHelpText>Enter the billing group this line item will roll-up to for Great America billing.</inlineHelpText>
+    <label>Billing Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Premise Equipment</fullName>
+                <default>false</default>
+                <label>Premise Equipment</label>
+            </value>
+            <value>
+                <fullName>Carrier Access Services</fullName>
+                <default>false</default>
+                <label>Carrier Access Services</label>
+            </value>
+            <value>
+                <fullName>Data Center Managed Services</fullName>
+                <default>false</default>
+                <label>Data Center Managed Services</label>
+            </value>
+            <value>
+                <fullName>Taxes, Fees &amp; Surcharges</fullName>
+                <default>false</default>
+                <label>Taxes, Fees &amp; Surcharges</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

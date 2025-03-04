@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_GASA</fullName>
+        <field>GASA__c</field>
+        <formula>IF(Product2.GASA__c = true,"true","false")</formula>
+        <name>Update GASA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_GA_Billing_Group</fullName>
+        <field>GA_Billing_Group__c</field>
+        <formula>TEXT(Product2.GA_Billing_Group__c)</formula>
+        <name>Update GA Billing Group</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_GA_Contract_Make</fullName>
+        <field>GA_Contract_Product_Make__c</field>
+        <formula>Product2.GA_Contract_Make__c</formula>
+        <name>Update GA Contract Make</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OP_Installation_Field</fullName>
+        <field>Installation__c</field>
+        <formula>PricebookEntry.Product2.Installation__c</formula>
+        <name>Update OP Installation Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OP_Lease_MSRP_Value</fullName>
+        <field>MS_OP_Lease_MSRP_Value__c</field>
+        <formula>Product2.MS_Lease_MSRP_Value__c</formula>
+        <name>Update OP Lease MSRP Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OP_Lease_Schedule_A_Products</fullName>
+        <field>MS_OP_Lease_Schedule_A_Products__c</field>
+        <formula>Product2.MS_Lease_Schedule_A_Products__c</formula>
+        <name>Update OP Lease Schedule A Products</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OP_Line_Item_Description_Field</fullName>
+        <field>Description</field>
+        <formula>Product2.Description</formula>
+        <name>Update OP Line Item Description Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OP_Product_Family_Field</fullName>
+        <field>OP_Product_Family__c</field>
+        <formula>TEXT(Product2.Family)</formula>
+        <name>Update OP Product Family Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Oportunity_Line_Item_Notes</fullName>
+        <field>OP_Line_Item_Notes__c</field>
+        <formula>Product2.Product_Notes__c</formula>
+        <name>Update Oportunity Line Item Notes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Oportunity_Product_Notes</fullName>
+        <field>OP_Notes__c</field>
+        <formula>Product2.Product_Notes__c</formula>
+        <name>Update Oportunity Product Notes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update GA Billing Group</fullName>
+        <actions>
+            <name>Update_GA_Billing_Group</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Edit_Billing_Group_Manually__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update GA Contract Make</fullName>
+        <actions>
+            <name>Update_GA_Contract_Make</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update GASA</fullName>
+        <actions>
+            <name>Update_GASA</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OP Installation</fullName>
+        <actions>
+            <name>Update_OP_Installation_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OP Lease MSRP</fullName>
+        <actions>
+            <name>Update_OP_Lease_MSRP_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OP Lease Schedule A Products</fullName>
+        <actions>
+            <name>Update_OP_Lease_Schedule_A_Products</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OP Line Item Description</fullName>
+        <actions>
+            <name>Update_OP_Line_Item_Description_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OP Product Family</fullName>
+        <actions>
+            <name>Update_OP_Product_Family_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Oportunity Product Notes</fullName>
+        <actions>
+            <name>Update_Oportunity_Product_Notes</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.ProductCode</field>
+            <operation>notEqual</operation>
+            <value>Null</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

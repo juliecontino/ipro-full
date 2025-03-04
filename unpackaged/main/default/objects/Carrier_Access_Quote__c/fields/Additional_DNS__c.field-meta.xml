@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_DNS__c</fullName>
+    <label>Additional DNS</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Primary</fullName>
+                <default>false</default>
+                <label>Primary</label>
+            </value>
+            <value>
+                <fullName>Secondary</fullName>
+                <default>false</default>
+                <label>Secondary</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

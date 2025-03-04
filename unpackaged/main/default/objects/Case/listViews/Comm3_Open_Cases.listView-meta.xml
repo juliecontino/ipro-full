@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Comm3_Open_Cases</fullName>
+    <booleanFilter>(1 and 2) or (1 and 3) or (1 and  4) or (1 and 5)</booleanFilter>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.ORIGIN</columns>
+    <columns>CONTACT.ACCOUNT</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>Support_Tier_Text__c</columns>
+    <columns>Billable__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Closed As Duplicate,Ready for Billing/Closure</value>
+    </filters>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>equals</operation>
+        <value>Comm3</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>Comm3 Cases</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>Brandon Roper</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>rwils</value>
+    </filters>
+    <label>Comm3 Open Cases</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Group_Comm3</group>
+    </sharedTo>
+</ListView>

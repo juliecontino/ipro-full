@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Quote_MPLS_Carrier__c</fullName>
+    <label>Access Quote-MPLS Carrier</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ACC</fullName>
+                <default>false</default>
+                <label>ACC</label>
+            </value>
+            <value>
+                <fullName>ATT</fullName>
+                <default>false</default>
+                <label>ATT</label>
+            </value>
+            <value>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+                <label>Level 3</label>
+            </value>
+            <value>
+                <fullName>Verizon</fullName>
+                <default>false</default>
+                <label>Verizon</label>
+            </value>
+            <value>
+                <fullName>Windstream</fullName>
+                <default>false</default>
+                <label>Windstream</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Controller Type --></label>
+        <name>Controller_Type__c</name>
+        <picklistValues>
+            <masterLabel>3300</masterLabel>
+            <translation><!-- 3300 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5000</masterLabel>
+            <translation><!-- 5000 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

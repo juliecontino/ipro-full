@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closing</fullName>
+    <columns>OPPORTUNITY.NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>OPPORTUNITY.CLOSE_DATE</columns>
+    <columns>Opportunity_Booking_Amount__c</columns>
+    <columns>OPPORTUNITY.STAGE_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>OPPORTUNITY.LEAD_SOURCE</columns>
+    <columns>CORE.USERS.FULL_NAME</columns>
+    <columns>Contract_Number__c</columns>
+    <columns>TSP_GA_Approval_Contract_Number__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>OPPORTUNITY.STAGE_NAME</field>
+        <operation>equals</operation>
+        <value>Investigating,Defining,Evaluating,Validating,Decision</value>
+    </filters>
+    <filters>
+        <field>OPPORTUNITY.CLOSE_DATE</field>
+        <operation>lessThan</operation>
+        <value>NEXT_MONTH</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>Mark</value>
+    </filters>
+    <label>Closing</label>
+</ListView>

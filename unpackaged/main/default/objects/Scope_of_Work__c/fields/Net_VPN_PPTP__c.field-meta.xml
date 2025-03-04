@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_VPN_PPTP__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Select if Client is currently using or requires the use of PPTP VPN's. PPTP is only supported by IPro Media on IPro Media routers.</inlineHelpText>
+    <label>VPN PPTP</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

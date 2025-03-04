@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Install_Completed_must_have_Date_Install</fullName>
+    <active>true</active>
+    <description>mkneill - 07/29/16 added to have install date date be required if the install is marked completed.</description>
+    <errorConditionFormula>AND(
+    Install_Complete__c = TRUE,
+    ISBLANK( Install_Date_Completed__c )
+)</errorConditionFormula>
+    <errorDisplayField>Install_Date_Completed__c</errorDisplayField>
+    <errorMessage>Since install is marked completed, then add the installation date completed.  If you do not know the date use 01/01/1901</errorMessage>
+</ValidationRule>

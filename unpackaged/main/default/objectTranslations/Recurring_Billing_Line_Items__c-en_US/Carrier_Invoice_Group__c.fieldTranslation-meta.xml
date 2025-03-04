@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Carrier Invoice Group --></label>
+        <name>Carrier_Invoice_Group__c</name>
+        <picklistValues>
+            <masterLabel>Broadband</masterLabel>
+            <translation><!-- Broadband --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Long Distance</masterLabel>
+            <translation><!-- Long Distance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Television</masterLabel>
+            <translation><!-- Television --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

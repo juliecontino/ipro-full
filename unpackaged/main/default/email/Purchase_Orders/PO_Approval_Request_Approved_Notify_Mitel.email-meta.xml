@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>PO Approval Request Approved Notify Mitel</name>
+    <style>freeForm</style>
+    <subject>IPRO Purchase Order - Please release for fulfillment: {!AcctSeedERP__Purchase_Order__c.Name}</subject>
+    <textOnly>Please release the following IPro Purchase Order and reply to all when completed:
+
+Purchase Order: {!AcctSeedERP__Purchase_Order__c.Name}
+Vendor: {!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c}
+Vendor Alias: {!AcctSeedERP__Purchase_Order__c.Vendor_Alias__c}
+PO Amount: {!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Total__c}
+
+Thank you,
+
+IPro Media
+
+
+
+
+This is an automated message from Salesforce:  Purchase Order Approval Process
+Email Template: PO Approval Request Approved Notify Mitel</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

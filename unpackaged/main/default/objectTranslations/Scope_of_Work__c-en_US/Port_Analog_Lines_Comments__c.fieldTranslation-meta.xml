@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Analog Lines – (number of lines and types, i.e., Main and roll overs, fax, modem, alarm, elevator, etc.) --></help>
+        <label><!-- Port Analog Lines Comments --></label>
+        <name>Port_Analog_Lines_Comments__c</name>
+    </CustomFieldTranslation>

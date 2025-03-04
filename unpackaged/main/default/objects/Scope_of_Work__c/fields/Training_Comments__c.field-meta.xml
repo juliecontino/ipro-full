@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Training_Comments__c</fullName>
+    <inlineHelpText>Please enter any additional comments or special training needs required for this Client Opportunity</inlineHelpText>
+    <label>Comments</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

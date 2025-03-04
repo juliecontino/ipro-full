@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>MR Line</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>MR Lines</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- MR Line Field Set --></label>
+        <name>MR_Line_Field_Set</name>
+    </fieldSets>
+    <layouts>
+        <layout>MR Line Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- OPP_CPQ --></label>
+        <name>OPP_CPQ</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Picka3w1W000000EVNNQA4 --></label>
+        <name>Picka3w1W000000EVNNQA4</name>
+    </webLinks>
+</CustomObjectTranslation>

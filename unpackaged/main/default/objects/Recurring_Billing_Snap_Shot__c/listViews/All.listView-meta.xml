@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>SnapShot_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Acitve__c</columns>
+    <columns>Description__c</columns>
+    <columns>Funded_Amount__c</columns>
+    <columns>Unfunded_Amount__c</columns>
+    <columns>Total_Amount__c</columns>
+    <columns>TimeStamp__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

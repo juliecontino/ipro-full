@@ -1,0 +1,5 @@
+<apex:page standardController="Case" >
+    <flow:interview name="Quick_Case" >
+       
+    </flow:interview>
+</apex:page>

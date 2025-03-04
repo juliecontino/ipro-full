@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Type__c</fullName>
+    <label>Access Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Usage_Based_Billing_UBB_with_MBC__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Private Line</fullName>
+                <default>false</default>
+                <label>Private Line</label>
+            </value>
+            <value>
+                <fullName>Switched Ethernet</fullName>
+                <default>false</default>
+                <label>Switched Ethernet</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>unchecked</controllingFieldValue>
+            <valueName>Private Line</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>unchecked</controllingFieldValue>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>Switched Ethernet</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

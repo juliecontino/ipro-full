@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>Closed Won</fullName>
+        <color>#009900</color>
+        <default>false</default>
+        <label>Closed Won</label>
+        <closed>true</closed>
+        <forecastCategory>Closed</forecastCategory>
+        <probability>100</probability>
+        <won>true</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed Lost</fullName>
+        <color>#000000</color>
+        <default>false</default>
+        <label>Closed Lost</label>
+        <closed>true</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Inactive</fullName>
+        <color>#3366FF</color>
+        <default>false</default>
+        <label>Inactive</label>
+        <closed>false</closed>
+        <forecastCategory>Omitted</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Initial Meeting - 10%</fullName>
+        <default>false</default>
+        <label>Initial Meeting - 10%</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>10</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Site Survey - Discovery - 30%</fullName>
+        <default>false</default>
+        <label>Site Survey - Discovery - 30%</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>30</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Demo &amp; Design Session - 50%</fullName>
+        <default>false</default>
+        <label>Demo &amp; Design Session - 50%</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>50</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Present Proposal - 70%</fullName>
+        <default>false</default>
+        <label>Present Proposal - 70%</label>
+        <closed>false</closed>
+        <forecastCategory>BestCase</forecastCategory>
+        <probability>70</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Close / Approval - 90%</fullName>
+        <default>false</default>
+        <label>Close / Approval - 90%</label>
+        <closed>false</closed>
+        <forecastCategory>Forecast</forecastCategory>
+        <probability>90</probability>
+        <won>false</won>
+    </standardValue>
+</StandardValueSet>

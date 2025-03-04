@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Time_Card__c.AcctSeed__Employee__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Time_Card_Line__c.AcctSeed__Project_Task__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Time_Card_Line__c.AcctSeed__Total_Hours__c</field>
+    </columns>
+    <description>Dynamic report found on the Projects page in Custom Links.</description>
+    <filter>
+        <criteriaItems>
+            <column>FK_CUSTENT_ID</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Time_Card__c.AcctSeed__Time_Card_Period__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Dynamic Link Time Cards by Period/Projec</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$AcctSeed__Time_Card__c$AcctSeed__Time_Card_Line__c@AcctSeed__Time_Card_Line__c.AcctSeed__Project__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Time_Card__c.AcctSeed__Week_Ending_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,3 @@
+<apex:page standardController="Recurring_Billing__c" >
+<apex:detail />
+</apex:page>

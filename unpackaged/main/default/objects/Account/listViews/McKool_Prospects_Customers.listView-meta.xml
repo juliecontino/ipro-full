@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>McKool_Prospects_Customers</fullName>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>Shipping_City_State__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>ACCOUNT.TYPE</field>
+        <operation>contains</operation>
+        <value>Prospect,Customer</value>
+    </filters>
+    <label>McKool's Prospects and Customers</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>All_iPro_Users</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Call Center Max Concurrent Users --></label>
+        <name>Call_Center_Max_Concurrent_Users__c</name>
+    </CustomFieldTranslation>

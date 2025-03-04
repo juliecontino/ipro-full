@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2016_Anyware</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>2016 Anyware</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;TemplateID=a014000000XVWTK
+&amp;id={!User.Id}
+&amp;reportid=00O40000004H6CM?pv0=
+&amp;defaultpdf=1
+&amp;DS7=3
+&amp;OCNR=1</url>
+</WebLink>

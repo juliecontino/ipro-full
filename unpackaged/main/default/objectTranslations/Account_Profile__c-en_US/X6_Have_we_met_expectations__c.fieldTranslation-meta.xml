@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How well do you feel we’ve met your expectations over the last quarter? --></help>
+        <label><!-- 6. Have we met expectations? --></label>
+        <name>X6_Have_we_met_expectations__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Image_3__c</fullName>
+    <label>Image 3</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+                <label>Virtual</label>
+            </value>
+            <value>
+                <fullName>CX Controller</fullName>
+                <default>false</default>
+                <label>CX Controller</label>
+            </value>
+            <value>
+                <fullName>MXe Controller</fullName>
+                <default>false</default>
+                <label>MXe Controller</label>
+            </value>
+            <value>
+                <fullName>MXe Controller Fault Tolerant</fullName>
+                <default>false</default>
+                <label>MXe Controller Fault Tolerant</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

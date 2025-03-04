@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>true</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>true</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Approval - Opportunity Pending</masterLabel>
+    <openType>newWindow</openType>
+    <position>fullScreen</position>
+    <protected>false</protected>
+    <showsLocation>true</showsLocation>
+    <showsStatus>true</showsStatus>
+    <url>http://iprosql/ReportServer/Pages/ReportViewer.aspx?%2FSalesforce%2FApproval%20Process%20-%20Opportunities%20Pending%20Approval&amp;rs%3AParameterLanguage=en-US</url>
+</CustomPageWebLink>

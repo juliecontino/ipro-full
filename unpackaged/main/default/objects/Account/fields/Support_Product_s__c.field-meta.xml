@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Product_s__c</fullName>
+    <label>Support Product(s)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>67000001 Level 1: Software Assurance</fullName>
+                <default>false</default>
+                <label>67000001 Level 1: Software Assurance</label>
+            </value>
+            <value>
+                <fullName>67000002 Level 2: Hardware Replacement - Controllers</fullName>
+                <default>false</default>
+                <label>67000002 Level 2: Hardware Replacement - Controllers</label>
+            </value>
+            <value>
+                <fullName>67000003 Level 3: Hardware Replacement - Sets</fullName>
+                <default>false</default>
+                <label>67000003 Level 3: Hardware Replacement - Sets</label>
+            </value>
+            <value>
+                <fullName>67000004 Level 4: Configuration Support</fullName>
+                <default>false</default>
+                <label>67000004 Level 4: Configuration Support</label>
+            </value>
+            <value>
+                <fullName>67000005 Level 5: On-Site (8-5 Monday thru Friday)</fullName>
+                <default>false</default>
+                <label>67000005 Level 5: On-Site (8-5 Monday thru Friday)</label>
+            </value>
+            <value>
+                <fullName>67000006 Level 6: On-Site (7 x 24 x 365)</fullName>
+                <default>false</default>
+                <label>67000006 Level 6: On-Site (7 x 24 x 365)</label>
+            </value>
+            <value>
+                <fullName>67000007 Level 7: Streamline Ports</fullName>
+                <default>false</default>
+                <label>67000007 Level 7: Streamline Ports</label>
+            </value>
+            <value>
+                <fullName>67000101 Level 8A: Mitel Contact Center</fullName>
+                <default>false</default>
+                <label>67000101 Level 8A: Mitel Contact Center</label>
+            </value>
+            <value>
+                <fullName>67000102 Level 8B: Mitel CSM</fullName>
+                <default>false</default>
+                <label>67000102 Level 8B: Mitel CSM</label>
+            </value>
+            <value>
+                <fullName>67000103 Level 8C: Call Recording</fullName>
+                <default>false</default>
+                <label>67000103 Level 8C: Call Recording</label>
+            </value>
+            <value>
+                <fullName>67000104 Level 8D: UCA Stand-Alone</fullName>
+                <default>false</default>
+                <label>67000104 Level 8D: UCA Stand-Alone</label>
+            </value>
+            <value>
+                <fullName>67000105 Level 8E: MCA Stand-Alone</fullName>
+                <default>false</default>
+                <label>67000105 Level 8E: MCA Stand-Alone</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

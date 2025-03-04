@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <email>sehr@ipromedia.us</email>
+    <name>Steve Ehr Inactive</name>
+    <queueMembers>
+        
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

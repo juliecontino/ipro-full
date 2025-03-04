@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TSP_Term_Discount__c</fullName>
+    <formula>IF( Disable_Term_Discount__c = False,
+CASE( TSP_Term__c ,
+"12 Months",  AnyWare_Term_Discount_Total__c * -0.02,
+"24 Months",  AnyWare_Term_Discount_Total__c * -0.04,
+"36 Months",  AnyWare_Term_Discount_Total__c * -0.04,
+"48 Months",  AnyWare_Term_Discount_Total__c * -0.08,
+"60 Months",  AnyWare_Term_Discount_Total__c * -0.12,
+0),0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Calculates and displays the maximum allowable term discount. The amount can then be copied to the total field in the AnyWare Term Discount product record in the opportunity products section.</inlineHelpText>
+    <label>TSP Term Discount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

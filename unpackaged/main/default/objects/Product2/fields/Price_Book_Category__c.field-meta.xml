@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_Book_Category__c</fullName>
+    <label>Price Book Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Analog Gateways</fullName>
+                <default>false</default>
+                <label>Analog Gateways</label>
+            </value>
+            <value>
+                <fullName>AnyWare Support For Client Owned Equipment (Requires SE Approval)</fullName>
+                <default>false</default>
+                <label>AnyWare Support For Client Owned Equipment (Requires SE Approval)</label>
+            </value>
+            <value>
+                <fullName>Base Image</fullName>
+                <default>false</default>
+                <label>Base Image</label>
+            </value>
+            <value>
+                <fullName>Call Center</fullName>
+                <default>false</default>
+                <label>Call Center</label>
+            </value>
+            <value>
+                <fullName>Call Recording</fullName>
+                <default>false</default>
+                <label>Call Recording</label>
+            </value>
+            <value>
+                <fullName>Carrier Access</fullName>
+                <default>false</default>
+                <label>Carrier Access</label>
+            </value>
+            <value>
+                <fullName>Carrier Access-Circuits</fullName>
+                <default>false</default>
+                <label>Carrier Access-Circuits</label>
+            </value>
+            <value>
+                <fullName>Carrier Access-DID</fullName>
+                <default>false</default>
+                <label>Carrier Access-DID</label>
+            </value>
+            <value>
+                <fullName>Carrier Access-Legacy</fullName>
+                <default>false</default>
+                <label>Carrier Access-Legacy</label>
+            </value>
+            <value>
+                <fullName>Carrier Access-SIP Trunking</fullName>
+                <default>false</default>
+                <label>Carrier Access-SIP Trunking</label>
+            </value>
+            <value>
+                <fullName>Carrier Access-Toll Free</fullName>
+                <default>false</default>
+                <label>Carrier Access-Toll Free</label>
+            </value>
+            <value>
+                <fullName>Conference Sets</fullName>
+                <default>false</default>
+                <label>Conference Sets</label>
+            </value>
+            <value>
+                <fullName>Data Security &amp; Disaster Recovery</fullName>
+                <default>false</default>
+                <label>Data Security &amp; Disaster Recovery</label>
+            </value>
+            <value>
+                <fullName>Desktops</fullName>
+                <default>false</default>
+                <label>Desktops</label>
+            </value>
+            <value>
+                <fullName>DID Numbers</fullName>
+                <default>false</default>
+                <label>DID Numbers</label>
+            </value>
+            <value>
+                <fullName>E-Fax</fullName>
+                <default>false</default>
+                <label>E-Fax</label>
+            </value>
+            <value>
+                <fullName>IT-Bar Code Readers</fullName>
+                <default>false</default>
+                <label>IT-Bar Code Readers</label>
+            </value>
+            <value>
+                <fullName>IT-Desktop PC's</fullName>
+                <default>false</default>
+                <label>IT-Desktop PC's</label>
+            </value>
+            <value>
+                <fullName>IT-Desktop Scanners</fullName>
+                <default>false</default>
+                <label>IT-Desktop Scanners</label>
+            </value>
+            <value>
+                <fullName>IT-Desktop Support</fullName>
+                <default>false</default>
+                <label>IT-Desktop Support</label>
+            </value>
+            <value>
+                <fullName>IT-Desktop Thin Clients</fullName>
+                <default>false</default>
+                <label>IT-Desktop Thin Clients</label>
+            </value>
+            <value>
+                <fullName>IT-Hosted Azure Servers</fullName>
+                <default>false</default>
+                <label>IT-Hosted Azure Servers</label>
+            </value>
+            <value>
+                <fullName>IT-Keyboards &amp; Mice</fullName>
+                <default>false</default>
+                <label>IT-Keyboards &amp; Mice</label>
+            </value>
+            <value>
+                <fullName>IT-Laptops</fullName>
+                <default>false</default>
+                <label>IT-Laptops</label>
+            </value>
+            <value>
+                <fullName>IT-Mobile Thin Clients</fullName>
+                <default>false</default>
+                <label>IT-Mobile Thin Clients</label>
+            </value>
+            <value>
+                <fullName>IT-Premise Servers</fullName>
+                <default>false</default>
+                <label>IT-Premise Servers</label>
+            </value>
+            <value>
+                <fullName>IT-Printers</fullName>
+                <default>false</default>
+                <label>IT-Printers</label>
+            </value>
+            <value>
+                <fullName>IT-Server Software</fullName>
+                <default>false</default>
+                <label>IT-Server Software</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Network Assessments</fullName>
+                <default>false</default>
+                <label>Network Assessments</label>
+            </value>
+            <value>
+                <fullName>Network Infrastructure</fullName>
+                <default>false</default>
+                <label>Network Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Networks (Wired)</fullName>
+                <default>false</default>
+                <label>Networks (Wired)</label>
+            </value>
+            <value>
+                <fullName>Networks (Wireless)</fullName>
+                <default>false</default>
+                <label>Networks (Wireless)</label>
+            </value>
+            <value>
+                <fullName>Paging</fullName>
+                <default>false</default>
+                <label>Paging</label>
+            </value>
+            <value>
+                <fullName>Resilient Image</fullName>
+                <default>false</default>
+                <label>Resilient Image</label>
+            </value>
+            <value>
+                <fullName>Router Applications</fullName>
+                <default>false</default>
+                <label>Router Applications</label>
+            </value>
+            <value>
+                <fullName>Security Bundles</fullName>
+                <default>false</default>
+                <label>Security Bundles</label>
+            </value>
+            <value>
+                <fullName>Server License</fullName>
+                <default>false</default>
+                <label>Server License</label>
+            </value>
+            <value>
+                <fullName>Term Discounts</fullName>
+                <default>false</default>
+                <label>Term Discounts</label>
+            </value>
+            <value>
+                <fullName>Toll Free Numbers</fullName>
+                <default>false</default>
+                <label>Toll Free Numbers</label>
+            </value>
+            <value>
+                <fullName>User Licenses</fullName>
+                <default>false</default>
+                <label>User Licenses</label>
+            </value>
+            <value>
+                <fullName>Voice-5300 Series Desktops</fullName>
+                <default>false</default>
+                <label>Voice-5300 Series Desktops</label>
+            </value>
+            <value>
+                <fullName>Voice-6900 Series Desktops</fullName>
+                <default>false</default>
+                <label>Voice-6900 Series Desktops</label>
+            </value>
+            <value>
+                <fullName>Voice-Analog Gateways</fullName>
+                <default>false</default>
+                <label>Voice-Analog Gateways</label>
+            </value>
+            <value>
+                <fullName>Voice-Base Image</fullName>
+                <default>false</default>
+                <label>Voice-Base Image</label>
+            </value>
+            <value>
+                <fullName>Voice-Call Center</fullName>
+                <default>false</default>
+                <label>Voice-Call Center</label>
+            </value>
+            <value>
+                <fullName>Voice-Consoles</fullName>
+                <default>false</default>
+                <label>Voice-Consoles</label>
+            </value>
+            <value>
+                <fullName>Voice-Resilient Image</fullName>
+                <default>false</default>
+                <label>Voice-Resilient Image</label>
+            </value>
+            <value>
+                <fullName>Voice-User Licenses</fullName>
+                <default>false</default>
+                <label>Voice-User Licenses</label>
+            </value>
+            <value>
+                <fullName>VoIP Appliances &amp; Routers</fullName>
+                <default>false</default>
+                <label>VoIP Appliances &amp; Routers</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

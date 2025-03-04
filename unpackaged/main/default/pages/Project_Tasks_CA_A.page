@@ -1,0 +1,49 @@
+<apex:page showHeader="false" showChat="false" standardController="AcctSeed__Project__c" sidebar="false" >
+
+<style>
+/*To place the Today button to left align*/
+   body{
+       padding:0;
+       margin:0;
+   }
+   div{
+       padding:0;
+   }
+  .JQ_CA > .CA_h > div.manage
+    {
+       left:20px !important;
+    }
+  .JQ_CA > .CA_h > div.nav
+    {
+       left: 200px !important;
+}
+  .JQ_CA { min-width: 700px !important ;}
+</style>
+
+<SLCA2:calendar namespace="SLCA2"
+ calendar="a1y40000003460IAAQ"    
+ settings="['l_ds','r_y', 'r_l']"    
+ urlparams="sb=1&v=m&pv1={!AcctSeed__Project__c.ID}"
+ readonly="{
+
+       edit            : true,
+
+       create          : false,
+
+       detail          : true,
+
+       move            : true,
+
+       hover           : true,
+
+       contextEvent    : true,
+
+       contextCalendar : true,
+
+       contextArea     : true
+
+   }"
+   userAdditionalSettings="{'uiSearch':false}"
+ >
+</SLCA2:calendar>
+</apex:page>

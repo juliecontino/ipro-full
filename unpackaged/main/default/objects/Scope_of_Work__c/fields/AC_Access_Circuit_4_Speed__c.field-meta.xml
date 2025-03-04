@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AC_Access_Circuit_4_Speed__c</fullName>
+    <inlineHelpText>The speed on sync circuits refers to both upload and download. The speed on async circuits only refers to the download speed. Upload speeds are usually between 10% to 25% of download speeds on async circuits.</inlineHelpText>
+    <label>Access Circuit 4 Speed</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>AC_Access_Circuit_4__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1.5 MB Sync</fullName>
+                <default>false</default>
+                <label>1.5 MB Sync</label>
+            </value>
+            <value>
+                <fullName>3.0 MB Sync</fullName>
+                <default>false</default>
+                <label>3.0 MB Sync</label>
+            </value>
+            <value>
+                <fullName>4.5 MB Sync</fullName>
+                <default>false</default>
+                <label>4.5 MB Sync</label>
+            </value>
+            <value>
+                <fullName>6.0 MB Sync</fullName>
+                <default>false</default>
+                <label>6.0 MB Sync</label>
+            </value>
+            <value>
+                <fullName>7.5 MB Sync</fullName>
+                <default>false</default>
+                <label>7.5 MB Sync</label>
+            </value>
+            <value>
+                <fullName>9.0 MB Sync</fullName>
+                <default>false</default>
+                <label>9.0 MB Sync</label>
+            </value>
+            <value>
+                <fullName>10 MB Sync</fullName>
+                <default>false</default>
+                <label>10 MB Sync</label>
+            </value>
+            <value>
+                <fullName>20 MB Sync</fullName>
+                <default>false</default>
+                <label>20 MB Sync</label>
+            </value>
+            <value>
+                <fullName>25 MB Sync</fullName>
+                <default>false</default>
+                <label>25 MB Sync</label>
+            </value>
+            <value>
+                <fullName>50 MB Sync</fullName>
+                <default>false</default>
+                <label>50 MB Sync</label>
+            </value>
+            <value>
+                <fullName>100 MB Sync</fullName>
+                <default>false</default>
+                <label>100 MB Sync</label>
+            </value>
+            <value>
+                <fullName>1.5 MB Async</fullName>
+                <default>false</default>
+                <label>1.5 MB Async</label>
+            </value>
+            <value>
+                <fullName>5 MB Async</fullName>
+                <default>false</default>
+                <label>5 MB Async</label>
+            </value>
+            <value>
+                <fullName>10 MB Async</fullName>
+                <default>false</default>
+                <label>10 MB Async</label>
+            </value>
+            <value>
+                <fullName>20 MB Async</fullName>
+                <default>false</default>
+                <label>20 MB Async</label>
+            </value>
+            <value>
+                <fullName>25 MB Async</fullName>
+                <default>false</default>
+                <label>25 MB Async</label>
+            </value>
+            <value>
+                <fullName>50 MB Async</fullName>
+                <default>false</default>
+                <label>50 MB Async</label>
+            </value>
+            <value>
+                <fullName>100 MB Async</fullName>
+                <default>false</default>
+                <label>100 MB Async</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>PRI</controllingFieldValue>
+            <controllingFieldValue>T1</controllingFieldValue>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <controllingFieldValue>Bonded T1</controllingFieldValue>
+            <valueName>1.5 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <controllingFieldValue>Bonded T1</controllingFieldValue>
+            <valueName>3.0 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <controllingFieldValue>Bonded T1</controllingFieldValue>
+            <valueName>4.5 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <controllingFieldValue>Bonded T1</controllingFieldValue>
+            <valueName>6.0 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <controllingFieldValue>Bonded T1</controllingFieldValue>
+            <valueName>7.5 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <controllingFieldValue>Bonded T1</controllingFieldValue>
+            <valueName>9.0 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <valueName>10 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <valueName>20 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <valueName>25 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <valueName>50 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Direct Internet Access</controllingFieldValue>
+            <controllingFieldValue>MPLS</controllingFieldValue>
+            <valueName>100 MB Sync</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>1.5 MB Async</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>5 MB Async</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>10 MB Async</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>20 MB Async</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>25 MB Async</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>50 MB Async</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Best Effort Internet</controllingFieldValue>
+            <valueName>100 MB Async</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

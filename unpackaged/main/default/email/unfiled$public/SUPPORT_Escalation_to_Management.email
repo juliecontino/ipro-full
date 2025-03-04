@@ -1,0 +1,10 @@
+*** MANAGEMENT ESCALATION NOTIFICATION ***  
+
+The following case has been Escalated to Management
+Company:  {!Account.Name} 
+Contact Name:  {!Contact.Name} 
+Case #:  {!Case.CaseNumber} 
+Subject:  {!Case.Subject} 
+Description: {!Case.Description}  
+
+Click on the link to access the case:  {!Case.Link}

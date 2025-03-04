@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricebook_Category__c</fullName>
+    <label>Pricebook Category</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Carrier Access</fullName>
+                <default>false</default>
+                <label>Carrier Access</label>
+            </value>
+            <value>
+                <fullName>Gateways &amp; Routers</fullName>
+                <default>false</default>
+                <label>Gateways &amp; Routers</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

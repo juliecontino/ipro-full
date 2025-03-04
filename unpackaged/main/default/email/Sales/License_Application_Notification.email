@@ -1,0 +1,6 @@
+Account:   {!Opportunity.Account}
+Opportunity Name:   {!Opportunity.Name}
+Opportunity Contract Number:   {!Opportunity.Contract_Number__c}
+Sales Order Number:   {!AcctSeedERP__Sales_Order__c.Name}
+Mitel MCD ARID:   {!Account.ARID__c}   {!Account.Server_MCD_ARID__c}
+Mitel MiCollab ARID:   {!Account.Server_MiCollab_ARID__c}

@@ -1,0 +1,7 @@
+*** CASE READY FOR CLOSING/BILLING NOTIFICATION ***  
+
+The following case has been Re-assigned to your Level 1 Queue.  
+
+Case #:  {!Case.CaseNumber} 
+Subject:  {!Case.Subject} 
+Description:  {!Case.Link}

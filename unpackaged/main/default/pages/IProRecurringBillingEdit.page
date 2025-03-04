@@ -1,0 +1,70 @@
+<apex:page standardcontroller="Recurring_Billing__c"><apex:messages />
+    <apex:sectionheader title="{!$ObjectType.Recurring_Billing__c.label} Edit" subtitle="{!IF(ISNULL(Recurring_Billing__c.name), 'New Recurring Billing',Recurring_Billing__c.name)}"/>
+    <apex:form >
+        <apex:pageblock mode="edit" title="{!$ObjectType.Recurring_Billing__c.label} Edit">
+            <apex:pageblockbuttons >
+                <apex:commandbutton value="Save" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" action="{!Cancel}"/>
+            </apex:pageblockbuttons>
+            <apex:outputpanel >
+                <apex:pageblocksection title="Information" showheader="true" columns="2">
+                    <apex:outputfield value="{!Recurring_Billing__c.Name}"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.Account__c}" required="true"/>
+                    <apex:pageblocksectionitem />
+
+<script type="text/javascript">function showComponentInputValue() {document.getElementById('{!$Component.ID1}').value = 
+document.getElementById('{!$Component.comp_id:DynComp:text}').value;
+document.getElementById('{!$Component.ID2}').value = 
+document.getElementById('{!$Component.comp_id:DynComp:secondtext}').value;
+document.getElementById('{!$Component.ID3}').value = 
+document.getElementById('{!$Component.comp_id:DynComp:textid}').value;}</script><dynl:DynLookup id="comp_id" 
+ComponentIdentifier="<Recurring_Billing__c.Product_Name__c>" fieldLabelName="<Test Product Name>" LovName="AnyWare" rendered="true" />
+
+                    
+                    
+                    
+                    <apex:inputfield value="{!Recurring_Billing__c.Copy_Product_Price_to_Monthly_Price__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.Copy__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.Quantity__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.Monthly_Charge__c}" required="true"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.Invoice_Product_Description__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Contract Data" showheader="true" columns="2">
+                    <apex:inputfield value="{!Recurring_Billing__c.CCE__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.CCE_Bill_Sequence__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.CCE_Portfolio__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.CCE_Lease_Type__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.CCE_Funding_Status__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                    <apex:inputfield value="{!Recurring_Billing__c.CCE_Contract_Number__c}" required="false"/>
+                    <apex:pageblocksectionitem />
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Billing Periods" showheader="true" columns="2">
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_January__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_July__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_February__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_August__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_March__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_September__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_April__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_October__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_May__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_November__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_June__c}" required="false"/>
+                    <apex:inputfield value="{!Recurring_Billing__c.BP_December__c}" required="false"/>
+                </apex:pageblocksection>
+            </apex:outputpanel>
+        </apex:pageblock>
+    </apex:form>
+    <center><br/>
+        <i style="font-size:10px;color:#aaa;">Generated By LAYOUT PAGE <a href="http://www.clerisoft.com" target="_blank">[http://www.clerisoft.com]</a> (2008-2013) : Thu Nov 28 2013 10:19:38 GMT-0600 (Central Standard Time)</i>
+    </center><br/>
+</apex:page>

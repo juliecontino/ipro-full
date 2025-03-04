@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsMacOrder__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Flag to indicate if case is an order vs service request</description>
+    <inlineHelpText>Is this a move, add, or change SALES ORDER?</inlineHelpText>
+    <label>IsMacOrder</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

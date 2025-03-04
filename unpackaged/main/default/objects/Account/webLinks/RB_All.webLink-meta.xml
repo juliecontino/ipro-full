@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RB_All</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>RB All</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://na2.salesforce.com/00O400000047ssz?pv0={!Account.Id}</url>
+</WebLink>

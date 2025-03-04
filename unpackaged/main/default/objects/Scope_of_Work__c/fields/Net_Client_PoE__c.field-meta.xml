@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_Client_PoE__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Does the Client currently have PoE switches?</inlineHelpText>
+    <label>Client PoE</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

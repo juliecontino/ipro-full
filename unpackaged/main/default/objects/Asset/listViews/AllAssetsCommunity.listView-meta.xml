@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllAssetsCommunity</fullName>
+    <columns>ASSET.NAME</columns>
+    <columns>ASSET.QUANTITY</columns>
+    <columns>ASSET.PURCHASE_DATE</columns>
+    <columns>ASSET.INSTALL_DATE</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Assets Community</label>
+    <language>en_US</language>
+</ListView>

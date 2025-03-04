@@ -1,0 +1,11 @@
+A new Opportunity named {!Opportunity.Name} was created by {!Opportunity.OwnerFullName} on {!Opportunity.CreatedDate} with the following parameters:
+
+ID:   {!Opportunity.Id}
+Name:   {!Opportunity.Name}
+Amount:   {!Opportunity.Amount}
+Stage:   {!Opportunity.StageName}
+Close Date:   {!Opportunity.CloseDate}
+Type:   {!Opportunity.Type}
+Lead Source:   {!Opportunity.LeadSource}
+
+Link:   {!Opportunity.Link}

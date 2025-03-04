@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If Other was selected for the Justification For Expedite, please describe the circumstances requiring this request. --></help>
+        <label><!-- Justification For Expedite Comments --></label>
+        <name>Justification_For_Expedite_Comments__c</name>
+    </CustomFieldTranslation>

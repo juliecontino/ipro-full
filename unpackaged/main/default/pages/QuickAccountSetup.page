@@ -1,0 +1,6 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+ <flow:interview name="QuickAccountSetup" />
+
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

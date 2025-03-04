@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Install_Tech_2__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Install Tech 2</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <filterItems>
+            <field>User.Division</field>
+            <operation>equals</operation>
+            <value>Installation</value>
+        </filterItems>
+        <filterItems>
+            <field>User.Department</field>
+            <operation>equals</operation>
+            <value>Operations</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Accounts_Install_Tech2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

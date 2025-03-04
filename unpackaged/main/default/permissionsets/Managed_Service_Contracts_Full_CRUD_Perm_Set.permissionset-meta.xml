@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Managed Service Contracts Full CRUD Perm Set</label>
+    <tabSettings>
+        <tab>Managed_Services_Contract__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>

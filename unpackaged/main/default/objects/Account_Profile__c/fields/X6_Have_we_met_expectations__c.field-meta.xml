@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X6_Have_we_met_expectations__c</fullName>
+    <description>10/28 SH: QBR fields</description>
+    <inlineHelpText>How well do you feel we’ve met your expectations over the last quarter?</inlineHelpText>
+    <label>6. Have we met expectations?</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

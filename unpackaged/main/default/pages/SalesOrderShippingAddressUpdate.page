@@ -1,0 +1,5 @@
+<apex:page standardController="AcctSeedERP__Sales_Order__c">
+    <flow:interview name="SalesOrderShippingAddressUpdate" finishLocation="/{!Id}">
+        <apex:param name="SalesOrderId" value="{!id}"/>
+    </flow:interview>
+</apex:page>

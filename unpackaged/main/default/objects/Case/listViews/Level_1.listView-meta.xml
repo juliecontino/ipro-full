@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level_1</fullName>
+    <columns>Support_Tier_Text__c</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>NAME</columns>
+    <columns>Account_Source_ACQ__c</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>Account_Alias__c</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>Billable__c</columns>
+    <columns>FLAGS__Case_Flag_Business__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Closed As Duplicate,Cancelled Case in Connectwise</value>
+    </filters>
+    <label>Level 1</label>
+    <language>en_US</language>
+    <queue>Level_1</queue>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

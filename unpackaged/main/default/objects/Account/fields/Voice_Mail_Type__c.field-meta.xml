@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voice_Mail_Type__c</fullName>
+    <label>Voice Mail Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NuPoint</fullName>
+                <default>false</default>
+                <label>NuPoint</label>
+            </value>
+            <value>
+                <fullName>Embedded</fullName>
+                <default>false</default>
+                <label>Embedded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

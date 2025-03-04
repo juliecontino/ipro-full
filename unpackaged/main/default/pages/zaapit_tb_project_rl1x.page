@@ -1,0 +1,5 @@
+<apex:page standardController="AcctSeed__Project__c" > 
+   <apex:include pageName="zaapit__zaapit_tb_GeneralWL"/>
+    <!-- Thank you for looking :) please contact us for customizing this application -->
+    
+</apex:page>

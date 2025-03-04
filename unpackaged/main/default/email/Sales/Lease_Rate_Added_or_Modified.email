@@ -1,0 +1,9 @@
+The following lease rate was created or modified:
+
+Lease Rate Name: {!Lease_Rates__c.Name}
+Lease Rate Detail Link: {!Lease_Rates__c.Link}
+
+
+
+Automated Message from Salesforce
+Workflow Name: 	Lease Rate Added or Modified

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Auto Reply Email, Spam, AMC Alerts</fullName>
+        <default>false</default>
+        <label>Auto Reply Email, Spam, AMC Alerts</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Billing</fullName>
+        <default>false</default>
+        <label>Billing</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cabling Issue (Internal)</fullName>
+        <default>false</default>
+        <label>Cabling Issue (Internal)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Case in Connectwise</fullName>
+        <default>false</default>
+        <label>Case in Connectwise</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Complex functionality</fullName>
+        <default>false</default>
+        <label>Complex functionality</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Concord (FaxLync) issue</fullName>
+        <default>false</default>
+        <label>Concord (FaxLync) issue</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Customer Issue (not IPro)</fullName>
+        <default>false</default>
+        <label>Customer Issue (not IPro)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Delete User(s)</fullName>
+        <default>false</default>
+        <label>Delete User(s)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Existing problem</fullName>
+        <default>false</default>
+        <label>Existing problem</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Hardware Failure</fullName>
+        <default>false</default>
+        <label>Hardware Failure</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Instructions not clear</fullName>
+        <default>false</default>
+        <label>Instructions not clear</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Modify User(s)</fullName>
+        <default>false</default>
+        <label>Modify User(s)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Multiple Closures</fullName>
+        <default>false</default>
+        <label>Multiple Closures</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>New problem</fullName>
+        <default>false</default>
+        <label>New problem</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>New Programming/Functionality</fullName>
+        <default>false</default>
+        <label>New Programming/Functionality</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>New User(s)</fullName>
+        <default>false</default>
+        <label>New User(s)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Password Resets</fullName>
+        <default>false</default>
+        <label>Password Resets</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Power Outage</fullName>
+        <default>false</default>
+        <label>Power Outage</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Question(s)</fullName>
+        <default>false</default>
+        <label>Question(s)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Requesting New Functionality</fullName>
+        <default>false</default>
+        <label>Requesting New Functionality</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Reset Device (Phone, Server, Etc.)</fullName>
+        <default>false</default>
+        <label>Reset Device (Phone, Server, Etc.)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Router/Modem Issues</fullName>
+        <default>false</default>
+        <label>Router/Modem Issues</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Sales</fullName>
+        <default>false</default>
+        <label>Sales</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>SIP Carrier Issue(s)</fullName>
+        <default>false</default>
+        <label>SIP Carrier Issue(s)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Telco/ISP circuit issue(s)</fullName>
+        <default>false</default>
+        <label>Telco/ISP circuit issue(s)</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Train Customer</fullName>
+        <default>false</default>
+        <label>Train Customer</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+    <standardValue>
+        <fullName>Unable to Duplicate</fullName>
+        <default>false</default>
+        <label>Unable to Duplicate</label>
+        <cssExposed>false</cssExposed>
+    </standardValue>
+</StandardValueSet>

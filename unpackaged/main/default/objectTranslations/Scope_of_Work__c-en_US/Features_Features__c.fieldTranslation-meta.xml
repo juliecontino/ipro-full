@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Please list the features discussed during the sales process that should be the focus of operations during the installation and training process. --></help>
+        <label><!-- Primary Features --></label>
+        <name>Features_Features__c</name>
+    </CustomFieldTranslation>

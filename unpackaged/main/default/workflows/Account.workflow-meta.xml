@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Account_Case_Flag_1</fullName>
+        <field>FLAGS__AcctTimeOffset1__c</field>
+        <formula>0</formula>
+        <name>Set Account Case Flag 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Blank_Source_to_IPRO</fullName>
+        <field>Account_Source_acq__c</field>
+        <literalValue>IPro</literalValue>
+        <name>Update Blank Source to IPRO</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>AE assignment</fullName>
+        <actions>
+            <name>Account_Created_without_an_Account_Executive</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>isblank( Account_Executive__c )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Account Source ACQ</fullName>
+        <actions>
+            <name>Account_Created_without_an_Account_Source_ACQ</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>text(Account_Source_acq__c )=""</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Account Source ACQ to IPRO</fullName>
+        <actions>
+            <name>Update_Blank_Source_to_IPRO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Account_Source_acq__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

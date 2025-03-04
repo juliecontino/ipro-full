@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter the number of console users requiring training for this Client Opportunity. --></help>
+        <label><!-- Console Users --></label>
+        <name>Training_Console_Users__c</name>
+    </CustomFieldTranslation>

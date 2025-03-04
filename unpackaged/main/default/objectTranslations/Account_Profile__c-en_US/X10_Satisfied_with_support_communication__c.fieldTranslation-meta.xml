@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- 10. Satisfied with support/communication --></label>
+        <name>X10_Satisfied_with_support_communication__c</name>
+    </CustomFieldTranslation>

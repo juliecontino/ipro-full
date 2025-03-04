@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Has your role changed in the past year? --></help>
+        <label><!-- 5. Role changes? --></label>
+        <name>X5_Role_changes__c</name>
+    </CustomFieldTranslation>

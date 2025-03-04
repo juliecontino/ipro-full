@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Building Served (Internally or Externally) on for On-Net Locations  only --></help>
+        <label><!-- Building Serve Type --></label>
+        <name>Building_Serve_Type__c</name>
+    </CustomFieldTranslation>

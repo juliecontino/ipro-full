@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Funding_Source__c</fullName>
+    <label>Funding Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>GA FlexiTel</fullName>
+                <default>false</default>
+                <label>GA FlexiTel</label>
+            </value>
+            <value>
+                <fullName>GA Lease</fullName>
+                <default>false</default>
+                <label>GA Lease</label>
+            </value>
+            <value>
+                <fullName>IPro Lease</fullName>
+                <default>false</default>
+                <label>IPro Lease</label>
+            </value>
+            <value>
+                <fullName>IPro Managed Services</fullName>
+                <default>false</default>
+                <label>IPro Managed Services</label>
+            </value>
+            <value>
+                <fullName>Mitel TSP</fullName>
+                <default>false</default>
+                <label>Mitel TSP</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

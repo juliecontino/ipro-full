@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>New</fullName>
+        <default>true</default>
+        <label>New</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Case in Work</fullName>
+        <default>false</default>
+        <label>Case in Work</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Waiting on Customer</fullName>
+        <default>false</default>
+        <label>Waiting on Customer</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Need more info - Waiting on customer</fullName>
+        <default>false</default>
+        <label>Need more info - Waiting on customer</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Needs Product Shipped</fullName>
+        <default>false</default>
+        <label>Needs Product Shipped</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Shipping in Progress</fullName>
+        <default>false</default>
+        <label>Shipping in Progress</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Waiting on Mitel Support</fullName>
+        <default>false</default>
+        <label>Waiting on Vendor Support</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Escalated</fullName>
+        <default>false</default>
+        <label>Escalated</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>On Hold</fullName>
+        <default>false</default>
+        <label>On Hold</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Client Approval Needed</fullName>
+        <default>false</default>
+        <label>Client Approval Needed</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Complete-Waiting on Customer Validation</fullName>
+        <default>false</default>
+        <label>Complete-Waiting on Customer Validation</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed</fullName>
+        <default>false</default>
+        <label>Closed</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed As Duplicate</fullName>
+        <default>false</default>
+        <label>Closed As Duplicate</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Ready for Billing/Closure</fullName>
+        <default>false</default>
+        <label>Ready for Billing/Closure</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Needs Tech Assigned</fullName>
+        <default>false</default>
+        <label>Needs Tech Assigned</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>First Contact</fullName>
+        <default>false</default>
+        <label>First Contact</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Second Contact</fullName>
+        <default>false</default>
+        <label>Second Contact</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Pending Closure</fullName>
+        <default>false</default>
+        <label>Pending Closure</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Cancelled Case in Connectwise</fullName>
+        <default>false</default>
+        <label>Cancelled Case in Connectwise</label>
+        <closed>true</closed>
+    </standardValue>
+</StandardValueSet>

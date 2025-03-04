@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SOW_CPQ_Pending</fullName>
+    <columns>NAME</columns>
+    <columns>CPQ_Status__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CPQ_Status__c</field>
+        <operation>equals</operation>
+        <value>New,In Progress,Missing Information,Wrong Information</value>
+    </filters>
+    <label>SOW Equipment Requisition Pending</label>
+    <language>en_US</language>
+</ListView>

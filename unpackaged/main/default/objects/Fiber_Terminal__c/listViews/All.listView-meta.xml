@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>CPL__c</columns>
+    <columns>Spatial_Key__c</columns>
+    <columns>Region__c</columns>
+    <columns>Serving_Wire_Center_CLLI__c</columns>
+    <columns>Street_Address__c</columns>
+    <columns>State__c</columns>
+    <columns>Fiber_Status__c</columns>
+    <columns>Equipment_Type__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Floor_Count__c</columns>
+    <columns>Business_Count__c</columns>
+    <columns>ABF_Market_Name__c</columns>
+    <columns>Occupancy_Type__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Fiber Terminals</label>
+    <language>en_US</language>
+</ListView>

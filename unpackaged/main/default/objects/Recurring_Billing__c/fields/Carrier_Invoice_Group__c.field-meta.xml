@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Carrier_Invoice_Group__c</fullName>
+    <label>Carrier Invoice Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Carrier__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Local</fullName>
+                <default>false</default>
+                <label>Local</label>
+            </value>
+            <value>
+                <fullName>Long Distance</fullName>
+                <default>false</default>
+                <label>Long Distance</label>
+            </value>
+            <value>
+                <fullName>Broadband</fullName>
+                <default>false</default>
+                <label>Broadband</label>
+            </value>
+            <value>
+                <fullName>Television</fullName>
+                <default>false</default>
+                <label>Television</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>TW Cable</controllingFieldValue>
+            <controllingFieldValue>TW Telecom</controllingFieldValue>
+            <controllingFieldValue>Verizon</controllingFieldValue>
+            <controllingFieldValue>XO</controllingFieldValue>
+            <controllingFieldValue>Concord</controllingFieldValue>
+            <controllingFieldValue>ATT</controllingFieldValue>
+            <controllingFieldValue>Cable One</controllingFieldValue>
+            <controllingFieldValue>CenturyLink</controllingFieldValue>
+            <controllingFieldValue>Charter</controllingFieldValue>
+            <controllingFieldValue>Comcast</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Local</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TW Cable</controllingFieldValue>
+            <controllingFieldValue>TW Telecom</controllingFieldValue>
+            <controllingFieldValue>Verizon</controllingFieldValue>
+            <controllingFieldValue>XO</controllingFieldValue>
+            <controllingFieldValue>ATT</controllingFieldValue>
+            <controllingFieldValue>Cable One</controllingFieldValue>
+            <controllingFieldValue>CenturyLink</controllingFieldValue>
+            <controllingFieldValue>Charter</controllingFieldValue>
+            <controllingFieldValue>Comcast</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Long Distance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TW Cable</controllingFieldValue>
+            <controllingFieldValue>TW Telecom</controllingFieldValue>
+            <controllingFieldValue>Verizon</controllingFieldValue>
+            <controllingFieldValue>XO</controllingFieldValue>
+            <controllingFieldValue>ATT</controllingFieldValue>
+            <controllingFieldValue>Broadvox</controllingFieldValue>
+            <controllingFieldValue>Cable One</controllingFieldValue>
+            <controllingFieldValue>CenturyLink</controllingFieldValue>
+            <controllingFieldValue>Charter</controllingFieldValue>
+            <controllingFieldValue>Comcast</controllingFieldValue>
+            <controllingFieldValue>Level 3</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>SkyBeam</controllingFieldValue>
+            <controllingFieldValue>Telnes</controllingFieldValue>
+            <valueName>Broadband</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>TW Cable</controllingFieldValue>
+            <controllingFieldValue>Cable One</controllingFieldValue>
+            <controllingFieldValue>Charter</controllingFieldValue>
+            <controllingFieldValue>Comcast</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Television</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

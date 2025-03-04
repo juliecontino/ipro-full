@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Features_Features__c</fullName>
+    <inlineHelpText>Please list the features discussed during the sales process that should be the focus of operations during the installation and training process.</inlineHelpText>
+    <label>Primary Features</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

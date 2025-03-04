@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Recurring Billing Master</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Recurring Billing Master</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Recurring Billing Master Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Independent Partners --></label>
+            <section>Independent Partners</section>
+        </sections>
+        <sections>
+            <label><!-- Recurring Billing Line Items --></label>
+            <section>Recurring Billing Line Items</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Forms --></label>
+        <name>Forms</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Recurring_Billing_Report --></label>
+        <name>Recurring_Billing_Report</name>
+    </webLinks>
+</CustomObjectTranslation>

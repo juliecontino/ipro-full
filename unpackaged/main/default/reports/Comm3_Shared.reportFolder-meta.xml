@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <folderShares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>President</sharedTo>
+        <sharedToType>Role</sharedToType>
+    </folderShares>
+    <folderShares>
+        <accessLevel>EditAllContents</accessLevel>
+        <sharedTo>Group_Comm3</sharedTo>
+        <sharedToType>Group</sharedToType>
+    </folderShares>
+    <name>Comm3 Shared</name>
+</ReportFolder>

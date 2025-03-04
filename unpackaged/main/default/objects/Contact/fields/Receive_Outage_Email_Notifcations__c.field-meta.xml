@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Receive_Outage_Email_Notifcations__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to filter contacts that we would like to mass email outage notifications</description>
+    <label>Receive Outage Email Notifcations</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

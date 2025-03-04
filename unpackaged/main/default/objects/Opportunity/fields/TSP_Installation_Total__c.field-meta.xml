@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TSP_Installation_Total__c</fullName>
+    <label>TSP Installation Total</label>
+    <summarizedField>OpportunityLineItem.MS_OP_Installation_Total__c</summarizedField>
+    <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

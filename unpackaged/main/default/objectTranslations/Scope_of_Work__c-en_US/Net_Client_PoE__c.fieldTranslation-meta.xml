@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Does the Client currently have PoE switches? --></help>
+        <label><!-- Client PoE --></label>
+        <name>Net_Client_PoE__c</name>
+    </CustomFieldTranslation>

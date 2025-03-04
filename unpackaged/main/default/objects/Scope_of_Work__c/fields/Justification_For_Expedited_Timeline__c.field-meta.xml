@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Justification_For_Expedited_Timeline__c</fullName>
+    <label>Justification For Expedited Timeline</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending Client Move Date</fullName>
+                <default>false</default>
+                <label>Pending Client Move Date</label>
+            </value>
+            <value>
+                <fullName>Contract Expiration</fullName>
+                <default>false</default>
+                <label>Contract Expiration</label>
+            </value>
+            <value>
+                <fullName>Competitor</fullName>
+                <default>false</default>
+                <label>Competitor</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

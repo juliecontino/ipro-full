@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cash_FMV_24_Month_Lease_Payment__c</fullName>
+    <formula>IF( Cash_Opportunity_Total__c &lt;=4999, ( Cash_Opportunity_Total__c * 0.0471),
+IF( Cash_Opportunity_Total__c &lt;=14999, ( Cash_Opportunity_Total__c * 0.0454),
+IF( Cash_Opportunity_Total__c &lt;=24999, ( Cash_Opportunity_Total__c * 0.0445),
+IF( Cash_Opportunity_Total__c &lt;=49999, ( Cash_Opportunity_Total__c * 0.0438),
+IF( Cash_Opportunity_Total__c &lt;=250000, ( Cash_Opportunity_Total__c * 0.0436),
+1.00)))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cash FMV 24 Month Lease Payment</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

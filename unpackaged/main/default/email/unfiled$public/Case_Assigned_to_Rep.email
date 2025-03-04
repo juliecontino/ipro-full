@@ -1,0 +1,18 @@
+Your Case {!Case.CaseNumber}  {!Case.Subject}  has been assigned the following Support Representative:
+
+Support Representative: {!Case.OwnerFullName}
+Phone Number: {!Case.OwnerPhone}
+
+Your Support Representative will contact you with updates and/or questions regarding your case shortly.
+
+*************************** 
+Case: {!Case.CaseNumber} 
+Status: {!Case.Status} 
+Priority Level: {!Case.Priority} 
+Subject: {!Case.Subject} 
+Description: 
+{!Case.Description} 
+
+
+
+[{!Case.Thread_Id}]

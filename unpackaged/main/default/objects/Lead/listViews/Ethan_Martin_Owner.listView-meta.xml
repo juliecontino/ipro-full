@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ethan_Martin_Owner</fullName>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>FULL_NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.EMAIL</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.UNREAD</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ALIAS</field>
+        <operation>equals</operation>
+        <value>emartin</value>
+    </filters>
+    <label>Ethan Martin Owner</label>
+    <language>en_US</language>
+</ListView>

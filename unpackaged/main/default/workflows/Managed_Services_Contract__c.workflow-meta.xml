@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Auto_Calculate_Reserve</fullName>
+        <field>Contract_Funding_Reserve__c</field>
+        <formula>Current_Contract_Value__c *0.05</formula>
+        <name>Auto-Calculate Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Auto Calculate Reserve</fullName>
+        <actions>
+            <name>Auto_Calculate_Reserve</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Managed_Services_Contract__c.Auto_Calculate_Reserve__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>If Auto-Calculate Reserve checkbox is selected, populate the Reserve field with 5% of the Total Funding Amount field.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

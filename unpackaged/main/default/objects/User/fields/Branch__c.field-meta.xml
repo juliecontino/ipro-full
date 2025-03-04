@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Branch__c</fullName>
+    <label>Branch</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Atlanta</fullName>
+                <default>false</default>
+                <label>Atlanta</label>
+            </value>
+            <value>
+                <fullName>Austin</fullName>
+                <default>false</default>
+                <label>Austin</label>
+            </value>
+            <value>
+                <fullName>Dallas</fullName>
+                <default>false</default>
+                <label>Dallas</label>
+            </value>
+            <value>
+                <fullName>Houston</fullName>
+                <default>false</default>
+                <label>Houston</label>
+            </value>
+            <value>
+                <fullName>Pittsburgh</fullName>
+                <default>false</default>
+                <label>Pittsburgh</label>
+            </value>
+            <value>
+                <fullName>San Antonio</fullName>
+                <default>false</default>
+                <label>San Antonio</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

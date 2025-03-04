@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Project Status --></label>
+        <name>Project_Status__c</name>
+        <picklistValues>
+            <masterLabel>MAC</masterLabel>
+            <translation><!-- MAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Installation</masterLabel>
+            <translation><!-- New Installation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upgrade</masterLabel>
+            <translation><!-- Upgrade --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

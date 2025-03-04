@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Labor_Hours_Minimum_5_characters</fullName>
+    <active>true</active>
+    <errorConditionFormula>and (
+Not ISBLANK(Labor_Hours_HH_MM__c),Len( Labor_Hours_HH_MM__c) &lt; 5)</errorConditionFormula>
+    <errorDisplayField>Labor_Hours_HH_MM__c</errorDisplayField>
+    <errorMessage>Labor hours should be at least 5 characters (example:  00:45  = 45 minutes)</errorMessage>
+</ValidationRule>

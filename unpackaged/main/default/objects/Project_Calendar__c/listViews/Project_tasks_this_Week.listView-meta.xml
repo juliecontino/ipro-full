@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_tasks_this_Week</fullName>
+    <columns>NAME</columns>
+    <columns>Date_D__c</columns>
+    <columns>Weekday__c</columns>
+    <columns>Text_Weekday__c</columns>
+    <columns>Number_of_Project_Tasks__c</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Date_D__c</field>
+        <operation>equals</operation>
+        <value>THIS_WEEK</value>
+    </filters>
+    <label>Project Tasks This Week</label>
+    <language>en_US</language>
+</ListView>

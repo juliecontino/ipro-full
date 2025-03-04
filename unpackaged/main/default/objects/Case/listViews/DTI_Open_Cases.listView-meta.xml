@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DTI_Open_Cases</fullName>
+    <columns>Support_Tier_Text__c</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>NAME</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>Scheduled_Date_Time__c</columns>
+    <columns>Billable__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.STATUS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>equals</operation>
+        <value>DTI</value>
+    </filters>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notEqual</operation>
+        <value>Closed,Closed As Duplicate</value>
+    </filters>
+    <label>DTI-Open Cases</label>
+    <language>en_US</language>
+</ListView>

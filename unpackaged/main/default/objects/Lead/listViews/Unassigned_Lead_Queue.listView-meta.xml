@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unassigned_Lead_Queue</fullName>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>LEAD.UNREAD</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.LAST_NAME</columns>
+    <columns>LEAD.FIRST_NAME</columns>
+    <columns>LEAD.TITLE</columns>
+    <columns>LEAD.EMAIL</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>LEAD.STATE</columns>
+    <columns>LEAD.CREATED_DATE</columns>
+    <columns>LEAD.LAST_UPDATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <filterScope>Queue</filterScope>
+    <label>Unassigned Leads Queue</label>
+    <language>en_US</language>
+    <queue>Unassigned_Leads</queue>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

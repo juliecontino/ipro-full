@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Port T1 or Pri --></label>
+        <name>Port_T1_or_Pri__c</name>
+    </CustomFieldTranslation>

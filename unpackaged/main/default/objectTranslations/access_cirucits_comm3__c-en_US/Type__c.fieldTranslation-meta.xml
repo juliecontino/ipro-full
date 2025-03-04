@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>DID</masterLabel>
+            <translation><!-- DID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DSL</masterLabel>
+            <translation><!-- DSL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FAX</masterLabel>
+            <translation><!-- FAX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ISDN</masterLabel>
+            <translation><!-- ISDN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1</masterLabel>
+            <translation><!-- T1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3</masterLabel>
+            <translation><!-- T3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toll-Free</masterLabel>
+            <translation><!-- Toll-Free --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

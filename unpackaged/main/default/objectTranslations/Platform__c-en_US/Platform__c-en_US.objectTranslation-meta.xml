@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Platform</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Platforms</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Platform Layout</layout>
+        <sections>
+            <label><!-- ACD Programming --></label>
+            <section>ACD Programming</section>
+        </sections>
+        <sections>
+            <label><!-- Call Flows --></label>
+            <section>Call Flows</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- MiCC --></label>
+            <section>MiCC</section>
+        </sections>
+        <sections>
+            <label><!-- MiVR --></label>
+            <section>MiVR</section>
+        </sections>
+        <sections>
+            <label><!-- Network Zones --></label>
+            <section>Network Zones</section>
+        </sections>
+        <sections>
+            <label><!-- Numbering Plan --></label>
+            <section>Numbering Plan</section>
+        </sections>
+        <sections>
+            <label><!-- Servers and License --></label>
+            <section>Servers and License</section>
+        </sections>
+        <sections>
+            <label><!-- Voice Mail --></label>
+            <section>Voice Mail</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Forms --></label>
+        <name>Forms</name>
+    </webLinks>
+</CustomObjectTranslation>

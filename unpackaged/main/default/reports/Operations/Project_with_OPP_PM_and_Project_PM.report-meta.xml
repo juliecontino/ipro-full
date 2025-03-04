@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Project__c.AcctSeed__Template_Project__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Project__c.Project_Manager_OPS__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Project__c.AcctSeed__Project_Manager__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>AcctSeed__Project__c.AcctSeed__Template_Project__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>1</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Project with OPP PM and Project PM</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$AcctSeed__Project__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>AcctSeed__Project__c.Project_Manager_OPS__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Project__c.Estimated_Cut_over_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

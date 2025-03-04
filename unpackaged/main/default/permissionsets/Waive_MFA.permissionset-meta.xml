@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>For use ONLY for specific use cases, such as a single user with partners, a single Sys Admin, and/or integration users.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Waive MFA</label>
+</PermissionSet>

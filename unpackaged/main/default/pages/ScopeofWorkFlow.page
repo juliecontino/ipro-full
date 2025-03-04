@@ -1,0 +1,5 @@
+<apex:page standardController="Opportunity" >
+    <flow:interview name="ScopeofWork" >
+        <apex:param name="vOppID" value="{!Opportunity.Id}" />
+    </flow:interview>
+</apex:page>

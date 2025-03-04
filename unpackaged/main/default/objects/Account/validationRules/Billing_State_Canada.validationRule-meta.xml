@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_State_Canada</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND (
+OR(BillingCountry = "CA", BillingCountry="CAN", BillingCountry="canada", BillingCountry = "Can",BillingCountry = "Canada",BillingCountry = "Canada"), 
+OR(
+LEN(BillingState) &lt; 2,
+NOT(
+CONTAINS("AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT", BillingState)
+)))
+&amp;&amp; $Setup.rh2__PS_Settings__c.rh2__Run_Validation_Rule__c</errorConditionFormula>
+    <errorDisplayField>BillingState</errorDisplayField>
+    <errorMessage>Please enter a valid 2-digit billing state code for this Canadian Providence. Valid Entries are: (AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT")</errorMessage>
+</ValidationRule>

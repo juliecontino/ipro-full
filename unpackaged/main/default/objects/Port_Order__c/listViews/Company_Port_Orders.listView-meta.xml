@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Port_Orders</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Status__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Canceled</value>
+    </filters>
+    <label>Company Port Orders</label>
+    <language>en_US</language>
+</ListView>

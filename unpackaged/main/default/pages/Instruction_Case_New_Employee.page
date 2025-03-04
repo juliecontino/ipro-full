@@ -1,0 +1,22 @@
+<apex:page standardController="Case" tabStyle="Case">
+
+  <h1>Instructions</h1>
+  New Hire Transaction
+PLEASE NOTE: 1 WEEK PRIOR NOTICE REQUIRED<br></br><br></br>
+Account Activation for Employee<br></br>
+ (please include employees name, job title and location):<br></br>
+
+Manager to send email to Tech Support for the following request (please include employees name, job title and location):<br></br><br></br>
+o   Computer (new or refurbished), to include: ethernet dongle, HDM adapter, ethernet cable<br></br>
+o   Access to SalesForce (to include Chatter) and SpringCM <br></br>
+o   Create Outlook/Office 360 Account<br></br>
+   Include internal distribution groups (i.e.: All Employees/ Frisco Group/Austin Group/ Tech Group/Sales, etc.)<br></br>
+o   Access to network printers<br></br>
+o   Voice Access Request<br></br>
+o   Create Mitel phone account and number for new employee (Display Name) (Userid).<br></br>
+o   Desk phone (5360) to include: VM, twinning, handset, headset, premium license, MiCollab (desktop/mobile), etc.<br></br>
+o   Sales ONLY- assign and distribute demo phone (5330)<br></br>
+
+
+
+</apex:page>

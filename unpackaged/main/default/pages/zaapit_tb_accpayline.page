@@ -1,0 +1,19 @@
+<apex:page standardController="AcctSeed__Account_Payable__c" > 
+<script>
+/*
+try{
+var urlBase="https://na2.salesforce.com";
+var urlIfN="{!$Resource.zaapit_actions_html}";
+if(urlIfN.indexOf(".com")>-1){
+    urlIfN=urlIfN.split(".com")[1];
+}
+var URLTXX1=urlBase+""+urlIfN+"?url1="+escape(urlBase+"{!$Resource.zaapit__zaapit_actions}");
+var iframe = document.createElement("iframe"); iframe.name = "ZZZ";iframe.src = URLTXX1;iframe.height = '0px';iframe.width = '0px';iframe.frameborder = '0';iframe.style="display:none;";    document.body.appendChild(iframe);
+}catch(e1){}
+*/
+</script>
+
+   <apex:include pageName="zaapit__zaapit_tb_GeneralWL"/>
+    <!-- Thank you for looking :) please contact us for customizing this application -->
+    
+</apex:page>

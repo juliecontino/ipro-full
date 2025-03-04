@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Copy_PC_to_External_PC</fullName>
+        <field>External_Product_Code__c</field>
+        <formula>ProductCode</formula>
+        <name>Copy PC to External PC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Product_Name_to_Description</fullName>
+        <field>Description</field>
+        <formula>Name</formula>
+        <name>Product Name to Description</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Active_flag_to_Yes</fullName>
+        <field>IsActive</field>
+        <literalValue>1</literalValue>
+        <name>Set Active flag to Yes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Prod-Copy PC to External PC</fullName>
+        <actions>
+            <name>Copy_PC_to_External_PC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Product2.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Product Name To Description</fullName>
+        <actions>
+            <name>Product_Name_to_Description</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Product2.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Product New Default to Active</fullName>
+        <actions>
+            <name>Set_Active_flag_to_Yes</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Product2.IsActive</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Product Update revio Rate</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Product2.CreatedDate</field>
+            <operation>greaterThan</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

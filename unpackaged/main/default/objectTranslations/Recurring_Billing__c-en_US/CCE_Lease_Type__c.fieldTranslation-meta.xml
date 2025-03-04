@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- CCE Lease Type --></label>
+        <name>CCE_Lease_Type__c</name>
+        <picklistValues>
+            <masterLabel>Great America AnyWare</masterLabel>
+            <translation><!-- Great America AnyWare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Great America DBO Lease</masterLabel>
+            <translation><!-- Great America DBO Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Great America FMV Lease</masterLabel>
+            <translation><!-- Great America FMV Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Great America Government Lease</masterLabel>
+            <translation><!-- Great America Government Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Great America TSP</masterLabel>
+            <translation><!-- Great America TSP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPro Media AnyWare</masterLabel>
+            <translation><!-- IPro Media AnyWare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPro Media DBO Lease</masterLabel>
+            <translation><!-- IPro Media DBO Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPro Media FMV Lease</masterLabel>
+            <translation><!-- IPro Media FMV Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPro Media TSP</masterLabel>
+            <translation><!-- IPro Media TSP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitel DBO Lease</masterLabel>
+            <translation><!-- Mitel DBO Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitel FMV Lease</masterLabel>
+            <translation><!-- Mitel FMV Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitel TSP</masterLabel>
+            <translation><!-- Mitel TSP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wells Fargo AnyWare</masterLabel>
+            <translation><!-- Wells Fargo AnyWare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wells Fargo DBO Lease</masterLabel>
+            <translation><!-- Wells Fargo DBO Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wells Fargo FMV Lease</masterLabel>
+            <translation><!-- Wells Fargo FMV Lease --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wells Fargo Government Lease</masterLabel>
+            <translation><!-- Wells Fargo Government Lease --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

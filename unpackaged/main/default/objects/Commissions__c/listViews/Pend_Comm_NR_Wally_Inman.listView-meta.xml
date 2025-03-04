@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pend_Comm_NR_Wally_Inman</fullName>
+    <columns>NAME</columns>
+    <columns>SA_Code__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Commission_Owner__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Opportunity_Completion_Status__c</columns>
+    <columns>Approved_For_Payment__c</columns>
+    <columns>Commission_Category__c</columns>
+    <columns>Commission_Type__c</columns>
+    <columns>Base_Commission_Net__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Commission_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Draw</value>
+    </filters>
+    <filters>
+        <field>Commission_Category__c</field>
+        <operation>notEqual</operation>
+        <value>Residual</value>
+    </filters>
+    <filters>
+        <field>Approved_For_Payment__c</field>
+        <operation>equals</operation>
+        <value>Pending,Submitted</value>
+    </filters>
+    <filters>
+        <field>Commission_Owner__c</field>
+        <operation>equals</operation>
+        <value>Wally Inman</value>
+    </filters>
+    <label>Pend Comm-NR-Wally Inman</label>
+</ListView>

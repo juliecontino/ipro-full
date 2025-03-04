@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Carrier Access Quote</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Carrier Access Quote</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Carrier Access Quote Layout</layout>
+        <sections>
+            <label><!-- Circuit ConfigurationNew Section --></label>
+            <section>Circuit ConfigurationNew Section</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing --></label>
+            <section>Pricing</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Task --></label>
+        <name>Create_Task</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Access speed must be equal to or greater than the port speed. --></errorMessage>
+        <name>Access_Speed_Port_Speed_Verification</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Port Type and the Access Type must be the same. --></errorMessage>
+        <name>Port_Type_Matches_Access_Type</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,9 @@
+*** LEVEL 3 NEW CASE ASSIGNMENT NOTIFICATION ***  
+
+The following case has been assigned to your Level 3 Queue.  
+Company:  {!Account.Name} 
+Contact Name:  {!Contact.Name} 
+Case #:  {!Case.CaseNumber} 
+Subject:  {!Case.Subject} 
+
+Click on the link to access the case:  {!Case.Link}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X3_New_initiatives_or_challenges__c</fullName>
+    <description>10/15 SH: QBR Fields</description>
+    <inlineHelpText>How can we better align our services/products with your evolving strategy?</inlineHelpText>
+    <label>3. New initiatives or challenges?</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

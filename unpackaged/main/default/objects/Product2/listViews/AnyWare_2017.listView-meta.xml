@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnyWare_2017</fullName>
+    <columns>PRODUCT2.FAMILY</columns>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>Product_Category__c</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>PRODUCT2.FAMILY</field>
+        <operation>equals</operation>
+        <value>AnyWare 2017</value>
+    </filters>
+    <label>AnyWare 2017</label>
+    <language>en_US</language>
+</ListView>

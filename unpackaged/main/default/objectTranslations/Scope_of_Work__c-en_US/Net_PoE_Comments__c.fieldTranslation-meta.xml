@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Describe the Clients PoE configuration. For instance: They do not have any and PoE must be provided by IPro or they do have PoE switches and the Make and Models are as follows. --></help>
+        <label><!-- PoE Comments --></label>
+        <name>Net_PoE_Comments__c</name>
+    </CustomFieldTranslation>

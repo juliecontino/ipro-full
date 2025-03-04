@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard</fullName>
+    <active>true</active>
+    <label>Standard</label>
+    <picklistValues>
+        <picklist>AccountSource</picklist>
+        <values>
+            <fullName>AE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Advertisement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bus Dev</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CoStar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cold Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dependable Technologies</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Door Knocking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employee Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Independent Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mitel BD Leads</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mitel CAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mitel Special</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner Referral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Pro Leads</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seminar - Internal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seminar - Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trade Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TriDigital</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VOX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wheelhouse</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Word of mouth</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Account_Source_acq__c</picklist>
+        <values>
+            <fullName>Comm3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DTI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EON</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IPro</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>AcctSeed__Accounting_Type__c</picklist>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer and Vendor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vendor</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>AcctSeed__Default_1099_Box__c</picklist>
+        <values>
+            <fullName>1%2E Rents</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E Crop Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>13%2E Golden Parachute</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>14%2E Attorney Proceeds</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15a%2E Section 409A Deferrals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15b%2E Section 409A Income</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>16%2E State Tax Withheld</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E Royalties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E Other Income</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%2E Federal Tax Withheld</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E Fishing Boat Proceeds</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%2E Medical Payments</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%2E Nonemployee Compensation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%2E Substitute Payments</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>AcctSeed__Statement_Needed__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Billing_Delivery_Method__c</picklist>
+        <values>
+            <fullName>E-Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CW_Billing_Type__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Carrier_Billing_Status__c</picklist>
+        <values>
+            <fullName>Clear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hold</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Christmas_Gift__c</picklist>
+        <values>
+            <fullName>Executive Package %28Large%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Peppermint Box %28Small%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Praline Box %28Medium%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Praline Box %28Small%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Controller_Mode__c</picklist>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Physical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Controller_Type__c</picklist>
+        <values>
+            <fullName>3300</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5000</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Default_Payment_Method__c</picklist>
+        <values>
+            <fullName>ACH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Check</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Credit Card</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Financial_Partner__c</picklist>
+        <values>
+            <fullName>Contract Capital</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Great America</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IPro Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Texas Star Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wells Fargo</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry</picklist>
+        <values>
+            <fullName>Agriculture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apparel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Biotechnology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemicals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Electronics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Energy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environmental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Machinery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not For Profit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telecommunications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>MiVoice_Platform__c</picklist>
+        <values>
+            <fullName>Elevate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MiVoice Business %28EB%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MiVoice Business %28Subscription%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MiVoice Business Express %28SMB%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MiVoice Office 250</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multi-Instance MiVoice Business %28SB%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ownership</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subsidiary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rating</picklist>
+        <values>
+            <fullName>Cold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warm</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Support_Product_s__c</picklist>
+        <values>
+            <fullName>67000001 Level 1%3A Software Assurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000002 Level 2%3A Hardware Replacement - Controllers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000003 Level 3%3A Hardware Replacement - Sets</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000004 Level 4%3A Configuration Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000005 Level 5%3A On-Site %288-5 Monday thru Friday%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000006 Level 6%3A On-Site %287 x 24 x 365%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000007 Level 7%3A Streamline Ports</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000101 Level 8A%3A Mitel Contact Center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000102 Level 8B%3A Mitel CSM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000103 Level 8C%3A Call Recording</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000104 Level 8D%3A UCA Stand-Alone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>67000105 Level 8E%3A MCA Stand-Alone</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Support_Tier__c</picklist>
+        <values>
+            <fullName>Level1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level4</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Terms__c</picklist>
+        <values>
+            <fullName>Net 30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Per Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospect</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Voice_Mail_Type__c</picklist>
+        <values>
+            <fullName>Embedded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NuPoint</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>zaapit__Create_Task2__c</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Quote</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>zaapit__Create_Task__c</picklist>
+        <values>
+            <fullName>Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Letter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send Quote</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Telephone Vendor --></label>
+        <name>Telephone_Vendor__c</name>
+        <picklistValues>
+            <masterLabel>8x8</masterLabel>
+            <translation><!-- 8x8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Avaya</masterLabel>
+            <translation><!-- Avaya --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cisco</masterLabel>
+            <translation><!-- Cisco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Comdial</masterLabel>
+            <translation><!-- Comdial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fonality</masterLabel>
+            <translation><!-- Fonality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fujitsu</masterLabel>
+            <translation><!-- Fujitsu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitel</masterLabel>
+            <translation><!-- Mitel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NEC</masterLabel>
+            <translation><!-- NEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nortel</masterLabel>
+            <translation><!-- Nortel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shoretel</masterLabel>
+            <translation><!-- Shoretel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Toshiba</masterLabel>
+            <translation><!-- Toshiba --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vertical</masterLabel>
+            <translation><!-- Vertical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vonage</masterLabel>
+            <translation><!-- Vonage --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Access_Circuits__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Access_Circuits__r$Circuit_Type__c</field>
+    </columns>
+    <columns>
+        <field>Account.Access_Circuits__r$Primary_Carrier__c</field>
+    </columns>
+    <columns>
+        <field>Account.Access_Circuits__r$Primary_Carrier_Account_Number__c</field>
+    </columns>
+    <columns>
+        <field>Account.Access_Circuits__r$Primary_Carrier_Trouble_Reporting_Number__c</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$ShippingAddress</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Access Circuits By Account Location</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Access_Circuits_By_Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Account.Access_Circuits__r$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

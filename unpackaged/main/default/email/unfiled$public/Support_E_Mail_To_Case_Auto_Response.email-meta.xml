@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Support E-Mail-To-Case Auto-Response</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Support E-Mail-To-Case Auto-Response</name>
+    <style>none</style>
+    <subject>IPro Media Support Case:{!Case.CaseNumber}: {!Case.Subject}: {!Case.Thread_Id}</subject>
+    <textOnly>Thank you for submitting your support request online. Case #: {!Case.CaseNumber}: &quot;{!Case.Subject}&quot; has been created and you will be notified when an IPro Media Support Representative begins work on your case. Our Service Level Response goals are as follows:
+
+
+Priority 1: 4 Business Hours (Outage to your IPro Service affecting critical business function or 50% of the service)
+
+NOTE: If you have a Priority 1 case, please call in to (903) 482-8110 to have your case escalated.  Email is not a real time communication method and should not be used for Priority 1 outages.
+
+Priority 2: 8 Business Hours (Outage less than P1 level, but significant business impact or high visibility personnel)
+
+Priority 3: 3 Business Days (Non-outage services requests and changes, or small outages of individual devices)
+
+Priority 4: 5 Business Days (Project work, large scale service requests or changes)
+
+
+Support for your IPro Services are available during all regular business hours for non-business critical cases.  Support is available during extended hours for critical failures. All times listed are in Central Standard Time.
+
+Regular support hours: Monday - Friday, 8:00 AM-5:00 PM
+
+Extended support hours: 7 days per week excluding holidays, 6:00 AM-10:00 PM
+
+
+The first weekend of every month is reserved for system
+maintenance from Saturday night at 10pm through Sunday evening at 10pm for changes that may potentially impact the availability of the IPro Service.  Please contact us 2 weeks in advance of schedule maintenance windows if you need to have your services excluded from certain maintenance windows.
+
+
+Thank You
+IPro Media Customer Support</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

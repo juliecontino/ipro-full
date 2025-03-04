@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Independent_Partner__c</fullName>
+    <label>Independent Partner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Canoa Systems, Inc.</fullName>
+                <default>false</default>
+                <label>Canoa Systems, Inc.</label>
+            </value>
+            <value>
+                <fullName>FCS Communications, Inc.</fullName>
+                <default>false</default>
+                <label>FCS Communications, Inc.</label>
+            </value>
+            <value>
+                <fullName>TechSys Consulting</fullName>
+                <default>false</default>
+                <label>TechSys Consulting</label>
+            </value>
+            <value>
+                <fullName>Scott Enriquez</fullName>
+                <default>false</default>
+                <label>Scott Enriquez</label>
+            </value>
+            <value>
+                <fullName>Jeff Hicks Computer Consulting</fullName>
+                <default>false</default>
+                <label>Jeff Hicks Computer Consulting</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

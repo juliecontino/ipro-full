@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Support Tier --></label>
+        <name>Support_Tier__c</name>
+        <picklistValues>
+            <masterLabel>Level1</masterLabel>
+            <translation><!-- Level1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level2</masterLabel>
+            <translation><!-- Level2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level3</masterLabel>
+            <translation><!-- Level3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level4</masterLabel>
+            <translation><!-- Level4 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

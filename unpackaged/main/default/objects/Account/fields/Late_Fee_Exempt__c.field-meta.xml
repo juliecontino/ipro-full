@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Late_Fee_Exempt__c</fullName>
+    <description>Rev.io Late_Fee_Exempt</description>
+    <externalId>false</externalId>
+    <label>Late_Fee_Exempt</label>
+    <length>5</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

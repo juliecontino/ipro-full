@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ForecastingFilter xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterLogic>1 AND 2</filterLogic>
+    <forecastingType>Recast</forecastingType>
+    <forecastingTypeSource>FTS_Recast7sy8Z000000TPHhQAO282586682341585</forecastingTypeSource>
+    <isProtected>false</isProtected>
+    <masterLabel>FF_Recast0hl8Z000000GmelQAC035446971275725</masterLabel>
+</ForecastingFilter>

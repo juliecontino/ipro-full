@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Open_Support_Cases_ipro</fullName>
+    <booleanFilter>1 AND 2 AND 3 and 4</booleanFilter>
+    <columns>Support_Tier_Text__c</columns>
+    <columns>CASES.CASE_NUMBER</columns>
+    <columns>CASES.STATUS</columns>
+    <columns>CASES.TYPE</columns>
+    <columns>NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CASES.ORIGIN</columns>
+    <columns>CASES.SUBJECT</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Account_Alias__c</columns>
+    <columns>Account_Source_ACQ__c</columns>
+    <columns>CASES.PRIORITY</columns>
+    <columns>Billable__c</columns>
+    <columns>CASES.CREATED_DATE</columns>
+    <columns>CASES.LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CASES.STATUS</field>
+        <operation>notContain</operation>
+        <value>Closed,Closed As Duplicate,Ready for Billing/Closure,Cancelled</value>
+    </filters>
+    <filters>
+        <field>IsMacOrder__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>IsNewSale__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>OWNER_NAME</field>
+        <operation>notEqual</operation>
+        <value>Install</value>
+    </filters>
+    <label>All Open Support Cases (IPro)</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

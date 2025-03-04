@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- 7. Results or outcomes from our solution --></label>
+        <name>X7_Results_or_outcomes_from_our_solution__c</name>
+    </CustomFieldTranslation>

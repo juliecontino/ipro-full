@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Project</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Create Project</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>https://acctseed.na2.visual.force.com/apex/ProjectFromOpportunity?scontrolCaching=1&amp;id={!Installs__c.OpportunityId__c}</url>
+</WebLink>

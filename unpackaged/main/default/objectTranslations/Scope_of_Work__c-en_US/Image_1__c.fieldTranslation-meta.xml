@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Image 1 --></label>
+        <name>Image_1__c</name>
+        <picklistValues>
+            <masterLabel>CX Controller</masterLabel>
+            <translation><!-- CX Controller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MXe Controller</masterLabel>
+            <translation><!-- MXe Controller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MXe Controller Fault Tolerant</masterLabel>
+            <translation><!-- MXe Controller Fault Tolerant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual</masterLabel>
+            <translation><!-- Virtual --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

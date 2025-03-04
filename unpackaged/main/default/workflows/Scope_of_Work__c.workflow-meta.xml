@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_OPP_SOW_CPQ_Status</fullName>
+        <field>SOW_CPQ_Status__c</field>
+        <formula>text(CPQ_Status__c)</formula>
+        <name>Update OPP SOW CPQ Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Opportunity__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Opp_Sales_Timeline</fullName>
+        <field>Scope_of_Work_Timeline__c</field>
+        <formula>text(Installation_Timeline__c)</formula>
+        <name>Update Opp Sales Timeline</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Opportunity__c</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>SOW CPQ Completed</fullName>
+        <actions>
+            <name>Email_VP_Sales_CPQ_Completed</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Scope_of_Work__c.CPQ_Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SOW CPQ Not Required</fullName>
+        <actions>
+            <name>Email_VP_Sales_CPQ_Not_Required</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Scope_of_Work__c.CPQ_Status__c</field>
+            <operation>equals</operation>
+            <value>Not Applicable</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SOW CPQ Status Update Opp</fullName>
+        <actions>
+            <name>Update_OPP_SOW_CPQ_Status</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Scope_of_Work__c.CPQ_Status__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>SOW Timeline Update Opp</fullName>
+        <actions>
+            <name>Update_Opp_Sales_Timeline</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Scope_of_Work__c.Installation_Timeline__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

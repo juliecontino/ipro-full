@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Project Tasks SE</label>
+    <motif>Custom25: Alarm clock</motif>
+    <page>zaapit_tb_project_SE</page>
+</CustomTab>

@@ -1,0 +1,6 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+ <flow:interview name="QuickProductSetupNotifyAdmin" />
+
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

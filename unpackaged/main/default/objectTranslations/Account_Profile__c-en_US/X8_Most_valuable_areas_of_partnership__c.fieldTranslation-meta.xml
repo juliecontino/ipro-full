@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- 8. Most valuable areas of partnership --></label>
+        <name>X8_Most_valuable_areas_of_partnership__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ray_Wagnon_Inactive</fullName>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>LEAD.COMPANY</columns>
+    <filterScope>Queue</filterScope>
+    <label>Ray Wagnon Inactive</label>
+    <queue>Ray_Wagnon_Inactive</queue>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Standard Tables</label>
+    <logo>SharedDocuments/IPro_Logo_Salesforce_Header_Image.png</logo>
+    <tabs>Access_Circuits</tabs>
+    <tabs>Billing_Master__c</tabs>
+    <tabs>Help</tabs>
+    <tabs>Quick_Account</tabs>
+    <tabs>Quick_Product</tabs>
+    <tabs>Project_task</tabs>
+    <tabs>Approval</tabs>
+    <tabs>AcctSeed__Recurring_Billing_Line__c</tabs>
+    <tabs>Project_Calendar__c</tabs>
+    <tabs>Project_Notes__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

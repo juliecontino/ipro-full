@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Install_Status__c</fullName>
+    <label>Install Status (Depreciated)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>true</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Defining</fullName>
+                <default>false</default>
+                <label>Defining</label>
+            </value>
+            <value>
+                <fullName>Ready to Install</fullName>
+                <default>false</default>
+                <label>Ready to Install</label>
+            </value>
+            <value>
+                <fullName>Waiting for Parts</fullName>
+                <default>false</default>
+                <label>Waiting for Parts</label>
+            </value>
+            <value>
+                <fullName>Waiting on Customer</fullName>
+                <default>false</default>
+                <label>Waiting on Customer</label>
+            </value>
+            <value>
+                <fullName>Waiting on Construction</fullName>
+                <default>false</default>
+                <label>Waiting on Construction</label>
+            </value>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete</label>
+            </value>
+            <value>
+                <fullName>Complete - Waiting on Port</fullName>
+                <default>false</default>
+                <label>Complete - Waiting on Port</label>
+            </value>
+            <value>
+                <fullName>Waiting on Image</fullName>
+                <default>false</default>
+                <label>Waiting on Image</label>
+            </value>
+            <value>
+                <fullName>Waiting for Numbers</fullName>
+                <default>false</default>
+                <label>Waiting for Numbers</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,93 @@
+<apex:page standardController="Account" showHeader="true" tabStyle="account" >
+   <style>
+      .activeTab {background-color: #236FBD; color:white; background-image:none}
+      .inactiveTab { background-color: lightgrey; color:black; background-image:none}
+   </style>
+   
+   <apex:tabPanel switchType="client" selectedTab=" tabdetails" id="AccountTabPanel"  tabClass="activeTab" inactiveTabClass="inactiveTab">     
+
+   <apex:tab label="Details" name="AccDetails" id="tabdetails">
+         <apex:detail inlineEdit="True" relatedList="false" title="true"/>
+   </apex:tab>
+    
+    
+    <apex:tab label="Contacts" name="Contacts" id="tabContact">
+         <apex:relatedList subject="{!account}" list="contacts" />
+    </apex:tab>
+    
+    
+    <apex:tab label="Contact Role" name="ContactRole" id="tabContactRole">
+         <apex:relatedList subject="{!account}" list="AccountContactRoles" />
+    </apex:tab> 
+    
+     <apex:tab label="Opportunities" name="Opportunities" id="tabOpp">
+         <apex:relatedList subject="{!account}" list="opportunities" />
+    </apex:tab>
+    
+    
+        <apex:tab label="Notes & Attachments" name="CombinedAttachments" id="tabCombinedAttachments">
+         <apex:relatedList subject="{!account}" list="CombinedAttachments" />
+    </apex:tab>
+    
+     
+    <apex:tab label="Open Activities" name="OpenActivities" id="tabOpenAct">
+         <apex:relatedList subject="{!account}" list="OpenActivities" />
+    </apex:tab>
+    
+    
+    
+        <apex:tab label="Activity History" name="ActivityHistories" id="tabActivityHistories">
+         <apex:relatedList subject="{!account}" list="ActivityHistories" />
+    </apex:tab>
+ 
+    
+    
+    
+    <apex:tab label="Recurring Billing" name="Recurring_Billing" id="tabRecurring_Billing">
+         <apex:relatedList subject="{!account}" list="Recurring_Billing__r" />
+    </apex:tab>
+    
+    
+    
+             
+    <apex:tab label="Managed Services Assets" name="Managed_Services_Assets" id="tabManaged_Services_Assets">
+         <apex:relatedList subject="{!account}" list="Managed_Services_Assets__r" />
+    </apex:tab>  
+      
+    
+    
+          
+    <apex:tab label="Cases" name="Cases" id="tabCases">
+         <apex:relatedList subject="{!account}" list="Cases" />
+    </apex:tab>
+    
+    
+      <apex:tab label="MSA" name="MSA" id="tabMSA">
+         <apex:relatedList subject="{!account}" list="MSA__r" />
+    </apex:tab> 
+    
+    
+
+     
+
+      
+    <apex:tab label="Installations" name="Installations" id="tabInstallations">
+         <apex:relatedList subject="{!account}" list="Installations__r" />
+    </apex:tab>      
+       
+    
+   
+    <apex:tab label="Contracts" name="Contracts" id="tabAccess_Contracts">
+         <apex:relatedList subject="{!account}" list="Contracts" />
+    </apex:tab>
+      
+    <apex:tab label="Access Circuits" name="Access_Circuits" id="tabAccess_Circuits">
+         <apex:relatedList subject="{!account}" list="Access_Circuits__r" />
+    </apex:tab>
+ 
+      
+
+      
+</apex:tabPanel>  
+         
+</apex:page>

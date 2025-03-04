@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Comm3 Support E-Mail-To-Case Auto-Response</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Comm3 Support E-Mail-To-Case Auto-Response V2</name>
+    <style>none</style>
+    <subject>Your request has been received: {!Case.CaseNumber} {!Case.Thread_Id}</subject>
+    <textOnly>{!Contact.Name},
+
+
+Thank you for contacting Comm3. Our team has received your request, and we will contact you shortly.
+
+Ticket number ({!Case.CaseNumber}) has been created for you.
+
+
+If this is an urgent matter that needs immediate 	attention, please call our support team at 214-389-2600, option 2.
+
+
+Thank you,
+
+Comm3
+
+214-389-2600
+
+Comm3.net</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- CCE --></label>
+        <name>CCE__c</name>
+        <picklistValues>
+            <masterLabel>Great America</masterLabel>
+            <translation><!-- Great America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPro Media</masterLabel>
+            <translation><!-- IPro Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitel</masterLabel>
+            <translation><!-- Mitel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wells Fargo</masterLabel>
+            <translation><!-- Wells Fargo --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

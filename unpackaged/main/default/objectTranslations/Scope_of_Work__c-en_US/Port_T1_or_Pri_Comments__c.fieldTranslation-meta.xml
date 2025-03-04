@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- T1, PRI (number of PRI or T1 and number of DID) --></help>
+        <label><!-- Port T1 or Pri Comments --></label>
+        <name>Port_T1_or_Pri_Comments__c</name>
+    </CustomFieldTranslation>

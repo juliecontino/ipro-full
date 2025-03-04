@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>true</allowInternalUserLogin>
+    <allowMembersToFlag>true</allowMembersToFlag>
+    <caseCommentEmailTemplate>E2CP__E2CP_Templates/E2CP__New_Comment_w_o_Markers_text</caseCommentEmailTemplate>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <communityRoles/>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailFooterLogo>Communities_Shared_Document_Folder/Ipro_Horizontal_small_png.png</emailFooterLogo>
+    <emailFooterText>IPro Media community@ipromedia.us</emailFooterText>
+    <emailSenderAddress>community@ipromedia.us</emailSenderAddress>
+    <emailSenderName>IPro Media Community Agent</emailSenderName>
+    <embeddedLoginEnabled>true</embeddedLoginEnabled>
+    <enableApexCDNCaching>true</enableApexCDNCaching>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>false</enableDirectMessages>
+    <enableExpFriendlyUrlsAsDefault>false</enableExpFriendlyUrlsAsDefault>
+    <enableExperienceBundleBasedSnaOverrideEnabled>true</enableExperienceBundleBasedSnaOverrideEnabled>
+    <enableGuestChatter>true</enableGuestChatter>
+    <enableGuestFileAccess>true</enableGuestFileAccess>
+    <enableGuestMemberVisibility>false</enableGuestMemberVisibility>
+    <enableImageOptimizationCDN>true</enableImageOptimizationCDN>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>true</enableKnowledgeable>
+    <enableLWRExperienceConnectedApp>false</enableLWRExperienceConnectedApp>
+    <enableMemberVisibility>true</enableMemberVisibility>
+    <enableNicknameDisplay>true</enableNicknameDisplay>
+    <enablePrivateMessages>true</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>true</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <enableTalkingAboutStats>true</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>false</enableTopicAssignmentRules>
+    <enableTopicSuggestions>true</enableTopicSuggestions>
+    <enableUpDownVote>false</enableUpDownVote>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <headlessForgotPasswordTemplate>unfiled$public/CommunityHeadlessForgotPasswordTemplate</headlessForgotPasswordTemplate>
+    <headlessRegistrationTemplate>unfiled$public/CommunityHeadlessRegistrationTemplate</headlessRegistrationTemplate>
+    <logoutUrl>http://www.ipromedia.us</logoutUrl>
+    <maxFileSizeKb>51200</maxFileSizeKb>
+    <networkMemberGroups>
+        <profile>Admin</profile>
+        <profile>IPro Customer Community</profile>
+        <profile>%28DEP%29 Support Specialist I</profile>
+        <profile>%28DEP%29 Inside Sales</profile>
+        <profile>%28DEP%29 Support Specialist II</profile>
+        <profile>%28DEP%29 Project Manager</profile>
+        <profile>%28DEP%29 Support Specialist III</profile>
+        <profile>%28DEP%29 Service Manager</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Designer</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>Designer</homePageOverrideSetting>
+        <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Standard</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>Community_C</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>Community</site>
+    <siteArchiveStatus>NotArchived</siteArchiveStatus>
+    <status>Live</status>
+    <tabs>
+        <defaultTab>Chatter</defaultTab>
+        <standardTab>Chatter</standardTab>
+    </tabs>
+    <urlPathPrefix>support</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

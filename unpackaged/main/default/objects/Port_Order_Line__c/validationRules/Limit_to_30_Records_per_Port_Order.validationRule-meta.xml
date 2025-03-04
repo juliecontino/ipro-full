@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Limit_to_30_Records_per_Port_Order</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISNEW() &amp;&amp; Port_Order__r.Numbers_Count__c  &gt;29</errorConditionFormula>
+    <errorMessage>You are limited to 30 Lines per Port Order. You can create a new Port Order for additional lines, if needed.</errorMessage>
+</ValidationRule>

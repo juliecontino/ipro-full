@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Additional or Alternate Billing Email address, to be used when a contact will not be identified --></help>
+        <label><!-- Billing Email (Alternate) --></label>
+        <name>Billing_Email_Alternate__c</name>
+    </CustomFieldTranslation>

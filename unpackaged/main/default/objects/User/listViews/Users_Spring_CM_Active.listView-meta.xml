@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Users_Spring_CM_Active</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CORE.USERS.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CORE.USERS.USERNAME</columns>
+    <columns>CORE.USERS.LAST_LOGIN</columns>
+    <columns>CORE.USER_ROLE.NAME</columns>
+    <columns>CORE.PROFILE.NAME</columns>
+    <columns>CORE.USERS.DIVISION</columns>
+    <columns>CORE.USERS.ACTIVE</columns>
+    <columns>SpringCMEos__SpringCM_User__c</columns>
+    <columns>SpringCMEos__SpringCM_Role__c</columns>
+    <columns>SpringCMEos__SpringCM_Persona__c</columns>
+    <columns>SpringCMEos__SpringCM_EnabledStartDate__c</columns>
+    <columns>SpringCMEos__SpringCM_EnabledEndDate__c</columns>
+    <columns>SpringCMEos__Portal_Only__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SpringCMEos__SpringCM_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Users - Spring CM</label>
+    <language>en_US</language>
+    <sharedTo>
+        <role>Austin_AE</role>
+        <role>Austin_Branch_Manager</role>
+        <role>Controller</role>
+        <role>Dallas_AE</role>
+        <role>Dallas_Branch_Manager</role>
+        <role>Inside_Sales</role>
+        <role>Major_Accounts</role>
+        <role>Operations_Manager</role>
+        <role>President</role>
+        <role>Project_Manager</role>
+        <role>Sales_Administrator</role>
+        <role>Sales_Engineer</role>
+        <role>San_Antonio_AE</role>
+        <role>San_Antonio_Branch_Manager</role>
+        <role>Support_Specialist_I</role>
+        <role>Support_Specialist_II</role>
+        <role>Support_Specialist_III</role>
+    </sharedTo>
+</ListView>

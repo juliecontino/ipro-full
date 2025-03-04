@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CCE_Funding_Status__c</fullName>
+    <label>CCE Funding Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>CCE_Lease_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Funded</fullName>
+                <default>false</default>
+                <label>Funded</label>
+            </value>
+            <value>
+                <fullName>Unfunded</fullName>
+                <default>false</default>
+                <label>Unfunded</label>
+            </value>
+            <value>
+                <fullName>TSP Unfunded</fullName>
+                <default>false</default>
+                <label>TSP Unfunded</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Wells Fargo DBO Lease</controllingFieldValue>
+            <controllingFieldValue>Wells Fargo Government Lease</controllingFieldValue>
+            <controllingFieldValue>Wells Fargo AnyWare</controllingFieldValue>
+            <controllingFieldValue>Mitel FMV Lease</controllingFieldValue>
+            <controllingFieldValue>Mitel DBO Lease</controllingFieldValue>
+            <controllingFieldValue>Mitel TSP Lease</controllingFieldValue>
+            <controllingFieldValue>IPro Media FMV Lease</controllingFieldValue>
+            <controllingFieldValue>IPro Media DBO Lease</controllingFieldValue>
+            <controllingFieldValue>IPro Media TSP</controllingFieldValue>
+            <controllingFieldValue>IPro Media AnyWare</controllingFieldValue>
+            <controllingFieldValue>Great America FMV Lease</controllingFieldValue>
+            <controllingFieldValue>Great America DBO Lease</controllingFieldValue>
+            <controllingFieldValue>Great America Government Lease</controllingFieldValue>
+            <controllingFieldValue>Great America TSP</controllingFieldValue>
+            <controllingFieldValue>Great America AnyWare</controllingFieldValue>
+            <controllingFieldValue>Wells Fargo FMV Lease</controllingFieldValue>
+            <valueName>Funded</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wells Fargo DBO Lease</controllingFieldValue>
+            <controllingFieldValue>Wells Fargo Government Lease</controllingFieldValue>
+            <controllingFieldValue>Wells Fargo AnyWare</controllingFieldValue>
+            <controllingFieldValue>Mitel FMV Lease</controllingFieldValue>
+            <controllingFieldValue>Mitel DBO Lease</controllingFieldValue>
+            <controllingFieldValue>Mitel TSP Lease</controllingFieldValue>
+            <controllingFieldValue>IPro Media FMV Lease</controllingFieldValue>
+            <controllingFieldValue>IPro Media DBO Lease</controllingFieldValue>
+            <controllingFieldValue>IPro Media TSP</controllingFieldValue>
+            <controllingFieldValue>IPro Media AnyWare</controllingFieldValue>
+            <controllingFieldValue>Great America FMV Lease</controllingFieldValue>
+            <controllingFieldValue>Great America DBO Lease</controllingFieldValue>
+            <controllingFieldValue>Great America Government Lease</controllingFieldValue>
+            <controllingFieldValue>Great America TSP</controllingFieldValue>
+            <controllingFieldValue>Great America AnyWare</controllingFieldValue>
+            <controllingFieldValue>Wells Fargo FMV Lease</controllingFieldValue>
+            <valueName>Unfunded</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

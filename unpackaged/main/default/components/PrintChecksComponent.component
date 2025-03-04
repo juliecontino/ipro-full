@@ -1,0 +1,148 @@
+<apex:component controller="iProPrintchecksComponent">
+    <apex:attribute name="attcashDisbursementBatchId" description="Cash Disbursement Batch record used to generate checks." assignTo="{!cashDisbursementBatchId}" type="Id"/>
+    <apex:attribute name="attcashDisbursementId" description="Cash Disbursement record used to generate checks." assignTo="{!cashDisbursementId}" type="Id"/>
+
+    <apex:variable value="{!1}" var="icount"/>
+    <!-- Get all the Cash Disbursement records for this Cash Disbursement Batch Record-->
+    <apex:repeat value="{!cashDisbursements}" var="cashlist">
+    
+        <apex:variable value="{!icount+1}" var="icount"/>
+        <div style="position:relative;width:100%;height:247mm">
+ 
+
+
+            <!--Section 1: Print check details -->
+            <div style="position:absolute;top:4mm; right:2mm">
+                <apex:outputText value="{0,date,MM/dd/yyyy}">
+                    <apex:param value="{!cashlist.AcctSeed__Disbursement_Date__c}"/>
+                </apex:outputText>
+            </div>
+            <div style="position:absolute;top:13mm; left:8mm">
+                  <apex:outputField value="{!cashlist.AcctSeed__Payee__c}"/><br/>
+            </div>
+            
+            <div style="position:absolute;top:13mm;right:2mm">
+                <apex:outputText value="{0, number, ###,###,###,##0.00}">
+                    <apex:param value="{!cashlist.AcctSeed__Amount__c}"/>
+                </apex:outputText>
+            </div>
+
+            <div style="position:absolute;top:25mm;left:2mm">
+                <apex:outputField value="{!cashlist.AcctSeed__Amount_in_Words__c}"/>
+            </div> 
+        
+            <div style="position:absolute;top:34mm;font-size:9pt;left:8mm">
+                <apex:outputField value="{!cashlist.AcctSeed__Payee__c}"/><br/>
+                <apex:outputField value="{!cashlist.AcctSeed__Payee_Street__c}"/><br/>
+                <apex:outputField value="{!cashlist.AcctSeed__Payee_City_State_Zip__c}"/><br/>
+            <!--  <apex:outputField value="{!cashlist.AcctSeed__Payee_Country__c}"/><br/> -->
+            </div>
+
+            <div style="position:absolute;top:54mm; font-size:9pt;left:10mm">
+                  <apex:outputField value="{!cashlist.AcctSeed__Reference__c}"/><br/>
+            </div>
+
+
+
+ <!-- Section 2: Print top level remittance information -->
+            <table style="font-size:9pt;position:absolute;top:114mm;" align="right"  border="0" width="100%">
+                <tr style="font-size:12pt;">
+                    <td colspan="5"><apex:outputText value="Displaying only 10 of {!cashlist.AcctSeed__Account_Payable_Cash_Disbursements__r.size} Account Payable records." rendered="{!cashlist.AcctSeed__Account_Payable_Cash_Disbursements__r.size > 10}"/></td>
+                    <td colspan="2"><apex:outputText value="Check:  {0, number, ############}"><apex:param value="{!cashlist.AcctSeed__Check_Number__c}"/></apex:outputText></td>
+                </tr>
+                <tr style="font-size:12pt;">
+                    <td colspan="3">
+                        Payee:&nbsp;{!LEFT(cashlist.AcctSeed__Payee__c,40)}
+                    </td>
+                    <td colspan="2">
+                        Date:&nbsp;<apex:outputText value="{0,date,MM/dd/yyyy}">
+                                        <apex:param value="{!cashlist.AcctSeed__Disbursement_Date__c}"/>
+                                   </apex:outputText>
+                    </td>
+                    <td colspan="2">
+                        Amount:&nbsp;<apex:outputText value="{0, number, $###,###,###,##0.00}">
+                                        <apex:param value="{!cashlist.AcctSeed__Amount__c}"/>
+                                    </apex:outputText>                    
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>           
+                <tr>
+                    <td>Our Reference</td>
+                    <td>Date</td>
+                    <td>Type</td>
+                    <td>Your Reference</td>
+                    <td>Amount</td>
+                    <td>Discount</td>
+                    <td>Net Amount</td>
+                </tr>
+                    
+                <apex:repeat value="{!cashlist.AcctSeed__Account_Payable_Cash_Disbursements__r}" var="Payable" rows="10">
+                    <tr>
+                        <td><apex:outputText value="{!Payable.AcctSeed__Account_payable__r.Name}" /></td>
+                        <td><apex:outputText value="{0,date,MM/dd/yyyy}"><apex:param value="{!Payable.AcctSeed__Account_Payable__r.AcctSeed__Date__c}"/></apex:outputText></td>
+                        <td><apex:outputText value="{!Payable.AcctSeed__Account_Payable__r.AcctSeed__Type__c}" /></td>
+                        <td><apex:outputText value="{!Payable.AcctSeed__Payee_Reference__c}"/></td>
+                        <td><apex:outputText value="{0, number, ###,###,###,##0.00}"><apex:param value="{!IF(ISBLANK(Payable.AcctSeed__Paid_Amount__c),Payable.AcctSeed__Payable_Amount__c,Payable.AcctSeed__Paid_Amount__c+Payable.AcctSeed__Discount_Amount__c)}"/></apex:outputText> </td>
+                        <td><apex:outputText value="{0, number, ###,###,###,##0.00}"><apex:param value="{!Payable.AcctSeed__Discount_Amount__c}"/></apex:outputText></td>
+                        <td><apex:outputText value="{0, number, ###,###,###,##0.00}"><apex:param value="{!IF(ISBLANK(Payable.AcctSeed__Paid_Amount__c),Payable.AcctSeed__Net_Amount__c,Payable.AcctSeed__Paid_Amount__c)}"/></apex:outputText></td>
+                    </tr>
+                </apex:repeat>
+            </table>
+            
+
+            <!-- Section 3: Print bottom level remittance information -->
+            <table style="font-size:9pt;position:absolute;top:181mm" align="right" border="0" width="100%">
+                <tr style="font-size:12pt;">
+                    <td colspan="5" >Please detach and retain this portion of the check for your records.</td>
+                    <td colspan="2"><apex:outputText value="Check:  {0, number, ############}"><apex:param value="{!cashlist.AcctSeed__Check_Number__c}"/></apex:outputText></td>
+                </tr>
+                <tr style="font-size:12pt;">
+                    <td colspan="3">
+                        Payee:&nbsp;{!LEFT(cashlist.AcctSeed__Payee__c,40)}
+                    </td>
+                    <td colspan="2">
+                        Date:&nbsp;<apex:outputText value="{0,date,MM/dd/yyyy}">
+                                        <apex:param value="{!cashlist.AcctSeed__Disbursement_Date__c}"/>
+                                   </apex:outputText>
+                    </td>
+                    <td colspan="2">
+                        Amount:&nbsp;<apex:outputText value="{0, number, $###,###,###,##0.00}">
+                                        <apex:param value="{!cashlist.AcctSeed__Amount__c}"/>
+                                    </apex:outputText>                    
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">&nbsp;</td>
+                </tr>               
+                <tr>
+                    <td><span>Our Reference</span></td>
+                    <td>Date</td>
+                    <td>Type</td>
+                    <td>Your Reference</td>
+                    <td>Amount</td>
+                    <td>Discount</td>
+                    <td>Net Amount</td>
+                </tr>  
+                <apex:repeat value="{!cashlist.AcctSeed__Account_Payable_Cash_Disbursements__r}" var="Payable" rows="10">
+                    <tr>
+                        <td><apex:outputText value="{!Payable.AcctSeed__Account_payable__r.Name}" /></td>
+                        <td><apex:outputText value="{0,date,MM/dd/yyyy}"><apex:param value="{!Payable.AcctSeed__Account_Payable__r.AcctSeed__Date__c}"/></apex:outputText></td>
+                        <td><apex:outputText value="{!Payable.AcctSeed__Account_Payable__r.AcctSeed__Type__c}" /></td>
+                        <td><apex:outputText value="{!Payable.AcctSeed__Payee_Reference__c}"/></td>
+                        <td><apex:outputText value="{0, number, ###,###,###,##0.00}"><apex:param value="{!IF(ISBLANK(Payable.AcctSeed__Paid_Amount__c),Payable.AcctSeed__Payable_Amount__c,Payable.AcctSeed__Paid_Amount__c+Payable.AcctSeed__Discount_Amount__c)}"/></apex:outputText> </td>
+                        <td><apex:outputText value="{0, number, ###,###,###,##0.00}"><apex:param value="{!Payable.AcctSeed__Discount_Amount__c}"/></apex:outputText></td>
+                        <td><apex:outputText value="{0, number, ###,###,###,##0.00}"><apex:param value="{!IF(ISBLANK(Payable.AcctSeed__Paid_Amount__c),Payable.AcctSeed__Net_Amount__c,Payable.AcctSeed__Paid_Amount__c)}"/></apex:outputText></td>
+                    </tr>
+                </apex:repeat> 
+            </table>
+           
+        </div>
+        <apex:outputPanel layout="block" style="page-break-after:always" rendered="{!icount<=cashDisbursements.size}">  
+        </apex:outputPanel>  
+    
+    <!-- Repeat the process for each Cash Disbursement record -->
+    </apex:repeat>
+
+</apex:component>

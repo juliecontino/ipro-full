@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Install Status (Depreciated) --></label>
+        <name>Install_Status__c</name>
+        <picklistValues>
+            <masterLabel>Canceled</masterLabel>
+            <translation><!-- Canceled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete - Waiting on Port</masterLabel>
+            <translation><!-- Complete - Waiting on Port --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Defining</masterLabel>
+            <translation><!-- Defining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ready to Install</masterLabel>
+            <translation><!-- Ready to Install --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting for Numbers</masterLabel>
+            <translation><!-- Waiting for Numbers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting for Parts</masterLabel>
+            <translation><!-- Waiting for Parts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on Construction</masterLabel>
+            <translation><!-- Waiting on Construction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on Customer</masterLabel>
+            <translation><!-- Waiting on Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on Image</masterLabel>
+            <translation><!-- Waiting on Image --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

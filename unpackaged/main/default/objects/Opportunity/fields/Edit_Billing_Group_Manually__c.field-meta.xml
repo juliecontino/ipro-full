@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Edit_Billing_Group_Manually__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box to disable auto-fill of the "Opportunity Product Billing Group" fields from the "Product Billing Group" field when the record is created or edited. This will allow for manual editing of the "Opportunity Product Billing Group" field.</inlineHelpText>
+    <label>Edit Billing Group Manually</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

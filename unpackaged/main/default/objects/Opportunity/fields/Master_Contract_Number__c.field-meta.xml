@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Master_Contract_Number__c</fullName>
+    <displayFormat>MC-{0000000}</displayFormat>
+    <externalId>false</externalId>
+    <label>Master Contract Number</label>
+    <trackHistory>false</trackHistory>
+    <type>AutoNumber</type>
+</CustomField>

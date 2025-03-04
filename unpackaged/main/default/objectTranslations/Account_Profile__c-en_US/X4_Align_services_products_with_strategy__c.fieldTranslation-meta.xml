@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How can we better align our services/products with your evolving strategy? --></help>
+        <label><!-- 4. Align services/products with strategy --></label>
+        <name>X4_Align_services_products_with_strategy__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- What are your top three business goals for the next quarter/year? --></help>
+        <label><!-- 2. Top 3 goals next quarter/year? --></label>
+        <name>X2_Top_3_goals_next_quarter_year__c</name>
+    </CustomFieldTranslation>

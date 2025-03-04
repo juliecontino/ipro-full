@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Accounts Payable</fullName>
+        <default>false</default>
+        <label>Accounts Payable</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Business User</fullName>
+        <default>false</default>
+        <label>Business User</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Carrier Contact</fullName>
+        <default>false</default>
+        <label>Carrier Contact</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Christmas Gift Recipient</fullName>
+        <default>false</default>
+        <label>Christmas Gift Recipient</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Contract Signer</fullName>
+        <default>false</default>
+        <label>Contract Signer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Decision Maker</fullName>
+        <default>false</default>
+        <label>Decision Maker</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Economic Buyer</fullName>
+        <default>false</default>
+        <label>Economic Buyer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Economic Decision Maker</fullName>
+        <default>false</default>
+        <label>Economic Decision Maker</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Evaluator</fullName>
+        <default>false</default>
+        <label>Evaluator</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Executive Sponsor</fullName>
+        <default>false</default>
+        <label>Executive Sponsor</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Influencer</fullName>
+        <default>false</default>
+        <label>Influencer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Prospective Account Executive</fullName>
+        <default>false</default>
+        <label>Prospective Account Executive</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Prospective General Manager</fullName>
+        <default>false</default>
+        <label>Prospective General Manager</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Prospective Sales Engineer</fullName>
+        <default>false</default>
+        <label>Prospective Sales Engineer</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Prospective Technician</fullName>
+        <default>false</default>
+        <label>Prospective Technician</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Technical Buyer</fullName>
+        <default>false</default>
+        <label>Technical Buyer</label>
+    </standardValue>
+</StandardValueSet>

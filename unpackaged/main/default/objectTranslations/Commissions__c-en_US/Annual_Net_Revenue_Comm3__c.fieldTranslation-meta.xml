@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Annual Net Revenue Comm3 --></label>
+        <name>Annual_Net_Revenue_Comm3__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Install_Record_Created__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to verify record sent to Install</description>
+    <label>Install Record Created</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

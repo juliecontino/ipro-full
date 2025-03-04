@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Speed_Port_Speed_Verification</fullName>
+    <active>true</active>
+    <description>Access Speed Must be =&gt; than Port Speed</description>
+    <errorConditionFormula>Access_Speed_Numeric__c  &lt;  Port_Speed_Numeric__c</errorConditionFormula>
+    <errorDisplayField>Access_Speed__c</errorDisplayField>
+    <errorMessage>Access speed must be equal to or greater than the port speed.</errorMessage>
+</ValidationRule>

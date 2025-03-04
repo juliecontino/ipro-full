@@ -1,0 +1,5 @@
+<apex:page standardController="account" > 
+   <apex:include pageName="zaapit__zaapit_tb_account_rl1"/>
+    <!-- Thank you for looking :) please contact us for customizing this application -->
+    
+</apex:page>

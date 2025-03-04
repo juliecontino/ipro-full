@@ -1,0 +1,9 @@
+<apex:page showheader="false" sidebar="false">
+ 
+<script type="text/javascript"> 
+//window.location="/00U/c?cType=1&cal_lkid=02340000000ya0y&cal_lkid=02340000000ya0y"
+window.location="/04i"
+
+
+</script>
+</apex:page>

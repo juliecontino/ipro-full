@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>IPro Salesforce</fullName>
+        <default>false</default>
+        <label>IPro Salesforce</label>
+    </standardValue>
+    <standardValue>
+        <fullName>IPro Sales</fullName>
+        <default>false</default>
+        <label>IPro Sales</label>
+    </standardValue>
+    <standardValue>
+        <fullName>IPro Operations</fullName>
+        <default>false</default>
+        <label>IPro Operations</label>
+    </standardValue>
+    <standardValue>
+        <fullName>IPro Accounting</fullName>
+        <default>false</default>
+        <label>IPro Accounting</label>
+    </standardValue>
+</StandardValueSet>

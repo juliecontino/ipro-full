@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Carrier --></label>
+        <name>Carrier__c</name>
+        <picklistValues>
+            <masterLabel>ATT</masterLabel>
+            <translation><!-- ATT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Birch</masterLabel>
+            <translation><!-- Birch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Broadvox</masterLabel>
+            <translation><!-- Broadvox --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CBeyond</masterLabel>
+            <translation><!-- CBeyond --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable One</masterLabel>
+            <translation><!-- Cable One --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CenturyLink</masterLabel>
+            <translation><!-- CenturyLink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Comcast</masterLabel>
+            <translation><!-- Comcast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Concord</masterLabel>
+            <translation><!-- Concord --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cox Cable</masterLabel>
+            <translation><!-- Cox Cable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DirecTV</masterLabel>
+            <translation><!-- DirecTV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation><!-- Level 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mitel Net Solutions</masterLabel>
+            <translation><!-- Mitel Net Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SkyBeam</masterLabel>
+            <translation><!-- SkyBeam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TW Cable</masterLabel>
+            <translation><!-- TW Cable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TW Telecom</masterLabel>
+            <translation><!-- TW Telecom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telnes</masterLabel>
+            <translation><!-- Telnes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verizon</masterLabel>
+            <translation><!-- Verizon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XO</masterLabel>
+            <translation><!-- XO --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

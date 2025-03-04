@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Steve_Yeisley_Queue</fullName>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.LAST_ACTIVITY</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.FIRST_NAME</columns>
+    <columns>LEAD.LAST_NAME</columns>
+    <columns>LEAD.PHONE</columns>
+    <columns>LEAD.CITY</columns>
+    <columns>LEAD.STATE</columns>
+    <filterScope>Queue</filterScope>
+    <label>Steve Yeisley Queue</label>
+    <queue>Steve_Yeisley_Queue</queue>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

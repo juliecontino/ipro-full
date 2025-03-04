@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mitel_Net__c</fullName>
+    <formula>IF( ISPICKVAL( Sale_Type__c , "Anyware" ), (AnyWare_Net_CPE_Funding_Amount__c  *  Probability)  * 0.48 ,( Opportunity_Amount__c   *  Probability)  * 0.48)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Mitel Net $</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

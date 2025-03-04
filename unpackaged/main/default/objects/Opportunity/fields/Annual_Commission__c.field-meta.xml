@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Annual_Commission__c</fullName>
+    <formula>CASE(TEXT( Sale_Type__c ), 
+"Cash", (Opportunity_Amount__c * Commission_Earned_By__r.Annual_Commission_Rate__c), 
+"AnyWare", (AnyWare_CPE_Funding_Amount__c * Commission_Earned_By__r.Annual_Commission_Rate__c), 
+"TSP", ( TSP_Funding_Amount__c * Commission_Earned_By__r.Annual_Commission_Rate__c), 
+0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Annual Commission</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

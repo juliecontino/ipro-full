@@ -1,0 +1,38 @@
+<apex:page id="pg" controller="UploadAssetsCtrl" tabStyle="Asset" showHeader="true" sidebar="true">
+	<style type="text/css">
+		.detailList th, .detailList td{
+		    border: 0px !important;
+		}
+	</style>
+	<script type="text/javascript">
+		function showLoader(){
+			document.getElementById('pg:frm:blk:pgButtons:upload').style.display = 'none';
+			document.getElementById('pg:frm:blk:pgButtons:loader').style.display = 'inline';
+		}
+	</script>
+
+	<apex:form id="frm">
+		<apex:sectionHeader id="sectionHeader" title="{!account.Name}" subtitle="Upload Assets" description="Select a CSV file to upload as assets to this account."/>
+
+		<apex:pageMessages id="messages" escape="false"/>
+
+		<apex:pageBlock id="blk" title="Select CSV" rendered="{!error == null || error == ''}">
+			<apex:pageBlockButtons id="pgButtons" location="bottom">
+				<apex:commandButton id="upload" action="{!upload}" value="Upload" onclick="showLoader();" />
+				<apex:image id="loader" url="/img/loading32.gif" style="display:none;height:20px;width:20px;" />
+				<apex:commandButton id="cancel" action="{!cancel}" value="Back to Account"/>
+			</apex:pageBlockButtons>
+
+
+			<apex:pageBlockSection id="uploadSection" columns="1" collapsible="false">
+				<br/>
+				<apex:pageBlockSectionItem id="fileUploader">
+					<apex:outputPanel >File</apex:outputPanel>
+					<apex:inputFile id="file" value="{!file}" accept=".csv" fileName="{!fileName}"/>
+				</apex:pageBlockSectionItem>
+				<br/>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+
+	</apex:form>
+</apex:page>

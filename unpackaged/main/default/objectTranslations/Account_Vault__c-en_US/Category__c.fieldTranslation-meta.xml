@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Accounting Software</masterLabel>
+            <translation><!-- Accounting Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Active Directory</masterLabel>
+            <translation><!-- Active Directory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Application</masterLabel>
+            <translation><!-- Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BDR</masterLabel>
+            <translation><!-- BDR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Backup - Offsite</masterLabel>
+            <translation><!-- Backup - Offsite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Backup - Onsite</masterLabel>
+            <translation><!-- Backup - Onsite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Copier</masterLabel>
+            <translation><!-- Copier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DNS Service</masterLabel>
+            <translation><!-- DNS Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domain Registration</masterLabel>
+            <translation><!-- Domain Registration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ECC Director</masterLabel>
+            <translation><!-- ECC Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ECC Windows</masterLabel>
+            <translation><!-- ECC Windows --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email -  Hosting</masterLabel>
+            <translation><!-- Email -  Hosting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email - Archive &amp; Continuity</masterLabel>
+            <translation><!-- Email - Archive &amp; Continuity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email - Spam Filter</masterLabel>
+            <translation><!-- Email - Spam Filter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Server</masterLabel>
+            <translation><!-- Email Server --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FTP Sites</masterLabel>
+            <translation><!-- FTP Sites --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Firewall</masterLabel>
+            <translation><!-- Firewall --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General</masterLabel>
+            <translation><!-- General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Image - Disk</masterLabel>
+            <translation><!-- Image - Disk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Licensing - Software</masterLabel>
+            <translation><!-- Licensing - Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobility Router</masterLabel>
+            <translation><!-- Mobility Router --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oaisys</masterLabel>
+            <translation><!-- Oaisys --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printer</masterLabel>
+            <translation><!-- Printer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RDP</masterLabel>
+            <translation><!-- RDP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remote Access - Power Switch</masterLabel>
+            <translation><!-- Remote Access - Power Switch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remote Access - Server</masterLabel>
+            <translation><!-- Remote Access - Server --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remote Access - User Workstations</masterLabel>
+            <translation><!-- Remote Access - User Workstations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Security - Cameras</masterLabel>
+            <translation><!-- Security - Cameras --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShoreTel DVS or Other Server - Windows</masterLabel>
+            <translation><!-- ShoreTel DVS or Other Server - Windows --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShoreTel HQ Director</masterLabel>
+            <translation><!-- ShoreTel HQ Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShoreTel HQ Windows</masterLabel>
+            <translation><!-- ShoreTel HQ Windows --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Storage - NAS,iSCSI,array</masterLabel>
+            <translation><!-- Storage - NAS,iSCSI,array --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telephone</masterLabel>
+            <translation><!-- Telephone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UPS</masterLabel>
+            <translation><!-- UPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Users</masterLabel>
+            <translation><!-- Users --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VPN</masterLabel>
+            <translation><!-- VPN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vendor - Partner Program</masterLabel>
+            <translation><!-- Vendor - Partner Program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web Hosting</masterLabel>
+            <translation><!-- Web Hosting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>iPad</masterLabel>
+            <translation><!-- iPad --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

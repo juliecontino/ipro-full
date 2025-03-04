@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- When circuit is ordered a support password is used to allow technicians to get information from the carrier and provide support if case of trouble. --></help>
+        <label><!-- Support Passcode --></label>
+        <name>Support_Passcode__c</name>
+    </CustomFieldTranslation>

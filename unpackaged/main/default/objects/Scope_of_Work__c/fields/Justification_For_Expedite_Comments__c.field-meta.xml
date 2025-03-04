@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Justification_For_Expedite_Comments__c</fullName>
+    <inlineHelpText>If Other was selected for the Justification For Expedite, please describe the circumstances requiring this request.</inlineHelpText>
+    <label>Justification For Expedite Comments</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Circuits_IPro_Media</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Comments__c</columns>
+    <columns>Circuit_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account__c</field>
+        <operation>startsWith</operation>
+        <value>IPro Media</value>
+    </filters>
+    <label>Access Circuits - IPro Media</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

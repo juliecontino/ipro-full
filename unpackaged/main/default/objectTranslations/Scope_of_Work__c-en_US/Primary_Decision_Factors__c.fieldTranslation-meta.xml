@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Please enter the primary reasons expressed by the client for making this purchase. --></help>
+        <label><!-- Primary Decision Factors --></label>
+        <name>Primary_Decision_Factors__c</name>
+    </CustomFieldTranslation>

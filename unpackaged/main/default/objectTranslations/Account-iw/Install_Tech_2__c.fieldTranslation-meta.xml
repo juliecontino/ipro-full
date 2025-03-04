@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Install Tech 2 --></label>
+        <name>Install_Tech_2__c</name>
+        <relationshipLabel><!-- Accounts (Install Tech 2) --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Port Speed --></label>
+        <name>Port_Speed__c</name>
+        <picklistValues>
+            <masterLabel>10 Mbps</masterLabel>
+            <translation><!-- 10 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100 Mbps</masterLabel>
+            <translation><!-- 100 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1000 Mbps</masterLabel>
+            <translation><!-- 1000 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20 Mbps</masterLabel>
+            <translation><!-- 20 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>250 Mbps</masterLabel>
+            <translation><!-- 250 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2xT1 (3 MB)</masterLabel>
+            <translation><!-- 2xT1 (3 MB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3xT1 (4.5 MB)</masterLabel>
+            <translation><!-- 3xT1 (4.5 MB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4xT1 (6 MB)</masterLabel>
+            <translation><!-- 4xT1 (6 MB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 Mbps</masterLabel>
+            <translation><!-- 5 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 Mbps</masterLabel>
+            <translation><!-- 50 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>500 Mbps</masterLabel>
+            <translation><!-- 500 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5xT1 (7.5 MB)</masterLabel>
+            <translation><!-- 5xT1 (7.5 MB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>600 Mbps</masterLabel>
+            <translation><!-- 600 Mbps --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6xT1 (9 MB)</masterLabel>
+            <translation><!-- 6xT1 (9 MB) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7xT1 (10.5 MB</masterLabel>
+            <translation><!-- 7xT1 (10.5 MB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8xT1 (12 MB</masterLabel>
+            <translation><!-- 8xT1 (12 MB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 (1.544 MB)</masterLabel>
+            <translation><!-- T1 (1.544 MB) --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

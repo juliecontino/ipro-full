@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_Router_Comments__c</fullName>
+    <inlineHelpText>Enter any information provided by the Client pertaining to their network routing requirements. If the primary network router is provided by the Client, please list the Make and Model.</inlineHelpText>
+    <label>Router Comments</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Interface Type --></label>
+        <name>Interface_Type__c</name>
+        <picklistValues>
+            <masterLabel>Electrical - 100 Base TX</masterLabel>
+            <translation><!-- Electrical - 100 Base TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Optical Multi-Mode - 1000 Base SX</masterLabel>
+            <translation><!-- Optical Multi-Mode - 1000 Base SX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Optical Single-Mode - 1000 Base LX</masterLabel>
+            <translation><!-- Optical Single-Mode - 1000 Base LX --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

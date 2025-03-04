@@ -1,0 +1,7 @@
+The project task "Delivery & Acceptance Signed" Percent Complete has changed or been marked Complete
+
+Opportunity Name: {!AcctSeed__Project__c.AcctSeed__Opportunity__c}
+Project Name: {!AcctSeed__Project__c.Name}
+Link: {!AcctSeed__Project__c.Link}
+
+Workflow: Project Task Delivery & Acceptance Signed Changed

@@ -1,0 +1,8 @@
+An Opportunity as been marked as Install Completed
+
+Account Name: {!Opportunity.Account}
+
+Opportunity Name: {!Opportunity.Name}
+Link: {!Opportunity.Link}
+
+Install Date Completed: {!Opportunity.Install_Date_Completed__c}

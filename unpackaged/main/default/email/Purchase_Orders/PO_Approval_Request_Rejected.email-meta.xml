@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>PO Approval Request Rejected</name>
+    <style>freeForm</style>
+    <subject>Purchase Order Approval Rejected: {!AcctSeedERP__Purchase_Order__c.Name}</subject>
+    <textOnly>The following Purchase Order&apos;s approval was &quot;Rejected&quot;.
+
+Please refer to the approval/rejection comments for a remedy.  Once the issue is resolved, you can resubmit the PO for approval.
+
+Purchase Order: {!AcctSeedERP__Purchase_Order__c.Name}
+Vendor: {!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c}
+Vendor Alias: {!AcctSeedERP__Purchase_Order__c.Vendor_Alias__c}
+Account: {!AcctSeedERP__Purchase_Order__c.Account__c}
+PO Amount:{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Total__c}
+PO Link: {!AcctSeedERP__Purchase_Order__c.Link}
+Last Modified by: {!AcctSeedERP__Purchase_Order__c.LastModifiedBy}
+
+Approval Comments: {!ApprovalRequest.Comments}
+
+
+
+
+This is an automated message from Salesforce:  Purchase Order Approval Process</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

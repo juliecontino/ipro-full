@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CW_Agreement_Type__c</fullName>
+    <label>CW Agreement Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AnyWare Carrier Access Circuits</fullName>
+                <default>false</default>
+                <label>AnyWare Carrier Access Circuits</label>
+            </value>
+            <value>
+                <fullName>AnyWare Carrier Access Services</fullName>
+                <default>false</default>
+                <label>AnyWare Carrier Access Services</label>
+            </value>
+            <value>
+                <fullName>AnyWare E-Fax</fullName>
+                <default>false</default>
+                <label>AnyWare E-Fax</label>
+            </value>
+            <value>
+                <fullName>AnyWare Network Security</fullName>
+                <default>false</default>
+                <label>AnyWare Network Security</label>
+            </value>
+            <value>
+                <fullName>AnyWare Network Infrastructure</fullName>
+                <default>false</default>
+                <label>AnyWare Network Infrastructure</label>
+            </value>
+            <value>
+                <fullName>AnyWare Data Security</fullName>
+                <default>false</default>
+                <label>AnyWare Data Security</label>
+            </value>
+            <value>
+                <fullName>AnyWare Servers</fullName>
+                <default>false</default>
+                <label>AnyWare Servers</label>
+            </value>
+            <value>
+                <fullName>AnyWare Desktops</fullName>
+                <default>false</default>
+                <label>AnyWare Desktops</label>
+            </value>
+            <value>
+                <fullName>AnyWare PC Application</fullName>
+                <default>false</default>
+                <label>AnyWare PC Application</label>
+            </value>
+            <value>
+                <fullName>AnyWare Voice Basic</fullName>
+                <default>false</default>
+                <label>AnyWare Voice Basic</label>
+            </value>
+            <value>
+                <fullName>AnyWare Voice Custom</fullName>
+                <default>false</default>
+                <label>AnyWare Voice Custom</label>
+            </value>
+            <value>
+                <fullName>AnyWare Labor</fullName>
+                <default>false</default>
+                <label>AnyWare Labor</label>
+            </value>
+            <value>
+                <fullName>Sales Order</fullName>
+                <default>false</default>
+                <label>Sales Order</label>
+            </value>
+            <value>
+                <fullName>Standard Support Agreement</fullName>
+                <default>false</default>
+                <label>Standard Support Agreement</label>
+            </value>
+            <value>
+                <fullName>AnyWare VOIP</fullName>
+                <default>false</default>
+                <label>AnyWare VOIP</label>
+            </value>
+            <value>
+                <fullName>AnyWare IT</fullName>
+                <default>false</default>
+                <label>AnyWare IT</label>
+            </value>
+            <value>
+                <fullName>Pre-Paid Block Labor</fullName>
+                <default>false</default>
+                <label>Pre-Paid Block Labor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

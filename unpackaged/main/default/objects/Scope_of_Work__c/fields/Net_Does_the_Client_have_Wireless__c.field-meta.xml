@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_Does_the_Client_have_Wireless__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Does the Client have Wireless?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

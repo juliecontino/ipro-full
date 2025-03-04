@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Toll Free Class --></label>
+        <name>Toll_Free_Class__c</name>
+        <picklistValues>
+            <masterLabel>All 50 + Canada</masterLabel>
+            <translation><!-- All 50 + Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All 50 + Canada + Caribbean</masterLabel>
+            <translation><!-- All 50 + Canada + Caribbean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All 50 + Canada + Caribbean + Puerto Rico</masterLabel>
+            <translation><!-- All 50 + Canada + Caribbean + Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All 50 States</masterLabel>
+            <translation><!-- All 50 States --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lower 48</masterLabel>
+            <translation><!-- Lower 48 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

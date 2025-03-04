@@ -1,0 +1,2648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Comm3_New_Sale_Alert</fullName>
+        <description>Comm3 New Sale Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Group_Comm3</recipient>
+            <type>group</type>
+        </recipients>
+        
+        
+        
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Comm3_OPP_Closed_WON</template>
+    </alerts>
+    <alerts>
+        <fullName>E_Mail_Sales_Manager_of_New_Opportunity</fullName>
+        <ccEmails>9038219208@txt.att.net</ccEmails>
+        <ccEmails>2146741654@txt.att.net</ccEmails>
+        <description>E-Mail Sales Manager of New Opportunity</description>
+        <protected>false</protected>
+        
+        <senderType>CurrentUser</senderType>
+        <template>Sales/New_Opportunity_Alert</template>
+    </alerts>
+    <alerts>
+        <fullName>Immediate_Update_Opportunity_Close_Date</fullName>
+        <ccEmails>rbell@ipromedia.us</ccEmails>
+        <description>Immediate Update Opportunity Close Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Past_Due_Opportunity_Close_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Install_Complete_Comm3_Notify</fullName>
+        <description>Install Complete - Comm3 Notify</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Install_Complete_Notify_Comm3</template>
+    </alerts>
+    <alerts>
+        <fullName>Install_Record_Created</fullName>
+        <description>Install Record Created</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Closed_Won_Create_Install_Record</template>
+    </alerts>
+    <alerts>
+        <fullName>Install_Record_Created_Approval</fullName>
+        <description>New Sale E-mail Install Record Created Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Closed_Won_Create_Install_Record</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Sale_E_Mail_Alert</fullName>
+        <ccEmails>accounting@teamipro.com</ccEmails>
+        <description>New Sale E-Mail Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Sales_Engineering</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/IPro_OPP_Closed_WON</template>
+    </alerts>
+    <alerts>
+        <fullName>OPP_PM_Changed</fullName>
+        <description>OPP PM Changed</description>
+        <protected>false</protected>
+        <recipients>
+            <field>OP_Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Project/Project_New_PM</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Approved</fullName>
+        <ccEmails>cenglish@teamipro.com</ccEmails>
+        <description>Opportunity Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        <senderType>CurrentUser</senderType>
+        <template>Approvals/Opportunity_Approved_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Install_Completed</fullName>
+        <ccEmails>cenglish@teamipro.com</ccEmails>
+        <ccEmails>Dylan.sloan@teamipro.com</ccEmails>
+        <description>Opportunity Install Completed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        
+        
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Install_Completed_v2</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Past_Due_Close_Date</fullName>
+        <ccEmails>rbell@ipromedia.us</ccEmails>
+        <description>Opportunity Past Due Close Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Past_Due_Opportunity_Close_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Site_Survey_Case</fullName>
+        <ccEmails>OpportunitySiteSurvey@ipromedia.us</ccEmails>
+        <description>Opportunity Site Survey Case</description>
+        <protected>false</protected>
+        
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Opportunity_Site_Survey_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Submit_For_Approval_Alert</fullName>
+        <ccEmails>salesengineering@ipromedia.us</ccEmails>
+        <description>Opportunity: Submit For Approval Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Submitted_for_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Submit_For_Approval_Alert_Comm3</fullName>
+        <description>Opportunity: Submit For Approval Alert Comm3</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Submitted_for_Approval_Comm3</template>
+    </alerts>
+    <alerts>
+        <fullName>Past_Due_Close_Date</fullName>
+        <description>Past Due Opportunity Close Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Past_Due_Opportunity_Close_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>SE_Required</fullName>
+        <ccEmails>sales@teamipro.com</ccEmails>
+        <description>SE Required</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/SE_Required</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approval_Rejection_Email</fullName>
+        <description>Send Approval Rejection Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Approval_Request_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approval_Rejection_Email_Comm3</fullName>
+        <description>Send Approval Rejection Email Comm3</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Opportunity_Approval_Request_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Update_Opportunity_CloseDate_A</fullName>
+        <ccEmails>rbell@ipromedia.us</ccEmails>
+        <description>Update Opportunity Close Date E-Mail Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Past_Due_Opportunity_Close_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Update_Opportunity_Close_Date</fullName>
+        <ccEmails>rbell@ipromedia.us</ccEmails>
+        <description>Update Opportunity Close Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Sales/Past_Due_Opportunity_Close_Date</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_12M_L1</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0966</formula>
+        <name>AnyWare FF Update GA 12M L1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_12M_L2</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0965</formula>
+        <name>AnyWare FF Update GA 12M L2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_12M_L3</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0964</formula>
+        <name>AnyWare FF Update GA 12M L3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_24M_L1</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0498</formula>
+        <name>AnyWare FF Update GA 24M L1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_24M_L2</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0494</formula>
+        <name>AnyWare FF Update GA 24M L2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_24M_L3</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0492</formula>
+        <name>AnyWare FF Update GA 24M L3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_36M_L1</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0345</formula>
+        <name>AnyWare FF Update GA 36M L1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_36M_L2</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0342</formula>
+        <name>AnyWare FF Update GA 36M L2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_36M_L3</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0340</formula>
+        <name>AnyWare FF Update GA 36M L3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_48M_L1</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0270</formula>
+        <name>AnyWare FF Update GA 48M L1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_48M_L2</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0267</formula>
+        <name>AnyWare FF Update GA 48M L2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_48M_L3</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0264</formula>
+        <name>AnyWare FF Update GA 48M L3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_60M_L1</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0225</formula>
+        <name>AnyWare FF Update GA 60M L1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_60M_L2</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0219</formula>
+        <name>AnyWare FF Update GA 60M L2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_FF_Update_GA_60M_L3</fullName>
+        <field>AnyWare_Funding_Factor__c</field>
+        <formula>0.0215</formula>
+        <name>AnyWare FF Update GA 60M L3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_Update_Document_Contract_Number</fullName>
+        <field>Document_Contract_Number__c</field>
+        <formula>CASE( TSP_GA_Approval_Contract_Number__c ,
+"",  Contract_Number__c,
+TSP_GA_Approval_Contract_Number__c )</formula>
+        <name>AnyWare Update Document Contract Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AnyWare_Update_Term_to_Numeric_Term_60_M</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>60</formula>
+        <name>AnyWare Update Term to Numeric Term 60 M</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Convert_TSP_Term_To_Numeric_Term_24_Mont</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>24</formula>
+        <name>Convert TSP Term To Numeric Term 24 Mont</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Convert_TSP_Term_To_Numeric_Term_36_Mont</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>36</formula>
+        <name>Convert TSP Term To Numeric Term 36 Mont</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Convert_TSP_Term_To_Numeric_Term_48_Mont</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>48</formula>
+        <name>Convert TSP Term To Numeric Term 48 Mont</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Convert_TSP_Term_To_Numeric_Term_60_Mont</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>60</formula>
+        <name>Convert TSP Term To Numeric Term 60 Mont</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Install_Record_Created</fullName>
+        <field>Install_Record_Created__c</field>
+        <literalValue>1</literalValue>
+        <name>Install Record Created</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Install_Record_Needed</fullName>
+        <field>Commission_Comments__c</field>
+        <formula>"Install Record Created"</formula>
+        <name>Install Record Needed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OA_Set_Opportunity_Approved_to_True</fullName>
+        <description>Set Opportunity Approved to True</description>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>OA-Set Opportunity Approved to True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OA_Set_Opportunity_Stage_to_Closed_Won</fullName>
+        <description>OA-Set Opportunity Stage to Closed Won</description>
+        <field>StageName</field>
+        <literalValue>Closed Won</literalValue>
+        <name>OA-Set Opportunity Stage to Closed Won</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OP_Structure_Name</fullName>
+        <field>Name</field>
+        <formula>Account.Name+"-"+Text(Sale_Type__c)+"-"+ Contract_Number__c</formula>
+        <name>OP-Structure Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Send_Install_Record</fullName>
+        <field>Install_Record_Created__c</field>
+        <literalValue>0</literalValue>
+        <name>Send Install Record</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Comm3_Support_Cost</fullName>
+        <field>Support_Cost_Amount_Comm3__c</field>
+        <formula>Net_Opportunity_Booking_Amount__c *  Comm3_Support_Cost_Rate__c</formula>
+        <name>Set Comm3 Support Cost</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Install_Record_Create</fullName>
+        <field>Install_Record_Created__c</field>
+        <literalValue>0</literalValue>
+        <name>Set Install Record Create</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Install_Record_Create_Approval</fullName>
+        <field>Install_Record_Created__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Install Record Create</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Install_Record_Create_False</fullName>
+        <field>Install_Record_Created__c</field>
+        <literalValue>0</literalValue>
+        <name>Set Install Record Create False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_1A_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0911</formula>
+        <name>TSP FF Update 1A Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_1B_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0490</formula>
+        <name>TSP FF Update 1B Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_1C_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0349</formula>
+        <name>TSP FF Update 1C Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_2A_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0857</formula>
+        <name>TSP FF Update 2A Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_2B_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0472</formula>
+        <name>TSP FF Update 2B Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_2C_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0322</formula>
+        <name>TSP FF Update 2C Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_2D_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0271</formula>
+        <name>TSP FF Update 2D Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_3A_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0841</formula>
+        <name>TSP FF Update 3A Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_3B_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0463</formula>
+        <name>TSP FF Update 3B Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_3C_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0317</formula>
+        <name>TSP FF Update 3C Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_3D_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0259</formula>
+        <name>TSP FF Update 3D Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_4A_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0837</formula>
+        <name>TSP FF Update 4A Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_4B_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0456</formula>
+        <name>TSP FF Update 4B Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_4C_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0312</formula>
+        <name>TSP FF Update 4C Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_5A_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0831</formula>
+        <name>TSP FF Update 5A Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_5B_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0453</formula>
+        <name>TSP FF Update 5B Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_5C_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0309</formula>
+        <name>TSP FF Update 5C Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_FF_Update_D_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0288</formula>
+        <name>TSP FF Update !D Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TSP_Term_to_Numeric_Term_Monthl</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>0</formula>
+        <name>TSP Term to Numeric Term Monthl</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UPDATE_SFDC_TEST</fullName>
+        <field>SFDC_TEST_Opportunity_Amount__c</field>
+        <formula>If(ISPICKVAL(Sale_Type__c, "AnyWare"),AE_Opportunity_Total__c,
+If(ISPICKVAL(Sale_Type__c, "TSP"),TSP_Funding_Amount__c,
+If(ISPICKVAL(Sale_Type__c, "Cash"),Cash_Opportunity_Total__c,
+If(ISPICKVAL(Sale_Type__c, "AnyWare Support Only"),(AnyWare_Support_Total__c* Numeric_Term__c),
+0))))</formula>
+        <name>UPDATE SFDC TEST</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_AnyWare_FF_L1_12_Months</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0929</formula>
+        <name>Update AnyWare FF L1 12 Months</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_MS_Promo_Discount_Field</fullName>
+        <field>TSP_Promotional_Discount__c</field>
+        <formula>TSP_Monthly_Total__c  *  -TSP_Disc_Percent__c</formula>
+        <name>Update MS Promo Discount Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OPP_Approval_Status_to_Approved</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update OPP Approval Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OPP_Approval_Status_to_Pending</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update OPP Approval Status to Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OPP_Approval_Status_to_Recalled</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Recalled</literalValue>
+        <name>Update OPP Approval Status to Recalled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OPP_Approval_Status_to_Rejected</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Update OPP Approval Status to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OPP_Estimate_Cutover_Date</fullName>
+        <field>Estimated_Cut_over_Date__c</field>
+        <formula>Project_Estimate_Cut_over_Date__c</formula>
+        <name>Update OPP Estimate Cutover Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_OP_Amount_Field</fullName>
+        <field>Opportunity_Amount__c</field>
+        <formula>If(ISPICKVAL(Sale_Type__c, "AnyWare"), AnyWare_Net_CPE_Funding_Amount__c ,
+If(ISPICKVAL(Sale_Type__c, "TSP"),TSP_Funding_Amount__c,
+If(ISPICKVAL(Sale_Type__c, "Cash"),Cash_Opportunity_Total__c,
+If(ISPICKVAL(Sale_Type__c, "AnyWare Support Only"),(AnyWare_Support_Total__c* Numeric_Term__c),
+0.00))))</formula>
+        <name>Update OP Amount Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_GA_60M_L2</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0219</formula>
+        <name>Update TSP FF GA 60M L2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_GA_60M_L3</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0215</formula>
+        <name>Update TSP FF GA 60M L3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_GA_60M_L4</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0212</formula>
+        <name>Update TSP FF GA 60M L4</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_GA_60M_L5</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0209</formula>
+        <name>Update TSP FF GA 60M L5</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_12M</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.086412</formula>
+        <name>Update TSP FF TSB 12M</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_24M</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.045345</formula>
+        <name>Update TSP FF TSB 24M</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_36M</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.032441</formula>
+        <name>Update TSP FF TSB 36M</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_48M</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.025611</formula>
+        <name>Update TSP FF TSB 48M</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_48M_L4</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0255</formula>
+        <name>Update TSP FF TSB 48M L4</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_48M_L5</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0253</formula>
+        <name>Update TSP FF TSB 48M L5</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_FF_TSB_60M</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.021545</formula>
+        <name>Update TSP FF TSB 60M</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_Funding_Factor_Field</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>Case( TSP_Term__c,
+   "Monthly",1.0,
+   "12 Months", 0.09,
+   "24 Months", 0.08,
+   "36 Months", 0.07,
+   "48 Months", 0.06,
+   "60 Months", 0.0207,
+   0.028)</formula>
+        <name>Update TSP Funding Factor Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_Term_To_Numeric_12_Months</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>12</formula>
+        <name>Update TSP Term To Numeric 12 Months</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_TSP_Term_To_Numeric_Term_Monthly</fullName>
+        <field>Numeric_Term__c</field>
+        <formula>1</formula>
+        <name>Update TSP Term To Numeric Term Monthly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Updte_TSP_FF_GA_60M_L1</fullName>
+        <field>TSP_Funding_Factor__c</field>
+        <formula>0.0249</formula>
+        <name>Updte TSP FF GA 60M L1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>AnyWare Convert Term To Numeric Term 60 Months</fullName>
+        <actions>
+            <name>AnyWare_Update_Term_to_Numeric_Term_60_M</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 1:59 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare Document Contract Number</fullName>
+        <actions>
+            <name>AnyWare_Update_Document_Contract_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 12M L1</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_12M_L1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>2322.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Funding_Flag__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 12M L2</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_12M_L2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>2322.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>4640.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 12M L3</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_12M_L3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>4640.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>99999.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 24M L1</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_24M_L1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1197.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 24M L2</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_24M_L2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1197.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>2375.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 24M L3</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_24M_L3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>2375.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>99999.99</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 36M L1</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_36M_L1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>830.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Edit_AnyWare_Lease_Rate_Manually__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 36M L2</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_36M_L2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>830.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1635.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 36M L3</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_36M_L3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1635.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>99999.99</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 48M L1</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_48M_L1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>650.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 48M L2</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_48M_L2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>650.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1285.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 48M L3</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_48M_L3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1285.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>99999.99</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 60M L1</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_60M_L1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>540.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Funding_Flag__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 60M L2</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_60M_L2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>540.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1055.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Funding_Flag__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>AnyWare FF Update GA 60M L3</fullName>
+        <actions>
+            <name>AnyWare_FF_Update_GA_60M_L3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1055.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_CPE_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>99999.99</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Financial Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Funding_Flag__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Comm3 New Sale Opp Closed Won</fullName>
+        <actions>
+            <name>Comm3_New_Sale_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Account_Source_ACQ__c</field>
+            <operation>equals</operation>
+            <value>Comm3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Comme Support Cost Calulate</fullName>
+        <actions>
+            <name>Set_Comm3_Support_Cost</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>.35 percent estimated miltel/shortel support cost</description>
+        <formula>ischanged(Net_Opportunity_Booking_Amount__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert AnyWare Term To Numeric Term 12 Months</fullName>
+        <actions>
+            <name>Update_TSP_Term_To_Numeric_12_Months</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 1:59 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.AnyWare_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert TSP Term To Numeric Term 12 Months</fullName>
+        <actions>
+            <name>Update_TSP_Term_To_Numeric_12_Months</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 1:59 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert TSP Term To Numeric Term 24 Months</fullName>
+        <actions>
+            <name>Convert_TSP_Term_To_Numeric_Term_24_Mont</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert TSP Term To Numeric Term 36 Months</fullName>
+        <actions>
+            <name>Convert_TSP_Term_To_Numeric_Term_36_Mont</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert TSP Term To Numeric Term 48 Months</fullName>
+        <actions>
+            <name>Convert_TSP_Term_To_Numeric_Term_48_Mont</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert TSP Term To Numeric Term 60 Months</fullName>
+        <actions>
+            <name>Convert_TSP_Term_To_Numeric_Term_60_Mont</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Convert TSP Term To Numeric Term Monthly</fullName>
+        <actions>
+            <name>Update_TSP_Term_To_Numeric_Term_Monthly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>Monthly</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Install Complete Notify</fullName>
+        <actions>
+            <name>Opportunity_Install_Completed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Install_Complete__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Install Complete Notify Comm3</fullName>
+        <actions>
+            <name>Install_Complete_Comm3_Notify</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Install_Complete__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Account_Source_ACQ__c</field>
+            <operation>equals</operation>
+            <value>Comm3</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify Sales Manger of New Opportunity</fullName>
+        <actions>
+            <name>E_Mail_Sales_Manager_of_New_Opportunity</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 2:00 AM</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>OP-Structure Name</fullName>
+        <actions>
+            <name>OP_Structure_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Funding_Flag__c</field>
+            <operation>equals</operation>
+            <value>20161231</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Past Due Close Date</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>notEqual</operation>
+            <value>Closed Lost,Closed Won</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Update_Opportunity_CloseDate_A</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Opportunity.CloseDate</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Opportunity Site Survey Case</fullName>
+        <actions>
+            <name>Opportunity_Site_Survey_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 12M L1</fullName>
+        <actions>
+            <name>TSP_FF_Update_1A_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>455.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 12M L2</fullName>
+        <actions>
+            <name>TSP_FF_Update_2A_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>455.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1285.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 12M L3</fullName>
+        <actions>
+            <name>TSP_FF_Update_3A_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1285.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>2102.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 12M L4</fullName>
+        <actions>
+            <name>TSP_FF_Update_4A_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>2102.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>4185.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 12M L5</fullName>
+        <actions>
+            <name>TSP_FF_Update_5A_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>4185.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>20775.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 24M L1</fullName>
+        <actions>
+            <name>TSP_FF_Update_1B_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>245.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 24M L2</fullName>
+        <actions>
+            <name>TSP_FF_Update_2B_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>245.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>708.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 24M L3</fullName>
+        <actions>
+            <name>TSP_FF_Update_3B_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>708.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1157.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 24M L4</fullName>
+        <actions>
+            <name>TSP_FF_Update_4B_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1157.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>2280.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 24M L5</fullName>
+        <actions>
+            <name>TSP_FF_Update_5B_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>2280.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>11325.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 36M L1</fullName>
+        <actions>
+            <name>TSP_FF_Update_1C_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>174.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 36M L2</fullName>
+        <actions>
+            <name>TSP_FF_Update_2C_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>174.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>483.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 36M L3</fullName>
+        <actions>
+            <name>TSP_FF_Update_3C_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>483.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>792.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 36M L4</fullName>
+        <actions>
+            <name>TSP_FF_Update_4C_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>792.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1560.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 36M L5</fullName>
+        <actions>
+            <name>TSP_FF_Update_5C_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1560.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>7725.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 48M L1</fullName>
+        <actions>
+            <name>TSP_FF_Update_D_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>144.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 48M L2</fullName>
+        <actions>
+            <name>TSP_FF_Update_2D_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>144.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>406.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 48M L3</fullName>
+        <actions>
+            <name>TSP_FF_Update_3D_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>406.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>647.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 48M L4</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_48M_L4</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>647.50</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1274.97</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 48M L5</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_48M_L5</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1274.97</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>6325.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 60M L1</fullName>
+        <actions>
+            <name>Updte_TSP_FF_GA_60M_L1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>124.48</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 60M L2</fullName>
+        <actions>
+            <name>Update_TSP_FF_GA_60M_L2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>124.49</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>328.48</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 60M L3</fullName>
+        <actions>
+            <name>Update_TSP_FF_GA_60M_L3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>328.49</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>537.48</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 60M L4</fullName>
+        <actions>
+            <name>Update_TSP_FF_GA_60M_L4</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>537.49</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>1059.98</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update GA 60M L5</fullName>
+        <actions>
+            <name>Update_TSP_FF_GA_60M_L5</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>greaterThan</operation>
+            <value>1059.99</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Monthly_Net_Total__c</field>
+            <operation>lessOrEqual</operation>
+            <value>5225.00</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Great America Leasing Corp</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update TSB 12M</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_12M</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>12 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Texas Star Bank</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update TSB 24M</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_24M</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>24 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Texas Star Bank</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update TSB 36M</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_36M</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>36 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Texas Star Bank</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update TSB 48M</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_48M</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>48 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Texas Star Bank</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TSP FF Update TSB 60M</fullName>
+        <actions>
+            <name>Update_TSP_FF_TSB_60M</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Term__c</field>
+            <operation>equals</operation>
+            <value>60 Months</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.TSP_Funding_Source__c</field>
+            <operation>equals</operation>
+            <value>Texas Star Bank</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update MS Promotional Discount</fullName>
+        <actions>
+            <name>Update_MS_Promo_Discount_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.TSP_Disc_Percent__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OP Amount</fullName>
+        <actions>
+            <name>UPDATE_SFDC_TEST</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_OP_Amount_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 1:59 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Edit_Opportunity_Amount_Manually__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update OPP Estimate Cutover Date</fullName>
+        <actions>
+            <name>Update_OPP_Estimate_Cutover_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Project_Estimate_Cut_over_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

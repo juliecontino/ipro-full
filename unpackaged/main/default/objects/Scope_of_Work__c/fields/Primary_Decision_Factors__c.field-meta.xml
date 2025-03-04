@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Decision_Factors__c</fullName>
+    <inlineHelpText>Please enter the primary reasons expressed by the client for making this purchase.</inlineHelpText>
+    <label>Primary Decision Factors</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

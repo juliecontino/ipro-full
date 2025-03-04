@@ -1,0 +1,182 @@
+<apex:page extensions="CreateCreditMemosController" standardController="AcctSeed__Billing__c">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+                <apex:commandButton action="{!saveCreditMemos}" value="Save and Continue"/>
+            </apex:pageBlockButtons>
+            <apex:pageMessages />
+            
+            <apex:pageBlockSection >
+                <apex:outputField value="{!AcctSeed__Billing__c.Name}"/>
+                <apex:outputField value="{!AcctSeed__Billing__c.AcctSeed__Date__c}"/>
+                <apex:outputField value="{!AcctSeed__Billing__c.AcctSeed__Customer__c}"/>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Select the Billing Lines to Credit" collapsible="false" columns="1">
+                <apex:pageBlockTable id="line-table" value="{!billingLines}" var="bl">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <input type="checkbox" onclick="toggleAll(this.checked);"/> Select All
+                        </apex:facet>
+                        <apex:inputCheckbox styleClass="{!bl.line.Id} select-input" value="{!bl.selected}" rendered="{!bl.line != null}" onchange="copyValues('{!bl.line.Id}');disableInput();"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!updateSort}" value="Billing Line Name {!IF(sortField == 'Name',IF(sortAsc,'▲','▼'),'')}" oncomplete="disableInput();updateCreditTotal();" reRender="line-table">
+                                <apex:param name="field" value="Name"/>
+                            </apex:commandLink>
+                        </apex:facet>
+                        <apex:outputField value="{!bl.line.Name}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!updateSort}" value="Product {!IF(sortField == 'AcctSeed__Product__r.Name',IF(sortAsc,'▲','▼'),'')}" oncomplete="disableInput();updateCreditTotal();" reRender="line-table">
+                                <apex:param name="field" value="AcctSeed__Product__r.Name"/>
+                            </apex:commandLink>
+                        </apex:facet>
+                        <apex:outputField value="{!bl.line.AcctSeed__Product__r.Name}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!updateSort}" value="Quantity {!IF(sortField == 'AcctSeed__Hours_Units__c',IF(sortAsc,'▲','▼'),'')}" oncomplete="disableInput();updateCreditTotal();" reRender="line-table">
+                                <apex:param name="field" value="AcctSeed__Hours_Units__c"/>
+                            </apex:commandLink>
+                        </apex:facet>
+                        <apex:outputText styleClass="{!bl.line.Id} quantity" value="{0,number,0.##}">
+                            <apex:param value="{!bl.line.AcctSeed__Hours_Units__c}"/>
+                        </apex:outputText>
+                     </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!updateSort}" value="Rate {!IF(sortField == 'AcctSeed__Rate__c',IF(sortAsc,'▲','▼'),'')}" oncomplete="disableInput();updateCreditTotal();" reRender="line-table">
+                                <apex:param name="field" value="AcctSeed__Rate__c"/>
+                            </apex:commandLink>
+                        </apex:facet>
+                        <apex:outputText styleClass="{!bl.line.Id} rate" value="{0,number,$0.00}">
+                            <apex:param value="{!bl.line.AcctSeed__Rate__c}"/>
+                        </apex:outputText>
+                     </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:commandLink action="{!updateSort}" value="Bill Amount {!IF(sortField == 'AcctSeed__Total__c',IF(sortAsc,'▲','▼'),'')}" oncomplete="disableInput();updateCreditTotal();" reRender="line-table">
+                                <apex:param name="field" value="AcctSeed__Total__c"/>
+                            </apex:commandLink>
+                        </apex:facet>
+                        <apex:outputText styleClass="{!bl.line.Id} amount" value="{0,number,$#,##0.00}">
+                            <apex:param value="{!bl.billAmount}"/>
+                        </apex:outputText>
+                     </apex:column>
+                    <apex:column headerValue="Override Credit Amount">
+                        <apex:inputCheckbox styleClass="{!bl.line.Id} override-input" value="{!bl.overrideAmount}" rendered="{!bl.line != null}" onchange="updateOverride('{!bl.line.Id}');disableInput();updateCreditTotal();"/>
+                    </apex:column>
+                    <apex:column headerValue="Quantity to Credit">
+                        <apex:inputText style="width:0;visibility:hidden;" styleClass="{!bl.line.Id} credit-qty-input-hid" value="{!bl.creditQuantity}" rendered="{!bl.line != null}"/>
+                        <input style="{!IF(bl.line == null,'display:none;','')}" class="{!bl.line.Id} credit-qty-input" onchange="quantityUpdated('{!bl.line.Id}');updateCreditTotal();" onkeyup="quantityUpdated('{!bl.line.Id}');updateCreditTotal();" value="{!bl.creditQuantity}"/>
+                    </apex:column>
+                    <apex:column id="amount-col" headerValue="Amount to Credit">
+                        <apex:inputText style="width:0;visibility:hidden;" styleClass="{!bl.line.Id} credit-amt-input-hid" value="{!bl.creditAmount}" rendered="{!bl.line != null}"/>
+                        <input style="{!IF(bl.line == null,'display:none;','')}" class="{!bl.line.Id} credit-amt-input" onchange="amountUpdated('{!bl.line.Id}');updateCreditTotal();" onkeyup="amountUpdated('{!bl.line.Id}');updateCreditTotal();" value="{!bl.creditAmount}"/>
+                        
+                        <apex:outputPanel layout="block" style="color:red;" rendered="{!bl.error}">You cannot credit more than the billing line.</apex:outputPanel>
+                        <apex:outputPanel styleClass="credit-total" rendered="{!bl.line == null}"/>
+                    </apex:column>
+                    <apex:column headerValue="Comments">
+                        <apex:inputText value="{!bl.description}" rendered="{!bl.line != null}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+    <script>
+        function toggleAll(enable) {
+            var boxes = document.getElementsByClassName("select-input");
+            for (var i = 0;i < boxes.length;i++) {
+                if (boxes[i].checked != enable) boxes[i].click();
+            }
+        }
+        
+        function copyValues(lineId) {
+            var quantity = document.getElementsByClassName(lineId+" quantity")[0],
+                amount = document.getElementsByClassName(lineId+" amount")[0],
+                creditQty = document.getElementsByClassName(lineId+" credit-qty-input")[0],
+                creditQtyHid = document.getElementsByClassName(lineId+" credit-qty-input-hid")[0],
+                creditAmt = document.getElementsByClassName(lineId+" credit-amt-input")[0],
+                creditAmtHid = document.getElementsByClassName(lineId+" credit-amt-input-hid")[0];
+            
+            if (!creditQty.value || creditQty.value == 0) {
+                creditQty.value = quantity.innerHTML;
+                creditQtyHid.value = quantity.innerHTML;
+            }
+            if (!creditAmt.value || creditAmt.value == 0) {
+                creditAmt.value = amount.innerHTML.replace("$","").replace(",","");
+                creditAmtHid.value = amount.innerHTML.replace("$","").replace(",","");
+            }
+            updateCreditTotal();
+        }
+        
+        function updateOverride(lineId) {
+            var override = document.getElementsByClassName(lineId+" override-input")[0],
+                rate = document.getElementsByClassName(lineId+" rate")[0],
+                quantity = document.getElementsByClassName(lineId+" credit-qty-input")[0],
+                quantityHid = document.getElementsByClassName(lineId+" credit-qty-input-hid")[0],
+                creditAmt = document.getElementsByClassName(lineId+" credit-amt-input")[0],
+                creditAmtHid = document.getElementsByClassName(lineId+" credit-amt-input-hid")[0];
+            
+            if (override.checked) {
+                quantity.value = 1;
+                quantityHid.value = 1;
+            } else {
+                creditAmt.value = parseFloat(quantity.value * rate.innerHTML.replace("$","").replace(",","")).toFixed(2);
+                creditAmtHid.value = parseFloat(quantity.value * rate.innerHTML.replace("$","").replace(",","")).toFixed(2);
+            }
+        }
+        
+        function amountUpdated(lineId) {
+            var creditAmt = document.getElementsByClassName(lineId+" credit-amt-input")[0],
+                creditAmtHid = document.getElementsByClassName(lineId+" credit-amt-input-hid")[0];
+            creditAmtHid.value = creditAmt.value;
+        }
+        
+        function quantityUpdated(lineId) {
+            var rate = document.getElementsByClassName(lineId+" rate")[0],
+                quantity = document.getElementsByClassName(lineId+" credit-qty-input")[0],
+                quantityHid = document.getElementsByClassName(lineId+" credit-qty-input-hid")[0],
+                creditAmt = document.getElementsByClassName(lineId+" credit-amt-input")[0],
+                creditAmtHid = document.getElementsByClassName(lineId+" credit-amt-input-hid")[0];
+            
+            quantityHid.value = quantity.value;
+            creditAmt.value = parseFloat(quantity.value * rate.innerHTML.replace("$","").replace(",","")).toFixed(2);
+            creditAmtHid.value = parseFloat(quantity.value * rate.innerHTML.replace("$","").replace(",","")).toFixed(2);
+        }
+        
+        function updateCreditTotal() {
+            var selections = document.getElementsByClassName("select-input"),
+                credits = document.getElementsByClassName("credit-amt-input");
+            var total = 0;
+            
+            for (var i = 0;i < selections.length;i++) {
+                if (selections[i].checked && parseFloat(credits[i].value))
+                    total += parseFloat(credits[i].value);
+            }
+            document.getElementsByClassName("credit-total")[0].innerHTML = "$" + total.toFixed(2);
+        }
+        
+        function disableInput() {
+            var selections = document.getElementsByClassName("select-input"),
+                overrides = document.getElementsByClassName("override-input"),
+                quantities = document.getElementsByClassName("credit-qty-input"),
+                amounts = document.getElementsByClassName("credit-amt-input");
+            
+            for (var i = 0;i < selections.length;i++) {
+                overrides[i].disabled = !selections[i].checked;
+                quantities[i].disabled = !selections[i].checked || overrides[i].checked;
+                amounts[i].disabled = !selections[i].checked || !overrides[i].checked;
+            }
+        }
+        
+        disableInput();
+        updateCreditTotal();
+    </script>
+</apex:page>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CCE_Portfolio__c</fullName>
+    <label>CCE Portfolio</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>CCE__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPRO-1</fullName>
+                <default>false</default>
+                <label>IPRO-1</label>
+            </value>
+            <value>
+                <fullName>TSB-1</fullName>
+                <default>false</default>
+                <label>TSB-1</label>
+            </value>
+            <value>
+                <fullName>GA-019130-0000</fullName>
+                <default>false</default>
+                <label>GA-019130-0000</label>
+            </value>
+            <value>
+                <fullName>GA-019130-0001</fullName>
+                <default>false</default>
+                <label>GA-019130-0001</label>
+            </value>
+            <value>
+                <fullName>MTL-1</fullName>
+                <default>false</default>
+                <label>MTL-1</label>
+            </value>
+            <value>
+                <fullName>WF-207778.0000</fullName>
+                <default>false</default>
+                <label>WF-207778.0000</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>IPro Media</controllingFieldValue>
+            <valueName>IPRO-1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Great America</controllingFieldValue>
+            <valueName>GA-019130-0000</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Great America</controllingFieldValue>
+            <valueName>GA-019130-0001</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Wells Fargo</controllingFieldValue>
+            <valueName>WF-207778.0000</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mitel</controllingFieldValue>
+            <valueName>MTL-1</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Server-MiCC IP --></label>
+        <name>Server_MiCC_IP__c</name>
+    </CustomFieldTranslation>

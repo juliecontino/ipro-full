@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Training_Console__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Enter the number of primary and departmental operators, receptionists or executive screeners that require training. Provide a detailed narrative of the requirements and attach a roster if needed.</inlineHelpText>
+    <label>Console</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

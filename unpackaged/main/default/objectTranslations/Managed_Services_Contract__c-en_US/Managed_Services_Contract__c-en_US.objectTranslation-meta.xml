@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Managed Services Contract</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Managed Services Contract</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Managed Services Contract Layout</layout>
+        <sections>
+            <label><!-- Account Contact Info --></label>
+            <section>Account Contact Info</section>
+        </sections>
+        <sections>
+            <label><!-- Account Info --></label>
+            <section>Account Info</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Control Entity (CCE) --></label>
+            <section>Contract Control Entity (CCE)</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Financial Info --></label>
+            <section>Contract Financial Info</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Funding Info --></label>
+            <section>Contract Funding Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Managed Services Contracts --></label>
+            <section>Managed Services Contracts</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Log Task --></label>
+        <name>Log_Task</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- AnyWare_Forms --></label>
+        <name>AnyWare_Forms</name>
+    </webLinks>
+</CustomObjectTranslation>

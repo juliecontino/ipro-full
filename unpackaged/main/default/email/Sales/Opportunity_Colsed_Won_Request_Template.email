@@ -1,0 +1,5 @@
+The Opportunity listed below has been Won and is submitted for approval:
+
+Account Name:   {!Account.Name}
+Opportunity:   {!Opportunity.Name}
+Opportunity Owner:  {!Opportunity.OwnerFullName}

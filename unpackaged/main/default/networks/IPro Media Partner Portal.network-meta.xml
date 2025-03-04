@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>true</allowInternalUserLogin>
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
+    <communityRoles/>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailSenderAddress>mneill@ipromedia.us</emailSenderAddress>
+    <emailSenderName>IPro Media Partner Portal</emailSenderName>
+    <embeddedLoginEnabled>true</embeddedLoginEnabled>
+    <enableApexCDNCaching>true</enableApexCDNCaching>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>false</enableDirectMessages>
+    <enableExpFriendlyUrlsAsDefault>false</enableExpFriendlyUrlsAsDefault>
+    <enableExperienceBundleBasedSnaOverrideEnabled>false</enableExperienceBundleBasedSnaOverrideEnabled>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableGuestFileAccess>false</enableGuestFileAccess>
+    <enableGuestMemberVisibility>false</enableGuestMemberVisibility>
+    <enableImageOptimizationCDN>true</enableImageOptimizationCDN>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableLWRExperienceConnectedApp>false</enableLWRExperienceConnectedApp>
+    <enableMemberVisibility>true</enableMemberVisibility>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>false</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>false</enableSiteAsContainer>
+    <enableTalkingAboutStats>true</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>false</enableTopicAssignmentRules>
+    <enableTopicSuggestions>true</enableTopicSuggestions>
+    <enableUpDownVote>false</enableUpDownVote>
+    <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <headlessForgotPasswordTemplate>unfiled$public/CommunityHeadlessForgotPasswordTemplate</headlessForgotPasswordTemplate>
+    <headlessRegistrationTemplate>unfiled$public/CommunityHeadlessRegistrationTemplate</headlessRegistrationTemplate>
+    <networkMemberGroups>
+        <profile>Admin</profile>
+        <profile>Chatter Free User</profile>
+        <profile>Chatter Only User</profile>
+        <profile>Gold Partner User</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Standard</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>Standard</homePageOverrideSetting>
+        <loginPageOverrideSetting>Standard</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Standard</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>IPro_Media_Partner_Portal1</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>IPro_Media_Partner_Portal</site>
+    <siteArchiveStatus>NotArchived</siteArchiveStatus>
+    <status>DownForMaintenance</status>
+    <tabs>
+        <defaultTab>home</defaultTab>
+        <standardTab>Chatter</standardTab>
+    </tabs>
+    <urlPathPrefix>partner</urlPathPrefix>
+    <welcomeTemplate>unfiled$public/CommunityWelcomeEmailTemplate</welcomeTemplate>
+</Network>

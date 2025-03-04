@@ -1,0 +1,19 @@
+We have closed a new sale with following Client:
+
+Opportunity Data:
+
+{!Opportunity.Link}
+
+{!Opportunity.Id}
+{!Opportunity.Name}
+{!Opportunity.Contract_Number__c}
+{!Opportunity.Document_Contract_Number__c}
+
+Account Data:
+
+{!Account.Id}
+{!Opportunity.Account}
+{!Account.ShippingAddress}
+{!Account.ShippingCity}, {!Account.ShippingState} {!Account.ShippingPostalCode}
+
+Verify that a Cat-5 Account exists for this Client. If one does not exist, create a new Cat-5 Account. Enter the Client Cat-5 account number into the "Cat-5 Account Number" field on the account record in Salesforce.

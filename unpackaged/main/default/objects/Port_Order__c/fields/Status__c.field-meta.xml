@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Order Status</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>true</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>Sent to Customer for Signature</fullName>
+                <default>false</default>
+                <label>Sent to Customer for Signature</label>
+            </value>
+            <value>
+                <fullName>Signed by Customer</fullName>
+                <default>false</default>
+                <label>Signed by Customer</label>
+            </value>
+            <value>
+                <fullName>Ready for Submission</fullName>
+                <default>false</default>
+                <label>Ready for Submission</label>
+            </value>
+            <value>
+                <fullName>Submitted to Telco</fullName>
+                <default>false</default>
+                <label>Submitted to Telco</label>
+            </value>
+            <value>
+                <fullName>Scheduled by Telco</fullName>
+                <default>false</default>
+                <label>Scheduled by Telco</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,125 @@
+<!-- <apex:page id="pg" controller="LookupAccountNumberCtrl" tabStyle="AcctSeed__Account_Payable__c" showHeader="true" sidebar="true" title="Lookup Account Number" docType="html-5.0" cache="false"> -->
+<apex:page id="pg" standardController="AcctSeed__Account_Payable__c" extensions="LookupAccountNumberCtrl" tabStyle="AcctSeed__Account_Payable__c" showHeader="true" sidebar="true" title="Lookup Account Number" docType="html-5.0" cache="false">
+    <head>
+        <apex:stylesheet value="{!URLFOR($Resource.jquery_2_1_4,'jqueryui-1-11-4.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.jquery_2_1_4, 'jquery-2-1-4.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.jquery_2_1_4, 'jqueryui-1-11-4.js')}"/>
+
+        <style type="text/css">
+            /* style the select button as such */
+            a.btn{
+                text-decoration: none;
+                /*padding: 4px 3px;*/
+            }
+            a.btn:hover{
+                text-decoration: none;
+                color: black;
+            }
+            /* remove annoying row highlighting */
+            tr.dataRow.highlight > td{
+                background-color: white !important;
+            }
+        </style>
+
+        <script type="text/javascript">
+            function unescapeXMLEntities(text) {
+                return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+            }
+
+            function initAutocomplete(){
+                // $('input[id*="acctNum"]').autocomplete({
+                $('input#pg\\:frm\\:blk\\:acctNumSect\\:acctNum').autocomplete({
+                    source: function(request, response){
+                        LookupAccountNumberCtrl.searchAccountNumbers(request.term, function(objects){
+                            var results = [];
+                            objects.forEach(function(obj){
+                                results.push({
+                                    label: unescapeXMLEntities(obj),
+                                    value: unescapeXMLEntities(obj)
+                                });
+                            });
+                            response(results);
+                        });
+                    },
+                    select: function(event, ui){
+                        // ui.item.value
+                        $('input#pg\\:frm\\:blk\\:acctNumSect\\:acctNum').val(ui.item.value);
+                        queryAccessCircuits();
+                    }
+                });
+            }
+
+            function queryAccessCircuits(){
+                queryAccessCircuitsAF();
+            }
+
+            function preventFormSubmissionOnEnter(e){
+                e = e || event;
+                var txtArea = /textarea/i.test((e.target || e.srcElement).tagName);
+                console.log('here: ' + e);
+                return txtArea || (e.keyCode || e.which || e.charCode || 0) !== 13;
+            }
+
+            function onPageLoad(){
+                initAutocomplete();
+                // prevent form sumission on enter key
+                document.querySelector('input#pg\\:frm\\:blk\\:acctNumSect\\:acctNum').onkeypress = preventFormSubmissionOnEnter;
+            }
+        </script>
+    </head>
+
+    <apex:form id="frm">
+        <apex:actionFunction name="queryAccessCircuitsAF" action="{!queryAccessCircuits}" reRender="wrapper"/>
+
+        <apex:outputPanel id="wrapper">
+            <apex:sectionHeader title="{!accountPayable.Name}" subtitle="Lookup Account Number" description="Search for an Account Number, then select an Access Circuit."/>
+
+            <apex:pageMessages id="msgs"/>
+
+            <!-- <apex:pageBlock id="blk" rendered="{!accountPayable != null}"> -->
+            <apex:pageBlock id="blk">
+                <apex:pageBlockButtons location="both">
+                    <apex:commandButton action="{!cancel}" value="Back To Account Payable" immediate="true" rendered="{!!newPageOverride}"/>
+                    <apex:commandButton action="{!cancel}" value="Return" immediate="true" rendered="{!newPageOverride}"/>
+                    <apex:commandButton action="{!skip}" value="Skip" immediate="true" rendered="{!newPageOverride}"/>
+                </apex:pageBlockButtons>
+
+                <apex:pageBlockSection id="acctNumSect">
+                    <apex:inputText id="acctNum" label="Search Account Numbers" value="{!accountNumber}" onchange="queryAccessCircuits();"/>
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Access Circuits" rendered="{!accountNumber != ''}" collapsible="false" columns="1">
+                <!-- <apex:pageBlockSection title="Access Circuits" collapsible="false" columns="1"> -->
+                    <apex:outputPanel rendered="{!accessCircuits.size == 0}">
+                        No Results found
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!TEXT(accessCircuits.size) == AC_LIMIT}">
+                        Only the first {!AC_LIMIT} results are displayed.
+                    </apex:outputPanel>
+                    <apex:pageBlockTable id="accessCircuits" var="a" value="{!accessCircuits}" rendered="{!accessCircuits.size > 0}">
+                        <apex:column >
+                            <apex:commandLink styleClass="btn" action="{!selectAccessCircuit}" value="Select">
+                                <apex:param id="selectedAccessCircuit" name="selectedAccessCircuit" assignTo="{!selectedAccessCircuit}" value="{!a.Id}"/>
+                            </apex:commandLink>
+                        </apex:column>
+                        <apex:repeat var="f" value="{!fieldSet}">
+                            <apex:column >
+                                <apex:facet name="header">
+                                    {!f.label}
+                                </apex:facet>
+                                <apex:outputField value="{!a[f]}" label="" rendered="{!f != 'Name'}"/>
+                                <apex:outputLink value="/{!a.Id}" rendered="{!f == 'Name'}">
+                                    <apex:outputField value="{!a[f]}" label=""/>
+                                </apex:outputLink>
+                            </apex:column>
+                        </apex:repeat>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <script type="text/javascript">
+                onPageLoad();
+            </script>
+        </apex:outputPanel>
+
+    </apex:form>
+</apex:page>

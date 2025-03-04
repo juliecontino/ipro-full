@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+.auto-style1 {
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&nbsp;</p>
+	<p class=MsoNormal>
+	<img alt="" height="84" src="https://c.na2.content.force.com/servlet/servlet.ImageServer?id=015400000022rUs&oid=00D7x0000085zhO&lastMod=1500480660000" width="716">&nbsp;</p>
+	<p class=MsoNormal></p>
+	<p class=MsoNormal></p>
+	<p class=MsoNormal><span class="auto-style1">{!Contact.Name},</span></p>
+	<p class=MsoNormal>&nbsp;</p>
+	<p class="MsoNormal">Thank you for contacting Comm3.<span style="mso-spacerun:yes">&nbsp;
+	</span>Our team has received your request, and we will contact you shortly.<span style="mso-spacerun:yes">&nbsp;
+	</span></p>
+	<p class="MsoNormal">Ticket number (<span style='font-size:9.0pt;font-family:"Arial","sans-serif";
+color:black'>{!Case.CaseNumber}</span>) has been created for you.<o:p></o:p></p>
+	<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+	<p class="MsoNormal">If this is an urgent matter that needs immediate 
+	attention, please call our support team at 214-389-2600, option 2.<o:p></o:p></p>
+	<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+	<p class="MsoNormal">Thank you,<o:p></o:p></p>
+	<p class="MsoNormal">Comm3<o:p></o:p></p>
+	<p class="MsoNormal">214-389-2600<o:p></o:p></p>
+	<p class="MsoNormal"><a href="http://www.comm3.net">Comm3.net</a></p>
+	<p class=MsoNormal>
+	&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

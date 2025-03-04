@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Comm3</letterhead>
+    <name>Commision Submitted for Approval Comm3</name>
+    <style>freeForm</style>
+    <subject>Request to Approve Commission: {!Commissions__c.Name}</subject>
+    <textOnly>The Commission listed below has been submitted for approval:
+
+Account Name: {!Opportunity.Account}
+Opportunity Name: {!Opportunity.Opportunity_Alpha_Tag__c}
+Commission Owner: {!Commissions__c.Commission_Owner__c}
+OPs Category: {!Opportunity.OPS_Category__c}
+Link: {!Opportunity.Link}
+Commission Link: {!Commissions__c.Link}
+Commission Base Net Amount: {!Commissions__c.Base_Commission_Net__c}
+Last Modified by: {!Opportunity.LastModifiedBy}
+
+
+
+
+
+
+
+
+
+This is an automated message from Salesforce
+
+Commission Approval Process2 Comm3:
+Email Template Sales: &quot;Commission Submitted for Approval Comm3&quot;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

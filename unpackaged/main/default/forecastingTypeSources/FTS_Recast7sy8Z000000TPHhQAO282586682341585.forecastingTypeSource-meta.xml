@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ForecastingTypeSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <forecastingSourceDefinition>FSD_Opportunity686409861323519</forecastingSourceDefinition>
+    <forecastingType>Recast</forecastingType>
+    <isProtected>false</isProtected>
+    <masterLabel>FTS_Recast7sy8Z000000TPHhQAO282586682341585</masterLabel>
+    <sourceGroup>1</sourceGroup>
+</ForecastingTypeSource>

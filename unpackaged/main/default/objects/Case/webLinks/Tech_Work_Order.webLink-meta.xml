@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tech_Work_Order</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Tech Work Order</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://www.dreamfactory.net/sforce/formfactory/formfactory.html?
+sforce_session_id={!API.Session_ID}&amp;
+sforce_server_url={!API.Partner_Server_URL_120}&amp;
+sforce_user_name={!User.Username}&amp;
+sforce_full_name={!User.Name}&amp;
+sforce_user_id={!User.Id}&amp;
+custom_link_name=Simple Invoice Form&amp;
+myaccount={!Case.AccountId}&amp;
+mycase={!Case.Id}&amp;
+myuser={!User.Id}&amp;
+todaysdate={!TODAY()}</url>
+</WebLink>

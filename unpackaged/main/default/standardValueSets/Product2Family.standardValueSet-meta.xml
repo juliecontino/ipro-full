@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>AnyWare Carrier Access</fullName>
+        <default>false</default>
+        <label>Carrier Access</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Infrastructure-as-a-Service</fullName>
+        <default>false</default>
+        <label>Infrastructure-as-a-Service</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Analog, DID, Toll Free and SIP Trunk Services</fullName>
+        <default>false</default>
+        <label>Legacy Telecom</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare E-Fax</fullName>
+        <default>false</default>
+        <label>AnyWare E-Fax</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare SD-WAN</fullName>
+        <default>false</default>
+        <label>SD-WAN</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Secure Network Infrastructure</fullName>
+        <default>false</default>
+        <label>Secure Network Infrastructure</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Network Performance Monitoring &amp; Analytics (NOC)</fullName>
+        <default>false</default>
+        <label>Network Performance Monitoring &amp; Analytics (NOC)</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Network Security &amp; Compliance Monitoring &amp; Analytics (SOC)</fullName>
+        <default>false</default>
+        <label>Network Security &amp; Compliance Monitoring (SOC)</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Data Security &amp; Business Continuity</fullName>
+        <default>false</default>
+        <label>Data Security &amp; Business Continuity</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Hosting Services</fullName>
+        <default>false</default>
+        <label>Hosting Services</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Desktops</fullName>
+        <default>false</default>
+        <label>Desktops</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Desktop Applications</fullName>
+        <default>false</default>
+        <label>Desktop Applications</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Basic Voice (Zultys)</fullName>
+        <default>false</default>
+        <label>Basic Voice (Zultys)</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Custom Voice (Mitel)</fullName>
+        <default>false</default>
+        <label>Custom Voice (Mitel)</label>
+    </standardValue>
+    <standardValue>
+        <fullName>AnyWare Miscellaneous Taxes, Surcharges &amp; Fees</fullName>
+        <default>false</default>
+        <label>Miscellaneous Taxes, Surcharges &amp; Fees</label>
+    </standardValue>
+</StandardValueSet>

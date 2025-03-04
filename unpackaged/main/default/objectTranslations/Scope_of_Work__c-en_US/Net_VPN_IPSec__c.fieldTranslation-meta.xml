@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Select if Client is currently using or requires the use of IPSec VPN&apos;s. IPSec is only supported by IPro Media on IPro Media routers. --></help>
+        <label><!-- VPN IPSec --></label>
+        <name>Net_VPN_IPSec__c</name>
+    </CustomFieldTranslation>

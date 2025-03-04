@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_Bandwidth_Commitment_MBC__c</fullName>
+    <label>Minimum Bandwidth Commitment (MBC)</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Usage_Based_Billing_UBB_with_MBC__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>10 Mbps</fullName>
+                <default>false</default>
+                <label>10 Mbps</label>
+            </value>
+            <value>
+                <fullName>20 Mbps</fullName>
+                <default>false</default>
+                <label>20 Mbps</label>
+            </value>
+            <value>
+                <fullName>50 Mbps</fullName>
+                <default>false</default>
+                <label>50 Mbps</label>
+            </value>
+            <value>
+                <fullName>100 Mbps</fullName>
+                <default>false</default>
+                <label>100 Mbps</label>
+            </value>
+            <value>
+                <fullName>250 Mbps</fullName>
+                <default>false</default>
+                <label>250 Mbps</label>
+            </value>
+            <value>
+                <fullName>500 Mbps</fullName>
+                <default>false</default>
+                <label>500 Mbps</label>
+            </value>
+            <value>
+                <fullName>600 Mbps</fullName>
+                <default>false</default>
+                <label>600 Mbps</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>unchecked</controllingFieldValue>
+            <valueName>None</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>10 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>20 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>50 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>100 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>250 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>500 Mbps</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>checked</controllingFieldValue>
+            <valueName>600 Mbps</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

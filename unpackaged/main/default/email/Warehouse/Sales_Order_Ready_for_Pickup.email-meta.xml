@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>Sales Order Ready for Pickup</name>
+    <style>freeForm</style>
+    <subject>Sales Order Ready for Pickup: {!AcctSeedERP__Sales_Order__c.Name}</subject>
+    <textOnly>Sales Order: {!AcctSeedERP__Sales_Order__c.Name}
+Owner: {!AcctSeedERP__Sales_Order__c.OwnerFullName}
+Created Date: {!AcctSeedERP__Sales_Order__c.CreatedDate}
+
+This sales order is &quot;Ready for Pickup&quot;...in the Van Alstyne Office
+
+When picking up the materials, please verify with accounting so they can mark the SO Closed.
+
+Customer: {!AcctSeedERP__Sales_Order__c.AcctSeedERP__Customer__c}
+Opportunity: {!AcctSeedERP__Sales_Order__c.Opportunity_Name__c}
+Case: {!AcctSeedERP__Sales_Order__c.Case__c}
+
+Link: {!AcctSeedERP__Sales_Order__c.Link}
+
+
+
+
+
+
+
+
+
+This is an automated message from Salesforce.
+Workflow Rule: Object: Sales Order Rule Name: Sales Order Ready for Pickup</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

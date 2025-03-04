@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Circuit_ID__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Access Circuit</label>
+    <referenceTo>Access_Circuits__c</referenceTo>
+    <relationshipLabel>Call Detail Records</relationshipLabel>
+    <relationshipName>Call_Detail_Records</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

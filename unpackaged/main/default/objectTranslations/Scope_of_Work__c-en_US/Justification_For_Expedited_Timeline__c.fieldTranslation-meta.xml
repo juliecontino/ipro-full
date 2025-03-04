@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Justification For Expedited Timeline --></label>
+        <name>Justification_For_Expedited_Timeline__c</name>
+        <picklistValues>
+            <masterLabel>Competitor</masterLabel>
+            <translation><!-- Competitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract Expiration</masterLabel>
+            <translation><!-- Contract Expiration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Client Move Date</masterLabel>
+            <translation><!-- Pending Client Move Date --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

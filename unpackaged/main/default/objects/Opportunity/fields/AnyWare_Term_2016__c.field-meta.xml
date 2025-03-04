@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnyWare_Term_2016__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>This is a required field. If unsure, set to 60.</description>
+    <inlineHelpText>Select the appropriate AnyWare Term/Rate</inlineHelpText>
+    <label>AnyWare Term</label>
+    <referenceTo>Lease_Rates__c</referenceTo>
+    <relationshipLabel>Opportunities</relationshipLabel>
+    <relationshipName>Opportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

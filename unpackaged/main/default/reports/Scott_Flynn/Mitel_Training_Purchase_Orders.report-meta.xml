@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Order_Date__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Comment__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Total__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Comment__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>training</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Mitel Training Purchase Orders</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$AcctSeedERP__Purchase_Order__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Order_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

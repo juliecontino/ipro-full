@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Complete_must_be_Install_Status_Complete</fullName>
+    <active>true</active>
+    <description>The Install Complete checkbox cannot be checked if the INSTALL STATUS is not in a COMPLETED Status.</description>
+    <errorConditionFormula>AND(
+  Install_Complete__c ,
+    OR(
+   ISPICKVAL(Install_Status_Opp__c , "In Progress"),
+   ISPICKVAL(Install_Status_Opp__c , "New"),
+   ISPICKVAL(Install_Status_Opp__c , "Defining"),
+   ISPICKVAL(Install_Status_Opp__c , "Ready to Install"),
+   ISPICKVAL(Install_Status_Opp__c , "Waiting on Customer"),
+   ISPICKVAL(Install_Status_Opp__c , "Waiting for Parts"),
+   ISPICKVAL(Install_Status_Opp__c , "Waiting on Image"),
+   ISPICKVAL(Install_Status_Opp__c , "Waiting for Numbers"),
+   ISPICKVAL(Install_Status_Opp__c , "Waiting on Construction"),
+   ISPICKVAL(Install_Status_Opp__c , "Complete - Waiting on Contract Update")
+
+
+
+
+  )
+
+)</errorConditionFormula>
+    <errorDisplayField>Install_Complete__c</errorDisplayField>
+    <errorMessage>The Install Complete checkbox cannot be checked if the INSTALL STATUS is not in a COMPLETED Status which is allowed to start billing. The valid options are: "Complete" or "Complete - Waiting on Port"</errorMessage>
+</ValidationRule>

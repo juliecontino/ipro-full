@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OPS_Category__c</fullName>
+    <label>OPS Category</label>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Installation</fullName>
+                <color>#009900</color>
+                <default>false</default>
+                <label>INSTALLATION</label>
+            </value>
+            <value>
+                <fullName>ICN</fullName>
+                <color>#3366FF</color>
+                <default>false</default>
+                <label>ICN</label>
+            </value>
+            <value>
+                <fullName>MAC</fullName>
+                <color>#FF6600</color>
+                <default>false</default>
+                <label>MAC</label>
+            </value>
+            <value>
+                <fullName>RECAST</fullName>
+                <color>#000099</color>
+                <default>false</default>
+                <label>RECAST</label>
+            </value>
+            <value>
+                <fullName>Post Installation</fullName>
+                <color>#000000</color>
+                <default>false</default>
+                <label>POST INSTALLATION</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>None</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

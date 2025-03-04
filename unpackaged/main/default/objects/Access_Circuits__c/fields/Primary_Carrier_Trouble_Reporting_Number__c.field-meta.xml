@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Carrier_Trouble_Reporting_Number__c</fullName>
+    <description>Primary carrier trouble reporting number</description>
+    <externalId>false</externalId>
+    <label>Primary Carrier Trouble Reporting Number</label>
+    <length>15</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

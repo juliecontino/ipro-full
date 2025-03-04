@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter any information provided by the Client pertaining to their network routing requirements. If the primary network router is provided by the Client, please list the Make and Model. --></help>
+        <label><!-- Router Comments --></label>
+        <name>Net_Router_Comments__c</name>
+    </CustomFieldTranslation>

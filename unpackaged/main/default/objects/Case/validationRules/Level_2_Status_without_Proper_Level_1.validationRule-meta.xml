@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level_2_Status_without_Proper_Level_1</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( OR(ISPICKVAL( Level_1_Status__c , ""),NOT(ISPICKVAL(Level_1_Status__c,"Need To Escalate"))), 
+NOT(ISPICKVAL(Level_2_Status__c,"")))</errorConditionFormula>
+    <errorDisplayField>Level_2_Status__c</errorDisplayField>
+    <errorMessage>Level 2 Status without Level 1 Escalation</errorMessage>
+</ValidationRule>

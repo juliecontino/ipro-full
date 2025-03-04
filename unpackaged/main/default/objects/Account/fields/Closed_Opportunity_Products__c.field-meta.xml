@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Opportunity_Products__c</fullName>
+    <label>RB Closed Opportunity Products</label>
+    <summarizedField>Opportunity.AnyWare_Monthly_Total__c</summarizedField>
+    <summaryFilterItems>
+        <field>Opportunity.Sale_Type__c</field>
+        <operation>equals</operation>
+        <value>AnyWare, TSP, AnyWare Support Only</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Opportunity.StageName</field>
+        <operation>equals</operation>
+        <value>Closed Won</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Opportunity.Recurring_Billing_Active__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity.AccountId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

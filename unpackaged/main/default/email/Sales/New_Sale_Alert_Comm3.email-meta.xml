@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Send E-Mail alert to Approve of new sale</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>New Sale Alert_Comm3</name>
+    <style>none</style>
+    <subject>New Sale Alert: {!Opportunity.Account}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

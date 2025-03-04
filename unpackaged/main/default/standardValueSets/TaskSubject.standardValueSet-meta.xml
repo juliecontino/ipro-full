@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>true</sorted>
+    <standardValue>
+        <fullName>Call</fullName>
+        <default>false</default>
+        <label>Call</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Cold Call</fullName>
+        <default>false</default>
+        <label>Cold Call</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Collection Call</fullName>
+        <default>false</default>
+        <label>Collection Call</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Door Knock</fullName>
+        <default>false</default>
+        <label>Door Knock</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Email</fullName>
+        <default>false</default>
+        <label>Email</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Process and Mail Client Statements</fullName>
+        <default>false</default>
+        <label>Process and Mail Client Statements</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Send Letter</fullName>
+        <default>false</default>
+        <label>Send Letter</label>
+    </standardValue>
+    <standardValue>
+        <fullName>Send Quote</fullName>
+        <default>false</default>
+        <label>Send Quote</label>
+    </standardValue>
+</StandardValueSet>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This is the default email invitation template for survey: IPro Media ~ Installation</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>[Send using Timba Surveys] IPro Media ~ Installation</name>
+    <style>none</style>
+    <subject>Please complete this survey: IPro Media ~ Installation</subject>
+    <textOnly>Dear {!Contact.Name},
+
+We hope that your recent installation met your expectations.  We look for forward to meeting your business communications needs for many years to come. In order to assist us in improving our customer satisfaction, Please complete this short survey located at:   %SURVEY_URL%
+
+Thank you very much.
+
+Sincerely,
+
+Richard Bell
+President
+IPro Media, Inc
+
+
+
+
+
+
+
+
+
+
+_____________________________________________________________________
+Surveys Made Easy by Timba Surveys
+http://sfproducts.altimetrik.com/forums</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If this field is &quot;Not Checked&quot;, do not pay any A/P bills for this Vendor Contract. --></help>
+        <label><!-- Approved To Pay --></label>
+        <name>Approved_To_Pay__c</name>
+    </CustomFieldTranslation>

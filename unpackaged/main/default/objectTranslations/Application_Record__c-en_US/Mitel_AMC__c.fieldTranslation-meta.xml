@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Mitel AMC --></label>
+        <name>Mitel_AMC__c</name>
+        <picklistValues>
+            <masterLabel>127422 - Legacy</masterLabel>
+            <translation><!-- 127422 - Legacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>144837 - Managed Service Provider</masterLabel>
+            <translation><!-- 144837 - Managed Service Provider --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

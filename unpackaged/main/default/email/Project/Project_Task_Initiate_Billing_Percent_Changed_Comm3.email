@@ -1,0 +1,6 @@
+The project task "Notify Accounting to Begin Billing" Percent has Changed from 0% Complete
+
+Project Name: {!AcctSeed__Project__c.Name}
+Link: {!AcctSeed__Project__c.Link}
+
+Workflow: Project Task Initiate Billing Changed

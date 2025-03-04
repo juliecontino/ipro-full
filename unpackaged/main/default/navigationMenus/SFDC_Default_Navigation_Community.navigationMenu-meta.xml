@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NavigationMenu xmlns="http://soap.sforce.com/2006/04/metadata">
+    <container>Community</container>
+    <containerType>Network</containerType>
+    <label>Default Navigation</label>
+    <navigationMenuItem>
+        <label>Community</label>
+        <position>1</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>ShowMoreTopics</target>
+        <type>NavigationalTopic</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>IPro Training</label>
+        <position>2</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/ipro-training</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Mitel TV</label>
+        <position>3</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>http://www.mitel.com/tv</target>
+        <type>ExternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Contact Support</label>
+        <position>4</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/contactsupport</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Company Cases</label>
+        <position>5</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/company-cases</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>My Cases</label>
+        <position>6</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/case-home</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Call Records</label>
+        <position>7</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/my-calls</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Equipment</label>
+        <position>8</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/equipment-home</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Billing</label>
+        <position>9</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/billings-home</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Mitel Desktop Training</label>
+        <position>10</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>http://training.mitel.com/cw/WebSite/techTraining/Mercury/Desktop%20End%20User.htm?_ga=1.175466658.1246921467.1473784241</target>
+        <type>ExternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>IPro Website</label>
+        <position>11</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>http://ipromedia.us</target>
+        <type>ExternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <label>IPro YouTube</label>
+        <position>12</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>https://www.youtube.com/channel/UCK491qIwtJiUbXb7IiOiqIQ</target>
+        <type>ExternalLink</type>
+    </navigationMenuItem>
+    <navigationMenuItem>
+        <defaultListViewId>Company_Port_Orders</defaultListViewId>
+        <label>Port Orders</label>
+        <position>13</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Port_Order__c</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
+</NavigationMenu>

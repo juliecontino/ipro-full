@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Contract_Term__c</fullName>
+    <label>Support Contract Term</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>One Year</fullName>
+                <default>true</default>
+                <label>One Year</label>
+            </value>
+            <value>
+                <fullName>Two Years</fullName>
+                <default>false</default>
+                <label>Two Years</label>
+            </value>
+            <value>
+                <fullName>Three Years</fullName>
+                <default>false</default>
+                <label>Three Years</label>
+            </value>
+            <value>
+                <fullName>Four Years</fullName>
+                <default>false</default>
+                <label>Four Years</label>
+            </value>
+            <value>
+                <fullName>Five Years</fullName>
+                <default>false</default>
+                <label>Five Years</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ipro_Providing_Router__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Ipro Providing Router</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

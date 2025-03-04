@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Assigned</masterLabel>
+            <translation><!-- Assigned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Decommissioned</masterLabel>
+            <translation><!-- Decommissioned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ordered</masterLabel>
+            <translation><!-- Ordered --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unassigned-In Inventory</masterLabel>
+            <translation><!-- Unassigned-In Inventory --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

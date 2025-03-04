@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CaseSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAssignNotificationTemplate>unfiled$public/SUPPORTNewassignmentnotificationSAMPLE</caseAssignNotificationTemplate>
+    <caseAutoProcUser>false</caseAutoProcUser>
+    <caseCreateNotificationTemplate>unfiled$public/SUPPORTWebtoCaseemailresponseSAMPLE</caseCreateNotificationTemplate>
+    <caseFeedItemSettings>
+        <characterLimit>400</characterLimit>
+        <displayFormat>Default</displayFormat>
+        <feedItemType>EmailMessageEvent</feedItemType>
+    </caseFeedItemSettings>
+    <caseFeedReadUnreadLtng>false</caseFeedReadUnreadLtng>
+    <caseMergeInLightning>false</caseMergeInLightning>
+    <closeCaseThroughStatusChange>false</closeCaseThroughStatusChange>
+    <defaultCaseFeedLayoutOn>false</defaultCaseFeedLayoutOn>
+    <defaultCaseOwner>Support_Unassigned</defaultCaseOwner>
+    <defaultCaseOwnerType>Queue</defaultCaseOwnerType>
+    <defaultCaseUser>sflynn@ipromedia.us</defaultCaseUser>
+    <emailToCase>
+        <enableE2CAttachmentAsFile>false</enableE2CAttachmentAsFile>
+        <enableE2CDeduplicateAttachments>false</enableE2CDeduplicateAttachments>
+        <enableE2CExternalServer>false</enableE2CExternalServer>
+        <enableE2CSourceTracking>false</enableE2CSourceTracking>
+        <enableEmailToCase>true</enableEmailToCase>
+        <enableHtmlEmail>false</enableHtmlEmail>
+        <enableNewToReadTriggers>false</enableNewToReadTriggers>
+        <enableOnDemandEmailToCase>false</enableOnDemandEmailToCase>
+        <enableThreadIDInBody>true</enableThreadIDInBody>
+        <enableThreadIDInSubject>true</enableThreadIDInSubject>
+        <notifyOwnerOnNewCaseEmail>false</notifyOwnerOnNewCaseEmail>
+        <preQuoteSignature>false</preQuoteSignature>
+        <replyWithNewContentOnly>false</replyWithNewContentOnly>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email</caseOrigin>
+            <caseOwner>Comm3_Cases</caseOwner>
+            <caseOwnerType>Queue</caseOwnerType>
+            <casePriority>Priority 3</casePriority>
+            <createTask>false</createTask>
+            <emailAddress>support@comm3.net</emailAddress>
+            <isPermsetControlled>false</isPermsetControlled>
+            
+            <routingName>Comm3 Support</routingName>
+            <saveEmailHeaders>true</saveEmailHeaders>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>Outlook</addressType>
+            <caseOrigin>Email</caseOrigin>
+            <casePriority>Priority 3</casePriority>
+            <isVerified>false</isVerified>
+            <routingName>R Bell</routingName>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email</caseOrigin>
+            <casePriority>Priority 3</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>paul.guerra@internetcreations.com</emailAddress>
+            <isPermsetControlled>false</isPermsetControlled>
+            <isVerified>true</isVerified>
+            <routingName>Support Queue</routingName>
+            <saveEmailHeaders>true</saveEmailHeaders>
+            <taskStatus>Not Started</taskStatus>
+        </routingAddresses>
+    </emailToCase>
+    <enableCaseFeed>true</enableCaseFeed>
+    <enableCaseSwarming>false</enableCaseSwarming>
+    <enableCollapseEmailThread>false</enableCollapseEmailThread>
+    <enableDraftEmails>false</enableDraftEmails>
+    <enableEarlyEscalationRuleTriggers>false</enableEarlyEscalationRuleTriggers>
+    <enableEmailActionDefaultsHandler>false</enableEmailActionDefaultsHandler>
+    <enableEmailContactOnCasePost>false</enableEmailContactOnCasePost>
+    <enableEscalateQfiToCaseInternal>false</enableEscalateQfiToCaseInternal>
+    <enableEscalateQfiToCaseNetworks>false</enableEscalateQfiToCaseNetworks>
+    <enableExtNetworksCaseFeedEnabled>true</enableExtNetworksCaseFeedEnabled>
+    <enableMultiLangSolnSrchCSS>false</enableMultiLangSolnSrchCSS>
+    <enableMultiLangSolnSrchPKB>false</enableMultiLangSolnSrchPKB>
+    <enableMultiLangSolution>false</enableMultiLangSolution>
+    <enableSolutionCategory>true</enableSolutionCategory>
+    <enableSolutionInlineCategory>true</enableSolutionInlineCategory>
+    <enableSolutionShortSummary>true</enableSolutionShortSummary>
+    <enableSuggestedArticlesApplication>false</enableSuggestedArticlesApplication>
+    <enableSuggestedArticlesCustomerPortal>false</enableSuggestedArticlesCustomerPortal>
+    <enableSuggestedArticlesPartnerPortal>false</enableSuggestedArticlesPartnerPortal>
+    <enableSuggestedSolutions>true</enableSuggestedSolutions>
+    <escalateCaseBefore>false</escalateCaseBefore>
+    <notifyContactOnCaseComment>false</notifyContactOnCaseComment>
+    <notifyDefaultCaseOwner>true</notifyDefaultCaseOwner>
+    <notifyOwnerOnCaseComment>true</notifyOwnerOnCaseComment>
+    <notifyOwnerOnCaseOwnerChange>true</notifyOwnerOnCaseOwnerChange>
+    <showEmailAttachmentsInCaseAttachmentsRL>true</showEmailAttachmentsInCaseAttachmentsRL>
+    <systemUserEmail>automatedcase@00d40000000mnhleak.ext</systemUserEmail>
+    <useSystemEmailAddress>true</useSystemEmailAddress>
+    <useSystemUserAsDefaultCaseUser>false</useSystemUserAsDefaultCaseUser>
+    <visibleInCssCheckbox>false</visibleInCssCheckbox>
+    <webToCase>
+        <enableWebToCase>false</enableWebToCase>
+    </webToCase>
+</CaseSettings>

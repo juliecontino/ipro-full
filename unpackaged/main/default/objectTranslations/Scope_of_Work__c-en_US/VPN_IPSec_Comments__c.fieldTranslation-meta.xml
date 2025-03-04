@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If VPN IPSec is checked, describe the Client requirement. How many IPSec VPN&apos;s need to be configured and how are they used. --></help>
+        <label><!-- VPN IPSec Comments --></label>
+        <name>VPN_IPSec_Comments__c</name>
+    </CustomFieldTranslation>

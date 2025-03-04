@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Classroom training is defined as a single-trainer training multiple general business users in a single session. Training classes should be limited to no more than 10 users. --></help>
+        <label><!-- Classrom --></label>
+        <name>Training_Classrom__c</name>
+    </CustomFieldTranslation>

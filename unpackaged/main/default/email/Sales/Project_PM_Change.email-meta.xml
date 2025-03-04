@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPro_Media_Letterhead</letterhead>
+    <name>Project: PM Change</name>
+    <style>freeForm</style>
+    <subject>New Opportunity Project Manager Assignment: {!Opportunity.Name}</subject>
+    <textOnly>The project manager has been changed to: {!AcctSeed__Project__c.AcctSeed__Project_Manager__c}
+Opportunity: {!AcctSeed__Project__c.AcctSeed__Opportunity__c}
+OPs Category: {!AcctSeed__Project__c.Opportunity_Ops_Category__c}
+Project Link: {!AcctSeed__Project__c.Link}
+
+
+
+Note: Verify the PM on the Opportunity is the same as the Project record
+
+
+
+
+
+This is an automated message from Salesforce:
+Process Builder - PM Change</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

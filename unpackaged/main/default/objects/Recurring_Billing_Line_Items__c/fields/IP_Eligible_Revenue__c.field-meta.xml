@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IP_Eligible_Revenue__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box for Recurring Billing Line Items that generate revenue that is eligible for Independent Partner Commission calculations.</inlineHelpText>
+    <label>IP Eligible Revenue</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

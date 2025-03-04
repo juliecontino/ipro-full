@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>C5_Work_Order_Number__c</fullName>
+    <description>Cat-5 Corresponding Work Order Number</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Please enter the Cat-5 Work Order Number that corresponds to this Opportunity.</inlineHelpText>
+    <label>C5 Work Order Number</label>
+    <length>12</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

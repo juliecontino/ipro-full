@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Product Code --></label>
+        <name>Sort_Tel_Acct_Product_Code__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Group__c</fullName>
+    <label>Product Group</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Phone Set</fullName>
+                <default>false</default>
+                <label>Phone Set</label>
+            </value>
+            <value>
+                <fullName>License</fullName>
+                <default>false</default>
+                <label>License</label>
+            </value>
+            <value>
+                <fullName>Server</fullName>
+                <default>false</default>
+                <label>Server</label>
+            </value>
+            <value>
+                <fullName>Fax</fullName>
+                <default>false</default>
+                <label>Fax</label>
+            </value>
+            <value>
+                <fullName>Switches</fullName>
+                <default>false</default>
+                <label>Switches</label>
+            </value>
+            <value>
+                <fullName>Routers</fullName>
+                <default>false</default>
+                <label>Routers</label>
+            </value>
+            <value>
+                <fullName>WAP</fullName>
+                <default>false</default>
+                <label>WAP</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

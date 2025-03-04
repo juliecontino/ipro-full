@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Configuration_Type__c</fullName>
+    <label>Configuration Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>IPro Data Center</fullName>
+                <default>true</default>
+                <label>IPro Data Center</label>
+            </value>
+            <value>
+                <fullName>Hybrid</fullName>
+                <default>false</default>
+                <label>Hybrid</label>
+            </value>
+            <value>
+                <fullName>Customer Premise</fullName>
+                <default>false</default>
+                <label>Customer Premise</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

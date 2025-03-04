@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Circuit__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>02/11 SH: Used as part of Access Circuit transition to Assets</description>
+    <label>Access Circuit</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

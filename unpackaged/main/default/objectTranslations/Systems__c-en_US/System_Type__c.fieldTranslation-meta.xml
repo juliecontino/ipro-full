@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- System Type --></label>
+        <name>System_Type__c</name>
+        <picklistValues>
+            <masterLabel>Gateway</masterLabel>
+            <translation><!-- Gateway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monitor</masterLabel>
+            <translation><!-- Monitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PC Hardware</masterLabel>
+            <translation><!-- PC Hardware --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printer</masterLabel>
+            <translation><!-- Printer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Server</masterLabel>
+            <translation><!-- Server --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Software</masterLabel>
+            <translation><!-- Software --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

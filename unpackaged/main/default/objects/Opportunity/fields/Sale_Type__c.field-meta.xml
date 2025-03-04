@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sale_Type__c</fullName>
+    <label>Sale Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AnyWare</fullName>
+                <default>false</default>
+                <label>AnyWare</label>
+            </value>
+            <value>
+                <fullName>AnyWare Support Only</fullName>
+                <default>false</default>
+                <label>AnyWare Support Only</label>
+            </value>
+            <value>
+                <fullName>AnyWare Access Circuit Conversion</fullName>
+                <default>false</default>
+                <label>AnyWare Access Circuit Conversion</label>
+            </value>
+            <value>
+                <fullName>AnyWare CC Migration</fullName>
+                <default>false</default>
+                <label>AnyWare CC Migration</label>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>TSP</fullName>
+                <default>false</default>
+                <label>TSP</label>
+            </value>
+            <value>
+                <fullName>Recast</fullName>
+                <default>false</default>
+                <label>Recast</label>
+            </value>
+            <value>
+                <fullName>GSA</fullName>
+                <default>false</default>
+                <label>GSA</label>
+            </value>
+            <value>
+                <fullName>Break-Fix Case</fullName>
+                <default>false</default>
+                <label>Break-Fix Case</label>
+            </value>
+            <value>
+                <fullName>Non-Sale</fullName>
+                <default>false</default>
+                <label>Non-Sale</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

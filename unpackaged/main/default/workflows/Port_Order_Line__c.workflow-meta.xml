@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_Port_Numbers_Count</fullName>
+        <field>Sequence_Number__c</field>
+        <formula>IF(
+    OR(
+        ISBLANK(Port_Order__r.Numbers_Count__c ),
+        Port_Order__r.Numbers_Count__c  = 0
+    ),
+    1,
+    Port_Order__r.Numbers_Count__c  + 1
+)</formula>
+        <name>Update Port Numbers Count</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update Numbers Count</fullName>
+        <actions>
+            <name>Update_Port_Numbers_Count</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Port_Order_Line__c.Telephone_Number__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

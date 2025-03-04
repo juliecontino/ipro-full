@@ -1,0 +1,26 @@
+{!Opportunity.OwnerFullName} has just closed a new sale. Sale information is as follows:
+
+Stage:   {!Opportunity.StageName}
+Account:   {!Opportunity.Account}
+Alias: {!Opportunity.Account_Alias__c}
+Description:   {!Opportunity.Name}
+Amount:   {!Opportunity.Opportunity_Booking_Amount__c}
+Date:   {!Opportunity.CloseDate}
+Type:   {!Opportunity.Sale_Type__c}
+Ops Category:  {!Opportunity.OPS_Category__c}
+
+Link:   {!Opportunity.Link}
+
+Last Modified by: {!Opportunity.LastModifiedBy}
+Approval Comments: {!ApprovalRequest.Comments}
+
+
+
+
+
+
+
+
+This is an automated message from Salesforce
+
+Approval Processes: Opportunity: Opportunity Approval Process

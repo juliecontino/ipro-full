@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- TAG_Call_Flag --></help>
+        <label><!-- TAG Call Flag --></label>
+        <name>TAG_Call_Flag__c</name>
+    </CustomFieldTranslation>

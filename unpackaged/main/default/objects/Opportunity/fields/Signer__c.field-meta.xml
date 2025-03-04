@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Signer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>4-3-24 BM: The Contact who will be sent the Conga Sign document.</description>
+    <inlineHelpText>This field must have a Contact with an email address to send an esign document.</inlineHelpText>
+    <label>Signer</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Opportunities (Signer)</relationshipLabel>
+    <relationshipName>SignerOpportunities</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

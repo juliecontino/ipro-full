@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Christmas Gift --></label>
+        <name>Christmas_Gift__c</name>
+        <picklistValues>
+            <masterLabel>Executive Package (Large)</masterLabel>
+            <translation><!-- Executive Package (Large) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Peppermint Box (Small)</masterLabel>
+            <translation><!-- Peppermint Box (Small) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Praline Box (Medium)</masterLabel>
+            <translation><!-- Praline Box (Medium) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Praline Box (Small)</masterLabel>
+            <translation><!-- Praline Box (Small) --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

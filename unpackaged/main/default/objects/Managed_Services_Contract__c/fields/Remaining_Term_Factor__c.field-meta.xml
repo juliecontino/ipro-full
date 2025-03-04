@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Term_Factor__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case ( Remaining_Term__c ,
+1,1.00000,
+1,1.00813,
+2,0.50610,
+3,0.33876,
+4,0.25510,
+5,0.20490,
+6,0.17144,
+7,0.14754,
+8,0.12961,
+9,0.11567,
+10,0.10452,
+11,0.09540,
+12,0.08780,
+13,0.08137,
+14,0.07586,
+15,0.07108,
+16,0.06690,
+17,0.06322,
+18,0.05994,
+19,0.05701,
+20,0.05437,
+21,0.05199,
+22,0.04982,
+23,0.04784,
+24,0.04603,
+25,0.04436,
+26,0.04282,
+27,0.04140,
+28,0.04007,
+29,0.03884,
+30,0.03770,
+31,0.03662,
+32,0.03561,
+33,0.03467,
+34,0.03378,
+35,0.03294,
+36,0.03215,
+37,0.03140,
+38,0.03069,
+39,0.03002,
+40,0.02938,
+41,0.02878,
+42,0.02820,
+43,0.02765,
+44,0.02712,
+45,0.02662,
+46,0.02614,
+47,0.02568,
+48,0.02524,
+49,0.02482,
+50,0.02442,
+51,0.02403,
+52,0.02366,
+53,0.02330,
+54,0.02295,
+55,0.02262,
+56,0.02230,
+57,0.02199,
+58,0.02169,
+59,0.02140,
+60,0.0220,
+0.0236)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Remaining Term Factor</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>5</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

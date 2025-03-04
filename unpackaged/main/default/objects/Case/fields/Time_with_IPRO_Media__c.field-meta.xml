@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_with_IPRO_Media__c</fullName>
+    <label>Time with IPRO Media</label>
+    <summarizedField>FLAGS__Case_Flags_History_Tracking__c.FLAGS__Business_Hours_Elapsed__c</summarizedField>
+    <summaryFilterItems>
+        <field>FLAGS__Case_Flags_History_Tracking__c.FLAGS__Flag_Set__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>FLAGS__Case_Flags_History_Tracking__c.FLAGS__Case__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

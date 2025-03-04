@@ -1,0 +1,20 @@
+Opportunity Closed Won...Install Record Created for:
+
+Account Name: {!Opportunity.Account}
+
+Alias: {!Opportunity.Account_Alias__c}
+
+Opportunity Name: {!Opportunity.Name}
+
+OPS Category:  {!Opportunity.OPS_Category__c}
+
+Link: {!Opportunity.Link}
+
+Last Modified by: {!Opportunity.LastModifiedBy}
+
+
+
+
+This is an automated message from Salesforce
+
+Process Builder Rule: Object: Opportunity Rule name: Opportunity Closed Won to Install Record Add

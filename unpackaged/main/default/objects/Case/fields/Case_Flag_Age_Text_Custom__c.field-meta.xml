@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Flag_Age_Text_Custom__c</fullName>
+    <description>The Case Flag Age decimal rendered as a eight-digit string used to aid with sorting on list views. FOR CUSTOM CASE FLAGS SETUP.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISNULL( FLAGS__ViewedFlag__c ),'',LPAD(TEXT(ROUND( Case_Flag_Rolling_Business_Age__c *100,0)),6,'0'))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Flag Sort</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

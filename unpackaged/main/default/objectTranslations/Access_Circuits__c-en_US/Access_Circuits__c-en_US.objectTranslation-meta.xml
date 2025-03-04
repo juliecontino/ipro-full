@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Access Circuit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Access Circuits</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Lookup Account Number --></label>
+        <name>Lookup_Account_Number</name>
+    </fieldSets>
+    <layouts>
+        <layout>Access Circuit Layout</layout>
+        <sections>
+            <label><!-- Address Change Project --></label>
+            <section>Address Change Project</section>
+        </sections>
+        <sections>
+            <label><!-- Carrier Information --></label>
+            <section>Carrier Information</section>
+        </sections>
+        <sections>
+            <label><!-- Carrier Transfer Project --></label>
+            <section>Carrier Transfer Project</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Intelepeer Specific Data --></label>
+            <section>Intelepeer Specific Data</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Circuit ID</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

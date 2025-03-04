@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <acrossGroupingContext>AcctSeed__Billing__c.AcctSeed__Accounting_Period__c</acrossGroupingContext>
+        <calculatedFormula>if (PREVGROUPVAL(AcctSeed__Billing__c.AcctSeed__Total__c:SUM,AcctSeed__Billing__c.AcctSeed__Accounting_Period__c)=0,0,
+
+((AcctSeed__Billing__c.AcctSeed__Total__c:SUM) -
+PREVGROUPVAL(AcctSeed__Billing__c.AcctSeed__Total__c:SUM,AcctSeed__Billing__c.AcctSeed__Accounting_Period__c))/
+PREVGROUPVAL(AcctSeed__Billing__c.AcctSeed__Total__c:SUM,AcctSeed__Billing__c.AcctSeed__Accounting_Period__c)
+
+)</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>AcctSeed__Billing__c.AcctSeed__Customer__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Percent Change</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <colorRanges>
+        <columnName>FORMULA1</columnName>
+        <highBreakpoint>-20.0</highBreakpoint>
+        <highColor>#FFFFFF</highColor>
+        <lowBreakpoint>-99.0</lowBreakpoint>
+        <lowColor>#C25454</lowColor>
+        <midColor>#C2C254</midColor>
+    </colorRanges>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing__c.AcctSeed__Date__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing__c.AcctSeed__Due_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Billing__c.AcctSeed__Total__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing__c.AcctSeed__Balance__c</field>
+    </columns>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Billing__c.AcctSeed__Accounting_Period__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Billing__c.AcctSeed__Customer__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Billing Comparison by Period</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$AcctSeed__Billing__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Billing__c.AcctSeed__Date__c</dateColumn>
+        <interval>INTERVAL_CURPREV1</interval>
+    </timeFrameFilter>
+</Report>

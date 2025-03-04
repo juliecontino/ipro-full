@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>zaapit__Opportunities</defaultLandingTab>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>IPro</label>
+    <logo>SpringCMEos__LogoFolder/IPro_Logo_Hortizontal_small.png</logo>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>zaapit__Leads</tabs>
+    <tabs>zaapit__Contact_Working_List</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>zaapit__Opportunities</tabs>
+    <tabs>Approval</tabs>
+    <tabs>standard-Document</tabs>
+    <tabs>standard-Product2</tabs>
+    <tabs>standard-Pricebook2</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>Scope_of_Work__c</tabs>
+</CustomApplication>

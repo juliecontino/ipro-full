@@ -1,0 +1,6 @@
+The project task "Initiate Billing" Percent has been marked Complete or the Percent Complete has changed.
+
+Project Name: {!AcctSeed__Project__c.Name}
+Link: {!AcctSeed__Project__c.Link}
+
+Workflow: Project Task Initiate Billing Changed

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- C5 GL Account CR ID --></label>
+        <name>C5_GL_Account_CR_ID__c</name>
+    </CustomFieldTranslation>

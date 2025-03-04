@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Select if the Client is implementing a new or converting an existing call center. --></help>
+        <label><!-- Call Center --></label>
+        <name>App_Call_Center__c</name>
+    </CustomFieldTranslation>

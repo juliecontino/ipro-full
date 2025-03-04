@@ -1,0 +1,6 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+ <flow:interview name="Quick_Case" />
+
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Knowledge</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Knowledge</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>FAQ FAQ Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- FAQ --></label>
+            <section>FAQ</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>How To How To Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Internal Policy Internal Policy Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Products &amp; Services Info Products &amp; Services Info Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- FAQ --></label>
+        <name>FAQ</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- How_To --></label>
+        <name>How_To</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Internal_Policy --></label>
+        <name>Internal_Policy</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Products_Services_Info --></label>
+        <name>Products_Services_Info</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

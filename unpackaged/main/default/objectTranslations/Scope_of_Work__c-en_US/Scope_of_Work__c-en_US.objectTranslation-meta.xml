@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Scope of Work</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Scope of Work</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Scope of Work Layout</layout>
+        <sections>
+            <label><!-- Access Circuits (Telco) --></label>
+            <section>Access Circuits (Telco)</section>
+        </sections>
+        <sections>
+            <label><!-- Applications --></label>
+            <section>Applications</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Hardware --></label>
+            <section>Hardware</section>
+        </sections>
+        <sections>
+            <label><!-- Implementation Timeline --></label>
+            <section>Implementation Timeline</section>
+        </sections>
+        <sections>
+            <label><!-- Network --></label>
+            <section>Network</section>
+        </sections>
+        <sections>
+            <label><!-- Overview --></label>
+            <section>Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Port Information --></label>
+            <section>Port Information</section>
+        </sections>
+        <sections>
+            <label><!-- Training --></label>
+            <section>Training</section>
+        </sections>
+        <sections>
+            <label><!-- Wireless --></label>
+            <section>Wireless</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Sales Process --></label>
+        <name>Sales_Process</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnyWare_Billing_Product_Only__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>AnyWare Billing Product Only</description>
+    <inlineHelpText>This checkbox should only be set to true if the product is an AnyWare Billing Product Code only, and does not reference an actual product.</inlineHelpText>
+    <label>AnyWare Billing Product Only</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

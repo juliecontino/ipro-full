@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Public_Comment</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Public Comment</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>var myURL='/apex/E2CP__New_Comment?id={!Case.Id}&amp;scontrolCaching=1&amp;core.apexpages.devmode.url=1'; 
+var isConsole = false; 
+
+if(typeof srcUp == 'function') isConsole = true; 
+if(isConsole)myURL+= '&amp;isdtp=vw'; 
+
+if(!isConsole){ 
+location=myURL; 
+} 
+else { 
+srcUp(myURL); 
+}</url>
+</WebLink>

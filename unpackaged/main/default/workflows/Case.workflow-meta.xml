@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Case_Assigned_to_Rep</fullName>
+        <description>Case Assigned to Rep</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>support@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Assigned_to_Rep</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Escalated_to_Level_2</fullName>
+        <description>Case Escalated to Level 2</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Support_Level_2</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>E2CP__E2CP_Templates/Case_Escalated_to_level_2</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Escalated_to_Level_3</fullName>
+        <description>Case Escalated to Level 3</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Support_Level_3</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Escalated_to_level_3</template>
+    </alerts>
+    <alerts>
+        <fullName>P1_2_hour</fullName>
+        <description>P1 2 hour</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Case_2_Hour_Mark</template>
+    </alerts>
+    <alerts>
+        <fullName>P1_4_Hour</fullName>
+        <description>P1 4 Hour</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_4_Hour_Mark</template>
+    </alerts>
+    <alerts>
+        <fullName>Ready_for_closing_and_billing</fullName>
+        <description>Ready for closing and billing</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/SUPPORT_Case_ready_for_Closing_Billing</template>
+    </alerts>
+    <alerts>
+        <fullName>X16_Hour_Case_Reminder</fullName>
+        <description>16 Hour Case Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_16_Hour_Mark</template>
+    </alerts>
+    <alerts>
+        <fullName>X24_Hour_Case_Reminder</fullName>
+        <description>24 Hour Case Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_24_Hour_Mark</template>
+    </alerts>
+    <alerts>
+        <fullName>X40_Hour_Case_Reminder</fullName>
+        <description>40 Hour Case Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Case_40_Hour_Mark</template>
+    </alerts>
+    <alerts>
+        <fullName>X4_Hour_Notification</fullName>
+        <description>4 Hour Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_4_Hour_Mark</template>
+    </alerts>
+    <alerts>
+        <fullName>X8_Hour_case_Reminder</fullName>
+        <description>8 Hour case Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>support@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_8_Hour_Mark</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Case_Ready_for_Billing_Closure</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Case_Ready_for_Close</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Case Ready for Billing/Closure</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Change_Case_Owner_to_Ready_to_Close</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Case_Ready_for_Close</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Change Case Owner to Ready to Close</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Case_Flag</fullName>
+        <field>FLAGS__ViewedFlag__c</field>
+        <name>Clear Case Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Escalate_to_management</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Management</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Escalate to management</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Level_2_Resolved_Billing</fullName>
+        <field>Status</field>
+        <literalValue>Ready for Billing/Closure</literalValue>
+        <name>Level 2 Resolved Billing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Level_2_Resolved_Ready_Billing</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Case_Ready_for_Close</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Level 2 Resolved - Case Owner</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Level_3_Case_Resolved</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Case_Ready_for_Close</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Level 3 Case Resolved</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Level_3_Resolved_Billing_Closure</fullName>
+        <field>Status</field>
+        <literalValue>Ready for Billing/Closure</literalValue>
+        <name>Level 3 Resolved-Billing Closure</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OpCC_Site_Survey_Billable</fullName>
+        <field>Billable__c</field>
+        <literalValue>0</literalValue>
+        <name>OpCC-Site Survey-Billable</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OpCC_Site_Survey_Priority</fullName>
+        <field>Priority</field>
+        <literalValue>Priority 4</literalValue>
+        <name>OpCC-Site Survey-Priority</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OpCC_Site_Survey_Schedule</fullName>
+        <field>Scheduled_Date_Time__c</field>
+        <formula>CreatedDate  + 7</formula>
+        <name>OpCC-Site Survey-Schedule</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OpCC_Site_Survey_Type</fullName>
+        <field>Type</field>
+        <literalValue>Project</literalValue>
+        <name>OpCC-Site Survey-Type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Case_Flag_Age_1</fullName>
+        <field>FLAGS__CaseTimeOffset1__c</field>
+        <formula>0</formula>
+        <name>Set Case Flag Age 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Case_Status_to_Shipping_in_Progress</fullName>
+        <field>Status</field>
+        <literalValue>Shipping in Progress</literalValue>
+        <name>Set Case Status to Shipping in Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Case_Status_to_Waiting_on_Customer</fullName>
+        <field>Status</field>
+        <literalValue>Waiting on Customer</literalValue>
+        <name>Set Case Status to Waiting on Customer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_On_Hold</fullName>
+        <field>Status</field>
+        <literalValue>On Hold</literalValue>
+        <name>Status = On Hold</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_to_Ready_for_Closure</fullName>
+        <field>Status</field>
+        <literalValue>Ready for Billing/Closure</literalValue>
+        <name>Status to Ready for Closure</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Level_2</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Level_2</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Update Level 2</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Level_3</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Level_3</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Update Level 3</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>reassign_to_level_1</fullName>
+        <field>OwnerId</field>
+        <lookupValue>Level_1</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>reassign to level 1</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- 12. How to improve your experience --></label>
+        <name>X12_How_to_improve_your_experience__c</name>
+    </CustomFieldTranslation>

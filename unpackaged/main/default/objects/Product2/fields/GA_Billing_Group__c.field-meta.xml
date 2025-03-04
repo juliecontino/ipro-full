@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GA_Billing_Group__c</fullName>
+    <label>GA Billing Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Carrier Access Services</fullName>
+                <default>false</default>
+                <label>Carrier Access Services</label>
+            </value>
+            <value>
+                <fullName>Infrastructure-as-a-Service</fullName>
+                <default>false</default>
+                <label>Infrastructure-as-a-Service</label>
+            </value>
+            <value>
+                <fullName>SIP Trunking, Calling Plans, DID and Toll Free Numbers</fullName>
+                <default>false</default>
+                <label>SIP Trunking, Calling Plans, DID and Toll Free Numbers</label>
+            </value>
+            <value>
+                <fullName>Data Center Services</fullName>
+                <default>false</default>
+                <label>Data Center Services</label>
+            </value>
+            <value>
+                <fullName>IT Services</fullName>
+                <default>false</default>
+                <label>IT Services</label>
+            </value>
+            <value>
+                <fullName>Customer Premise Equipment</fullName>
+                <default>false</default>
+                <label>Customer Premise Equipment</label>
+            </value>
+            <value>
+                <fullName>Taxes, Surcharges and Fees</fullName>
+                <default>false</default>
+                <label>Taxes, Surcharges and Fees</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Support Only</fullName>
+                <default>false</default>
+                <label>Support Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

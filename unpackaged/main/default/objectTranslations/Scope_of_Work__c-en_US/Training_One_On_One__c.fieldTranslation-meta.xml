@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- One-On-One training can be defined in two ways. Training executive level users or general users with special requirements. Train-the-trainer applications. If selecting this option, provide a detailed narrative in comments. Attach user list. --></help>
+        <label><!-- One-On-One --></label>
+        <name>Training_One_On_One__c</name>
+    </CustomFieldTranslation>
