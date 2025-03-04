@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- When a Bank Rule runs relative to other bank rules. A rule with a priority of 1 will run before a rule with priority of 2. --></help>
+        <label><!-- Priority --></label>
+        <name>AcctSeed__Priority__c</name>
+    </CustomFieldTranslation>

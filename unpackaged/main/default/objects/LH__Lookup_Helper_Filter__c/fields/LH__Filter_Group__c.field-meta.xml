@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__Filter_Group__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Filter Group</label>
+    <referenceTo>LH__Lookup_Helper_Filter_Group__c</referenceTo>
+    <relationshipLabel>Lookup Helper Filters</relationshipLabel>
+    <relationshipName>Lookup_Helper_Filters</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

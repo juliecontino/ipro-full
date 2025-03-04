@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The order in which the buttons will display on the New Comment page. --></help>
+        <label><!-- Page Order --></label>
+        <name>E2CP__Page_Order__c</name>
+    </CustomFieldTranslation>

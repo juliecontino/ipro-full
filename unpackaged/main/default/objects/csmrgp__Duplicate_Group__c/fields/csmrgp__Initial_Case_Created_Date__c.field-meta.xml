@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__Initial_Case_Created_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Earliest created date for related cases used analytics.</description>
+    <inlineHelpText>Earliest created date for related cases used analytics.</inlineHelpText>
+    <label>Initial Case Created Date</label>
+    <summarizedField>csmrgp__Duplicate_Case__c.csmrgp__Case_Created_Date__c</summarizedField>
+    <summaryForeignKey>csmrgp__Duplicate_Case__c.csmrgp__Duplicate_Group__c</summaryForeignKey>
+    <summaryOperation>min</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

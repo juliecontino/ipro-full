@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AMEX_Open</fullName>
+    <columns>NAME</columns>
+    <columns>Accounting_Comments__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>AcctSeedERP__Vendor__c</columns>
+    <columns>Account__c</columns>
+    <columns>AcctSeedERP__Order_Date__c</columns>
+    <columns>AcctSeedERP__Status__c</columns>
+    <columns>AcctSeedERP__Type__c</columns>
+    <columns>AcctSeedERP__Total__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Terms__c</field>
+        <operation>equals</operation>
+        <value>AMEX Open</value>
+    </filters>
+    <label>AMEX Open</label>
+    <language>en_US</language>
+</ListView>

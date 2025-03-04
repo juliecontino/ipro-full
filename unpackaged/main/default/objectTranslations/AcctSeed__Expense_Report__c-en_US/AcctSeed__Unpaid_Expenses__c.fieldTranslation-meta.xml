@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The total amount of expenses which have not been paid. --></help>
+        <label><!-- Unpaid Expenses --></label>
+        <name>AcctSeed__Unpaid_Expenses__c</name>
+    </CustomFieldTranslation>

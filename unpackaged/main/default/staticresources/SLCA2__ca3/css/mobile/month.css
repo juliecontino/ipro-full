@@ -1,0 +1,345 @@
+/* 
+    Document   : month
+    Created on : 28 лют 2012, 19:47:04
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+
+
+/*@import url(month.ipad.css);*/
+
+.JQ_CA > .CA_r > div.show._mode-mobile-month{
+    display:block !important;
+    overflow:hidden;
+}
+
+.JQ_CA > .CA_r > div.show._mode-mobile-month.width_week_1 {right:1px;}
+.JQ_CA > .CA_r > div.show._mode-mobile-month.width_week_2 {right:2px;}
+.JQ_CA > .CA_r > div.show._mode-mobile-month.width_week_3 {right:3px;}
+.JQ_CA > .CA_r > div.show._mode-mobile-month.width_week_4 {right:4px;}
+.JQ_CA > .CA_r > div.show._mode-mobile-month.width_week_5 {right:5px;}
+.JQ_CA > .CA_r > div.show._mode-mobile-month.width_week_6 {right:6px;}
+
+
+.JQ_CA > .CA_r > div._mode-mobile-month > div.month_scroll{
+    overflow-y:hidden;
+    position:absolute;
+    top:30px;
+    left:0;
+    right:0;
+    bottom:0px;
+}
+.JQ_CA > .CA_r > div._mode-mobile-month > div.month_scroll > div.data{
+/*                min-height:300px;*/
+    position:relative;
+    overflow:hidden;
+    height:100%;width:100%;
+    padding:0px;margin:0px;
+    display:inline-block;
+/*    display:none;*/
+}
+
+    .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div{
+        height:16%;
+        position:relative;
+        text-align: right;
+        min-height:50px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .JQ_CA.CA_mozilla > .CA_r > div._mode-mobile-month.weeks_6   div.month_scroll > div,
+    .JQ_CA.CA_webkit > .CA_r > div._mode-mobile-month.weeks_6   div.month_scroll > div,
+    .JQ_CA.CA_opera > .CA_r > div._mode-mobile-month.weeks_6   div.month_scroll > div{
+        height:16.66%;
+    }
+    
+    
+        
+    
+    
+/*    .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div:last-of-type{
+        height:1px;line-height:0px;font-size:0px;
+        min-height:1px;
+    }*/
+
+/*            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div:last-of-type > ul > li{
+
+            }*/
+        .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul {
+            display:block;
+            height:100%;
+            width:100%;
+/*                        overflow: hidden;*/
+            list-style: none;
+            list-style-type: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            text-align:left;
+        }
+        .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div:last-of-type > ul{
+            min-height: 0px;overflow-y: hidden;
+        }
+
+
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{
+
+                border-collapse: collapse;
+/*                    float: left;*/
+                width: 14%;
+                border-right: 1px solid #ddd;
+                border-top:1px solid #ded;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+                background-color: rgb(248, 247, 255);
+                min-height: 50px;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-month li.cur-month{
+                background-color: #ffffff !important;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-month li > span.detail_day{
+                
+                background-color: transparent !important;
+                border: 0 none;
+                font-size: 150%;
+                position: absolute;
+                top: 0;
+                bottom:0;
+                right:0;
+                left: 0;
+                line-height: 45px;
+                overflow: hidden;
+                padding: 0 !important;
+                vertical-align: bottom;
+                text-align: center;
+                z-index:2;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-month li.cur-month > span.detail_day{
+                color:#444 !important;
+            }
+            
+/*            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li._ctrlSel,
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li._ctrlSel:hover,
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li.cur-month._ctrlSel{
+                background-color: red !important;
+            }*/
+/*            .JQ_CA._week-end-7 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:14%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:16%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:19%;}
+            
+
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:first-child{
+                width:2%;
+                background: white !important;
+                border-top:1px solid transparent !important;
+            }
+            
+            .JQ_CA._week-end-7 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:first-child{width:2%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:first-child{width:4%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:first-child{width:5%;}
+            
+            .JQ_CA.CA_mozilla > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:first-child{
+                width:0 !important;
+                display:none;
+            }
+            .JQ_CA.CA_mozilla > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:nth-child(2){
+                border-left: 1px solid #ddd;
+            }
+            
+            .JQ_CA._week-end-7.CA_mozilla > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:14.28%;}
+            .JQ_CA._week-end-6.CA_mozilla > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:16.66%;}
+            .JQ_CA._week-end-5.CA_mozilla > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:20%;}*/
+
+            
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:first-child{
+                display:none;
+            }
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:nth-child(2){
+                border-left: 1px solid #ddd;
+            }
+            
+            .JQ_CA._week-end-7 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:14.28%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:16.66%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li{width:20%;}
+
+                        
+            
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:nth-child(8),
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:nth-child(8),
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:nth-child(7),
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li[data-day="6"]{
+                display:none;
+            }
+
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div:first-child > ul > li{
+                border-top:0px;
+            }
+
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li.current,
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div > ul > li:hover
+            {
+                background: #dddddd;
+                background: -moz-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -webkit-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -o-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -ms-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+            }
+
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll.current > div > ul > li.month{
+                color:#333;
+            }                                        
+
+
+            .JQ_CA > .CA_r > div._mode-mobile-month   div.month_scroll > div[data-week="6"] > ul > li{
+            }
+
+.JQ_CA > .CA_r > div._mode-mobile-month > div.days{
+    display: block;
+    overflow: hidden;
+    position:absolute;
+    top:5px;
+    left:0;
+    right:0;
+    height:25px;
+    background: #eeeeee;
+    background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+    background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+    background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%);
+    z-index:49;
+
+}
+    .JQ_CA > .CA_r > div._mode-mobile-month > div.days > ul {
+        height:25px;
+        display:block;
+        display:inline-block;
+        overflow: hidden;
+        list-style: none;
+        border-collapse: collapse;
+        margin:0px;
+        padding:0px;
+        vertical-align: top;
+        width:100%;
+    }
+
+
+        .JQ_CA > .CA_r > div._mode-mobile-month > div.days > ul > li:first-child{
+            display:none;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-mobile-month > div.days > ul > li{
+            vertical-align: top;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+
+            padding:0px;
+            border-collapse: collapse;
+            display:inline-block;
+/*            width:14%;*/
+            width:14.28%;
+            text-align: center;
+            font-size:100%;
+            /*border:1px solid transparent;*/
+            border-right:1px dotted #ddd;
+            border-bottom:4px solid transparent;
+            line-height:19px;
+
+        }
+        .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month > div.days > ul > li{
+/*            width:16%;*/
+            width:16.66%;
+        }
+        
+        .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month > div.days > ul > li{
+/*            width:19%;*/
+            width:20%;
+        }
+        
+        .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-month > div.days > ul > li[data-day="0"],
+        .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month > div.days > ul > li[data-day="0"],
+        .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-month > div.days > ul > li[data-day="6"] {
+            display:none;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-mobile-month > div.days > ul > li:last-child{
+            border-right:0px;
+        }
+        
+.JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail{
+    display: none;
+}
+
+
+.JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail table{
+        padding:0;margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:0;
+        width: 100%;
+        border-top: 1px solid #ddd;
+    }
+    
+        .JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail table td{
+            padding:2px 2px 2px 4px;
+            font-size: 120%;
+            border-bottom:1px solid #ddd;
+            text-align: left;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail table td:first-child{
+            border-bottom-color:white;
+            text-align: center;
+            vertical-align: middle;
+            padding:1px;
+            border-radius: 5px;
+        }
+        .JQ_CA.CA_gradient > .CA_r > div._mode-mobile-month > div.month_day_detail table td:first-child{
+            background-image: url("../../pic/event_bg.png");
+            background-position: center center;
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+        
+        
+            .JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail  table td .title{
+                font-weight: bolder;
+                font-size: 120%;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail  table td .details{
+                padding-top:3px;
+                display: block;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-month > div.month_day_detail  table td .details > b{
+                border-top: 1px solid #EEEEEE;
+                color: #888888;
+                display: block;
+                font-size: 95%;
+                font-weight: bold;
+                margin-top: 2px;
+            }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Slaybot Assessment --></label>
+        <name>icatp__Slaybot_Assessment__c</name>
+        <picklistValues>
+            <masterLabel>Keep</masterLabel>
+            <translation><!-- Keep --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slay</masterLabel>
+            <translation><!-- Slay --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

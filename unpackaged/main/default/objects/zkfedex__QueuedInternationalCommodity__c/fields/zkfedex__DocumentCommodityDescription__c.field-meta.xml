@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__DocumentCommodityDescription__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Document Commodity Description</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Correspondence/No Commercial Value</fullName>
+                <default>false</default>
+                <label>Correspondence/No Commercial Value</label>
+            </value>
+            <value>
+                <fullName>Accounting Documents</fullName>
+                <default>false</default>
+                <label>Accounting Documents</label>
+            </value>
+            <value>
+                <fullName>Analysis Reports</fullName>
+                <default>false</default>
+                <label>Analysis Reports</label>
+            </value>
+            <value>
+                <fullName>Applications (Completed)</fullName>
+                <default>false</default>
+                <label>Applications (Completed)</label>
+            </value>
+            <value>
+                <fullName>Bank Statements</fullName>
+                <default>false</default>
+                <label>Bank Statements</label>
+            </value>
+            <value>
+                <fullName>Bid Quotations</fullName>
+                <default>false</default>
+                <label>Bid Quotations</label>
+            </value>
+            <value>
+                <fullName>Birth Certificates</fullName>
+                <default>false</default>
+                <label>Birth Certificates</label>
+            </value>
+            <value>
+                <fullName>Bills of Sale</fullName>
+                <default>false</default>
+                <label>Bills of Sale</label>
+            </value>
+            <value>
+                <fullName>Bonds</fullName>
+                <default>false</default>
+                <label>Bonds</label>
+            </value>
+            <value>
+                <fullName>Business Correspondence</fullName>
+                <default>false</default>
+                <label>Business Correspondence</label>
+            </value>
+            <value>
+                <fullName>Checks (Completed)</fullName>
+                <default>false</default>
+                <label>Checks (Completed)</label>
+            </value>
+            <value>
+                <fullName>Claim Files</fullName>
+                <default>false</default>
+                <label>Claim Files</label>
+            </value>
+            <value>
+                <fullName>Closing Statements</fullName>
+                <default>false</default>
+                <label>Closing Statements</label>
+            </value>
+            <value>
+                <fullName>Conference Reports</fullName>
+                <default>false</default>
+                <label>Conference Reports</label>
+            </value>
+            <value>
+                <fullName>Contracts</fullName>
+                <default>false</default>
+                <label>Contracts</label>
+            </value>
+            <value>
+                <fullName>Cost Estimates</fullName>
+                <default>false</default>
+                <label>Cost Estimates</label>
+            </value>
+            <value>
+                <fullName>Court Transcripts</fullName>
+                <default>false</default>
+                <label>Court Transcripts</label>
+            </value>
+            <value>
+                <fullName>Credit Applications</fullName>
+                <default>false</default>
+                <label>Credit Applications</label>
+            </value>
+            <value>
+                <fullName>Data Sheets</fullName>
+                <default>false</default>
+                <label>Data Sheets</label>
+            </value>
+            <value>
+                <fullName>Deeds</fullName>
+                <default>false</default>
+                <label>Deeds</label>
+            </value>
+            <value>
+                <fullName>Employment Papers</fullName>
+                <default>false</default>
+                <label>Employment Papers</label>
+            </value>
+            <value>
+                <fullName>Escrow Instructions</fullName>
+                <default>false</default>
+                <label>Escrow Instructions</label>
+            </value>
+            <value>
+                <fullName>Export Papers</fullName>
+                <default>false</default>
+                <label>Export Papers</label>
+            </value>
+            <value>
+                <fullName>Financial Statements</fullName>
+                <default>false</default>
+                <label>Financial Statements</label>
+            </value>
+            <value>
+                <fullName>Immigration Papers</fullName>
+                <default>false</default>
+                <label>Immigration Papers</label>
+            </value>
+            <value>
+                <fullName>Income Statements</fullName>
+                <default>false</default>
+                <label>Income Statements</label>
+            </value>
+            <value>
+                <fullName>Insurance Documents</fullName>
+                <default>false</default>
+                <label>Insurance Documents</label>
+            </value>
+            <value>
+                <fullName>Interoffice Memos</fullName>
+                <default>false</default>
+                <label>Interoffice Memos</label>
+            </value>
+            <value>
+                <fullName>Inventory Reports</fullName>
+                <default>false</default>
+                <label>Inventory Reports</label>
+            </value>
+            <value>
+                <fullName>Invoices (Completed)</fullName>
+                <default>false</default>
+                <label>Invoices (Completed)</label>
+            </value>
+            <value>
+                <fullName>Leases</fullName>
+                <default>false</default>
+                <label>Leases</label>
+            </value>
+            <value>
+                <fullName>Legal Documents</fullName>
+                <default>false</default>
+                <label>Legal Documents</label>
+            </value>
+            <value>
+                <fullName>Letters and Cards</fullName>
+                <default>false</default>
+                <label>Letters and Cards</label>
+            </value>
+            <value>
+                <fullName>Letter of Credit Packets</fullName>
+                <default>false</default>
+                <label>Letter of Credit Packets</label>
+            </value>
+            <value>
+                <fullName>Loan Documents</fullName>
+                <default>false</default>
+                <label>Loan Documents</label>
+            </value>
+            <value>
+                <fullName>Marriage Certificates</fullName>
+                <default>false</default>
+                <label>Marriage Certificates</label>
+            </value>
+            <value>
+                <fullName>Medical Records</fullName>
+                <default>false</default>
+                <label>Medical Records</label>
+            </value>
+            <value>
+                <fullName>Office Records</fullName>
+                <default>false</default>
+                <label>Office Records</label>
+            </value>
+            <value>
+                <fullName>Operating Agreements</fullName>
+                <default>false</default>
+                <label>Operating Agreements</label>
+            </value>
+            <value>
+                <fullName>Patent Applications</fullName>
+                <default>false</default>
+                <label>Patent Applications</label>
+            </value>
+            <value>
+                <fullName>Permits</fullName>
+                <default>false</default>
+                <label>Permits</label>
+            </value>
+            <value>
+                <fullName>Photocopies</fullName>
+                <default>false</default>
+                <label>Photocopies</label>
+            </value>
+            <value>
+                <fullName>Proposals</fullName>
+                <default>false</default>
+                <label>Proposals</label>
+            </value>
+            <value>
+                <fullName>Prospectuses</fullName>
+                <default>false</default>
+                <label>Prospectuses</label>
+            </value>
+            <value>
+                <fullName>Purchase Orders</fullName>
+                <default>false</default>
+                <label>Purchase Orders</label>
+            </value>
+            <value>
+                <fullName>Quotations</fullName>
+                <default>false</default>
+                <label>Quotations</label>
+            </value>
+            <value>
+                <fullName>Reservation Confirmation</fullName>
+                <default>false</default>
+                <label>Reservation Confirmation</label>
+            </value>
+            <value>
+                <fullName>Resumes</fullName>
+                <default>false</default>
+                <label>Resumes</label>
+            </value>
+            <value>
+                <fullName>Sales Agreements</fullName>
+                <default>false</default>
+                <label>Sales Agreements</label>
+            </value>
+            <value>
+                <fullName>Sales Reports</fullName>
+                <default>false</default>
+                <label>Sales Reports</label>
+            </value>
+            <value>
+                <fullName>Shipping Documents</fullName>
+                <default>false</default>
+                <label>Shipping Documents</label>
+            </value>
+            <value>
+                <fullName>Statements/Reports</fullName>
+                <default>false</default>
+                <label>Statements/Reports</label>
+            </value>
+            <value>
+                <fullName>Statistical Data</fullName>
+                <default>false</default>
+                <label>Statistical Data</label>
+            </value>
+            <value>
+                <fullName>Stock Information</fullName>
+                <default>false</default>
+                <label>Stock Information</label>
+            </value>
+            <value>
+                <fullName>Tax Papers</fullName>
+                <default>false</default>
+                <label>Tax Papers</label>
+            </value>
+            <value>
+                <fullName>Trade Confirmation</fullName>
+                <default>false</default>
+                <label>Trade Confirmation</label>
+            </value>
+            <value>
+                <fullName>Transcripts</fullName>
+                <default>false</default>
+                <label>Transcripts</label>
+            </value>
+            <value>
+                <fullName>Warranty Deeds</fullName>
+                <default>false</default>
+                <label>Warranty Deeds</label>
+            </value>
+            <value>
+                <fullName>Your Document Description</fullName>
+                <default>false</default>
+                <label>Your Document Description</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

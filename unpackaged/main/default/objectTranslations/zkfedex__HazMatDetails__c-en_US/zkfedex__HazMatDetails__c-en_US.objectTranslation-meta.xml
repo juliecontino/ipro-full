@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    <layouts>
+        <layout>FedEx HazMat Details Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Is ORM-D Shipment --></label>
+            <section>Is ORM-D Shipment</section>
+        </sections>
+        <sections>
+            <label><!-- Packaging --></label>
+            <section>Packaging</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

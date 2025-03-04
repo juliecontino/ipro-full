@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Max Button Users --></label>
+        <name>ChangeCaseOwner__Max_Button_Users__c</name>
+    </CustomFieldTranslation>

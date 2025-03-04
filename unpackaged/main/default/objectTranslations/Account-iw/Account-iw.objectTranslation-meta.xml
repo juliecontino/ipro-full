@@ -1,189 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>(DEP) Account (Austin AE) Layout</layout>
         <sections>
@@ -1274,6 +1090,14 @@
         </sections>
     </layouts>
     <quickActions>
+        <label><!-- Validate Address --></label>
+        <name>AcctSeed__ValidateAddress</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Validate Address --></label>
+        <name>AcctSeed__Validate_Address_Lwc</name>
+    </quickActions>
+    <quickActions>
         <label><!-- Create Opportunity --></label>
         <name>Create_Opportunity</name>
     </quickActions>
@@ -1307,6 +1131,18 @@
         <name>Vendor</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- The payable terms field must be a positive number. --></errorMessage>
+        <name>AcctSeed__Account_Payable_Terms_Positive_Value</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The discount days due field must be a positive number. --></errorMessage>
+        <name>AcctSeed__Discount_Days_Due_Positive_Value</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The discount % field must be a positive number. --></errorMessage>
+        <name>AcctSeed__Discount_Percent_Positive_Value</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Please enter a valid 2 digit billing country (example: US for United States and CA for Canda or MX for Mexico --></errorMessage>
         <name>Billing_Country</name>
     </validationRules>
@@ -1332,8 +1168,52 @@
         <name>Shipping_State_USA</name>
     </validationRules>
     <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
         <label><!-- AT_T_Pay --></label>
         <name>AT_T_Pay</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Activity_Statements --></label>
+        <name>AcctSeed__Create_Activity_Statements</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Outstanding_Statements --></label>
+        <name>AcctSeed__Create_Outstanding_Statements</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Payment --></label>
+        <name>AcctSeed__Create_Payment</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Statement --></label>
+        <name>AcctSeed__Create_Statement</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Manage_Payment_Methods --></label>
+        <name>AcctSeed__Manage_Payment_Methods</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_1099_Info --></label>
+        <name>AcctSeed__Update_1099_Info</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_1099_Info_Detail_Page --></label>
+        <name>AcctSeed__Update_1099_Info_Detail_Page</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Statement_Status --></label>
+        <name>AcctSeed__Update_Statement_Status</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Validate_Address --></label>
+        <name>AcctSeed__Validate_Address</name>
     </webLinks>
     <webLinks>
         <label><!-- Aged_Payables --></label>
@@ -1392,6 +1272,10 @@
         <name>Custom_Billing</name>
     </webLinks>
     <webLinks>
+        <label><!-- ReportWrongInfotoDiscoverOrg --></label>
+        <name>DSCORGPKG__ReportWrongInfotoDiscoverOrg</name>
+    </webLinks>
+    <webLinks>
         <label><!-- Forms --></label>
         <name>Forms</name>
     </webLinks>
@@ -1414,6 +1298,10 @@
     <webLinks>
         <label><!-- HooversProfile --></label>
         <name>HooversProfile</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PowerClone --></label>
+        <name>JCSoftware__PowerClone</name>
     </webLinks>
     <webLinks>
         <label><!-- MBG1 --></label>
@@ -1519,4 +1407,297 @@
         <label><!-- forms2 --></label>
         <name>forms2</name>
     </webLinks>
+    <webLinks>
+        <label><!-- Auto_Mark --></label>
+        <name>zaapit__Auto_Mark</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Merge --></label>
+        <name>zaapit__Mass_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Accounts --></label>
+        <name>zaapit__Merge_Accounts</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Accounts_L --></label>
+        <name>zaapit__Merge_Accounts_L</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- zp_actions --></label>
+        <name>zaapit__zp_actions</name>
+    </webLinks>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <workflowTasks>
+        <name>zaapit__Call</name>
+        <subject><!-- Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__Email</name>
+        <subject><!-- Email --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__SendLetterAccount</name>
+        <subject><!-- Send Letter --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__SendQuoteAccount</name>
+        <subject><!-- Send Quote --></subject>
+    </workflowTasks>
 </CustomObjectTranslation>

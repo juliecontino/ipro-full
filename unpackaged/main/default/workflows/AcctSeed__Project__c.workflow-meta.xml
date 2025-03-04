@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Project_New</fullName>
+        <description>Project: New</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <recipient>Account Manager</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        <recipients>
+            <field>Account_Executive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Project/Project_New</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_New_Comm3</fullName>
+        <description>Project: New Comm3</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <recipient>Account Manager</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        
+        
+        <recipients>
+            <field>Account_Executive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>support@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Project/Project_New_Comm3</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_PM_Change</fullName>
+        <description>Project PM Change</description>
+        <protected>false</protected>
+        
+        <recipients>
+            <field>AcctSeed__Project_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Sales/Project_PM_Change</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Set_Default_Project_Name</fullName>
+        <field>Name</field>
+        <formula>AcctSeed__Opportunity__r.Contract_Number__c + "-" + Left(AcctSeed__Account__r.Name,15) + "-" + Template_Name__c</formula>
+        <name>Set Default Project Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_PM_Notified_Flag</fullName>
+        <field>PM_Notified_via_Email__c</field>
+        <literalValue>1</literalValue>
+        <name>Update PM Notified Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>New Project Notify PM</fullName>
+        <actions>
+            <name>Project_New</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_PM_Notified_Flag</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AcctSeed__Project__c.PM_Notified_via_Email__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project__c.AcctSeed__Template_Project__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project__c.Name</field>
+            <operation>notContain</operation>
+            <value>Cloned</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Project Name</fullName>
+        <actions>
+            <name>Set_Default_Project_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AcctSeed__Project__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project__c.AcctSeed__Template_Project__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

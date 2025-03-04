@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- LH Setting Name Check --></label>
+        <name>LH__LH_Setting_Name_Check__c</name>
+    </CustomFieldTranslation>

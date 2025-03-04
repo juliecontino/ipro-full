@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Account&apos;s Contact DOIds --></label>
+        <name>DSCORGPKG__Account_s_Contact_DOIds__c</name>
+    </CustomFieldTranslation>

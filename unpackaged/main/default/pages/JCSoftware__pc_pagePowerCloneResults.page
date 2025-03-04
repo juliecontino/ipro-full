@@ -1,0 +1,16 @@
+<apex:page Controller="JCSoftware.pc_controllerPowerClone" id="pc_PowerCloneResultsPage">
+	<apex:form id="PowerCloneResults">
+		<apex:pageBlock title="PowerClone Results" tabStyle="JCSoftware__pc_PowerCloneRule__c">
+			<apex:outputText value="Here are the results:" />
+			<br/>
+			<br/>
+			<apex:outputLink value="javascript:history.back()">
+				<apex:outputText style="font-style: italic" value="{!result} "/>
+			</apex:outputLink>
+
+			<apex:dataList value="{!ClonedItems}" var="Clones">
+				<apex:outputLink value="/{!Clones.CloneId}">{!Clones.CloneName}___(id: {!Clones.CloneId})</apex:outputLink>
+			</apex:dataList>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

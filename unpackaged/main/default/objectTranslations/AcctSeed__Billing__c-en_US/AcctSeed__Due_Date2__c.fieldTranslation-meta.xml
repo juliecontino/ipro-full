@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Due Date equals the Billing Date plus the Billing Days Due on the associated Account (Customer) record. Otherwise the Due Date defaults to the Billing Date. --></help>
+        <label><!-- Due Date --></label>
+        <name>AcctSeed__Due_Date2__c</name>
+    </CustomFieldTranslation>

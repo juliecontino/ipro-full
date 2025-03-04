@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__CsMrgFindDupes_Lightning</fullName>
+    <availability>online</availability>
+    <description>Visualforce Case Merge Premium Button. Used in the Lightning Experience.</description>
+    <displayType>button</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>Find Duplicates</masterLabel>
+    <openType>sidebar</openType>
+    <page>csmrgp__CsMrgPassThru</page>
+    <protected>false</protected>
+</WebLink>

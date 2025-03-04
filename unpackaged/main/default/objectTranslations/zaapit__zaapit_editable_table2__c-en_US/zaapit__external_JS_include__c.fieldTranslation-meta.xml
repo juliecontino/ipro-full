@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- external_JS_include --></label>
+        <name>zaapit__external_JS_include__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The aggregate amount of cleared deposits associated with this bank reconciliation. This includes all cleared cash receipts, bank deposits, and journal lines with a debit balance. --></help>
+        <label><!-- Cleared Deposits --></label>
+        <name>AcctSeed__Cleared_Deposits__c</name>
+    </CustomFieldTranslation>

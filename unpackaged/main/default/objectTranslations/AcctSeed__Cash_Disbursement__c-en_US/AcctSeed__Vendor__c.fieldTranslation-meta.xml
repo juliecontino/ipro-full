@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A Cash Disbursement can have either the Account (Vendor), Contact or User (Employee) as the Payee. One object must be chosen. --></help>
+        <label><!-- Vendor --></label>
+        <name>AcctSeed__Vendor__c</name>
+        <relationshipLabel><!-- Cash Disbursements --></relationshipLabel>
+    </CustomFieldTranslation>

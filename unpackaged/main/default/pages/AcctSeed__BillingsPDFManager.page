@@ -1,0 +1,41 @@
+<apex:page id="thePage" title="Billing PDFs | Accounting Seed" standardController="AcctSeed__Billing__c" extensions="AcctSeed.BillingsPDFManager,AcctSeed.EnvironmentUtils"
+           recordSetVar="billings" showHeader="true" sidebar="true">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/common.css')}" />
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Billing__c.labelPlural}" subtitle="Billing PDFs" />
+        <apex:pageBlock id="thePageBlock" title="Mass Save and Email PDFs">
+            <apex:pageMessages escape="false" />
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onstop="AcctSeed.ASModule.pageLoad()" />
+                <apex:commandButton id="saveButton" value="Save PDFs" action="{!savePDFs}"
+                                    status="saveStatus" reRender="theForm" rendered="{!!isNoSelectedBills}" />
+                <apex:commandButton id="emailButton" value="Email PDFs" action="{!emailPDFs}"
+                                    status="saveStatus" reRender="theForm" rendered="{!!isNoSelectedBills}" disabled="{!isAllMiss}"/>
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable columns="5" value="{!bills}" var="b" rendered="{!!isNoSelectedBills}">
+                <apex:column headerValue="{!$ObjectType.AcctSeed__Billing__c.fields.Name.Label}">
+                    <apex:outputLink value="/{!b.Id}">{!b.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__Status__c.Label}">
+                    <apex:outputField value="{!b.AcctSeed__Status__c}" />
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__PDF_Email_Status__c.Label}">
+                    <apex:outputField value="{!b.AcctSeed__PDF_Email_Status__c}" />
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__Billing_Contact__c.Label}">
+                    <apex:outputField value="{!b.AcctSeed__Billing_Contact__c}" />
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__Billing_Contact__c.Label} {!$ObjectType.Contact.fields.Email.Label}">
+                    <apex:outputField value="{!b.Billing_Contact__r.Email}" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

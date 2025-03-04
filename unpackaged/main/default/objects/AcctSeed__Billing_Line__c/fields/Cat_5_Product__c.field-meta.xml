@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cat_5_Product__c</fullName>
+    <description>item_number field from Cat-5 Order_Detail table.  should only have value if the lookup was not available.</description>
+    <externalId>false</externalId>
+    <label>Cat-5 Product</label>
+    <length>45</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

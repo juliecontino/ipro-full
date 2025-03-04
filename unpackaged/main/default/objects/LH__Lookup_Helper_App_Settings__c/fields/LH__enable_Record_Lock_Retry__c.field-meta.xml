@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__enable_Record_Lock_Retry__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>If this is checked Lookup Helper will attempt to retry running settings on records that encountered record locks.</description>
+    <inlineHelpText>If this is checked, Lookup Helper will attempt to retry records that encountered record locks.</inlineHelpText>
+    <label>Allow Async Record Lock Retries</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

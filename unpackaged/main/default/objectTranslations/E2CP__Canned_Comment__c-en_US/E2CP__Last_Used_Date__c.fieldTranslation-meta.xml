@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The last time this Canned Comment was inserted into a comment on the New Comment page. --></help>
+        <label><!-- Last Used Date --></label>
+        <name>E2CP__Last_Used_Date__c</name>
+    </CustomFieldTranslation>

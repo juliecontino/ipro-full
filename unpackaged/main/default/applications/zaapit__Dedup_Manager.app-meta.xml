@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>zaapit__Dedup_Manager</defaultLandingTab>
+    <description>Dedup Manager™ App by ZaapIT.com</description>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Dedup Manager™</label>
+    <logo>zaapit__icon_folder1/zaapit__Dedup_manager_logo.png</logo>
+    <tabs>zaapit__Dedup_Manager</tabs>
+    <tabs>Recurring_Billing_Line_Items__c</tabs>
+    <tabs>Billing_Master__c</tabs>
+    <tabs>Help</tabs>
+    <tabs>Quick_Account</tabs>
+    <tabs>Quick_Product</tabs>
+    <tabs>Project_task</tabs>
+    <tabs>Approval</tabs>
+    <tabs>AcctSeed__Recurring_Billing_Line__c</tabs>
+    <tabs>Project_Calendar__c</tabs>
+    <tabs>Project_Notes__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

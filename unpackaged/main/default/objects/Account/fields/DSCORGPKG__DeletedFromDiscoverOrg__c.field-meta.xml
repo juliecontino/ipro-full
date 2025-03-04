@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DSCORGPKG__DeletedFromDiscoverOrg__c</fullName>
+    <deprecated>false</deprecated>
+    <label>DeletedFromDiscoverOrg</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>false</fullName>
+                <default>true</default>
+                <label>false</label>
+            </value>
+            <value>
+                <fullName>true</fullName>
+                <default>false</default>
+                <label>true</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

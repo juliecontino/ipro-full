@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Prevent_associating_with_Bank_Deposit</fullName>
+    <active>true</active>
+    <description>Ensures that the user cannot associate records with dates that are after the Bank Deposit's Deposit Date. Deactivating this validation rule is likely to cause integrity issues with calculations on Bank Reconciliations.</description>
+    <errorConditionFormula>AND(NOT(ISNULL(AcctSeed__Bank_Deposit__c)), AcctSeed__Receipt_Date__c &gt; AcctSeed__Bank_Deposit__r.AcctSeed__Deposit_Date__c)</errorConditionFormula>
+    <errorMessage>You cannot associate records with dates that are after this Bank Deposit's Deposit Date.</errorMessage>
+</ValidationRule>

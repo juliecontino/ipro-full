@@ -1,0 +1,34 @@
+<messaging:emailTemplate subject="{!relatedTo.Subject} {!relatedTo.E2CP__Case_Thread_Id__c}" recipientType="Contact" relatedToType="Case">
+<messaging:plainTextEmailBody >
+{!relatedTo.E2CP__Most_Recent_Public_Comment__c}
+
+{!$User.FirstName} {!$User.LastName}
+
+
+{!relatedTo.E2CP__HistoryText__c}
+
+***************************
+Case: {!relatedTo.CaseNumber}
+Status: {!relatedTo.Status}
+Priority Level: {!relatedTo.Priority}
+
+
+{!relatedTo.E2CP__Case_Thread_Id__c}
+</messaging:plainTextEmailBody>
+<messaging:htmlEmailBody >
+<apex:outputField value="{!relatedTo.E2CP__Most_Recent_Public_Comment_HTML__c}"/>
+<br/>
+<br/>{!$User.FirstName} {!$User.LastName}
+<br/>
+<br/>
+<br/><apex:outputField value="{!relatedTo.E2CP__HistoryText__c}"/>
+<br/>
+<br/>***************************
+<br/>Case: {!relatedTo.CaseNumber}
+<br/>Status: {!relatedTo.Status}
+<br/>Priority Level: {!relatedTo.Priority}
+<br/>
+<br/>
+<br/>{!relatedTo.E2CP__Case_Thread_Id__c}
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

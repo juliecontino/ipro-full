@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A comment which is included on the pdf invoice generated for the customer. --></help>
+        <label><!-- Billing Comment --></label>
+        <name>AcctSeed__Billing_Comment__c</name>
+    </CustomFieldTranslation>

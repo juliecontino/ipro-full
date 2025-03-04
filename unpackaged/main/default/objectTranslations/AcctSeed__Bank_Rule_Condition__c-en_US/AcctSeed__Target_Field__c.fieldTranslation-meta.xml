@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Target Field --></label>
+        <name>AcctSeed__Target_Field__c</name>
+        <picklistValues>
+            <masterLabel>Amount</masterLabel>
+            <translation><!-- Amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Description</masterLabel>
+            <translation><!-- Description --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Detail Category</masterLabel>
+            <translation><!-- Detail Category --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Level Category</masterLabel>
+            <translation><!-- High Level Category --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Category</masterLabel>
+            <translation><!-- Master Category --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Financial Report Definition Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Report_Clone_Utility --></label>
+        <name>AcctSeed__Report_Clone_Utility</name>
+    </webLinks>
+</CustomObjectTranslation>

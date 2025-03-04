@@ -1,0 +1,149 @@
+<apex:page Controller="LH.LH_QueueManagement_Controller" title="Lookup Helper Queue Monitoring" standardStylesheets="false"  sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	     <head> 
+	     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		 <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/modernizr-1.7.min.js') }"/>
+	     <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }"/>	  
+         <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/hs_breadcrumbs.js')}" />
+		 <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />   
+		 <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/grayBackground.css') }" /> 
+	     </head>
+
+	    <style>
+	    	.dropdownFormatting{
+	    		margin-top:.125rem;
+	    		margin-bottom:.125rem;
+	    		border:1px solid #d8dde6;
+	    		border-radius:.25rem;
+	    		padding:.25rem 0;
+	    		font-size:.75rem;
+	    		background:#fdfdfd;
+	    		box-shadow:0 2px 3px 0 rgba(0,0,0,.16);
+	    	}
+
+			.popoverNubbinAlignment{
+				left: -1.26em; 
+				top: 0.8em;
+			}
+			
+			.popoverDefault{
+				display:none;
+				max-height:0px; 
+				overflow:visible;   
+				overflow-y:visible; 
+				position:fixed; 
+				white-space:normal;
+				z-index:99;  
+			}
+	    </style> 
+		<script>
+			$(document).ready(function(){
+				selectBreadcrumb_HS();
+			});
+		</script>
+
+	    <apex:slds />		
+		<apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+	    <apex:form id="lookupQueuePage">
+	   	<div class="slds-scope" role="main">
+			<div class="slds-card grayBackground">
+				<header class="slds-card__header">
+					<nav role="navigation">
+						<ol class="slds-breadcrumb slds-list_horizontal">
+							<li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!URLFOR($Page.LH__LH_LandingPage)}">Home</a></li>
+                            <li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.LH__LH_All_Settings)}">All Lookup Settings</a></li>
+						</ol>
+					</nav>
+				</header>
+			</div>
+			<div class="slds-card grayBackground">
+	    		<header class="slds-card__header slds-grid">
+	        		<div class="slds-media slds-media_center slds-has-flexi-truncate">
+	             		<div class="slds-media__body">
+	                		<h4 class="slds-text-heading_medium slds-truncate">Lookup Helper Queue</h4>	                		
+	             		</div> 
+	        		</div>
+	    		</header>
+			    <section class="slds-card__body" id="the page">						
+					<c:Loading_Spinner opacity="1"/>
+	                <apex:outputPanel style="height:575px; width:95%;">
+	                	<div style="margin-left:auto; margin-right:auto;">
+							
+							<br/>	  
+							<div style="float:left;">	
+								<apex:outputPanel id="selectedObjectDropdown">								
+									<apex:selectList value="{!selectedObject}" size="1" styleClass="slds-m-left_large dropdownFormatting" >
+										<apex:actionSupport event="onchange" action="{! populateQueueItemList }" rerender="tableContainer" status="loading" />
+										<apex:selectOptions value="{!childObjectWithQueueItems}"/>
+									</apex:selectList>	&nbsp;
+								</apex:outputPanel>	
+				            </div>				                         
+				            <div style="float:right; padding-right:25px;">
+				            <apex:commandButton styleclass="slds-button slds-button_neutral slds-m-left_medium"  value="Refresh" action="{!populateQueueItemList}" rerender="tableContainer, selectedObjectDropdown" />
+							</div>
+						</div >
+		                
+						<br/>
+						<apex:outputPanel id="tableContainer">
+							<apex:outputPanel id="noQueueItems" rendered="{!IF(numberOfQueueItems == 0, true, false)}">
+								<br/><br/>
+								<center>
+									No Queue items were found.
+								</center>
+							</apex:outputPanel>
+							<apex:outputPanel id="hasQueueItems" rendered="{!IF(numberOfQueueItems != 0, true, false)}">
+								<br/><br/>
+								<div style="float:right; padding-right:25px;">
+									<c:Paginate pageController="{! pgCon }" renderedComponent="hasQueueItems" />
+								</div>
+						        <table class="slds-table slds-table_bordered" style="table-layout:fixed !important;" >
+					        		<tr>
+					        			<td style="width:12%; text-align: center; " class="slds-text-heading_label" ><apex:commandLink value="ID" action="{! doSettingSort}" rerender="tableContainer">
+							            	<apex:param name="sortingField" value="ID" assignTo="{!sortVars.sortField}"/>
+				                            <apex:outputText value="{!IF(sortVars.sortField=='ID', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+				                        </apex:commandLink> </td>
+										<td style="width:12%; text-align: center; " class="slds-text-heading_label" ><apex:commandLink value="Name" action="{! doSettingSort}" rerender="tableContainer">
+							            	<apex:param name="sortingField" value="Name" assignTo="{!sortVars.sortField}"/>
+				                            <apex:outputText value="{!IF(sortVars.sortField=='Name', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+				                        </apex:commandLink> </td>
+										<td style="width:12%; text-align: center; " class="slds-text-heading_label" ><apex:commandLink value="Created Date" action="{! doSettingSort}" rerender="tableContainer">
+							            	<apex:param name="sortingField" value="createdDate" assignTo="{!sortVars.sortField}"/>
+				                            <apex:outputText value="{!IF(sortVars.sortField=='createdDate', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+				                        </apex:commandLink> </td>										
+				                    	<td style="width:10%; text-align: center;" class="slds-text-heading_label"><apex:commandLink value="Status" action="{! doSettingSort}" rerender="tableContainer">
+								        	<apex:param name="sortingField" value="Status__c" assignTo="{!sortVars.sortField}"/>
+					                    	<apex:outputText value="{!IF(sortVars.sortField=='Status__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+					                 	</apex:commandLink>    </td>
+										<td style="width:10%; text-align: center;" class="slds-text-heading_label">Action</td>
+				              		</tr>
+				              	</table>
+				              	<div style="overflow-y:auto; max-height:550px;"> 
+					              	<table class="slds-table slds-table_bordered" style="table-layout:fixed !important;" rendered="{!IF(numberOfQueueItems != 0, true, false)}">	
+					              		<apex:repeat value="{!modifiedQueue}" var="q">
+					              			<tr>
+					              				<td class="slds-cell-wrap" style="width:12%; text-align: center;" > {!q.Id}</td>
+												  <td class="slds-cell-wrap" style="width:12%; text-align: center;" > {!q.Name}</td>
+												<td class="slds-cell-wrap" style="width:12%; text-align: center;" > 
+													<apex:outputText value="{0,date,EEE MMM d, yyyy HH:mm:ss z}">
+															<apex:param value="{!q.createdDate}" />
+													</apex:outputText>													
+												</td>												
+					              				<td class="slds-cell-wrap" style="width:10%; text-align: center;" > {!q.Status__c}</td>
+												<td class="slds-cell-wrap" style="width:10%; text-align: center;">
+													<apex:commandLink value="Delete" action="{!deleteQueueItem}" reRender="tableContainer, lookupQueuePage"  status="loading">
+							              						<apex:param name="queueItemToDeleteID" value="{!q.Id}" assignTo="{!queueItemId}"/>
+							              					</apex:commandLink>	
+												</td>												  
+					              			</tr> 
+					              		</apex:repeat>
+					                </table>
+				                </div>	
+			                </apex:outputPanel>
+		                </apex:outputPanel>		               
+				    </apex:outputPanel>					    				    
+				</section>
+			</div>
+		</div>
+		</apex:form>
+	</html>
+</apex:page>

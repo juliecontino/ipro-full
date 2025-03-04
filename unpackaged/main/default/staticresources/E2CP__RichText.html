@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="E2CP__tinymce/tinymce5/tinymce.min.js"></script>
+	<style>
+		html, body {
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;
+		}
+
+		#editor {
+			display: none;
+		}
+
+		video, canvas {
+			display: none;
+		}
+
+		.tox .tox-dialog {
+  			max-height: calc(100% - 8px) !important;
+		}
+	</style>
+</head>
+<body>
+	<div id="measure">
+		<textarea id="editor"></textarea>
+	</div>
+
+	<video autoplay="true"></video>
+	<canvas></canvas>
+
+	<script>
+	    let params = (new URL(document.location)).searchParams;
+	    const POST_MESSAGE_ORIGIN = params.get('origin');
+	    const POST_MESSAGE_KEY = params.get('key');
+	    const EXTENDED_EDITOR = params.get('extended') == 'true';
+	    const UPLOADS_ENABLED = params.get('uploads') == 'true';
+	    const EDITOR_WIDTH = parseInt(params.get('width'));
+	    const EDITOR_HEIGHT = parseInt(params.get('height'));
+	    const INLINE_IMAGES = params.get('inlineImages') == 'true';
+	    const STICKY_TOOLBAR = params.get('stickyToolbar') == 'true';
+		const DISABLE_EDIT_SOURCE = params.get('disableEditSource') == 'true';
+		const INSERT_SCREENSHOT_LABEL = params.get('insertScreenshotLabel');
+
+	    let lang = params.get('lang');
+		let windowScrollTop = 0;
+		let iframeTop = 0;
+		let stickyOffset = 0;
+		let updateStickyToolbar;
+	    let measureDiv = document.getElementById('measure');
+		let uploadId = 0;
+		let uploadFinishedCallbackById = {};
+		let initialized = false;
+		let initialValue = '';
+		let blockKeys = params.get('blockKeys') ? new Set(params.get('blockKeys').split(',')) : new Set();
+		let oldMentions = new Set();
+
+		let initOptions = {
+			selector: 'textarea#editor',
+			mobile: { theme: 'silver' },
+			resize: true,
+			autoresize_bottom_margin: 25,
+			autoresize_max_height: 1024,
+			branding: false,
+			statusbar: false,
+			menubar: false,
+			plugins: [
+				`advlist autolink lists link ${INLINE_IMAGES ? 'image' : ''} charmap anchor paste emoticons`,
+				'visualblocks visualchars code autoresize codesample',
+				`table ${INLINE_IMAGES ? 'capture' : ''} ${STICKY_TOOLBAR ? 'stickytoolbar' : ''}`
+			],
+			link_title: false,
+			link_assume_external_targets: 'http',
+			target_list: false,
+			default_link_target: '_blank',
+			content_css: [],
+			contextmenu: false,
+			browser_spellcheck: true,
+			remove_script_host: false,
+			forced_root_block: 'div',
+			indent_use_margin: true,
+			relative_urls: false,
+			table_default_attributes: {'border': '1'},
+			table_default_styles: {'border-collapse': 'collapse', 'width': '100%'},
+			init_instance_callback: () => {
+				if(initialValue)
+					tinyMCE.activeEditor.setContent(initialValue);
+				let lastHeight = measureDiv.clientHeight;
+				post('RICH_TEXT_RESIZE_FRAME', lastHeight);
+				setInterval(() => {
+					if(lastHeight != measureDiv.clientHeight) {
+						lastHeight = measureDiv.clientHeight;
+						post('RICH_TEXT_RESIZE_FRAME', lastHeight);
+					}
+				}, 100);
+
+				initialized = true;
+				post('RICH_TEXT_INITIALIZED', null);
+				editor.focus();
+			},
+			setup: editor => {
+				editor.on("keydown", event => {
+					post('RICH_TEXT_KEY_DOWN', Object.entries(event).filter(item => new Set(['key','code','location','ctrlKey','shiftKey','altKey','metaKey','repeat','isComposing','charCode','keyCode','which']).has(item[0])).reduce((acc, item) => {acc[item[0]] = item[1]; return acc;}, {}));
+
+					//Prevent default action to allow for autocomplete keyboard navigation for example
+					if(blockKeys.has(event.key))
+						event.preventDefault();
+
+					//Track mentions before keyup to see which ones to fire delete events for
+					if(oldMentions.size == 0)
+						for(let element of editor.contentDocument.querySelectorAll(`[data-mention]`))
+							oldMentions.add(element.dataset.mention);
+
+					//Text entered at the start or end of the mention should not be included in the mention
+					let selection = editor.contentWindow.getSelection();
+					let checkEdgeOfMention = selection &&
+						selection.anchorNode.nodeType == Node.TEXT_NODE &&
+						selection.anchorNode.parentElement.dataset.mention &&
+						!['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'Home', 'End', 'Shift', 'Control', 'Alt', 'Meta'].includes(event.key);
+					if(checkEdgeOfMention) {
+						if(selection.anchorOffset == 0 && selection.focusOffset == 0 && event.key != 'Delete') {
+							selection.anchorNode.parentNode.insertAdjacentHTML('beforebegin', '&nbsp;');
+							if(event.key != ' ') {
+								selection.getRangeAt(0).selectNode(selection.anchorNode.parentNode.previousSibling);
+							} else {
+								selection.getRangeAt(0).setStart(selection.anchorNode.parentNode.previousSibling, 1);
+								event.preventDefault();
+							}
+						} else if(selection.anchorOffset == selection.anchorNode.textContent.length && selection.anchorOffset == selection.focusOffset && event.key != 'Backspace') {
+							selection.anchorNode.parentNode.insertAdjacentHTML('afterend', '&nbsp;');
+							if(event.key != ' ') {
+								selection.getRangeAt(0).selectNode(selection.anchorNode.parentNode.nextSibling);
+							} else {
+								selection.getRangeAt(0).setStart(selection.anchorNode.parentNode.nextSibling, 1);
+								event.preventDefault();
+							}
+						}
+					}
+				});
+				editor.on("change", () => {
+					post('RICH_TEXT_CHANGE', null);
+				});
+				editor.on("focusout", () => {
+					post('RICH_TEXT_BLUR', null);
+				});
+				editor.on("keyup", () => {
+					try {
+						let toolbars =  editor.editorContainer.querySelector('.tox-toolbar-overlord') || editor.editorContainer.querySelector('.tox-toolbar'); //Handle extended vs standard toolbar
+						let selection = editor.contentWindow.getSelection();
+
+						if(selection && selection.type == 'Caret' && selection.anchorNode) {
+							if(selection.anchorNode.nodeType == Node.TEXT_NODE) { //Line with text
+								let bottom = toolbars.offsetHeight + selection.getRangeAt(0).getBoundingClientRect().bottom;
+
+								post('RICH_TEXT_CARET_OFFSET', bottom);
+
+								let leadingText = selection.anchorNode.nodeValue.substring(0, selection.anchorOffset);
+								if(leadingText && leadingText.includes('@') && leadingText.substring(leadingText.lastIndexOf('@') + 1).length) {
+									let text = leadingText.substring(leadingText.lastIndexOf('@') - 1);
+
+									//Only proceed if @ is preceded by a space or is at the start so suggestions do not trigger while typing email addresses
+									if (/^[\s@]/.test(text) && !text.startsWith('@@')) {
+										text = text.substring(text.indexOf('@') + 1);
+
+										let range = document.createRange();
+										range.setStart(selection.anchorNode, leadingText.lastIndexOf('@'));
+										let left = range.getBoundingClientRect().left;
+
+										if(!['ArrowUp', 'ArrowDown', 'Enter'].includes(event.key))
+											post('RICH_TEXT_MENTION', {text, left, bottom});
+									}
+								} else {
+									post('RICH_TEXT_MENTION', null);
+								}
+							} else if(selection.anchorNode.nodeType == Node.ELEMENT_NODE && selection.anchorNode.childNodes.length == 0) //Line with no text (caret bottom position cannot be determined if full of br tags and no text nodes)
+								post('RICH_TEXT_CARET_OFFSET', toolbars.offsetHeight + selection.anchorNode.getBoundingClientRect().bottom);
+						}
+
+						//Check for deleted @mentions
+						let mentionsDeleted = [];
+						let newMentions = new Set();
+						for(let element of editor.contentDocument.querySelectorAll(`[data-mention]`)) {
+							if(element.firstChild && element.firstChild.nodeValue != '\uFEFF')
+								newMentions.add(element.dataset.mention);
+							else
+								element.remove();
+						}
+						for(let oldMention of oldMentions)
+							if(!newMentions.has(oldMention))
+								mentionsDeleted.push(oldMention);
+						if(mentionsDeleted.length)
+							post('RICH_TEXT_MENTION_DELETE', mentionsDeleted);
+						oldMentions.clear();
+					}
+					catch(e){}
+				});
+				editor.on("click", () => {
+					post('RICH_TEXT_MENTION', null);
+				});
+			},
+			paste_data_images: false,
+			automatic_uploads: false,
+			image_uploadtab: INLINE_IMAGES,
+			paste_preprocess: function(plugin, args) {
+				args.content = args.content.replace(/<\/div><div>/g, '<br/><br/>');
+			}
+		};
+
+		if(EDITOR_WIDTH)
+			initOptions.min_width = EDITOR_WIDTH;
+
+		if(EDITOR_HEIGHT)
+			initOptions.min_height = EDITOR_HEIGHT;
+
+		let codeButton = DISABLE_EDIT_SOURCE ? '' : ' | code';
+		if(EXTENDED_EDITOR) {
+			initOptions.toolbar1 = 'undo redo | bold italic underline removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify';
+			initOptions.toolbar2 = `bullist numlist outdent indent | emoticons table link image codesample screenshot ${codeButton}`;
+		}
+		else
+			initOptions.toolbar = `bold italic underline removeformat | alignleft aligncenter alignright | bullist numlist outdent indent | emoticons table link image codesample screenshot ${codeButton}`;
+
+		if(UPLOADS_ENABLED && INLINE_IMAGES) {
+			initOptions.paste_data_images = true;
+			initOptions.automatic_uploads = true;
+			initOptions.images_upload_handler = function(blobInfo, success, failure) {
+				tinyMCE.activeEditor.setProgressState(true);
+				uploadFinishedCallbackById[uploadId] = (url, title) => {
+					if(url)
+						success(url);
+					else
+						success(''); //Failure
+				};
+
+				post('RICH_TEXT_FILE_UPLOAD', {
+					filename: blobInfo.filename(),
+					body: blobInfo.base64(),
+					uploadId: uploadId
+				});
+
+				uploadId++;
+			};
+			initOptions.file_picker_callback = (callback, value, meta) => {
+				let input = document.createElement('input');
+				input.style.display = 'none';
+				input.setAttribute('type', 'file');
+				input.setAttribute('accept', 'image/*');
+
+				input.onchange = (event) => {
+					tinyMCE.activeEditor.setProgressState(true);
+					file = input.files[0];
+
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						if(reader.readyState == 2) {
+							let body = reader.result.substring(reader.result.indexOf(',') + 1); //Starts with "data:*/*;base64,"
+
+							uploadFinishedCallbackById[uploadId] = function(url, title) {
+								if(url)
+									callback(url, {title: title, alt: title});
+
+								tinyMCE.activeEditor.setProgressState(false);
+							}
+
+							post('RICH_TEXT_FILE_UPLOAD', {
+								filename: file.name,
+								body: body,
+								uploadId: uploadId
+							});
+
+							uploadId++;
+						}
+					};
+					reader.readAsDataURL(file);
+				};
+
+				document.body.appendChild(input);
+				input.click();
+				document.body.removeChild(input);
+			};
+		}
+
+		let langCodeMap = {'no':'nb_NO','th':'th_TH','nl_NL':'nl','zh-Hans-CN':'zh_Hans','zh-Hant-TW':'zh_Hant','ko':'ko_KR','sv':'sv_SE','fr':'fr_FR','ru_BY':'be','bg':'bg_BG','bn':'bn_BN','iw':'he_IL','hu':'hu_HU','in':'id','is':'is_IS','ka':'ka_GE','sl':'sl_SI'};
+		if (langCodeMap[lang]) {
+			lang = langCodeMap[lang]
+		}
+		if (lang != 'en-US') {
+			initOptions.language = lang;
+		}
+
+		post('RICH_TEXT_ORIGIN', location.origin);
+		tinymce.init(initOptions);
+
+		function getValue() {
+			return initialized ? tinyMCE.activeEditor.getContent() : initialValue;
+		}
+
+		/*
+			If a `GET_VALUE` message fails to reach this iframe in a very rare and unknown scenario, then we want to send over the latest value
+			every so often so that the component can still resolve a getValue() promise assuming the parent can still receive messages. (00199773)
+		*/
+		setInterval(() => {
+			post('RICH_TEXT_VALUE_DRIP', getValue());
+		}, 2000);
+
+		window.addEventListener('message', (event) => {
+			try {
+				//If not a JSON object string with the type and key parameters we expect, then ignore.
+				//For example, the Grammarly browser extension passes the object {"__grammarly":{"kind":"frameId.request","requestId":"<UUID>"}} which is not a 
+				//JSON string resulting in a `SyntaxError: "[object Object]" is not valid JSON` console error
+				if (typeof event.data !== 'string' || !event.data.startsWith('{') || !event.data.includes('"type"') || !event.data.includes('"key"')) {
+					return;
+				}
+				let data = JSON.parse(event.data);
+
+				if(data.key == POST_MESSAGE_KEY) {
+					switch(data.type) {
+						case 'GET_VALUE':
+							post('RICH_TEXT_VALUE', {id: data.value, value: getValue()});
+							break;
+						case 'SET_VALUE':
+							if(initialized)
+								tinyMCE.activeEditor.setContent(data.value);
+							else
+								initialValue = data.value;
+							post('RICH_TEXT_RESIZE_FRAME', measureDiv.clientHeight);
+							break;
+						case 'INSERT_VALUE':
+							tinyMCE.activeEditor.execCommand("mceInsertContent", false, data.value);
+							break;
+						case 'FILE_UPLOAD_COMPLETE':
+							if(uploadFinishedCallbackById[data.value.uploadId]) {
+								uploadFinishedCallbackById[data.value.uploadId](data.value.url, data.value.title);
+								delete uploadFinishedCallbackById[data.value.uploadId];
+							}
+							tinyMCE.activeEditor.setProgressState(false);
+							break;
+						case 'STICKY_TOOLBAR_OFFSET':
+							stickyOffset = data.value.stickyOffset;
+							windowScrollTop = data.value.scrollTop;
+							iframeTop = data.value.iframeTop;
+							if(updateStickyToolbar)
+								updateStickyToolbar();
+							break;
+						case 'FOCUS':
+							tinyMCE.activeEditor.focus();
+							break;
+						case 'SET_MENTION':
+							setMention(data.value.name, data.value.email);
+							break;
+						case 'BLOCK_KEYS':
+							blockKeys = new Set(data.value);
+							break;
+						default:
+							alert(JSON.stringify(data, null, 4));
+							break;
+					}
+				}
+			} catch(e) {
+				console.error(e);
+			}
+		}, false);
+		
+		async function setMention(name, email) {
+			let selection = tinyMCE.activeEditor.contentWindow.getSelection();
+			if (selection && selection.type == 'Caret' && selection.anchorNode && selection.anchorNode.nodeType == Node.TEXT_NODE) {
+				let mentionNode = selection.anchorNode;
+
+				if (!mentionNode.parentElement.dataset.mention) {
+					let mentionIndexStart = mentionNode.nodeValue.lastIndexOf('@', selection.anchorOffset);
+					let mentionIndexEnd = selection.anchorOffset;
+					if (mentionIndexStart > 0) {
+						mentionNode = mentionNode.splitText(mentionIndexStart);
+						//mentionIndexStart is 0 on the split node;
+						mentionIndexEnd -= mentionIndexStart;
+					}
+					if (mentionIndexEnd < mentionNode.nodeValue.length) {
+						mentionNode.splitText(mentionIndexEnd);
+					}
+					mentionNode.nodeValue = name;
+ 
+					let mentionContainer = document.createElement('span');
+					mentionContainer.style.backgroundColor = '#eee';
+					mentionContainer.dataset.mention = await hash(email);
+					mentionNode.parentElement.replaceChild(mentionContainer, mentionNode);
+					mentionContainer.appendChild(mentionNode);
+				} else {
+					mentionNode.nodeValue = name;
+					mentionNode.parentElement.dataset.mention = await hash(email);
+				}
+
+				if (!mentionNode.parentNode.nextSibling)
+					mentionNode.parentNode.insertAdjacentHTML('afterend', '&nbsp;');
+
+				selection.collapse(mentionNode.parentNode.nextSibling, 1);
+			}
+		}
+
+		async function hash(text) {
+			return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(result => btoa(new Uint8Array(result)));
+		}
+
+        function post(type, value) {
+			try {
+				parent.postMessage(JSON.stringify({
+					type: type,
+					key: POST_MESSAGE_KEY,
+					value: value
+				}), POST_MESSAGE_ORIGIN);
+			} catch(e) {}
+		}
+
+		async function screenshot() {
+			let stream = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
+
+			if(stream) {
+				let video = document.querySelector('video');
+				document.querySelector('video').srcObject = stream;
+	
+				setTimeout(() => {
+					let settings = stream.getVideoTracks()[0].getSettings();
+					let canvas = document.querySelector('canvas');
+					canvas.width = settings.width;
+					canvas.height = settings.height;
+					let ctx = canvas.getContext('2d');
+					ctx.drawImage(video, 0, 0);
+					stream.getTracks()[0].stop();
+					let data = canvas.toDataURL("image/png");
+
+					let local = Intl.DateTimeFormat().resolvedOptions().locale;
+					let timestamp = Intl.DateTimeFormat(local, {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZoneName: 'short'}).format();
+					let defaultFilename = `Screenshot ${timestamp}`;
+
+					tinymce.activeEditor.windowManager.open({
+						title: 'Filename',
+						body: {
+							type: 'panel',
+							items: [
+								{
+									type: 'input',
+									name: 'filename',
+									inputMode: 'text',
+									maximized: true
+								}
+							]
+						},
+						initialData: {
+							filename: defaultFilename
+						},
+						buttons: [
+							{
+								type: 'submit',
+								text: 'OK'
+							}
+						],
+						onSubmit: dialogApi => {
+							let filename = (dialogApi.getData()['filename'] || defaultFilename) + '.png';
+							dialogApi.close();
+							tinyMCE.activeEditor.setProgressState(true);
+
+							uploadFinishedCallbackById[uploadId] = function(url, title) {
+								if(url) {
+									let width = settings.width;
+									let height = settings.height;
+									if(width > 600) {
+										let ratio = width / height;
+										width = 600;
+										height = +(width / ratio);
+									}
+
+									let img = document.createElement('img');
+									img.src = url;
+									img.width = width;
+									img.height = height;
+									img.alt = title;
+									img.dataset.mceSrc = url;
+									img.dataset.mceSelected = true;
+									tinyMCE.activeEditor.execCommand("mceInsertContent", false, img.outerHTML);
+								}
+
+								tinyMCE.activeEditor.setProgressState(false);
+							}
+
+							post('RICH_TEXT_FILE_UPLOAD', {
+								filename,
+								body: data.substring(data.indexOf(',') + 1),  //Starts with "data:*/*;base64,"
+								uploadId
+							});
+
+							uploadId++;
+						}
+					});
+				}, 1000);
+			} else {
+				tinymce.activeEditor.windowManager.open({
+					title: 'Error',
+					body: {
+						type: 'panel',
+						items: [
+							{
+								type: 'alertbanner',
+								level: 'error',
+								text: 'Unable to capture screenshot.',
+								icon: 'warning'
+							}
+						]
+					},
+					buttons: [
+						{
+							type: 'cancel',
+							text: 'OK'
+						}
+					]
+				});
+			}
+		}
+
+		tinymce.PluginManager.add('capture', function(editor, url) {
+			editor.ui.registry.addIcon('utility:screen', '<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="26px" viewBox="0 -6 62 62" id="screen"><path d="M50 6c0-2.2-1.8-4-4-4H6C3.8 2 2 3.8 2 6v27.7c0 2.2 1.8 4 4 4h40c2.2 0 4-1.8 4-4V6zm-6 24.2c0 .8-.7 1.5-1.5 1.5h-33c-.8 0-1.5-.7-1.5-1.5V9.5C8 8.7 8.7 8 9.5 8h33c.8 0 1.5.7 1.5 1.5v20.7zM19 44c-2.2 0-4 1.8-4 4v.5c0 .8.7 1.5 1.5 1.5h19c.8 0 1.5-.7 1.5-1.5V48c0-2.2-1.8-4-4-4H19z"></path><path d="M18 26.7h-4.1c-.6 0-1-.5-1-1V14c0-.6.4-1 1-1H18c.5 0 1 .4 1 1v11.7c0 .6-.5 1-1 1zM38.1 26.7H24.8c-.6 0-1-.4-1-1V14c0-.6.4-1 1-1h13.3c.5 0 1 .4 1 1v11.7c0 .6-.5 1-1 1z"></path></svg>');
+
+			if(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+				editor.ui.registry.addButton('Screenshot', {
+					name: 'screenshot',
+					icon: 'utility:screen',
+					tooltip: INSERT_SCREENSHOT_LABEL,
+					onAction: screenshot
+				});
+			}
+		});
+
+		/*
+			Heavily modified version of https://github.com/kurtnovack/stickytoolbar
+			Originally pulled from https://codepen.io/browntown412/pen/KvGeYB
+			Updated to Vanilla JS and customized for IFrame via updateStickyToolbar, windowScrollTop, iframeTop, and stickyOffset globals
+		*/
+		tinymce.PluginManager.add('stickytoolbar', function(editor, url) {
+			editor.on('init', function() {
+				updateStickyToolbar = setSticky;
+				setSticky();
+
+				let editorStyle = document.createElement('style');
+				editorStyle.innerHTML = `
+					.tox-toolbar-overlord > .tox-toolbar:first-of-type {
+						border-top: 0px !important;
+					}
+				`;
+				editor.editorContainer.appendChild(editorStyle);
+			});
+
+			function setSticky() {
+				let container = editor.editorContainer;
+				let toolbars = container.querySelector('.tox-toolbar-overlord') || container.querySelector('.tox-toolbar'); //Handle extended vs standard toolbar
+				let statusbar = container.querySelector('.tox-throbber');
+
+				if(!container || !toolbars || !statusbar)
+					return;
+
+				if (isSticky()) {
+					container.style.paddingTop = `${toolbars.offsetHeight}px`;
+
+					if (isAtBottom()) {
+						toolbars.style.position = 'absolute';
+						toolbars.style.top = 'auto';
+						toolbars.style.bottom = `${statusbar.offsetHeight}px`;
+						toolbars.style.width = '100%';
+					} else {
+						toolbars.style.position = 'fixed';
+						toolbars.style.top = `${windowScrollTop - iframeTop + stickyOffset}px`;
+						toolbars.style.bottom = 'auto';
+						toolbars.style.width = `${container.clientWidth}px`;
+						toolbars.style.zIndex = 9;
+					}
+				} else {
+					toolbars.style.position = 'relative';
+					toolbars.style.top = '0px';
+					container.style.paddingTop = '0px';
+					toolbars.style.width = 'auto';
+				}
+			}
+
+			function isSticky() {
+				return (windowScrollTop + stickyOffset) > iframeTop;
+			}
+
+			function isAtBottom() {
+				let container = editor.editorContainer,
+				editorTop = (iframeTop - stickyOffset) - windowScrollTop;
+
+				let toolbarHeight = (container.querySelector('.tox-toolbar-overlord') || container.querySelector('.tox-toolbar')).offsetHeight;
+				let footerHeight = container.querySelector('.tox-throbber').offsetHeight;
+
+				let hiddenHeight = -(container.offsetHeight - toolbarHeight - footerHeight);
+
+				if (editorTop < hiddenHeight) {
+					return true;
+				}
+
+				return false;
+			}
+		});
+	</script>
+</body>
+</html>

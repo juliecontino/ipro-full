@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Query is constructed based on your inputs in this definition and can be reviewed here --></help>
+        <label><!-- Dynamic Query --></label>
+        <name>dynl__Dynamic_Query__c</name>
+    </CustomFieldTranslation>

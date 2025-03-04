@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Origin_Address__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <inlineHelpText>AvaTax only: Specifies the origin address to pass to AvaTax.</inlineHelpText>
+    <label>Origin Address</label>
+    <referenceTo>AcctSeed__Address__c</referenceTo>
+    <relationshipLabel>Tax Settings</relationshipLabel>
+    <relationshipName>Tax_Settings</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

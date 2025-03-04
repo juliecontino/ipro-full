@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Describes the number of boxes within a package. The boxes contain the commodity. --></help>
+        <label><!-- Number of Pieces --></label>
+        <name>zkfedex__NumberOfPieces__c</name>
+    </CustomFieldTranslation>

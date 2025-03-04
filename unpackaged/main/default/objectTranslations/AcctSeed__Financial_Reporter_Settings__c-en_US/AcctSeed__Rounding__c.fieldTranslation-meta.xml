@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Rounding --></label>
+        <name>AcctSeed__Rounding__c</name>
+        <picklistValues>
+            <masterLabel>No Rounding</masterLabel>
+            <translation><!-- No Rounding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Round to 1000s</masterLabel>
+            <translation><!-- Round to 1000s --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Whole Amounts</masterLabel>
+            <translation><!-- Whole Amounts --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

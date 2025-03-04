@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JCSoftware__Table_Field_Key__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <deprecated>false</deprecated>
+    <description>Used to verify only one rule can exist for a Table / Field combination</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Used to verify only one rule can exist for a Table / Field combination</inlineHelpText>
+    <label>Table Field Key</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

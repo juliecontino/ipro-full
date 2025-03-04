@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- You can group canned comments into categories to make it easier to find the entries you need. To manage categories, go to Setup &gt; Create &gt; Objects &gt; Canned Comment. Click the field name &quot;Category&quot; and then modify the picklist values as necessary. --></help>
+        <label><!-- (Deprecated) Category --></label>
+        <name>E2CP__Category__c</name>
+        <picklistValues>
+            <masterLabel>Accounting</masterLabel>
+            <translation><!-- Accounting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Administration</masterLabel>
+            <translation><!-- Administration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Support</masterLabel>
+            <translation><!-- Support --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

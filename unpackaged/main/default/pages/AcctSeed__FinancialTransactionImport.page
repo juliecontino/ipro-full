@@ -1,0 +1,7 @@
+<apex:page title="Import | Accounting Seed">
+    <apex:pageMessage summary="This is no longer a supported feature. Please use the link to the new Bank Direct Connect." severity="info" strength="3">
+        <apex:outputLink value="/lightning/n/AcctSeed__Bank_Direct_Connect2">
+            <h3>Bank Direct Connect</h3>
+        </apex:outputLink>
+    </apex:pageMessage>
+</apex:page>

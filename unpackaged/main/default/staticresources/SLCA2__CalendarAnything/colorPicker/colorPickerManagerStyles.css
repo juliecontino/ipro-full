@@ -1,0 +1,47 @@
+a.fcui-popup-color-item 
+{ 
+	float:right;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:0 4px 4px 0;
+	border:1px solid #fff;
+	text-decoration:none;
+	margin-top: 3px;
+}
+
+a.fcui-popup-color-item:hover 
+{ 
+	border-color:#000; 
+}  
+
+.fcui-popup-colors 
+{ 
+display: none; 
+position: absolute; 
+background-color:#E8EEF7; 
+z-index: 200; 
+border:double 3px #000;
+}
+
+a.close-picker-button
+{
+	float:right;
+	font-size:0.7em;
+	padding:0 7px;
+	clear:both;
+	margin-left:-20px;
+	display:none;
+}
+
+a.close-picker-button:hover
+{
+	cursor:pointer;
+}
+
+.colors-table
+{
+	/*border:double 3px #000;*/
+	margin-top:12px;
+	float:left;
+}

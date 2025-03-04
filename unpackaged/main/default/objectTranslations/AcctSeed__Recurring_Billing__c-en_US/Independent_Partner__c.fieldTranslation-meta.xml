@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Independent Partner --></label>
+        <name>Independent_Partner__c</name>
+        <picklistValues>
+            <masterLabel>Canoa Systems, Inc.</masterLabel>
+            <translation><!-- Canoa Systems, Inc. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coastal Bend Technology Solutions</masterLabel>
+            <translation><!-- Coastal Bend Technology Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FCS Communications, Inc.</masterLabel>
+            <translation><!-- FCS Communications, Inc. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Infinity Wire Solutions</masterLabel>
+            <translation><!-- Infinity Wire Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jeff Hicks Computer Consulting</masterLabel>
+            <translation><!-- Jeff Hicks Computer Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ligas Enterprises</masterLabel>
+            <translation><!-- Ligas Enterprises --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RIT Group</masterLabel>
+            <translation><!-- RIT Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SCI Alarms</masterLabel>
+            <translation><!-- SCI Alarms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scott Enriquez</masterLabel>
+            <translation><!-- Scott Enriquez --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TechSys Consulting</masterLabel>
+            <translation><!-- TechSys Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Terry Wolfe</masterLabel>
+            <translation><!-- Terry Wolfe --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

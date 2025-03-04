@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__HomeDeliveryPremium__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Home Delivery Premium</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FedEx Appointment Home Delivery</fullName>
+                <default>false</default>
+                <label>FedEx Appointment Home Delivery</label>
+            </value>
+            <value>
+                <fullName>FedEx Date Certain Home Delivery</fullName>
+                <default>false</default>
+                <label>FedEx Date Certain Home Delivery</label>
+            </value>
+            <value>
+                <fullName>FedEx Evening Home Delivery</fullName>
+                <default>false</default>
+                <label>FedEx Evening Home Delivery</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

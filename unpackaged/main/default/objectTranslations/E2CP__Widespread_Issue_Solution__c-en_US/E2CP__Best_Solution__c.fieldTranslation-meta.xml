@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Indicator of Solution being selected as best --></help>
+        <label><!-- Best Solution --></label>
+        <name>E2CP__Best_Solution__c</name>
+    </CustomFieldTranslation>

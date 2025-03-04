@@ -1,0 +1,427 @@
+@charset "utf-8";
+/* CSS Document */
+
+span#ui-dialog-title-crm_dialog_div {
+	font-size:13px;
+}
+
+
+#crm_dialog_div {
+	width:600px;
+	height:400px;
+	overflow:auto;
+	line-height:26px;
+	font-size:14px;
+}
+
+#crm_dialog_div td {
+	color: #333333;
+	font-family: Arial,Helvetica,sans-serif !important;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+#crm_dialog_div h4 { color:#333333; }
+
+#crm_dialog_div ul {
+	list-style-type: disc;
+    margin-left: 50px;
+}
+
+#crm_dialog_div ul li {
+	font-weight: bold;
+}
+
+#crm_dialog_div input#searchText { 
+	border: 1px solid #999999;
+	padding-bottom: 4px;
+	color: #000000;
+}
+
+#crm_dialog_div input#searchText:focus { border: 1px solid rgba(82,168,236,0.8) }
+
+#crm_dialog_div button, 
+#crm_dialog_div input[type=button], 
+#crm_dialog_div input[type=submit], 
+span.crmvalidate input[type=submit],
+.crmDialogButton {
+	background: url("/css/redmond/images/input-main-bg.jpg") repeat-x scroll 50% 50% transparent;
+	border: 1px solid #2B63AA;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	border-radius: 5px 5px 5px 5px;
+	margin-left: 2px;
+	margin-top: 2px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+a.closedialog {
+	vertical-align:-9px;
+	text-decoration:underline;
+	color:black;
+	margin-right:22px;
+	font-size:11pt;
+}
+
+span.crmvalidate input[type=submit]:hover {
+	background: #2f70c1 url(/img/input-main-bg-hover.jpg) repeat-x;
+	border: 1px solid #5f801a;
+}
+
+
+label#sandboxlabel { width:120px; } 
+
+span.crmvalidate {
+	line-height: 60px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+span.crmvalidation {
+	margin-left: 40px;
+	color: red;
+}
+
+#crm_dialog_div button:hover, 
+#crm_dialog_div input[type=button]:hover, 
+#crm_dialog_div input[type=submit]:hover, 
+span#sfvalidate input[type=submit]:hover,
+.crmDialogButton:hover {
+	background: #2f70c1 url(/img/input-main-bg-hover.jpg) repeat-x;
+	border: 1px solid #5f801a;
+}
+
+#salesForce,#salesForceUpload,#mscrmUpload,#sugarcrmUpload,#netsuiteUpload,#mylist_box,#marketo_box {
+	cursor:pointer;
+}
+
+.companySFlink {
+	line-height:normal;
+	font-size:9pt;
+}
+#companySFformDiv {
+	display:none
+}
+.companyMSCRMlink,.companySugarCRMlink,.companyNetSuiteLink {
+	line-height:normal;
+	font-size:9pt;
+	cursor:pointer;
+}
+a.companySugarCRMlink{ margin-top:2px;}
+a.companyNetSuitelink{ margin-top:2px;}
+a.companyMSCRMlink{ margin-top:7px;}
+#companySugarCRMlogo {
+	margin-right:2px;
+}
+
+td #companySFlogo,td #companyMSCRMlogo,td #companySugarCRMlogo, td #companyNetSuitelogo {float: left}
+
+.companyMSCRMlink:hover,.companySugarCRMlink:hover,.companyNetSuitelink:hover  {color:red}
+
+#choose_crm_record_type_dialog_div button {
+	padding:4px 5px;
+	background:#2f70c1 url(/img/input-main-bg.jpg) repeat-x;
+	padding:6px 5px;
+	border:none;
+	border:1px solid #2b63aa;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	color:#fff;
+	font-family: HelveticaNeue-Bold;
+	font-size:16px;
+	margin-right:5px;
+	cursor:pointer;
+}
+
+/*.sfbutton {margin-bottom:8px;float:left}
+.sfcontact_button {margin-bottom:8px;}*/
+.sfbutton, .msdynbutton, .sugarbutton, .netsuitebutton {cursor:pointer;border:none}
+.msdynlead_label, .msdyncontact_label, .msdynbutton { font-size:11px; margin-right:10px;}
+.sfbutton {border:none;}
+.crmorgcharticon {padding-left:3px;padding-right:3px;}
+.lead_label {
+	font-size:7pt;
+	color:#EE473B;
+}
+.contact_label {
+	font-size:7pt;
+	color:#FD2391;
+}
+
+ul#exportFormat { 
+	left: 0px;
+	z-index: 2000;
+}
+
+#sales_force {
+	width:85px !important;
+}
+#ms {
+	width:50px !important;
+}
+#sugar {
+	width:50px !important;
+}
+#netsuite {
+	width:50px !important;
+}
+
+.sftable {
+	background-color:#f5f5f5
+}
+.sftable td {
+	font-family:arial;
+	font-size:10pt;
+	border:none !important;
+	float:none;
+}
+.sftable thead tr td {
+	background-color:#006599;
+	border:none !important;
+}
+.sftable thead tr a {
+	color:black;
+	font-weight:normal;
+	color:#fff;
+	text-decoration:none;
+}
+
+.showsf {
+	background-color:#f5f5f5
+}
+.showsf td {
+	font-family:arial;
+	font-size:10pt;
+	border:none !important;
+	float:none;
+}
+.showsf thead tr td {
+	background-color:#006599;
+	border:none !important;
+}
+.showsf thead tr a {
+	color:black;
+	font-weight:normal;
+	color:#fff;
+	text-decoration:none;
+}
+.showmscrm,.showsugarcrm,.shownetsuite {
+	background-color:#f5f5f5
+}
+.showmscrm td, .showsugarcrm td, .shownetsuite td {
+	font-family:arial;
+	font-size:10pt;
+	border:none !important;
+	float:none;
+}
+.showmscrm thead tr td,.showsugarcrm thead tr td,.shownetsuite thead tr td {
+	background-color:#006599;
+	border:none !important;
+}
+.showmscrm thead tr a,.showsugarcrm thead tr a,.shownetsuite thead tr a {
+	color:black;
+	font-weight:normal;
+	color:#fff;
+	text-decoration:none;
+}
+.sales_force {
+	margin:0px;
+	padding:0px;
+}
+.sales_force ul {
+	margin:0px;
+	padding:0px;
+	display:block;
+	list-style:none;
+	height: auto;
+}
+.sales_force li {
+	float:left;
+	background:url(../images/header_03.gif?201209041202) no-repeat left 5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	line-height:23px;
+	color:#333;
+	text-align:justify;
+	padding-bottom:15px;
+	padding-left:30px;
+}
+
+#salesforcehelp {
+	position:absolute;
+	z-index:99;
+	left:630px;
+	top:52px;
+	font-family:arial;
+	text-align:center;
+	cursor:pointer;
+	width:200px;
+	font-family:arial;
+	font-size:10pt;
+}
+#salesforcehelpimage {
+	border: none;
+	opacity:0.4;
+	filter:alpha(opacity=40);
+	height:50px
+}
+#salesforcehelptext {
+	padding:20px;
+	width:500px;
+	border:thin solid black;
+	z-index:99;
+	position:relative;
+	left:-200px;
+	display:none;
+	background-color:beige;
+	text-align:left;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25);
+	box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+/* FROM MSCRM UPDATE PAGE */
+
+        .style1
+        {
+            width: 100%;
+        }
+        .style2
+        {
+            width: 104px;
+        }
+        .style3
+        {
+            width: 104px;
+            font-weight: bold;
+            color: #FFFFFF !important;
+            background-color: #336667;
+        }
+        .style4
+        {
+            width: 65px;
+        }
+        .style5
+        {
+            width: 52px;
+        }
+        .style6
+        {
+            width: 30px;
+        }
+        .style7
+        {
+            width: 52px;
+            font-weight: bold;
+            color: #FFFFFF !important;
+            background-color: #336667;
+        }
+        .style8
+        {
+            width: 65px;
+            font-weight: bold;
+            color: #FFFFFF !important;
+            background-color: #336667;
+        }
+        .style9
+        {
+            width: 171px;
+            color: #FFFFFF !important;
+            background-color: #336667;
+        }
+        .style10
+        {
+            width: 30px;
+            color: #FFFFFF !important;
+            background-color: #336667;
+        }
+        .style11
+        {
+            width: 171px;
+        }
+        .style12
+        {
+            width: 104px;
+            height: 43px;
+        }
+        .style13
+        {
+            width: 30px;
+            height: 43px;
+        }
+        .style14
+        {
+            width: 171px;
+            height: 43px;
+        }
+        .style15
+        {
+            width: 65px;
+            height: 43px;
+        }
+        .style16
+        {
+            width: 52px;
+            height: 43px;
+        }
+/* END FROM MSCRM UPDATE PAGE */
+
+
+.settingssavedspan, .savedspan {
+	color: red;
+	font-family: 'HelveticaNeue-Bold';
+    font-size: 14px;
+}
+
+td.showsf table tr td,table.mscrmtable tr td,table.sugarcrmtable tr td,table.netsuitetable tr td {border:none !important}
+
+/* link to salesforce */
+#contactsList a {color:blue; text-decoration:underline}
+#accountsList a {color:blue; text-decoration:underline}
+
+#recordsList a {color:blue;text-decoration:underline}
+
+/*CRM DIALOG BOX salesforce_dialog() */
+#leadsList a {color:blue;text-decoration:underline}
+
+#lead_required_fields_list, #contact_required_fields_list {display:none}
+
+.sfmanagersonly,.netsuite_managersonly { display: none }
+
+/* Hide everything by default */
+.showsf,.showmscrm,.showsugarcrm,.shownetsuite {
+	display:none;
+}
+td.showsf,td.showmscrm,td.showsugarcrm,td.shownetsuite {
+	border: 1px solid #c0c0c0 !important;
+}
+table.org_sf.sflead_button, table.org_sf.sfcontact_button,
+table.mscrmtable.msdynbutton_lead,table.mscrmtable.msdynbutton_contact,
+table.sugarcrmtable.sugarbutton_lead,table.sugarcrmtable.sugarbutton_contact,
+table.netsuitetable.netsuitebutton_lead,table.netsuitetable.netsuitebutton_contact,
+ul#exportFormat li,a.downloadButton {display:none;}
+
+ul#exportFormat li#mylist_box { display:list-item; }
+
+table.org_sf,.sfchoosebutton,.sugarcrmchoosebutton,.netsuitechoosebutton,.mscrmchoosebutton,
+.mscrmtable,.showmscrm,.sugarcrmtable,.showsugarcrm,.netsuitetable,.shownetsuite,
+.lead_label,
+.msdynlead_label,.sugarlead_label,.netsuitelead_label,
+.contact_label,
+.msdyncontact_label,
+.sfbutton,.msdynbutton,.sugarbutton,.netsuitebutton,.sflead_button,img.msdynbutton_lead,img.sugarbutton_lead,img.netsuitebutton_lead,
+.sfcontact_button,img.msdynbutton_contact,img.sugarbutton_contact,img.netsuitebutton_contact,.companySFlink,
+.companyMSCRMlink,#salesForceUpload,.companySugarCRMlink,.companyNetSuitelink,
+#mscrmUpload,#sugarcrmUpload,#netsuiteUpload,.sugarcrm_row,.netsuite_row,.mscrm_row,.salesforce_row,.eloquaUpload,
+.sfCsv,.managersonly {display:none;visibility:hidden}
+

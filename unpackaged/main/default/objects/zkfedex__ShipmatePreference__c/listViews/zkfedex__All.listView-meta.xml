@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__All</fullName>
+    <columns>NAME</columns>
+    <columns>zkfedex__FedExAccountNumber__c</columns>
+    <columns>zkfedex__AccountIsSetupForSmartPostReturns__c</columns>
+    <columns>zkfedex__ShippingCountry__c</columns>
+    <columns>zkfedex__ShippingStreet__c</columns>
+    <columns>zkfedex__ShippingCity__c</columns>
+    <columns>zkfedex__ShippingState__c</columns>
+    <columns>zkfedex__ShippingPostalCode__c</columns>
+    <columns>zkfedex__LastClosePerformedAt__c</columns>
+    <columns>zkfedex__SmartPostHubId__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

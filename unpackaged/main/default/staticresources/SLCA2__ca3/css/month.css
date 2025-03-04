@@ -1,0 +1,755 @@
+/* 
+    Document   : month
+    Created on : 28 лют 2012, 19:47:04
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+
+@import url(month.ipad.css) screen and (max-device-width: 1024px) and (orientation: landscape);
+@import url(month.ipad.css) screen and (device-width: 768px) and (orientation: portrait);
+
+/*@import url(month.ipad.css);*/
+
+.JQ_CA > .CA_r > .show._mode-month{
+    display:block !important;
+    overflow:hidden;
+}
+
+.JQ_CA > .CA_r > .show._mode-month.width_week_1 {right:1px;}
+.JQ_CA > .CA_r > .show._mode-month.width_week_2 {right:2px;}
+.JQ_CA > .CA_r > .show._mode-month.width_week_3 {right:3px;}
+.JQ_CA > .CA_r > .show._mode-month.width_week_4 {right:4px;}
+.JQ_CA > .CA_r > .show._mode-month.width_week_5 {right:5px;}
+.JQ_CA > .CA_r > .show._mode-month.width_week_6 {right:6px;}
+
+.JQ_CA > .CA_r > ._mode-month > .events
+{
+    position:absolute;
+    top:30px;
+/*    bottom:10px;*/
+    left:20px;
+    right:20px;
+
+}
+
+.JQ_CA > .CA_r > ._mode-month > .month_scroll{
+    overflow-y:hidden;
+    position:absolute;
+    top:30px;
+    left:20px;
+    right:20px;
+    bottom:0px;
+}
+.JQ_CA > .CA_r > ._mode-month > .month_scroll > div.data{
+/*                min-height:300px;*/
+    position:relative;
+    overflow:hidden;
+    height:100%;width:100%;
+    padding:0px;margin:0px;
+    display:inline-block;
+/*    display:none;*/
+}
+
+    .JQ_CA > .CA_r > ._mode-month > .events > div{
+        position:absolute;
+        height:10px;
+        border-radius:2px;
+        border:1px solid #ddd;
+        background: red;
+        background: -moz-linear-gradient(top,  green 0%, red 100%);
+        background: -webkit-linear-gradient(top,  green 0%, red 100%);
+        background: -ms-linear-gradient(top,  green 0%, red 100%);
+        background: -o-linear-gradient(top, green 0%, red 100%);
+        background: linear-gradient(top, green 0%, red 100%);
+    }
+
+    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div{
+        height:16%;
+        position:relative;
+        text-align: right;
+        min-height:50px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    .JQ_CA.CA_mozilla > .CA_r > ._mode-month.weeks_6   .month_scroll > div,
+    .JQ_CA.CA_webkit > .CA_r > ._mode-month.weeks_6   .month_scroll > div,
+    .JQ_CA.CA_opera > .CA_r > ._mode-month.weeks_6   .month_scroll > div{
+        height:16.66%;
+    }
+    
+    
+        .JQ_CA > .CA_r > ._mode-month   .month_scroll > div.new_events > .events > div{
+            opacity:0.25;
+        }
+        
+        .JQ_CA > .CA_r > ._mode-month   .month_scroll > div.new_events > .events > div.new_event{
+            opacity:1;
+        }
+        
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div.new_events > .events > div.new_event > span{
+                background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+            }
+            
+            .JQ_CA.ie > .CA_r > ._mode-month   .month_scroll > div.new_events > .events > div.new_event > span{
+                background-color:#8787D7;
+            }
+    
+    
+    .JQ_CA > .CA_r > ._mode-month.weeks_1   .month_scroll > div{height:100%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_2   .month_scroll > div{height:50%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_3   .month_scroll > div{height:33%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_4   .month_scroll > div{height:25%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_5   .month_scroll > div{height:20%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_6   .month_scroll > div{height:16%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_7   .month_scroll > div{height:14%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_8   .month_scroll > div{height:12%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_9   .month_scroll > div{height:11%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_10   .month_scroll > div{height:10%;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_0   .month_scroll > div{height:auto;}
+    .JQ_CA > .CA_r > ._mode-month.weeks_0   .month_scroll > div._max_auto_0 {
+        height: 1px;
+    }
+/*    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div:last-of-type{
+        height:1px;line-height:0px;font-size:0px;
+        min-height:1px;
+    }*/
+
+/*            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div:last-of-type > ul > li{
+
+            }*/
+        .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul {
+            display:block;
+            height:100%;
+            width:100%;
+/*                        overflow: hidden;*/
+            list-style: none;
+            list-style-type: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            text-align:left;
+        }
+        .JQ_CA > .CA_r > ._mode-month   .month_scroll > div:last-of-type > ul{
+            min-height: 0px;overflow-y: hidden;
+        }
+
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li{
+
+                border-collapse: collapse;
+/*                    float: left;*/
+                width: 14%;
+                border-right: 1px solid #ddd;
+                border-top:1px solid #ded;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+                background-color: rgb(248, 247, 255);
+                min-height: 50px;
+            }
+            
+            li.cur-month{
+                background-color: #ffffff !important;
+            }
+            
+            li.cur-month > span.detail_day{
+                color:#444 !important;
+            }
+            
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li:first-child{
+                display:none;
+            }
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li:nth-child(2){
+                border-left: 1px solid #ddd;
+            }
+            
+            .JQ_CA._week-end-7 > .CA_r > ._mode-month   .month_scroll > div > ul > li{width:14.28%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll > div > ul > li{width:16.66%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll > div > ul > li{width:20%;}
+
+                        
+            
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll > div > ul > li:nth-child(8),
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll > div > ul > li:nth-child(8),
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll > div > ul > li:nth-child(7),
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll > div > ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll > div > ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll > div > ul > li[data-day="6"]{
+                display:none;
+            }
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div:first-child > ul > li{
+                border-top:0px;
+            }
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li.current,
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li:hover
+            {
+                background: #dddddd;
+                /*background: #dddddd;*/
+                background: -moz-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -webkit-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -o-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -ms-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+            }
+            
+            .JQ_CA.CA_msie > .CA_r > ._mode-month   .month_scroll > div > ul > li.current,
+            .JQ_CA.CA_msie > .CA_r > ._mode-month   .month_scroll > div > ul > li.cur-month.current{
+                background-color:#eeeeee !important;
+            }
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll.current > div > ul > li.month{
+                color:#333;
+            }                                        
+
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll > div[data-week="6"] > ul > li{
+            }
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li > span.more{
+                    position:absolute;
+                    z-index: 48;
+                    background-color: transparent;
+                    left:3px;top:1px;
+                    font-size:80%;
+                    text-align: center;
+                    cursor: pointer;
+                    display:none;
+                }
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li > span.more.on{
+                    left:8px;top:6px;
+                    display:inline-block;
+                    height:5px;width:5px;
+                    border-radius: 3px;
+                    background-color:  rgba(70,70,70, 0.5);
+                    color:transparent;
+                }
+
+                .JQ_CA > .CA_r > ._mode-month  .month_scroll > div:hover > ul > li:hover > span.more.on,
+                .JQ_CA > .CA_r > ._mode-month  .month_scroll > div > ul > li.full_day > span.more.on,
+                .JQ_CA > .CA_r > ._mode-month  .month_scroll > div._printing > ul > li > span.more.on{
+                    left:3px;top:1px;
+                    width:auto;height:10px;
+                    padding:0px 5px;
+                    border-radius: 3px;
+                    color:inherit;
+                    line-height: 10px;
+                    background-color:  #f0f0f0;
+                    border:1px solid #ccc;
+/*                                background: -moz-linear-gradient(top,  rgba(255,255,255,0.6) 0%, rgba(70,70,70, 0.9) 100%);*/
+                }
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li > .daymore{
+                    position:absolute;
+                    top:14px;
+                    left:0px;
+                    right:0px;
+                    z-index:99;
+                    border:1px solid #ddd;
+                    border-top:0px;
+                    box-shadow: 0px 5px 5px #000;
+                    display:none;
+                    min-height: 100px;
+                    min-width:100px;
+                }
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > ul > li.full_day > .daymore{
+                    display:block;
+                    background-color:white;
+                    padding-top:1px;
+                    border-radius: 4px 4px 0 0;
+                }
+                
+                    .JQ_CA > .CA_r > ._mode-month   .daymore > div._title{
+                        position: absolute;
+                        top:0px;
+                        left:0px;
+                        right:0;
+                        height:14px;
+                        line-height: 14px;
+                        vertical-align: middle;
+                        overflow: hidden;
+                        background-color: #fff;
+                        text-align: right;
+                        font-size: 100%;
+/*                        width:100%;*/
+                        display:none;
+                        padding-right:20px;
+                        /*color: #444444 !important;*/
+                        color:white !important;
+                        background : #225A73 ;
+                        background: -moz-linear-gradient(top,  #225A73 0%, #487AA3 100%);
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#225A73), color-stop(100%,#487AA3));
+                        background: -webkit-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                        background: -o-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                        background: -ms-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                        background: linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                        border-radius: 4px 4px 0 0;
+                    }
+                    
+                    .JQ_CA > .CA_r > ._mode-month   .daymore._changed > div._title{
+                        display: block;
+                    }
+                    
+                    .JQ_CA > .CA_r > ._mode-month   .daymore._changed > div.sub_events{
+                        top:16px;
+                    }
+                
+                    .JQ_CA > .CA_r > ._mode-month   .daymore > div._move{
+                        cursor: move;
+                        position: absolute;
+                        top:-1px;
+                        left:-1px;
+                        height : 0;
+                        border-bottom: 10px solid transparent;
+                        border-left: 10px solid red;
+                    }
+                    
+                    .JQ_CA > .CA_r > ._mode-month   .daymore._changed > div._move{
+                        border-bottom-width: 0px;
+                        border-left-width: 0px;
+                        right:0;
+                        height:14px;
+                    }
+                    
+
+                    .JQ_CA > .CA_r > ._mode-month   .daymore > div._resize{
+                        cursor: se-resize;
+                        position: absolute;
+                        bottom:-1px;
+                        right:-1px;
+                        height : 0;
+                        border-bottom: 10px solid red;
+                        border-left: 10px solid transparent;
+                    }
+                    
+                    .JQ_CA > .CA_r > ._mode-month   .daymore > div._close{
+                        display:none;
+                        cursor: pointer;
+                        position: absolute;
+                        top:1px;
+                        right:2px;
+                        border-radius:6px;
+                        line-height: 12px;
+                        font-size: 12px;
+                        height:12px;
+                        width:12px;
+                        text-align: center;
+                        background-color: white;
+                        z-index: 99;
+                    }
+                    .JQ_CA > .CA_r > ._mode-month   .daymore._changed > div._close{
+                        display:block;
+                    }
+                
+
+
+        .JQ_CA > .CA_r > ._mode-month   .month_scroll > div .events{
+            position:absolute;
+            top:15px;
+            left:0px;
+            height:0px;
+            right:0px;
+            overflow:hidden;
+            bottom:15px !important;
+/*                        background-image:url(pic/event_week_bg.png) ;
+            background-repeat: repeat-x;
+            background-position: bottom center;*/
+/*                        opacity: 0.7;*/
+        }
+
+        .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events:hover{
+/*                        opacity:1;*/
+        }
+
+        
+        
+        .JQ_CA > .CA_r > ._mode-month   div.sub_events{
+            position: absolute;
+            top:2px;
+            left:0;right:0;bottom:0;
+            overflow-y:auto;
+        }
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .evt{
+/*                opacity:0.7;*/
+                display:inline-block;
+                position:absolute;
+                margin-bottom:2px;
+                height:15px;
+
+/*                            border:1px solid #ddd;*/
+/*                            box-shadow: 0px 0px 1px #333;*/
+/*                                -moz-linear-gradient(top,  transparent 0%, rgba(255,255,255,0.2) 100%);*/
+/*                            overflow:hidden;*/
+/*                top:999px;*/
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+            }
+            
+            
+            .JQ_CA.middle > .CA_r > ._mode-month   .month_scroll   .evt{
+                height:18px;
+            }
+            .JQ_CA.large > .CA_r > ._mode-month   .month_scroll   .evt{
+                height:21px;
+            }
+
+            .JQ_CA > .CA_r > ._mode-month  .daymore > div.sub_events > .evt{
+/*                opacity:0.7;*/
+                display:block;
+                margin-bottom:2px;
+/*                height:15px;*/
+                position:relative;
+                top:0px;
+            }
+            
+            
+            .JQ_CA.middle > .CA_r > ._mode-month   div.sub_events > div{
+                height:18px;
+            }
+            
+            .JQ_CA.large > .CA_r > ._mode-month   div.sub_events > div{
+                height:21px;
+            }
+
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .events > div.on,
+            .JQ_CA > .CA_r > ._mode-month   div.sub_events > div.on {
+                opacity:1;
+            }
+            
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p0{width:14.28%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p1{width:28.56%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p2{width:42.84%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p3{width:57.12%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p4{width:71.35%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p5{width:85.70%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .p6{width:100%;}
+            
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .p0{width:16.66%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .p1{width:33.33%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .p2{width:50%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .p3{width:66.66%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .p4{width:83.33%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .p5{width:100%;}
+            
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .p0{width:20%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .p1{width:40%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .p2{width:60%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .p3{width:80%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .p4,
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .p5{width:100%;}
+            
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d0{left:0;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d1{left:14.28%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d2{left:28.56%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d3{left:42.84%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d4{left:57.12%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d5{left:71.35%;}
+            .JQ_CA > .CA_r > ._mode-month   .month_scroll   .d6{left:85.70%;}
+            
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d0{left:0;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d1{left:16.66%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d2{left:33.33%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d3{left:50%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d4{left:66.66%;}
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d5{left:83.33%;}
+            
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d0{left:0;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d1{left:20%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d2{left:40%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d3{left:60%;}
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d4{left:80%;}            
+            
+            
+            
+            
+            .JQ_CA._week-end-6 > .CA_r > ._mode-month   .month_scroll   .d6,
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d6,
+            .JQ_CA._week-end-5 > .CA_r > ._mode-month   .month_scroll   .d5{
+                display:none;
+            }
+            
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt > span,
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt > span > span,
+                .JQ_CA > .CA_r > ._mode-month div.sub_events > div > span, 
+                .JQ_CA > .CA_r > ._mode-month div.sub_events > div > span > span
+                {
+                    position:absolute;
+                    top:0px;
+                    bottom:0px;
+                }
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt > span.title, 
+                .JQ_CA > .CA_r > ._mode-month div.sub_events > div > span.title
+                {
+                    overflow:hidden;
+                    border-radius:5px;
+                    z-index:1;
+                    left:5px;
+                    right:5px;
+                    padding-left:13px;
+/*                    background-image:url(../pic/event_bg.png);*/
+                    background-repeat: repeat-x;
+                    background-position: center center;
+                    font-size:11px;
+                    line-height:15px;
+                    color:white;
+                    text-align: left;
+                    vertical-align: middle;
+                }
+                
+/*                .JQ_CA._event-style-gradient span.title {background-image:url(../pic/event_bg.png);}*/
+                .JQ_CA._event-style-round span.title {background-image:url(../pic/tpl/tpl1.png); background-repeat: repeat !important;}
+                .JQ_CA._event-style-line span.title {background-image:url(../pic/tpl/tpl5.png); background-repeat: repeat !important;}
+                .JQ_CA._event-style-half span.title {background-image:url(../pic/tpl/tpl15.png);background-size: contain !important;}
+                .JQ_CA._event-style-bulb span.title {background-image:url(../pic/tpl/tpl12.png);}
+                .JQ_CA._event-style-koso1 span.title {background-image:url(../pic/tpl/tpl8_2.png);background-repeat: repeat !important;}
+                .JQ_CA._event-style-koso2 span.title {background-image:url(../pic/tpl/tpl18.png); background-repeat: repeat !important;}
+                .JQ_CA._event-style-koso3 span.title {background-image:url(../pic/tpl/tpl17.png); background-repeat: repeat !important;}
+                
+                
+                .JQ_CA.middle > .CA_r > ._mode-month   .month_scroll > div > .events > .evt > .title, 
+                .JQ_CA.middle > .CA_r > ._mode-month div.sub_events > div > .title
+                {
+                    font-size:14px;
+                    line-height:18px;
+                }
+
+                .JQ_CA.large > .CA_r > ._mode-month   .month_scroll > div > .events > .evt > .title, 
+                .JQ_CA.large > .CA_r > ._mode-month div.sub_events > div > .title
+                {
+                    font-size:17px;
+                    line-height:21px;
+                }
+
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > div.on > .title,
+                .JQ_CA > .CA_r > ._mode-month   div.sub_events > div.on > .title
+                {
+                    box-shadow: 0px 0px 3px #000;
+
+                }
+
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .full_l > .title,
+                .JQ_CA > .CA_r > ._mode-month   div.sub_events > .full_l > .title
+                {
+                    left:1px;
+                    padding-left: 17px;
+                    border-bottom-left-radius: 2px;
+                    border-top-left-radius: 2px;
+                }
+                .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .full_r > .title,
+                .JQ_CA > .CA_r > ._mode-month   div.sub_events > .full_r > .title
+                {
+                    right:2px;
+                    border-bottom-right-radius: 2px;
+                    border-top-right-radius: 2px;
+                }
+
+                .JQ_CA > .CA_r > ._mode-month div.sub_events > div > span.title {
+                    font-size:100%;
+                }
+
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > div > span > .title{
+
+                    }
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > div > span > .l{
+                        border-top-left-radius:5px;
+                        border-bottom-left-radius:5px;
+                        z-index:2;
+                        left:0px;width:10px;
+                        cursor:w-resize;
+/*                                opacity: 0.2;*/
+/*                                background-color:#000;*/
+                        background:url(../pic/event_week_l.png) repeat-y top left;
+                    }
+
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > div > span > .r{
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        z-index:2;
+                        right:0px;width:10px;
+                        cursor:e-resize;
+                        /*opacity: 0.2;8/
+                        /*background-color:#000;*/
+                        background:url(../pic/event_week_r.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt.non_e > span > .l,
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt.non_e > span > .r,
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt.non_r > span > .l,
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .evt.non_r > span > .r{
+                        background-image:none;
+                        cursor: default;
+                    }
+
+                    
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .full_l > span > .l,
+                    .JQ_CA > .CA_r > ._mode-month   .month_scroll > div > .events > .full_r > span > .r,
+                    .JQ_CA > .CA_r > ._mode-month   .sub_events > .full_l > .title > .l, 
+                    .JQ_CA > .CA_r > ._mode-month   .sub_events > .full_r > .title > .r {
+                        display:none;
+                    }
+                    .JQ_CA > .CA_r > ._mode-month div.sub_events > div > .title > .r,
+                    .JQ_CA > .CA_r > ._mode-month div.sub_events > div > .title > .l{
+                        display:block;
+                        cursor:auto;
+                        background-color:rgba(0,0,0,0.2);
+                        position:absolute;
+                        top:0px;
+                        bottom:0px;
+                        width:10px;
+                    }
+                    .JQ_CA > .CA_r > ._mode-month .sub_events > div > .title > .r{right:0px;}
+                    .JQ_CA > .CA_r > ._mode-month .sub_events > div > .title > .l{left:0px;}
+
+                .JQ_CA > .CA_r > ._mode-month .month_scroll > div > .events > .evt > span.title > span.text, 
+                .JQ_CA > .CA_r > ._mode-month div.sub_events > div > span.title > span.text {
+                    white-space: nowrap;
+                }
+.JQ_CA > .CA_r > ._mode-month > .days{
+    display: block;
+    overflow: hidden;
+    position:absolute;top:5px;left:20px;right:20px;height:25px;
+    background: #eeeeee;
+    background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+    background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+    background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%);
+    z-index:1;
+
+}
+    .JQ_CA > .CA_r > ._mode-month > .days > ul {
+        height:25px;
+        display:block;
+        display:inline-block;
+        overflow: hidden;
+        list-style: none;
+        border-collapse: collapse;
+        margin:0px;
+        padding:0px;
+        vertical-align: top;
+        width:100%;
+    }
+
+
+        .JQ_CA > .CA_r > ._mode-month > .days > ul > li:first-child{
+            display:none;
+        }
+        
+        .JQ_CA > .CA_r > ._mode-month > .days > ul > li{
+            vertical-align: top;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+
+            padding:0px;
+            border-collapse: collapse;
+            display:inline-block;
+/*            width:14%;*/
+            width:14.28%;
+            text-align: center;
+            font-size:100%;
+            /*border:1px solid transparent;*/
+            border-right:1px dotted #ddd;
+            border-bottom:4px solid transparent;
+            line-height:19px;
+
+        }
+        .JQ_CA._week-end-6 > .CA_r > ._mode-month > .days > ul > li{
+/*            width:16%;*/
+            width:16.66%;
+        }
+        
+        .JQ_CA._week-end-5 > .CA_r > ._mode-month > .days > ul > li{
+/*            width:19%;*/
+            width:20%;
+        }
+        
+        .JQ_CA._week-end-6 > .CA_r > ._mode-month > .days > ul > li[data-day="0"],
+        .JQ_CA._week-end-5 > .CA_r > ._mode-month > .days > ul > li[data-day="0"],
+        .JQ_CA._week-end-5 > .CA_r > ._mode-month > .days > ul > li[data-day="6"] {
+            display:none;
+        }
+        
+        .JQ_CA > .CA_r > ._mode-month > .days > ul > li:last-child{
+            border-right:0px;
+        }
+        
+.JQ_CA > .CA_r > ._mode-month > .month_day_detail{
+    display: none;
+}
+
+
+.JQ_CA > .CA_r > ._mode-month > .month_day_detail table{
+        padding:0;margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:0;
+        width: 100%;
+        border-top: 1px solid #ddd;
+    }
+    
+        .JQ_CA > .CA_r > ._mode-month > .month_day_detail table td{
+            padding:2px 2px 2px 4px;
+            font-size: 120%;
+            border-bottom:1px solid #ddd;
+            text-align: left;
+        }
+        
+        .JQ_CA > .CA_r > ._mode-month > .month_day_detail table td:first-child{
+            border-bottom-color:white;
+            text-align: center;
+            vertical-align: middle;
+            padding:1px;
+            border-radius: 5px;
+        }
+        .JQ_CA.CA_gradient > .CA_r > ._mode-month > .month_day_detail table td:first-child{
+            background-image: url("../pic/event_bg.png");
+            background-position: center center;
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+        
+        
+            .JQ_CA > .CA_r > ._mode-month > .month_day_detail  table td .title{
+                font-weight: bolder;
+                font-size: 120%;
+            }
+            
+            .JQ_CA > .CA_r > ._mode-month > .month_day_detail  table td .details{
+                padding-top:3px;
+                display: block;
+            }
+            
+            .JQ_CA > .CA_r > ._mode-month > .month_day_detail  table td .details > b{
+                border-top: 1px solid #EEEEEE;
+                color: #888888;
+                display: block;
+                font-size: 95%;
+                font-weight: bold;
+                margin-top: 2px;
+            }
+            

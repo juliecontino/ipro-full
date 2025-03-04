@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The reason for issuing the credit memo. --></help>
+        <label><!-- Credit Memo Reason --></label>
+        <name>AcctSeed__Credit_Memo_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Damaged</masterLabel>
+            <translation><!-- Damaged --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing Item</masterLabel>
+            <translation><!-- Missing Item --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order Change</masterLabel>
+            <translation><!-- Order Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overpaid</masterLabel>
+            <translation><!-- Overpaid --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

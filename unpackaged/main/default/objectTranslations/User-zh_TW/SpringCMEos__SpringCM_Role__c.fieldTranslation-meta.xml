@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- -Guest (View Only Access)
+-Limited Subscriber (Select access to features)
+-Full Subscriber (Complete access to features)
+-User Administrator (Complete access to features and some administrative power)
+-Super Administrator (Full administrative power) --></help>
+        <label><!-- SpringCM Role --></label>
+        <name>SpringCMEos__SpringCM_Role__c</name>
+        <picklistValues>
+            <masterLabel>Full Subscriber</masterLabel>
+            <translation><!-- Full Subscriber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guest</masterLabel>
+            <translation><!-- Guest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Limited Subscriber</masterLabel>
+            <translation><!-- Limited Subscriber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Super Administrator</masterLabel>
+            <translation><!-- Super Administrator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User Administrator</masterLabel>
+            <translation><!-- User Administrator --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

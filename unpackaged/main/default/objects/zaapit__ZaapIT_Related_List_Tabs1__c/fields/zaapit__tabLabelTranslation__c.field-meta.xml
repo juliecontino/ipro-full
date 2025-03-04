@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__tabLabelTranslation__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Use a label API name to translate the tabs, label value format: tab1 text#tab2 text#tab3 text...</description>
+    <inlineHelpText>Use a label API name to translate the tabs, label value format: tab1 text#tab2 text#tab3 text...</inlineHelpText>
+    <label>tabLabelTranslation</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

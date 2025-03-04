@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    <validationRules>
+        <errorMessage><!-- The Tax Rate product must have a Tax Type of &quot;Tax Rate&quot;, the field Tax Rate cannot be blank, and the Revenue/Expense GL Accounts must be populated appropriate to &quot;Sales&quot;, &quot;Purchase&quot; or &quot;Sales and Purchase&quot;. --></errorMessage>
+        <name>AS_Tax__Product_must_have_rate_and_GL_Accounts</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Funded_Rate</fullName>
+        <field>Funded_Rate__c</field>
+        <formula>AcctSeed__Rate__c</formula>
+        <name>Funded Rate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Funded_Rate_0</fullName>
+        <field>Funded_Rate__c</field>
+        <formula>0</formula>
+        <name>Funded Rate = 0</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RBL_Update_Account_Name</fullName>
+        <description>Updates the Account Name field in Recurring Billing Lines</description>
+        <field>Account_Name__c</field>
+        <formula>AcctSeed__Recurring_Billing__r.Account_Name__c</formula>
+        <name>RBL Update Account Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rate_Funded_Rate</fullName>
+        <field>AcctSeed__Rate__c</field>
+        <formula>Funded_Rate__c</formula>
+        <name>Rate = Funded Rate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Recurring_Billing_Line_Description_updat</fullName>
+        <field>RB_Invoice_Line_Description__c</field>
+        <formula>AcctSeed__Product__r.Description</formula>
+        <name>Recurring Billing Line-Description updat</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Recurring_Billing_Rate</fullName>
+        <description>When the Recurring Billing Line is Funded, replace Rate with zero.</description>
+        <field>AcctSeed__Rate__c</field>
+        <formula>0</formula>
+        <name>Recurring Billing Rate is zero</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Funded Rate</fullName>
+        <actions>
+            <name>Funded_Rate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Recurring_Billing_Rate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.CCE_Funding_Status__c</field>
+            <operation>equals</operation>
+            <value>Funded</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.AcctSeed__Rate__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <description>When a recurring billing line is created on a funded Recurring Billing Line with rate populated, rate is moved to Funded Rate.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate RB Line Account Name</fullName>
+        <actions>
+            <name>RBL_Update_Account_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Recurring Billing Line-Description update</fullName>
+        <actions>
+            <name>Recurring_Billing_Line_Description_updat</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.Manually_Edit_RB_Line_Description__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Unfunded Rate</fullName>
+        <actions>
+            <name>Funded_Rate_0</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Rate_Funded_Rate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.CCE_Funding_Status__c</field>
+            <operation>equals</operation>
+            <value>Unfunded</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.Funded_Rate__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing_Line__c.Funded_Rate__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>When a funded RBL is moved to unfunded, move the funded rate to rate.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

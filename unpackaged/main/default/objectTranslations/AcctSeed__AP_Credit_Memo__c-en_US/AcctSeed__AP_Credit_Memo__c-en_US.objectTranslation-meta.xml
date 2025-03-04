@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    <validationRules>
+        <errorMessage><!-- Invoice and Credit Memo must have the same Payee. --></errorMessage>
+        <name>AcctSeed__Invoice_and_Credit_Memo_Same_Payee</name>
+    </validationRules>
+</CustomObjectTranslation>

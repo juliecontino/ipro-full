@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- AvaTax Only: Select to connect to AvaTax’s Production or Sandbox environment. --></help>
+        <label><!-- Active AvaTax Endpoint --></label>
+        <name>AcctSeed__Active_AvaTax_Endpoint__c</name>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sandbox</masterLabel>
+            <translation><!-- Sandbox --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

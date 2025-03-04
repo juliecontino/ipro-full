@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Comm3</fullName>
+    <columns>Opportunity_Contract_Number__c</columns>
+    <columns>NAME</columns>
+    <columns>Project_Status_Ops__c</columns>
+    <columns>Opportunity_Ops_Category__c</columns>
+    <columns>AcctSeed__Account__c</columns>
+    <columns>Account_Alias__c</columns>
+    <columns>AcctSeed__Opportunity__c</columns>
+    <columns>Project_Manager_OPS__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Project_Estimate_Cut_over_Date__c</columns>
+    <columns>Estimated_Cut_over_Date__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>AcctSeed__Project_Manager__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Status_Ops__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Canceled</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Template_Project__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>equals</operation>
+        <value>Comm3</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Ops__c</field>
+        <operation>notEqual</operation>
+        <value>Complete-Ready to Bill</value>
+    </filters>
+    <label>Active - Comm3</label>
+    <language>en_US</language>
+    <sharedTo>
+        <group>Group_Comm3</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If a parent object is specified, then enter the API Name of the parent that exists on the detail object. If a parent object is not specified, leave this blank. --></help>
+        <label><!-- Parent Relationship --></label>
+        <name>AcctSeed__Parent_Relationship__c</name>
+    </CustomFieldTranslation>

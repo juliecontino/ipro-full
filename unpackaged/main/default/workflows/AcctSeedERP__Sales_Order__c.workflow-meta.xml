@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>New_Sales_Order_Submitted_for_Processing</fullName>
+        <description>New Sales Order Submitted for Processing</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>Accounting</recipient>
+            <type>group</type>
+        </recipients>
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse/Sales_Order_Submitted</template>
+    </alerts>
+    <alerts>
+        <fullName>Sales_Order_Not_Received_by_Accounting_within_24_hours</fullName>
+        <description>Sales Order Not Received by Accounting within 24 hours</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        
+        
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse/Sales_Order_Not_Recd_by_Accounting</template>
+    </alerts>
+    <alerts>
+        <fullName>Sales_Order_Ready_for_Pickup</fullName>
+        <description>Sales Order Ready for Pickup</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Accounting</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        
+        
+        
+        
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Warehouse/Sales_Order_Ready_for_Pickup</template>
+    </alerts>
+    <rules>
+        <fullName>New Sales Order Submitted</fullName>
+        <actions>
+            <name>New_Sales_Order_Submitted_for_Processing</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeedERP__Sales_Order__c.AcctSeedERP__Status__c</field>
+            <operation>contains</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify Acctg 24 hours not received</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeedERP__Sales_Order__c.Received_by_Accounting__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeedERP__Sales_Order__c.AcctSeedERP__Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed,Cancelled</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Sales_Order_Not_Received_by_Accounting_within_24_hours</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>AcctSeedERP__Sales_Order__c.CreatedDate</offsetFromField>
+            <timeLength>24</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Sales Order Ready for Pickup</fullName>
+        <actions>
+            <name>Sales_Order_Ready_for_Pickup</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeedERP__Sales_Order__c.AcctSeedERP__Status__c</field>
+            <operation>contains</operation>
+            <value>Ready for Pickup</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

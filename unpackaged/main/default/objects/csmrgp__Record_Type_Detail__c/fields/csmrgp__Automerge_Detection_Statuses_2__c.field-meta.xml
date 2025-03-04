@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__Automerge_Detection_Statuses_2__c</fullName>
+    <deprecated>false</deprecated>
+    <description>When Perform_Automerge_Detection__c is set to "Case Updates in Selected Statuses", this contains part of/the entire JSON string with the picklist values to use.</description>
+    <externalId>false</externalId>
+    <label>Automerge Detection Statuses 2</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

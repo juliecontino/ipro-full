@@ -1,0 +1,1163 @@
+/* 
+    Document   : day
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA > .CA_r > div.show._mode-day{
+    display:block !important;
+}
+
+.JQ_CA > .CA_r > div._mode-day > div.top{
+    position:absolute;top:30px;
+    height:calc(30% - 28px);
+    right:24px;left:20px;
+}
+
+.JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-day > div.top{
+    height:calc(15% - 28px);
+}
+.JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-day > div.top{
+    height:calc(30% - 28px);
+}
+.JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-day > div.top{
+    height:calc(50% - 28px);
+}
+.JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-day > div.top{
+    bottom:10px;
+    height:auto;
+}
+.JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-day > div.top{
+    height:0;
+    /*height:30px;*/
+}
+
+
+    .JQ_CA > .CA_r > div._mode-day > div.top > div.data,
+    .JQ_CA > .CA_r > div._mode-day > div.top > div.events,
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.data,
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.events,
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.grid
+    {
+        position:absolute;
+        top:0;
+        bottom:0px;
+        left:0px;
+    }
+
+
+
+    .JQ_CA > .CA_r > div._mode-day > div.top > div.data,
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.data,
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.grid{
+        right:0px;
+        overflow-y:hidden;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.top > div.events,
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.events{
+        right:20px;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.grid{
+        overflow-x: hidden;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.agd > div.data{
+        overflow-y: scroll;
+        right:0;
+    }
+    
+
+        .JQ_CA > .CA_r > div._mode-day > div.top > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-day > div.agd > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-day > div.agd > div.grid > ul {
+            display:inline-block;
+            height:100%;
+/*            width:100%;*/
+    /*                        overflow: hidden;*/
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            position:absolute;
+            right:20px;
+            left:0px;
+            min-height:50px;
+
+        }
+        .JQ_CA > .CA_r > div._mode-day > div.top > div.data > ul{
+            right: 0;
+        }
+        
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-day > div.agd > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-day > div.agd > div.grid > ul > li{
+                border-bottom: 1px solid #ddd;
+                border-collapse: collapse;
+    /*                    float: left;*/
+                width: 96.5%;
+                border-right: 1px solid #ddd;
+                border-top:0px;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+
+            }
+
+            .JQ_CA > .CA_r > div._mode-day > div.agd > div.data > ul > li{
+                border-left-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data > ul > li:first-child,
+            .JQ_CA > .CA_r > div._mode-day > div.agd > div.data > ul > li:first-child,
+            .JQ_CA > .CA_r > div._mode-day > div.agd > div.grid > ul > li:first-child{
+                width:3.5%;
+                text-decoration: underline;
+                text-align: center;
+                vertical-align: middle;
+                cursor: pointer;
+                border-left: 1px solid #ddd;
+                
+            }    
+            .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > li.current{
+                background-color: rgba(120, 120, 120, 0.12);
+            }            
+            .JQ_CA > .CA_r > div._mode-day > div.agd > div.data > ul > li.current,
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data > ul > li.current,
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data > ul > li:hover
+            {
+                background: #eeeeee;
+                background: -moz-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -webkit-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -ms-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -o-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                
+            }
+            
+            .JQ_CA.ie > .CA_r > div._mode-day > div.top > div.data > ul > li.current{
+                background-color: #eeeeee;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.top .new_event{
+/*                height:100%;*/
+/*                display:inline-block;*/
+/*                width:13%;*/
+/*                position:absolute;*/
+                background:rgba(0, 0, 128, 0.5);
+/*                margin-left:9%;*/
+                box-shadow: 0px 0px 3px rgba(0,0,0, 0.5);
+                border-radius: 10px;
+                    
+/*                height:20px;*/
+            }
+            
+            
+            
+/*                .JQ_CA > .CA_r > div._mode-day > div.top .new_event > span.title{
+                    position:absolute;
+                    left:0px;
+                    right:0px;
+                    top:50%;
+                    margin-top:-20px;
+                    color:white;
+                    font-size: 120%;
+                    text-align: center;
+                    font-weight: bold;
+                }*/
+                .JQ_CA > .CA_r > div._mode-day > div.top .new_event > span.title{
+                    border-image: url(../pic/border.gif) 1px repeat repeat ;
+                    border:1px solid transparent;
+                    -moz-border-image: url(../pic/border.gif) 1px repeat repeat ; 
+                    -webkit-border-image: url(../pic/border.gif) 1px repeat repeat ; 
+                    -o-border-image: url(../pic/border.gif) 1px repeat repeat ;
+                }
+                
+                .JQ_CA > .CA_r > div._mode-day .new_event span.close{
+                    position:absolute;
+                    top:0px;
+                    right:10px;
+                    border-radius: 6px;
+                    width:10px;
+                    height:10px;
+                    background-image: url(../pic/icons.png);
+                    background-position:-3px -135px;
+                    background-repeat: no-repeat;
+                    cursor:pointer;
+                    display:block;
+                    opacity:0.8;
+                    background-color: #fff;
+                    border:1px solid #ddd;
+                }
+                
+                .JQ_CA > .CA_r > div._mode-day > div.top .new_event span.close:hover{
+                    opacity:1;
+                }
+/*                .JQ_CA > .CA_r > div._mode-day > div.top .new_event span.add{
+                    
+                }*/
+            
+        .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events{
+            position:absolute;
+            top:15px;
+            bottom:10px;
+            left:0px;
+            right:0px;
+            overflow-x:hidden;
+            overflow-y:scroll;
+/*                        background-image:url(pic/event_week_bg.png) ;
+            background-repeat: repeat-x;
+            background-position: bottom center;*/
+/*                        opacity: 0.7;*/
+        }
+        
+        .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events.shadow,
+        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul.shadow{
+            opacity:0.3;
+        }
+
+
+        .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events:hover{
+/*                        opacity:1;*/
+        }
+
+
+        
+        
+        
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.evt,
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday .events  div.evt,
+            .JQ_CA > .CA_r > div._mode-day div.hand_on{
+/*                opacity:0.7;*/
+                display:inline-block;
+                position:absolute;
+                margin-bottom:2px;
+                height:15px;
+
+/*                            border:1px solid #ddd;*/
+/*                            box-shadow: 0px 0px 1px #333;*/
+/*                                -moz-linear-gradient(top,  transparent 0%, rgba(255,255,255,0.2) 100%);*/
+/*                            overflow:hidden;*/
+                
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+            }
+            
+            .JQ_CA.middle > .CA_r > div._mode-day > div.top > div.data  > div.events > div.evt,
+            .JQ_CA.middle > .CA_r > div._mode-day > div.swim_bot > div._allday  .events div.evt{
+                height:18px;
+            }
+            .JQ_CA.large > .CA_r > div._mode-day > div.top > div.data  > div.events > div.evt,
+            .JQ_CA.large > .CA_r > div._mode-day > div.swim_bot > div._allday .events  div.evt{
+                height:21px;
+            }
+            
+            
+/*            .JQ_CA > .CA_r > div._mode-day > div.top  div.events > div{
+                top:999px;
+            }*/
+            
+            .JQ_CA > .CA_r > div._mode-day > div.top div.hand_on{
+                margin-top: 15px ;
+                opacity: 1;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day div.sub_events > div{
+/*                opacity:0.7;*/
+                display:block;
+                margin-bottom:2px;
+                height:15px;
+                position:relative;
+            }
+
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.on,
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.on,
+            .JQ_CA > .CA_r > div._mode-day div.sub_events > div.on {
+                opacity:1;
+            }
+
+
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data  .p0{width:96.5%;}
+
+            .JQ_CA > .CA_r > div._mode-day > div.top > div.data   .d0{left:3.5%;}
+
+            
+                .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div > span,
+                .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div > span > span,
+                .JQ_CA > .CA_r > div._mode-day div.sub_events > div > span, 
+                .JQ_CA > .CA_r > div._mode-day div.sub_events > div > span > span,
+                .JQ_CA > .CA_r > div._mode-day div.hand_on > span, 
+                .JQ_CA > .CA_r > div._mode-day div.hand_on > span > span,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span > span
+                {
+                    position:absolute;
+                    top:0px;
+                    bottom:0px;
+                }
+
+                .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div > span.title,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span.title{
+                    overflow:hidden;
+                    border-radius:5px;
+                    z-index:1;
+                    left:5px;
+                    right:5px;
+                    padding-left:13px;
+/*                    background-image:url(../pic/event_bg.png) ;
+                    background-repeat: repeat-x;
+                    background-position: center center;*/
+                    font-size:11px;
+                    line-height:15px;
+/*                    color:white;*/
+                    text-align: left;
+                }
+                
+                .JQ_CA.middle > .CA_r > div._mode-day > div.top > div.data > div.events > div > span.title,
+                .JQ_CA.middle > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span.title{
+                    font-size:14px;
+                    line-height:18px;
+                }
+                
+                .JQ_CA.large > .CA_r > div._mode-day > div.top > div.data > div.events > div > span.title,
+                .JQ_CA.large > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span.title{
+                    font-size:17px;
+                    line-height:21px;
+                }
+
+                
+
+                .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.on > span.title,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.on > span.title{
+                    box-shadow: 0px 0px 3px #000;
+
+                }
+
+                .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.full_l > span.title,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.full_l > span.title{
+                    left:1px;padding-left: 17px;
+                    border-bottom-left-radius: 2px;
+                    border-top-left-radius: 2px;
+                }
+                .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.full_r > span.title,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.full_r > span.title{
+                    right:2px;
+                    border-bottom-right-radius: 2px;
+                    border-top-right-radius: 2px;
+                }
+
+                .JQ_CA > .CA_r > div._mode-day div.sub_events > div > span.title {
+                    font-size:90%;
+                }
+                
+
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span > span.l{
+                        border-top-left-radius:5px;
+                        border-bottom-left-radius:5px;
+                        z-index:2;
+                        left:0px;width:10px;
+                        cursor:w-resize;
+/*                                opacity: 0.2;*/
+/*                                background-color:#000;*/
+                        background:url(../pic/event_week_l.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt > span > span.r{
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        z-index:2;
+                        right:0px;width:10px;
+                        cursor:e-resize;
+                        /*opacity: 0.2;8/
+                        /*background-color:#000;*/
+                        background:url(../pic/event_week_r.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.non_e > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.non_e > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.non_r > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.non_r > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.non_e > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.non_e > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.non_r > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.non_r > span > span.r{
+                        background-image:none !important;
+                        cursor: default;
+                    }                    
+                    
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.full_l > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.top > div.data > div.events > div.full_r > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.full_l > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div._allday   .events div.evt.full_r > span > span.r{
+                        display:none;
+                    }
+
+            
+
+.JQ_CA > .CA_r > div._mode-day > div.bottom{
+    border-top:2px solid #ddd;
+    position:absolute;
+    top:30%;bottom:10px;
+    margin-top:2px;
+    right:24px;left:20px;
+}    
+
+.JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-day > div.bottom{
+    top:15%;
+}
+.JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-day > div.bottom{
+    top:30%;
+}
+.JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-day > div.bottom{
+    top:50%;
+}
+.JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-day > div.bottom{
+    display: none;
+}
+.JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-day > div.bottom{
+    top:29px;
+}
+
+            
+    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data,
+    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.events
+    {
+        position:absolute;
+        top:0px;bottom:0px;
+        
+    }
+
+    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data{
+        overflow-y:scroll;
+        right:0px;
+        left:0px;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.events{
+        right:20px;
+        left:0%;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.bottom  > b{
+        display: none;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.bottom._more_events > b{
+        position: absolute;
+        right: 1%;
+        display: inline-block;
+        height: 15px;
+        /*width: 15px;*/
+        width: auto;
+        line-height: 15px;
+        vertical-align: middle;
+        /*line-height: 20px;*/
+        /*font-size: 20px;*/
+        border-radius: 10px;
+        margin-left: -16px;
+        top: 3px;
+        text-align: center;
+        /*color:transparent;*/
+        opacity:0.7;
+        /*background-color:  rgba(70,70,70, 0.5);*/
+        background: #fff;
+        cursor: pointer;
+        /*border:1px solid transparent;*/
+        border:1px solid #ccc;
+        padding:0 5px;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.bottom._more_events > b:hover{
+        background: #fff;
+        padding:0 5px;
+        line-height: 15px;
+        /*font-size: 20px;*/
+        width: auto;
+        color:inherit;
+        border:1px solid #ccc;
+        opacity:1;
+    }
+    
+        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.grid > ul{
+
+            display:inline-block;
+            width:100%;
+    /*                        overflow: hidden;*/
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            overflow-y:hidden;
+/*            height: 720px;*/
+            position:relative;
+
+        }
+        
+
+            .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.grid > ul > li{
+                border-bottom: 1px solid #ddd;
+                border-right: 1px solid #ddd;
+                border-top:0px;
+                border-collapse: collapse;
+    /*                    float: left;*/
+                width: 96.5%;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+/*                height:100%;*/
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+/*                background-image: url(../pic/event_day_grid_30.png);*/
+                position:relative;
+            }
+
+            .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > li.hours_title,
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.grid > ul > li.hours_title{
+                width:3.5%;
+                text-decoration: underline;
+                text-align: center;
+                border-left: 1px solid #ddd;
+                background-color:rgba(0,0,0,0.07);
+                overflow:hidden;
+                
+            }    
+
+                .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > li.hours_title > span,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.grid > ul > li.hours_title > span{
+                    display:inline-block;
+/*                    height:30px;*/
+                    width:100%;
+                    text-align: right;
+                    text-overflow: clip;
+                }
+                .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > li > div.events,
+                .JQ_CA > .CA_r > div._mode-day > div.swim_bot  div.events{
+                    position:absolute;
+                    top:0px;left:0px;right:0px;bottom:0px;
+                }
+                
+                
+                    .JQ_CA > .CA_r > div._mode-day   div.data   div.events.new_events > div{
+                        opacity:0.25 ;
+                    }
+
+                    .JQ_CA > .CA_r > div._mode-day   div.data   div.events.new_events > div.new_event{
+                        opacity:1 ;
+                    }
+
+                        .JQ_CA > .CA_r > div._mode-day     div.events.new_events > div.new_event > span{
+                            background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                            border-radius: 10px 10px 10px 10px;
+                            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                        }
+
+                
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt{
+                        position:absolute;
+                        /*margin-left: 20px;*/
+                    }
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt:first-child,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt:first-child{
+                        margin-left: 1px;
+                    }
+                    
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data  div.events.new_events > div.evt.new_event.create_event,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data  div.events.new_events > div.evt.new_event.create_event{
+                        right:0;
+                        left:0;
+                        width:100%;
+                        /*margin-left: 0;*/
+                    }
+                    
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span{
+/*                        border:1px solid white;*/
+                        border-radius:5px;
+                        position:absolute;
+                        top:1px;bottom:1px;left:1px;right:1px;
+                        text-align: left;
+/*                        background-image: url(../pic/event_bg_h.png);
+                        background-repeat: repeat-y;
+                        background-position: center center;
+                        background-size: contain;*/
+                    }
+                    
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data  div.events.new_events > div.evt.new_event > span,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data  div.events.new_events > div.evt.new_event > span{
+                            background-image: url("../pic/event_chess2_bg.png");
+                            background-size: contain;
+                            background-repeat: repeat;
+/*                            background-color:#0066cc;*/
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data  div.events.new_events > div.evt.new_event.create_event > span,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data  div.events.new_events > div.evt.new_event.create_event > span{
+                            background-color:#0066cc;
+                        }
+
+                    
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.title,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.title{
+/*                            -webkit-transform: rotate(-90deg);
+                            -moz-transform: rotate(-90deg);
+                            -o-transform: rotate(-90deg);*/
+                            /*color:white;*/
+                            display:inline-block;
+                            position:absolute;
+                            top:5px;bottom:5px;
+                            left:5px;
+                            right:5px;
+                            overflow:hidden;
+                            font-size:11px;
+/*                            background-color: red;
+                            
+                            white-space: nowrap;*/
+                            white-space: normal;
+                        }
+                        
+                        .JQ_CA.middle > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.title,
+                        .JQ_CA.middle > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.title{
+                            font-size:14px;
+                        }
+                                                                                                                     
+                        .JQ_CA.large > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.title,
+                        .JQ_CA.large > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.title{
+                            font-size:17px;
+                        }
+
+                        
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.t{
+                            position:absolute;top:0px;left:0px;right:0px;height:5px;
+                            cursor:n-resize;
+                            background: url(../pic/event_day_t.png) no-repeat center center;
+                            border-radius:5px;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.t:hover,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.t:hover{
+                            background-image: url(../pic/event_day_t_on.png)
+                        }
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.b{
+                            position:absolute;bottom:0px;left:0px;right:0px;height:5px;
+                            cursor:s-resize;
+                            background: url(../pic/event_day_b.png) no-repeat center center;
+                            border-radius:5px;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt > span > span.b:hover,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt > span > span.b:hover{
+                            background-image: url(../pic/event_day_b_on.png)
+                        }
+                    
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.non_ls > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.non_rs > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.non_e > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.non_e > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.non_r > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.non_r > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.non_ls > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.non_rs > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.non_e > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.non_e > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.non_r > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.non_r > span > span.b{                            
+                            background-image:none !important;
+                            cursor: default;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.full_t > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.full_b > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.full_t > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.full_b > span > span.b{
+                            display:none;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.evt.new_event.create_event > span > span.title,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.evt.new_event.create_event > span > span.title{
+                            color: #ffffff;
+                        }
+                    
+                    /*width of block*/
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data  div.evts_1 > div,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data  div.evts_1 > div{
+                        width:90%;
+                    }
+    
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data  div.new_event,
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data  div.new_event{
+                        width:10%;
+                        z-index:10;
+                    }
+                    
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data  div.new_event > span.title,
+                        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data  div.new_event > span.title{
+                            background-image: url("../pic/event_chess2_bg.png");
+                            background-size: contain;
+                            background-repeat: repeat;
+                            background-color:#0066cc;
+                        }
+                        
+                    /* width for dragable*/
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > span > div{
+                        position:absolute;
+                        width:50%;
+                        opacity : 1;
+                    }
+                        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > span > div > span{
+                            position:absolute;top:2px;bottom:2px;left:0px;right:0px;
+                            border-radius: 3px;
+                            box-shadow: 0px 0px 3px #000;
+                            background-image: url("../pic/event_chess2_bg.png");
+                            background-position: center center;
+                            background-repeat: repeat;
+                            background-size: contain;
+                        }
+                            .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > span > div > span > span.title{
+                                color:white;
+                                font-size:100%;
+                                padding:3px;
+                                font-weight: bolder;
+                            }
+                    
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d0{left:10%;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d1{left:23%;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d2{left:36%;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d3{left:49%;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d4{left:62%;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d5{left:75%;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data   div.d6{left:88%;}                    
+                    
+                    
+                    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data   div.d0{left:10%;}
+                    
+                    
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > ._drag_pane{cursor: move;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > ._drag_pane.t{cursor:n-resize;}
+                    .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > ul > ._drag_pane.b{cursor:s-resize;}
+                    
+/*        .JQ_CA > .CA_r > div._mode-day > div.bottom > div.data > div.events{
+            position:absolute;top:0px;left:0px;right:0px;bottom:0px;
+        }*/
+        
+
+.JQ_CA > .CA_r > div._mode-day._agenda > div.top,
+.JQ_CA > .CA_r > div._mode-day._agenda > div.bottom,
+.JQ_CA > .CA_r > div._mode-day._agenda > div.swim_bot,
+.JQ_CA > .CA_r > div._mode-day._grouping > div.bottom,
+.JQ_CA > .CA_r > div._mode-day._grouping > div.top,
+.JQ_CA > .CA_r > div._mode-day._grouping > div.agd,
+.JQ_CA > .CA_r > div._mode-day._default > div.agd,
+.JQ_CA > .CA_r > div._mode-day._default > div.swim_bot{
+    display: none;
+}
+.JQ_CA > .CA_r > div._mode-day._agenda > div.agd{
+    display: block;
+}
+.JQ_CA > .CA_r > div._mode-day > div.agd{
+    /*border-top:2px solid #ddd;*/
+    position:absolute;
+    top:30px;
+    bottom:10px;
+    right:24px;
+    left:20px;
+    display: none;
+}    
+
+
+    .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table{
+        padding:0;margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:0;
+        width: 100%;
+        border-top: 1px solid #ddd;
+        font-size: 11px;
+    }
+    
+    .JQ_CA.middle > .CA_r > div._mode-day > div.agd div.data li > table{
+        font-size: 14px;
+    }
+    
+    .JQ_CA.large > .CA_r > div._mode-day > div.agd div.data li > table{
+        font-size: 17px;
+    }
+    
+        .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table td{
+            padding:2px 2px 8px 4px;
+            /*font-size: 120%;*/
+            border-bottom:1px solid #ddd;
+            text-align: left;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table td:first-child{
+            border-bottom-color:white;
+            text-align: center;
+            vertical-align: middle;
+            padding:1px;
+            border-radius: 5px;
+            width: 100px;
+        }
+        
+        .JQ_CA.CA_gradient > .CA_r > div._mode-day > div.agd div.data li > table td:first-child{
+            background-image: url("../pic/event_bg.png");
+            background-position: center center;
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+        
+            .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table td .title{
+                font-weight: bolder;
+                /*font-size: 120%;*/
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table td .details{
+                padding-top:3px;
+                display: block;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table td .details > b{
+                    border-top: 1px solid #EEEEEE;
+                    color: #888888;
+                    display: inline-block;
+                    font-size: 95%;
+                    font-weight: bold;
+                    margin-top: 2px;
+                    max-width: 150px;
+                    padding-right: 10px;
+                    text-align: right;
+                    vertical-align: top;
+                    width: 15%;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.agd div.data li > table td .details > i {
+                border-top: 1px solid #EEEEEE;
+                display: inline-block;
+                font-style: normal;
+                margin-top: 2px;
+                vertical-align: top;
+                width: 80%;
+            }
+            
+            .JQ_CA._compact_width > .CA_r > div._mode-day > div.agd div.data li > table td .details > b{
+                width: 25%;
+            }
+            
+    /* Top days panel*/    
+    
+.JQ_CA > .CA_r > div._mode-day > div._header{
+    position:absolute;top:5px;
+    height:25px;
+    right:24px;left:20px;
+}            
+    .JQ_CA > .CA_r > div._mode-day > div > div.days{
+        position:absolute;
+        top:0px;left:0px;
+        height:25px;
+        overflow-y:hidden;
+        background: #eee;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #eee;
+        background: -webkit-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #eee;
+        background: -o-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #eee;
+        background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #eee;
+        background: linear-gradient(top, #ffffff 0%,#eeeeee 75%) #eee;
+    }
+
+    .JQ_CA > .CA_r > div._mode-day > div > div.days_right{
+        position:absolute;top:0px;right:0px;width:20px;height:25px;
+        background: #eee;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -webkit-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -o-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%);
+        z-index:10;
+    }
+        .JQ_CA > .CA_r > div._mode-day > div > div.days > ul {
+            height:25px;
+            display:block;
+            display:inline-block;
+            overflow: hidden;
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            vertical-align: top;
+            width:100%;
+        }
+
+            .JQ_CA > .CA_r > div._mode-day > div > div.days > ul > li:first-child{
+                width:20%;
+                border-left:1px solid transparent;
+                height:25px;
+                text-align: left;
+                white-space: nowrap;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div > div.days > ul > li{
+                vertical-align: top;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+
+                padding:0px 20% 0 0;
+                border-collapse: collapse;
+                display:inline-block;
+                width:calc(80% - 10px);
+                text-align: center;
+                font-size:100%;
+                /*border:1px solid transparent;*/
+                border-right:1px dotted #ddd;
+                border-bottom:4px solid transparent;
+                line-height:19px;
+
+            }
+            .JQ_CA > .CA_r > div._mode-day > div > div.days > ul > li:last-child{
+                border-right:0px;
+            }
+            
+            .JQ_CA.mobile._compact_width > .CA_r > div._mode-day > div > div.days > ul > li{
+                /*width:12%;*/
+                cursor: pointer;
+            }
+            
+            .JQ_CA.mobile._compact_width > .CA_r > div._mode-day > div > div.days > ul > li._current{
+                font-weight: bolder;
+            }
+            .JQ_CA > .CA_r > div._mode-day > div > div.days > ul > li:first-child > select{
+                height: 18px;
+                font-size: 100%;
+                max-width: 200px;
+                background: transparent;
+                border: 0;
+                
+            }
+            .JQ_CA > .CA_r > div._mode-day > div > div.days > ul > li:first-child > select[name="grouping"]{
+                display: none;
+            }
+            .JQ_CA > .CA_r > div._mode-day._grouping > div > div.days > ul > li > select[name="grouping"]{
+                display: inline-block;
+            }
+                
+
+            
+.JQ_CA > .CA_r > div._mode-day > div.swim_bot{
+    border-top:1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    position:absolute;
+    top:30px;
+    bottom:10px;
+    left:20px;
+    right:24px;
+    overflow: hidden;
+}    
+
+.JQ_CA > .CA_r > div._mode-day > div.swim_bot > .grid{
+    position: absolute;
+    top:30%;    
+    bottom:0;
+    left:0;
+    width:50px;
+    overflow: hidden;
+}
+    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.grid > ul > li.hours_title{
+        width: 100%;
+    }
+
+    .JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-day > div.swim_bot > .grid,
+    .JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-day > div.swim_bot > .data{
+        top:15%;
+    }    
+    .JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-day > div.swim_bot > .grid,
+    .JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-day > div.swim_bot > .data{
+        top:30%;
+    }    
+    .JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-day > div.swim_bot > .grid,
+    .JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-day > div.swim_bot > .data{
+        top:50%;
+    }    
+    .JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-day > div.swim_bot > .grid,
+    .JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-day > div.swim_bot > .data{
+        display: none;
+    }    
+    .JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-day > div.swim_bot > .grid,
+    .JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-day > div.swim_bot > .data{
+        top:30px;
+    }    
+
+
+
+.JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._allday{
+    overflow-y: scroll;
+    position:absolute;
+    top:30px;
+    height:calc(30% - 30px);
+    right:0;
+    left:50px;
+    overflow-x: hidden;
+    border-bottom: 2px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+    .JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-day > div.swim_bot > ._allday{
+        height:calc(15% - 30px);
+    }
+    .JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-day > div.swim_bot > ._allday{
+        height:calc(30% - 30px);
+    }
+    .JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-day > div.swim_bot > ._allday{
+        height:calc(50% - 30px);
+    }
+    .JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-day > div.swim_bot > ._allday{
+        bottom:10px;
+        height:auto;
+        overflow-x: scroll;
+    }
+    .JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-day > div.swim_bot > ._allday{
+        height:0;
+        /*height:30px;*/
+    }
+    
+        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._allday ._groups{
+            display: flex;
+            flex-wrap: no-wrap;
+            height: 100%;
+        }
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._allday ._groups ._grp{
+                min-width: 200px;
+                height: 100%;
+                flex-grow: 1;
+                border-right: 1px solid #ddd;
+                box-sizing: border-box;            
+                position: relative;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._allday ._groups ._grp div.events{
+                position: relative;
+                display: block;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._allday ._groups ._grp div.events .p0{width:100%;}
+
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._allday ._groups ._grp div.events .d0{left:0;}
+
+
+.JQ_CA > .CA_r > div._mode-day > div.swim_bot > .data{
+    position: absolute;
+    left:50px;
+    right:0;
+    top:30%;
+    bottom:0;
+    overflow: scroll;
+}
+    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data > ul > li{
+        width:100%;
+    }
+.JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._title{
+    position: absolute;
+    left:50px;
+    /*right:0;*/
+    top:0;
+    height:30px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: no-wrap;
+    box-sizing: border-box;
+    border-bottom: 1px dotted #eee;
+    background: #eee;
+}
+    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > ._title > ._grp_title{
+        min-width: 200px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-align: center;
+        box-sizing: border-box;
+        border-right: 1px solid #ddd;
+        vertical-align: middle;
+        line-height: 30px;
+        box-sizing: border-box;
+        padding:0 2px;
+    }
+    
+.JQ_CA > .CA_r > div._mode-day > div.swim_bot .data{
+    /*overflow-y: auto;*/
+}
+    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data > ul{
+        width: auto;
+        min-width: 100%;
+    }
+    .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div > ul > li{
+        border-bottom: none;
+        border-right: none;
+    }
+        .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data > ul > li ._groups{
+            display: flex;
+            flex-wrap: no-wrap;
+            height: 100%;
+        }
+            .JQ_CA > .CA_r > div._mode-day > div.swim_bot > div.data > ul > li ._grp{
+                min-width: 200px;
+                height: 100%;
+                flex-grow: 1;
+                border-right: 1px solid #ddd;
+                box-sizing: border-box;            
+                position: relative;
+            }
+
+
+            
+.JQ_CA  .Swimlane_Empty{
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+    text-align: center;
+    
+}
+
+    .JQ_CA  .Swimlane_Empty > *{
+        display: block;
+    }
+
+    .JQ_CA  .Swimlane_Empty > b {
+        font-size: 120%;
+    }
+        .JQ_CA  .Swimlane_Empty > b ._ico{
+            display:inline-block;
+            width:16px;
+            height:16px;
+            margin:0 3px;
+            background-image: url("../pic/create_edit_icons.png");
+            background-repeat: no-repeat;        
+            background-position: 0 -113px;
+            vertical-align: middle;
+        }
+    
+
+
+    .JQ_CA  .Swimlane_Empty > a {
+        cursor: pointer;
+        margin-top: 4px;
+        font-size: 100%;
+    }            

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Field for exporting-country-specific export data (e.g. B13A for CA, FTSR Exemption or AES Citation for US) --></help>
+        <label><!-- Export Compliance Statement --></label>
+        <name>zkfedex__ExportComplianceStatement__c</name>
+    </CustomFieldTranslation>

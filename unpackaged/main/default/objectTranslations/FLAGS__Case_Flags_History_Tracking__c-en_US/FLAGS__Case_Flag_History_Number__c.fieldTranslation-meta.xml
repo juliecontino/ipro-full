@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Custom autonumber that increments on a Case by Case basis. --></help>
+        <label><!-- Case Flag History Number --></label>
+        <name>FLAGS__Case_Flag_History_Number__c</name>
+    </CustomFieldTranslation>

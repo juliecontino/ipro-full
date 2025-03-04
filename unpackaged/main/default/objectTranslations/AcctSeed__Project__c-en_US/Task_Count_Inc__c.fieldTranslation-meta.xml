@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Summary count of the number of incomplete tasks. --></help>
+        <label><!-- Task Count-Incomplete --></label>
+        <name>Task_Count_Inc__c</name>
+    </CustomFieldTranslation>

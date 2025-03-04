@@ -1,0 +1,13 @@
+<apex:page id="thePage">
+	<apex:form id="theForm">
+		<apex:sectionHeader title="Legacy Bank Reconciliation" subtitle="Clear Transactions" />
+		<apex:pageBlock id="thePageBlock" title="Legacy Bank Reconciliation">
+			<apex:pageMessage severity="warning" summary="<b>Legacy Bank Reconciliation Deprecated</b><br/>" detail='As of Financial Suite Release 3.3, the Legacy Bank Reconciliation has been deprecated. We encourage our customers to use are new<a href="/{!$ObjectType.AcctSeed__Bank_Reconciliation2__c.keyPrefix}">Bank Reconciliation</a>functionality' strength="3" escape="false">
+			</apex:pageMessage>
+            <apex:pageBlockButtons id="buttons">
+            	<apex:commandButton id="newButton" value="New Bank Reconciliation" action="/{!$ObjectType.Bank_Reconciliation2__c.keyPrefix}"/>
+                <apex:commandButton id="cancelButton" value="Back" onclick="history.back()"/>
+            </apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

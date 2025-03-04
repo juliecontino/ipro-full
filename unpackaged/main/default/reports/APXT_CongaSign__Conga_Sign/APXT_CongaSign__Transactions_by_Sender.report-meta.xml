@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_CREATED_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>APXT_CongaSign__Transaction__c.APXT_CongaSign__Status__c</field>
+    </columns>
+    <columns>
+        <field>APXT_CongaSign__Transaction__c.APXT_CongaSign__RequestedOn__c</field>
+    </columns>
+    <columns>
+        <field>APXT_CongaSign__Transaction__c.APXT_CongaSign__CompletedOn__c</field>
+    </columns>
+    <columns>
+        <field>APXT_CongaSign__Transaction__c.APXT_CongaSign__SenderEmail__c</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <aggregateType>RowCount</aggregateType>
+        <dateGranularity>Day</dateGranularity>
+        <field>APXT_CongaSign__Transaction__c.APXT_CongaSign__SenderName__c</field>
+        <sortByName>RowCount</sortByName>
+        <sortOrder>Desc</sortOrder>
+        <sortType>Aggregate</sortType>
+    </groupingsDown>
+    <name>Transactions by Sender</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$APXT_CongaSign__Transaction__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>APXT_CongaSign__Transaction__c.APXT_CongaSign__RequestedOn__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>APXT_CongaSign__Transaction__c.APXT_CongaSign__CompletedOn__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

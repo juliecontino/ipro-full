@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__Cases_Not_Merged__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Cases without Parent Cases in a duplicate group; Duplicate groups with more than one case not merged suggest potential for duplicates that should be merged. Ordinarily, only one primary case should be present within a duplicate group once all duplicates are merged.</description>
+    <label>Cases Not Merged</label>
+    <summaryFilterItems>
+        <field>csmrgp__Duplicate_Case__c.csmrgp__Has_Parent__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>csmrgp__Duplicate_Case__c.csmrgp__Is_Deleted__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>csmrgp__Duplicate_Case__c.csmrgp__Duplicate_Group__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

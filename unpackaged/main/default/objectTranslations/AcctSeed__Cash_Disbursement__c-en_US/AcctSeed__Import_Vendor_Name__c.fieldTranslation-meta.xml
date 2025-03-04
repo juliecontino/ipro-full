@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Name of Customer/Vendor from Bank Direct Connect or Import Financial File --></help>
+        <label><!-- Import Vendor Name --></label>
+        <name>AcctSeed__Import_Vendor_Name__c</name>
+    </CustomFieldTranslation>

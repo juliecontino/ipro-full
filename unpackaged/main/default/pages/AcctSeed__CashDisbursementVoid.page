@@ -1,0 +1,37 @@
+<apex:page id="thePage" standardController="AcctSeed__Cash_Disbursement__c" title="{!AcctSeed__Cash_Disbursement__c.Name & ' | Accounting Seed'}" extensions="AcctSeed.CashDisbursementVoid">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+    </script>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Cash_Disbursement__c.label}" subtitle="{!AcctSeed__Cash_Disbursement__c.Name}" />    
+        <apex:pageBlock id="thePageBlock" title="Void">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')"/>
+                <apex:commandButton id="saveButtonTop" action="{!voidCashDisbursement}" value="Void" status="saveStatus" reRender="theForm" rendered="{!NOT(isError) && NOT(isProcessed)}"/>
+                <apex:commandButton id="cancelButtonTop" action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection rendered="{!NOT(isError) && NOT(isProcessed)}" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Void Disbursement Date"/>
+                    <apex:inputField value="{!cashDisbursementVoid.AcctSeed__Disbursement_Date__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IsCashFlowStatementEnabled && IsCashFlowCategoryPopulated}">
+                    <apex:outputLabel value="Cash Flow Category"/>
+                    <apex:outputField value="{!cashDisbursementVoid.AcctSeed__Cash_Flow_Category__c}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IsCashFlowStatementEnabled && !IsCashFlowCategoryPopulated}">
+                    <apex:outputLabel value="Cash Flow Category"/>
+                    <apex:inputField value="{!cashDisbursementVoid.AcctSeed__Cash_Flow_Category__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:outputField value="{!AcctSeed__Cash_Disbursement__c.AcctSeed__Payee__c}"/>
+                <apex:outputField value="{!AcctSeed__Cash_Disbursement__c.AcctSeed__Check_Number__c}" rendered="{!AcctSeed__Cash_Disbursement__c.AcctSeed__Type__c = 'Check'}"/>
+                <apex:outputField value="{!AcctSeed__Cash_Disbursement__c.AcctSeed__Disbursement_Date__c}"/>
+                <apex:outputField value="{!AcctSeed__Cash_Disbursement__c.AcctSeed__Amount__c}"/>
+                <apex:inputField value="{!cashDisbursementVoid.AcctSeed__Void_Description__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

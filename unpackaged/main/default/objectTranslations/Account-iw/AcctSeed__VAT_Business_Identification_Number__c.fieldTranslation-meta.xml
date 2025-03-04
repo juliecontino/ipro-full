@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Informational field used for VAT customers when Avalara Tax calculation is enabled. The value entered here populates the Customer VAT Number field on the Avalara transaction. --></help>
+        <label><!-- VAT Business Identification Number --></label>
+        <name>AcctSeed__VAT_Business_Identification_Number__c</name>
+    </CustomFieldTranslation>

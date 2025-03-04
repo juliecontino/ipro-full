@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Shipment Package Junction Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Package Details --></label>
+            <section>Package Details</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Details --></label>
+            <section>Shipment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Special Service - -  COD --></label>
+            <section>Special Service -- COD</section>
+        </sections>
+        <sections>
+            <label><!-- Special Service - -  Signature Option --></label>
+            <section>Special Service -- Signature Option</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

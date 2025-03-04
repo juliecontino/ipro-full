@@ -1,0 +1,152 @@
+.popDiv
+	{
+		position:absolute;
+		height:auto;
+		width:auto;
+		margin:0;
+		padding:0;
+		top:0;
+		z-index:80;
+		
+		zoom:1;
+	}	
+	
+	.popDiv .wrapper
+	{
+		background-position:24px -29px;
+		margin-left:15px;
+		margin-top:-2px;
+		/*background:transparent url(hover_sprite.png) no-repeat scroll 24px -29px;*/
+		height:auto;
+		padding:3px 6px 10px;
+		width:auto;
+	}
+	
+	.popDiv .wrapper .mainPart
+	{
+		background:transparent url(hover_lookup_tl.png) no-repeat scroll 0 10px;
+		padding:0 24px;
+		border:0 none;
+		height:auto;
+		width:370px;
+		
+		/**width:382px;*/
+	}
+	
+	.popDiv .wrapper .mainPart.mirror
+	{
+		background:transparent url(hover_lookup_tl_right.png) no-repeat scroll 394px 10px;
+	}
+	
+	.popDiv .wrapper .mainPart.bottom
+	{
+		background:transparent url(hover_lookup_tl_mirror.png) no-repeat scroll 0 10px;
+		padding:0 24px;
+		border:0 none;
+		height:auto;
+		width:370px;
+		
+		/**width:382px;*/
+	}
+	
+	.popDiv .wrapper .mainPart.mirror.bottom
+	{
+		background:transparent url(hover_lookup_tl_right_mirror.png) no-repeat scroll 394px 10px;
+	}
+	
+	/*.popDiv .wrapper .mainPart .header
+	{
+		border-top:3px solid #747E96;
+		height:3px;
+		width:auto;
+	    -moz-border-radius-topleft:4px;
+		-moz-border-radius-topright:4px;
+		-webkit-border-top-left-radius:4px;
+		-webkit-border-top-right-radius:4px;
+		padding:0px;
+		
+		*width:370px;
+	}*/
+	
+	.popDiv .wrapper .mainPart .body
+	{
+		border-left: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+		border-right: 3px solid #888;
+		border-bottom: 3px solid #888;
+		background:white none repeat scroll 0 0;
+		height:auto;
+		margin:0;
+		padding:0;
+		min-height:40px;
+		height:auto;
+		max-height:250px;
+		/*-moz-border-radius-topleft:4px;
+		-moz-border-radius-topright:4px;
+		-webkit-border-top-left-radius:4px;
+		-webkit-border-top-right-radius:4px;*/
+		width:auto;
+		overflow:auto;
+		font-family: sans-serif;
+	}
+	
+	
+	.popDiv .wrapper .mainPart .body .pbBody{
+        max-height:none;
+        min-height:0;
+        height:auto;
+        position:relative;
+        overflow:visible;
+        top:auto;
+        bottom:auto;	
+	}
+	
+	
+	.popDiv .wrapper .mainPart .body .bPageBlock
+	{
+		border-left:none;
+		border-right:none;
+		border-bottom:none;
+		background:transparent;
+	}
+	
+	.popDiv .wrapper .mainPart .footer
+	{
+		display:block;
+		left:39px;
+		/*background:transparent url(hover_sprite.png) no-repeat scroll 0 0;*/
+		bottom:-14px;
+		height:14px;
+		position:absolute;
+		width:382px;
+		padding:0;
+		margin:0;
+		
+		*bottom:-14px; 
+	}
+	
+	.frameStyle
+	{
+		border:none;
+		max-height:260px;
+		width:100%;
+		position:static;
+		height:auto;
+		
+		*width:348px;
+	}
+	
+	.loadingStyle
+	{
+		background:transparent url(loading.gif) no-repeat scroll 18px 10px;
+		display:block;
+		padding:8px 36px;
+	}
+	
+
+	
+	ul.ui-autocomplete{
+	   max-height:150px;
+	   overflow-y:auto;
+	   overflow-x:hidden;
+   }

@@ -1,0 +1,159 @@
+<apex:page StandardController="JCSoftware__pc_PowerCloneRule__c" extensions="JCSoftware.pc_PowerCloneTableExtension">
+	<script>
+		function customSaveButton() {
+			// Go back to the Account detail page
+			if( (typeof sforce != 'undefined') && sforce && (!!sforce.one) ) {
+				// Salesforce1 navigation
+				sforce.one.back(true);
+			} else {
+				// Set the window's URL using a Visualforce expression
+				window.history.back();
+			}
+		}
+	</script>
+	<apex:sectionHeader subtitle="PowerClone Rule Setup"/>
+
+	<script language="JavaScript">
+		function PopulateField() {
+			var SelectedTable = document.getElementById('{!$Component.form_TableAndFields.pageBlock_TableAndFields.pageBlockSection_TableAndFields.pageBlockSectionItem_Tables.TableList}').value;
+			document.getElementById('{!$Component.form_TableAndFields.pageBlock_Details.TableName}').value = SelectedTable;
+			document.getElementById('{!$Component.form_TableAndFields.pageBlock_Details.FieldName}').value = ""; 
+
+			var SelectedField = document.getElementById('{!$Component.form_TableAndFields.pageBlock_TableAndFields.pageBlockSection_TableAndFields.pageBlockSectionItem_Fields.FieldList}').value;
+			document.getElementById('{!$Component.form_TableAndFields.pageBlock_Details.FieldName}').value = SelectedField;
+		}
+
+		function HandleRuleSelection(selectedOption) {
+			HandleRuleSelectionAction(selectedOption);
+		}
+
+		function clearFields(id) {
+			document.getElementById(id).options.length = 0;
+		}
+		
+		function rerenderBehavior() {
+			alert('here');
+			rerenderBehavior();
+		}
+	</script>
+
+	<apex:form id="form_TableAndFields">
+		<apex:actionFunction id="rerenderBehavior" name="rerenderBehavior" rerender="pageBlockSection_Details"/>
+		<apex:actionFunction id="HandleRuleSelectionAction" name="HandleRuleSelectionAction" action="{!UpdateRuleDescription}" reRender="RuleDescription, pageBlock_Details, behaviorPanel" >
+			<apex:param name="SelectedRule" assignTo="{!SelectedRule}" value=""/>
+		</apex:actionFunction>
+		
+		<apex:pageBlock id="pageBlock_TableAndFields" title="PowerClone Table/Field Lookup" tabStyle="JCSoftware__pc_PowerCloneRule__c">
+			<!-- <apex:actionRegion > -->
+			<apex:pageBlockSection id="pageBlockSection_TableAndFields" title="Select a Table and Field" columns="1">
+				<apex:pageBlockSectionItem id="pageBlockSectionItem_Tables">
+					<apex:outputLabel >Table Name List</apex:outputLabel>
+
+					<apex:selectList style="width:250px" id="TableList" value="{!Table}" size="5">
+							<apex:selectOptions value="{!TableNames}"/>
+							<apex:actionSupport event="onchange" status="Status" rerender="FieldList" onsubmit="clearFields('{!$Component.pageBlockSectionItem_Fields.fieldList}'); false;"/>
+							<!-- <apex:actionSupport event="onchange" rerender="pageBlockSectionItem_Fields" status="Status">  -->
+					</apex:selectList>
+ 
+				</apex:pageBlockSectionItem> 
+
+				<apex:pageBlockSectionItem id="pageBlockSectionItem_Status">
+					<apex:outputLabel >Field List Status</apex:outputLabel>
+					<apex:actionStatus id="Status" startText="Retrieving field list..." stopText="Field list retrieval complete." />
+				</apex:pageBlockSectionItem> 
+
+				<apex:pageBlockSectionItem id="pageBlockSectionItem_Fields">
+					<apex:outputLabel >Field Name List</apex:outputLabel>
+					<!-- <apex:selectList style="width:250px" id="FieldList" value="{!SelectedField}" onclick="PopulateField()" size="5"> -->
+
+					<apex:selectList style="width:250px" id="FieldList" value="{!Field}" size="5" onclick="PopulateField()">
+						<apex:selectOptions value="{!FieldNames}"/>
+					</apex:selectList>
+
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			<!--</apex:actionRegion>-->
+		</apex:pageBlock>
+
+		<apex:pageBlock id="pageBlock_Details" title="PowerClone Rule" tabStyle="JCSoftware__pc_PowerCloneRule__c">
+			<apex:pageblockButtons >
+				<apex:commandButton id="saveCustom" value="Save" action="{!customSave}" oncomplete="customSaveButton();"/>
+				<apex:commandButton id="cancel" value="Cancel" immediate="true" onclick="customSaveButton(); return false;"/>
+			</apex:pageblockButtons>
+
+			<apex:actionRegion >
+
+			<apex:inputhidden id="BehaviorRule" value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Rule__c}"/>
+			<apex:inputhidden id="TableName" value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__TableName__c}"/>
+			<apex:inputhidden id="FieldName" value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__FieldName__c}"/>
+
+			<apex:pageBlockSection id="pageBlockSection_Details" title="Rule Details" columns="1">
+				<apex:pageBlockSectionItem id="pageBlockSectionItem_Behaviors">
+					<apex:outputLabel value="Select Behavior Rule"/>
+					<apex:panelGroup >
+						<!-- 
+						<apex:selectList style="width:255px" 
+												onclick="UpdateBehaviorRule()" 
+												onchange="HandleRuleSelection(this.value);"
+												size="1" 
+												id="BehaviorList" 
+												title="PowerClone Behaviors" 
+												value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Rule__c}">
+							<apex:selectOptions id="BehaviorOption" value="{!BehaviorItems}"/>
+						</apex:selectList>
+						-->
+						<apex:selectList style="width:255px" 
+												onchange="HandleRuleSelection(this.value);"
+												size="1"
+												id="BehaviorList"
+												title="PowerClone Behaviors"
+												value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Rule__c}">
+							<apex:selectOptions id="BehaviorOption" value="{!BehaviorItems}"/>
+						</apex:selectList>
+						<apex:outputPanel id="RuleDescription" style="padding-left:10px;">
+							{!SelectedRuleText}
+						</apex:outputPanel>
+					</apex:panelGroup>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem id="pageBlockSectionItem_Behavior">
+					<apex:outputLabel value="Behavior Value"/>
+					<apex:panelGroup id="behaviorPanel">
+						<apex:panelGrid columns="1" rendered="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Rule__c == 'Date_Increment'}">
+							<apex:panelGroup >
+								<apex:outputText value="{!$ObjectType.JCSoftware__pc_PowerCloneRule__c.fields.JCSoftware__Date_Increment_Step__c.Label}"/>
+								<apex:inputField required="true" value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Date_Increment_Step__c}"/>
+							</apex:panelGroup>
+							<apex:panelGroup >
+								<apex:outputText value="{!$ObjectType.JCSoftware__pc_PowerCloneRule__c.fields.JCSoftware__Date_Increment_Quantity__c.Label}"/>
+								<apex:inputField required="true" value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Date_Increment_Quantity__c}"/>
+							</apex:panelGroup>
+							<apex:panelGroup >
+								<apex:outputText value="Use Cloning Record's Date"/><br/>
+								<apex:selectList value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Use_Record_Date__c}" size="1" onchange="rerenderBehavior();">
+									<apex:selectOption itemValue="true" itemLabel="Yes"/>
+									<apex:selectOption itemValue="false" itemLabel="No"/>
+								</apex:selectList>
+							</apex:panelGroup>
+							<apex:panelGroup rendered="{!IF(JCSoftware__pc_PowerCloneRule__c.JCSoftware__Use_Record_Date__c == true, false, true)}">
+								<apex:outputText value="Start Date (Leave blank to always use current date)"/><br/>
+								<apex:inputField value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Date_Increment__c}"/>
+							</apex:panelGroup>
+						</apex:panelGrid>
+						
+						<apex:panelGroup rendered="{!AND(JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Rule__c != 'Date_Today', JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Rule__c != 'Date_Increment')}">
+							<apex:inputField style="width:250px" id="BehaviorValue" value="{!JCSoftware__pc_PowerCloneRule__c.JCSoftware__Behavior_Value__c}" />
+							<apex:outputPanel id="Validation" style="padding-left:10px;"  rendered="{!ValidationText != ''}" >
+								{!ValidationText}
+							</apex:outputPanel>
+						</apex:panelGroup>
+					</apex:panelGroup>
+				</apex:pageBlockSectionItem>
+
+				<apex:inputField required="true" style="width:250px" id="RuleName" value="{!JCSoftware__pc_PowerCloneRule__c.Name}"/>
+			</apex:pageBlockSection>
+
+			</apex:actionRegion>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

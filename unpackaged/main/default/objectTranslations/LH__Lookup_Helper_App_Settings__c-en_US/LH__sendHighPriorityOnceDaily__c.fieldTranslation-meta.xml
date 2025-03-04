@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- When checked, high priority emails are only sent once daily. When unchecked, high priority emails are sent the hour they occur. --></help>
+        <label><!-- Send High Priority Email Only Daily? --></label>
+        <name>LH__sendHighPriorityOnceDaily__c</name>
+    </CustomFieldTranslation>

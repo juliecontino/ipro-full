@@ -1,0 +1,50 @@
+.ds-color-selector-td {
+	width: 30px;
+	height: 10px;
+	font-size: 10px;
+}
+.ds-color-selector-td-checked {
+	background: url(check.png) no-repeat;
+}
+.ds-advanced-selector-td {
+	width: 28px;
+	height: 28px;
+	background: url(gradient_icon.png) no-repeat;
+}
+/* Advanced color selector */
+.ds-advanced-color-selector-back {
+	position: absolute;
+	z-index: 100;
+	width: 393px;
+	height: 161px;
+	margin-top: 15px;
+	background: url(color-selection-back.png) no-repeat;
+}
+.ds-color-selector-header {
+	height: 30px;
+	line-height: 30px;
+	border: 1px outset #dadbdc;
+	margin: 2px 3px 0 9px;
+	font-size: 15px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+.ds-color-selector-preview {
+	float: right;
+	width: 30px;
+	height: 15px;
+	border: 1px inset #ccc;
+	margin: 5px 10px;
+}
+.ds-color-selector-content {
+	height: 122px;
+	border: 1px outset #dadbdc;
+	margin: 0px 3px 0 9px;
+	font-weight: bold;
+}
+.ds-color-component {
+	width: 30px;
+}
+.ds-color-button {
+	margin: 10px;
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Select the object you would like to import data for. If your object is not listed here, simply add it as a Picklist Value Set under &apos;Import Objects&apos;. --></help>
+        <label><!-- Detail Object --></label>
+        <name>AcctSeed__Detail__c</name>
+    </CustomFieldTranslation>

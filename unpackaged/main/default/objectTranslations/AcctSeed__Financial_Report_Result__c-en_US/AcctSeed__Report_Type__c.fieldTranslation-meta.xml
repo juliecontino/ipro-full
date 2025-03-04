@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Report Type --></label>
+        <name>AcctSeed__Report_Type__c</name>
+        <picklistValues>
+            <masterLabel>Balance Sheet</masterLabel>
+            <translation><!-- Balance Sheet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom</masterLabel>
+            <translation><!-- Custom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profit &amp; Loss</masterLabel>
+            <translation><!-- Profit &amp; Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trial Balance</masterLabel>
+            <translation><!-- Trial Balance --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

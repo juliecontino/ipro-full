@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Indicates when a statement was emailed either from the Account detail&apos;s Create Statement button or Account List View&apos;s Create Outstanding Statements button. --></help>
+        <label><!-- Last Statement Sent --></label>
+        <name>AcctSeed__Last_Statement_Sent__c</name>
+    </CustomFieldTranslation>

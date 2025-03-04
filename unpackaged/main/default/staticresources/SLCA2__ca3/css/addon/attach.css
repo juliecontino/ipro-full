@@ -1,0 +1,105 @@
+/* 
+    Document   : day
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA ._attach{
+    position: relative;
+    min-width: 400px;
+    height:250px;
+    /*padding:0 5px;*/
+    /*border:1px solid red;*/
+}
+
+
+    .JQ_CA ._attach > input{
+        margin-top: 2px;
+        width: calc(100% - 70px);
+        margin: 0;
+        padding:0;
+        border: 1px solid #ddd;
+        height: 20px;
+    }
+    .JQ_CA ._attach > span.simple_button{
+        position: absolute;
+        top:0;
+        right:0;
+        margin:0 !important;
+    }
+    
+    
+    .JQ_CA ._attach > ._list{
+        position: absolute;
+        top:25px;
+        bottom:0;
+        left:0;
+        right: 0;
+        border:1px solid #eee;
+        overflow-y: auto;
+    }
+    .JQ_CA ._attach.CA_ajax_loading > ._list,
+    .JQ_CA ._attach.CA_ajax_loading > input,
+    .JQ_CA ._attach.CA_ajax_loading > span.simple_button{
+        opacity: 0.5;
+    }
+    
+    
+        .JQ_CA ._attach > ._list > div{
+            display: block;
+            padding:2px;
+            margin:2px 0;
+            margin:2px;
+            border-bottom:1px solid #ddd;
+            white-space: nowrap;
+            /*border-radius: 2px;*/
+        }
+            .JQ_CA ._attach > ._list > div > a{
+                font-size: 80%;
+                cursor: pointer;
+            }
+            .JQ_CA ._attach > ._list > div > a:first-child{
+                display: inline-block;
+                width:calc(100% - 100px);
+                text-decoration: underline;
+                color: #333435;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                vertical-align: middle;
+            }
+            
+            .JQ_CA ._attach > ._list > div > span{
+                display: inline-block;
+                width: 50px;
+                font-size: 80%;
+            }
+            .JQ_CA ._attach > ._list > div > a.small_button{
+                opacity: 0.5;
+                margin-left: 20px;
+            }
+            
+            
+            
+            
+            .JQ_CA ._attach > ._list > div:hover > a.small_button{
+                opacity: 1;
+                color:#333435;
+                text-decoration: none;
+            }
+            .JQ_CA ._attach._readonly > ._list > div > a.small_button{
+                display: none;
+            }
+            
+            
+            
+        .JQ_CA ._attach > ._list > div:hover{
+            background: #eee;
+            text-decoration: none;
+        }
+        
+        
+        

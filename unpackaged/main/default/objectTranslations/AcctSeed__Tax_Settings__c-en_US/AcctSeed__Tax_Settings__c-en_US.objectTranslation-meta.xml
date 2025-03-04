@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Tax Settings Layout</layout>
+        <sections>
+            <label><!-- AvaTax --></label>
+            <section>AvaTax</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Validate Address --></label>
+        <name>AcctSeed__Validate_Address_Lwc</name>
+    </quickActions>
+</CustomObjectTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to categorize Journal Entry Lines related to bank accounts on the Cash Flow statement. --></help>
+        <label><!-- Default Journal Entry Line Category --></label>
+        <name>AcctSeed__Default_Journal_Entry_Line_Category__c</name>
+        <relationshipLabel><!-- Accounting Settings (Default JE Line Cash Flow Category) --></relationshipLabel>
+    </CustomFieldTranslation>

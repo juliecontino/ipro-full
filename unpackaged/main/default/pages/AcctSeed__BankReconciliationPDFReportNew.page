@@ -1,0 +1,192 @@
+<apex:page controller="AcctSeed.BankReconciliationPDFReportNew" title="Report | Accounting Seed"
+           sidebar="false" applyBodyTag="false"
+           applyHtmlTag="false" showheader="false" readOnly="true" standardStylesheets="false" renderAs="pdf">
+
+    <html>
+    <head>
+        <style type="text/css" media="print">
+        @page {
+        @top-right {
+        content: element(header);
+        }
+        @bottom-left {
+        content: element(footer);
+        }
+        margin-top:50px;
+        }
+
+        div.header {
+        position: running(header);
+        text-align: center;
+        }
+
+        div.error span {
+        color: red;
+        }
+
+        div.content {
+        position: relative;
+        }
+
+        div.footer {
+        display: block;
+        padding: 5px;
+        position: running(footer);
+        }
+
+        .pagenumber:before {
+        content: counter(page);
+        }
+
+        .pagecount:before {
+        content: counter(pages);
+        }
+
+        body {
+        font-family: "Arial""Sans-Serif";
+        font-size: 12px;
+        margin: 0px;
+        }
+
+        .tableHeader {
+        font-weight: bold;
+        background-color: #DADADA;
+        height: 20px;
+        }
+
+        .columnHeader {
+        text-align: right;
+        }
+
+        .tableRow {
+        border-bottom: 3px solid #DADADA;
+        }
+
+        .pageBreakBefore {
+        page-break-before: always;
+        }
+
+        .label {
+        font-weight: bold;
+        }
+
+        .align-right {
+        text-align: right;
+        }
+        .align-center {
+        text-align: center;
+        }
+        .nowrap {
+        white-space:nowrap;
+        }
+        </style>
+    </head>
+
+    <body>
+    <apex:outputPanel layout="block" rendered="{!isError}">
+        <div class="error">
+            <span>{!errorMessage}</span>
+        </div>
+    </apex:outputPanel>
+    <apex:outputPanel layout="block" rendered="{!NOT(isError)}">
+        <div >
+            <h3 style="text-align: center; font-weight: bold">{!IF(bankRec.Type__c == 'Bank','BANK', 'CREDIT CARD')} RECONCILIATION SUMMARY</h3>
+            <h3 style="text-align: center ; font-weight: bold">For Statement Date Ending &nbsp;<apex:outputField value="{!bankRec.AcctSeed__End_Date__c}"/></h3>
+            <br/>
+        </div>
+        <div class="content">
+            <table cellpadding="6" style="width:100%">
+                <tr>
+                    <td style="font-weight: bold">Beginning Balance</td>
+                    <td style="text-align: right; {!IF(bankRec.AcctSeed__Beginning_Balance__c < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!BeginningBalance}" />
+                    </td>
+                    <td style="padding-left:150px; font-weight: bold">Bank/Credit Card Account</td>
+                    <td >
+                        <apex:outputText value="{!bankRec.Bank_Account__r.Name}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">{!IF(bankRec.AcctSeed__Type__c == 'Bank','Payments', 'Charges')} and other credits cleared</td>
+                    <td style="text-align: right; {!IF(ClearedDisbursementsDecimal < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!clearedDisbursementsString}" />
+                    </td>
+                    <td style="padding-left:150px; font-weight: bold">Ledger</td>
+                    <td>
+                        <apex:outputText value="{!bankRec.Ledger__r.Name}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">{!IF(bankRec.AcctSeed__Type__c == 'Bank','Deposits', 'Payments')} and other debits cleared</td>
+                    <td style="text-align: right;border-bottom:1pt solid black; {!IF(ClearedDepositsDecimal < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!clearedDepositsString}" />
+                    </td>
+                    <td style="padding-left:150px; font-weight: bold">Currency</td>
+                    <td>
+                        <apex:outputText value="{!currencyIsoCode}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Statement Ending Balance</td>
+                    <td style="text-align: right;border-bottom:Double; {!IF(bankRec.AcctSeed__Calculated_Ending_Balance__c < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!CalculatedEndingBalance}" />
+                    </td>
+                    <td style="padding-left:150px; font-weight: bold">GL Variable 1</td>
+                    <td>
+                        <apex:outputText value="{!GLVariable1}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="padding-left:150px; font-weight: bold">GL Variable 2</td>
+                    <td>
+                        <apex:outputText value="{!GLVariable2}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">Outstanding {!IF(bankRec.Type__c == 'Bank','payments', 'charges')} as of &nbsp;<apex:outputField value="{!bankRec.AcctSeed__End_Date__c}"/></td>
+                    <td style="text-align: right;{!IF(UnClearedDisbursementsDecimal < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!UnClearedDisbursementsString}" />
+                    </td>
+                    <td style="padding-left:150px; font-weight: bold">GL Variable 3</td>
+                    <td>
+                        <apex:outputText value="{!GLVariable3}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">{!IF(bankRec.Type__c == 'Bank','Deposit', 'Payments')} in transit as of &nbsp;<apex:outputField value="{!bankRec.AcctSeed__End_Date__c}"/></td>
+                    <td style="text-align: right; border-bottom:1pt solid black;{!IF(UnClearedDepositsDecimal < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!UnClearedDepositsString}" />
+                    </td>
+                    <td style="padding-left:150px; font-weight: bold">GL Variable 4</td>
+                    <td>
+                        <apex:outputText value="{!GLVariable4}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">GL Ending Balance as of &nbsp;<apex:outputField value="{!bankRec.AcctSeed__End_Date__c}"/></td>
+                    <td style="text-align: right; border-bottom:Double;{!IF(bankRec.AcctSeed__Calculated_GL_Balance__c < 0, 'color: #b80707','')}">
+                        <apex:outputText value="{!EndingBalance}" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div >
+            <span>Status set to "Completed" on:&nbsp;<apex:outputField value="{!bankRec.LastModifiedDate}"/></span>
+            <br/>
+            <br/>
+            <span>Changes made to the GL after this date aren't reflected in this report. Reset the status to In Progress to update with current information.</span>
+
+        </div>
+
+    </apex:outputPanel>
+    </body>
+    </html>
+</apex:page>

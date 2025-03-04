@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Apply the Bank Rule to transactions from all financial institution accounts. --></help>
+        <label><!-- Apply To All Financial Accounts --></label>
+        <name>AcctSeed__Apply_To_All_Financial_Accounts__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- AvaTax only: The AvaTax License that will be associated with the ledger --></help>
+        <label><!-- AvaTax License --></label>
+        <name>AcctSeed__AvaTax_License__c</name>
+        <relationshipLabel><!-- Tax Settings --></relationshipLabel>
+    </CustomFieldTranslation>

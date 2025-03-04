@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__Unmerged_Date_Time__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The time at which the Child Case of this Potential Duplicate was unmerged.</description>
+    <label>Unmerged Date Time</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

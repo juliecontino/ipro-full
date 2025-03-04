@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>An immediately published Accounting Seed event (typically a begin or end event notification)</description>
+    <eventType>HighVolume</eventType>
+    <label>AS Immediate Event</label>
+    <pluralLabel>AS Immediate Events</pluralLabel>
+    <publishBehavior>PublishImmediately</publishBehavior>
+</CustomObject>

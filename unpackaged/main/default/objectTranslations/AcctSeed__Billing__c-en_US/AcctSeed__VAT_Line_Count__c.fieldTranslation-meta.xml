@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Count of billing lines that are marked as Is VAT Related = true --></help>
+        <label><!-- VAT Line Count --></label>
+        <name>AcctSeed__VAT_Line_Count__c</name>
+    </CustomFieldTranslation>

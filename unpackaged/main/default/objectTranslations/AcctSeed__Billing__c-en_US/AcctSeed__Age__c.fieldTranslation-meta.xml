@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Measures the current age of the balance of the billing. Used to monitor collection of balance. --></help>
+        <label><!-- Age --></label>
+        <name>AcctSeed__Age__c</name>
+    </CustomFieldTranslation>

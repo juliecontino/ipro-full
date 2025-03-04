@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>AcctSeed__Automated_Job_Results__c$Name</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Automated_Job_Results__c$AcctSeed__Schedule_Job_Type__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Automated_Job_Results__c$AcctSeed__Processed__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Automated_Job_Results__c$AcctSeed__Succeeded__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Automated_Job_Results__c$AcctSeed__Failed__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Automated_Job_Results__c$AcctSeed__Notes__c</field>
+    </columns>
+    <description>Results from all of the automated jobs that are run including links to the related exception reports detailing any failures.</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>AcctSeed__Automated_Job_Results__c$CreatedDate</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Automated Job Results Dashboard</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>AcctSeed__Automated_Job_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Automated_Job_Results__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

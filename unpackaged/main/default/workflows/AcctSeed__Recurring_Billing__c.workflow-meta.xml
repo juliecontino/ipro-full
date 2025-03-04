@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>RB_Recast_Calculate_Payoff</fullName>
+        <field>Recast_Contract_Payoff_Amount__c</field>
+        <formula>Total_Funded_Unfunded__c  *  Recast_Remaining_Term__c</formula>
+        <name>RB Recast Calculate Payoff</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Edit_Group_Billing_Manually</fullName>
+        <description>Edit Group Billing Manually should be updated to match the field's value on the related Opportunity</description>
+        <field>Edit_Billing_Group_Manually__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Edit Group Billing Manually</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Edit Billing Group Manually</fullName>
+        <actions>
+            <name>Set_Edit_Group_Billing_Manually</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>if Opportunity.Edit Billing Group Manually is checked, update the Recurring Billing Field to checked</description>
+        <formula>AcctSeed__Opportunity__r.Edit_Billing_Group_Manually__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>RB Recast Calculate Payoff</fullName>
+        <actions>
+            <name>RB_Recast_Calculate_Payoff</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Recurring_Billing__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

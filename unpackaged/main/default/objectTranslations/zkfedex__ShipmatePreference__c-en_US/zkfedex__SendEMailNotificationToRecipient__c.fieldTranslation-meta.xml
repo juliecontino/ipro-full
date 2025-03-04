@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If checked, the default action will be to send the FedEx Email notification to the recipient. For return shipments, it will be sent to the &quot;Return From&quot; address. --></help>
+        <label><!-- Send Email Notification to Recipient --></label>
+        <name>zkfedex__SendEMailNotificationToRecipient__c</name>
+    </CustomFieldTranslation>

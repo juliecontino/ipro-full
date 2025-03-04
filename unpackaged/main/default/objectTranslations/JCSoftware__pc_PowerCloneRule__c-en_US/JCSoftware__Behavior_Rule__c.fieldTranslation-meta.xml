@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Defines the behavior for this rule on the selected field. --></help>
+        <label><!-- Behavior Rule --></label>
+        <name>JCSoftware__Behavior_Rule__c</name>
+    </CustomFieldTranslation>

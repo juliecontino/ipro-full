@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billings_to_Run_Not_Ipro</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Customer__c</columns>
+    <columns>Customer_Alias__c</columns>
+    <columns>CCE__c</columns>
+    <columns>CCE_Portfolio__c</columns>
+    <columns>AcctSeed__Opportunity__c</columns>
+    <columns>AcctSeed__Billing_Frequency__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <columns>AcctSeed__Last_Billing_Date__c</columns>
+    <columns>AcctSeed__Next_Billing_Date__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Next_Billing_Date__c</field>
+        <operation>lessThan</operation>
+        <value>NEXT_N_DAYS:3</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>CCE__c</field>
+        <operation>notEqual</operation>
+        <value>IPro Media</value>
+    </filters>
+    <label>Billings to Run - Not Ipro</label>
+</ListView>

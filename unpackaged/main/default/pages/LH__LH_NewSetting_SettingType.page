@@ -1,0 +1,426 @@
+<apex:page controller="LH.LH_New_Setting_Controller" standardStylesheets="false" sidebar="false" applyBodyTag="false" docType="html-5.0" title="{!createdSetting.Name}"> 
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<head> 
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/font-awesome/css/font-awesome.min.css') }" />  
+    <apex:stylesheet value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.css')}" />
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />  
+    <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }"/>  
+    <style>
+    .slds-card.grayBlock, .slds-table.grayBlock{
+        background-color: #f4f6f9; 
+    }
+
+    .popoverNubbinAlignment{
+        left: -1.26em; 
+        top: 0.8em;
+    }
+            
+    .popoverDefault{
+        display:none;
+        max-height:0px; 
+        overflow:visible;   
+        overflow-y:visible; 
+        position:relative; 
+        white-space:normal;
+        z-index:99;
+    }
+
+    </style>
+</head>
+<script type="text/javascript">
+    var lh = lh || {};
+    lh.j$ = jQuery.noConflict();
+</script>
+<apex:slds />
+<apex:form >
+    <apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+    <apex:actionFunction name="SetIsValidID" action="{!setIsValidSetting}" status="loading" reRender="categoryCreate, saveSetting" />
+    
+    <div class="slds slds-p-around_medium slds-size--10-of-12 slds-container--center" role="main">
+        <div class="slds-card grayBlock slds-m-bottom--medium" style="height: auto;">
+            <div class="slds-scope" style="margin-top: 10px; margin-left: 5px; margin-right: 5px;">
+                <div class="slds-grid">
+                    <div class="slds-tabs--path" role="application">
+                        <ul class="slds-tabs--path__nav" role="tablist">
+            
+                            <li class="slds-tabs--path__item slds-is-complete" role="presentation">
+                                <a class="slds-tabs--path__link" id="tabs-path-99" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="{!URLFOR($Page.LH_landingPage)}" aria-live="assertive">
+                                    <span class="slds-tabs--path__stage">Home</span>
+                                    <span class="slds-tabs--path__title">Home</span>
+                                </a>
+                            </li>
+                            
+                            <li class="slds-tabs--path__item slds-is-complete" role="presentation">
+                                <apex:commandLink action="{!goToPreviousStep}" styleClass="slds-tabs--path__link" id="tabs-path-96">
+                                    <apex:param value="lh_newsetting_childobject" assignTo="{!previousStepPage}"></apex:param>
+                                    <apex:outputPanel rendered="{!ISBLANK(selectedChildObject )}">
+                                        <span class="slds-tabs--path__stage">Select Child Object</span>
+                                        <span class="slds-tabs--path__title">Select Child Object</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(ISBLANK(selectedChildObject ))}">
+                                        <span class="slds-tabs--path__stage">Child Object is {!ChildObjLabel }</span>
+                                        <span class="slds-tabs--path__title">Child Object is {!ChildObjLabel }</span>
+                                    </apex:outputPanel>
+                                </apex:commandLink>
+                            </li>
+            
+                            <li class="slds-tabs--path__item slds-is-complete" role="presentation">
+                                <apex:commandLink action="{!goToPreviousStep}" styleClass="slds-tabs--path__link" id="tabs-path-97">
+                                    <apex:param value="lh_newsetting_lookupfield" assignTo="{!previousStepPage}"></apex:param>
+                                    <apex:outputPanel rendered="{!ISBLANK(childRelationship)}">
+                                        <span class="slds-tabs--path__stage">Select or Create Lookup Field</span>
+                                        <span class="slds-tabs--path__title">Select or Create Lookup Field</span>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!NOT(ISBLANK(childRelationship))}">
+                                        <span class="slds-tabs--path__stage">Lookup Field is {!childRelationship}</span>
+                                        <span class="slds-tabs--path__title">Lookup Field is {!childRelationship}</span>
+                                    </apex:outputPanel>
+                                </apex:commandLink>
+                            </li>
+            
+                            <li class="slds-tabs--path__item slds-is-current" role="presentation">
+                                <a class="slds-tabs--path__link" id="tabs-path-98" aria-controls="content-path-1" aria-selected="true" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                    <span class="slds-tabs--path__stage">Lookup Matching Criteria</span>
+                                    <span class="slds-tabs--path__title">Lookup Matching Criteria</span>
+                                </a>
+                            </li>
+            
+                        </ul>
+                    </div>
+                </div>
+                <apex:outputpanel >
+                    <div style="overflow-wrap: break-word; white-space:normal; margin-top: 1em;" class="slds-box slds-box_x-small slds-theme_info">
+                        <apex:outputpanel id="criteriaMatchingOnly">
+                            <apex:inputCheckbox value="{!criteriaMatchingOnly}" id="criteriaMatchingOnlyCheckbox" />  
+                            <apex:actionsupport event="onchange" status="loading" action="{!setToId}"  rerender="criteriaMatchingOnly, criteriaMatchingWarning, standardFields, parentFieldToMatch, saveSetting, reqflag4, categoryCreate, relatedObjectFields"/>   
+                        </apex:outputpanel>
+                        <apex:outputLabel for="criteriaMatchingOnlyCheckbox" value=" Criteria Matching Mode"/>
+                        <i class="fa fa-info-circle" style="color:white;" onmouseover="lh.j$('#criteriaMatchInfo').toggle();" onmouseout="lh.j$('#criteriaMatchInfo').toggle();"></i><br/>    
+                                                                                      
+                    </div>
+                </apex:outputpanel>                    
+                <div class="slds-popover__body">
+                    <div id="criteriaMatchInfo" class="popoverDefault" role="dialog">
+                        <div class="slds-popover slds-popover_tooltip slds-nubbin_top popoverNubbinAlignment" role="dialog" >
+                            <div class="slds-popover__body">
+                                Child records will only be related to Category records when both child and parent filters evaluate to true. Field values do not need to match.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <apex:outputPanel id="criteriaMatchingWarning" >         
+                    <apex:outputPanel rendered="{!criteriaMatchingOnly}">
+                        <div class="slds-box slds-box--x-small slds-theme_warning" style="overflow-wrap: break-word; white-space:normal;">                            
+                            <center>Child records will only be related when matching filter criteria, as 'Match by Filter Criteria' has been enabled for this setting.</center>
+                        </div>
+                    </apex:outputPanel>
+                </apex:outputPanel>    
+                <apex:outputPanel id="lookupSettingType">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate" style="border-radius:4px !important;">
+                            <h3 class="slds-text-heading_small">Select Fields On {!cleanChildObjName} And {!cleanParentObjLabel} To Match:</h3>
+                        </header>
+                    </div>
+                    <section class="slds-card__body slds-card__body_inner">
+                        <table class="slds-table grayBlock slds-no-row-hover">
+                            <tr>     
+                            <td>
+                                <div style="overflow-wrap: break-word; white-space:normal;">
+                                    <apex:outputPanel id="clarifyingText">
+                                        <apex:outputPanel rendered="{!IF(!nameFieldEncrypted, true, false)}" styleClass="slds-text-body--small">
+                                            Child records will be related when the value in the selected field matches the value in the selected parent field.
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!IF(nameFieldEncrypted, true, false)}" styleClass="slds-text-body--small">
+                                            Child records will be related when the value in the selected field matches the value in the selected parent field.  The parent Name field is not filterable (most likely due to encryption) and Lookup Helper cannot match on the Name field.
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </div>
+                            </td>   
+                            </tr>
+                            <tr>
+                            <td>
+                                <apex:outputPanel id="standardFields">
+                                    <div class="slds-grid">
+                                    <apex:actionRegion >
+                                        <div>
+                                            <label class="slds-form-element__label" style="padding-left: 15px;" for="lookup">Child {!cleanChildObjName} field:</label><br/>
+                                            <apex:outputPanel id="reqflag3" style="margin-right: 15px;">
+                                                <apex:outputPanel rendered="{!ISBLANK(selectedCategoryField)}">
+                                                    <font style="color:red; font-size:25;">*</font>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            <apex:selectList style="width:300px;" size="5" value="{!selectedCategoryField}" rendered="{!NOT(ISBLANK(childRelationship))}" disabled="{!criteriaMatchingOnly}">
+                                                <apex:actionSupport event="onchange" action="{!clearRelatedObjField}" rerender="saveSetting, reqflag3, categoryCreate, relatedObjectFields, relatedObjectList" status="loading"/>
+                                                <apex:selectOptions value="{!sourceFieldController.PaginatedList}"/>
+                                            </apex:selectList>
+                                            <apex:outputPanel rendered="{! sourceFieldController.hasMultiplePages }">
+                                                <div >
+                                                    <c:Paginate pageController="{! sourceFieldController }" renderedComponent="standardFields" />
+                                                </div>
+                                            </apex:outputPanel>&nbsp;
+                                        </div>
+                                        <div>
+                                            <apex:outputPanel id="relatedObjectList">
+                                                <apex:outputPanel rendered="{!IF(AND(!ISBLANK(selectedCategoryField),CONTAINS(selectedCategoryField, '.'), relatedObjects.size > 1), true, false)}">
+                                                    <label style="padding-left: 15px;" class="slds-form-element__label">Select a specific parent object:</label> 
+                                                    <br/>
+                                                    <apex:outputPanel id="reqflag4" style="margin-right: 15px;">
+                                                        <apex:outputPanel rendered="{!ISBLANK(selectedRelatedObjectFieldParentName)}">
+                                                            <font style="color:red; font-size:25;">*</font>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    <apex:selectList value="{!selectedRelatedObjectFieldParentName}" styleclass="slds-picklist slds-max-small-buttons--stretch" multiselect="false" size="5" style="width:300px;">
+                                                        <apex:actionSupport event="onchange" action="{!clearSelectedRelatedObjectField}" rerender="saveSetting, reqflag4, categoryCreate, relatedObjectFields" status="loading"/>
+                                                        <apex:selectOptions value="{!relatedObjectParentNameController.PaginatedList}"/>
+                                                    </apex:selectList>
+                                                    <apex:outputPanel rendered="{! relatedObjectParentNameController.hasMultiplePages }">
+                                                        <div >
+                                                            <c:Paginate pageController="{! relatedObjectParentNameController }" renderedComponent="standardFields" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel> &nbsp;
+                                        </div>
+                                        <div>
+                                            <apex:outputPanel id="relatedObjectFields">
+                                                <apex:outputPanel rendered="{!IF(AND(CONTAINS(selectedCategoryField, '.'), !ISBLANK(selectedRelatedObjectFieldParentName)), true, false)}">
+                                                    <label style="padding-left: 15px;" class="slds-form-element__label">Select field on {!selectedRelatedObjectFieldParentNameCapitalized} to match:</label> 
+                                                    <br/>
+                                                    <apex:outputPanel id="reqflag5" style="margin-right: 15px;">
+                                                        <apex:outputPanel rendered="{!ISBLANK(selectedRelatedObjectField)}">
+                                                            <font style="color:red; font-size:25;">*</font>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    <apex:selectList value="{!selectedRelatedObjectField}" styleclass="slds-picklist slds-max-small-buttons--stretch" multiselect="false" size="5" style="width:300px;">
+                                                        <apex:actionSupport event="onchange" action="{!setIsValidSetting}" rerender="saveSetting, reqflag5, categoryCreate, disabledCategoryRecords" status="loading"/>
+                                                        <apex:selectOptions value="{!relatedObjectFieldController.PaginatedList}"/>
+                                                    </apex:selectList>
+                                                    <apex:outputPanel rendered="{! relatedObjectFieldController.hasMultiplePages }">
+                                                        <div >
+                                                            <c:Paginate pageController="{! relatedObjectFieldController }" renderedComponent="relatedObjectFields" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>                                            
+                                            </apex:outputPanel>
+                                        </div>
+                                    </apex:actionRegion>
+                                    </div>
+                                </apex:outputPanel>		
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>
+                                <apex:outputPanel id="parentFieldToMatch">
+                                    <div class="slds-grid">
+                                        <apex:actionRegion >
+                                            <div>
+                                                <label class="slds-form-element__label" style="padding-left: 15px;" for="lookup">Match to Parent {!cleanParentObjLabel} field:</label>
+                                                <br/>
+                                                <apex:outputPanel id="reqflag2" style="margin-right: 15px;">
+                                                    <apex:outputPanel rendered="{!ISBLANK(selectedParentField)}">
+                                                        <font style="color:red; font-size:25;">*</font>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                                <apex:selectList value="{!selectedParentField}" styleclass="slds-picklist slds-max-small-buttons--stretch" multiselect="false" size="5" style="width: 300px;" disabled="{!criteriaMatchingOnly}">
+                                                    <apex:selectOptions value="{!parentFieldController.PaginatedList}"/>
+                                                    <apex:actionSupport event="onchange" action="{!setIsValidSetting}" rerender="reqflag2, saveSetting, categoryCreate, parentFieldToMatch" status="loading"/>
+                                                </apex:selectList>
+                                                <apex:outputPanel rendered="{! parentFieldController.hasMultiplePages }">
+                                                    <div >
+                                                        <c:Paginate pageController="{! parentFieldController }" renderedComponent="parentFieldToMatch" />
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </div>
+                                        </apex:actionRegion>
+                                        <apex:outputPanel rendered="{!showNameOrIdWarning}"> 
+                                            <div class="slds-box slds-box--x-small slds-theme_warning" style="margin-left:20px; margin-top: 24px; width: 50%; white-space: normal;">
+                                                <center>Name/ID is not a recommended matching parent field. We recommend choosing either Name or ID as the parent matching field.</center>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                </apex:outputPanel>
+                            </td>
+                            </tr>   
+                        </table>
+                    </section>
+                </apex:outputPanel>
+                <apex:outputPanel id="categoryCreate" style="padding-top:5px;">
+                    <apex:outputPanel id="categoryCreate2" rendered="{!OR(isValidSetting, criteriaMatchingOnly)}">
+                        <apex:outputPanel id="categoryCreate3">
+                            <apex:outputPanel id="reqflag6" style="float: left; margin-top: 10px;">
+                                <apex:outputPanel rendered="{!criteriaMatchingOnly}">
+                                    <font style="color:red; font-size:25;">*</font>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        <div style="padding-bottom: 20px; padding-top: 10px;">
+                            <c:LH_Filter_Creation lookupHelperSetting="{! createdSetting }" settingFilterObjectName="{!parentObjectName}" isTheParentFilter="true" settingCon="{!currentController}"/>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="reqflag7" style="float: left; margin-top: 10px;">
+                        <apex:outputPanel rendered="{!criteriaMatchingOnly}">
+                            <font style="color:red; font-size:25;">*</font>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                        <div style="padding-bottom: 20px; padding-top: 10px;">
+                            <c:LH_Filter_Creation lookupHelperSetting="{! createdSetting }" settingFilterObjectName="{!selectedChildObject}" isTheParentFilter="false" settingCon="{!currentController}"/>
+                        </div>
+                        <apex:outputPanel id="createCategoryRecords" rendered="{! CanCreateCategoryRecords}">
+                            <div style="margin-left:20px;">              
+                                <i class="fa fa-info-circle fa-lg" style="color:#16325c;" onmouseover="lh.j$('#createCategoryRecordsInfo').toggle();" onmouseout="lh.j$('#createCategoryRecordsInfo').toggle();"></i>                  
+                                <apex:outputPanel rendered="{!createNewCategory}">
+                                    Create New Category Records is <font style="color:green;">enabled</font>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{! !createNewCategory}">
+                                    Create New Category Records is <font style="color:red;">disabled</font>
+                                </apex:outputPanel>
+                                <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandButton style="margin-top:5px;" action="{!proceedToCategoryRecordTypePage}" styleclass="slds-button slds-button--neutral" value="Configure New Category Records" status="loading"/>
+                            </div>                            
+                            <div class="slds-popover__body">
+                                <div id="createCategoryRecordsInfo" class="popoverDefault" role="dialog">
+                                    <div class="slds-popover slds-popover_tooltip slds-nubbin_top popoverNubbinAlignment" role="dialog" >
+                                        <div class="slds-popover__body">
+                                            Click the button above to configure settings that will create new {!cleanParentObjName} records if a record for the parent object does not exist. Any new records that do not meet validation rules will not be created.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="createCategoryRecordsMessage" rendered="{! !CanCreateCategoryRecords}">
+                            <apex:outputPanel rendered="{! !checkIfParentFilterActive }"> 
+                                <div class="slds-box slds-box--x-small slds-theme_warning" style="margin-left:20px;width:32%;">
+                                    <center>Creation of category records is not available for this setting because {!createCategoryRecordsUnavailableReason}.</center>
+                                    <apex:outputPanel rendered="{!createNewCategory}">
+                                        <br/>
+                                        <center>Creation of category records is currently enabled.<br/>Click&nbsp;<apex:commandLink action="{!disableCreateNewCategoryRecords}" rerender="createCategoryRecordsMessage,pgMessage,createCategoryRecords" status="loading">here</apex:commandLink>&nbsp;to disable creation of category records for this setting.</center>
+                                    </apex:outputPanel>
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{! checkIfParentFilterActive }"> 
+                                <div class="slds-box slds-box--x-small slds-theme_warning" style="margin-left:20px;width:32%;">
+                                    <center>Creation of category records is not available when a parent filter is attached to the same setting.</center>
+                                </div>
+                            </apex:outputPanel>                            
+                        </apex:outputPanel>
+                        <br/>
+                        <apex:outputPanel id="disabledCategoryRecords" rendered="{!categoryRecordsDisabled}">
+                            <div class="slds-box slds-box--x-small slds-theme_warning" style="margin-left:20px;width:32%;">
+                                <center>Creation of category records was disabled after changing the parent field.</center>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel id="externalIdMessage">
+                    <apex:outputPanel rendered="{! !isSameChildAndParentObject}">
+                        <br/><br/>Please Note: If you have large sets of data (over 100,000 {!cleanParentObjName} or {!cleanChildObjName} records), <strong>it is best to only select indexed fields to match.</strong>
+                            &nbsp;A good way to apply an index to a field is to make the field an external Id.
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!isSameChildAndParentObject}">
+                        <br/><br/>Please Note: Settings with the same Child And Parent objects must match on the Name or Id field.
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel id="settingTypeNotes">
+                    <br/><br/>
+                    <div style="overflow-wrap: break-word; white-space:normal;" class="slds-box slds-box_x-small slds-theme_info">
+                        Please note: Fields not appearing for selection to use in the Lookup Setting are most likely not appearing because they are not filterable. Lookup setting match fields must be filterable in order for the setting to function properly.
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel id="saveSetting">
+                    <apex:outputPanel rendered="{!isValidSetting}">
+                        <hr/>
+                        <div class="slds-card--empty">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate" style="border-radius:4px !important;margin-top:-20px;">
+                                    <h3 class="slds-text-heading_small">Save and Run Setting</h3>
+                                </header>
+                            </div>
+                            <script>
+                                lh.j$(function(){
+                                    lh.j$( "#advSettings" ).accordion({ collapsible: true});
+                                });
+                            </script>
+                            <script>
+                                lh.j$(function(){
+                                    lh.j$( "#settingsName" ).accordion({collapsible: true, active: false});
+                                });
+                            </script>
+                            <apex:actionRegion > 
+                                <div class="row">
+                                    <div id="advSettings" > 
+                                        <h3>Advanced Settings</h3>              
+                                        <div>
+                                            <apex:outputpanel >                    
+                                                <apex:outputpanel id="allowOverwrite">
+                                                    <apex:inputCheckbox value="{!allowOverwrite}" id="allowOverwriteCheckbox" />                   
+                                                    <apex:actionsupport event="onchange" action="{!postVariable}" rerender="allowOverwrite"/>   
+                                                </apex:outputpanel>
+                                                <apex:outputLabel for="allowOverwriteCheckbox" value=" Allow Overwrite of Existing Lookup Field Information"/>
+                                            </apex:outputpanel>
+                                            <br/>
+                                            <apex:outputpanel >
+                                                <apex:outputpanel id="allowBlankOverwrite">
+                                                    <apex:inputCheckbox value="{!allowBlankOverwrite}" id="allowBlankOverwriteCheckbox" />                   
+                                                    <apex:actionsupport event="onchange" action="{!postVariable}"  rerender="allowBlankOverwrite"/>   
+                                                </apex:outputpanel>
+                                                <apex:outputLabel for="allowBlankOverwriteCheckbox" value=" Allow Clearing of Existing Lookup Field Information"/>
+                                            </apex:outputpanel>
+                                            <br/>
+                                            <apex:outputpanel >
+                                                <apex:outputpanel id="suppressWarningLevelErrors">
+                                                    <apex:inputCheckbox value="{!suppressWarningLevelErrors}" id="suppressWarningLevelErrorsCheckbox" />                   
+                                                    <apex:actionsupport event="onchange" action="{!postVariable}"  rerender="suppressWarningLevelErrors"/>   
+                                                </apex:outputpanel>
+                                                <apex:outputLabel for="suppressWarningLevelErrorsCheckbox" value=" Suppress Warning Level Exceptions for this Setting"/>
+                                            </apex:outputpanel>
+                                            <br/>
+                                            <apex:outputpanel >
+                                                <apex:outputpanel id="disableRealtime">
+                                                    <apex:inputCheckbox value="{!disableRealtime}" id="disableRealtimeCheckbox" />                   
+                                                    <apex:actionsupport event="onchange" action="{!postVariable}"  rerender="disableRealtime"/>   
+                                                </apex:outputpanel>
+                                                <apex:outputLabel for="disableRealtimeCheckbox" value=" Disable Real-Time for this Setting"/>
+                                            </apex:outputpanel>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                    <div id="settingsName">
+                                        <h3>Setting Name</h3>
+                                        <div>
+                                            <label class="slds-form-element__label" for="lookup">Setting Name (optional)</label><apex:inputText styleclass="slds-input slds-input--small" maxlength="79" value="{!settingName}" style="width:50%;"/>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </apex:actionRegion> 
+                        </div>
+                    </apex:outputPanel>
+                    <footer class="slds-card__footer">
+                        <center>
+                            <apex:outputPanel id="pgMessage">
+                                <apex:outputPanel rendered="{!hasError}">
+                                    <apex:pageMessages escape="false"/>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="defaultButtons">
+                                <apex:commandLink action="{!goToPreviousStep}" styleclass="slds-button slds-button--neutral" value="Previous">
+                                    <apex:param value="lh_newsetting_lookupfield" assignTo="{!previousStepPage}"></apex:param>
+                                </apex:commandLink>
+                                <apex:commandButton action="{!doCancel}" styleclass="slds-button slds-button--neutral" value="Cancel"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="saveButtons" rendered="{!isValidSetting}" style="margin-left:4px;">
+                                <apex:commandButton action="{!saveSetting}"  styleclass="slds-button slds-button--neutral" value="Save Setting" id="save" rerender="pgMessage" status="loading"/>
+                                <apex:commandButton action="{!saveAndNewSetting}"  styleclass="slds-button slds-button--neutral" value="Save & New Setting" id="saveandnew" rerender="pgMessage" status="loading"/>
+                                <apex:commandButton action="{!saveAndRunSetting}" styleclass="slds-button slds-button--neutral" value="Save and Run Setting" id="saveandrun" rerender="pgMessage" status="working"/>
+                            </apex:outputPanel>
+                        </center>
+                    </footer>
+                </apex:outputPanel>
+                <c:Loading_Spinner opacity="1"/>
+            </div>
+        </div>
+        <c:LH_additionalInformation />
+    </div>
+</apex:form>
+</html>
+</apex:page>

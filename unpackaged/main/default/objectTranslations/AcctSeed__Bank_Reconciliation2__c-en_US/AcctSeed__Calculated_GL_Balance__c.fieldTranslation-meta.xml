@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If bank, calculated as statement ending balance + uncleared deposits - uncleared payments. If credit card, calculated as statement ending balance - uncleared payments + uncleared charges. --></help>
+        <label><!-- Calculated Balance --></label>
+        <name>AcctSeed__Calculated_GL_Balance__c</name>
+    </CustomFieldTranslation>

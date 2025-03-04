@@ -1,0 +1,92 @@
+<apex:page id="thePage" standardController="AcctSeed__Time_Card_Line__c" title="{!AcctSeed__Time_Card_Line__c.Name & ' | Accounting Seed'}" tabStyle="AcctSeed__Time_Card_Line__c" extensions="AcctSeed.TimeCardLineControllerExt" sidebar="false">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/time-card-line.js')}" loadOnReady="true"/> 
+    <apex:form id="theForm">        
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Time_Card_Line__c.label}" subtitle="{!AcctSeed__Time_Card_Line__c.Name}" />
+        <apex:pageblock id="thePageBlock" tabStyle="Time_Card_Line__c" mode="edit" rendered="{!NOT(ISBLANK(timeCardLine))}" title="Time Card Line Edit">
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Saving...')" />
+                <apex:commandButton action="{!saveback}" status="saveStatus" value="Save" reRender="theForm" />
+                <apex:commandButton action="{!$Page.TimeCardEdit}?id={!timeCardLine.Time_Card__c}" value="Cancel" immediate="true" />
+                <apex:actionFunction name="saveback" action="{!saveback}" status="saveStatus" reRender="theForm" />
+                <script type="text/javascript">
+                    AcctSeed.ASModule.saveback = saveback;
+                </script>      
+            </apex:pageBlockButtons>
+            <table cellpadding="6" cellspacing="6" ALIGN="center">
+                <tr>
+                    <td style="text-align:center"><b>Line #</b>
+                    </td>
+                    <td style="text-align:center"><b>Project</b>
+                    </td>
+                    <td style="text-align:center"><b>Project Task</b>
+                    </td>
+                    <td style="text-align:center"><b>Billable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <apex:outputField value="{!AcctSeed__Time_Card_Line__c.name}" />
+                    </td>
+                    <td>
+                        <apex:outputField value="{!AcctSeed__Time_Card_Line__c.AcctSeed__Project__c}" />
+                    </td>
+                    <td>
+                        <apex:outputField value="{!AcctSeed__Time_Card_Line__c.AcctSeed__Project_Task__c}" />
+                    </td>
+                    <td>
+                        <apex:OutputField value="{!AcctSeed__Time_Card_Line__c.AcctSeed__Billable__c}" />
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <table cellpadding="6" cellspacing="6" align="center" width="100%">
+                <tr>
+                    <apex:repeat value="{!timeCardLineWrapper.days}" var="day">
+                        <td width="100" style="text-align:center;font-weight:bold">
+                            <apex:outputText value="{0,date,E d}">
+                                <apex:param value="{!day.AcctSeed__Date__c}" />
+                            </apex:outputText>
+                        </td>
+                    </apex:repeat>
+                </tr>
+                <tr>
+                    <apex:repeat value="{!timeCardLineWrapper.days}" var="day">
+                        <td width="50" style="text-align:center"><b>Hours:</b>&nbsp;
+                            <apex:inputfield id="hours" value="{!day.AcctSeed__Hours__c}" style="width:40px; text-align:right" required="false" />
+                        </td>
+                    </apex:repeat>
+                </tr>
+                <tr>
+                    <apex:repeat value="{!timeCardLineWrapper.days}" var="day">
+                        <td width="100" style="text-align:center"><b>Internal Comment</b>
+                        </td>
+                    </apex:repeat>
+                </tr>
+                <tr>
+                    <apex:repeat value="{!timeCardLineWrapper.days}" var="day">
+                        <td>
+                            <apex:inputfield value="{!day.AcctSeed__Internal_Comment__c}" />
+                        </td>
+                    </apex:repeat>
+                </tr>
+                <tr>
+                    <apex:repeat value="{!timeCardLineWrapper.days}" var="day">
+                        <td width="100" style="text-align:center"><b>Invoice Comment</b>
+                        </td>
+                    </apex:repeat>
+                </tr>
+                <tr>
+                    <apex:repeat value="{!timeCardLineWrapper.days}" var="day">
+                        <td>
+                            <apex:inputfield value="{!day.AcctSeed__Invoice_Comment__c}" />
+                        </td>
+                    </apex:repeat>
+                </tr>
+            </table>
+        </apex:pageblock>
+        <apex:inputHidden value="{!AcctSeed__Time_Card_Line__c.AcctSeed__Time_Card__c}" />
+    </apex:form>
+</apex:page>

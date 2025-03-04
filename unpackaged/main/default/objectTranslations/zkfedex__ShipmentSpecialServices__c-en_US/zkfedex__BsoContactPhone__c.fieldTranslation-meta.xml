@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- BSO Contact Phone --></label>
+        <name>zkfedex__BsoContactPhone__c</name>
+    </CustomFieldTranslation>

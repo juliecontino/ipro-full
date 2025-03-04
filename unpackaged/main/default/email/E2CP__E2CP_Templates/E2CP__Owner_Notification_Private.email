@@ -1,0 +1,14 @@
+<messaging:emailTemplate subject="Widespread Issue {!RelatedTo.Name}: {!RelatedTo.E2CP__Title__c} [{!RelatedTo.E2CP__Status__c}]" recipientType="User" relatedToType="E2CP__Widespread_Issue__c">
+    <messaging:htmlEmailBody >
+        You are receiving this notification because you are the owner of a Case associated with Widespread Issue {!RelatedTo.Name}: {!RelatedTo.E2CP__Title__c}. A private broadcast has just been added to this Widespread Issue by {!RelatedTo.LastModifiedBy.Name}.<br/>
+        <br/>
+        <apex:outputText escape="false" value="{!relatedTo.E2CP__Most_Recent_Owner_Comment_Private__c}"></apex:outputText>
+        <br/>
+        **********************************<br/>
+        <br/>
+        Widespread Issue: {!RelatedTo.Name}<br/>
+        Status: {!RelatedTo.E2CP__Status__c}<br/>
+        Title: {!RelatedTo.E2CP__Title__c}<br/>
+        Description: <apex:outputText escape="false" value="{!RelatedTo.E2CP__Description__c}"></apex:outputText>
+    </messaging:htmlEmailBody>
+</messaging:emailTemplate>

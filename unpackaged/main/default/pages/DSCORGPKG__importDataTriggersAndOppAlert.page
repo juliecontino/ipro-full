@@ -1,0 +1,158 @@
+<apex:page controller="DSCORGPKG.importDataTriggersAndOppAlertCont" standardStylesheets="false" showHeader="false" sidebar="false" action="{!init}">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+    <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+    <script>
+        var isPause = false;
+        var isBatchDetailShow = false;
+
+
+        function pauseImport() {
+            $("#pauseBtn").val('Pausing...');
+            $("#pauseBtn").attr("disabled", "disabled");
+            isPause = true;
+        }
+
+        function resumeImport() {
+            $("#startBtn").hide();
+            $("#pauseBtn").show();
+            $("#pauseBtn").val('Pause');
+            $("#pauseBtn").removeAttr("disabled");
+            
+            doImport();
+            
+        }
+
+        $(document).ready(function() {
+
+            var isOperation = '{!JSENCODE($CurrentPage.parameters.isOperation)}';
+            if ($.trim(isOperation) != '') {
+                isPause = true;
+                resumeImport();
+            } else {
+                document.getElementById('startBtn').click();
+            }
+            showHideBatchDetails();
+        });
+
+        function showHideBatchDetails() {
+            overrideBtnAndMsgStyle();
+
+            if (isBatchDetailShow) {
+                $("#hiBD").show();
+                $("#batchDetails").show();
+                $("#exBD").hide();
+            } else {
+                $("#hiBD").hide();
+                $("#batchDetails").hide();
+                $("#exBD").show();
+            }
+
+           
+        }
+
+        function overrideBtnAndMsgStyle() {
+            var textureEffect = '';
+            //Uncomment below line for texture effect on page messages
+            //textureEffect = 'slds-theme--alert-texture';                         
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+            $('#divProcessing').hide();
+            $('.btn').removeClass('btn');
+        }
+    </script>
+    <apex:form id="frm">
+        <apex:actionFunction name="startAndRunImport" action="{!startAndRunImport}" oncomplete="showHideBatchDetails();resumeImport();" reRender="frm" />
+        <div class="slds">
+            <div id="Loadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+                <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                    <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;" />
+                </div>
+            </div>
+            
+            
+            <div class="slds-container--fluid  slds-container--center">
+                <script>
+                    function doImport() {
+                        
+                        
+                        if ({!totalPage} > {!currentPage} && !isPause) {
+                            isPause = false;
+                            startAndRunImport();
+                            document.getElementById('pnlLoadingtop').style.display = '';
+                            $("#importingMsg").html("Import in progress.");
+                        } else {
+                            $("#startBtn").show();
+                            $("#pauseBtn").hide();
+                            document.getElementById('pnlLoadingtop').style.display = 'none';
+                            $("#importingMsg").html("Import paused.");
+                        }
+
+                        if ({!totalPage
+                            } == {!currentPage
+                            }) {
+                            $("#importingMsg").html("Import finished.");
+                            $("#startBtn").attr("disabled", "disabled");
+                            $("#pauseBtn").hide();
+                        }
+                    }
+
+                    function showStatus() {
+                        document.getElementById('Loadingtop').style.display = 'block';
+                    }
+
+                    function hideStatus() {
+
+                        overrideBtnAndMsgStyle();
+                        document.getElementById('Loadingtop').style.display = 'none';
+                    }
+
+                   
+                </script>
+                
+                <div style="width:100%;" align="center">
+
+                    <table>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 100%;padding: 20px;">
+                                <apex:outputPanel id="rerenderdContactDuplicat">
+
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;padding: 5px;font-size: 15px;">
+                                                <div style="color: black;" align="center">
+                                                    <img id="pnlLoadingtop" src="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:30px;display: none;" />
+                                                    <font id="importingMsg">Import in progress.</font> <b style="color:#339933">
+                                                    <apex:outputPanel layout="none" rendered="{!totalPage == currentPage }">
+                                                        {!DOprObj.DSCORGPKG__Total_Records__c}
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{!totalPage != currentPage }">
+                                                        {!(currentPage+1)* PAGESIZE}
+                                                    </apex:outputPanel>                                                    
+                                                </b> of <b>{!DOprObj.DSCORGPKG__Total_Records__c}</b> scoops completed.
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center;padding: 15px;">
+                                                <input style="font-size: 14px;" type="button" class="slds-button slds-button--neutral" id="startBtn" onclick="isPause=false;resumeImport();" value="{! if(currentPage+1 != 0 ,'Resume','Start') }" />
+                                                <input style="font-size: 14px;" type="button" class="slds-button slds-button--neutral" id="pauseBtn" onclick="pauseImport();" value="Pause" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                        </apex:outputPanel>
+                    </td>
+                    </tr>
+                    </table>
+                </div>
+        </div>
+        </div>
+    </apex:form>
+</html>
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Image will be resized to a width of 50 pixels --></help>
+        <label><!-- ImageID --></label>
+        <name>LS_VC__ImageID__c</name>
+    </CustomFieldTranslation>

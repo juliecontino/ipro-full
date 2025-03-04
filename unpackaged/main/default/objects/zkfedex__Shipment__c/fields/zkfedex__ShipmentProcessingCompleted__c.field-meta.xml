@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__ShipmentProcessingCompleted__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicates whether Shipmate was able to successfully complete the shipment processing with the shipping carrier.</description>
+    <inlineHelpText>Indicates whether Shipmate was able to successfully complete the shipment processing with the shipping carrier.</inlineHelpText>
+    <label>Shipment Processing Completed</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

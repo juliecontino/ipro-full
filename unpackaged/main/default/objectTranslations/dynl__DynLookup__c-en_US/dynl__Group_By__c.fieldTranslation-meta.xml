@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Provide the Field Name1 if any aggregate function is selected for Field Name 2. Else leave it empty --></help>
+        <label><!-- Group By --></label>
+        <name>dynl__Group_By__c</name>
+    </CustomFieldTranslation>

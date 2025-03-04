@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Show as default --></label>
+        <name>zaapit__Show_as_default__c</name>
+    </CustomFieldTranslation>

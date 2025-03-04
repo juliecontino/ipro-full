@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Reference to related Billing Line. Expenses can be aggregated into Billing records for approval and billing. --></help>
+        <label><!-- Billing Line --></label>
+        <name>AcctSeed__Billing_Line__c</name>
+        <relationshipLabel><!-- Expense Lines --></relationshipLabel>
+    </CustomFieldTranslation>

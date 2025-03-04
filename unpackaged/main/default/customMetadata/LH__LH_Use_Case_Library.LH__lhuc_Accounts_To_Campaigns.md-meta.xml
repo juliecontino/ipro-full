@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Account Source Campaigns</label>
+    <protected>false</protected>
+    <values>
+        <field>LH__Category_Field__c</field>
+        <value xsi:type="xsd:string">accountsource</value>
+    </values>
+    <values>
+        <field>LH__Child_Filter_Conditions__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Child_Object__c</field>
+        <value xsi:type="xsd:string">account</value>
+    </values>
+    <values>
+        <field>LH__Components_Included__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Description__c</field>
+        <value xsi:type="xsd:string">Relates Accounts with a parent Campaign when Account.AccountSource = Campaign.Type</value>
+    </values>
+    <values>
+        <field>LH__FieldType__c</field>
+        <value xsi:type="xsd:string">Lookup</value>
+    </values>
+    <values>
+        <field>LH__Label__c</field>
+        <value xsi:type="xsd:string">Account Source Campaigns</value>
+    </values>
+    <values>
+        <field>LH__Logic__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Long_Description__c</field>
+        <value xsi:type="xsd:string">Populates lhuc_Accounts_To_Campaigns__c with a parent Campaign if the child Account&apos;s AccountSource field is equal to the Campaign&apos;s Type.</value>
+    </values>
+    <values>
+        <field>LH__Object__c</field>
+        <value xsi:type="xsd:string">Account</value>
+    </values>
+    <values>
+        <field>LH__Parent_Field__c</field>
+        <value xsi:type="xsd:string">type</value>
+    </values>
+    <values>
+        <field>LH__Parent_Object__c</field>
+        <value xsi:type="xsd:string">campaign</value>
+    </values>
+    <values>
+        <field>LH__RelationshipName__c</field>
+        <value xsi:type="xsd:string">lhuc_Accounts_To_Campaigns</value>
+    </values>
+    <values>
+        <field>LH__Relationship_Field__c</field>
+        <value xsi:type="xsd:string">lhuc_Accounts_To_Campaigns__c</value>
+    </values>
+</CustomMetadata>

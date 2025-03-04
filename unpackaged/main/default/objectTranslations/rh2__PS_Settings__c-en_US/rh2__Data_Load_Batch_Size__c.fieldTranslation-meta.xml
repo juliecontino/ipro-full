@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The number of records you typically load per batch during a data load. --></help>
+        <label><!-- Data Load Batch Size --></label>
+        <name>rh2__Data_Load_Batch_Size__c</name>
+    </CustomFieldTranslation>

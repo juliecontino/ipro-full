@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Reference to the Day used in a Time Card Transaction. --></help>
+        <label><!-- Time Card Day --></label>
+        <name>AcctSeed__Time_Card_Day__c</name>
+        <relationshipLabel><!-- Transactions --></relationshipLabel>
+    </CustomFieldTranslation>

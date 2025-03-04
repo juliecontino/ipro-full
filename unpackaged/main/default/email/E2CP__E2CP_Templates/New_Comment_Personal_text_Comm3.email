@@ -1,0 +1,16 @@
+{!$User.FirstName} {!$User.LastName},
+
+Case {!Case.CaseNumber} has been updated with the following:
+
+{!Case.E2CP__Most_Recent_Public_Comment__c}
+
+If you would like to contact us regarding this case, please respond to this email or call us at 214-389-2600. 
+
+For issues that require immediate assistance, please call us at 214-389-2600.
+
+Thank you,
+
+{!Case.OwnerFullName}
+Comm3
+
+{!Case.E2CP__Case_Thread_Id__c}

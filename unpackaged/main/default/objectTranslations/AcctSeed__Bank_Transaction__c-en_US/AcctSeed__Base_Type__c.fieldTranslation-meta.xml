@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- How the transaction appears on the FI site (debit v credit). Bank-Credit/Debit=Increase/Decrease. CreditCard - Credit/Debit=Decrease/Increase. --></help>
+        <label><!-- Base Type --></label>
+        <name>AcctSeed__Base_Type__c</name>
+        <picklistValues>
+            <masterLabel>Credit</masterLabel>
+            <translation><!-- Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Debit</masterLabel>
+            <translation><!-- Debit --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Current_User_PM</fullName>
+    <columns>NAME</columns>
+    <columns>Opportunity_Ops_Category__c</columns>
+    <columns>AcctSeed__Account__c</columns>
+    <columns>AcctSeed__Opportunity__c</columns>
+    <columns>Project_Status_Ops__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Estimated_Cut_over_Date__c</columns>
+    <columns>Project_Manager_OPS__c</columns>
+    <columns>Installer_1__c</columns>
+    <columns>Installer_2__c</columns>
+    <columns>AcctSeedERP__Work_Order_Number__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Status_Ops__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Canceled</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Template_Project__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Logged_In_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Active - Current User = Project Manager</label>
+    <language>en_US</language>
+</ListView>

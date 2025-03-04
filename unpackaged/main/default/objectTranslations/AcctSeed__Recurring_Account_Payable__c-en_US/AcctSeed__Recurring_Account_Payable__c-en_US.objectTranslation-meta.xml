@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Recurring Account Payable Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Clone w/Lines --></label>
+        <name>AcctSeed__Clone_w_Lines</name>
+    </quickActions>
+    <webLinks>
+        <label><!-- Create_Account_Payable --></label>
+        <name>AcctSeed__Create_Account_Payable</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Accounts_Payable --></label>
+        <name>AcctSeed__Create_Accounts_Payable</name>
+    </webLinks>
+</CustomObjectTranslation>

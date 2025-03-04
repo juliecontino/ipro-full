@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Number of business hours spent with flag 2 --></help>
+        <label><!-- Business Hours in Age 2 --></label>
+        <name>FLAGS__Business_Hours_in_Age_2__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,638 @@
+<apex:page standardcontroller="DSCORGPKG__Conflict__c" extensions="DSCORGPKG.DiscoverOrg_ConflictResolver" action="{!LoadPage}" sidebar="false" cache="false" standardstylesheets="false">
+    <html  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+            <link href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/styles/sf-lightning-for-sf-classic.css')}" type="text/css" rel="stylesheet" />
+            <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'familyOpenSans.css')}"/><!-- SFNA 2839-->
+            <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'familyRaleway.css')}"/><!-- SFNA 2839-->
+             
+            <!-- ********* scripts ******* -->
+            <!-- SLDS Scripts -->
+            <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+            <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/svg4everybody.legacy.js')}"></script>
+            
+            <script type="text/javascript">
+            
+                (function() {
+                    var walkme = document.createElement('script');
+                    walkme.type = 'text/javascript';
+                    walkme.async = true;
+                    walkme.src = "{!URLFOR($Resource.DiscoverOrgUI, 'js/walkme.js')}";
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(walkme, s);
+                    window._walkmeConfig = {
+                        smartLoad: true
+                    };
+                })();
+            </script>
+            <style>
+                
+                body, td{
+                    font-family: "Salesforce Sans", Arial, sans-serif;
+                }
+                body .x-btn button, body .btn, body .btnImportant, body .btnDisabled, body .btnCancel, body .menuButton .menuButtonButton, body .menuButton .menuButtonMenu a, body .menuButton .menuButtonMenu input.theOption, h1, h2, h3, h4, h5, h6{
+                    font-family: 'Open Sans', arial;
+                }
+                
+                .slds-form-element__label, button, html input[type="button"], input[type="reset"], input[type="submit"]{
+                    font-family: 'Open Sans', Arial;
+                }
+                
+                .slds-page-header, .slds-card{
+                    background: #F8F8F8;
+                }
+                
+                .logo-company{
+                    max-width: 100px;
+                }
+                .slds-checkbox .slds-checkbox--faux-disabled{
+                    border-style: dotted !important;
+                    cursor: not-allowed;  
+                }
+                
+                .slds-card th, .slds-card td{
+                    font-family: 'Open Sans', arial;
+                }
+                
+                .slds-card th{
+                    font-size: 1rem;
+                }
+                
+                .slds-card td{
+                    font-size: 0.8rem;
+                }
+                
+                /* Large devices (large desktops, 1200px and up) */
+                @media (min-width: 1200px) {
+                    .slds-card{
+                        max-width: 1280px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                    
+                    .slds-page-header-grid{
+                        max-width: 1280px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                }
+                
+                table.messageTable{
+                    font-size: 13px;
+                }
+                
+                .messageTable td{
+                    color: #FFF;
+                }
+                
+                td.noSidebarCell{
+                    padding: 0;
+                }
+                
+                .intelligence-text {
+                    font-size: 1.1rem;
+                    margin-left: 10px;
+                    color: white;
+                    font-family: Raleway, 'Open Sans', Arial;
+                }
+                .main-header{
+                    background-color: rgb(27, 94, 172) !important;
+                    border:none;
+                    box-shadow: 0px 5px 10px 1px #9A9A9A;
+                }
+                .slds-page-header {
+                    padding: 0.5rem 1.5rem 0.5rem;
+                }
+                .slds-grid-main {
+                    max-width: 1280px;
+                    margin: 0 auto;
+                }
+                
+                .slds-text-heading--medium{
+                    font-family: Raleway, 'Open Sans', Arial;
+                }
+                
+                .slds-page-header, .slds-card{
+                        background: #F8F8F8;
+                    }
+                
+                @-moz-document url-prefix() { 
+                    .do-logo {
+                        margin-top: -6px;
+                    }
+                }
+                
+                .slds-button{
+                    font-size: 14px !important;
+                    font-weight: normal !important;
+                }
+                
+                #header-fixed th span.slds-truncate, #header-fixed th .slds-text-heading--label{
+                    font-weight: 400;
+                }
+                
+                #header-fixed { 
+                    position: fixed; 
+                    top: 0px; 
+                    background-color:white;
+                    margin-top: 0;
+                    z-index : 1001;
+                    border-top: none;
+                }
+                
+                #header-fixed th{ 
+                    border-top: none;
+                    font-weight: 400;
+                }
+                
+                .slds-button{
+                    font-size: 14px;
+                }
+                
+                input.slds-button--brand, button.slds-button--brand{
+                    background: #6EBE49;
+                    border-color: #6EBE49;
+                }
+                
+                .slds-button:focus {
+                    outline: 0;
+                    box-shadow: 0 0 3px #339933;
+                }
+                
+                .slds-button--brand:hover, .slds-button--brand:focus {
+                    background: #339933;
+                    border-color: #339933;
+                }
+                
+                .slds-text-heading--medium{
+                    font-size: 1.1rem;   
+                }
+                
+                .slds-text-heading--small{
+                    font-size: 1rem;   
+                }
+                
+                .slds-radio [type="radio"][disabled] ~ .slds-radio--faux{
+                        border-color: #e0e5ee;
+                }
+
+                .slds-button--icon-background{
+                    background:white;
+                }
+                
+                .slds-button--DO-icon-background{
+                    background:#f26979;
+                }
+                
+                .slds-button:active{
+                    outline: 0 !important;
+                    box-shadow: 0 0 3px #339933 !important;
+                    border-color: #d8dde6 !important;
+                }
+                
+                .slds-nubbin--top:before, .slds-nubbin--right:before {
+                    width: 1rem;
+                    height: 1rem;
+                    position: absolute;
+                    -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                    content: "";
+                    background-color: inherit;
+                    
+                }
+                
+                .slds-nubbin--top:before{
+                    left: 50%;
+                    top: -0.5rem;
+                    margin-left: -0.5rem;
+                }
+                
+                .slds-nubbin--right:before {
+                    top: 50%;
+                    right: -0.5rem;
+                    margin-top: -0.5rem;
+                }
+                
+                .slds-popover{
+                    border:none;
+                    position: absolute;
+                    min-width: 120px;
+                    background: #061c3f;
+                    color: white;
+                    font-size: 13px;
+                    font-family: "Salesforce Sans",Arial,sans-serif;
+                    font-weight: 500;
+                }
+                /* Help Tool Tip */
+                .tooltipResReqArrow {  background-color: #061c3f;   color: white;  display: none;   height: 19px;   margin-top: 3px;   position: absolute;  right: 26px;  transform: rotate(45deg); width: 20px;   z-index: 20000; }
+                .tooltipResReq {  background-color: #061c3f;  color: white;  display: none;  padding: 17px;  position: absolute;  right: 1px;  top: 59px;  width: 100%; z-index: 10000;}
+                #Feedback-modal .error{ border:1px solid #f00}
+                #Feedback-modal textarea.slds-input{ line-height:normal; min-height:100px;}
+            </style>
+        </head>
+        <body>
+            <apex:form id="frm" >
+
+                <div class="slds-container--fluid  slds-container--center">
+                     <!--Page Header Start Here-->  
+                        <div class="slds-page-header" role="banner">
+                           <div class="slds-grid slds-grid-main" style="padding-left:8px;">
+                                <div class="slds-col slds-size--1-of-3 slds-medium-size--6-of-6 slds-large-size--4-of-12" style="margin-top:auto;margin-bottom:auto;">
+                                    <apex:outputLink value="/apex/MainPage" target="_blank" ><img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" style="width: 225px; margin-top: 15px; margin-left: 1px;" /></apex:outputLink>
+                                </div>
+                                <div class="slds-col slds-size--2-of-12" style="margin-top:auto;margin-bottom:auto;">
+                                    <div class="slds-button-group" role="group" style="float: right;">
+                                        
+                                        <button class="slds-button slds-button--icon-border slds-button--icon-background myAccount" aria-haspopup="true" style="height: 36px;margin:0;">
+                                            <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/custom/user_60.png')}" style="width:50%;"/>     
+                                            <div class="slds-popover slds-popover--tooltip slds-nubbin--top" role="tooltip" style="left: -45px; top: 45px;display:none;">
+                                                <div class="slds-popover__body">My Account</div>
+                                            </div>
+                                        </button>
+                                        <button class="slds-button slds-button--icon-border slds-button--icon-background gotoDOrg" aria-haspopup="true" style="height: 36px;margin:0;">
+                                            <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/custom/DO_link.png')}"/>     
+                                            <div class="slds-popover slds-popover--tooltip slds-nubbin--right" role="tooltip" style="left: -145px; top: -1px;display:none;">
+                                                <div class="slds-popover__body">DiscoverOrg Site</div>
+                                            </div>
+                                        </button>
+                                        <div class="slds-dropdown-trigger" style="display:block;z-index:99999; position:relative; ">
+                                            <button class="slds-button slds-button--icon-border slds-button--icon-background help-link" onclick="return false;" aria-haspopup="true" style="height: 36px;margin:0;border-radius: 0 0.25rem 0.25rem 0; border-left: 0;">
+                                                <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/custom/help_60.png')}" style="width:50%;"/>     
+                                            </button>
+                                            <c:doHelpMenu />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                        <!--Page Header End Here-->
+                        
+
+                        <apex:outputPanel style="display:none;">
+                            <apex:outputLink value="/apex/DiscoverOrgSetup?retUrl=ConflictDetails" styleClass="myaccountLink" target="_blank"></apex:outputLink>
+                            <apex:outputPanel rendered="{!!isDorg2User}">
+                                <apex:outputLink value="https://www.discoverydb.com" styleClass="dorgLink" target="_blank"></apex:outputLink>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!isDorg2User}">
+                                <apex:outputLink value="https://go.discoverydb.com/" styleClass="dorgLink" target="_blank"></apex:outputLink>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    <div class="slds-page-header main-header Sticky" style="padding: 0.5rem 1.5rem 0.5rem;">
+                        <div class="slds-grid slds-page-header-grid">
+                             <div class="slds-col slds-has-flexi-truncate" style="margin-top:auto;margin-bottom:auto;">
+                                <div class="slds-grid">
+
+                                    <span class="intelligence-text">Intelligence On-Demand</span>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-col slds-no-flex slds-align-bottom">
+                                <div class="slds-button-group" role="group">
+                                    
+
+                                    <button class="slds-button slds-button--brand save-conflicts" style="margin-left:-1px;    border-color: #6EBE49;">
+                                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--right" style="fill:currentColor;">
+                                            <use xlink:href="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/utility-sprite/svg/symbols.svg#replace')}"></use>
+                                        </svg>
+                                        Save and Update
+                                    </button>
+                                    
+                                </div>
+                                <div class="slds-popover slds-nubbin--right lock-tooltip slds-hide" role="dialog" style="float: left; position: absolute; text-align: left; width: 20rem; top: 0px; left: 107px;">
+                                    <div class="slds-tooltip" role="tooltip">
+                                        <div class="slds-tooltip__content" role="document">
+                                            <div class="slds-tooltip__body">Merge selected changes, then lock record from future updates from DiscoverOrg</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <apex:pageMessages ></apex:pageMessages>
+                    <div class="slds-card slds-m-around--small">
+                        <div class="slds-card__header slds-grid">
+                            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--medium">
+                                        <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/standard-sprite/svg/symbols.svg#marketing_actions')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h1 class="slds-text-heading--medium slds-truncate">Resolve Conflicts&nbsp;-&nbsp;<apex:outputText value="{!IF( DSCORGPKG__Conflict__c.DSCORGPKG__Contact__c <> null, DSCORGPKG__Conflict__c.Contact__r.Name, IF(DSCORGPKG__Conflict__c.DSCORGPKG__Lead__c <> null, DSCORGPKG__Conflict__c.Lead__r.Name, DSCORGPKG__Conflict__c.SalesForceAccount__r.Name) )}"></apex:outputText></h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-card__body">
+                            <label class="slds-form-element__label" for="sample1" style="margin-left:10px;">
+                                <h2 class="slds-text-heading--small slds-truncate">Select the desired fields to import</h2>
+                            </label>
+                            
+                            <div class="slds-scrollable--x">
+                                <table id="header-fixed" class="slds-hide slds-table slds-table--bordered"></table>
+                            </div>
+                            <table class="slds-table slds-table--bordered conflict-table">
+                                <thead>
+                                    <tr class="slds-text-heading--label">
+                                        <th class="slds-text-heading--label slds-size--1-of-5" scope="col">Salesforce Field</th>
+                                        <th class="slds-text-heading--label slds-size--2-of-5 do-col" scope="col">
+                                            <label class="slds-radio" for="select-all-do-options">
+                                                <input type="radio" name="select-all-options" id="select-all-do-options" class="select-all-do-options"/>
+                                                <span class="slds-radio--faux"></span>
+                                            </label>
+                                            <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/DiscoverOrg-Logo.png')}" class="logo-company"/>
+                                        </th>
+                                        <th class="slds-text-heading--label slds-size--2-of-5 sf-col" scope="col">
+                                            <label class="slds-radio" for="select-all-sf-options">
+                                                <input type="radio" name="select-all-options" id="select-all-sf-options" class="select-all-sf-options"/>
+                                                <span class="slds-radio--faux"></span>
+                                            </label>
+                                            <img src="{!URLFOR($Resource.DiscoverOrg_Misc_CSS, 'logo-company.png')}" style="width:80px"/> <!-- SFNA 2839 -->
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!fields}" var="field">
+                                        <tr class="slds-hint-parent">
+                                            <td class="slds-size--1-of-5" data-label="Name">{!field.name}</td>
+                                            <td data-label="DiscoverOrg Value" style="white-space: inherit;">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-radio" for="{!HTMLENCODE(field.apiName)}-doVal">
+                                                        <input type="radio" name="{!HTMLENCODE(field.apiName)}-options" id="{!HTMLENCODE(field.apiName)}-doVal" class="do-radio"/>
+                                                        <span class="slds-radio--faux"></span>
+                                                        <apex:outputText value="{!field.fieldDBValue}" styleClass="slds-form-element__label"></apex:outputText>
+                                                        <apex:inputCheckBox id="doVal" style="display:none;" disabled="{!NOT(field.conflict)}" styleClass="{!HTMLENCODE(field.apiName)}db dofield-checkbox" value="{!field.useDiscoverOrgData}"/>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td data-label="Salesforce Value" style="white-space: inherit;">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-radio" for="{!HTMLENCODE(field.apiName)}-sfVal">
+                                                        <input type="radio" name="{!HTMLENCODE(field.apiName)}-options" id="{!HTMLENCODE(field.apiName)}-sfVal" class="sf-radio"/>
+                                                        <span class="slds-radio--faux"></span>
+                                                        <apex:outputText value="{!field.fieldSFValue}" styleClass="slds-form-element__label"></apex:outputText>
+                                                        <apex:inputCheckBox id="sfVal" style="display:none;" disabled="{!NOT(field.conflict)}" styleClass="{!HTMLENCODE(field.apiName)}db sffield-checkbox"/>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="slds-page-header main-header" style="height: 50px">
+                        
+                    </div>
+                </div>
+                <apex:actionFunction name="saveAndUpdateConflicts" action="{!Save}"/>
+                
+                <apex:outputPanel layout="block" id="ResearchRequestPanel">
+                        <script>    
+                       
+                        reportSubmited = '{!JSENCODE(reportSubmited)}';
+                        reportNotSubmited = '{!JSENCODE(reportNotSubmited)}';        
+                        closeBtnLink = '<i class="fa fa-close" style="font: normal normal normal 14px/1 FontAwesome !important;color: #848383;"></i>';
+                        var x = 0;
+                        </script>
+                    </apex:outputPanel> 
+                    
+                 <!-- Research Request Popup Start Here-->    
+            <div id="help-research-request" class="slds-hide">
+                <div aria-hidden="false" role="dialog"  id="help-research-request-modal" class="slds-modal slds-fade-in-open">
+                    <c:ResearchRequest />
+                </div>
+                <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+            </div>
+                    
+                    
+
+                <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+                    <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                        <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>                     
+                    </div>
+                </div>  
+                <apex:actionFunction name="sendResearchRequest" action="{!SendResearchEmailAlert}" reRender="ResearchRequestPanel" status="pnlLoadingtop"   oncomplete="onCompOfResReq();"/>
+                
+                
+            </apex:form>
+            <script type="text/javascript">   
+                function OnSelect(apiName){                
+                    var inputElem = document.getElementsByTagName("input");
+                    for(var i=0; i<inputElem.length; i++){
+                        if (inputElem[i].className == apiName) {
+                            inputElem[i].checked = false;                                   
+                        }
+                    }                             
+                }          
+            </script>
+            <script src="{!$Resource.jquery}"></script>
+            <script>
+                
+               
+                
+                $(document).ready(function(){
+                    svg4everybody();
+                /* Help Pop Start*/
+                $('button.help-link').mouseenter(function(){
+                    $('.helpdetail').fadeIn();});
+                $('.slds-dropdown-trigger').mouseleave(function(){
+                    $('.helpdetail').fadeOut();})
+                /* Help Pop Ends */
+
+                    $(".slds-button").removeClass("btn");
+                    
+                    $(".save-conflicts").click( function(){
+                        saveAndUpdateConflicts();
+                        return false;
+                    });
+                    
+
+
+                    
+                    $('input[type=checkbox]:disabled').parent().find("input[type=radio]").prop( "checked", false ).attr("disabled","true");
+                
+                    var $header = $(".conflict-table > thead > tr").clone();
+                    var $fixedHeader = $("#header-fixed").append($header);
+                    
+                    $(".conflict-table > thead th").each( function(i, e){
+                        console.log('$(e).width() : '+$(e).outerWidth());
+                        $( $fixedHeader.find('tr').children()[i] ).outerWidth( $(e).outerWidth() );
+                    });
+                    $fixedHeader.width( $(".conflict-table").outerWidth() );
+                    
+                    $("#header-fixed tbody th.sf-col").find("label.slds-radio").attr("for", "select-all-sf-temp");
+                    $("#header-fixed tbody th.sf-col").find(":radio").attr("id", "select-all-sf-temp").attr("name","select-all-temp");
+                    
+                    $("#header-fixed tbody th.do-col").find("label.slds-radio").attr("for", "select-all-do-temp");
+                    $("#header-fixed tbody th.do-col").find(":radio").attr("id", "select-all-do-temp").attr("name","select-all-temp");
+                    
+                    var conflictHeaderOffSet = $(".conflict-table").position().top;
+                    var headerOffSet = $(".Sticky").offset().top;
+                    var headerHeight = $(".Sticky").outerHeight();
+                    $(window).scroll(function(){
+                        if( headerOffSet < $(window).scrollTop() ){
+                            $(".Sticky").css({"position": "fixed", "top": "0px", "left": "10px", "right": "10px","z-index": "9001"});
+                        }else{
+                            $(".Sticky").css("position", "" );
+                        }
+                        
+                        if( conflictHeaderOffSet < $(window).scrollTop() ){
+                            $("#header-fixed").css({"position": "fixed", "top": headerHeight+"px", "left": ( $(".conflict-table").position().left+10 )+"px", "z-index": "9001"});
+                            $("#header-fixed").removeClass("slds-hide").addClass("slds-show");
+                        }else{
+                            $("#header-fixed").removeClass("slds-show").addClass("slds-hide");
+                        }
+                    });
+                    
+                    $(".sf-radio, .do-radio").change(function(){
+                        var sfORdo = $(this).hasClass("sf-radio") ? "sf" : "do";
+                        if( $(this).is(':checked') ){
+                            $(this).parent().find(":checkbox").prop("checked", true);
+                            if( sfORdo == "sf")
+                                $(this).parent().parent().parent().prev().find(":checkbox").not(":disabled").prop("checked", false);
+                            else
+                                $(this).parent().parent().parent().next().find(":checkbox").not(":disabled").prop("checked", false);
+                        }else{
+                            $(this).parent().find(":checkbox").prop("checked", false);
+                            if( sfORdo == "sf")
+                                $(this).parent().parent().parent().prev().find(":checkbox").not(":disabled").prop("checked", true);
+                            else
+                                $(this).parent().parent().parent().next().find(":checkbox").not(":disabled").prop("checked", true);
+                        }
+                        
+                        if( $(".sf-radio:checked").not(":disabled").length == $(".sf-radio").not(":disabled").length ){
+                            $("#select-all-sf-options, #select-all-sf-temp").prop("checked", true);
+                        }else{
+                            $("#select-all-sf-options, #select-all-sf-temp").prop("checked", false);
+                        }
+                        
+                        if( $(".do-radio:checked").not(":disabled").length == $(".do-radio").not(":disabled").length ){
+                            $("#select-all-do-options, #select-all-do-temp").prop("checked", true);
+                        }else{
+                            $("#select-all-do-options, #select-all-do-temp").prop("checked", false);
+                        }
+                    });
+                    
+                    if( $(".do-radio").not(":disabled").length > 0 ){
+                        $(".do-radio").not(":disabled").each(function(){
+                            $(this).prop("checked", true);
+                        });
+                        $("#select-all-do-options, #select-all-do-temp").prop("checked", true);
+                    }else{
+                        $("#select-all-do-options, #select-all-sf-options, #select-all-sf-temp, #select-all-do-temp .do-radio, .sf-radio").prop("checked", false).attr("disabled", true);
+                    }
+                    
+                    $('#select-all-do-options, #select-all-sf-options, #select-all-sf-temp, #select-all-do-temp').change(function() {
+                        var sfORdo = $(this).hasClass("select-all-do-options") ? "do" : "sf";
+                        if( $(this).is(":checked") ){
+                            if( sfORdo == "do"){
+                                $(".do-radio").not(":disabled").prop("checked", true);
+                                $(".do-radio").trigger("change");
+                            }else{
+                                $(".sf-radio").not(":disabled").prop("checked", true);
+                                $(".sf-radio").trigger("change");
+                            }
+                        }else{
+                            if( sfORdo == "do"){
+                                $(".do-radio").not(":disabled").prop("checked", false);
+                                $(".do-radio").trigger("change");
+                            }else{
+                                $(".sf-radio").not(":disabled").prop("checked", false);
+                                $(".sf-radio").trigger("change");
+                            }
+                        }
+                    });
+
+                    $(".myAccount").click(function(){
+                        $(".myaccountLink")[0].click();
+                        return false;
+                    });
+
+                    $(".gotoDOrg").click(function(){
+                        $(".dorgLink")[0].click();
+                        return false;
+                    });
+
+                    $(".myAccount, .gotoDOrg").mouseover(function() {
+                        $(this).find(".slds-popover--tooltip").show();
+                      })
+                      .mouseout(function() {
+                        $(this).find(".slds-popover--tooltip").hide();
+                    });   
+
+                $(".cancel-research").click(function() {
+                    $(".submit-research").attr("disabled", false).css("opacity", '').css("cursor", 'pointer');
+                    $("#research-modal").hide();
+                });
+                
+                // Research request
+                        $("#submit-research-request").click(function(){
+                            $("#help-research-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                            $("[id$='research-sel-option']").val("Select a Research Option");
+                            callOptionsDisplay("Select a Research Option");
+                            return false;
+                        });
+                        
+                        $(".slds-button--Help-model-close").click(function(){
+                            $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+                            $("[id$='help-research-textarea']").val("");
+                            $("[id$='research-sel-option']").val("Select a Research Option");
+                            return false;
+                        });
+                
+                //Custom Show Hide Tooltip For Reseearch Request Help Start Here        
+                $(".tooltipResReqHelp").mouseout(function(e) {
+                    $(".tooltipResReqArrow").hide("fast");
+                    $(".tooltipResReq").hide("fast");
+                });
+                $(".tooltipResReqHelp").mouseover(function() {
+                    $(".tooltipResReqArrow").show("fast");
+                    $(".tooltipResReq").show("fast");
+                });
+                //Custom Show Hide Tooltip For Reseearch Request Help End Here
+                });
+                
+            // Research request start
+                        function onSubmitOfResReq() {
+                            var commentText = $("[id$='research-textarea']").val();
+                            if (commentText == '' || commentText.trim().length == 0) {
+                                $("[id$='research-textarea']").css("border-color", "#DC143C");
+                                return;
+                            }
+                            $("[id$='research-textarea']").css("border-color", "#1797c0");    
+                            $(".submit-research").attr("disabled", true).css("opacity", '0.5').css("cursor", 'not-allowed');
+                            showStatusDiv();
+                            sendResearchRequest();
+                        }
+                        
+                        function showStatusDiv() {
+                            document.getElementById('pnlLoadingtop').style.display = 'block';
+                        }
+                        
+                        function hideStatusDiv() {
+                            document.getElementById('pnlLoadingtop').style.display = 'none';
+                            
+                        }
+                        
+                        function onCompOfResReq() {
+                            hideStatusDiv();
+                            $(".submit-research").attr("disabled", false).css("opacity", '').css("cursor", 'pointer');
+                            $("#research-modal").hide();
+                           
+                            if (!(typeof reportSubmited === 'undefined') && reportSubmited != '') {
+                                alert(reportSubmited);
+                            }
+                            
+                            if (!(typeof reportNotSubmited === 'undefined') && reportNotSubmited != '') {
+                                alert(reportNotSubmited);
+                            }
+                        }
+            
+            </script>
+        </body>
+    </html>
+</apex:page>

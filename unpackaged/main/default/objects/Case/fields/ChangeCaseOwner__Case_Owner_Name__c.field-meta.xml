@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ChangeCaseOwner__Case_Owner_Name__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is no longer necessary as of the Summer 2013 release</description>
+    <externalId>false</externalId>
+    <label>zDep Case Owner Name</label>
+    <length>100</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

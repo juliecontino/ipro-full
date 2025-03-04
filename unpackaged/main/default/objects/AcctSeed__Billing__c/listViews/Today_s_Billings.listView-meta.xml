@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Today_s_Billings</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <columns>AcctSeed__Customer__c</columns>
+    <columns>Customer_Alias__c</columns>
+    <columns>CCE__c</columns>
+    <columns>CCEText__c</columns>
+    <columns>AcctSeed__Accounting_Period__c</columns>
+    <columns>AcctSeed__Date__c</columns>
+    <columns>AcctSeed__Due_Date2__c</columns>
+    <columns>AcctSeed__Type__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <columns>Tax_Amount__c</columns>
+    <columns>AcctSeed__Balance__c</columns>
+    <columns>AcctSeed__Age__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Date__c</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <label>Today's Billings</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

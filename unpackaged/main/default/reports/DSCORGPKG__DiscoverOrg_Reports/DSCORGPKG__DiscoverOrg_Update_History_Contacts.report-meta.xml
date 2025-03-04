@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__FieldName__c</field>
+    </columns>
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Old_Value__c</field>
+    </columns>
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__New_Value__c</field>
+    </columns>
+    <columns>
+        <field>CUST_LAST_UPDATE</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Contact__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Contact__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>DiscoverOrg Update History - Contacts</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$DSCORGPKG__DiscoverOrg_Update_History__c@DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_LAST_UPDATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

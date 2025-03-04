@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Reminder_Conductor__c</fullName>
+    <externalId>false</externalId>
+    <formula>"&amp;id="+ Id +
+"&amp;CongaEmailTemplateId=a301W000011Cyzx" +
+"&amp;EmailToId=" + AcctSeed__Billing_Contact__r.Id + 
+"&amp;EmailFromID=0D240000000Cc1u" +
+"&amp;EmailBCC=accounting@ipromedia.us" +
+"&amp;Qmode=sendemail"</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Payment Reminder Conductor</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

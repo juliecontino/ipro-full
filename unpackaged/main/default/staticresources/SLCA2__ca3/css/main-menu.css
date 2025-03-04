@@ -1,0 +1,163 @@
+/* 
+    Document   : month
+    Created on : 28 лют 2012, 19:47:04
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+
+.JQ_CA .ca_menu{
+/*    padding:10px;*/
+/*    display:block;*/
+
+}
+.JQ_CA > .CA_popup.show > .ca_menu {
+    display: block;
+}
+.JQ_CA .ca_menu  a{
+    color:#555;
+}
+
+    .JQ_CA .ca_menu > div{
+        display:block;
+        overflow:hidden;
+        
+        margin-bottom:5px;
+        padding:5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+        .JQ_CA .ca_menu > div > span:first-child{
+            float:left;
+            display:inline-block;
+            vertical-align: middle;
+            width:45%;
+        }
+
+        .JQ_CA .ca_menu > div > span{
+            float:right;
+            vertical-align: middle;
+            width:50%;
+        }
+        
+        .JQ_CA .ca_menu > div > span{
+            color:#555555;
+            font-size: 110%;;
+        }
+        
+        .JQ_CA .ca_menu > div > span.all{
+            width:100%;
+            float:none;
+        }
+        
+        .JQ_CA .ca_menu > div > span.header{
+            font-size: 120%;
+            font-weight: bolder;
+            padding:5px 0 0 0px;
+        }
+        
+        .JQ_CA .ca_menu > div > span > input[type="text"]{
+            width:80%;
+        }
+        
+            .JQ_CA .ca_menu > div > span.switch > a{
+                border-radius: 5px;
+                line-height: 25px;
+                padding:3px 10px;
+                display:inline-block;
+                cursor: pointer;
+                opacity: 0.7;
+                font-size: 100%;
+                background: #eeeeee;
+                background: -moz-linear-gradient(top,  #ffffff 0%, #dddddd 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dddddd));
+                background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                background: -ms-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                background: linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                text-decoration: none;
+                color:#555555;
+            }
+            
+            .JQ_CA .ca_menu > div > span.switch > a.on, .JQ_CA .ca_menu > div > span.switch > a:hover{
+                background: #eee;
+                /*background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RkZGRkZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);*/
+                background: -moz-linear-gradient(top, #dddddd 0%, #ffffff 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(100%,#ffffff));
+                background: -webkit-linear-gradient(top, #dddddd 0%,#ffffff 100%);
+                background: -o-linear-gradient(top, #dddddd 0%,#ffffff 100%);
+                background: -ms-linear-gradient(top, #dddddd 0%,#ffffff 100%);
+                background: linear-gradient(top, #dddddd 0%,#ffffff 100%);
+                opacity:1;
+                color:#555555;
+            }
+            
+            .JQ_CA .ca_menu > div > span.switch > a:first-child{
+                border-radius: 5px 0px 0px 5px;
+            }
+            
+            .JQ_CA .ca_menu > div > span.switch > a:last-child{
+                border-radius: 0 5px 5px 0;
+            }
+            
+            
+        .JQ_CA .ca_menu > div > span.logo_ca > a{
+            display:inline-block;
+            width:100px;
+            height:100px;
+            background: url(../pic/logo_ca.png);
+            vertical-align: middle;
+            line-height:100px;
+        }
+        
+        .JQ_CA .ca_menu > div > span.logo_sl > a{
+            width:160px;
+            height:44px;
+            background: url(../pic/logo_sl.png);
+            border-radius: 3px;
+            background-color: #0096D7;
+            vertical-align: middle;
+            display:inline-block;
+            margin-top:25px;
+        }
+        
+        .JQ_CA .ca_menu > div > span.ico{
+            font-size: 120%;
+            font-weight: bold;
+            height:30px;
+            line-height: 30px;
+            vertical-align: middle;
+            cursor:pointer;
+        }
+        
+        .JQ_CA .ca_menu > div > span.ico > a{
+            display:inline-block;
+            width:16px;
+            height:16px;
+            background-image: url(../pic/icons.png);
+            background-repeat: no-repeat;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        
+        .JQ_CA .ca_menu > div > span.ico._controls > a{
+            background-position: 0 -112px;
+        }
+        
+        .JQ_CA .ca_menu > div > span.ico._print > a{
+            background-position: 0 -340px;
+        }
+        
+        .JQ_CA .ca_menu > div > span.ico._refresh > a{
+            background-position: 0 -356px;
+        }
+        
+        .JQ_CA .ca_menu > div > span.ico._settings > a{
+            background-position: 0 -32px;
+        }
+        

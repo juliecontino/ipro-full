@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Set to true if this instance describes a skid of a freight shipment --></help>
+        <label><!-- Is a Freight --></label>
+        <name>zkfedex__IsFreight__c</name>
+    </CustomFieldTranslation>

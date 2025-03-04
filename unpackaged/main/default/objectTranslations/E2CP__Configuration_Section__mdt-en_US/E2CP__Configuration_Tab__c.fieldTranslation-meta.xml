@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Configuration Tab --></label>
+        <name>E2CP__Configuration_Tab__c</name>
+        <picklistValues>
+            <masterLabel>Deliver the Best Experience</masterLabel>
+            <translation><!-- Deliver the Best Experience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound</masterLabel>
+            <translation><!-- Inbound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial</masterLabel>
+            <translation><!-- Initial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Comment Page</masterLabel>
+            <translation><!-- New Comment Page --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound</masterLabel>
+            <translation><!-- Outbound --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Setting Variations</masterLabel>
+            <translation><!-- Setting Variations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Timeline</masterLabel>
+            <translation><!-- Timeline --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Widespread Issues</masterLabel>
+            <translation><!-- Widespread Issues --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

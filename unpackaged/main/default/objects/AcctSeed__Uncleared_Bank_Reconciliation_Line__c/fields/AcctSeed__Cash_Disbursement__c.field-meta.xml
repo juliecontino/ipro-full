@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Cash_Disbursement__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The Cash Disbursement associated with this record.</description>
+    <inlineHelpText>The Cash Disbursement associated with this record.</inlineHelpText>
+    <label>Cash Disbursement</label>
+    <referenceTo>AcctSeed__Cash_Disbursement__c</referenceTo>
+    <relationshipLabel>Uncleared Bank Reconciliation Lines</relationshipLabel>
+    <relationshipName>Uncleared_Bank_Reconciliation_Lines</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

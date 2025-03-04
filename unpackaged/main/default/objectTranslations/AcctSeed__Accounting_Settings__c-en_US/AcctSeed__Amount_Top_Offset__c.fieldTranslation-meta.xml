@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Specifying a value will offset the amount field relative to the current location on the print check pdf. A positive value will move the field down and a negative value will move the field up the number of millimeters specified. --></help>
+        <label><!-- Amount Top Offset --></label>
+        <name>AcctSeed__Amount_Top_Offset__c</name>
+    </CustomFieldTranslation>

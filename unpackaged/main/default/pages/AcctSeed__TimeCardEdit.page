@@ -1,0 +1,192 @@
+<apex:page id="thePage" title="{!AcctSeed__Time_Card__c.Name & ' | Accounting Seed'}" standardController="AcctSeed__Time_Card__c" extensions="AcctSeed.TimeCardControllerExt" sidebar="false">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/time-card.js')}" loadOnReady="true"/>
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/time-card.css')}" />
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Time_Card__c.label}" subtitle="{!AcctSeed__Time_Card__c.Name}" />
+        <apex:pageBlock id="thePageBlockHeader" mode="maindetail" title="{!$ObjectType.AcctSeed__Time_Card__c.label} Edit">
+            <apex:pageMessages id="responseErrors" escape="false"/>
+            <apex:pageMessage summary="You cannot edit a time card that has been posted"
+                              severity="error" strength="3" rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c='Posted'}" />
+            <apex:pageBlockButtons location="top">
+                <apex:actionStatus id="saveStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Saving...');AcctSeed.ASModule.disableCommentLinks()"
+                                   onstop="AcctSeed.ASModule.enableCommentLinks();AcctSeed.ASModule.updateAllDayTotals();AcctSeed.ASModule.updateTotalHours();" />
+                <apex:commandButton action="{!recalcPage}"
+                                    status="saveStatus"
+                                    value="Save & Refresh"
+                                    reRender="theForm"
+                                    rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c!='Posted' && !isError}" />
+                <apex:commandButton action="{!extSave}"
+                                    status="saveStatus"
+                                    value="Save & Complete"
+                                    reRender="theForm"
+                                    rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c!='Posted' && !isError}" />
+                <apex:commandButton action="{!view}" value="Cancel" immediate="true" />
+
+                <apex:actionFunction name="saveAndClose" action="{!extSave}" status="saveStatus" reRender="theForm" />
+                <script type="text/javascript">
+                    AcctSeed.ASModule.saveAndClose = saveAndClose;
+                </script>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="projectData" columns="2" rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c != 'Posted' && !isError}">
+                <apex:outputField value="{!AcctSeed__Time_Card__c.Name}" />
+                <apex:outputField value="{!AcctSeed__Time_Card__c.Time_Card_Period__r.Name}" />
+                <apex:outputField value="{!AcctSeed__Time_Card__c.AcctSeed__Ledger__c}" />
+                <apex:inputField value="{!AcctSeed__Time_Card__c.AcctSeed__Status__c}" required="true"/>
+                <apex:outputField value="{!AcctSeed__Time_Card__c.AcctSeed__Employee__c}" />
+                <apex:outputField value="{!AcctSeed__Time_Card__c.AcctSeed__Week_Ending_Date__c}" />
+                <apex:pageBlockSectionItem id="pbTotalHours">
+                    <apex:outputLabel value="Total Hours" />
+                    <apex:outputText id="timeCardTotalHeader" />
+                </apex:pageBlockSectionItem>
+                <br/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock id="thePageBlock" title="Time Card Lines" >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!recalcPage}"
+                                    oncomplete="AcctSeed.ASModule.updateAllDayTotals()"
+                                    status="saveStatus"
+                                    value="Save & Refresh"
+                                    reRender="theForm"
+                                    rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c!='Posted' && !isError}" />
+                <apex:commandButton action="{!extSave}"
+                                    oncomplete="AcctSeed.ASModule.updateAllDayTotals()"
+                                    status="saveStatus"
+                                    value="Save & Complete"
+                                    reRender="theForm"
+                                    rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c!='Posted' && !isError}" />
+                <apex:commandButton action="{!view}" value="Cancel" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="pbsection" title="Time Card Line Detail" columns="1" showheader="false"
+                                   rendered="{!AcctSeed__Time_Card__c.AcctSeed__Status__c != 'Posted' && !isError}">
+                <apex:outputPanel id="tableSection">
+                    <apex:pageBlockTable id="theTable" value="{!wrapperList}" var="item">
+                        <apex:column headerClass="action-col" styleClass="height:100px">
+                            <apex:actionStatus id="deleteStatus">
+                                <apex:facet name="stop">
+                                    <apex:commandLink action="{!deleteTimeCardLineItem}"
+                                                      oncomplete="AcctSeed.ASModule.updateAllDayTotals();"
+                                                      status="deleteStatus"
+                                                      title="Remove line"
+                                                      rerender="theForm">
+                                        <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/red-x.png')}" alt="Remove line" />
+                                        <apex:param id="rowCount" name="rowCount" assignTo="{!selectedRow}" value="{!item.rowCount}" />
+                                    </apex:commandLink>
+                                </apex:facet>
+                                <apex:facet name="start">
+                                    <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/red-x.png')}" />
+                                </apex:facet>
+                            </apex:actionStatus>
+                            <apex:facet name="footer">
+                                <apex:commandlink action="{!addTimeCardLineItem}"
+                                                  oncomplete="AcctSeed.ASModule.updateAllDayTotals()"
+                                                  title="Add line"
+                                                  rerender="tableSection">
+                                    <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/green-cross.png')}" alt="Add line" />
+                                    <span style="position:absolute;margin-left:1px;margin-top:2px;text-decoration:underline">Line</span>
+                                </apex:commandlink>
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Line" headerClass="name-col">
+                            <apex:outputField value="{!item.timeCardLine.name}" />
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.AcctSeed__Time_Card_Line__c.fields.AcctSeed__Project__c.Label}"
+                                     headerClass="project-col">
+                            <apex:actionRegion >
+                                <apex:outputPanel styleClass="requiredInput" layout="block">
+                                    <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                                    <apex:inputField id="projId" value="{!item.timeCardLine.AcctSeed__Project__c}">
+                                        <apex:actionSupport event="onchange" rerender="projTaskId" status="reloadStatus">
+                                            <apex:param id="selectedRow" name="selectedRow" assignTo="{!selectedRow}" value="{!item.rowCount}" />
+                                        </apex:actionSupport>
+                                    </apex:inputField>
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isProjectError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:actionRegion>
+                        </apex:column>
+                        <apex:column headerValue="{!$ObjectType.AcctSeed__Time_Card_Line__c.fields.AcctSeed__Project_Task__c.Label}"
+                                     headerClass="project-task-col">
+                            <apex:actionStatus id="reloadStatus">
+                                <apex:facet name="start">
+                                    <apex:image value="/img/loading.gif" title="Processing..." />
+                                </apex:facet>
+                                <apex:facet name="stop">
+                                    <apex:outputPanel id="projTaskId" styleClass="requiredInput" style="white-space: nowrap" layout="block">
+                                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                                        <apex:selectList id="projTaskList" value="{!item.timeCardLine.AcctSeed__Project_Task__c}" size="1" title="task">
+                                            <apex:selectOptions value="{!item.ProjectTasks}" id="tasks" />
+                                        </apex:selectList>&nbsp;
+                                        <apex:commandButton styleClass="refreshButton"  rerender="projTaskId" status="reloadStatus" title="Refresh Project Task">
+                                            <apex:param id="selectedRow" name="selectedRow" assignTo="{!selectedRow}" value="{!item.rowCount}" />
+                                        </apex:commandButton>
+                                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isProjectTaskError}">
+                                            <strong>Error:</strong> You must enter a value
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </apex:facet>
+                            </apex:actionStatus>
+                        </apex:column>
+                        <apex:column headerValue="Billable" headerClass="bill-col"
+                                     rendered="{!uiConfig.showBillable && $ObjectType.AcctSeed__Time_Card_Line__c.fields.AcctSeed__Billable__c.Accessible}">
+                            <apex:inputField value="{!item.timeCardLine.AcctSeed__Billable__c}" />
+                        </apex:column>
+                        <apex:column headerValue="Overtime" headerClass="bill-col"
+                                     rendered="{!$ObjectType.AcctSeed__Time_Card_Line__c.fields.AcctSeed__Overtime__c.Accessible}">
+                            <apex:inputField value="{!item.timeCardLine.AcctSeed__Overtime__c}" />
+                        </apex:column>
+                        <apex:column headerValue="{!uiConfig.variable1Name}" headerClass="var-col"
+                                     rendered="{!!ISBLANK(uiConfig.variable1Name) && $ObjectType.AcctSeed__Time_Card_Line__c.fields.AcctSeed__Time_Card_Variable_1__c.Accessible}">
+                            <apex:inputField value="{!item.timeCardLine.AcctSeed__Time_Card_Variable_1__c}" />
+                        </apex:column>
+                        <apex:column headerValue="{!uiConfig.variable2Name}" headerClass="var-col"
+                                     rendered="{!!ISBLANK(uiConfig.variable2Name) && $ObjectType.AcctSeed__Time_Card_Line__c.fields.AcctSeed__Time_Card_Variable_2__c.Accessible}">
+                            <apex:inputField value="{!item.timeCardLine.AcctSeed__Time_Card_Variable_2__c}" />
+                        </apex:column>
+                        <apex:repeat id="theRepeatInput" value="{!item.days}" var="day">
+                            <apex:column styleClass="align-right date-col">
+                                <apex:inputField id="timeCardDay" value="{!day.AcctSeed__Hours__c}" required="false"
+                                                 style="width:40px; text-align:right"
+                                                 onkeyup="AcctSeed.ASModule.updateDayTotal(this);AcctSeed.ASModule.updateTotalHours();"
+                                                 onchange="AcctSeed.ASModule.updateDayTotal(this);AcctSeed.ASModule.updateTotalHours();" />
+                            </apex:column>
+                        </apex:repeat>
+                        <apex:repeat id="theRepeatHeader" value="{!DayHeaders}" var="header">
+                            <apex:column width="5%" styleClass="empty-column-content"
+                                         headerClass="align-right date-col" footerClass="align-right">
+                                <apex:facet name="header">
+                                    <apex:outputText value="{!header}" />
+                                </apex:facet>
+                                <apex:facet name="footer">
+                                    <apex:outputText id="dayTotal" />
+                                </apex:facet>
+                            </apex:column>
+                        </apex:repeat>
+                        <apex:column styleClass="align-right" headerClass="align-right date-col" footerClass="align-right" headerValue="Total">
+                            <apex:outputText id="lineTotal" />
+                            <apex:facet name="footer">
+                                <apex:outputText id="timeCardTotal" />
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerClass="com-col align-right" styleClass="align-right" headerValue="Comments">
+                            <apex:actionStatus id="commentStatus"
+                                               onstart="AcctSeed.ASModule.disableButtons('Saving...');AcctSeed.ASModule.disableCommentLinks();"
+                                               onstop="enableCommentLinks();" />
+                            <apex:commandLink action="{!showComments}" id="comments" title="Show comments"
+                                              status="commentStatus"
+                                              rerender="theForm"
+                                              oncomplete="AcctSeed.ASModule.updateAllDayTotals()">
+                                <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/comment.png')}" styleClass=" margin-right" />
+                                <apex:param id="rowCount1" name="rowCount1" assignTo="{!selectedRow}" value="{!item.rowCount}" />
+                            </apex:commandLink>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

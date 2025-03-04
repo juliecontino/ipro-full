@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Conga Aging Receivables --></label>
+        <name>Conga_Aging_Receivables__c</name>
+    </CustomFieldTranslation>

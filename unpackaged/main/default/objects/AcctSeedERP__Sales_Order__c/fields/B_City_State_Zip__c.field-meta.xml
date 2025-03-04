@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>B_City_State_Zip__c</fullName>
+    <externalId>false</externalId>
+    <formula>AcctSeedERP__Billing_City__c +", "+ AcctSeedERP__Billing_State__c +" "+ AcctSeedERP__Billing_PostalCode__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>B-City-State-Zip</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

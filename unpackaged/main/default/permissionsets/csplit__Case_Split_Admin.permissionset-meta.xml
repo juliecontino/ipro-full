@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Provides access to all components required to administer and interact with the Case Split application.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Case Split Admin</label>
+    <license>Salesforce</license>
+    <classAccesses>
+        <apexClass>csplit__CaseSplitLWCController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>csplit__CaseSplitUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>csplit__CustomInteractionUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>csplit__ServiceExperienceController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>csplit__SetupComponentController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>csplit__CaseSplitter</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <applicationVisibilities>
+        <application>csplit__Case_Split</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>csplit__Case_Splitter</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>csplit__Assigned_Case_Split_License</name>
+    </customPermissions>
+    <customSettingAccesses>
+        <enabled>true</enabled>
+        <name>csplit__CaseSplitIncludedChildren__c</name>
+    </customSettingAccesses>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.csplit__Splitter__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <tabSettings>
+        <tab>csplit__Case_Split_Setup</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>

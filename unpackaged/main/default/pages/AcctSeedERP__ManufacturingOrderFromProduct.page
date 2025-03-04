@@ -1,0 +1,21 @@
+<apex:page id="thePage" standardController="Product2" title="Create Order | Accounting Seed" extensions="AcctSeedERP.ManufacturingOrderFromProduct" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Product" subtitle="{!Product2.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Create Manufacturing Order">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Creating Manufacturing Order...')" />
+                <apex:commandButton status="saveStatus"  action="{!createManufacturingOrderFromProduct}" value="Create Manufacturing Order" rendered="{!!isError}" reRender="theForm"/>
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection rendered="{!!isError}">
+                <apex:inputField value="{!quantityProj.AcctSeedERP__Quantity_Ordered__c}" style="text-align:right;width:60px" required="true"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+     </apex:form>
+</apex:page>

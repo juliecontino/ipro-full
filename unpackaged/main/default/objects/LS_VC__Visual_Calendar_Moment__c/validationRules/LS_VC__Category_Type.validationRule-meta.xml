@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LS_VC__Category_Type</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(ISPICKVAL(LS_VC__Category__r.LS_VC__Type__c, 'Monthly'))</errorConditionFormula>
+    <errorDisplayField>LS_VC__Category__c</errorDisplayField>
+    <errorMessage>A Monthly Moment can only be related to a Monthly Category.</errorMessage>
+</ValidationRule>

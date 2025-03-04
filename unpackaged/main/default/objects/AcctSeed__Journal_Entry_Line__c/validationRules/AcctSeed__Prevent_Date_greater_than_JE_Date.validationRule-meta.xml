@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Prevent_Date_greater_than_JE_Date</fullName>
+    <active>true</active>
+    <description>Ensures that the user cannot add Journal Entry Lines with dates that are after the Journal Entry's Journal Date. Deactivating this validation rule is likely to cause integrity issues with Bank Reconciliation calculations.</description>
+    <errorConditionFormula>AcctSeed__Date__c &gt; AcctSeed__Journal_Entry__r.AcctSeed__Journal_Date__c</errorConditionFormula>
+    <errorDisplayField>AcctSeed__Date__c</errorDisplayField>
+    <errorMessage>The Journal Entry Line's Date must be less than or equal to the Journal Date on the Journal Entry.</errorMessage>
+</ValidationRule>

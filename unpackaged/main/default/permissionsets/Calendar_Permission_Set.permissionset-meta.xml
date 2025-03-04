@@ -2,4 +2,8 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <hasActivationRequired>false</hasActivationRequired>
     <label>Calendar Permission Set</label>
+    <tabSettings>
+        <tab>SLCA2__Calendar_Anything</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

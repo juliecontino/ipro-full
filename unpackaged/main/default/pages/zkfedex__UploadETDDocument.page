@@ -1,0 +1,59 @@
+<apex:page controller="zkfedex.UploadETDController" showHeader="false" showChat="false" sidebar="false" action="{! init }">
+<apex:includeScript value="{!URLFOR($Resource.zkfedex__Jquery, '/jquery/jquery-1.4.2.js')}"  />
+<apex:stylesheet value="{!$Resource.zkfedex__WizardCSS}"/>
+<c:Loading id="LoadingControl"/>
+<apex:form id="formId">
+    <script>
+        $j = jQuery.noConflict();
+        $j(document).ready(function() {
+            $j('.inputFieldRequired').before('<span class="inputFieldRequiredBar">&nbsp;</span>'); 
+        });
+        var isComplete = '{! JSENCODE(newAttachmentId) }';
+        if (isComplete != null && isComplete != '') {
+            parent.window.opener.callBackFunction('{! JSENCODE(newAttachmentId) }', '{! JSENCODE(newDocumentId) }', '{! JSENCODE(newFileName) }');
+            top.window.opener.closePopup();
+        }
+    </script>    
+    <apex:pageBlock title="Upload Electronic Trade Documents" mode="edit">
+<!--         <apex:pageBlockButtons id="pageBlockId">
+            <apex:commandButton onClick="javascript:parent.window.opener.callBackFunction('{! JSENCODE(newAttachmentId) }', '{! JSENCODE(newDocumentId) }'); top.window.opener.closePopup(); return false;" value="Return to Wizard" />
+        </apex:pageBlockButtons> -->
+
+        <apex:outputPanel id="uploadMessageAddMsg">
+            <c:MessageListDisplay id="MessageList" msgList="{! messageList }"/>
+        </apex:outputPanel>
+
+        <apex:pageBlockSection title="Electronic Trade Documents parameters" columns="2">
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Original Country"/>
+                <apex:selectList id="originCountry" value="{! originCountryCode }" size="1" multiselect="false" styleClass="inputFieldRequired">
+                    <apex:selectOptions value="{! senderCountryOptions }"/>
+                </apex:selectList>
+            </apex:pageBlockSectionItem>
+
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Destination Country"/>
+                 <apex:selectList id="destCountry" value="{! destinationCountryCode }" size="1" multiselect="false" styleClass="inputFieldRequired">
+                    <apex:selectOptions value="{! recipientCountryOptions }"/>
+                 </apex:selectList>
+            </apex:pageBlockSectionItem>
+
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Expiration Date"/>
+                <apex:inputField value="{! fakeShipmentForDate.DeliveryDate__c }" styleClass="inputFieldRequired"/>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+
+        <apex:pageBlockSection title="Upload new document">
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Image" for="uploadId"/>
+                <apex:inputFile value="{! attBody }" filename="{! newAttachment.name }" id="uploadId">
+                </apex:inputFile>
+            </apex:pageBlockSectionItem>
+
+            <apex:commandButton action="{! doUploadDocument }" value="Upload Document" status="" onclick="IsLoadingPopup();"/>
+        </apex:pageBlockSection>
+
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

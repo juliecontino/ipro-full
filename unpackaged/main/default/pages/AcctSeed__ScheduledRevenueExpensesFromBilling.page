@@ -1,0 +1,7 @@
+<apex:page standardController="AcctSeed__Billing__c" title="{!AcctSeed__Billing__c.Name & ' | Accounting Seed'}">
+    <apex:pageMessage summary="This feature has been updated.  Please see this Knowledge Base article for more information:" severity="info" strength="3">
+        <apex:outputLink value="https://support.accountingseed.com/hc/en-us/articles/4411545920275">
+            <h3>Accounting Seed Knowledge Base</h3>
+        </apex:outputLink>
+    </apex:pageMessage>
+</apex:page>

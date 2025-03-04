@@ -1,0 +1,650 @@
+<apex:page controller="LH.LH_All_Settings_Controller" title="Lookup Helper Support" standardStylesheets="false" sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">  
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+	<apex:stylesheet value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.css')}" />	
+    <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/font-awesome/css/font-awesome.min.css') }" />
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />   
+</head>
+<script>
+	function selectTab(tabIndex){
+     	var selectTabName = 'tab' + tabIndex;
+     	var selectTabContent = 'tab-default-' + tabIndex;
+
+     	document.getElementById(selectTabName).className = "slds-tabs__item slds-text-heading_label slds-active";
+     	document.getElementById(selectTabContent).className="slds-tabs__content slds-show";
+
+     	for(i = 1; i < 5; i++){
+     		if(i === tabIndex){
+     			continue;
+     		}
+
+     		var deselectTabName = 'tab' + i;
+     		var deselectTabContent = 'tab-default-' + i;
+
+     		document.getElementById(deselectTabName).className = 'slds-tabs__item slds-text-heading_label';
+     		document.getElementById(deselectTabContent).className = 'slds-tabs__content slds-hide';
+     	}
+    }
+	
+	var lh = lh || {};
+	lh.j$ = jQuery.noConflict();
+</script>
+
+<style type="text/css">	
+	.panel-primary > .panel-heading {
+		background-color: #16325c !important;
+	}	
+</style>
+
+<div class="slds-scope" role="main" style="width:95%; margin-left:auto; margin-right:auto;">
+	<c:LH_Nav_Bar />
+    <apex:slds />
+	<apex:form >
+	<div class="slds-card">
+		<header class="slds-card__header slds-text-heading_small slds-theme_alt-inverse">
+			<h1 class="slds-text-heading_large">Support Resources</h1>
+		</header>	
+    	<section class="slds-card__body slds-theme_default">
+	     	<div class="slds-tabs_default">
+		        <ul class="slds-tabs_default__nav" role="tablist">
+					<li id="tab1" class="slds-tabs__item slds-text-heading_label slds-active" title="Admin Guide" role="presentation"><a href="#" role="tab" onclick="selectTab(1);" tabindex="-1" aria-selected="false" aria-controls="tab-default-1">Admin Guide</a></li>
+					<li id="tab2" class="slds-tabs__item slds-text-heading_label" title="FAQ" role="presentation"><a href="#" onclick="selectTab(2);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-2">FAQ</a></li>
+					<li id="tab3" class="slds-tabs__item slds-text-heading_label" title="Resources" role="presentation"><a href="#" onclick="selectTab(3);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3">Resources</a></li>
+					<li id="tab4" class="slds-tabs__item slds-text-heading_label" title="Update Links" role="presentation"><a href="#" role="tab" onclick="selectTab(4);" tabindex="-1" aria-selected="false" aria-controls="tab-default-4">Update Links</a></li>
+				</ul>
+				<div id="tab-default-1" class="slds-tabs__content slds-show" role="tabpanel"> 
+					<script>
+			        	lh.j$(function() {
+			        		lh.j$( "#adminguide" ).accordion({ collapsible: true, active: false, heightStyle: "content"});
+			        	});
+		        	</script>
+			  		<apex:actionRegion >
+		                <div style="padding-left:15px;">
+		                	<h3 class="slds-text-heading_small">Lookup Helper Admin Guide</h3><br/>
+		               		<div>
+							   <p>If you have not already done so, please install or update Lookup Helper from the <a target="_blank" href="https://appexchange.salesforce.com/listingDetail?listingId=a0N30000009wj3REAQ">AppExchange</a> or following the links found in the <a href="#" onclick="selectTab(4);">Update Links</a> tab.<br /></p>
+
+				               <div id="adminguide">
+
+									<h3>All Lookup Settings</h3>
+									<div class="slds-text-longform">
+										<p>From the All Lookup Settings tab, you can view all of the Lookup Helper settings, activate/deactivate settings, create a new setting or run/edit/delete settings. Custom settings can also be edited via the settings modal, accessible by clicking the gear icon button. </p>
+										<strong>Run Mode</strong> displays the manner in which your lookups will process.
+										<ul>
+											<li><i class="fa fa-bolt"></i> Real Time - In addition to the lookup being active, this icon will only display if an active trigger is deployed for the lookup's child object AND parent object. This icon will not display if "Disable Realtime" is checked for the lookup or "Disable Trigger" is enabled for either the parent or child trigger</li>
+											<li><i class="fa fa-bolt"></i><i class="fa fa-exclamation"></i> Asynchronous Real Time Enabled For This Lookup</li>
+											<li><i class="fa fa-times"></i> Real Time Disabled On Lookup Or Trigger</li>
+											<li><i class="fa fa-calendar"></i> Scheduled</li>
+											<li><i class="fa fa-filter"></i> Criteria Matching Mode</li>
+										</ul>
+										<strong>Parent/Child Filter</strong> Clicking on the parent or child filter link will allow you to view the filter criteria without first going to the lookup.<br/>
+										<strong>Active</strong> Allows you to activate/deactivate lookups individually.<br/>
+										<strong>Action</strong> Drop-down list containing valid actions for the setting.
+										<ul>
+											<li>Run: Manually run your lookup.</li>
+											<li>Schedule: Create or Edit a schedule for your lookup.</li>
+											<ul>
+												<li>Run Every: Determine how frequently you would like the lookup to run.</li>
+												<li>Last Run: Displays the last time this scheduled lookup ran.</li>
+												<li>Next Run: Displays the next time this schedule will run.</li>
+													<ul>
+														<li>Click the button next to the text box to auto populate the Next Run time with the current time.</li>
+													</ul>
+												<li>Clear/Save Schedule buttons will activate/deactivate the schedule.</li>													
+											</ul>
+											<li>Edit: Edit either the lookup, the filter, or both.</li>
+											<li>Delete: Delete the lookup.</li>
+										</ul>
+										<strong>Settings</strong> (gear icon at the top of the page): In the settings pane you will find various Lookup Helper settings as well as the ability to change the running user for Lookup Helper. The settings will be explained in further detail in the “Custom Settings” section below. <br/><br/>
+										<strong>Set… As Running User</strong> The “Run As” user is the user that scheduled lookups will process as. To change it, you can take the following steps:
+										<ol>
+											<li>Go to your setup page.</li>
+											<li>Search “Setup” for “Scheduled Jobs” (or in Classic, navigate to it via Monitor > Jobs > Scheduled Jobs from the left-hand column).</li>
+											<li>Delete the scheduled job named Lookup Batch Agent - Hourly. You should be able to see that the “Submitted By” is set to the current “Run As” user, which is likely “Lookup Helper” as that is the default if the Run As user has not been changed.</li>
+											<li>On the All Lookup Settings page, click the “Run As…” button at the bottom of the window that pops up.</li>
+											<li>Your All Lookup Settings page should now say “Running as [Your User]” at the bottom of the lookup display table, and if you were to return to the scheduled jobs page, you should now see a “Lookup Batch Agent - Hourly” job scheduled with the Submitted By user as your user.</li>
+										</ol>
+									</div>
+									<h3>Create Lookup Helper Setting</h3>
+									<div class="slds-text-longform">
+										<p>Before beginning the creation of the setting, it is important to understand the criteria by which you would like to match records. For some use cases, there is a small amount of pre-work required to have the correct data in fields so that Lookup Helper can use the data in the matching process. If, for example, you had a Custom Object for Reporting Month and wanted a related list of Closed Opportunities on the Reporting Month records, you would need to use a Formula Field on Opportunity to extract the month and year from the Closed Date. </p>
+										<h4><strong>Step 1: Select Child Object</strong></h4>
+										<ol>
+											<li>This is the object that you want to populate a Lookup Field on and whose items you want to see in a Related List on another object.</li>
+										</ol>
+										<h4><strong>Step 2: Select/Create Lookup Field to be Used</strong></h4>
+										<ol>
+											<li>Please Note: If creating a new Lookup Field from within the App, field level security and page layouts must be adjusted to make the new Lookup Field visible. Because of this, it is recommended to create the field on the object first in setup and then select the new field in the “Select or Create Lookup Field” step unless you are comfortable with remembering to change field level security after creating your new Lookup Helper setting.</li>
+											<li>Select the lookup field you would like Lookup Helper to populate or click the “Create New Lookup Field” button to create a new lookup field.</li>
+											<ol>
+												<li>If creating a new lookup field:</li>
+												<ol>
+													<li>Select the Object that you want to relate the child to.</li>
+													<li>Name the Lookup Field.</li>
+												</ol>
+											</ol>
+										</ol>	
+										<h4><strong>Step 3: Select Lookup Setting Matching Criteria</strong></h4>
+										<ol>
+											<li>Select the fields on the Child and Parent that you would like Lookup Helper to use to match records.</li>
+											<li>Most of the time, it is preferable to match based on the Record Name or ID. There may be some times that it is not possible. For example, if there is an external system storing Orders under an Account Number rather than Account Name, Lookup Helper could match the Account Number after the Order has been loaded into Salesforce to the Account Number on the Account and populate the Account Name on the Order.</li>
+											<li>Configure New Category Records (Optional)</li>
+											<ol>
+												<li>Click this button and select Enable creation of category records if you would like Lookup Helper to create new Parent Records if they don’t already exist.</li>
+											</ol>
+											<li>Populate field values for new [Your Parent Object] records that are created by Lookup Helper (Optional).</li>
+											<ol>
+												<li>Select the field you would like Lookup Helper to update upon record creation.</li>
+												<li>Select equals value or equals field.</li>
+												<li>Enter desired criteria.</li>
+												<li>Please note: if the parent object has any required fields, they will be added to the list automatically and need to be edited in order to be populated with a value.</li>
+											</ol>
+										</ol>
+										<h4><strong>Step 4: Save and Run Setting</strong></h4>
+										<ol>
+											<li>Save and Run the setting. This will populate a value in the Lookup Field on all Child Records from the Object defined in the Lookup Setting. After the initial run, Realtime will keep the records up to date.</li>
+											<li>Advanced Settings</li>
+											<ol>
+												<li>Allow Overwrite of Existing Lookup Field Information</li>
+												<ol>
+													<li>Unchecked by default.</li>
+													<li>If you are using a field that was pre-existing and has values populated on some records, this will NOT overwrite the values in the field. You can select this option if you want fields with existing values to be overwritten, or leave unchecked if you only want fields with null values to be populated.</li>
+													<ol>
+														<li>It is recommended to create a new field to use for testing purposes and once satisfied with the results, move the Lookup Helper Setting to the new field. Then, delete the field that was used for testing.</li>
+													</ol>
+												</ol>
+												<li>Allow Clearing of Existing Lookup Field Information</li>
+												<ol>
+													<li>Unchecked by default.</li>
+													<li>With this option selected, Lookup Helper will clear out an existing value in a lookup field, replacing it with a blank value. If you do not want existing values to be cleared, leave this option unchecked.</li>
+												</ol>
+												<li>Suppress Warning Level Exceptions for this Setting</li>
+												<ol>
+													<li>Unchecked by default.</li>
+													<li>If this is checked, Lookup Helper will disable warning level LH Exceptions generated by this setting from being inserted into the system.</li>
+												</ol>
+												<li>Disable Real-Time for this Setting</li>
+												<ol>
+													<li>Unchecked by default.</li>
+													<li>If this is checked, Lookup Helper will not run in real-time for this setting.</li>
+												</ol>
+											</ol>
+											<li>Setting Name</li>
+											<ol>
+												<li>Use this field to name the Lookup Helper setting something meaningful like “Opportunities by Sales Rep Territory”.</li>
+											</ol>
+											<li>Field Security</li>
+											<ol>
+												<li>If you selected the option to create a new Lookup Relationship Field from within the app, please go to Salesforce Setup to configure your field security and page layouts.</li>
+											</ol>
+										</ol>
+									</div>
+									<h3>Parent Filtering</h3>
+									<div class="slds-text-longform">
+										The parent filtering feature allows users to apply additional matching criteria to the parent object.  This helps narrow down the amount of matching parents, which gives the user more control! While creating or editing a setting, users can either create a new parent filter, or assign a previously created parent filter.
+										<br/><br/>
+										<h4><strong>To create a new parent filter: </strong></h4>
+										<ol>
+											<li>Click 'Add Parent Filter'</li>
+											<li>Optionally: create a name for your filter</li>
+											<li>Optionally: Add a sort and/or offset for your parent records</li>
+											<ul>
+												<li>Click on the Sort and Offset Options accordion to open the Sort and Offset section.</li>
+												<li><b>Skip __ parent records:</b> Enter the amount of parent records you would like to skip. This step can be skipped if the parent records do not need to be sorted.</li>
+												<li><b>Specify Sort Order:</b> This step can be skipped if the parent records do not need to be sorted.</li>
+													<ul class="slds-list_dotted">
+														<li>Select the field you would like Lookup Helper to use to sort your records by. When creating a sort on a foreign-key relationship field, you will be prompted to select a field on the related object.</li>
+														<li>Select the sort order. Descending will return the newest or largest results or from Z to A alphabetical sort. Ascending will return the oldest or smallest results or from A to Z alphabetical sort.</li>
+													</ul>
+											</ul>
+											<li>Choose a field on the parent object to filter on (eg. Name)</li>
+											<li>Choose an operator (eg. Equals)</li>
+											<li>Choose/Enter criteria (eg. 'John Smith')</li>
+											<li>Click 'Submit' to add criteria to the parent filter record</li>
+											<li>Click 'Save' to save the parent filter record</li>
+											<li>You now have a parent filter attached to your Lookup Helper Setting!</li>
+										</ol>
+										<br/>
+										<h4><strong>The difference parent filtering makes:</strong></h4>
+										Previously, if there were two Accounts that could qualify (eg. matching to an Account where the billing city = 'Chicago', and we have two Accounts based in Chicago), Lookup Helper would choose the first account it finds.
+										Now, if you have 2 accounts in Chicago, one named 'John Smith' and one named 'Roger Williams', Lookup Helper will choose the Account named 'John Smith' because of the parent filter!
+										<br/><br/>
+										<h4><strong>Filter Logic feature:</strong></h4>
+										Continuing on this example, we add an additional filter criteria (Name = 'Jane Smith').
+										We can change the filter logic to: 1 AND (2 OR 3)
+										The parent filter will now match Accounts named 'John Smith' OR 'Jane Smith' but will still not match to the Account named 'Roger Williams'.
+										<br/><br/>
+										<h4><strong>Reusable filters:</strong></h4>
+										The filter we just created can now be re-used for any setting with the same parent object type (Account in this case).
+										To re-use the filter, simply click on the drop-down list, and choose an available filter.  Click 'Edit' to view details for the filter you just selected.
+										<br/><br/>
+										NOTE: Lookup Helper settings cannot both create category records, and have a parent filter.  Users must choose one or the other.
+									</div>
+									<h3>Child Filtering</h3>
+									<div class="slds-text-longform">
+										The child filtering feature allows users to apply additional matching criteria to the child object.  This helps narrow down the amount of matching children, which gives the user more control! While creating or editing a setting, users can either create a new child filter, or assign a previously created child filter.
+										<br/><br/>
+										<h4><strong>To create a new child filter: </strong></h4>
+										<ol>
+											<li>Click 'Add Child Filter'</li>
+											<li>Optionally: create a name for your filter</li>
+											<li>Choose a field on the child object to filter on (eg. Billing State)</li>
+											<li>Choose an operator (eg. Equals)</li>
+											<li>Choose/Enter criteria (eg. 'Chicago')</li>
+											<li>Click 'Submit' to add criteria to the child filter record</li>
+											<li>Click 'Save' to save the child filter record</li>
+											<li>You now have a child filter attached to your Lookup Helper Setting!</li>
+										</ol>
+										<br/>
+										<h4><strong>The difference child filtering makes:</strong></h4>
+										Previously, if there were two Contacts that could qualify (eg. matching Contacts to an Account where the mailing state of a Contact = 'Illinois' and the billing state of an Account = 'Illinois', and we have two Contacts based in Illinois), Lookup Helper would populate the lookup field for both Contacts.
+										Now, if you have two Contacts in Illinois, one located in 'Chicago' and one located in 'Rockford', Lookup Helper will only populate the lookup field on the Contact located in 'Chicago' because of the child filter! If both Contacts are located in 'Rockford', then neither lookup field would be populated by Lookup Helper because of the child filter!
+										<br/><br/>
+										<h4><strong>Filter Logic feature:</strong></h4>
+										Continuing on this example, we add an additional filter criteria (Name = 'Springfield').
+										We can change the filter logic to: 1 AND (2 OR 3)
+										The child filter will now populate the lookup field on the Contacts located in 'Chicago' OR 'Springfield' but will still not populate the lookup field on the Contacts located in 'Rockford'.
+										<br/><br/>
+										<h4><strong>Reusable filters:</strong></h4>
+										The filter we just created can now be re-used for any setting with the same child object type (Contact in this case).
+										To re-use the filter, simply click on the drop-down list, and choose an available filter.  Click 'Edit' to view details for the filter you just selected.
+										<br/><br/>
+									</div>
+									<h3>Criteria Matching</h3>
+									<div class="slds-text-longform">
+										The criteria matching feature allows users to create Lookup Helper Settings that match records if they meet the child and parent filter conditions, regardless of whether the matching fields on the records are equal.
+										<br/><br/>
+										<h4><strong>To enable Criteria Matching on a Lookup Helper Setting: </strong></h4>
+										<ol>
+											<li>Create a Lookup Helper Setting as you normally would.</li>
+											<li>After selecting the lookup field, and before selecting fields to match: check the checkbox near the top of the page, next to 'Criteria Matching Mode' to enable for this setting.</li>
+											<li>Create/assign a child filter for this setting.</li>
+											<li>Create/assign a parent filter for this setting.</li>
+											<li>Save your setting.</li>
+											<li>You now have a criteria matching enabled Lookup Helper Setting!</li>
+										</ol>
+										<br/>
+										<h4><strong>The difference criteria matching makes:</strong></h4>
+										Criteria matching enables the user to create Lookup Helper Settings that relate records even without fields matching each other. For example, a user could match all Opportunities with an amount less than 10,000 to a small business Account executive. Previously, a formula field would need to be created on the Opportunity object to hold the Boolean value of 'less than 10000'. With Criteria Matching, one less field is used toward field limits.
+										<br/><br/>
+									</div>
+									<h3>Realtime Enablement</h3>
+									<div class="slds-text-longform">
+										Deploying a realtime trigger on an object will allow Lookup Helper to automatically process related settings when a record of that type is created or updated. Please note that realtime triggers may default to asynchronous processing if two setup objects (Users, Profiles, etc.) are used in one Lookup Helper setting.
+										<br/><br/>
+										<ol>
+											<li>Deploy a Trigger</li>
+											<ol>
+												<li>The list of triggers available to deploy is based on Lookup Helper settings that you have created. If you don’t see the object you would like to deploy a trigger on, please verify that you have created and saved a Lookup Helper setting for that object.</li>
+												<li>Out of the box, Lookup Helper comes with triggers on Account, Case, Contact, Event, Task, and Account For Contact (Foreign Key) as a part of the managed package and do not have to be deployed. For Salesforce Professional Edition orgs, these triggers will work. To add any additional triggers in a Professional Edition environment, an Apex package would need to be purchased from Salesforce.</li>
+												<li>Triggers can be enabled for both the Child and Parent Objects depending on when you want the setting to fire.</li>
+												<li>Foreign Key Triggers</li>
+												<ol>
+													<li>There are times when a change to a field Lookup Helper is using will not cause the lookup setting to fire (i.e. Matching based on a Formula Field). In this situation you could enable a foreign key trigger on the Object the Formula Field is getting it’s information from. (Populate a field on Account when a Task is updated).</li>
+												</ol>
+												<li>Deploy a trigger:</li>
+												<ol>
+													<li>Select Deploy next to the Object you would like to enable the trigger on.</li>
+													<li>Click the Deploy (Your Object Name) Trigger</li>
+													<li>Please do not leave the page while the trigger is deploying.</li>
+													<li>To check deployment status</li>
+													<ol>
+														<li>Open a new tab</li>
+														<li>Setup&gt;Deploy&gt;Deployment Status</li>
+													</ol>
+													<li>Once the deployment is complete, a “Deployment Complete” message will appear in the blue box at the top of the Real Time Triggers page in Lookup Helper.
+													</li>
+												</ol>
+											</ol>
+											<li>Remove a Trigger</li>
+											<ol>
+												<li>To Remove a Lookup Helper trigger, click “Select” next to the desired object and follow the same steps as above with the Remove [Your Object Name] Trigger button.</li>
+											</ol>
+											<li>Enable or Disable Lookup Helper Triggers</li>
+											<ol>
+												<li>Please Note: while the packaged Real Time Triggers that come with Lookup Helper cannot be removed, they can be disabled, as can non-packaged Lookup Helper triggers.</li>
+												<li>To disable a deployed Real Time Trigger, follow the above instructions for deploying a trigger except instead of clicking Deploy or Remove button, click the “Disable [Your Object Name] Trigger” button.</li>
+												<li>To re-enable the trigger, repeat the steps clicking the “Enable [Your Object Name] Trigger” button.</li>
+											</ol>
+										</ol>
+									</div>
+
+									<h3>Exception Monitoring</h3>
+									<div class="slds-text-longform">
+										<h4><strong>Set Up Email Alerts</strong></h4>
+										<ol>
+											<li>From the Lookup Helper Menu, click “View Lookup Helper Exceptions”</li>
+											<li>Click “Submit Exception Monitor Job” to schedule the monitor job. If this is already set up, you will not see this link and can move on to the next steps. </li>
+											<li>Go to Setup, and then go to “Custom Settings”</li>
+											<li>Click “Manage” for Lookup Helper App Settings</li>
+											<li>Enter the contact email you want to be alerted in the “Email to send exceptions” field</li>
+											<li>A daily summary email will be sent to the email provided</li>
+										</ol>
+										<h4><strong>View Exceptions</strong></h4>
+										<ol>
+											<li>From the Lookup Helper Menu, click “View Lookup Helper Exceptions”</li>
+											<li>Select the setting you want to view Lookup Helper exceptions on</li>
+										</ol>
+									</div>
+
+									<h3>Health Check</h3>
+									<div class="slds-text-longform">
+										Allows you to check on Lookup Helper’s status, displays a risk level assessment for any issues, and offers action items to resolve any issues.
+										<ul>
+											<li>Risk Level: Risk assessment for the issue found.</li>
+											<li>Issue Found: Identifies what the issue was.</li>
+											<li>Issue Summary: Summarizes the issue into a category and includes help text about the issue.</li>
+											<li>Action: Recommended course of action to resolve the issue.</li>
+										</ul>
+									</div>
+
+									<h3>Queue Management</h3>
+									<div class="slds-text-longform">
+										Allows you to check on items filtered by object in the Lookup Helper Queue and their status, as well as the ability to delete any stuck queue items.
+									<br/>
+									<br/>
+									<strong>Page Features</strong>
+										<ul>											
+											<li>Select A Child Object: Sort by object using this dropdown list.</li>
+											<li>Refresh: Click this button to refresh the table containing your queue items.</li>
+											<li>Queue Item Table
+												<ul>
+													<li>ID: Id of the Queue record.</li>
+													<li>Name: Name of the Queue record.</li>
+													<li>Created Date: CreatedDate of the Queue record, formatted for readability.</li>
+													<li>Status: Status of the Queue record. Possible values include Failed, Queued, Processing and Processed.</li>
+													<li>Action: Clicking the Delete button deletes the queue item.</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+
+									<h3>Schedule Management</h3>
+									<div class="slds-text-longform">
+										Allows you to check on scheduled Lookup Helper Settings and their next fire time, as well as the ability to edit the next fire time and schedule intervals (hours, days, etc.)
+										<ul>
+											<li>Lookup Name: Name of the scheduled Lookup Helper Setting.</li>
+											<li>Next Fire Time: The next time that the scheduled Lookup Helper Setting will run.</li>
+											<li>Interval/Interval Unit: The amount of time between each run of the scheduled Lookup Helper Setting.</li>
+											<li>Delete: Clears the schedule of the scheduled Lookup Helper Setting.</li>
+										</ul>
+									</div>
+
+									<h3 id="importexportlookups">Importing / Exporting Lookups</h3>
+									<div class="slds-text-longform">
+										<h4><strong>Importing lookup settings</strong></h4>
+										<ol>
+											<li>Navigate to the setup menu and type "Data Import Wizard" in the quick find/search bar. Click on the link "Data Import Wizard".</li>
+											<li>On the Data Import Wizard page, click on the large green button that says "Launch Wizard".</li>
+											<li>You should now be on the "Import your Data in to Salesforce" page. In the first column, select the tab that says "Custom Object". In the list that shows up, scroll down and select "Lookup Exports" (there should be a green checkmark that shows up).</li>
+											<li>Once the center box shows "What do you want to do?"", select the top option "Add new records". Leave the "Match by:" and "Which User field designates record owners?" drop-downs as None.</li>
+											<li>On the third box, you can either select the Lookup Helper export CSV file from your computer and drag it to the Drag CSV file here to upload box, or click on the CSV link and click on "Choose File" to select the CSV file. Leave the other settings at the default values and click on the green "Next" button at the bottom right of the page.</li>
+											<li>You should see the "Edit Field Mapping: Lookup Exports" page. Map the three fields from our CSV file. The first field to map is "Type__c" to "Type". Then map "LookupData__c" to "LookupData" and "LookupKey__c" to "LookupKey".</li>
+											<li>Click on the green "Next" button at the bottom right corner of the page which will take you to the "Review &amp; Start Import" page. If everything looks good here (3 columns mapped), click on the green "Start Import" button on the bottom right corner of the page and your lookups and filters should begin importing without any issues.</li>
+										</ol>
+										<h4><strong>Exporting</strong></h4>
+										<ol>
+											<li>Navigate to the "Export Lookup Helper Settings" button from the "All Lookup Settings" page.</li>
+											<li>Click the checkbox next to each lookup that you would like to export and then click on "Export Selected". Alternatively, you can also click on the "Export All" button to select all of them for export.</li>
+											<li>Review all of the lookups that are set to be exported in the "Lookups To Be Exported" list. Once you have confirmed that they are the lookups that you want to export, select "Download". This should open up a save dialog from your browser. Select a folder to save the CSV to and you're done.</li>
+										</ol>
+										If you are not creating parent/category records with your Lookup Helper setting, and the setting does not use any parent filters, you can also use any data export tool, such as Data Loader or Dataloader.io, to export your Lookup Helper settings. Below are instructions regarding how to use Data Loader to export Lookup Helper settings:
+										<ol>
+											<li>Download and install Data Loader</li>
+											<li>Open Data Loader</li>
+											<li>Click the Export Button and select the Lookup_Helper_Setting__c object from the list (NOT Lookup_Helper_App_Settings__c)</li>
+											<li>Choose your target for extraction</li>
+											<li>Select all fields, add any filters you desire, and click Finish</li>
+										</ol>
+									</div>
+									<h3>Pre-Built Use Case Deployment</h3>
+									<div class="slds-text-longform">
+										Allows you to view and deploy pre-built Lookup Helper use cases within a few clicks.
+										<ul>
+											<li>To begin, navigate to the Use Case Deployment tab or Deploy Pre-Built Lookups tile in Lightning.</li>
+											<li>The page will display a list of Lookup Helper use cases which can be deployed as lookups directly into your org.</li>
+												<ul>
+													<li>Use Cases can be filtered by child object, which includes Account, Contact, and Case.</li>
+												</ul>
+											<li>Once the desired use case is chosen, click Deploy next to the setting.</li>
+											<li>A custom field will then need to be created and used as the lookup field for the use case.</li>
+											<li>Click Deploy Field.</li>
+												<ul>
+													<li>Field Level Security settings will need to be adjusted for the lookup field in order to gain visibility to the field.</li>
+												</ul>
+											<li>After deploying the field, click to deploy the setting. This will create a lookup and associated filter if applicable for that use case. </li>
+											<li>You will then be redirected to the All Settings page and be able to see the use case deployed as a lookup setting.</li>
+												<ul>
+													<li>Click “Back to Use Case Deployment” on the top right of the All Settings page to return to the Use Case Deployment page.</li>
+												</ul>
+										</ul>
+									</div>
+
+									<h3>Custom Settings</h3>
+									<div class="slds-text-longform">
+										To view or manage your Lookup Helper Custom Settings in Classic go to: Setup>Develop>Custom Settings>Lookup Helper App Settings>Manage. For Lightning, go to: Setup>Custom Settings>Lookup Helper App Settings>Manage.
+										<ol>
+										<li>Record Scope:</li>
+										<ol><li>This defines how many records will be processed per batch when Lookup Helper is running Asynchronously. If left blank, Lookup Helper defaults to 200 records.</li></ol>
+										<li>Exception Monitor Can Disable Settings:</li>
+										<ol><li>If enabled, allows the exception monitor to disable lookup settings in which it detects issues.</li></ol>
+										<li>Run All Local Tests on Trigger Creation?:</li>
+										<ol><li>If enabled, will run all local tests in an org when deploying Lookup Helper realtime triggers, instead of just the ones relating to the trigger.</li></ol>
+										<li>Max Flex Queue Utilization Percent:</li>
+										<ol><li>Sets the maximum percentage of the Flex Queue limits Lookup Helper is allowed to use. </li></ol>
+										<li>Email To Send Exceptions:</li>
+										<ol><li>A daily summary email of any exceptions will be sent to the email provided.</li></ol>
+										<li>Prevent Automatic Setting Deactivation?:</li>
+										<ol><li>When checked, prevents Lookup Helper from disabling Settings when errors are encountered during a realtime or manual run.</li></ol>
+										<li>Usage % of Limits:</li>
+										<ol><li>Determines the percentage of limit usage at chich Lookup Helper should switch to asynchronous processing. It is generally not recommended to lower this value below 60%, and the default is 90%.</li></ol>
+										<li>Enable Single Category Record Processing</li>
+										<ol><li>If this is checked, Lookup Helper will prevent duplicate parent category records from being created.</li></ol>
+										<li>Suppress Warning Level Exceptions</li>
+										<ol><li>If this is checked, Lookup Helper will disable warning level LH Exceptions from being inserted into the system.</li></ol>
+										<li>Update Converted Leads</li>
+										<ol><li>Lookup Helper, by default, does not update fields on Leads once they have been converted. Checking this option changes that behavior so it will affect all leads, whether or not they have been converted.</li></ol>
+										<li>Disable Async Record Lock Retry</li>
+										<ol><li>If Lookup Helper encounters a Record Lock error while processing, it attempts to rerun the setting for the records that encountered the error a minute later. Checking this setting disables the retry logic so any Record locks encountered are logged as Lookup Helper Exceptions. This should only be enabled if you are having problems with the record lock retry functionality and have talked to our support team.</li></ol>
+										<li>All Settings Sort Field/Direction</li>
+										<ol><li>The API Name of the field that the All Settings table is being sorted on, and the direction (ASC or DESC) of the sorting.</li></ol>
+										<li>Exception Lifespan</li>
+										<ol><li>The Exception Lifespan custom setting controls how long (in days) Lookup Helper exceptions are kept before deletion. Exceptions created within this limit will not be deleted even if the relevant issue has been resolved. The default Exception Lifespan is 1 day (24 hours).</li></ol>
+										<li>Default Blank Overwrite Value</li>
+										<ol><li>The default value for 'Blank Overwrite' when creating a Lookup Helper Setting.</li></ol>	
+										<li>Default Overwrite Value</li>
+										<ol><li>The default value for 'Overwrite' when creating a Lookup Helper Setting.</li></ol>	
+									</ol>
+									</div>
+
+									<h3>Best Practices</h3>
+									<div class="slds-text-longform">
+										<ol>
+											<li>When creating Lookup Helper settings, consider when you would like the records to update, when a child record is added/modified/deleted, when a parent record is added/modified/deleted or both and be sure to enable real-time for the appropriate object.</li>
+											<li>If you are creating a new Lookup field from within the app during Lookup Helper Setting creation, be sure to go to Setup and set field level security and adjust page layouts.</li>
+											<li>When using “Create new Parent Record”, consider whether this could cause duplicate records to be created based on User input/different spellings.</li>
+											<li>If you are using Lookup Helper to update an existing field that is already populated with data:</li>
+											<ol>
+												<li>Consider creating a new field if there is data that you would like to retain.</li>
+												<li>Use the Advanced Settings on the Lookup Helper Settings creation:</li>
+												<ol>
+													<li>“Allow Overwrite of Existing Lookup Field Information” can be de-selected if you do not want Lookup Helper to overwrite existing data in a field.</li>
+													<li>“Allow Clearing of Existing Lookup Field Information” can be de-selected if you do not want Lookup Helper to clear out a populated value if the setting does not find a match.</li>
+												</ol>
+											</ol>
+										</ol>
+									</div>
+
+									<h3>Support</h3>
+									<div class="slds-text-longform">
+										<ol>
+											<li>Access the <a href="https://www.passagetechnology.com/lookup-helper-training?hsLang=en-us" target="_blank"> Lookup Helper Training Site</a></li>
+											<li>Access our <a href="https://passagetechnology.force.com/KnowledgeBase/s/" target="_blank" >Knowledge Base</a></li>
+											<li><a href="mailto:support@passagetech.com" target="_blank"> Email Support </a></li>
+										</ol>
+									</div>
+				               	</div>
+		             		</div> 
+		             	</div>
+		            </apex:actionRegion>
+			  	</div>
+				<div id="tab-default-2" class="slds-tabs__content slds-hide" role="tabpanel">
+					<script>
+			        	lh.j$(function() {
+			        		lh.j$( "#faq" ).accordion({ collapsible: true, active: false, heightStyle: "content"});
+			        	});
+		        	</script>
+		     		<apex:actionRegion >
+		            	<div>
+		            	<div id="faq" > 
+		            		<h3>How do I enable realtime for my lookups?</h3>
+							<div class="slds-text-longform">
+                            	In most cases, you can use the <a href="{!URLFOR($Page.LH_All_Realtime_Triggers)}">Realtime Enablement</a> page. <br/><br/>
+                            	<strong>If you are unable to enable realtime on a Custom object</strong> due to lack of access to the Metadata API, please contact <a href="mailto:support@passagetech.com">Passage Technology support</a> for assistance in implementing a workaround Visualforce page "trigger", or view our <a href="https://docs.google.com/document/d/1LBZx5MKO2duHz1PwgpwQtoqQ0ztKZluIVXdtDftQXgI/edit#heading=h.km36w3b2jste" target="_blank">developer guide</a> for instructions on how to implement one yourself.	
+                        	</div>
+
+							<h3>How do I import/export my lookups?</h3>
+                        	<div class="slds-text-longform">
+								Please check the "Importing / Exporting Lookups" section of the <a href="#importexportlookups" onclick="selectTab(1);">Admin Guide</a> for instructions on how to import or export Lookup Helper settings.
+							</div>
+							  
+                  			<h3>I created a Lookup Field in Lookup Helper, but the field doesn't show up on the detail page. Why?</h3>
+                    		<div class="slds-text-longform">
+                        		When creating a lookup field through Lookup Helper it is not added to any existing page layouts. Please update the page layouts, and user permissions if you would like this new lookup field to be displayed.
+                    		</div>
+
+		            		<h3>How do I know if my Setting is processing?</h3>
+    		            	<div class="slds-text-longform">
+    		               		<ul>
+									<li>To see if a Lookup Helper setting is running you may look for running batch jobs that belong to the 'LH_Batch_Update' class on the <a href="/apexpages/setup/listAsyncApexJobs.apexp" target="_blank">apex jobs page</a>.</li>
+									<li>You may also view the <a href="{!$Page.LH_QueueManagement}" target="_blank">Queue Management page</a> to find queue items with a status of 'Queued' or 'Processing'.</li>
+								</ul>
+    		            	</div>
+		               
+		            		<h3>Is there any way to schedule the settings to run?</h3>
+    		            	<div>
+    		               	The schedule option is located on the <a href="{!$Page.LH_All_Settings}" target="_blank">All Lookup Settings</a> page. Please click on the dropdown action button to the far right of the desired setting, then select "Schedule".
+    		            	</div>
+		               
+		            		<h3>Does Lookup Helper respect Lookup Field Filters?</h3>
+    		            	<div class="slds-text-longform">
+    		               	If the lookup filter is required the filter is enforced. If the lookup filter is optional the filter is not enforced.
+    		            	</div>
+		               
+		              		<h3>Which record will Lookup Helper select if there are multiple matches?</h3>
+    		              	<div class="slds-text-longform">
+							  If two or more parent records exist with the same name or matching field values, Lookup Helper will relate child records to the most recently created parent record by default. You can customize which parent record is selected by defining a custom sort order and/or offset on the lookup setting's parent filter. A warning level exception indicating multiple possible parents will also be logged unless the "Suppress Warning Level Exceptions" custom setting is checked at the org-wide or setting level.
+    		              	</div>
+		               
+		              		<h3>What is a category record?</h3>
+    		              	<div class="slds-text-longform">
+    		              	A category record is simply a parent record.
+    		              	</div>
+		               
+		              		<h3>What objects do I need to create triggers on to run in real-time?</h3>
+    		              	<div class="slds-text-longform">
+    		              	By default realtime triggers are created for Account, Case, Contact, Event, and Task objects. All other object will require realtime triggers to be created.
+    		              	</div>
+    		               
+    		          		<h3>How do I get rid of old Lookup Helper Exception records?</h3>
+    		              	<div class="slds-text-longform">
+							Lookup Helper Exception records are used to help our support team troubleshoot issues encountered. Because of this we do not recommend deleting them. However you can delete them if desired using the "Delete Exceptions" button on the <a href="{!$Page.LH_viewExceptions}">Lookup Helper Exceptions</a> page.
+    		              	</div>
+    		               
+    		          		<h3>How do I recover a setting I accidentally deleted?</h3>
+    		              	<div class="slds-text-longform">
+    		              	You may recover deleted Lookup Helper settings from the <a href="/search/UndeletePage" target="_blank">recycling bin</a>.
+    		              	</div> 
+    		               
+    		          		<h3>Is it better to have a Lookup Helper setting sourced off of a formula field or a workflow field update?</h3>
+    		              	<div class="slds-text-longform">
+    		              	Lookup Helper will trigger updates on both formula field changes, and workflow field updates. It should not matter what field type is used. 
+    		              	</div>  
+							<h3>Why do I get a message saying I need to deploy Remote Site Settings?</h3>
+							<div class="slds-text-longform">
+							Lookup Helper requires a Remote Site Setting in order to use the Metadata Api in the field creation process and in deploying real-time triggers. If you are having issues please follow the following steps to create a Remote Site Setting.
+								<ol>
+									<li>Click on the Realtime Enablement Tab</li>
+									<ol>
+										<li>The first time you visit this tab, if you have not yet setup your Remote Site, you will be directed to a Remote Site Creation page.</li>
+									</ol>
+									<li>Click the Create Remote Site Setting Button.</li>
+									<li>Once the Remote Site has been created, a message will appear in the blue box.</li>
+								</ol>
+							</div>
+							
+							<h3>Why do newly inserted records not update right away when the lookup setting uses a formula field?</h3>
+    		              	<div class="slds-text-longform">
+    		              	If a lookup setting is matching based on a formula field for records inserted in realtime, the lookup setting will run asynchronously and may take a few moments to update the record. This is due to formula fields not being populated on insert until after a lookup setting would run normally. In order to allow the field to be populated before performing the lookup, the setting needs to run asynchronously.
+							  </div>  
+							  
+							<h3>What does 'Occurred During Insert Context' on Lookup Helper Exception records mean?</h3>
+    		              	<div class="slds-text-longform">
+    		              	If a lookup setting is inserting a record and there is an error encountered, there will not be an id to associated to the failed record. The text 'Occurred During Insert Context' will be stored on the Related_Record_Ids__c field.
+    		              	</div> 
+
+							<h3>Is there a limit to the amount of Lookup Helper Exception records in an org?</h3>
+    		              	<div class="slds-text-longform">
+    		              	Yes, there is a limit of 100,000 Lookup Helper Exception records in an org. Once the limit is reached, Lookup Helper Exception records will cease to be inserted into the org until some are removed.
+    		              	</div> 
+							<h3>How do the Record Lock Auto-Retry checkboxes work?</h3>
+							<div class="slds-text-longform">
+								Lookup Helper will automatically re-run settings which have failed due to record locks if 'Allow Async Record Lock Retries' checkbox is checked and the 'Disable Async Record Lock Retry' is unchecked. If any other combination of these two checkboxes is used, Lookup Helper will not automatically re-run the settings which have failed due to record locks.
+							</div>
+							  							  
+							<h3>My question is not answered here. Where can I find my answer? </h3>
+							<div class="slds-text-longform">
+							You can try looking up your question, use case, or issue in our <a href="https://passagetechnology.force.com/KnowledgeBase/s/" target="_blank" > Knowledge Base</a>. 
+							If you still cannot find an answer to your question, please <a href="mailto:support@passagetech.com">contact support</a>
+							</div> 
+		            	</div> 
+		            	</div>
+		        	</apex:actionRegion>
+			  	</div>
+			  	<div id="tab-default-3" class="slds-tabs__content slds-hide" role="tabpanel">
+		     		<apex:actionRegion > 
+		               <div style="padding-left:15px;">
+							<h3 class="slds-text-heading_small">Lookup Helper Resources</h3><br/>
+							<div id="resources" > 
+								<ul>
+									<li><a href="mailto:support@passagetech.com">Contact Support</a></li>
+									<li><a href="https://passagetechnology.force.com/KnowledgeBase/s/" target="_blank" >Knowledge Base</a></li>
+									<li><a href="https://www.passagetechnology.com" target="_blank">Visit Our Website</a> </li>
+									<li><a href="https://www.passagetechnology.com/release-notes/tag/lookup-helper">Lookup Helper Release Notes</a></li>
+									<li><a target="_blank" href="http://www.passagetechnology.com/lookup-helper-training">Lookup Helper Training Site</a> </li>
+									<li><a href="https://appexchange.salesforce.com/listingDetail?listingId=a0N30000009wj3REAQ&tab=r" target="_blank">Review Our AppExchange Listing</a></li>
+									<li><a href="https://help.salesforce.com/articleView?id=overview_of_custom_object_relationships.htm&type=0" target="_blank">Salesforce Object Relationship Overview</a></li>
+								</ul> 
+							</div> 
+		             	</div>
+		            </apex:actionRegion>
+			  	</div>
+			  	<div id="tab-default-4" class="slds-tabs__content slds-hide" role="tabpanel"> 
+			  		<apex:actionRegion > 		                
+		                <div style="padding-left:15px;">
+		                	<h3 class="slds-text-heading_small">Lookup Helper Update Links</h3><br/>
+		               		<div id="videos" > 		               
+				               <div>
+									The most recent version of Lookup Helper can always be found using the links below.
+									<ul class="slds-list_dotted">
+										<li>Beta Version: <a href="http://lh-pre.passagetech.com" target="_blank">Production</a>, <a href="http://lh-pre-test.passagetech.com" target="_blank">Sandbox</a></li>
+										<li>Release Version: <a href="http://lh.passagetech.com" target="_blank">Production</a>, <a href="http://lh-test.passagetech.com" target="_blank">Sandbox</a></li>
+										<li>To see what's in the latest version, view our <a href="https://www.passagetechnology.com/lookup-helper-release-notes" target="_blank">Release Notes</a>.</li>
+										<li>More information about our release process can be found <a href="https://www.passagetechnology.com/feature-release-process" target="_blank">here</a>.</li>
+									</ul>
+				               	</div>
+		             		</div> 
+		             	</div>		             
+		            </apex:actionRegion>
+			  	</div>
+			</div>
+		</section>
+	</div>
+	</apex:form>
+</div>
+</html>
+</apex:page>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JCSoftware__Behavior_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>JCSoftware__Behavior_Value__c &lt;&gt; "true" &amp;&amp; 
+JCSoftware__Behavior_Value__c &lt;&gt; "false"  &amp;&amp;
+JCSoftware__Behavior_Rule__c  = "Default_Value_Checkbox"</errorConditionFormula>
+    <errorDisplayField>JCSoftware__Behavior_Value__c</errorDisplayField>
+    <errorMessage>Default behavior value must be "true" or "false" when selecting the "Default_Value_Checkbox" behavior.</errorMessage>
+</ValidationRule>

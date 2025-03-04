@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Type --></label>
+        <name>AcctSeed__Purpose__c</name>
+        <picklistValues>
+            <masterLabel>Customer Prepayment</masterLabel>
+            <translation><!-- Customer Prepayment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Receipt</masterLabel>
+            <translation><!-- Customer Receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Receipt</masterLabel>
+            <translation><!-- Other Receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vendor Refund</masterLabel>
+            <translation><!-- Vendor Refund --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

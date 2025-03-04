@@ -1,0 +1,567 @@
+@font-face {
+  font-family: "Salesforce Sans";
+  src: url('../fonts/webfonts/SalesforceSans-Light.woff2?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64') format("woff2"), url("../fonts/webfonts/SalesforceSans-Light.woff?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Salesforce Sans";
+  src: url("../fonts/webfonts/SalesforceSans-LightItalic.woff2?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff2"), url("../fonts/webfonts/SalesforceSans-LightItalic.woff?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff");
+  font-style: italic;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Salesforce Sans";
+  src: url("../fonts/webfonts/SalesforceSans-Regular.woff2?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff2"), url("../fonts/webfonts/SalesforceSans-Regular.woff?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Salesforce Sans";
+  src: url("../fonts/webfonts/SalesforceSans-Italic.woff2?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff2"), url("../fonts/webfonts/SalesforceSans-Italic.woff?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Salesforce Sans";
+  src: url("../fonts/webfonts/SalesforceSans-Bold.woff2?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff2"), url("../fonts/webfonts/SalesforceSans-Bold.woff?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Salesforce Sans";
+  src: url("../fonts/webfonts/SalesforceSans-BoldItalic.woff2?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff2"), url("../fonts/webfonts/SalesforceSans-BoldItalic.woff?orgId=00D40000000MnHl&orgId=00D4W0000005IMg&orgId=00D0L000000UZ64") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+
+.slds-tabs--default > .slds-tabs__content {
+  position: relative;
+  padding: 1rem 1rem;
+}
+
+.slds-grid .slds-col-main .slds-checkbox--faux, .contact-info--table .slds-checkbox--faux {
+  margin-right: 0.26rem;
+}
+
+.contact-info--table:not(.slds-no-row-hover) tr:hover > td {
+  box-shadow: none;
+}
+
+.contact-info--table:not(.slds-no-row-hover) tr:hover > td {
+  background-color: transparent;
+}
+
+.slds-grid .slds-col-main {
+  padding: 10px;
+  padding-left: 1rem;
+  white-space: normal;
+  border-top: 1px solid #d8dde6;
+}
+
+.slds-grid-details {
+  border-bottom: 1px solid #d8dde6;
+}
+
+.slds-grid .slds-col-main--selected {
+  background-color: #eef6fe;
+  border-left: 1px solid #d8dde6;
+  border-right: 1px solid #d8dde6;
+}
+
+.slds-grid .slds-col-main--selected .slds-form-element__label {
+  color: #666666;
+}
+
+.slds-grid .slds-col-main--selected:nth-child(even) {
+  margin-left: 0px;
+}
+
+.slds-grid .slds-col-main--selected:nth-child(odd) {
+  margin-right: -1px;
+}
+
+.slds-text-heading-inverse {
+  margin-top: 1rem;
+  padding: 8px 0 8px 12px;
+  background-color: #1b5eac;
+  color: #fff;
+  font-weight: 500;
+}
+
+.intelligence-text {
+  font-style: italic;
+  font-size: 20px;
+  margin-left: 10px;
+  color: #222020;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+.technology-item {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-clip: padding-box;
+  border: 1px solid #d8dde6;
+  margin: 10px;
+}
+
+.company-technology-item {
+  min-height: 118px;
+  margin: 10px;
+}
+
+.technology-grid {
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.top-overlay .top-overlay-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  z-index: 9011;
+}
+
+.overlay-div {
+  background-color: #16325c;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  opacity: 0.6;
+  z-index: 9009;
+}
+
+#rtt-table {
+  margin-top: 1rem;
+}
+
+#rtt-table td {
+  white-space: normal;
+  vertical-align: top;
+}
+
+#rtt-table td:nth-child(even) {
+  width: 88px;
+}
+
+#rtt-table thead tr {
+  background-color: #f4f6f9;
+}
+
+#rtt-table thead tr th:first-child {
+  border-left: 1px solid #d8dde6;
+}
+
+#rtt-table thead tr th:nth-child(even) {
+  border-right: 1px solid #d8dde6;
+}
+
+.slds-form-element__label {
+  color: #7f7f80;
+  line-height: 1rem;
+  margin-bottom: 0;
+}
+
+.slds-form-element__static {
+  color: #666666;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1rem;
+  min-height: auto;
+}
+
+@media (max-width: 47.9375em) {
+  .slds-grid .slds-col-main {
+    padding: 0.75rem;
+  }
+  
+  .slds-grid-details .slds-col-main:nth-child(odd) {
+    border-top: 3px solid #d8dde6;
+  }
+  
+  .slds-grid-details .slds-col-main:first-child {
+    border-top: 1px;
+  }
+  
+  .slds-grid .slds-col-main--selected:nth-child(even) {
+    margin-left: 0px;
+  }
+  
+  .slds-list--horizontal.slds-has-dividers > .slds-list__item:before {
+    margin-right: 0;
+    width: 0;
+  }
+}
+
+ul li.slds-disabled, ul li.slds-disabled > a, ul li.slds-disabled > a:visited {
+  cursor: not-allowed !important;
+  border: none;
+  box-shadow: none;
+}
+
+ul li.slds-disabled > a, ul li.slds-disabled > a:hover, ul li.slds-disabled > a:visited {
+  color: #ccc;
+}
+
+ul li.slds-disabled, ul li.slds-disabled > a:focus {
+  box-shadow: none;
+}
+
+.slds-searchtab__header {
+  background-color: #f4f6f9;
+  border: 1px solid #d8dde6;
+}
+
+.slds-searchtab__content {
+  padding: 1rem;
+}
+
+.slds-searchtab__header-text {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 0.5rem;
+  color: #54698d;
+  background-clip: padding-box;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+
+table.custom-radio-options tr td {
+  width: 50%;
+}
+
+.slds-button--active-search:hover, .slds-button--active-search:focus {
+  color: forestgreen;
+}
+
+.slds-button--search img, .slds-button--active-search img, .slds-button--view-inline img, .slds-button--twistSection img {
+  width: 50%;
+}
+
+.slds-button--twistSection:active {
+  border: none !important;
+}
+
+#footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  border-top: 1px solid #d8dde6;
+  background: #f4f6f9;
+  border-bottom: 1px solid #d8dde6;
+  border-left: 1px solid #d8dde6;
+}
+
+* html #footer {
+  position: absolute;
+  top: expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
+
+#help-research-request-modal .slds-textarea, #new-company--modal .slds-textarea {
+  height: 175px;
+}
+
+#quick-search-modal .slds-modal__footer {
+  background: white;
+  text-align: left;
+}
+
+.slds-page-header {
+  position: fixed;
+  width: 100%;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+  padding: 0.5rem 1.5rem 0.5rem;
+  padding-left: 0.6rem;
+  padding-right: 1rem;
+  background: #f8f8f8;
+  border-top: 1px solid #d8dde6;
+  border-left: 1px solid #d8dde6;
+}
+
+div.side-menu {
+  float: left;
+  display: table-column;
+  background: #1b5eac;
+  height: 100%;
+  position: fixed;
+  left: 160px;
+  height: 100%;
+  margin-left: -160px;
+  overflow-y: auto;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  top: 45px;
+  padding-top: 8px;
+}
+
+ul.slds-tabs--default__nav {
+  display: block;
+  border-bottom: none;
+}
+
+.slds-tabs--default__nav .slds-tabs__item + .slds-tabs__item {
+  margin-left: 0;
+}
+
+.slds-tabs--default__nav .slds-tabs__item a {
+  line-height: 2.5rem;
+  height: auto;
+  padding: 0 0.3rem;
+}
+
+.slds-tabs--default__nav .slds-active a {
+  color: white;
+  background: #1469be;
+  border-radius: .25rem;
+}
+
+.slds-tabs--default__nav .slds-tabs__item {
+  padding: .25rem .5rem;
+}
+
+.slds-tabs--default__nav .slds-active a:focus {
+  color: white;
+}
+
+.slds-tabs--default__nav a:hover, .slds-tabs--default__nav a:focus {
+  border-color: none;
+  background: #1469be;
+  border-radius: .25rem;
+}
+
+.slds-disabled a:hover, .slds-disabled a:focus, .slds-disabled a:active, .slds-disabled a:visited, a.toggleNav:hover, a.toggleNav:focus, a.toggleNav:active, a.toggleNav:visited {
+  background-color: transparent;
+  border-radius: none;
+}
+
+.slds-disabled a img.icon {
+  opacity: 0.6;
+}
+
+.slds-tabs--default__nav a:focus, .slds-tabs--default__nav a:active, .slds-tabs--default__nav a:visited {
+  color: white;
+  box-shadow: none;
+}
+
+.slds-tabs--default__nav a {
+  border-bottom: none;
+}
+
+div.right-panel {
+  padding: 15px;
+  margin-left: 150px;
+  padding-top: 55px;
+}
+
+.toggleNav {
+  margin-left: 15px;
+}
+
+.slds-tabs__item a img.icon, .toggleNav img.icon {
+  margin-top: 0.3rem;
+  margin-bottom: -0.5rem;
+  border-radius: .125rem;
+}
+
+img.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.slds-tile .slds-media__figure {
+  margin-top: 10px;
+}
+
+.slds-tile .slds-button {
+  margin-top: 1rem;
+}
+
+.slds-tile__title a {
+  font-size: 1.5rem;
+  cursor: default;
+  text-decoration: none;
+  color: #666666;
+}
+
+.slds-tile__title img.icon {
+  margin-top: -5px;
+}
+
+.slds-tile .slds-list__item a.addressUpdate {
+  padding: 0;
+}
+
+.do-logo {
+  margin-top: 2px;
+}
+
+.toggleNav img.nav-icon {
+  width: 1.5rem;
+  margin-left: 2px;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.slds-dropdown__item > a.phone_number:hover, .slds-dropdown__item > aphone_number:focus {
+  background-color: white;
+}
+
+button.orgChartBtn {
+  color: #6ebe49;
+  font-weight: 600;
+}
+
+.slds-tooltip {
+  max-width: 40rem !important;
+}
+
+.slds-tile__detail > li.address-list__item {
+  display: inherit;
+}
+
+.lock-icon {
+  cursor: pointer;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+button.orgChartBtn:hover {
+  color: forestgreen;
+}
+
+#address-info--modal .slds-conflict__checkbox {
+  margin-right: 5px;
+}
+
+.g-label {
+  background: #55a305 url('../icons/custom/up-arrow.jpg') 5px center no-repeat;
+  padding-left: 17px;
+  padding-right: 8px;
+  color: #fff;
+  border-radius: 5px;
+  float: right;
+}
+
+.r-label {
+  background: #de1a1a url('../icons/custom/down-arrow.jpg') 5px center no-repeat;
+  padding-left: 17px;
+  padding-right: 8px;
+  color: #fff;
+  border-radius: 5px;
+  float: right;
+}
+
+.tab-title {
+  display: block;
+  color: white;
+}
+
+.slds-disabled span.tab-title {
+  color: #ccc;
+}
+
+.slds-tabs__item a img.icon {
+  margin-bottom: -0.5rem;
+}
+
+.side-menu .slds-tabs--default__nav li a {
+  text-align: center;
+}
+
+.cdtail img.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cd-top {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #1b5eac url('../icons/utility/chevronup_60.png') no-repeat center;
+  visibility: hidden;
+  opacity: 0;
+  background-size: 30px;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+
+.cd-top.cd-is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.cd-top.cd-fade-out {
+  opacity: .5;
+}
+
+.no-touch .cd-top:hover {
+  background-color: #1b5eac;
+  opacity: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+
+.slds-button--view-inline img {
+  width: 1rem;
+  height: 1rem;
+}
+
+button.slds-button--view-inline:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+#address-info--modal .slds-form-element__static {
+  line-height: 2.125rem;
+}

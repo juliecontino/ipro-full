@@ -1,0 +1,113 @@
+<apex:page id="AvaTaxExceptionReport" title="Exception | Accounting Seed" controller="AcctSeed.AvaTaxExceptionReportController" tabStyle="Tax_Exception_Report__tab" readOnly="true" lightningStylesheets="true">
+
+    <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'css/common.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/jquery.dataTables.min.css')}" />
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.dataTables.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/tax-exception-report.js')}" />
+
+    <script>
+        function setFocusOnLoad() {}
+    </script>
+
+    <apex:sectionHeader title="Tax Exception Report"/>
+
+    <apex:pageMessage severity="info"
+                      strength="3"
+                      rendered="{!NOT(hasAvataxLedger)}"
+                      summary="There are no tax settings that are configured for Avalara." />
+
+    <apex:form id="theForm" rendered="{!hasAvataxLedger}">
+
+        <apex:pageblock title="Billing Sales Tax">
+            <apex:pageBlockSection title="Ledger" collapsible="false" columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:selectList value="{!currentLedgerId}" multiselect="false" size="1">
+                        <apex:selectOptions value="{!avataxLedgerOptions}"/>
+                        <apex:actionSupport event="onchange"
+                                            action="{!changeLedger}"
+                                            status="tableStatus"
+                                            rerender="theForm"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+
+        <apex:pageblock rendered="{!isLedgerSelected}">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons id="plButtons">
+                <apex:commandButton value="Run"
+                                    status="tableStatus"
+                                    action="{!runSalesTaxReport}"
+                                    onComplete="AcctSeed.ASModule.formatSalesTaxTable();"
+                                    rerender="theForm" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="Enter Criteria" collapsible="false" columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Start Date" for="startDate" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputField value="{!dateRangeProxyObj.AcctSeed__Billing_Cycle_Start_Date__c}" />
+                        <apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!isStartDateError}">
+                            <strong>Error:</strong> Start date is required
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value=""/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="End Date" for="endDate" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputField value="{!dateRangeProxyObj.AcctSeed__Billing_Cycle_End_Date__c}" />
+                        <apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!isEndDateError}">
+                            <strong>Error:</strong> End date is empty or incorrect
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+        <apex:actionstatus id="tableStatus"
+                           onstart="AcctSeed.ASModule.disableButtonsTaxReport('Processing...')">
+            <apex:facet name="start">
+                <apex:facet name="start">
+                    <div class="waitingHolder" style="text-align:left; position: relative;" width="32" height="32">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Loading...</span>
+                    </div>
+                </apex:facet>
+            </apex:facet>
+        </apex:actionstatus>
+        <apex:pageBlock id="salesTaxReportResultsPageBlock" title="Report Results" rendered="{!isReportLineExists}">
+            <apex:outputPanel id="errorPanel" style="display:none">
+                <apex:pageMessage summary="" severity="error" strength="3" />
+            </apex:outputPanel>
+            <apex:dataTable id="salesTaxTable" styleClass="display"
+                            value="{!taxExceptionReportLines}" var="line">
+                <apex:column headerValue="Billing Name">
+                    <apex:outputLink value="/{!line.obj.Id}" target="_blank">{!line.obj['Name']}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Avalara Transaction ID">
+                    <apex:outputLink value="{!line.avalaraTransactionUrl}" target="_blank">{!line.AvalaraTransactionId}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Sales Tax Amount">
+                    <apex:outputText styleClass="currencyAmount" value="{!line.sfTaxAmount}"/>
+                </apex:column>
+                <apex:column headerValue="Avalara Tax Amount">
+                    <apex:outputText styleClass="currencyAmount" value="{!line.avalaraTaxAmount}"/>
+                </apex:column>
+                <apex:column headerValue="Status">
+                    <apex:outputText value="{!line.reportStatus}"/>
+                </apex:column>
+                <apex:column headerValue="Description">
+                    <apex:outputText value="{!line.statusDescription}"/>
+                </apex:column>
+            </apex:dataTable>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Conga Sign transaction completed date - Conga Sign transaction created date. Returns minimum value of 1 day and integer value.</help>
+        <label><!-- Duration Days --></label>
+        <name>APXT_CongaSign__Duration__c</name>
+    </CustomFieldTranslation>

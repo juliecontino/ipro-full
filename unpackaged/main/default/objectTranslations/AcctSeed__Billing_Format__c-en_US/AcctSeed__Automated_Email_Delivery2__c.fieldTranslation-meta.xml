@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Relates to the Automated Email Job. For all selections except No Delivery, a posted Billing is emailed once: the Billing Date is reached, the balance criterion of the selection is met and the value of the Billing’s PDF Email Status is Unsent. --></help>
+        <label><!-- Automated Email Delivery --></label>
+        <name>AcctSeed__Automated_Email_Delivery2__c</name>
+        <picklistValues>
+            <masterLabel>Always</masterLabel>
+            <translation><!-- Always --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Balance Due Only</masterLabel>
+            <translation><!-- Balance Due Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Balance Due or Credit Memo Balance</masterLabel>
+            <translation><!-- Balance Due or Credit Memo Balance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Balance Due or Zero Balance</masterLabel>
+            <translation><!-- Balance Due or Zero Balance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Delivery</masterLabel>
+            <translation><!-- No Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zero Balance Only</masterLabel>
+            <translation><!-- Zero Balance Only --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

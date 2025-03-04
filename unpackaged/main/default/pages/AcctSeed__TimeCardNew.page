@@ -1,0 +1,64 @@
+<apex:page id="thePage" standardController="AcctSeed__Time_Card__c" title="{!AcctSeed__Time_Card__c.Name & ' | Accounting Seed'}" extensions="AcctSeed.TimeCardNewControllerExt">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/time-card-new.js')}"/>
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Time_Card__c.label}" subtitle="New" />
+        <apex:pageBlock id="thePageBlock" title="New" mode="edit">          
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Saving...')"/> 
+                <apex:commandButton id="saveButtonTop" action="{!saveback}" status="saveStatus" value="Next" reRender="theForm"/>              
+                <apex:commandButton id="cancelButtonTop" action="{!cancel}" value="Cancel"/> 
+            </apex:pageBlockButtons>           
+            <apex:pageMessages escape="false" />          
+            <apex:pageBlockSection columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Time Card Period"/>
+                    <apex:outputPanel id="timeCardList" styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:selectList value="{!AcctSeed__Time_Card__c.AcctSeed__Time_Card_Period__c}" size="1">
+                            <apex:selectOptions value="{!timeCardPeriods}"/>
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isPeriodError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Employee"/>
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputField id="inputEmployee" value="{!AcctSeed__Time_Card__c.AcctSeed__Employee__c}"/>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isEmployeeError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Time_Card__c.fields.AcctSeed__Ledger__c.Label}"/>
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:selectList required="true"
+                                         id="inputLedger"
+                                         value="{!AcctSeed__Time_Card__c.AcctSeed__Ledger__c}"
+                                         multiselect="false"
+                                         size="1">
+                            <apex:selectOptions value="{!allLedgersSelectOptions}" />
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isLedgerError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:actionFunction name="reRenderTimeCardList" reRender="timeCardList" />
+    </apex:form>
+
+    <script type="text/javascript">
+        AcctSeed.ASModule.reRenderTimeCardList = reRenderTimeCardList;
+    </script>
+
+</apex:page>

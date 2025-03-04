@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__Create_Task2__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Create Task</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Call</fullName>
+                <default>false</default>
+                <label>Call</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+            <value>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+                <label>Send Letter</label>
+            </value>
+            <value>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+                <label>Send Quote</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

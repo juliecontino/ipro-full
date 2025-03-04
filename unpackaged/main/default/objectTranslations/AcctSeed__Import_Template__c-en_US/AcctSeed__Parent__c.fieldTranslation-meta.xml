@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Specify the parent of the detail object.  If none, leave this blank. --></help>
+        <label><!-- Parent Object --></label>
+        <name>AcctSeed__Parent__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,50 @@
+<apex:page standardController="AcctSeed__Fixed_Asset__c" title="{!AcctSeed__Fixed_Asset__c.Name & ' | Accounting Seed'}" extensions="AcctSeed.ScheduledRevenueExpensesFromFixedAsset">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/> 
+    
+    <apex:outputPanel rendered="false">
+        {!AcctSeed__Fixed_Asset__c.AcctSeed__Value__c}
+    </apex:outputPanel>
+    <apex:sectionHeader title="{!$ObjectType.AcctSeed__Fixed_Asset__c.label}" subtitle="{!AcctSeed__Fixed_Asset__c.Name}" />
+    <apex:form id="fixed_asset_form">
+        <apex:pageBlock title="Depreciate {!$ObjectType.AcctSeed__Fixed_Asset__c.label}">
+
+            <apex:outputPanel id="messages">
+                <apex:pageMessages rendered="{!displayPageMessages}"/>
+            </apex:outputPanel>
+
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onStart="AcctSeed.ASModule.disableButtons('Processing...')"/>
+                <apex:commandButton value="Depreciate Asset" action="{!depreciate}" status="saveStatus" reRender="fixed_asset_form, messages" >
+                    <apex:actionSupport event="oncomplete" action="{!resetPageMessages}" rerender="buttons"/>
+                </apex:commandButton>
+                <apex:commandButton value="Back" action="{!cancel}" status="saveStatus" reRender="fixed_asset_form" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection >
+                <apex:inputField label="Start {!$ObjectType.AcctSeed__Accounting_Period__c.label}" value="{!schedRevenueExpensePlaceholder.AcctSeed__Accounting_Period__c}" required="true" />
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__Product__c}" />
+
+                <apex:selectList label="Number of Accounting Periods" size="1" required="true" value="{!numberAccountingPeriods}" >
+                    <apex:selectOptions value="{!periodsNumList}"/>
+                </apex:selectList>
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__Project__c}" />
+
+                <apex:inputField label="Accounting Period Amount" value="{!schedRevenueExpensePlaceholder.AcctSeed__Amount__c}"/>
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__Project_Task__c}" />
+
+                <apex:outputField value="{!AcctSeed__Fixed_Asset__c.AcctSeed__Ledger__c}" />
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__GL_Account_Variable_1__c}" />
+
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__Debit_GL_Account__c}" required="true"/>
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__GL_Account_Variable_2__c}" />
+
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__Credit_GL_Account__c}" required="true"/>
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__GL_Account_Variable_3__c}" />
+                
+                <apex:outputPanel />
+                <apex:inputField value="{!schedRevenueExpensePlaceholder.AcctSeed__GL_Account_Variable_4__c}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

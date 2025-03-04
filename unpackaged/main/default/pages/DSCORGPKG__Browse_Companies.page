@@ -1,0 +1,3 @@
+<apex:page controller="DSCORGPKG.DiscoverOrg_clsBrowse">
+<!-- This Page is no longer in use -->
+</apex:page>

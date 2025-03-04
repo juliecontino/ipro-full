@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deliver_To_Warning_Message__c</fullName>
+    <defaultValue>"Make sure you have selected the correct contact based on service/delivery location. Best Practice would be to associate the contact to the account, prior to creating the sales order.  If you need the product/service to arrive at another location, overwrite the shipping address information as needed to ensure proper delivery.     Once you have selected a DELIVERY CONTACT, and you wish to overwrite the SHIPPING ADDRESS on the sales order, click the new button at the top labeled, [Update Address]."</defaultValue>
+    <label>Deliver To Warning Message</label>
+    <length>640</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>8</visibleLines>
+</CustomField>

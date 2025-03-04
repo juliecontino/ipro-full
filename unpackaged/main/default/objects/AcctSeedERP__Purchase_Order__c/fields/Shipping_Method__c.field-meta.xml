@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Method__c</fullName>
+    <label>Shipping Method</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FedEx Ground</fullName>
+                <default>false</default>
+                <label>FedEx Ground</label>
+            </value>
+            <value>
+                <fullName>FedEx 2-Day</fullName>
+                <default>false</default>
+                <label>FedEx 2-Day</label>
+            </value>
+            <value>
+                <fullName>FedEx Next Day Air Standard</fullName>
+                <default>false</default>
+                <label>FedEx Next Day Air Standard</label>
+            </value>
+            <value>
+                <fullName>FedEx Next Day Air Priority</fullName>
+                <default>false</default>
+                <label>FedEx Next Day Air Priority</label>
+            </value>
+            <value>
+                <fullName>UPS Ground</fullName>
+                <default>false</default>
+                <label>UPS Ground</label>
+            </value>
+            <value>
+                <fullName>UPS Blue</fullName>
+                <default>false</default>
+                <label>UPS Blue</label>
+            </value>
+            <value>
+                <fullName>UPS Red</fullName>
+                <default>false</default>
+                <label>UPS Red</label>
+            </value>
+            <value>
+                <fullName>USPS</fullName>
+                <default>false</default>
+                <label>USPS</label>
+            </value>
+            <value>
+                <fullName>USPS Priority Mail</fullName>
+                <default>false</default>
+                <label>USPS Priority Mail</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

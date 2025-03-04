@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Account</baseObject>
+    <category>other</category>
+    <deployed>false</deployed>
+    <description>Accounts with DiscoverOrg Technologies are going to be visibile n this report.</description>
+    <join>
+        <outerJoin>false</outerJoin>
+        <relationship>DSCORGPKG__DiscoverOrg_Technologies__r</relationship>
+    </join>
+    <label>Accounts with DiscoverOrg Technologies</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Name</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Account.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Technology Category Name</displayNameOverride>
+            <field>DSCORGPKG__Technology_Category__c</field>
+            <table>Account.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Technology Vendor Name</displayNameOverride>
+            <field>DSCORGPKG__Technology_Vendor__c</field>
+            <table>Account.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <masterLabel>DiscoverOrg Technologies</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Billing_Total_All_Time__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Age_in_Years__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Connectwise_External_Id__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RCT_Last_QBR_Date__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RCT_Next_QBR_Due_Date__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Rating__c</field>
+            <table>Account</table>
+        </columns>
+        <masterLabel>Accounts</masterLabel>
+    </sections>
+</ReportType>

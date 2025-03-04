@@ -1,0 +1,2 @@
+/*Fix contenteditable on iOS*/
+.uiScroller > .scroller { -webkit-user-select: text; }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Lead</baseObject>
+    <category>other</category>
+    <deployed>false</deployed>
+    <description>Leads with DiscoverOrg Technologies will be visible</description>
+    <join>
+        <outerJoin>false</outerJoin>
+        <relationship>DSCORGPKG__DiscoverOrg_Technologies__r</relationship>
+    </join>
+    <label>Leads with DiscoverOrg Technologies</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Lead Name</displayNameOverride>
+            <field>Name</field>
+            <table>Lead</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Lead.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Technology Category Name</displayNameOverride>
+            <field>DSCORGPKG__Technology_Category__c</field>
+            <table>Lead.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Technology Vendor Name</displayNameOverride>
+            <field>DSCORGPKG__Technology_Vendor__c</field>
+            <table>Lead.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <masterLabel>DiscoverOrg Technologies</masterLabel>
+    </sections>
+</ReportType>

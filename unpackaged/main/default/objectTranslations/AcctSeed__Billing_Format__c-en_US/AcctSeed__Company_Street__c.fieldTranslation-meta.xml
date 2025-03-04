@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field has been deprecated. Use the Company Street2 field instead. --></help>
+        <label><!-- zDep-Company Street --></label>
+        <name>AcctSeed__Company_Street__c</name>
+    </CustomFieldTranslation>

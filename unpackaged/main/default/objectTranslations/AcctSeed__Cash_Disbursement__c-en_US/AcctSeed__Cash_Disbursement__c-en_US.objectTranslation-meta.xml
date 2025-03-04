@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Pay Batch Screen --></label>
+        <name>AcctSeed__Pay_Batch_Screen</name>
+    </fieldSets>
+    <layouts>
+        <layout>Cash Disbursement Layout</layout>
+        <sections>
+            <label><!-- 1099 Information --></label>
+            <section>1099 Information</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Payee Information --></label>
+            <section>Payee Information</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You cannot edit the amount field if the cash disbursement is sourced from account payable records --></errorMessage>
+        <name>AcctSeed__Amount_No_Update_Account_Payable</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A cash disbursement cannot be a negative amount. --></errorMessage>
+        <name>AcctSeed__Cash_Disbursement_must_be_positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The GL Variable must have a Type of &quot;GL Account Variable 3&quot;. --></errorMessage>
+        <name>AcctSeed__GL_Account_Variable_3_Correct_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The GL Variable must have a Type of &quot;GL Account Variable 4&quot;. --></errorMessage>
+        <name>AcctSeed__GL_Account_Variable_4_Correct_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only select one of the following as a payee: vendor, contact, or employee. --></errorMessage>
+        <name>AcctSeed__Only_One_Selected_Vendor_Contact_Or_Empl</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A project task is required if a project is selected. --></errorMessage>
+        <name>AcctSeed__Project_Task_Required_With_Project</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must specify a contact, vendor or employee as the payee. --></errorMessage>
+        <name>AcctSeed__Required_Vendor_Contact_Or_Employee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot set the Bank GL Account and the Debit GL Account fields to the same GL Account. --></errorMessage>
+        <name>AcctSeed__SameBankGLAccountAndDebitGLAccount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Value_for_Accounting_Period</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Value_for_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Value_for_Bank_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Value_for_Disbursement_Date</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Apply --></label>
+        <name>AcctSeed__Apply</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Apply_Unapply --></label>
+        <name>AcctSeed__Apply_Unapply</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_1099_File --></label>
+        <name>AcctSeed__Create_1099_File</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Match --></label>
+        <name>AcctSeed__Match</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post --></label>
+        <name>AcctSeed__Post</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post_Cash_Disbursements --></label>
+        <name>AcctSeed__Post_Cash_Disbursements</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Check --></label>
+        <name>AcctSeed__Print_Check</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Checks --></label>
+        <name>AcctSeed__Print_Checks</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Full_Remittance --></label>
+        <name>AcctSeed__Print_Full_Remittance</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost --></label>
+        <name>AcctSeed__Unpost</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost_Cash_Disbursements --></label>
+        <name>AcctSeed__Unpost_Cash_Disbursements</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_1099_Info --></label>
+        <name>AcctSeed__Update_1099_Info</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_1099_Info_Detail_Page --></label>
+        <name>AcctSeed__Update_1099_Info_Detail_Page</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Void --></label>
+        <name>AcctSeed__Void</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Check --></label>
+        <name>Print_Check</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to calculate payment due date for a prompt payment discount on a billing. --></help>
+        <label><!-- Billing Discount Days Due --></label>
+        <name>AcctSeed__Billing_Discount_Days_Due__c</name>
+    </CustomFieldTranslation>

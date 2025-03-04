@@ -1,0 +1,119 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Sales_Order__c" title="Create Billing | Accounting Seed" extensions="AcctSeedERP.BillingFromSalesOrder,AcctSeedERP.EnvironmentUtils" sidebar="false" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/billing-from-sales-order.js')}" loadOnReady="true"/>
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script>
+        function setFocusOnLoad() {}
+    </script>
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Sales Order" subtitle="{!AcctSeedERP__Sales_Order__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Create Billing">
+            <apex:pageMessage severity="info" strength="3"
+                              summary="There are no sales order lines associated with this sales order" rendered="{!!showOnlyMessages && !isLines}" />
+            <apex:pageMessage severity="info" strength="3"
+                              summary="You must include a value for the quantity to bill field for each line you want to include on the billing" rendered="{!isLines}" />
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" onstop="AcctSeed.ASModule.format()"/>
+                <apex:commandButton status="saveStatus"
+                                    value="Create Billing"
+                                    action="{!createBilling}"
+                                    reRender="theForm"
+                                    rendered="{!isLines}"/>
+                <apex:commandButton value="Back" action="/{!Sales_Order__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2" rendered="{!!showOnlyMessages}">
+                <apex:outputField value="{!AcctSeedERP__Sales_Order__c.AcctSeedERP__Customer__c}" />
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Billing Date" />
+                    <apex:inputField value="{!bill.AcctSeed__Date__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem helpText="{!$ObjectType.AcctSeedERP__Sales_Order__c.fields.AcctSeedERP__Ledger__c.InlineHelpText}">
+                    <apex:outputLabel value="Ledger" />
+                    <apex:outputField value="{!AcctSeedERP__Sales_Order__c.AcctSeedERP__Ledger__c}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem helpText="{!$ObjectType.AcctSeedERP__Sales_Order__c.fields.AcctSeedERP__Status__c.InlineHelpText}" rendered="{!isSOStatusFieldUpdateable}">
+                    <apex:outputLabel value="Sales Order Status" />
+                    <apex:inputField value="{!salesOrder.AcctSeedERP__Status__c}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageMessages rendered="{!showMessages}" escape="false"/>
+            <apex:pageBlockTable id="thePageBlockTable" value="{!solWrapper}" var="sow" cellpadding="6" rendered="{!!showOnlyMessages && isLines}">
+                <apex:column value="{!sow.soLine.Name}" />
+                <apex:column value="{!sow.soLine.Product__r.Name}" />
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Quantity Ordered">
+                    <apex:outputText id="quantityOrdered" value="{0, number, 0.000000}">
+                        <apex:param value="{!sow.soLine.AcctSeedERP__Quantity_Ordered__c}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Quantity Allocated">
+                    <apex:outputText id="quantityAllocated" value="{0, number, 0.000000}">
+                        <apex:param value="{!sow.quantityReceived}" />
+                    </apex:outputText>
+                    <apex:inputHidden id="unitPrice" value="{!sow.soLine.AcctSeedERP__Unit_Price__c}" />
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Quantity Shipped">
+                    <apex:outputText id="quantityShipped" value="{0, number, 0.000000}">
+                        <apex:param value="{!sow.soLine.AcctSeedERP__Quantity_Shipped__c}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Quantity Billed">
+                    <apex:outputText id="quantityBilled" value="{0, number, ####0.000000}" style="width:80px">
+                        <apex:param value="{!sow.quantityBilled}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Quantity Unbilled">
+                    <apex:outputText id="quantityUnbilled" value="{0, number, ####0.000000}">
+                        <apex:param value="{!sow.soLine.AcctSeedERP__Quantity_Ordered__c - sow.quantityBilled}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" style="width:120px">
+                     <apex:facet name="header">
+                        <apex:actionRegion >
+                            Quantity to Bill
+                            <br/>Bill All?:&nbsp;
+                            <apex:selectList id="billAllSelect" value="{!selectedBillAll}" onchange="AcctSeed.ASModule.billAll()" size="1">
+                                <apex:selectOption itemValue="No" itemLabel="No" />
+                                <apex:selectOption itemValue="Yes" itemLabel="Yes" />
+                            </apex:selectList>
+                        </apex:actionRegion>
+                    </apex:facet>               
+                    <apex:inputField id="quantity" styleClass="align-right"
+                                     onchange="AcctSeed.ASModule.calculateAmount(this)"
+                                     onkeyup="AcctSeed.ASModule.calculateAmount(this)"
+                                     value="{!sow.quantityToBillProxyRec.AcctSeedERP__Quantity_Ordered__c}" style="width:80px" required="false">
+                    </apex:inputField>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Billed Amount">
+                    <apex:outputText id="billedAmount" value="{!sow.billedAmount}"/>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Unbilled Amount">
+                    <apex:outputText id="unbilledAmount" value="{!sow.unbilledAmount}"/>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" headerValue="Unit Price">
+                    <apex:outputText id="unit_price_cell" value="{!sow.soLine.AcctSeedERP__Unit_Price__c}"/><!-- Currency ISO Code will be added by JS -->
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right" footerClass="align-right" headerValue="Amount to Bill">
+                    <apex:outputText id="billAmount" value="{!sow.Amount}"/>
+                    <apex:facet name="footer">  
+                        <apex:outputText id="footerAmount"/>              
+                    </apex:facet>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inventory_by_Warehouse_San_Antonio</fullName>
+    <columns>AcctSeedERP__Product__c</columns>
+    <columns>Product_Code__c</columns>
+    <columns>Product_Category__c</columns>
+    <columns>AcctSeedERP__Warehouse__c</columns>
+    <columns>AcctSeedERP__Location__c</columns>
+    <columns>NAME</columns>
+    <columns>AcctSeedERP__Inbound_Quantity__c</columns>
+    <columns>AcctSeedERP__Outbound_Quantity__c</columns>
+    <columns>AcctSeedERP__Available_Quantity__c</columns>
+    <columns>Last_Physical_Inventory_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeedERP__Warehouse__c</field>
+        <operation>equals</operation>
+        <value>San Antonio</value>
+    </filters>
+    <label>Inventory by Warehouse - San Antonio</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Total_with_Tax__c</fullName>
+    <deprecated>false</deprecated>
+    <formula>TotalPrice + AcctSeed__Tax_Amount__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Total Price + Tax Amount for the Opportunity Product Line</inlineHelpText>
+    <label>Total with Tax</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Currency</type>
+</CustomField>

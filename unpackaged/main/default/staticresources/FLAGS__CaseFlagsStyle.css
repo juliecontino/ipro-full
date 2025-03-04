@@ -1,0 +1,406 @@
+@import url('{!URLFOR($Resource.Case_Flags_Assets, 'roboto/roboto.css')}');
+
+* {
+    font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+.slds-tabs_default__content .slds-box {
+    background-repeat: no-repeat;
+    background-position: right -12px bottom -12px;
+    background-size: 160px;
+}
+
+.slds-media__body {
+    color: #fff;
+}
+
+.pageTitleIcon { 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24' class='slds-icon slds-page-header__icon'%3E%3Cpath E2CP-setup_setup='' d='M13 12.7l-.3-.5c-.1-.2-.3-.3-.6-.3 0 0-.1.1-.2.1l-.8.3c-.3-.3-.7-.5-1.1-.6l-.2-.9c0-.3-.3-.5-.6-.5h-.6c-.2 0-.5.2-.6.5l-.1.9c-.4.1-.8.3-1.1.6L6 12h-.3c-.2 0-.4.1-.5.3l-.3.5c-.1.2-.1.5.2.7l.7.6c-.1.2-.1.4-.1.6s0 .5.1.7l-.7.6c-.3.2-.3.5-.2.7l.3.5c.1.2.3.3.5.3H6l.8-.3c.3.3.7.5 1.1.6l.1.9c.1.3.4.5.6.5h.6c.3 0 .6-.2.6-.5l.2-.9c.4-.1.8-.4 1.1-.7l.8.3c.1.1.2.1.2.1.3 0 .5-.1.6-.3l.3-.5c.1-.2.1-.6-.2-.8l-.7-.5c.1-.3.1-.5.1-.7 0-.2 0-.4-.1-.6l.7-.6c.2-.2.3-.5.2-.8zm-4.1 3.7c-.9 0-1.6-.7-1.6-1.6s.7-1.7 1.6-1.7c.9 0 1.7.7 1.7 1.7s-.8 1.6-1.7 1.6zm10.1-7l-.5-.5v-.5-.5l.5-.5c.2-.1.2-.4.1-.6l-.2-.4c-.1-.1-.3-.2-.4-.2h-.2l-.7.3c-.3-.3-.6-.5-.9-.5l-.1-.8c-.1-.2-.3-.4-.5-.4h-.5c-.2 0-.4.2-.5.4l-.1.7c-.3.1-.6.3-.9.6l-.7-.4h-.1c-.2 0-.4.1-.5.3l-.2.4c-.1.2-.1.4.1.6l.6.4c-.1.2-.1.4-.1.6 0 .1 0 .3.1.5l-.6.4c-.2.2-.2.4-.1.6l.2.4c.1.2.3.3.5.3h.1l.7-.3c.3.2.6.4.9.5l.1.7c.1.2.3.4.5.4h.5c.2 0 .5-.2.5-.4l.1-.7c.3-.1.7-.3.9-.6l.7.3h.2c.1 0 .3-.1.4-.2l.2-.4c.1-.1.1-.4-.1-.5zm-3.1.3c-.8 0-1.4-.6-1.4-1.3s.6-1.3 1.4-1.3 1.3.6 1.3 1.3-.6 1.3-1.3 1.3z'%3E%3C/path%3E%3C/svg%3E"), linear-gradient(135deg, #228eff, #8d31f7) !important; /* Change this URL to point to the icon you want to use */ 
+    background-repeat: no-repeat;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 4px;
+    margin-right: 16px;
+}
+
+.slds-scope .slds-page-header {
+    background-color: #000;
+}
+
+button, input[type="button"], input[type="submit"] {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #8D31F7;
+    padding: 6px 12px !important;
+    font-size: 0.75rem;
+    font-weight: normal;
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    background: #eee;
+    color: #6F1CD8;
+}
+
+.links {
+    margin: 8px;
+}
+
+.links a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.links a:hover {
+    background-color: #eee;
+}
+
+.links a:first-of-type {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.links a:last-of-type {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.links a:not(:last-of-type) {
+    border-right: 0px;
+}
+
+body .bPageTitle .ptBody .pageType {
+    margin-top: 6px;
+}
+
+body .bPageTitle .ptBody .pageType,
+body .bPageTitle .ptBody {
+    color: #fff !important;
+}
+
+.slds-scope a {
+    color: #8D31F7 !important;
+}
+.slds-scope a:hover, .slds-scope a:focus {
+    color: #6F1CD8 !important;
+}
+
+fieldset {border:0; display:inline; padding:10px; vertical-align:top;}
+
+.slds-scope {
+	padding:0;
+}
+
+/** Full Screen Overlay **/
+.slds-backdrop {
+	background: rgba(255,255,255,.8) !important;
+}
+
+.slds-backdrop .slds-spinner {
+    position:static !important;
+}
+
+/** Buttons **/
+.slds-scope .slds-button {
+    color: #8D31F7 !important;
+}
+
+.slds-scope .slds-section__title .slds-button {
+    color: #fff !important;
+}
+
+.slds-scope .slds-button_brand {
+	border: 1px solid #8D31F7 !important;
+	background-color: #8D31F7 !important;
+    color: #fff !important;
+}
+
+.slds-scope .slds-button_brand:hover {
+	border: 1px solid #6F1CD8 !important;
+	background-color: #6F1CD8 !important;
+}
+
+.slds-scope .slds-button_brand[disabled] {
+	background: #e0e5ee !important;
+	border-color: transparent!important;
+	color: #fff !important;
+}
+
+.slds-scope .slds-section__title {
+	color: white !important;
+	background-color: #8141EE !important;
+	border-top: 0 !important;
+}
+
+.slds-scope .slds-table {
+    background-color: transparent;
+}
+
+/** Select **/
+.slds-select_container::before {
+    content: none !important;
+}
+
+.slds-select_container::after {
+    border-top-width: 6px !important;
+    border-left-width: 3px !important;
+    border-right-width: 3px !important;
+    bottom: 0.85rem !important;
+}
+
+
+/** Section **/
+.slds-section__title-action,.slds-section__title-action:hover,.slds-section__title-action:focus{
+	background-color: #8D31F7 !important;
+}
+
+.slds-tabs_default__item.slds-has-focus,.slds-tabs_default__item.slds-is-active  {
+	color: #000 !important;
+}
+
+/** Navigation Tabs **/
+.slds-scope .slds-tabs_default__link,
+.slds-tabs_default__item.slds-is-active, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link:hover, 
+.slds-tabs_default__item .slds-tabs_default__link:hover, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+	color: #000 !important;
+}
+
+.slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+    text-shadow: -0.25px 0px 0px #000, 0px -0.25px 0px #000, 0.25px 0px 0px #000, 0px 0.25px 0px #000;
+}
+
+.slds-tabs_default__item.slds-is-active:after, .slds-tabs_default__item.slds-has-focus:after, .slds-scope .slds-tabs_default__item:hover:after {
+	background-color: #8D31F7 !important;
+}
+
+.slds-tabs_default__item.slds-is-active:after,.slds-tabs_default__item.slds-has-focus:after,.slds-scope .slds-tabs_default__item:hover:after {
+	background-color: #8D31F7 !important;
+}
+
+ul.slds-tabs_default__nav {
+	padding: 0 2rem !important;
+}
+
+ul.slds-tabs_default__nav > li.slds-tabs_default__item {
+	cursor:pointer !important;
+}
+
+.btn.slds-button.slds-button_neutral:focus {
+    outline: 0;
+    box-shadow: 0 0 3px #0070D2;
+}
+
+.btn.slds-button.slds-button_neutral:active {
+	border:1px solid rgb(216, 221, 230) !important;
+	color: #005fb2 !important;
+}
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 275px;
+    position:absolute;
+}
+
+.slds-popover {
+    text-align:left;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip-button:focus {
+    border-radius: 16px;
+}
+
+.tooltip-button {
+	background-position: -1px -1px !important;
+	width: 14px;
+    height: 14px;
+    background-size: 14px 28px !important;
+}
+
+.tooltip-button:hover,:focus {
+	background-position: -15px -15px !important;
+}
+
+.tooltip-button:focus + .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip_top {
+    left:-121%;
+    bottom:145%;
+}
+
+
+
+/** Checkbox **/
+.slds-checkbox_faux:after {
+	border-bottom: 2px solid #8D31F7 !important;
+    border-left: 2px solid #8D31F7 !important;
+}
+
+/** Radio **/
+.slds-radio_faux:after {
+	background: #8D31F7 !important;
+}
+
+/* Font Styling */
+.bold {
+    font-weight: bold;   
+}
+
+.italic {
+    font-style: italic;
+}
+
+/* Date Picker */
+
+.datePicker {
+	background-color: #ffffff;
+	background-image:none;
+}
+
+.dateBar select {
+	border-radius: .25rem;
+}
+
+.dateBar select:focus {
+	outline: 0 !important;
+	border-color: #1589ee !important;
+	background-color: #fff !important;
+}
+
+.datePicker .calDays .weekend, .datePicker .calDays .weekday {
+    background: none;
+    border: 0 !important;
+    padding: 2px 0 !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    border-radius: 50% !important;
+    margin: auto !important;
+    font-weight:normal !important;
+}
+
+.datePicker .calDays .todayDate {
+	background: none !important;
+	color: black !important;
+}
+
+.datePicker .calDays .selectedDate {
+    background-color: #005fb2 !important;    
+    color: white !important;
+}
+
+.datePicker .calDays .highlight {
+	background: none;
+}
+
+.calButton {
+    height:16px !important;
+    width:16px !important;
+    margin-top:2px !important;
+    margin-right:10px !important;
+    margin-left:10px !important;
+}
+
+.dateBar {
+	padding-top: 4px !important;
+}
+
+.slds-form-element__label {
+    font-weight:700;
+}
+
+.instruction_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.instruction_text_container, .instruction_img_container {
+    -webkit-flex: 1; /* Safari 6.1+ */
+    -ms-flex: 1; /* IE 10 */ 
+    flex: 1;
+}
+
+.instruction_row:not(:first-child) {
+    margin-top:1.5rem;
+}
+
+.seeMore div {position:relative; cursor: default;}
+.seeMore div span.see-logic-text {display: none; z-index:90;}
+
+.seeMore div div:hover span.see-logic-text {
+    display: block;position:absolute;
+    top:1em; padding:5px; left:5em; width:30em; border:1px solid #8D31F7; z-index: 9999 !important;
+    background-color:#f5f5f5; color:black;
+} 
+
+.primaryPalette {background-color:#228EFF !important;}
+.brdPalette, .secondaryPalette {border-top-color:#228EFF !important;}
+
+.pbSubheader { 
+    background: #8D31F7 !important;
+    border-radius: 4px;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+} 
+        
+.pbSubheader img {
+    outline: none !important;
+}
+
+.historySettingIndent {
+    margin-left: 32px;
+}
+
+.disabled {
+    color: #999 !important;
+}
+
+.bootstrap-tagsinput {
+    width: 50%;
+}
+
+span.tag.label.label-info {
+    color: white;
+    background: #8D31F7;
+    border-radius: 2.5px;
+    padding: 2px;
+}
+
+#std-sec, #e-sec, #pg\:frm\:pbInitialSetup\:Setup\:stdUiPermsImg, #pg\:frm\:pbInitialSetup\:Setup\:enUiPermsImg {
+    display: none;
+}
+#sel-sec {
+    margin-left: 0px;
+    list style-type: none;
+    display: table;
+}
+#sel-sec li {
+    display: table-cell;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 316px;
+    margin-right: 4px;
+}
+#sel-sec li:hover {
+    background-color: #8D31F7;
+}
+#sel-sec li input[type=radio] {
+    cursor: pointer;
+}
+#sel-sec li img {
+    max-width: 300px;
+    margin: 8px;
+    box-shadow: 4px 4px 4px #999;
+}

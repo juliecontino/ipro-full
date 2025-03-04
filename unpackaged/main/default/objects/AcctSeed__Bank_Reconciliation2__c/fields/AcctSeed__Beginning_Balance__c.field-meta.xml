@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Beginning_Balance__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Auto-populates upon creation or upon setting status to ‘Completed’ with the cleared balance from the prior bank reconciliation. If Override Beginning Balance checkbox is checked, then will not update upon setting status to ‘Completed’.</description>
+    <inlineHelpText>The beginning balance of the bank reconciliation. This is usually retrieved from the bank statement.</inlineHelpText>
+    <label>Beginning Balance</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

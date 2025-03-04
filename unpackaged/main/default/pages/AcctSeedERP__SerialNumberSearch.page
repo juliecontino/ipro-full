@@ -1,0 +1,84 @@
+<apex:page controller="AcctSeedERP.SerialNumberSearchController" title="Search | Accounting Seed" showHeader="true" sidebar="true" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script type="text/javascript">
+        window.onkeypress = handleKeyPress;
+        function handleKeyPress(e) {
+            var eventInstance = window.event ? event : e;
+            var keyCode = eventInstance.charCode ? eventInstance.charCode : eventInstance.keyCode;
+            if (keyCode == 13){
+                jQuery('[id$=theSearchButton]').click();
+                return false;
+            }
+        }
+
+        function goBack() {
+            if ((typeof sforce != 'undefined') && sforce && (!!sforce.one)) {
+                sforce.one.back(true);
+            }
+            else {
+                window.top.location = '/home/showAllTabs.jsp';
+            }
+        }
+    </script>
+    <apex:sectionHeader title="Search" subtitle="Serial Number Search" />
+    <apex:form id="theForm">
+    <apex:pageBlock >
+        <apex:pageBlockButtons >
+            <apex:actionStatus id="searchStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" />
+            <apex:commandButton action="{!searchAction}" oncomplete="javascript:jQuery('[id$=theSearchInput]').focus();" value="Search" status="searchStatus" reRender="theForm, messages" id="theSearchButton"/>
+            <apex:commandButton immediate="true" onclick="goBack();return false;" value="Back" id="theBackButton"/>
+        </apex:pageBlockButtons>
+
+        <apex:pageMessages escape="false"/>
+        
+        <apex:pageBlockSection columns="2">
+        <apex:pageBlockSectionItem >
+        <apex:outputLabel value="Serial Number: " for="search_panel" style="font-weight: bold;"/>
+        <apex:outputPanel styleClass="requiredInput" layout="block" id="search_panel">
+
+            <apex:outputPanel styleClass="requiredBlock" layout="block" />
+
+            <apex:inputText value="{!searchStr}" id="theSearchInput" style="width: 320px;"/>
+        </apex:outputPanel>
+        </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+        &nbsp;&nbsp;&nbsp;
+
+        <apex:pageBlockTable value="{!dataList}" var="item" rendered="{!dataList.size > 0}" id="results_table">
+
+            <apex:column >
+                <apex:facet name="header">Inventory Movement Name</apex:facet>
+                <apex:outputLink value="/{!item.obj['Id']}">
+                    <apex:outputText >{!item.obj['Name']}</apex:outputText>
+                </apex:outputLink>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Inventory Movement Type</apex:facet>
+                <apex:outputText >{!item.type}</apex:outputText>
+            </apex:column>
+            <apex:column value="{!item.obj['Movement_Date__c']}" />
+            <apex:column >
+                <apex:facet name="header">Product Name</apex:facet>
+                <apex:outputText >{!item.obj['Product__c']}</apex:outputText>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Warehouse Name</apex:facet>
+                <apex:outputText >{!item.obj['Warehouse__c']}</apex:outputText>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Location Name</apex:facet>
+                <apex:outputText >{!item.obj['Location__c']}</apex:outputText>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Serial Number</apex:facet>
+                <apex:outputText >{!item.obj['Serial_Number__c']}</apex:outputText>
+            </apex:column>
+
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

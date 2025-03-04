@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Defaults the Credit GL Account when amortizing a billing to this value. --></help>
+        <label><!-- Default Credit GL Account Revenue --></label>
+        <name>AcctSeed__Default_Credit_GL_Account_Revenue__c</name>
+        <relationshipLabel><!-- Accounting Settings (Default Credit GL Account Revenue) --></relationshipLabel>
+    </CustomFieldTranslation>

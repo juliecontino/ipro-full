@@ -1,0 +1,32 @@
+<apex:page showHeader="true" standardController="Case" recordsetvar="Cases" extensions="FLAGS.CaseFlags"  sidebar="true">
+    <apex:slds />
+    <div class="slds-scope">
+        <apex:form id="frm">
+
+            <apex:actionFunction name="setFlags" action="{!setFlags}" reRender="frm"/>
+            
+            <div style="display:{!IF(!complete && !consoleNavigate,'none','block')}">
+                <apex:pageMessages />
+                <apex:commandButton styleClass="slds-button slds-button_neutral" style="margin-left:45%; " action="{!returnToListView}" value="Back"/>
+            </div>
+
+            <!-- Lightning -->
+
+            <div class="slds-backdrop slds-backdrop_open" style="background:#ffffff; display:{!IF(!complete,'flex','none')}">
+                <div class="slds-align_absolute-center">
+                    <div style="margin-left:-100px;" role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                    <div><div class="slds-text-heading_large" style="font-weight:700;margin-left:50px">Setting Flags</div></div>
+                </div>
+            </div>
+        </apex:form>
+    </div>
+    <script>
+        if({!!complete}) {
+            setFlags();
+        }
+    </script>
+</apex:page>

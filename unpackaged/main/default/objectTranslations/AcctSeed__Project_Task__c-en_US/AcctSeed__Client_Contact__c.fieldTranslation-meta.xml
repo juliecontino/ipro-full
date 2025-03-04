@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Client Contact --></label>
+        <name>AcctSeed__Client_Contact__c</name>
+        <relationshipLabel><!-- Project Tasks --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The foreign amount associated with the source document if applicable. --></help>
+        <label><!-- Foreign Amount --></label>
+        <name>AcctSeed__Foreign_Amount__c</name>
+    </CustomFieldTranslation>

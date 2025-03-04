@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__All</fullName>
+    <columns>NAME</columns>
+    <columns>zkfedex__Weight__c</columns>
+    <columns>zkfedex__UnitPrice__c</columns>
+    <columns>zkfedex__Quantity__c</columns>
+    <columns>zkfedex__Description__c</columns>
+    <columns>zkfedex__DocumentCommodityDescription__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

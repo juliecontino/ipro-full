@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__SelectedSignatureOption__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Selected Signature Option</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adult Signature Required</fullName>
+                <default>false</default>
+                <label>Adult Signature Required</label>
+            </value>
+            <value>
+                <fullName>Direct Signature Required</fullName>
+                <default>false</default>
+                <label>Direct Signature Required</label>
+            </value>
+            <value>
+                <fullName>Indirect Signature Required</fullName>
+                <default>false</default>
+                <label>Indirect Signature Required</label>
+            </value>
+            <value>
+                <fullName>No Signature Required</fullName>
+                <default>false</default>
+                <label>No Signature Required</label>
+            </value>
+            <value>
+                <fullName>Service Default</fullName>
+                <default>false</default>
+                <label>Service Default</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

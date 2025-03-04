@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Time Card Variable 1 --></label>
+        <lookupFilter>
+            <errorMessage><!-- The Accounting Variable must have a Type of &quot;Time Card Variable 1&quot;. --></errorMessage>
+        </lookupFilter>
+        <name>AcctSeed__Time_Card_Variable_1__c</name>
+        <relationshipLabel><!-- Time Card Lines --></relationshipLabel>
+    </CustomFieldTranslation>

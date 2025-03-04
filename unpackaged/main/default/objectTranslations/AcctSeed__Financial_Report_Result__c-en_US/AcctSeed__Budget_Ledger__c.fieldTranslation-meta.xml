@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The bu --></help>
+        <label><!-- Budget Ledger --></label>
+        <name>AcctSeed__Budget_Ledger__c</name>
+        <relationshipLabel><!-- Financial Statement Results (Budget Ledger) --></relationshipLabel>
+    </CustomFieldTranslation>

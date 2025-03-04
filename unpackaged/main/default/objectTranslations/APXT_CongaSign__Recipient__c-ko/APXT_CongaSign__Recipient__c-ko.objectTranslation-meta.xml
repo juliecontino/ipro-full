@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Conga Sign 수신자</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Recipient Layout</layout>
+        <sections>
+            <label>사용자 지정 링크</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>이유 섹션</label>
+            <section>Reason Section</section>
+        </sections>
+        <sections>
+            <label>수신자 정보</label>
+            <section>Recipient Details</section>
+        </sections>
+        <sections>
+            <label>수신자 응답</label>
+            <section>Recipient Response</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>수신자 이름</nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- You cannot Reparent this record. --></errorMessage>
+        <name>APXT_CongaSign__Prevent_Reparent</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Reassign --></label>
+        <name>APXT_CongaSign__Reassign</name>
+    </webLinks>
+</CustomObjectTranslation>

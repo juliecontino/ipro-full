@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <icon>FLAGS__Case_Flags_Documents/FLAGS__Case_Flags_Icon.png</icon>
+    <label>Case Flags Setup Wizard</label>
+    <motif>Custom228: TV Widescreen</motif>
+    <page>FLAGS__SetupWiz</page>
+</CustomTab>

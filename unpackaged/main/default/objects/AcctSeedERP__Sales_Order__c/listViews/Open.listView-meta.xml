@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>NAME</columns>
+    <columns>Received_by_Accounting__c</columns>
+    <columns>AcctSeedERP__Customer__c</columns>
+    <columns>AcctSeedERP__Status__c</columns>
+    <columns>Case__c</columns>
+    <columns>AcctSeedERP__Opportunity__c</columns>
+    <columns>Billing__c</columns>
+    <columns>AcctSeedERP__Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Billing__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>AcctSeedERP__Status__c</field>
+        <operation>equals</operation>
+        <value>Open,Submitted,Ready for Pickup</value>
+    </filters>
+    <label>Open or Submitted or Ready for Pickup</label>
+    <language>en_US</language>
+</ListView>

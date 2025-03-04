@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__customLinksOnReadMode__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Format: salesforce_field~salesforce_field_ID#salesforce_field~salesforce_field_ID..
+The "salesforce_field_ID" will be the link on the text of "salesforce_field"</inlineHelpText>
+    <label>customLinksOnReadMode</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,24 @@
+<apex:page standardController="AcctSeedERP__Inventory_Balance__c" title="Inventory Balance | Accounting Seed" recordSetVar="invBal" extensions="AcctSeedERP.InventoryBalanceHistory" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+    </script>
+    <apex:form id="formBalanceHistory">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeedERP__Inventory_Balance__c.label}" subtitle="Create {!$ObjectType.AcctSeedERP__Inventory_Balance_History__c.label}" />
+        <apex:pageBlock id="pageblock" title="Create {!$ObjectType.AcctSeedERP__Inventory_Balance_History__c.label}">
+            <apex:pageMessages id="messages" escape="false"/>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onStart="AcctSeed.ASModule.disableButtons('Processing...')"/>
+                <apex:commandButton id="createHistory" value="Create History" status="saveStatus" action="{!createHistory}" reRender="formBalanceHistory" rendered="{!!isError}"/>
+                <apex:commandButton id="cancel" value="Back" action="{!cancel}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection collapsible="false" rendered="{!!isError}">
+                <apex:inputField styleClass="date_field" id="inputDate" label="{!$ObjectType.AcctSeedERP__Inventory_Balance_History__c.fields.AcctSeedERP__Date__c.label}" value="{!invBalHistoryPlaceholder.AcctSeedERP__Date__c}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

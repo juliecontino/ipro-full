@@ -1,0 +1,137 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Purchase_Order__c" title="{!AcctSeedERP__Purchase_Order__c.Name & ' | Accounting Seed'}"
+           extensions="AcctSeedERP.PurchaseOrderReceive,AcctSeedERP.EnvironmentUtils"
+           sidebar="false" lightningStylesheets="true">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/moment-with-locales.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/purchase-order-receive.js')}" loadOnReady="true"/>
+
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+        AcctSeed.ASModule.getLocationsByWarehousesAction = '{!$RemoteAction.PurchaseOrderReceive.getLocationsByWarehouses}';
+        AcctSeed.ASModule.getCurrencyConversionRateByDateAction = '{!$RemoteAction.PurchaseOrderReceive.getCurrencyConversionRateByDate}';
+        function setFocusOnLoad() {}
+    </script>
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Purchase Order" subtitle="{!AcctSeedERP__Purchase_Order__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Purchase Order Receive">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')"/>
+                <apex:commandButton id="recalcButton" value="Save & Refresh" action="{!saveRefresh}"
+                                    status="saveStatus"
+                                    onComplete="AcctSeed.ASModule.setLocationsAfterRerender();"
+                                    reRender="theForm"
+                                    rendered="{!showButtons}" />
+                <apex:commandButton id="saveButton"
+                                    value="Save & Complete"
+                                    action="{!saveComplete}"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!showButtons}"
+                                    onComplete="AcctSeed.ASModule.setLocationsAfterRerender();" />
+                <apex:commandButton id="cancelButton" value="Back" action="/{!Purchase_Order__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageMessage severity="info" strength="3" summary="You must receive the entire quantity for each line in order to both allocate and ship the purchase order line" rendered="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Type__c='Drop Shipment'}" />
+            <apex:pageMessages escape="false" />
+            <div id="responseErrors"></div>
+            <apex:pageBlockSection columns="2" rendered="{!!nothingToReceive && NOT(ISBLANK(AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c)) && poWrapper.purchaseOrderLineWrapper.size>0}">
+                <apex:outputField value="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c}" />
+                <apex:pageBlockSectionItem rendered="{!showButtons}">
+                    <apex:outputLabel value="Receive Date" />
+                    <apex:inputField id="poReceiveDate" value="{!poWrapper.poReceiveDate.AcctSeedERP__Order_Date__c}" onchange="AcctSeed.ASModule.getCurrencyConversionRateByDate()"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!!showButtons}">
+                    <apex:outputLabel value="Receive Date" />
+                    <apex:outputField value="{!poWrapper.poReceiveDate.AcctSeedERP__Order_Date__c}" />
+                </apex:pageBlockSectionItem>
+                <apex:outputField value="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Ledger__c}" />
+                <apex:outputField value="{!poWrapper.purchaseOrder.AcctSeedERP__Initial_Receive_Date__c}" rendered="{!isMultiCurrencyEnabled}"/>
+                <apex:outputText />
+                <apex:inputField id="currencyConversionRate" value="{!poWrapper.purchaseOrder.AcctSeedERP__Currency_Conversion_Rate__c}" rendered="{!isMultiCurrencyEnabled && ISBLANK(poWrapper.purchaseOrder.AcctSeedERP__Initial_Receive_Date__c) && !poWrapper.initialCCR}" required="true"/>
+                <apex:outputField value="{!poWrapper.purchaseOrder.AcctSeedERP__Currency_Conversion_Rate__c}" rendered="{!isMultiCurrencyEnabled && poWrapper.initialCCR}"/>
+                <apex:outputText />
+            </apex:pageBlockSection>
+            <apex:pageBlockTable id="pageBlockTable" value="{!poWrapper.purchaseOrderLineWrapper}" cellpadding="6" var="pow" rendered="{!!nothingToReceive && NOT(ISBLANK(AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c)) && poWrapper.purchaseOrderLineWrapper.size>0}">
+                <apex:column value="{!pow.poLine.Name}" headerValue="{!$ObjectType.AcctSeedERP__Purchase_Order_Line__c.fields.Name.label}" headerClass="align-top" style="width:30px;vertical-align:top" />
+                <apex:column headerValue="Product Name" value="{!pow.poLine.Product__r.Name}" headerClass="align-top" style="width:30px;vertical-align:top" />
+                <apex:column headerValue="Product Code" value="{!pow.poLine.Product__r.ProductCode}" headerClass="align-top" style="width:30px;vertical-align:top" />
+                <apex:column headerValue="Warehouse" headerClass="align-top" style="width:30px;vertical-align:top;">
+                    <apex:facet name="header">
+                        <apex:outputPanel layout="block">
+                        Warehouse
+                        <br/>
+                        <apex:outputPanel rendered="{!showButtons}">All:&nbsp;</apex:outputPanel>
+                            <apex:selectList id="allWarehouse" label="warehouse"
+                                             value="{!selectedWarehouse}"
+                                             size="1"
+                                             onchange="AcctSeed.ASModule.setLocationAllFromWarehouseAll()"
+                                             rendered="{!showButtons}">
+                                <apex:selectOptions value="{!warehouses}" />
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:facet>
+                    <apex:selectList id="warehouse" value="{!pow.selectedWarehouse}" onchange="AcctSeed.ASModule.setLocationFromWarehouse(this)" size="1" rendered="{!pow.poLine.AcctSeedERP__Quantity_Unreceived__c>0}">
+                        <apex:selectOptions value="{!warehouses}" />
+                    </apex:selectList>
+                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!pow.isNoWarehouseError}">
+                        <strong>Error:</strong> You must enter a value
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Location" style="width:30px;vertical-align:top">
+                    <apex:facet name="header">
+                        <apex:outputPanel id="allLocationsPanel" layout="block">
+                            Location
+                            <br/>
+                            <apex:outputPanel rendered="{!showButtons}">All:&nbsp;
+                                <select id="allLocations"
+                                        onchange="AcctSeed.ASModule.setSelectedLocation(this);AcctSeed.ASModule.setAllLocations()"
+                                        size="1">
+                                </select>
+                                <apex:inputHidden id="selectedLocationAllId" value="{!selectedLocation}"/>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:facet>
+                    <apex:outputPanel id="locationPanel" rendered="{!pow.poLine.AcctSeedERP__Quantity_Unreceived__c>0}">
+                        <select id="location" onchange="AcctSeed.ASModule.setSelectedLocation(this)"></select>
+                        <apex:inputHidden id="selectedLocationId" value="{!pow.selectedLocation}" />
+                    </apex:outputPanel>
+                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!pow.isNoLocationError}">
+                        <strong>Error:</strong> You must enter a value
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.AcctSeedERP__Purchase_Order_Line__c.fields.AcctSeedERP__Quantity_Received__c.label}" styleClass="align-right" headerClass="align-right align-top" value="{!pow.poLine.AcctSeedERP__Quantity_Received__c}" style="width:30px;vertical-align:top" />
+                <apex:column headerValue="{!$ObjectType.AcctSeedERP__Purchase_Order_Line__c.fields.AcctSeedERP__Quantity_Unreceived__c.label}" styleClass="align-right" headerClass="align-right align-top" style="width:30px;vertical-align:top">
+                    <apex:outputField id="quantityUnreceived"  value="{!pow.poLine.AcctSeedERP__Quantity_Unreceived__c}"/>
+                </apex:column>
+                <apex:column styleClass="align-right" headerClass="align-right align-top" style="width:100px;vertical-align:top;">
+                    <apex:facet name="header">  
+                        <apex:outputPanel layout="block">                   
+                            Quantity
+                            <br/>
+                            <apex:outputPanel rendered="{!showButtons}">All:&nbsp;</apex:outputPanel>
+                            <apex:selectList id="quantityAll" value="{!selectedQuantityOption}" size="1" onchange="AcctSeed.ASModule.setQuantityAll()">
+                                <apex:selectOption itemValue="No" itemLabel="No" />
+                                <apex:selectOption itemValue="Yes" itemLabel="Yes" />
+                            </apex:selectList>
+                        </apex:outputPanel>                
+                    </apex:facet>
+                    <apex:inputField id="quantity" styleClass="align-right" style="width:100px"
+                                     value="{!pow.poim.AcctSeedERP__Quantity__c}"
+                                     required="false"
+                                     rendered="{!pow.poLine.AcctSeedERP__Quantity_Unreceived__c>0}" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:outputField value="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Type__c}" rendered="false" />
+    </apex:form>
+    <input type="hidden" id="ledgerId" value="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Ledger__c}"/>
+    <input type="hidden" id="isoCode" value="{!IF(isMultiCurrencyEnabled,Purchase_Order__c['CurrencyIsoCode'],'')}"/>
+</apex:page>

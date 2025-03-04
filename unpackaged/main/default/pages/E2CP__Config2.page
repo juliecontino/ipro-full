@@ -1,0 +1,4 @@
+<apex:page title="Email to Case Premium Outbound Configuration" sidebar="false">
+    <meta http-equiv="refresh" content="0;url=/lightning/n/E2CP__Email_to_Case_Premium_Setup" />
+    <apex:pageMessage severity="error" strength="3" summary="This setup experience has been deprecated, please use the Email to Case Premium Setup tab to configure the application." escape="false" />
+</apex:page>

@@ -1,0 +1,289 @@
+div.CA_event_detail{
+/*    background: #eee;*/
+}
+
+    div.CA_event_detail > div{
+/*        cursor: pointer;*/
+        border-bottom:1px solid #ddd;
+        font-size: 120%;
+        padding:5px;
+        min-width: 250px;
+    }
+div.CA_event_detail > .title {
+    font-size: 100%;
+}
+
+    div.CA_event_detail > .title > .calendar {
+        /*font-size: 110%;*/
+        font-weight: bold;
+        display: block;
+    }   
+    
+div.CA_event_detail > .event_title{
+    color:#555555;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 130%;
+    border-bottom: 0px;
+}
+    div.CA_event_detail > .event_title > .dates{
+        display: block;
+        font-size: 85%;
+        font-weight: normal;
+        
+    }
+    
+div.CA_event_detail > .message{
+    margin-top: 3px;
+    display: none;
+    background-color: #FC0;
+    padding:3px;
+    border-radius: 3px;
+    border:1px solid #ddd;
+}
+div.CA_event_detail > .message.show{
+    display: block;
+}
+
+div.CA_event_detail > .tabs{
+    display: block;
+    padding:0;
+    white-space: nowrap;
+}
+
+    div.CA_event_detail > .tabs > span{
+        display: inline-block;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border:1px solid #ddd;
+        padding:1px 2px;
+        cursor: pointer;
+    }
+    
+    div.CA_event_detail > .tabs > span._on{
+        background-color: #eee;
+    }
+
+
+div.CA_event_detail > .fields{
+    border:1px solid #ddd;
+    border-radius: 3px;
+    margin-top:5px;
+    overflow: auto;
+    min-height:30px;
+    max-height:250px;
+    -ms-user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text; 
+    user-select: text;
+}
+
+div.CA_event_detail > .fields._hide{
+    display:none;
+}
+
+    div.CA_event_detail > .fields > div{
+            margin-top:2px;
+            border-top: 1px solid #ddd;
+            overflow:hidden;
+            vertical-align:text-top;
+        }
+
+        div.CA_event_detail > .fields > div:first-child{
+            border-top:0px;
+        }
+        
+            div.CA_event_detail > .fields > div > span{
+                display:inline-block;
+                vertical-align:text-top;
+                border-left:1px solid #ddd;
+                font-size: 100%;
+                padding:1px;
+                width:200px;
+                box-sizing: border-box;
+/*                background-color:#eee; */
+            }
+
+            div.CA_event_detail > .fields > div > span:first-child{
+                margin-right:5px;
+                background-color:#fff; 
+                border-left:0px;
+                font-weight: bold;
+                width:100px;
+                padding:3px;
+                min-width:100px;
+                border-left:0px;
+            }
+            
+        div.CA_event_detail  div.buttons{
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+            div.CA_event_detail  div.buttons > span{
+                font-size: 100%;
+                font-weight: bolder;
+                margin:5px 10px;
+                width:auto !important;
+                min-width: none;
+                border-radius: 5px;
+                line-height:15px;
+                cursor: pointer;
+                display: inline-block;
+                padding:3px 5px;
+                background: #DDDDDD;
+                background: -moz-linear-gradient( top , #FFFFFF 0%, #DDDDDD 100%) ;
+                background: -webkit-linear-gradient(top , #FFFFFF 0%, #DDDDDD 100%) ;
+                background: -ms-linear-gradient( top , #FFFFFF 0%, #DDDDDD 100%) ;
+                background: -o-linear-gradient(top , #FFFFFF 0%, #DDDDDD 100%) ;
+                background: linear-gradient(top , #FFFFFF 0%, #DDDDDD 100%) ;
+                border: 1px solid #DDDDDD;
+            }
+
+            div.CA_event_detail div.buttons > span:hover{
+                background: #eeeeee;
+                background: -moz-linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+                background: -webkit-linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+                background: -ms-linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+                background: -o-linear-gradient(top , #dddddd 0%, #FFFFFF 100%);
+                background: linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+            }
+            div.CA_event_detail._no_edit div.buttons > span[data-action="edit"],
+            div.CA_event_detail._no_delete div.buttons > span[data-action="delete"],
+            div.CA_event_detail._info_loading div.buttons > span[data-action]{
+                display: none;
+            }
+            
+            
+    div.CA_event_detail > .fields > table{
+        width:100%;
+        border:0;
+        border-collapse: collapse;
+        padding:0;
+    }
+    
+        div.CA_event_detail > .fields > table > tbody{
+/*            border-top:1px solid #ddd;
+            border-bottom:1px solid #ddd;*/
+        }
+        
+            div.CA_event_detail > .fields > table > tbody > tr{
+                border-top:1px solid #ddd;
+            }
+            
+            div.CA_event_detail > .fields > table > tbody > tr:first-child{
+                border-top:0px;
+            }
+                div.CA_event_detail > .fields > table > tbody > tr > td{
+                    border-left:1px solid #ddd;
+                    padding:2px;
+                    font-size:90%;
+                    border-right:4px solid #ddd;
+                    max-width: 350px;
+                }
+                
+                div.CA_event_detail > .fields > table > tbody > tr > td:first-child{
+                    font-size: 85%;
+                    background:#fafafa;
+                    border-left:0px;
+                    border-right:0px;
+                    text-align: right;
+                    font-weight: bolder;
+                    border-top:1px solid #eee;
+                }
+                
+                div.CA_event_detail > .fields > table > tbody > tr > td:last-child{
+                    border-right:0px;
+                }
+                
+                div.CA_event_detail > .fields > table > tbody > tr.object_title > td:first-child{
+                    font-weight: bolder;
+                    padding-top:5px;
+                }
+                
+                /*div.CA_event_detail > .fields > table > tbody > tr > td > a[data-action]{*/
+                div.CA_event_detail > .fields > table > tbody > tr > td > a._menu{
+                    cursor: pointer;
+                    text-decoration: none;
+                    line-height: 15px;
+                    display:inline-block;
+                    margin-right:10px;
+                    border:1px solid #ddd;
+                    border-radius: 3px;
+                    padding:4px 24px 4px 4px;
+                    box-shadow: inset 0 0 5px #aaa;
+                    background-image: url("../pic/type_calendars.png");
+                    background-position: right -76px;
+                    background-repeat: no-repeat;                    
+                    
+                }
+                
+                /*div.CA_event_detail > .fields > table > tbody > tr > td > a[data-action]:hover{*/
+                div.CA_event_detail > .fields > table > tbody > tr > td > a._menu:hover{
+                    background-color: #ddd;
+                }
+                
+                div.CA_event_detail > .fields > table > tbody > tr > td > .event_title{
+                    cursor: pointer;
+                    font-weight: bolder;
+                }
+                
+            div.CA_event_detail > .fields > table > tbody > tr.object_title{
+                border-top:10px solid #ddd;
+            }
+    
+            
+div.CA_event_detail > ._child{
+    min-height: 200px;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 350px;
+}
+
+    div.CA_event_detail > ._child > table{
+        width: 100%;
+        border-collapse: collapse;
+        padding:0;
+        border:0;
+    }
+    
+        div.CA_event_detail > ._child > table thead th,
+        div.CA_event_detail > ._child > table tfoot th{
+            font-weight: bolder;
+            font-size: 12px;
+            background: #eee;
+        }
+        
+/*            div.CA_event_detail > ._child > table tfoot th a,
+            div.CA_event_detail > ._child > table tfoot th span{
+                cursor: pointer;
+            }*/
+        div.CA_event_detail > ._child > table tfoot th{
+            text-align: center;
+        }
+        
+        div.CA_event_detail > ._child > table tbody td{
+            font-size: 12px;
+            border:1px solid #ddd;
+        }
+        
+        div.CA_event_detail > ._child > table tbody td a{
+            text-decoration: underline;
+            color:#333435;
+        }
+        div.CA_event_detail > ._child > table tbody td a:hover{
+            color: #015ba7;
+        }
+        
+        
+        div.CA_event_detail > ._child > table tbody tr{
+            background: #fff;
+        }
+        div.CA_event_detail > ._child > table tbody tr:nth-child(even){
+            background: #eee;
+        }
+        
+div.CA_event_detail > ._addon{
+    min-height: 200px;
+    position: relative;
+}        

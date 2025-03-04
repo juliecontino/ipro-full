@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__All</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Effective_From__c</columns>
+    <columns>AcctSeed__Effective_To__c</columns>
+    <columns>AcctSeed__From_Currency_Code__c</columns>
+    <columns>AcctSeed__To_Currency_Code__c</columns>
+    <columns>AcctSeed__Exchange_Rate__c</columns>
+    <columns>AcctSeed__Rate_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,29 @@
+<apex:page id="thePage" standardController="AcctSeed__Journal_Entry__c" title="{!AcctSeed__Journal_Entry__c.Name & ' | Accounting Seed'}" extensions="AcctSeed.JournalEntryDeepClone" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script>
+        function setFocusOnLoad() {}
+    </script>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Reverse Clone {!$ObjectType.AcctSeed__Journal_Entry__c.label}" subtitle="{!AcctSeed__Journal_Entry__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Clone {!$ObjectType.AcctSeed__Journal_Entry__c.label}">
+            <apex:pageMessage summary="The reverse clone function will clone the {!$ObjectType.AcctSeed__Journal_Entry__c.label} and all associated {!$ObjectType.AcctSeed__Journal_Entry__c.label} Lines. The reverse clone additionally reverses the debit and credit lines in the cloned {!$ObjectType.AcctSeed__Journal_Entry__c.label}." severity="info" strength="3" />
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...');"/>
+                <apex:commandButton action="{!reverseCloneJournalEntry}"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    value="Reverse Clone {!$ObjectType.AcctSeed__Journal_Entry__c.label}"/>
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1">
+                <apex:inputField label="Journal Date" value="{!tempJournalEntry.AcctSeed__Journal_Date__c}"/>
+                <apex:inputField value="{!tempJournalEntry['CurrencyIsoCode']}" rendered="{!isMultiCurrencyEnabled}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

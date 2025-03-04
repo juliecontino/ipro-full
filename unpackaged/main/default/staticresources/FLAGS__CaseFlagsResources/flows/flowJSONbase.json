@@ -1,0 +1,63 @@
+{
+    "fullName":"Case_Flags_Auto_Flow",
+    "interviewLabel": "Case Flags - Follow-Up Process {!$Flow.CurrentDateTime}",
+    "label": "Case Flags - Follow-Up Process",
+      "actionCalls": {
+      "name": "Follow_Up_Action",
+      "label": "Set Flag and clear Follow-Up",
+      "description": "This action sets the flag and clears the Follow-Up Date and Time.",
+      "locationX": "308",
+      "locationY": "276",
+      "actionName": "FLAGS__InvocableFollowUpFlow",
+      "actionType": "apex",
+      "flowTransactionModel": "CurrentTransaction",
+      "inputParameters": {
+        "name": "caseId",
+        "value": {
+          "elementReference": "$Record.Id"
+        }
+      }
+    },
+    "apiVersion": "58.0",
+    "processMetadataValues": [
+      {
+        "name": "BuilderType",
+        "value": {
+          "stringValue": "LightningFlowBuilder"
+        }
+      },
+      {
+        "name": "CanvasMode",
+        "value": {
+          "stringValue": "AUTO_LAYOUT_CANVAS"
+        }
+      },
+      {
+        "name": "OriginBuilderType",
+        "value": {
+          "stringValue": "LightningFlowBuilder"
+        }
+      }
+    ],
+    "processType": "AutoLaunchedFlow",
+    "start": {
+      "locationX": "50",
+      "locationY": "0",
+      "filterFormula": "OR({!$Setup.FLAGS__FlagPref__c.FLAGS__Organization_Wide__c}, {!$Record.FLAGS__Enable_Case_Flags__c})",
+      "object": "Case",
+      "recordTriggerType": "CreateAndUpdate",
+      "scheduledPaths": {
+        "name": "Set_Flag",
+        "connector": {
+          "targetReference": "Follow_Up_Action"
+        },
+        "label": "Set Flag if time met",
+        "offsetNumber": "0",
+        "offsetUnit": "Minutes",
+        "recordField": "ClosedDate",
+        "timeSource": "RecordField"
+      },
+      "triggerType": "RecordAfterSave"
+    },
+    "status": "Active"
+}

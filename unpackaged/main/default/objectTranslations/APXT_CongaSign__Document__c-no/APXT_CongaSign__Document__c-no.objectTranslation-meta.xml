@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <article>Definite</article>
+        <plural>false</plural>
+        <value>Conga Sign-dokument</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>false</plural>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>false</plural>
+    </caseValues>
+    <caseValues>
+        <article>Definite</article>
+        <plural>true</plural>
+        <value>Conga signerer dokumenter</value>
+    </caseValues>
+    <caseValues>
+        <article>None</article>
+        <plural>true</plural>
+    </caseValues>
+    <caseValues>
+        <article>Indefinite</article>
+        <plural>true</plural>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Document Layout</layout>
+        <sections>
+            <label>Egendefinerte lenker</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Dokument navn</nameFieldLabel>
+    <webLinks>
+        <label><!-- Download_File --></label>
+        <name>APXT_CongaSign__Download_File</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_ContentDocument --></label>
+        <name>APXT_CongaSign__View_ContentDocument</name>
+    </webLinks>
+</CustomObjectTranslation>

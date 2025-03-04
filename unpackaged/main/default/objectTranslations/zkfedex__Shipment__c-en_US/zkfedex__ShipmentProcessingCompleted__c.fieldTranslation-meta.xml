@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Indicates whether Shipmate was able to successfully complete the shipment processing with the shipping carrier. --></help>
+        <label><!-- Shipment Processing Completed --></label>
+        <name>zkfedex__ShipmentProcessingCompleted__c</name>
+    </CustomFieldTranslation>

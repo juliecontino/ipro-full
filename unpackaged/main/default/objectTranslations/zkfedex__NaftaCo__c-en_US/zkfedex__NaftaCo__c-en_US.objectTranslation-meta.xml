@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>FedEx NAFTA CO Layout</layout>
+        <sections>
+            <label><!-- Blanket Period --></label>
+            <section>Blanket Period</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Producer Information --></label>
+            <section>Producer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Signature Contact Information --></label>
+            <section>Signature Contact Information</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

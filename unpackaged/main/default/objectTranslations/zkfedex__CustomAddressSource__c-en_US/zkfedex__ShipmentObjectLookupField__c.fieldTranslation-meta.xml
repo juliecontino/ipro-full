@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The field created on the Shipment object that is a lookup to the mapped custom object. --></help>
+        <label><!-- Shipment Object Lookup Field --></label>
+        <name>zkfedex__ShipmentObjectLookupField__c</name>
+    </CustomFieldTranslation>

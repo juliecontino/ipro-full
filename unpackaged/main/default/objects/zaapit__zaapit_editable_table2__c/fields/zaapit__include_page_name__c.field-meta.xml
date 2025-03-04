@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__include_page_name__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Page to include on the top of the table.</description>
+    <inlineHelpText>Page to include on the top of the table.</inlineHelpText>
+    <label>include page name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

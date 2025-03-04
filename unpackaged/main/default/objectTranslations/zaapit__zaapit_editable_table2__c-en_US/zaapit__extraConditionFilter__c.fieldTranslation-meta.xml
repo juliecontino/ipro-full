@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Write a SQL (SOQL) optional condition.
+Example: price&gt;0 --></help>
+        <label><!-- extraConditionFilter --></label>
+        <name>zaapit__extraConditionFilter__c</name>
+    </CustomFieldTranslation>

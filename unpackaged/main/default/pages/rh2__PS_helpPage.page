@@ -1,0 +1,550 @@
+<apex:page standardStylesheets="false" title="Rollup Helper Help Page"  sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+     <head> 
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+     <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/modernizr-1.7.min.js') }"/>
+    
+     <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+     <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />
+     <apex:stylesheet value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.css')}" />
+     <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/hs_breadcrumbs.js')}" />
+	 <apex:stylesheet value="{!URLFOR($Resource.rh2__PT_Resources_v1, '/css/grayBackground.css')}" />
+
+     <style type="text/css">
+     	li>ul.faq-inner-list {
+     		margin-top: 16px;
+     		list-style-type: square;
+     	}
+     	li>ul.faq-inner-list>li {
+     		margin-left: 38px;
+     	}
+     </style>
+     
+     </head> 
+     
+     <script>
+     	$(document).ready(function(){
+			whiteBackground();
+			var rootPage = sessionStorage.getItem('rootPage') || 'home';
+			selectBreadcrumb_HS();
+			openSourceObjAnswer();
+        });
+
+		function openSourceObjAnswer() {
+			var urlParams = new URLSearchParams(window.location.search);
+			if (urlParams.has('sObjQ')) {
+				selectTab(1);
+			}
+		}
+
+		function whiteBackground() {
+			document.getElementById('tabWrapper').style="background-color: white !important";
+			document.getElementById('innerTab').style="background-color: white; margin-top: -10px;";
+		}
+
+     	function selectTab(tabIndex){
+			if(tabIndex == 3 || tabIndex == 4){
+				document.getElementById('tabWrapper').style="background-color: #f4f6f9";
+				document.getElementById('innerTab').style="background-color: #f4f6f9; margin-top: -10px;";
+			}
+			else{
+				whiteBackground();
+			}
+     		var selectTabName = 'tab' + tabIndex;
+     		var selectTabContent = 'tab-default-' + tabIndex;
+
+     		document.getElementById(selectTabName).className = "slds-tabs__item slds-text-heading_label slds-active";
+     		document.getElementById(selectTabContent).className="slds-tabs__content slds-show";
+
+     		for(i = 0; i < 5; i++){
+     			if(i === tabIndex){
+     				continue;
+     			}
+
+     			var deselectTabName = 'tab' + i;
+     			var deselectTabContent = 'tab-default-' + i;
+
+     			document.getElementById(deselectTabName).className = 'slds-tabs__item slds-text-heading_label';
+     			document.getElementById(deselectTabContent).className = 'slds-tabs__content slds-hide';
+     		}
+
+     	}
+
+     </script>
+     <apex:slds />
+     <div class="slds-scope" role="main"> 
+
+     	<div class="slds-card grayBackground">
+  				<header class="slds-card__header">
+	       			<nav role="navigation">
+    					<ol class="slds-breadcrumb slds-list_horizontal">
+    						<li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!URLFOR($Page.PS_landingPage)}">Home</a></li>
+   		   					<li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.PS_Allsettings)}">All Rollup Settings</a></li>
+       					</ol>
+        			</nav>
+  				</header>
+  			</div>
+ 
+    	<div class="slds-card grayBackground"  id="tabWrapper">
+    		<header class="slds-card__header slds-text-heading_small slds-theme_alt-inverse">
+    			<h1 class="slds-text-heading_large">Help &amp; FAQ</h1>
+    		</header>
+    		<section class="slds-card__body slds-theme_default">
+	     	<div class="slds-tabs_default" id="innerTab">
+			  <ul class="slds-tabs_default__nav" role="tablist" style="background-color: #fff !important">
+				<li id="tab0" class="slds-tabs__item slds-text-heading_label slds-active" title="Admin Guide" role="presentation"><a href="#" onclick="selectTab(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-0">Admin Guide</a></li>
+			    <li id="tab1" class="slds-tabs__item slds-text-heading_label" title="FAQ" role="presentation"><a href="#" onclick="selectTab(1);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-1">FAQ</a></li>
+			    <li id="tab2" class="slds-tabs__item slds-text-heading_label" title="Troubleshooting Tips" role="presentation"><a href="#" onclick="selectTab(2);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2">Troubleshooting Tips</a></li>
+			    <li id="tab3" class="slds-tabs__item slds-text-heading_label" title="Help Videos" role="presentation"><a href="#" role="tab" onclick="selectTab(3);" tabindex="-1" aria-selected="false" aria-controls="tab-default-3">Help Videos</a></li>
+			    <li id="tab4" class="slds-tabs__item slds-text-heading_label" title="Update Links" role="presentation"><a href="#" role="tab" onclick="selectTab(4);" tabindex="-1" aria-selected="false" aria-controls="tab-default-4">Update Links</a></li>
+				</ul>
+				<div id="tab-default-0" class="slds-tabs__content slds-show" role="tabpanel">
+					<c:PS_AdminGuide /> 
+						
+				</div>
+			  <div id="tab-default-1" class="slds-tabs__content slds-hide" role="tabpanel">
+			  
+				    <script>
+			         	var rh = rh || {};
+			    		rh.j$ = jQuery.noConflict();
+			            rh.j$(function() {
+							var urlParams = new URLSearchParams(window.location.search);
+							if (urlParams.has('sObjQ')) {
+								rh.j$( "#faq" ).accordion({ collapsible: true, active: 5, heightStyle: "content"});
+							} else {
+								rh.j$( "#faq" ).accordion({ collapsible: true, active: false, heightStyle: "content"});
+							}
+						});
+		        	</script>
+		      
+		     
+		     
+		     		<apex:actionRegion > 
+		                
+		              <div>										
+
+										<div id="faq" > 
+		               						<h3>How do I enable realtime for my rollups?</h3>
+											<div>
+													In most cases, you can use the <a href="{!URLFOR($Page.PS_Select_Object)}">Enable Realtime Tab</a>.<br/><br/>
+													<strong>If you are unable to enable realtime on a Salesforce standard object </strong> due to lack of access to the Metadata API, you can utilize one of our trigger extension packages: <br/><br/>
+													<ul class="slds-list_dotted">
+														<li>RHX PE Extensions: Contains trigger code for Attachment, Case, Case Comment, Lead, Opportunity, Note, Asset, Campaign, Campaign Member, Contract, Opportunity Line Item, Product, Quote, Quote Line Item, and Solution.
+															<ul class="slds-list_dotted"> 
+																<li><a href="http://rhx-pro.passagetech.com" target="_blank">Production</a></li>
+																<li><a href="http://rhx-pro-test.passagetech.com" target="_blank">Sandbox</a></li>
+															</ul>
+														</li>
+														<li>RHX PE Extensions, No Quotes: Contains trigger code for everything above minus Quotes and Quote Line Items. 
+															<ul class="slds-list_dotted">
+																<li><a href="http://rhx-pro-nq.passagetech.com" target="_blank">Production</a></li>
+																<li><a href="http://rhx-pro-nq-test.passagetech.com" target="_blank">Sandbox</a></li>
+															</ul>
+														</li>										
+													</ul><br/>
+													<strong>If you are unable to enable realtime on a Custom object</strong> due to lack of access to the Metadata API, you may contact <a href="mailto:support@passagetech.com">Passage Technology support</a> for assistance in implementing a workaround Visualforce page "trigger", or you may view our <a href="https://docs.google.com/document/d/1wJFq4FP6d3wz55J41j4YF8-wXNpIlX5Geh1cCwE92b4/view#heading=h.km36w3b2jste" target="_blank">developer guide</a> for instructions on how to implement one yourself.
+											</div>
+
+											<h3>How do I get visibility to exceptions that have occurred in my organization?</h3>
+											<div>
+													You can view your Rollup Helper exceptions <a href="{!URLFOR($Page.PS_viewExceptions)}">here</a>.
+											</div>	
+											<h3>What should I do to ensure my rollups stay accurate when Salesforce has a read-only maintenance window?</h3>
+											<div>
+													During a read-only maintenance window, Rollup Helper will not be able to modify any records in your organization. In order to ensure your rollup values will be accurate after the read-only maintenance completes, you can: <br/>
+													<ul class="slds-list_dotted">
+														<li>Modify any schedules that would normally process during the maintenance window to process after the maintenance has completed.</li>
+														<li>Restart any manual runs that may have been processing during the maintenance window.</li> 
+														<li>Contact <a href="mailto:support@passagetech.com">Passage Technology support</a> if you have any questions.</li>
+													</ul>  
+											</div>
+											<h3>Rollup Helper is changing the Last Modified By user on some of my records.  Why?</h3>
+											<div>
+													Because Rollup Helper rolls up into standard fields, updating rollup calculations requires a DML update to any
+													parent record(s) every time the target field value has changed.  This will cause the last modified user / date system fields
+													to update as well.
+													
+													<br/>For additional information, please view our knowledge article on the&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Helper-Last-Modified-By-Running-User">Last Modified By/Running User</apex:outputLink>.
+											</div>
+											<h3>I am receiving a pop-up telling me to schedule my rollup with a date filter.  Why?</h3>
+											<div>
+													Rollups with a date filter often times need to be scheduled to remain accurate.  The frequency of the date rollups should 
+													be scheduled based on two factors: purpose of the data and relative frequency with which each child record is updated.  If the data is used for a monthly snapshot of Opportunity data, for example, then the rollup should be scheduled to run before the reporting snapshot runs.<br/><br/>
+
+													Without a schedule, if a child record is not updated for a long period of time and eventually no longer matches the defined date criteria, if no database update is triggered the rollup will not run to recalculate the results.<br/><br/>
+
+													Please note that this mostly applies to filters that use SOQL date literals such as LAST_WEEK or THIS_YEAR.  If you're filtering based on a relatively static date and a defined date range, a schedule may not be necessary.  An example of a date filter that may not necessitate a schedule would be Opportunities created in July 2016. <br/><br/>
+
+													If you need assistance determining whether a schedule is necessary for your rollup, please feel free to contact our support team at support@passagetech.com.
+											</div>
+		               
+		               
+											<h3>My source object isn't appearing in the list.  Why?</h3>
+											<div>
+													The list of source objects to choose from is populated based on the relationship fields on a particular object.  Valid source objects
+													are those objects that are queryable, accessible, and not deprecated.    If the source 	(child) object has a relationship with the 
+													selected target (parent) object and meets the previously listed criteria, it will appear in the list.  If your source object is 
+													not appearing in the list, double check to make sure the correct target object / field are selected, then make sure a relationship 
+													exists between the source and target objects.  If your field still does not appear in the list, please contact support@passagetech.com.
+											</div>
+											<h3>What do the symbols on the All Rollup Settings page mean?</h3>
+											<div>
+												<ul>
+													<li>
+														<svg class="slds-button__icon slds-icon-text-success" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#connected_apps')}"></use>
+														</svg>
+														&nbsp; Real Time - In addition to the rollup being active, this icon will only display if an active trigger is deployed for the rollup's source object. This icon will not display if "Disable Realtime" or "Disable Trigger" are enabled for the trigger.
+													</li>
+													<li>
+														<svg class="slds-button__icon slds-icon-text-warning" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#connected_apps')}"></use>
+														</svg>
+														&nbsp; Partial Real Time Enabled For This Rollup - This icon will only display for rollups with foreign key source fields. Realtime runs will only happen when changes are made to source records. If updates are needed when changes are made to foreign key records, please view our <a href="https://docs.google.com/document/d/1wJFq4FP6d3wz55J41j4YF8-wXNpIlX5Geh1cCwE92b4/edit#heading=h.lb46fxrratnw">Developer Guide</a> for instructions on creating a foreign key trigger or <a href="mailto:support@passagetech.com">contact us</a> for assistance.
+													</li>
+													<li>
+														<svg class="slds-button__icon slds-icon-text-error" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#connected_apps')}"></use>
+														</svg>
+														&nbsp; Real Time Disabled On Source Object or Trigger
+													</li>
+													<li>
+														<svg class="slds-button__icon slds-icon-text-error" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#lightning_extension')}"></use>
+														</svg>
+														&nbsp; Real Time Disabled For This Rollup
+													</li>
+													<li>
+														<svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+														</svg>
+														&nbsp; Scheduled
+													</li>
+													<li>
+														<svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#play')}"></use>
+														</svg>
+														&nbsp; Manual Run Only
+													</li>
+													<li>
+														<svg class="slds-button__icon" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#ban')}"></use>
+														</svg>
+														&nbsp; Inactive
+													</li>
+													<li>
+														<svg class="slds-button__icon" style="color:black" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#lock')}"></use>
+														</svg>
+														&nbsp; Does Not Overwrite Existing Field Values
+													</li>
+													<li>
+														<svg class="slds-button__icon" style="color:black" aria-hidden="true">
+															<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#unlock')}"></use>
+														</svg>
+														&nbsp; Does Not Overwrite Populated Fields With Blank Values
+													</li>
+												</ul>
+												<br/>
+												Please note that any given rollup can both be scheduled and processing in real time.
+											</div>
+		               
+											<h3>Why isn't my rollup running in realtime when I use a formula field as the rollup source field?</h3>
+											<div>
+													Formula fields are calculated automatically when a record detail page is viewed. In some situations an update on a record is not required in order for a formula field value to change. Because of this a realtime trigger may not run.<br/><br/>
+													However, if the formula field only references field values on the source object and does not perform calculations to the value using date functions (ex: TODAY(), NOW(), etc.), the rollup will process in realtime as long as an update occurred on the source record to cause the formula field value change.		               		
+											</div>
+
+											<h3>How do I roll up most recent or oldest text values?</h3>
+											<div>
+												When creating your rollup:
+												<br/><br/>
+												<ul>
+													<li>Step 1) Select the target object and target text field of your choice.</li>
+													<br/>
+													<li>Step 2) Select the source object you want to roll up from and the relationship field that relates the record you want to rollup to the record you want to see the results on.</li>
+													<br/>
+													<li>Step 3) For the rollup type, do not select MIN or MAX. Instead, select <strong>Text</strong>. The 'separated by' value does not matter in this case.</li>
+													<br/>
+													<li>Step 4) Select the text field you want to roll up as your source field.</li>
+													<br/>
+													<li>Step 5) In order to return the most recent or oldest, you will need to create a filter for the rollup.
+														<ul class="faq-inner-list">
+															<li>Scroll down to 'Custom Filter' and click 'Create New Filter.'</li>
+															<br/>
+															<li>In 'Step 1', set the limit to 1 so the rollup only returns a single value.</li>
+															<br/>
+															<li>In 'Step 2', set the sort order of the date field you want to sort by. Select <strong>DESC</strong> to retrieve the <strong>most recent</strong> value, and <strong>ASC</strong> to retrieve the <strong>oldest</strong> value.</li>
+															<br/>
+															<li>In 'Step 3', you can add any additional criteria to specify which records are eligible to be rolled up.</li>
+															<br/>
+															<li>Save the filter.</li>
+														</ul>
+													</li>
+													<br/>
+													<li>Step 6) Save and run the rollup.</li>
+												</ul>
+											</div>
+											<h3>How do I rollup the nth most recent value?</h3>
+											<div>
+												First follow the instructions for "How do I roll up most recent or oldest text values?", then when defining the filter, make sure to populate the "Skips X child records per parent." field. For example, skipping one child record will rollup the second most recent value.
+											</div>
+											<h3>What is SOQL Selectivity?  Why does it matter?</h3>
+											<div>
+													A "selective" SOQL query filter is one that filters on an indexed field.  Indexed fields can be compared to the classification
+													system in a library - they make it much easier to find what you are looking for in a very large space full of books that tend to 
+													look more or less the same.  Without that system, it would take a much longer time to find anything in the library - and the same is
+													true of a SOQL query.<br/><br/>
+													
+													Some resources from Salesforce regarding SOQL selectivity include:<br/>
+													
+													<ul>
+														<li><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_SOQL_VLSQ.htm">Working with Very Large SOQL Queries</a></li>
+														<li><a href="http://resources.docs.salesforce.com/194/0/en-us/sfdc/pdf/salesforce_query_search_optimization_developer_cheatsheet.pdf">Database Query and Search Optimization Cheat Sheet</a></li>
+														<li><a href="https://help.salesforce.com/apex/HTViewSolution?id=000199003">Query Plan Tool How To / FAQ</a></li>
+													</ul>
+													
+											</div>
+		               
+											<h3>Why are fields missing on my exception / schedule pages?</h3>              
+											<div>
+													Field permissions may not be assigned to your user.  Please add the Rollup Helper - All Access permission set to 
+													your user and try again.
+													<br/><apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Assign-Rollup-Helper-permission-set-1578080052925">Steps to assign Rollup Helper Permission set to user</apex:outputLink>.
+											</div>
+													
+											<h3>What are recommended best practices regarding scheduling?</h3>
+											<div>
+														We recommend when scheduling that you prioritize rollups that calculate based on a date filter to ensure accuracy of those numbers.  
+														We also recommend that you check the estimated Run time of a rollup (visit the Rollups tab, then hover over the 'Action' arrow and 
+														click Run) and avoid scheduling rollups more frequently than the estimated processing time in order to avoid a queue buildup.
+											</div> 
+											
+											<h3>What is the difference between a child filter and a parent filter?</h3>
+											<div>
+													A parent filter is used to filter target records from getting updated by Rollup Helper. Rollup results will not be calculated for target records that do not meet the criteria of a parent filter.
+													A child filter is used to filter the source records for a rollup calculation. Child filters can reference target field values through cross-object references, but will not prevent Rollup Helper from updating the target records.
+													Parent filters can be used together with child filters to determine what source records to use in rollup calculations, along with which target records to update.
+													<br/>For additional information, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Child-Filter-Vs-Parent-Filter">Child Filters vs Parent Filters</apex:outputLink>.
+												</div>
+
+											<h3>Why is Rollup Helper showing up as the last modified by user on my records?</h3>
+											<div>
+													By default, manual and scheduled rollup runs will run under the managed package setup user 'Rollup Helper'.  This 
+													behavior can be changed by deleting the 'Rollup Batch Agent - Hourly' scheduled job, navigating to the Rollups tab, and
+													clicking 'Run As...' while logged in as the desired Run As user.
+													<br/>For additional information, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Change-Rollup-Helper-Running-User-for-Scheduled-Rollups-1578080056143">Changing the Running User</apex:outputLink>.
+											</div>
+											
+											<h3>Why are no objects appearing in the list on the exceptions tab?</h3>
+											<div>
+													Only objects that are the target object of a rollup that has recently encountered an exception will appear in the list.  If no 
+													objects appear, no exception records currently exist.
+											</div>
+
+											<h3>How long are exception records retained for?</h3>
+											<div>
+													By default, exception records are kept for one day.  This behavior can be changed by editing the 'Exception Lifespan' field in the Rollup Helper
+													custom setting.  Enter a whole number representative of the amount of days you want to keep the records and exceptions will be deleted 
+													after the specified amount of days. We recommend setting this to a low value so that the exception records do not eat into your data storage. <br/> <br/>
+
+													For additional information on managing exception lifespan, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Helper-Exceptions-1578080054132">Rollup Helper Exceptions</apex:outputLink>.
+											</div>
+
+											<h3>How do I export my rollups to a CSV?</h3>
+											<div>
+												For steps on how to export and import, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Export-Rollups-1578080053751">export rollups</apex:outputLink>.
+											</div>
+											<h3>How do I import my rollups from another environment?</h3>
+											<div>
+													<ul>
+														<li>Step 1) Navigate to the setup menu and type <strong>Data Import Wizard</strong>  in the quick find/search bar. Click on the link <strong>Data Import Wizard</strong> that shows up below under <strong>Administer</strong>.</li>
+														<br />
+														<li>Step 2) On the Data Import Wizard page, click on the large green button that says <strong>Launch Wizard</strong>.</li>
+														<br />
+														<li>Step 3) You should now be on the <strong>Import your Data in to Salesforce</strong> page. In the first column, select the tab that says <strong>Custom Object</strong>. In the list that shows up, scroll down and select Rollup Exports (there should be a green checkmark that shows up).</li>
+														<br />
+														<li>Step 4) Once the center box shows <strong>What do you want to do?</strong>, select the top option <strong>Add new records</strong>. Leave the <strong>Match by:</strong> and <strong>Which User field designates record owners?</strong> drop-downs as None.</li>
+														<br />
+														<li>Step 5) On the third box, you can either select the Rollup Helper export CSV file from your computer and drag it to the <strong>Drag CSV file here to upload</strong> box, or click on the <strong>CSV</strong> link and click on <strong>Choose File</strong> to select the CSV file. Leave the other settings at the default values and click on the green <strong>Next</strong> button at the bottom right of the page.</li>
+														<br />
+														<li>Step 6) Click on the green <strong>Next</strong> button at the bottom right corner of the Edit Field Mapping page which will take you to the <strong>Review &amp; Start Import</strong> page.
+														If everything looks good here (3 columns mapped), click on the green <strong>Start Import</strong> button on the bottom right corner of the page and your rollups and filters should begin importing without any issues.</li>
+														<br />
+														<br />
+														<li>You can view a visual guide to the import process <a href="https://drive.google.com/file/d/0BwlwYPXYAzRKUUQwaHZwT1pUWGs/view?usp=sharing&resourcekey=0-QUpydKJy5kzL1tf6iTjdVw" target="_blank">here</a>.</li>
+													</ul>
+											</div>
+											<h3>How do I avoid hitting the DailyAsyncApexExecutions limit?</h3>
+											<div>
+													The DailyAsyncApexExecutions limit is 250,000 per 24 hour period.
+													<br /><br />
+													Some best practices to avoid an excessive amount of asynchronous jobs to be created include:
+													<br /> <br />
+													<ul class="slds-list_dotted">
+														<li>Be selective on when to create batch jobs in Apex (e.g., Instead of creating a batch job every time a trigger fires, only create the batch job on certain conditions)</li>
+														<br />
+														<li>When Shared Activities are enabled, every Task/Event DML event logs an async job</li>
+														<br />
+														<li>When the static (permanent) asynchronous is enabled on an object, an asynchronous job is created every time a Rollup Helper trigger fires for that object.  Consider only using static asynchronous processing when dynamic asynchronous processing (automatic limits detection) is not able to prevent governor limits errors from occurring.</li>
+														<br />
+														For additional troubleshooting, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/AsyncApexExecutions-Limit-Exception">Reducing the number of Asynchronous Jobs</apex:outputLink>.
+													</ul>
+											</div>
+											<h3>Why are some fields missing from the list occasionally when I choose a foreign key relationship?</h3>
+											<div>
+												Fields that are no longer being displayed for polymorphic foreign key lookup fields, examples of which are Related to ID and Name ID,
+												were not valid selections and would result in an exception if an attempt was made to roll them up. In the case of a polymorphic foreign key source field, 
+												values are obtained from the Name object. Consequently, the available source fields for the rollup are limited to those that exist on the Name object. 
+												For more details, please read the documentation provided by Salesforce on the topic
+												<a href="https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_relationships_and_polymorph_keys.htm"> here. </a>
+												To learn more about limitations of the Name object, please read 
+												<a href="https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_name.htm"> here. </a>
+											</div>
+											<h3>Why are my rollups taking a long time to process?</h3>
+											<div>
+												There are many reasons why rollups might be taking a longer than expected time to complete.
+												These can include but are not limited to:
+												<br/><br/>
+												<ul class="slds-list_dotted">
+													<li>The record scope or object specific record scope may be set too low. Increasing the record scope allows more records to process per batch and may reduce the time to process a rollup. However, increasing the record scope may cause other issues such as query row limits being encountered. The default amount is 400. </li>
+													For information on adjusting the object specific record scope, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Helper-Object-Record-Scope-Settings-1578080056505">Object Record Scope Settings</apex:outputLink>.
+													<br /><br />
+													<li>There is a high amount of records being processed per rollup. Please try to filter records on the source object level and target object level to reduce the amount of records being processed.</li>
+													<br />
+													<li>There is a large queue build up of Rollup Helper jobs. Please review the&nbsp;<apex:outputLink value="{!URLFOR($Page.rh2__PS_RollupQueue)}">Rollup Queue</apex:outputLink> page and ensure that there are not any stale queue items. A stale or stuck queue item may be retried or deleted, which can help Rollup Helper process queue items faster. Additionally, you may reduce the amount of jobs that get sent to the queue by disabling realtime on settings that do not need it, or increasing the % of usage settings.
+													<br/>For additional information on addressing stuck Rollup Queue Records, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Queue-Buildup-Caused-by-Stuck-Queue-Items-1578080052513">Stuck Queue Records</apex:outputLink>.
+													</li>
+													<br />
+													<li>The number of rollups processed per asynchronous request may be set too low. This should generally be set to the highest count of rollups which share the same source object, target object and filter. </li>
+													<br />
+													<li><apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Task-Rollups-are-not-updating-immediately-from-real-time-trigger-1578080056509">Shared Activities is enabled and rollups are processing updates from Tasks/Events</apex:outputLink>.</li>
+													<br />
+												</ul>
+												If making configuration changes does not help speed up rollups or if you still experience abnormally slow processing times, please contact support@passagetech.com so that 
+												our support staff can perform a root cause analysis and help you determine the best solution to the problem. 
+											</div>
+											<h3>My question is not answered here. Where can I find my answer?</h3>
+											<div class="slds-text-longform">
+												You can try looking up your question, use case, or issue in our <a href="https://passagetechnology.force.com/KnowledgeBase/s/" target="_blank" >Knowledge Base</a>. 
+												If you still cannot find an answer to your question, please <a href="mailto:support@passagetech.com">contact support</a>.
+											</div>
+		             		</div> 
+		             </div>
+		             
+		             </apex:actionRegion>
+					
+			  </div>
+			  <div id="tab-default-2" class="slds-tabs__content slds-hide" role="tabpanel">
+			  
+				    <script>
+			         	var rh = rh || {};
+			    		rh.j$ = jQuery.noConflict();
+			            rh.j$(function() {
+			                rh.j$( "#troubleshoot" ).accordion({ collapsible: true, active: false, heightStyle: "content"});
+			            });    
+		        	</script>
+		      
+		     
+		     
+		     		<apex:actionRegion > 
+		                
+		               <div>
+		               <div id="troubleshoot" > 
+		               
+		               
+		               <h3>My rollup isn't updating automatically.</h3>              
+		               <div>
+							If realtime is enabled and your rollup is not automatically updating, please check the Run Mode column on the 
+							Rollups tab.  If a lightning bolt does not appear in the run mode column for that rollup, no real-time trigger exists on that rollup's 
+							source object.  Please view the Enable Real Time tab to create the trigger with just a few clicks!
+							<br/>For additional troubleshooting steps, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Helper-Not-updating-in-Real-Time">Real Time troubleshooting</apex:outputLink>.
+		               </div>
+		               
+		               <h3>I keep getting errors saying that Rollup Helper cannot update because of a validation rule.  What should I do?</h3>
+		               <div>
+		               		You can enable Validation Rule Helper to allow Rollup Helper to update regardless of validation on the target object. 
+							<br/>For steps to enable Validation Helper, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Validation-Helper-to-prevent-field-custom-validation-exceptions-1578080053750">Validation Helper</apex:outputLink>.
+		               </div>
+		               
+		               <h3>My rollup is running, but it doesn't seem to be returning the results I would expect it to.</h3>
+		               <div>
+		               		Usually, any filters you have on the rollup are the culprit when dealing with this type of issue.  You can run the rollup query
+		               		in the Query Editor of the developer console, adding the ID of the parent record as an additional filter, to see what Rollup Helper
+		               		should be returning for a given record.  
+		               		
+		               		Additionally, if it is possible that you may need to query archived records to get the correct result (such as tasks, which archive 
+		               		automatically after one year) please view the Advanced Settings on the rollup edit page and check 'Query Archived Records'.
+
+							<br/>For additional troubleshooting steps, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Test-Rollup-Filter-Criteria-with">Preview Rollup Results</apex:outputLink>.
+		               </div>
+		               
+		               <h3>My real-time rollups are encountering Too Many SOQL Queries / Too Many Query Rows errors.</h3>
+		               <div> 
+		               		Unfortunately, there are several possible reasons why Rollup Helper may encounter these errors:  Circular logic, data skew, 
+		               		and other code in the same execution context being just a few possibilities. <br/>
+
+							<br/>For troubleshooting information, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/50-001-Too-Many-Query-Rows-1578080052514">Too Many Query Rows</apex:outputLink>.
+
+							<br/>For additional information on avoiding Governor Limits due to Data Skew, please view our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Data-Skew-1578080054131">Data Skew</apex:outputLink>.
+		               		
+							<br/>If you begin encountering these errors, please contact support@passagetech.com so that 
+		               		our support staff can perform a root cause analysis and help you determine the best solution to the problem.	               		
+		               
+		               </div>
+
+					   <h3>I am receiving CPU timeouts when my rolllups process.</h3>
+		               <div> 
+						  CPU timeouts may be caused by Rollup Helper or from another process which is then logged by Rollup Helper.
+						  To figure out whether Rollup Helper or another process is consuming too much CPU time, please visit our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Helper-Apex-CPU-Timeouts-and-Process-Builder-1578080052924">CPU timeouts</apex:outputLink>.
+
+						<br/>If you need additional assitance, please contact support@passagetech.com so that our support staff can perform a root cause analysis and help you determine the best solution to the problem.	               		
+		               </div>
+		                   
+		              
+		             </div> 
+		             </div>
+		             
+		             </apex:actionRegion>
+			
+			  </div>
+			  <div id="tab-default-3" class="slds-tabs__content slds-hide" role="tabpanel">
+			  		<apex:actionRegion > 		                
+		                <div style="padding-left:15px;">
+		                	<h3 class="slds-text-heading_small"><apex:outputLink target="_blank" value="http://rhdemo.passagetech.com">Rollup Helper Help Video Playlist</apex:outputLink></h3><br/>
+		               		<div id="videos" > 		               
+				               <div>
+									<apex:iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLfryc3zXHX0rrITdFDrn-ONgswUCwzmTu&rel=0" frameborder="0" />
+				               </div>
+		             		</div> 
+		             	</div>		             
+		            </apex:actionRegion>
+			  </div>
+			  <div id="tab-default-4" class="slds-tabs__content slds-hide grayBackground" role="tabpanel"> 
+			  		<apex:actionRegion > 		                
+		                <div style="padding-left:15px;" >
+		                	<h3 class="slds-text-heading_small">Rollup Helper Update Links</h3><br/>
+		               		<div id="videos" > 		               
+				               <div>
+									The most recent version of Rollup Helper can always be found using the links below:
+									<ul class="slds-list_dotted">
+										<li>Beta Version:  <a href="http://rh-pre.passagetech.com" target="_blank">Production</a>, <a href="http://rh-pre-test.passagetech.com" target="_blank">Sandbox</a></li>
+										<li>Release Version:  <a href="http://rh.passagetech.com" target="_blank">Production</a>, <a href="http://rh-test.passagetech.com" target="_blank">Sandbox</a></li>
+										<li>To see what's in the latest version, view our <a href="https://www.passagetechnology.com/rollup-helper-release-notes" target="_blank">Release Notes</a>.</li>
+										<li>More information about our release process can be found <a href="https://www.passagetechnology.com/feature-release-process" target="_blank">here</a>.</li>
+									</ul>
+				               </div>
+		             		</div> 
+		             	</div>		             
+		            </apex:actionRegion>
+			  </div>
+			  
+			</div>
+		</section>
+		</div>
+     </div>
+
+     
+
+    </html>  
+</apex:page>

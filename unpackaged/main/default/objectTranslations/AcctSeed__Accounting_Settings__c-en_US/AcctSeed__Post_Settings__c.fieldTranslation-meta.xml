@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Post Settings --></label>
+        <name>AcctSeed__Post_Settings__c</name>
+        <picklistValues>
+            <masterLabel>Header-Level Post</masterLabel>
+            <translation><!-- Header-Level Post --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Line-Level Post</masterLabel>
+            <translation><!-- Line-Level Post --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

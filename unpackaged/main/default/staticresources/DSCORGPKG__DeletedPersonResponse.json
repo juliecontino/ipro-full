@@ -1,0 +1,25 @@
+{
+  "page": 0,
+  "size": 50,
+  "total": 2,
+  "entities": [
+    {
+      "id": 88493971,
+      "companyId": 41905041,
+      "fullName": "John1 Smith1",
+      "firstName": "John1",
+      "surName": "Smith1",
+      "email": "John1@email.com",
+      "privacyOptOut": true
+    },
+    {
+      "id": 88493972,
+      "companyId": 41905042,
+      "fullName": "John2 Smith2",
+      "firstName": "John2",
+      "surName": "Smith2",
+      "email": "John2@email.com",
+      "privacyOptOut": false
+    }
+  ]
+}

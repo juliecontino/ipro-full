@@ -1,0 +1,3 @@
+.slds-card.grayBackground, .slds-table.grayBackground, .slds-modal.grayBackground, .slds-grid.grayBackground, .slds-modal__content.grayBackground, .slds-box.grayBackground, .grayBackground{
+    background-color: #f4f6f9 !important;
+}

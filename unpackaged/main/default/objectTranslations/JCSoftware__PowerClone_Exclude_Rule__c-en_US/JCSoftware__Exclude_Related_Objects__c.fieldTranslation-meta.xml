@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Comma separated list of objects (API name) that are children of the cloning object that should be hidden from the user on PowerClone page under the &quot;Child Objects&quot; section. --></help>
+        <label><!-- Exclude Related Objects --></label>
+        <name>JCSoftware__Exclude_Related_Objects__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to provide memo on printed check. --></help>
+        <label><!-- Memo --></label>
+        <name>AcctSeed__Memo__c</name>
+    </CustomFieldTranslation>

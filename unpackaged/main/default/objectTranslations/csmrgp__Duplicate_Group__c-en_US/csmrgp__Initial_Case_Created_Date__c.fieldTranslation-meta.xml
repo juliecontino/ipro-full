@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Earliest created date for related cases used analytics. --></help>
+        <label><!-- Initial Case Created Date --></label>
+        <name>csmrgp__Initial_Case_Created_Date__c</name>
+    </CustomFieldTranslation>

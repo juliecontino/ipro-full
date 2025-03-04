@@ -1,0 +1,6 @@
+<apex:page contentType="{!IF($CurrentPage.parameters.s != '1', '', 'text/plane')}">
+    <apex:outputText rendered="{!$CurrentPage.parameters.s=='1'}" value="{!$Api.Session_ID}"/>
+    <apex:outputPanel layout="none" rendered="{!$CurrentPage.parameters.s!='1'}">
+        <meta http-equiv="refresh" content="0;url=/lightning/n/csmrgp__Case_Merge_Premium_Setup" />
+    </apex:outputPanel>
+</apex:page>

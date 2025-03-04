@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A generic product whose name (example: Avalara Tax) populates the product field on the calculated Avalara tax line. This should be assigned a $0.00 standard price and added to a price book. --></help>
+        <label><!-- Avalara Tax Product --></label>
+        <name>AcctSeed__Avalara_Tax_Product__c</name>
+        <relationshipLabel><!-- Accounting Settings (Avalara Tax Product) --></relationshipLabel>
+    </CustomFieldTranslation>

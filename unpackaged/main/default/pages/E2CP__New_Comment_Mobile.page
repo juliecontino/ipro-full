@@ -1,0 +1,395 @@
+<apex:page id="pg" standardController="Case" extensions="E2CP.NewCommentController" action="{!loadPreferences}" doctype="html-5.0" sidebar="false" showHeader="false" html-style="height: 100%" standardStylesheets="true" applyBodyTag="false" title="{!case.casenumber}: New Comment">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <script src="{!URLFOR($Resource.jquery,'jquery.min.js')}"></script>
+        <script src="/soap/ajax/29.0/connection.js"></script>
+        <script src="/canvas/sdk/js/publisher.js"></script>
+        
+        <style>
+            html {
+                background-color: transparent;
+            }
+            body {
+                background-color: #{!HTMLENCODE(IF(sfone,'F0F1F2','FFF'))};
+            }
+            label {
+                color: #{!HTMLENCODE(IF(sfone,'696E71','000'))};
+                font-family: "ProximaNovaSoft-Regular", Calibri, 
+                    "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI", 
+                     Arial, sans-serif;
+                font-size: 13px;
+                line-height: 13px;
+                font-weight: {!HTMLENCODE(IF(sfone,'normal','bold'))}
+            }
+            
+            input:focus, select:focus, textarea:focus, button:focus {
+                {!HTMLENCODE(IF(sfone,'outline: none;',''))}
+            }
+            
+            .label-container {
+                display: block;
+                width: 100%;
+                margin: 10px 0 5px 0;
+            }
+            
+            .full-width-input {
+                border: 1px solid #999;
+                border-radius: 4px;
+                border-color: #ccc;
+                width: 100%;
+                max-width: 100%;
+                font-size: {!HTMLENCODE(IF(sfone,'15','12'))}px;
+                line-height: {!HTMLENCODE(IF(sfone,'18px','normal'))};
+                padding: 7px {!HTMLENCODE(IF(sfone,'14','7'))}px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                overflow: auto;
+            }
+            
+            .ctm-container {
+                width: 100%;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            
+            .bottom-bar {
+                width: 100%;
+                height: 50px;
+                padding: 9px;
+                background-color: #F5F6F6;
+                padding-right: 8px;
+                margin-top: 25px;
+                border: 1px solid #c7ccce;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                z-index: 0;
+                border-radius: 2px;
+            }
+            
+            .save-button {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                display: inline-block;
+                line-height: 27px;
+                height: 29px;
+                font-family: Arial;
+                font-size: 1.08em;
+                text-decoration: none;
+                color: #fff;
+                padding: 0px 10px;
+                border: 1px solid #6c8049;
+                background-color: #8AB529;
+                background-image: linear-gradient(top,#8AB529 0,#87AC31 100%);
+                background-image: -ms-linear-gradient(top,#8AB529 0,#87AC31 100%);
+                background-image: -moz-linear-gradient(top,#8AB529 0,#87AC31 100%);
+                background-image: -webkit-linear-gradient(top,#8AB529 0,#87AC31 100%);
+                border-radius: 2px;
+                -moz-box-shadow: 0 1px 2px 0 #adadad;
+                -webkit-box-shadow: 0 1px 2px 0 #adadad;
+                box-shadow: 0 1px 2px 0 #adadad;
+                margin: 0px;
+                font-weight: bold;
+                float: right;
+            }
+            .save-button:hover {
+                text-decoration: none;
+                color: white;
+                background-color: #A0CB3D;
+            }
+            .message-container {
+                display: none; 
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(52,74,95,0.7);
+            }
+            .message-box {
+                position: relative;
+                top: 40%;
+                background-color: white; /* #354452; */
+                width: 63px;
+                height: 100px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+                padding: 10px 20px;
+                margin: auto;
+                color: black; /* white; */
+                text-align: center;
+            }    
+            .spinner {
+                -webkit-animation: spin 1s infinite steps(4);
+                animation: spin 1s infinite steps(4);
+            }
+        </style>
+        <script>
+            var $j = jQuery.noConflict(),
+                sf1 = "{!JSENCODE($User.UIThemeDisplayed)}" == "Theme4t",
+                hasPanel = false;
+            
+            Sfdc.canvas.publisher.subscribe([
+                {name: "publisher.showPanel",onData: function(e) {
+                    hasPanel = true;
+                }}
+            ]);
+            
+            window.setTimeout(function(){
+                sf1 = sf1 && hasPanel;
+                toggleBottomBar(sf1);
+            },500);
+            
+            function refreshFeed() {
+                if (document.getElementById('pg:frm:errormsg').innerText && document.getElementById('pg:frm:errormsg').innerText != "" ||
+                    document.getElementById('pg:frm:errormsg').textContent && document.getElementById('pg:frm:errormsg').textContent != "")
+                {
+                    enableSave();
+                    return;
+                }
+                
+                if (hasPanel && !sf1) {
+                    enableSave();
+                    document.getElementById('pg:frm:comment').value = '';
+                    //Sfdc.canvas.publisher.publish({name: 'publisher.refresh', payload: {feed:"true"}});
+                    Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{refresh:"true"}});
+                } else {
+                    returnToCase();
+                }
+            }
+            
+            function resizeNewComment() {
+                if ({!canResize})  // SRFP - Boolean
+                    Sfdc.canvas.publisher.resize({height : "650px"});
+            }
+            
+            function publicclicked(input) {
+                var allowcontact = !{!CannotEmailCustomer};  // SRFP - Boolean
+                if(input == null || input.checked) { 
+                    if (allowcontact==1) {
+                        $j('#cntcts').find('input').attr("checked", {!EMAIL_NOTIFICATION});  // SRFP - Boolean
+                        $j('#cntcts').find('input').attr('disabled', false);
+                    }
+                    if ({!ENABLE_ADDITIONAL_EMAILS}==true) {  // SRFP - Boolean
+                        $j('#pg\\:frm\\:addTo').find('input').attr('disabled', false);
+                    }
+                    if ({!ENABLE_ADDITIONAL_CCS}==true) {  // SRFP - Boolean
+                        $j('#pg\\:frm\\:addCC').find('input').attr('disabled', false);
+                    }
+                    if ({!ENABLE_ADDITIONAL_BCCS}==true) {  // SRFP - Boolean
+                        $j('#pg\\:frm\\:addBCC').find('input').attr('disabled', false);
+                    }
+                    
+                    //leads
+                    $j('#lds').find('input').attr("checked", false);
+                    $j('#lds').find('input').attr('disabled', false);
+                    
+                    //contact roles
+                    $j('#crls').find('input').attr("checked", {!EMAIL_NOTIFICATION});  // SRFP - Boolean
+                    $j('#crls').find('input').attr('disabled', false);
+                    
+                    //case teams new
+                    $j('#tmmbrs').find('input').attr("checked", {!EMAIL_NOTIFICATION});  // SRFP - Boolean
+                    $j('#tmmbrs').find('input').attr('disabled', false);
+                    
+                    uncheckMbrs();
+                } else {
+                    if (allowcontact==1){
+                        $j('#cntcts').find('input').removeAttr("checked");
+                        $j('#cntcts').find('input').attr('disabled', true);
+                    }
+                    if ({!ENABLE_ADDITIONAL_EMAILS}==true)  // SRFP - Boolean
+                        $j('#pg\\:frm\\:addTo').find('input').attr('disabled', true);
+                    
+                    if ({!ENABLE_ADDITIONAL_CCS}==true)  // SRFP - Boolean
+                        $j('#pg\\:frm\\:addCC').find('input').attr('disabled', true);
+                    
+                    if ({!ENABLE_ADDITIONAL_BCCS}==true)  // SRFP - Boolean
+                        $j('#pg\\:frm\\:addBCC').find('input').attr('disabled', true);
+                    
+                    //leads
+                    $j('#lds').find('input').removeAttr("checked");
+                    $j('#lds').find('input').attr('disabled', true);
+                    
+                    //contact roles
+                    $j('#crls').find('input').removeAttr("checked");
+                    $j('#crls').find('input').attr('disabled', true);
+                    
+                    //case teams new
+                    $j('#tmmbrs').find('input').removeAttr("checked");
+                    $j('#tmmbrs').find('input').attr('disabled', true);
+                }
+            }
+            
+            function uncheckMbrs() {
+                if ({!ENABLE_TEAM_MEMBERS}==true) {  // SRFP - Boolean
+                    var memberIds2 = "{!JSENCODE(uncheckedTeamMembers)}";
+                    
+                    //case teams new
+                    $j('#tmmbrs').find('input').each(function() {
+                        if (memberIds2.toUpperCase().indexOf(this.className.toUpperCase()) != -1)
+                            this.checked = false;
+                    });
+                }
+            }
+            
+            function foobar(a){
+                if ($j("span[id$='errormsg']").html() == '')
+                    window.location.hash='success';
+                else
+                    alert($j("span[id$='errormsg']").find(".messageText").text());
+            }
+            
+            $j(document).ready(function() {
+                window.setTimeout(resizeNewComment,500);
+                $j('#cmmntBody').find('textarea').attr('autocorrect','on');
+                $j('#cmmntBody').find('textarea').attr('autocapitalize','on');
+                $j('#cmmntBody').show();
+                if({!PUBLIC_CHECKED} == false) {  // SRFP - Boolean
+                    var publicBox = document.getElementById('pg:frm:public-checkbox');
+                    publicBox.checked = false;
+                    publicclicked(publicBox);
+                } else {
+                    $j('#crls').find('input').attr("checked", {!EMAIL_NOTIFICATION});  // SRFP - Boolean
+                    $j('#crls').find('input').attr('disabled', false);
+                }
+                if ({!CannotEmailCustomer}) {  // SRFP - Boolean
+                    document.getElementById('pg:frm:EmailCustomer_Checkbox').checked = false;
+                }
+                uncheckMbrs();
+                checkPublicWarning();
+                window.setTimeout(enableSave,500);
+                //if (typeof sforce.one != 'undefined' && sforce.one != null)
+                toggleBottomBar(sf1);
+            });
+            
+            function toggleBottomBar(hide) {
+                document.getElementById('btm-bar').style.display = hide ? 'none' : 'block';
+            }
+            
+            function checkPublicWarning() {
+                if({!ENABLE_PUBLIC_WARNING}) {  // SRFP - Boolean
+                    if (document.getElementById('pg:frm:public-checkbox').checked)
+                        $j('#PublicWarning').css('display','block');
+                    else
+                        $j('#PublicWarning').css('display','none');
+                }
+            }
+            
+            Sfdc.canvas.publisher.subscribe({ name: "publisher.post",
+                onData: function(e) {
+                    disableSave();
+                    saveMobile();
+            }});
+            
+            function enableSave() {
+                document.getElementById('message').style.display = "none";
+                Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"true"});
+            }
+            
+            function disableSave() {
+                document.getElementById('message').style.display = "block";
+                Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"false"});
+            }
+        </script>
+    </head>
+    <body>
+        <div id="message" class="message-container">
+            <div class="message-box">
+                <img src="/img/spinner.gif"/>
+                <p>Sending...</p>
+            </div>
+        </div>
+        
+        <apex:form id="frm" onclick="hideKeyboard(event);">
+            <apex:pageMessages id="errormsg" showDetail="false"/>
+            <apex:actionFunction name="saveMobile" action="{!saveMobile}" reRender="errormsg" oncomplete="refreshFeed();"/>
+            <apex:actionFunction name="returnToCase" action="{!view}"/>
+            
+            <apex:inputCheckbox id="public-checkbox" value="{!IsPublic}" onChange="publicclicked(this);checkPublicWarning();"/>
+            <apex:outputLabel for="public-checkbox" value="Public"/>
+            <div id="PublicWarning" style="display:none;vertical-align:top;"><label style="color:red;font-weight:bold;">{!JSENCODE(PUBLIC_WARNING_TEXT)}</label></div>
+            <br/>
+            <apex:inputTextarea styleClass="full-width-input" id="comment" value="{!commentBody}" rows="6"/>
+            <br/>
+            
+            <span id="cntcts">
+                <apex:inputCheckbox value="{!EmailCustomer}" id="EmailCustomer_Checkbox" disabled="{!CannotEmailCustomer}"/>
+                
+                <apex:outputLabel value="{!Case.Contact.Name} (Email Contact)" for="EmailCustomer_Checkbox" rendered="{!NOT(CannotEmailCustomer)}"/>
+                <apex:outputLabel value="Invalid Contact" for="EmailCustomer_Checkbox" rendered="{!CannotEmailCustomer}"/>
+            </span>
+            
+            <span id="lds">
+                <apex:selectCheckboxes layout="pageDirection" value="{!SelectedLeads}" title="Leads" id="leads_Checkbox" style="margin-left:-3px;">
+                    <apex:selectOptions value="{!leadsItems}"/>
+                </apex:selectCheckboxes>
+            </span>
+            
+            <apex:outputPanel rendered="{!ENABLE_CONTACT_ROLES && contactRolesItems.size > 0}">
+                <apex:outputLabel value="Contact Roles" styleClass="label-container"/>
+                <span id="crls">
+                    <apex:selectCheckboxes layout="pageDirection" value="{!SelectedContactRoles}" title="Contact Roles" id="contactRoles_Checkbox" style="margin-left:-3px;">
+                        <apex:selectOptions value="{!contactRolesItems}"/>
+                    </apex:selectCheckboxes>
+                </span>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!ENABLE_TEAM_MEMBERS && SUPPORTS_CASETEAMS && ctms.size > 0}">
+                <apex:outputLabel value="Team Member" styleClass="label-container"/>
+                <span id="tmmbrs">
+                    <apex:repeat var="r" value="{!ctms}">
+                        <div class="ctm-container">
+                            <apex:inputCheckbox id="ctm-checkbox" styleClass="{!JSENCODE(r.rid)}" value="{!r.selected}" disabled="{!r.rid == null}" />
+                            <apex:outputLabel value="{!r.name}" for="ctm-checkbox"/>
+                          
+                            <apex:outputText rendered="{!r.rid == ''}" value="Invalid Email Address" style="color:red" />
+                        </div>
+                    </apex:repeat>
+                </span>
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="addTo" styleClass="label-container" rendered="{!NOT(PrivateOnly)}">
+                <apex:outputLabel value="Additional To" for="additionalEmails_TextBox"/>
+                <apex:inputText value="{!additionalEmails}" id="additionalEmails_TextBox" styleClass="full-width-input"/>
+            </apex:outputPanel>
+            <apex:outputPanel id="addCC" styleClass="label-container" rendered="{!ENABLE_ADDITIONAL_CCS}">
+                <apex:outputLabel value="Additional CC" for="additionalCCs_TextBox"/>
+                <apex:inputText value="{!additionalCCs}" id="additionalCCs_TextBox" styleClass="full-width-input" />
+            </apex:outputPanel>
+            <apex:outputPanel id="addBCC" styleClass="label-container" rendered="{!ENABLE_ADDITIONAL_BCCS}">
+                <apex:outputLabel value="Additional BCC" for="additionalBCCs_TextBox"/>
+                <apex:inputText value="{!additionalBCCs}" id="additionalBCCs_TextBox" styleClass="full-width-input"/>
+            </apex:outputPanel>
+            
+            <div id="btm-bar" class="bottom-bar">
+            
+            <apex:actionStatus id="save-status">
+                <apex:facet name="stop">
+                    <apex:commandLink id="save-link" styleClass="save-button" action="{!saveMobile}" onclick="disableSave();" reRender="errormsg" oncomplete="refreshFeed();" value="Save/Send" status="save-status"/>
+                </apex:facet>
+                <apex:facet name="start">
+                    <apex:commandLink styleClass="save-button" value="Sending..." style="cursor:default;"/>
+                </apex:facet>
+            </apex:actionStatus>
+            </div>
+        </apex:form>
+    </body>
+    
+    <script>
+        function hideKeyboard(e) {
+            if (document.activeElement.className == "full-width-input" && e.target.className != "full-width-input") {
+                var elem = document.activeElement;
+                elem.blur();
+                elem.focus();
+            }
+        }
+        
+        //input tap fix per https://success.salesforce.com/issues_view?id=a1p30000000T5l1AAC
+        window.onkeydown=function(){window.focus();} 
+    </script>
+</apex:page>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__UserLogin__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Name of user (better to store all data in one place and not give additional access to User table for Site profile)</description>
+    <externalId>false</externalId>
+    <label>UserLogin</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

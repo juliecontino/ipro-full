@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Status --></label>
+        <name>APXT_CongaSign__Status__c</name>
+        <picklistValues>
+            <masterLabel>CANCELLED</masterLabel>
+            <translation>ՉԵՂԱՐԿՎԱԾ</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMPLETE</masterLabel>
+            <translation>ԱՎԱՐՏՎԱԾ</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DECLINED</masterLabel>
+            <translation>ՄԵՐԺՎԱԾ</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRAFT</masterLabel>
+            <translation>ՍԵՎԱԳԻՐ</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EXPIRED</masterLabel>
+            <translation>ՍՊԱՌՎԱԾ</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PENDING_EXPIRATION</masterLabel>
+            <translation>ՍՊԱՍՎՈՂ_ԺԱՄԿԵՏԻ_ԼՐԱՑՈՒՄ</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SENT</masterLabel>
+            <translation>ՈՒՂԱՐԿՎԱԾ</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,342 @@
+<apex:page tabStyle="zkfedex__ShipmatePreference__c" standardController="zkfedex__ShipmatePreference__c" extensions="zkfedex.ShipmatePreferenceController" action="{! init }">
+    <apex:includeScript value="{!URLFOR($Resource.zkfedex__Jquery, '/jquery/jquery-1.4.2.js')}"  />
+    <apex:stylesheet value="{!$Resource.zkfedex__WizardCSS}"/>
+    <style>
+        .lightboxWizard {       
+            display: none;
+            background: #FFFFFF;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: 1000;
+        }
+    </style>
+
+    <script>
+        $j = jQuery.noConflict();
+        
+        function IsLoading(whichLoading) {
+            $j('.lightboxWizard').show();
+            $j('.' + whichLoading).toggle();
+        };
+
+        function IsLoadingComplete() {
+            $j('.lightboxWizard').hide();
+        };
+
+    </script>
+  
+  <apex:sectionHeader title="Shipmate Preference Edit"  subtitle="New Shipmate Preference"/>
+    <apex:form >
+        <apex:pageMessages />
+      <apex:pageBlock title="Shipmate Preference Edit" mode="edit">
+      
+        <!-- pageBlockButtons -->
+        <!-- Dont specify rerender field. rerender whole page -->
+        <apex:pageBlockButtons >
+          <apex:commandButton action="{!saveNewShipmatePreference}" value="Save" disabled="{!PageDisabled}"/>
+          <apex:commandButton action="{!cancelNewShipmatePreference}" immediate="true" value="Cancel"/>
+        </apex:pageBlockButtons>
+
+        
+        <!-- Permanent NOTE -->
+        <apex:pageMessage title="Note:" summary="Your billing address must match the address FedEx has associated with your FedEx account number. If you don't know what that is, visit www.fedex.com, login, and go to your account profile." rendered="{!ShipmatePreferenceGenericInfoMsgRendered}" severity="info" strength="1"/>
+        
+        <!-- Initialize Shipmate Messages -->
+        <apex:outputPanel id="shipmateInitMsg" rendered="{!ShipmateInitRendered}">
+          <apex:pageMessage title="Initialization:" summary="Welcome to Shipmate. Before you can make a new Shipmate Preference, some Shipmate initialization must occur. Please press the 'Initialize' button. You may then continue creating your Shipmate Preference." severity="info" strength="1">
+            <apex:commandButton action="{!shipmateInit}" value="Initialize" immediate="true" onclick="IsLoading();"/>
+          </apex:pageMessage>
+        </apex:outputPanel>
+        
+        <!-- Error Messages -->
+        <apex:outputPanel id="shipmatePreferenceAddMsg">
+          <c:MessageListDisplay id="MessageList" msgList="{!MessageList}"/>
+        </apex:outputPanel>
+        
+        <!-- FedEx Account Section -->
+        <apex:outputPanel id="fedexAccountSection">
+        <apex:pageBlockSection collapsible="false" title="{!RegisteredNameData.FedexName} Account Information">
+        
+          <!--  FedEx Account Number -->
+          <apex:pageBlockSectionItem rendered="{!NOT(EditFedExAccountNumberDisabled)}">
+            <apex:outputLabel value="{!RegisteredNameData.FedexName} Account Number"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__FedExAccountNumber__c}"/>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem rendered="{!EditFedExAccountNumberDisabled}">
+            <apex:outputLabel value="{!RegisteredNameData.FedexName} Account Number"/>
+            <apex:outputField value="{!ShipmatePreference.zkfedex__FedExAccountNumber__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          
+          <!-- Discount Link -->
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value=""/>
+            <apex:commandLink target="_blank" immediate="true" action="http://www.zenkraft.com/discount">
+              <apex:image value="https://www.zenkraft.com/wp-content/uploads/2016/01/fedex-discount-code-signup.png"/>
+            </apex:commandLink>
+          </apex:pageBlockSectionItem><p/>
+          
+          <!-- SmartPost Account checkboxes -->
+          <apex:inputField value="{!ShipmatePreference.zkfedex__AccountIsSetupForSmartPostOutbound__c}"/><p/>
+          <apex:inputField value="{!ShipmatePreference.zkfedex__AccountIsSetupForSmartPostReturns__c}"/><p/>
+          
+          <!-- SmartPost Hub ID -->
+          <apex:inputField value="{!ShipmatePreference.zkfedex__SmartPostHubId__c}"/><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value=""/>
+            <apex:commandLink value="SmartPost Hub ID List" target="_blank" immediate="true" action="/apex/zkfedex__smartPostHubIdList"/>
+          </apex:pageBlockSectionItem><p/>
+          
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+
+        <!-- Company Name Section -->
+        <apex:outputPanel id="companyNameSection">
+        <apex:pageBlockSection collapsible="false" title="Company Name Information">
+        
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Company Name"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__CompanyName__c}"/>
+          </apex:pageBlockSectionItem><p/>
+        
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+        
+        <!-- Shipping Address Section -->
+        <apex:outputPanel id="shippingAddressSection">
+        <apex:pageBlockSection collapsible="false" title="Shipping Address Information">
+          
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.StreetHelpText}">
+            <apex:outputLabel value="Street"/>
+            <apex:inputField style="width:350px" required="true" value="{!ShipmatePreference.zkfedex__ShippingStreet__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="City"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__ShippingCity__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="State"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__ShippingState__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Zip/Postal Code"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__ShippingPostalCode__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Country"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__ShippingCountry__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="This is a Residence"/>
+            <apex:inputField required="false" value="{!ShipmatePreference.zkfedex__ShippingIsResidential__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Set Pick Up defaults"/>
+            <apex:outputPanel >
+                <apex:inputCheckbox value="{! isPickupAvailable }" >
+                    <apex:actionSupport event="onclick" action="{! doShowPickup }" reRender="pickupFieldSection" onsubmit="IsLoading('loadingShipmatePreference');" oncomplete="IsLoading('loadingShipmatePreference');IsLoadingComplete();" immediate="true"/>
+                </apex:inputCheckbox>
+                <apex:image id="loadingShipmatePreference" styleClass="loadingShipmatePreference" value="{!$Resource.zkfedex__LoadingImage2}"/>
+            </apex:outputPanel>
+          </apex:pageBlockSectionItem><p/>
+        
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+
+        <apex:outputPanel id="pickupFieldSection">
+            <apex:pageBlockSection collapsible="false" title="Pick Up Information" rendered="{! isPickupAvailable == true }">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Package Location"/>
+                    <apex:selectList value="{! ShipmatePreference.PickupPackageLocation__c }" size="1" multiselect="false">
+                        <apex:selectOptions value="{! packageLocationOptions }"/>
+                    </apex:selectList> 
+                </apex:pageBlockSectionItem><p/>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Building Type"/>
+                    <apex:selectList value="{! ShipmatePreference.PickupBuildingType__c }" size="1" multiselect="false">
+                        <apex:selectOptions value="{! buildingTypeOptions }"/>
+                    </apex:selectList> 
+                </apex:pageBlockSectionItem><p/>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Building Type Description"/>
+                    <apex:inputField value="{! ShipmatePreference.PickupBuildingTypeDescription__c }" />
+                </apex:pageBlockSectionItem><p/>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Company Close Time (hour)" />
+                    <apex:selectList value="{! selectedCompanyCloseTimeHour }" size="1" multiselect="false"> 
+                        <apex:selectOptions value="{! closeTimeHourOptions }"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem><p/>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Company Close Time (minute)" />
+                    <apex:selectList value="{! selectedCompanyCloseTimeMinute }" size="1" multiselect="false">
+                        <apex:selectOptions value="{! closeTimeMinuteOptions }"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem><p/>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Courier Remarks"/>
+                    <apex:inputField value="{! ShipmatePreference.PickupCourierRemarks__c }" />
+                </apex:pageBlockSectionItem><p/>
+
+            </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+        
+        <!-- Billing Address Section -->
+        <apex:outputPanel id="billingAddressSection">
+        <apex:pageBlockSection collapsible="false" title="Billing Address Information">
+          
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.StreetHelpText}">
+            <apex:outputLabel value="Street"/>
+            <apex:inputField style="width:350px" required="true" value="{!ShipmatePreference.zkfedex__BillingStreet__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="City"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__BillingCity__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="State"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__BillingState__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Zip/Postal Code"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__BillingPostalCode__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Country"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__BillingCountry__c}"/>
+          </apex:pageBlockSectionItem><p/>
+        
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+
+        <!-- Default Sender Details Section -->
+        <apex:outputPanel id="defaultSenderDetailsSection">
+        <apex:pageBlockSection collapsible="false" title="Default Sender Details">
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Default Email Send To" />
+                <apex:selectList value="{! ShipmatePreference.DefaultEmailSendTo__c }" size="1" multiselect="false">
+                    <apex:selectOptions value="{! DefaultEmailTypeOptions }"/>
+                </apex:selectList>
+            </apex:pageBlockSectionItem><p/>
+        
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SenderNameDefaultHelpText}">
+            <apex:outputLabel value="Sender Name Default"/>
+            <apex:inputField required="false" value="{!ShipmatePreference.zkfedex__SenderNameDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SenderEMailDefaultHelpText}">
+            <apex:outputLabel value="Sender Email Default"/>
+            <apex:inputField required="false" value="{!ShipmatePreference.zkfedex__SenderEMailDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SenderPhoneDefaultHelpText}">
+            <apex:outputLabel value="Sender Phone Default"/>
+            <apex:inputField required="false" value="{!ShipmatePreference.zkfedex__SenderPhoneDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+        
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+        
+         <!-- Default Email Label Section -->
+        <apex:outputPanel id="defaultEmailLabelSection">
+        <apex:pageBlockSection collapsible="false" title="Email Label Defaults">
+        
+          <!-- default email display name -->
+          <apex:inputField value="{!ShipmatePreference.zkfedex__EmailLabelSenderDisplayNameDefault__c}"/><p/>
+          <!-- default email reply-to email -->
+          <apex:inputField value="{!ShipmatePreference.zkfedex__EmailLabelReplyToEmailDefault__c}"/><p/>
+          <!-- default email subject line -->
+          <apex:inputField value="{!ShipmatePreference.zkfedex__EmailLabelSubjectLineDefault__c}"/><p/>
+          <!-- default email text body -->
+          <apex:inputField style="width:350px" value="{!ShipmatePreference.zkfedex__EmailLabelTextBodyDefault__c}"/><p/>
+
+          <apex:pageBlockSectionItem rendered="{! isOrgWideEmailRendered }">
+            <apex:outputLabel value="Org Wide Email Address" />
+            <apex:selectList value="{! selectedOrgWideEmail }" size="1" multiselect="false">
+              <apex:selectOptions value="{! orgWideEmails }" />
+            </apex:selectList>
+          </apex:pageBlockSectionItem>
+          
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+        
+        <!-- Other Defaults Section -->
+        <apex:outputPanel id="otherDefaultsSection">
+        <apex:pageBlockSection collapsible="false" title="Other Defaults">
+        
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Label Image Type Default"/>
+            <apex:inputField required="true" value="{!ShipmatePreference.zkfedex__LabelImageTypeDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.DropoffTypeHelpText}">
+            <apex:outputLabel value="Dropoff Type Default"/>
+            <apex:selectList value="{!ShipmatePreference.zkfedex__DropoffTypeDefault__c}" size="1" multiselect="false"  >
+              <apex:selectOptions value="{!DropoffTypeOptions}"/>
+            </apex:selectList>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value=""/>
+            <apex:commandLink target="_blank" immediate="true" value="Help Me Choose" action="http://www.zenkraft.com/docs-shipmate-fedex-thermal-help-me-choose"/>
+          </apex:pageBlockSectionItem><p/> 
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.EMailMessageHelpText}">
+            <apex:outputLabel value="Email Message Default"/>
+            <apex:inputField required="false" style="width:350px" value="{!ShipmatePreference.zkfedex__EMailMessageDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SendEMailNotificationToShipperHelpText}">
+            <apex:outputLabel value="Send Email Notification to Shipper"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__SendEMailNotificationToShipper__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SendEMailNotificationToRecipientHelpText}">
+            <apex:outputLabel value="Send Email Notification to Recipient"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__SendEMailNotificationToRecipient__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SendEMailNotificationOnExceptionHelpText}">
+            <apex:outputLabel value="Send Email Notification on Exception"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__EMailNotifyOnExceptionDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.SendEMailNotificationOnDeliveryHelpText}">
+            <apex:outputLabel value="Send Email Notification on Delivery"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__EMailNotifyOnDeliveryDefault__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.DetailedViewShipmatePreferenceListHelpText}">
+            <apex:outputLabel value="Detailed View - Shipmate Preference List"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__DetailedViewShipmatePreferenceList__c}"/>
+          </apex:pageBlockSectionItem><p/>
+          <apex:pageBlockSectionItem helpText="{!HelpLinks.DetailedViewReUsePackageListHelpText}">
+            <apex:outputLabel value="Detailed View - ReUse Package List"/>
+            <apex:inputField value="{!ShipmatePreference.zkfedex__DetailedViewReUsePackageList__c}"/>
+          </apex:pageBlockSectionItem><p/>
+           <!-- Enable Scales Package -->
+          <apex:pageBlockSectionItem >
+            <apex:outputLabel value="Enable Scales"/>
+            <apex:inputField value="{! ShipmatePreference.EnableScales__c }"/>
+          </apex:pageBlockSectionItem><p/>
+          <!-- AutoWeigh Package -->
+           <apex:pageBlockSectionItem helpText="{! HelpLinks.AutoWeighPackageHelpText }">
+            <apex:outputLabel value="Auto Weigh Package"/>
+            <apex:inputField value="{! ShipmatePreference.AutoWeighPackage__c }"/>
+          </apex:pageBlockSectionItem><p/>
+          
+        </apex:pageBlockSection>
+        </apex:outputPanel>
+        
+        
+      </apex:pageBlock>
+    <div class="lightboxWizard">
+    </div>
+    </apex:form>
+</apex:page>

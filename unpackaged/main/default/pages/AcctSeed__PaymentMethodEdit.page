@@ -1,0 +1,39 @@
+<apex:page standardController="AcctSeed__Payment_Method__c" title="Edit Payment Method | Accounting Seed" extensions="AcctSeed.PaymentMethodEditController" id="PaymentMethodEdit">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Payment_Method__c.Label}" subtitle="{!AcctSeed__Payment_Method__c.Name}"/>
+        <apex:pageBlock title="Edit Payment Method">
+            <apex:pageMessage severity="warning" strength="3"
+                              summary="Changes made in this screen will affect both Accounting Seed and Stripe." />
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!updateViaUI}" value="Save" rerender="theForm"
+                                    onClick="AcctSeed.ASModule.disableButtons('Processing ...')" />
+                <apex:commandButton action="{!cancel}" value="Back" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2" title="Details" collapsible="false" rendered="{!!isACH}">
+                <!-- ONLY THESE FIELDS CAN BE EDITED. OTHER ARE IMMUTABLE ON THE STRIPE SIDE -->
+                <apex:inputField value="{!paymentMethod.AcctSeed__Card_Holder_Name__c}" />
+                <apex:inputField value="{!paymentMethod.AcctSeed__Expiration_Month__c}" />
+                <apex:inputField value="{!paymentMethod.AcctSeed__Status__c}" />
+                <apex:inputField value="{!paymentMethod.AcctSeed__Expiration_Year__c}" />
+                <apex:inputField value="{!paymentMethod.AcctSeed__Default__c}" rendered="{!!paymentMethod.AcctSeed__Default__c}"/>
+                <apex:outputField value="{!paymentMethod.AcctSeed__Default__c}" rendered="{!paymentMethod.AcctSeed__Default__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" title="Details" collapsible="false" rendered="{!isACH}">
+                <!-- ONLY THESE FIELDS CAN BE EDITED. OTHER ARE IMMUTABLE ON THE STRIPE SIDE -->
+                <apex:inputField value="{!paymentMethod.AcctSeed__Card_Holder_Name__c}" />
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Bank Account Type"/>
+                    <apex:selectList id="bankAccountType" value="{!selectedBankAccountType}" size="1">
+                        <apex:selectOptions value="{!BankAccountTypes}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                <apex:inputField value="{!paymentMethod.AcctSeed__Status__c}" />
+                <apex:inputField value="{!paymentMethod.AcctSeed__Default__c}" rendered="{!AND(NOT(paymentMethod.AcctSeed__Default__c), isVerified)}"/>
+                <apex:outputField value="{!paymentMethod.AcctSeed__Default__c}" rendered="{!paymentMethod.AcctSeed__Default__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,979 @@
+/* 
+    Document   : jq-calendar-anything.small
+    Created on : 31 трав 2012, 19:02:24
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html, body { overflow: hidden; height: 100% }
+body { margin:0; padding:0; }
+
+.JQ_CA.mobile{
+    min-width:320px;
+    /*background-color: red;*/
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:100;
+    box-shadow:0px 0px 0px;
+    border-radius: 0;
+    border-width: 0;
+}
+
+.JQ_CA.mobile._orient_vertical{
+    min-width: 320px;
+}
+.JQ_CA.mobile._orient_horizontal{
+    min-width: 320px;
+}
+
+.JQ_CA.mobile._noleft > .CA_r{
+    left:40px;
+}
+
+.JQ_CA.mobile._noleft > .CA_l{
+    width: 40px;
+}
+
+
+.JQ_CA.mobile._show_menu > .CA_h > div.nav, 
+.JQ_CA.mobile._show_menu > .CA_h > div.mode,
+.JQ_CA.mobile._show_menu > .CA_h > div.manage
+{
+    visibility: hidden;
+}
+
+.JQ_CA > .CA_h > div.buttons{
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+.JQ_CA.mobile > .CA_h > div.mode.buttons.open{
+    height: auto;
+    width:150px;
+    z-index:199;
+    background-color: white;
+    box-shadow: 0 0 5px #ddd;
+}
+
+    .JQ_CA.mobile > .CA_h > div.buttons > span{
+        padding-left: 2px;
+        padding-right:2px;
+        background-image:none;
+    /*    background-image: linear-gradient(0);
+        background: -webkit-linear-gradient(none);*/
+    }
+    
+    
+    .JQ_CA.mobile > .CA_h > div.buttons.mode > span{
+        display: none;
+    }
+    
+    .JQ_CA.mobile > .CA_h > div.buttons > span.sel,
+    .JQ_CA.mobile > .CA_h > div.buttons.open > span {
+        width:90%;
+        display:block;
+    }
+    .JQ_CA.mobile > .CA_h > div.buttons.open > span {
+        font-size: 150%;
+        padding:20px;
+    }
+
+    .JQ_CA.mobile > .CA_h > div.nav.buttons{
+        left:110px;
+        margin-left:0;
+        right: auto;
+    }
+        .JQ_CA.mobile > .CA_h > div.nav.buttons > span:first-child, 
+        .JQ_CA.mobile > .CA_h > div.nav.buttons > span:last-child{
+            padding-left:5px;
+            padding-right:5px;
+        }
+
+
+    .JQ_CA.mobile > .CA_h > div.manage.buttons{
+        left:60px;
+    }
+    .JQ_CA.mobile._orient_vertical > .CA_h > div.search{
+        display: none;
+    }
+    
+    .JQ_CA.mobile > .CA_h > div.search{
+        width:80px;
+        left:300px;
+    }
+        .JQ_CA.mobile > .CA_h > div.search > input{
+            width:60px
+        }
+        
+    .JQ_CA.mobile > .CA_h > div.title{
+        left:5px;
+        overflow: hidden;
+        width: 0;
+    }
+    
+
+    .JQ_CA.mobile > .CA_h > div.mode{
+        right:5px;
+    }
+    
+
+
+    .JQ_CA.mobile > .CA_h > div.buttons > span.sel{
+        background-color: #ddd;
+    }
+
+    .JQ_CA.mobile > .CA_h > div.buttons > span:active,
+    .JQ_CA.mobile > .CA_h > div.buttons > span:focus{
+        background-color: #ddd;
+    }
+    
+    .JQ_CA.mobile._show_menu > .CA_h > div.display{
+        display: block;
+        z-index:52;
+        left: 60px;
+        background: white;
+    }
+    
+        .JQ_CA.mobile._show_menu > .CA_h > div.display > span{
+            display: inline-block;
+        }
+
+        .JQ_CA.mobile._show_menu > .CA_h > div.display > span.sel{
+            display: none;
+        }
+/* Day mode*/    
+
+
+/*        .JQ_CA.mobile > .CA_r > div._mode-day > div.agd > div.data > ul > li:first-child,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div > div.days > ul > li:first-child{
+            visibility: hidden;
+        }*/
+        
+/*        .JQ_CA.mobile > .CA_r > div._mode-day > div.agd > div.data > ul > li,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div > div.days > ul > li{
+            width: 100%;
+        }*/
+
+        .JQ_CA.mobile > .CA_r > div._mode-day > div > div.days > ul > li:first-child > select:first-child{
+            width: 30px;
+        }
+        .JQ_CA.mobile > .CA_r > div._mode-day > div > div.days > ul > li:first-child > select{
+            width: 50px;
+        }
+        
+        .CA_LIGHTNING.mobile.JQ_CA > .CA_h > div.search{
+            top:3px;
+            color: #005fb2;
+            height: 32px;
+        }
+
+.JQ_CA.mobile > .CA_r > div._mode-day > div.top,
+.JQ_CA.mobile > .CA_r > div._mode-day > div.bottom,
+.JQ_CA.mobile._small > .CA_r > div._mode-month > div.days,
+.JQ_CA.mobile._small > .CA_r > div._mode-month > div.month_scroll,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.top,
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_dates_bg,
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars,
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_dates,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.bottom,
+.JQ_CA.mobile > .CA_r > div._mode-week.agenda > div.agd{
+    right:0;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week > div.bottom,
+.JQ_CA.mobile > .CA_r > div._mode-week.agenda > div.agd{
+    bottom:0;
+}
+
+/*Week*/
+        .JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.days > ul > li:first-child, 
+        .JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.days > ul > li:first-child, 
+        .JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.grid > ul > li:first-child{
+            visibility: hidden;
+        }
+.JQ_CA.mobile > .CA_r > div._mode-week > div.top > div.data > div.events{
+    bottom:0;
+    top:10px;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.days > ul > li:first-child,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.data > ul > li:first-child,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.grid > ul > li:first-child{
+    min-width: 20px;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.days > ul,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.data > ul,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.grid > ul{
+    white-space: nowrap;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.days > ul > li,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.data > ul > li,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.agd > div.grid > ul > li{
+    min-width: 150px;
+    overflow: hidden;
+}
+
+/*custom*/
+.JQ_CA.mobile > .CA_r > div._mode-custom > div.custom_scroll{
+    top:0;
+    right:0;
+}
+
+ 
+/*Month*/
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div:hover > ul > li:hover > span.more.on:hover{
+        font-size: 25px;
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month div.month_scroll > div > ul > li > span.more.on,
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div:hover > ul > li:hover > span.more.on,
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li.full_day > span.more.on{
+        position: absolute;
+        width: 100% !important;
+        height: 100% !important;
+        top:0;
+        left:0;
+        font-size: 18px;
+        color:#333;
+        line-height: 30px;
+        vertical-align: middle;
+        /*background-color: rgba(0, 0, 255, 0.05);*/
+        color:#333333;
+        line-height: 45px;
+        vertical-align: bottom;
+        /*text-shadow: 1px 1px 2px #333333;*/
+        overflow: hidden;
+        padding: 0 !important;
+        border:0;
+        background-color: transparent !important;
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li.full_day > span.more.on{
+        color:#333333 !important;
+        vertical-align: bottom !important;
+        line-height: 45px !important;
+    }
+
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li.cur-month > span.more.on{
+        /*background-color: rgba(0, 0, 255, 0.15);*/
+    }
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li > span.more.on{
+        background-image: url(../pic/5point.png);
+        background-repeat: no-repeat;
+        color:transparent !important;
+    }
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li > span.more.on._more_1{
+        background-position: -28px 3px;  
+    }
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li > span.more.on._more_2{
+        background-position: -21px 3px;  
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li > span.more.on._more_3{
+        background-position: -14px 3px;  
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li > span.more.on._more_4{
+        background-position: -7px 3px;  
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li > span.more.on._more_5{
+        background-position: 0 3px;  
+    }
+    
+    
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div:hover > ul > li:hover > span.more.on,
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li.full_day > span.more.on{
+        background-color: rgba(0, 0, 255, 0.3) !important;
+    }
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month div.month_scroll > div > ul > li.full_day > span.daymore{
+        display: none;
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month  div.month_scroll > div > ul > li.full_day{
+        box-shadow: inset 0 0 5px #222;
+    }
+/*        .JQ_CA.mobile > .CA_r > div._mode-month div.month_scroll > div > ul > li.full_day > span.daymore > ._close,
+        .JQ_CA.mobile > .CA_r > div._mode-month div.month_scroll > div > ul > li.full_day > span.daymore > ._move,
+        .JQ_CA.mobile > .CA_r > div._mode-month div.month_scroll > div > ul > li.full_day > span.daymore > ._resize{
+            display: none;
+        }*/
+
+
+/*    .JQ_CA.mobile._orient_vertical > .CA_r > div.show._mode-month{
+        bottom:150px;
+    }*/
+    
+/*    .JQ_CA.mobile._orient_horizontal > .CA_r > div.show._mode-month{
+        right:150px;
+    }*/
+    
+    .JQ_CA.mobile._orient_horizontal > .CA_r > div._mode-month > div.days, 
+    .JQ_CA.mobile._orient_horizontal > .CA_r > div._mode-month > div.month_scroll{
+        right: 150px;
+    }
+    
+    .JQ_CA.mobile._orient_vertical > .CA_r > div._mode-month > div.month_scroll{
+        bottom: 150px;
+    }
+    
+    
+    .JQ_CA.mobile > .CA_r > div._mode-month > div.month_day_detail{
+        display: block;
+        position: absolute;
+        bottom:0;
+        box-shadow: none;  
+        overflow-y: auto;
+        /*background-color: rgba(0,0,0,0.2);*/
+        background-color: #fff;
+        box-shadow: inset 0 0 3px #777;
+    }
+    
+    .JQ_CA.mobile.CA_iphone > .CA_r > div._mode-month > div.month_day_detail{
+        overflow-y: scroll;
+    }
+    .JQ_CA.mobile > .CA_r > div._mode-month > div.month_day_detail{
+        
+    }
+    
+    .JQ_CA.mobile._orient_horizontal > .CA_r > div._mode-month > div.month_day_detail{
+        right:0;
+        left:auto;
+        width: 150px;
+        top:0px;
+    }
+    
+    .JQ_CA.mobile._orient_vertical > .CA_r > div._mode-month > div.month_day_detail{
+        left:0;
+        top:auto;
+        height:150px;
+        right:0;
+    }
+    @media screen and (min-width: 500px) and (orientation : landscape){
+        body  .JQ_CA.mobile._orient_horizontal > .CA_r > div._mode-month > div.days, 
+        body  .JQ_CA.mobile._orient_horizontal > .CA_r > div._mode-month > div.month_scroll{
+            right: 30%;
+        }
+        
+        body .JQ_CA.mobile._orient_horizontal > .CA_r > div._mode-month > div.month_day_detail{
+            width:30%;
+        }
+    }
+    
+    @media screen and (min-width: 500px) and (orientation : portrait) and (min-height:500px){
+        body  .JQ_CA.mobile._orient_vertical > .CA_r > div._mode-month > div.days, 
+        body  .JQ_CA.mobile._orient_vertical > .CA_r > div._mode-month > div.month_scroll{
+            bottom: 30%;
+        }
+        
+        body .JQ_CA.mobile._orient_vertical > .CA_r > div._mode-month > div.month_day_detail{
+            height: 30%;
+        }
+        
+        
+    }
+    
+    
+        .JQ_CA.mobile > .CA_r > div._mode-month > div.month_day_detail table td{
+            font-size:130%;
+        }
+            .JQ_CA.mobile > .CA_r > div._mode-month > div.month_day_detail  table td .title{
+                font-size:100%;
+                padding:5px;
+            }
+            
+            .JQ_CA.mobile > .CA_r > div._mode-month > div.month_day_detail  table td .details{
+                /*font-size: 85%;*/
+                padding-top:3px;
+                display: block;
+            }
+            
+            .JQ_CA.mobile > .CA_r > div._mode-month > div.month_day_detail  table td .details > b{
+                color:#888;
+            }
+    
+/*Buttons*/    
+.JQ_CA > .CA_h > div.buttons:active, 
+.JQ_CA > .CA_h > div.buttons:hover, 
+.JQ_CA > .CA_h > div.buttons:focus{
+    background:none;
+/*    background: red;*/
+}
+
+
+    .JQ_CA.mobile._noleft > .CA_l >  div{
+        width:32px;
+        height:32px;
+        border-radius: 5px;
+        border:1px solid #ddd;
+        left:2px;
+    }   
+        .JQ_CA.mobile._noleft > .CA_l >  div > div.title{
+            padding-left:42px;
+            background-image: none;
+            height:32px;
+            width:32px;
+            overflow: hidden;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        
+        .JQ_CA.mobile._noleft > .CA_l >  div[data-type="sf"]{top:10px;}
+        .JQ_CA.mobile._noleft > .CA_l >  div[data-type="group"]{top:50px;}
+        .JQ_CA.mobile._noleft > .CA_l >  div[data-type="web"]{top:90px;}
+        
+            .JQ_CA.mobile._noleft > .CA_l >  div > div.title > span{
+                display:inline-block;
+                position: absolute;
+                width:24px;
+                height:16px;
+                top:8px;
+                left:3px;
+                line-height: 16px;
+                margin-right:0;
+                margin-top:0;
+                
+            }
+            .JQ_CA.mobile._noleft > .CA_l >  div[data-type="sf"] > div.title > span{
+                background-position: 0 0;
+            }
+            
+            .JQ_CA.mobile._noleft > .CA_l >  div[data-type="group"] > div.title > span{
+                background-position: 0px -16px;
+            }
+            .JQ_CA.mobile._noleft > .CA_l >  div[data-type="web"] > div.title > span{
+                background-position: 0px -32px;
+            }
+            
+        .JQ_CA._noleft.mobile > .CA_l > div:hover > div.list{
+            display: none !important;
+        }
+        .JQ_CA._noleft.mobile > .CA_l > div._on:hover > div.list {
+            display: block !important;
+        }
+
+    .JQ_CA.mobile > .CA_l >  div > div.list > div{
+        line-height:20px;
+        vertical-align: middle;
+    }
+    .JQ_CA.mobile > .CA_l >  div > div.list > div:hover{
+        background-color: transparent;
+        border-color:transparent;
+    }
+    .JQ_CA.mobile.middle > .CA_l >  div > div.list > div{
+        line-height:20px;
+        font-size:110%;
+    }
+    .JQ_CA.mobile.large > .CA_l >  div > div.list > div{
+        line-height:24px;
+        font-size:130%;
+    }
+    
+        .JQ_CA.mobile > .CA_l >  div > div.list > div > span{
+            width:16px;
+            height:16px;
+            border-radius: 4px;
+        }
+        .JQ_CA.mobile > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+            background-image: url(../pic/rainbow_pad_small.png);
+        }
+        
+        .JQ_CA.mobile.middle > .CA_l >  div > div.list > div > span{
+            width:19px;
+            height:19px;
+        }
+        .JQ_CA.mobile.middle > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+            background-image: url(../pic/rainbow_pad_middle.png);
+        }
+
+        .JQ_CA.mobile.large > .CA_l >  div > div.list > div > span{
+            width:22px;
+            height:22px;
+        }
+        .JQ_CA.mobile.large > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+            background-image: url(../pic/rainbow_pad_big.png);
+        }
+        
+        .JQ_CA.mobile > .CA_l >  div > div.list > div > span.name,
+        .JQ_CA.mobile.middle > .CA_l >  div > div.list > div > span.name, 
+        .JQ_CA.mobile.large > .CA_l >  div > div.list > div > span.name{
+
+            height:auto;
+            vertical-align: top;
+            margin-right:40px;
+            width:auto;
+            white-space: normal; 
+        }
+    .JQ_CA.mobile._noleft > .CA_l > div.close > div.list{
+        max-height:500px;
+    }
+        .JQ_CA.mobile > .CA_l >  div > div.list > div > span.str{
+            display:none;
+        }
+    
+
+.JQ_CA.mobile.middle > .CA_h > div.buttons > span,
+.JQ_CA.mobile.middle > .CA_h > div.title{
+    height:32px;
+    line-height: 32px
+}
+.JQ_CA.mobile.large > .CA_h > div.buttons > span,
+.JQ_CA.mobile.large > .CA_h > div.title{
+    height:34px;
+    line-height: 34px
+}
+
+.JQ_CA.mobile._compactMobile > .CA_h > div.nav .date_title {
+    min-width: 70px;
+    overflow-x: hidden;
+}
+
+.JQ_CA.mobile > .CA_h > div.nav{
+/*    left:45%;*/
+}
+
+.JQ_CA.mobile.middle > .CA_h > div.title,
+.JQ_CA.mobile.middle > .CA_h > div.manage,
+.JQ_CA.mobile.middle > .CA_h > div.nav,
+.JQ_CA.mobile.middle > .CA_h > div.mode{
+    top:3px;
+    height: 32px;
+}
+.JQ_CA.mobile.large > .CA_h > div.title,
+.JQ_CA.mobile.large > .CA_h > div.manage,
+.JQ_CA.mobile.large > .CA_h > div.nav,
+.JQ_CA.mobile.large > .CA_h > div.mode{
+    top:2px;
+    height: 34px;
+/*    font-size: 110%;*/
+    
+}
+
+    .JQ_CA.mobile.middle > .CA_h > div.title > span{
+        top:2px;
+    }
+    .JQ_CA.mobile.large > .CA_h > div.title > span{
+        top:3px;
+    }
+
+/*.JQ_CA.mobile div.evt > span{
+    border-radius: 0px !important;
+}*/
+
+.JQ_CA.mobile._small > .CA_popup._center{
+    top:0;
+    left:0;
+    right:0;
+}
+
+@media screen and (device-width: 768px) and (orientation: portrait){
+    .JQ_CA.mobile > .CA_h > div.nav{
+        left:37%;
+    }
+    
+    .JQ_CA.mobile{
+        min-width:768px;
+        left:0px;
+/*        top:0px;
+        bottom:0px;*/
+        right:0px;
+    }
+    
+    .JQ_CA.mobile > .CA_h > div.manage{
+        left:210px;
+    }
+    
+    .JQ_CA.mobile > .CA_popup._center{
+        top:25%;
+        left:5%;
+        right:5%;
+    }
+}
+
+
+
+
+.JQ_CA.mobile .CA_hide_menu{
+/*    display: none;
+    position: absolute;
+    right:2px;
+    top:2px;
+    width:16px;
+    height: 16px;
+    border: 8px solid #0067f3;
+    box-shadow: 0 0 1px #000;
+    opacity: 0.2;
+    border-radius: 5px;
+    background-color: #0067f3;
+    z-index:50;
+    background-image:url(../pic/icons.png);
+    background-repeat:no-repeat;
+    background-position: left -374px ;
+    cursor: pointer;*/
+}
+    .JQ_CA.mobile .CA_hide_menu:hover{
+    /*    background-color: #fff;
+        border-color: #fff;*/
+        /*opacity: 1;*/
+    }
+    
+    .JQ_CA.mobile._show_menu .CA_hide_menu{
+        position: absolute;
+        display: block;
+        left:60px;
+        top:40px;
+        border-radius: 0;
+        background-color: rgba(255,255,255,0.8);
+        border:0;
+        right:0;
+        bottom:0;
+        box-shadow: none;
+        background-image: none;
+        width: auto;
+        height: auto;
+        opacity: 1;
+        z-index:51;
+    }
+    .JQ_CA.mobile.CA_loading._show_menu  .CA_hide_menu{
+        background-color: rgba(255,255,255,0.8);
+    }
+    
+/*    .JQ_CA.mobile.CA_loading  .CA_hide_menu{
+        background-image: url(../pic/ajax-loader-ipad.gif);
+        background-position: center center;
+        background-repeat: no-repeat;
+        opacity: 1;
+        background-color: white;
+        border-color: white;
+    }*/
+
+/*    .JQ_CA.mobile._show_menu .CA_hide_menu{
+        display: none;
+    }*/
+
+    .JQ_CA.mobile .CA_l,
+    .JQ_CA.mobile .CA_h{
+/*        display: none;*/
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        z-index:51;
+    }
+    
+    .JQ_CA.mobile .CA_l{
+        margin-left: -280px;
+        width: 280px;
+        z-index:52;
+    }
+        .JQ_CA.mobile > .CA_l > div > div.list{
+            padding-left: 0px;
+        }
+            .JQ_CA.mobile > .CA_l > div > div.list > div{
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+/*  .JQ_CA.mobile._show_menu .CA_h,*/
+    .JQ_CA.mobile._show_menu .CA_l{
+        display: block;
+        
+        /*background-color: rgba(0,0,255,0.3);*/
+        background-color: rgba(255,255,255,0.9);
+        box-shadow: 0 0 3px #777;
+    }
+    .JQ_CA.mobile .CA_h{
+        /*margin-top:-50px;*/
+    }
+    .JQ_CA.mobile._show_menu .CA_h{
+        margin-top: 0;
+        /*box-shadow: 0 3px 2px #333;*/
+    }
+/*        .JQ_CA.mobile .CA_h .mode{
+            display: none
+        }
+        .JQ_CA.mobile._show_menu .CA_h .mode{
+            display: block;
+        }*/
+/*    .JQ_CA.mobile .CA_l{
+        margin-left: -40px;
+    }*/
+    .JQ_CA.mobile._show_menu .CA_l{
+        margin-left: 0px;
+        /*box-shadow: 3px 0 2px #333;*/
+    }
+
+    .JQ_CA.mobile .CA_r{
+        left: 0 !important;
+/*        top:0 !important;*/
+    }
+    
+        .JQ_CA.mobile > .CA_r > div._mode-month > div.days,
+        .JQ_CA.mobile > .CA_r > div._mode-month > div.month_scroll,
+        .JQ_CA.mobile > .CA_r > div._mode-week > div.top,
+        .JQ_CA.mobile > .CA_r > div._mode-week > div.bottom,
+        .JQ_CA.mobile > .CA_r > div._mode-week > div.agd,
+        .JQ_CA.mobile > .CA_r > div._mode-custom > div.custom_scroll,
+        .JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars,
+        .JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_form,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.top,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.bottom,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.agd{
+            left:0;
+        }
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.agd,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.top > div.data > ul, 
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.agd > div.data > ul{
+            right:0;
+        }
+        
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.bottom,
+        .JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars,
+        .JQ_CA.mobile > .CA_r > div._mode-day > div.agd{
+            bottom:0;
+        }
+        
+        .JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_dates{
+            left:200px;
+        }
+        
+        
+        
+/* popups */        
+.JQ_CA.mobile div.CA_event_detail,
+.JQ_CA.mobile .CA_create_event {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+    .JQ_CA.mobile div.CA_event_detail > .fields{
+        /*max-height: 150px;*/
+        position: absolute;
+        top:90px;
+        left:0;
+        right:0;
+        bottom:40px;
+        max-height: none;
+    }
+    
+        .JQ_CA.mobile div.CA_event_detail > .fields > table > tbody > tr > td:first-child{
+            width: 50%;
+        }
+    
+    .JQ_CA.mobile div.CA_event_detail div.buttons,
+    .JQ_CA.mobile._small form > div.buttons, 
+    .JQ_CA.mobile._small .CA_popup  div.buttons, 
+    .JQ_CA.mobile._small .CA_popup  .form_buttons, 
+    .JQ_CA.mobile form div.form_buttons{
+        position: fixed;
+        left:0;
+        right:0;
+        bottom:0px;
+    }
+    .JQ_CA.mobile._small form > div.buttons, .JQ_CA.mobile div.form_buttons{
+        padding: 5px;
+    }
+
+        .JQ_CA.mobile div.CA_event_detail div.buttons > span{
+            margin: 2px 7px;
+        }
+    
+    .JQ_CA.mobile .CA_create_event > .fields{
+        position: absolute;
+        top:60px;
+        bottom:40px;
+        left:0;
+        right:0;
+        max-height: none;
+    }
+        .JQ_CA.mobile .CA_create_event > .fields > form > div{
+            max-width: none;
+        }
+            .JQ_CA.mobile .CA_create_event > .fields > form > div > span{
+                width:68%;
+            }
+
+            .JQ_CA.mobile .CA_create_event > .fields > form > div > span:first-child{
+                width:30%;
+            }
+
+    
+    
+@media screen and (max-width: 480px){   
+    .JQ_CA.mobile > .CA_h > div.mode{
+        visibility: hidden;
+    }
+    .JQ_CA.mobile._show_menu > .CA_h > div.mode{
+        visibility: visible;
+    }
+    .JQ_CA.mobile .CA_h{
+        z-index:53;
+    }
+    
+    .JQ_CA.mobile > .CA_h > div.buttons.open > span {
+        font-size: 100%;
+        padding:10px;
+        line-height: 24px;
+        height:24px;
+    }
+
+} 
+
+@media screen and (max-height: 320px){   
+    .JQ_CA.mobile > .CA_h > div.buttons.open > span {
+        font-size: 100%;
+        padding:4px;
+        line-height: 24px;
+        height:24px;
+    }
+}
+
+
+.JQ_CA.mobile._compactMobile{
+    
+}
+
+    .JQ_CA.mobile._compactMobile .CA_h{
+        bottom:0;
+        top:auto;
+        border-top: 1px solid #DDDDDD;
+        border-bottom: none;
+    }
+    
+    .JQ_CA.mobile._compactMobile._show_menu .CA_h{
+        display: none;
+    }
+    
+        .JQ_CA.mobile._compactMobile > .CA_h > div.notify, 
+        .JQ_CA.mobile._compactMobile > .CA_h > div.notify.show,
+        .JQ_CA.mobile._compactMobile > .CA_h > div.notify:hover {
+            display: none;
+        }
+        
+        .JQ_CA.mobile._compactMobile > .CA_h > div.mode{
+            visibility: visible;
+        }
+        
+        .JQ_CA.mobile._compactMobile > .CA_h > div.mode.buttons.open{
+            bottom: 0;
+            top:auto;
+        }
+    
+    .JQ_CA.mobile._compactMobile > .CA_l{
+        top:0;
+        bottom:0;
+    }
+    
+    .JQ_CA.mobile._compactMobile._show_menu .CA_l{
+        width: 100%;
+        bottom:0;
+        
+/*        padding-bottom:30px;*/
+        overflow-y: scroll;
+/*        margin-bottom: 30px;*/
+    }
+    
+        .JQ_CA.mobile._compactMobile._show_menu .CA_l > .calendars_empty{
+            display: none;
+        }
+        .JQ_CA.mobile._compactMobile._show_menu .CA_l > ._buttonsPanel{
+            display: block;
+            position: fixed;
+            left:0;
+            right:0;
+            bottom:0;
+            height:30px;
+            background-color: #ffffff;
+            border: 1px solid #DDDDDD;
+            line-height: 30px;
+            margin: 0;
+            z-index:99;
+        }
+        
+        .JQ_CA.mobile._compactMobile._show_menu .CA_l > div:last-child:not(.calendars_empty){
+            margin-bottom:40px;
+        }
+    
+    .JQ_CA.mobile._compactMobile > .CA_r{
+        top:0;
+        bottom:40px;
+    }
+    
+    
+        .JQ_CA.mobile._compactMobile._orient_vertical > .CA_r > div._mode-month > div.month_day_detail,
+        .JQ_CA.mobile._compactMobile._orient_horizontal > .CA_r > div._mode-month > div.month_day_detail{
+            display: none;
+        }
+        
+        .JQ_CA.mobile._compactMobile > .CA_r > div._mode-month div.month_scroll > div > ul > li > span.more.on, 
+        .JQ_CA.mobile._compactMobile > .CA_r > div._mode-month div.month_scroll > div:hover > ul > li:hover > span.more.on, 
+        .JQ_CA.mobile._compactMobile > .CA_r > div._mode-month div.month_scroll > div > ul > li.full_day > span.more.on{
+/*            display: none;*/
+            position: absolute;
+            bottom:0;
+            left:0;
+            height: 12px !important;
+            top: auto;
+            z-index:1;
+        }
+        
+        .JQ_CA.mobile._orient_vertical._compactMobile > .CA_r > div._mode-month > div.month_scroll,
+        .JQ_CA.mobile._orient_vertical._compactMobile > .CA_r > div._mode-month > div.days, 
+        .JQ_CA.mobile._orient_vertical._compactMobile > .CA_r > div._mode-month > div.month_scroll{
+            bottom: 0;
+        }
+        
+        .JQ_CA.mobile._orient_horizontal._compactMobile > .CA_r > div._mode-month > div.month_scroll,
+        .JQ_CA.mobile._orient_horizontal._compactMobile > .CA_r > div._mode-month > div.days, 
+        .JQ_CA.mobile._orient_horizontal._compactMobile > .CA_r > div._mode-month > div.month_scroll{
+            right: 0;
+        }
+        
+        .JQ_CA.mobile._compactMobile > .CA_r > ._mode-month span.detail_day{
+            background-color: transparent !important;
+            border: 0 none;
+            font-size: 150%;
+/*            height: 100% !important;*/
+            
+            position: absolute;
+            top: 0;
+            bottom:0;
+            right:0;
+            left: 0;
+            line-height: 45px;
+            overflow: hidden;
+            padding: 0 !important;
+            vertical-align: bottom;
+/*            width: 100% !important;*/
+            text-align: center;
+            z-index:2;
+        }
+    
+    .JQ_CA.mobile._compactMobile._show_menu .CA_hide_menu{
+        top:0;
+        bottom:40px;
+    }
+    
+.JQ_CA.mobile._compactMobile .CA_calendar_edit > .edit_form_title  div select{
+    max-width: 70px;
+}
+
+.JQ_CA.mobile._compact_height .CA_calendar_edit > .edit_form_fields > div > div{
+    max-height: none;
+    min-height: 0;
+    position: absolute;
+    top:40px;
+    bottom:43px;
+    left:3px;
+    right:3px;
+    
+}

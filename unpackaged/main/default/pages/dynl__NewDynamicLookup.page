@@ -1,0 +1,117 @@
+<apex:page standardController="dynl__DynLookup__c" extensions="dynl.NewDynamicLookup" >
+   <apex:stylesheet value="{!URLFOR($Resource.dynl__css, 'LovCss/skin.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.dynl__css, 'LovCss/yahoo-dom-event.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.dynl__css,'LovCss/container-min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.dynl__css, 'LovCss/animation-min.js')}"/>
+
+    <script>
+        YAHOO.namespace("force.com");
+        var msg1;
+        YAHOO.force.com.showMe = function(name,objName,field1,field2,popup)
+                                 {
+                                      //msg1.style.display = "none";
+                                      //msg1.value = document.getElementById("{!$Component.textid}")​;   
+                                      if((name != '') && (objName != '') && (field1 != '') && (field2 != '') && (popup != '')) { 
+                                         document.getElementById("myPanel2").style.display = "block";
+                                         YAHOO.force.com.myDialog2.show();
+                                     }
+                                 }
+        YAHOO.force.com.hideMe = function()
+                                 {
+                                     YAHOO.force.com.myDialog2.hide();
+                                 }
+        YAHOO.force.com.init = function()
+                               {
+                                  document.body.className = document.body.className+" yui-skin-sam";
+
+                                  YAHOO.force.com.myDialog2 = new YAHOO.widget.Panel("myPanel2",
+                                                                           { 
+                                                                               width       : 300,                                                                           
+                                                                               visible     : false,
+                                                                               xy          : [350,200],
+                                                                               draggable   : true,
+                                                                               close       : true,
+                                                                               modal       : true,                                                                           
+                                                                               zindex      : 200,
+                                                                               effect      : { effect:YAHOO.widget.ContainerEffect.FADE,duration: 0.10 }
+                                                                           }
+                                                                        );
+                                  YAHOO.force.com.myDialog2.render(document.body);
+                               }
+        YAHOO.util.Event.addListener(window,"load",YAHOO.force.com.init);
+    </script>
+    
+    <apex:form id="f">       
+        <apex:sectionHeader title="Dynamic Lookup Edit" subtitle="New Dynamic Lookup"/>
+        <apex:pageBlock title="Dynamic List Edit" id="pBlock">
+            <apex:pageMessages id="pgMsg"/>
+            <apex:pageBlockSection title="Definition" collapsible="true" showHeader="true" >
+                <apex:inputField id="Name" value="{!dynl__DynLookup__c.dynl__Name__c}"/>
+                <apex:inputField value="{!dynl__DynLookup__c.dynl__Window_Title__c}"/>
+                <apex:inputField id="ObjectName" value="{!dynl__DynLookup__c.dynl__Object_Name__c}"/>
+                <apex:inputField id="Field1" value="{!dynl__DynLookup__c.dynl__Field_Name_1__c}">
+                    <apex:actionSupport event="onchange" action="{!ordermethod}" reRender="slst"/>
+                </apex:inputField>
+                <apex:inputField id="Field2" value="{!dynl__DynLookup__c.dynl__Field_Name_2__c}">
+                    <apex:actionSupport event="onchange" action="{!ordermethod}" reRender="slst"/>
+                </apex:inputField>
+                <apex:inputField value="{!dynl__DynLookup__c.dynl__Aggregate_Function__c}"><br/>
+                    <apex:outputLabel value="The selected aggregate function will be used on Field name 2 and records will be grouped by Field name 1 " /> 
+                </apex:inputField>               
+                <apex:inputField id="Description" value="{!dynl__DynLookup__c.dynl__Description__c}" style="width:100%;"/>                 
+            </apex:pageBlockSection>
+            <apex:pageBlockSection collapsible="true" title="Conditions" showHeader="true">                
+                    <apex:inputField id="WhereClause" value="{!dynl__DynLookup__c.dynl__Where_Clause__c}" style="width:100%;">
+                        <br/><apex:outputlabel value="Syntax <fieldname> <operator> <value>" />
+                    </apex:inputfield>
+                    <apex:outputLabel ></apex:outputLabel>                    
+                
+                <apex:pageBlockSectionItem helpText="{!$ObjectType.dynl__DynLookup__c.Fields.dynl__Order_By__c.inlineHelpText}">
+                   <apex:outputText >Order By</apex:outputText>
+                   <apex:selectList value="{!selectorder}" size="1" id="slst" >                                          
+                       <apex:selectOptions value="{!orderoptions}" />                       
+                   </apex:selectList>
+                </apex:pageBlockSectionItem>                
+                <apex:inputField id="Order" value="{!dynl__DynLookup__c.dynl__Order__c}"/> 
+                              
+                <apex:commandButton id="Preview" action="{!previewList}" value="Preview" status="overlayStatus" style="margin-left:85%;" 
+                oncomplete="YAHOO.force.com.showMe('{!JSENCODE(dynl__DynLookup__c.dynl__Name__c)}','{!JSENCODE(dynl__DynLookup__c.dynl__Object_Name__c)}','{!JSENCODE(dynl__DynLookup__c.dynl__Field_Name_1__c)}','{!JSENCODE(dynl__DynLookup__c.dynl__Field_Name_2__c)}','{!JSENCODE(dynl__DynLookup__c.dynl__Code_to_copy_in_VF_Page__c)}');"
+                rerender="pBlock, popupTitle, popupblk, saveBtn, pgMsg, Code"></apex:commandButton>
+            </apex:pageBlockSection>                    <!--Close('{!JSENCODE(d.Name)}')-->
+            <apex:pageBlockSection collapsible="true" title="Code Snippet" columns="1">
+                <apex:inputField value="{!dynl__DynLookup__c.dynl__Code_to_copy_in_VF_Page__c}" style="width:100%;">                
+                <apex:outputlabel value="Note: Remove the <apex:form> tag from the generated code if it is not needed in the visualforce page" />
+                </apex:inputField>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton id="saveBtn" value="Save" action="{!Save}" rerender="pBlock" status="overlayStatus"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <div id="myPanel2" style="display: none"  >
+            <div class="hd">
+                <apex:outputText id="popupTitle" value="{!windowTitle}"/>
+            </div>
+            <div style="height: 400px; width: 300px; overflow: auto;">            
+                <apex:pageBlock id="popupblk">
+                   <apex:outputpanel id="keyvalue">
+                       <apex:pageBlockTable columns="2" value="{!ListOfVals}" var="item" id="Table">
+                          <apex:column >                      
+                              <apex:outputText value="{!item[firstval]}" />
+                              <apex:facet name="header">{!firstColumn}</apex:facet>
+                           </apex:column>
+                           <apex:column >                                           
+                               <apex:outputText value="{!item[secondval]}" />                                                 
+                               <apex:facet name="header">{!secondColumn}</apex:facet>     
+                           </apex:column>          
+                       </apex:pageBlockTable> <br />
+                   </apex:outputpanel>
+                   <div style="text-align : right;">                    
+                       <apex:commandButton value="Cancel" immediate="true" oncomplete="YAHOO.force.com.hideMe();" />
+                   </div>
+                </apex:pageBlock>                             
+            </div>
+        </div> 
+   </apex:form>   
+</apex:page>

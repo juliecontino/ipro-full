@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Terms of Sale --></label>
+        <name>zkfedex__TermsOfSale__c</name>
+        <picklistValues>
+            <masterLabel>Carriage Insurance Paid (CIP)</masterLabel>
+            <translation><!-- Carriage Insurance Paid (CIP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carriage Paid TO (CPT)</masterLabel>
+            <translation><!-- Carriage Paid TO (CPT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cost Insurance and Freight (CIF)</masterLabel>
+            <translation><!-- Cost Insurance and Freight (CIF) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cost and Freight (CFR)</masterLabel>
+            <translation><!-- Cost and Freight (CFR) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered Duty Paid (DDP)</masterLabel>
+            <translation><!-- Delivered Duty Paid (DDP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered Duty Unpaid (DDU)</masterLabel>
+            <translation><!-- Delivered Duty Unpaid (DDU) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered at Place (DAP)</masterLabel>
+            <translation><!-- Delivered at Place (DAP) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Delivered at Terminal (DAT)</masterLabel>
+            <translation><!-- Delivered at Terminal (DAT) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ex Works (EXW)</masterLabel>
+            <translation><!-- Ex Works (EXW) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Carrier (FCA)</masterLabel>
+            <translation><!-- Free Carrier (FCA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free On Board (FOB)</masterLabel>
+            <translation><!-- Free On Board (FOB) --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

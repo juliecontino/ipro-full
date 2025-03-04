@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Today_s_Recurring_Billing_IPro</fullName>
+    <columns>NAME</columns>
+    <columns>CCE__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>AcctSeed__Accounting_Period__c</columns>
+    <columns>AcctSeed__Customer__c</columns>
+    <columns>Customer_Alias__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <columns>Grand_Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>9/29/2021 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <filters>
+        <field>CCE__c</field>
+        <operation>equals</operation>
+        <value>IPro Media</value>
+    </filters>
+    <label>Today's Recurring Billing-IPro</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

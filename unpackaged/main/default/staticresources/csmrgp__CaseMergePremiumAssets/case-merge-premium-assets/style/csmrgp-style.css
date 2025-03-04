@@ -1,0 +1,358 @@
+.slds-scope a:not(.slds-tabs_default__link):not(.slds-button):not(.slds-tabs_scoped__link) {
+	text-decoration: underline;
+}
+
+.slds-scope .slds-table  a {
+	text-decoration: none !important;
+}
+
+fieldset {
+	border:0; 
+	display:inline; 
+	padding:10px; 
+	vertical-align:top;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.primaryPalette {
+	background-color:#228EFF !important;
+}
+.brdPalette, .secondaryPalette {
+	border-top-color:#228EFF !important;
+}
+
+html body.sfdcBody, .noSidebarCell{
+	padding:0 !important;
+}
+/*used for console*/
+body.hasMotif { 
+	/*margin: 0 !important;
+	padding: 0 !important;*/
+}
+
+/* Border */
+.sldsc-border_around {
+	border: 1px solid #dddbda;
+}
+
+/* Fix for IE */
+.sldsc-flex-item {
+    -webkit-flex: 1; /* Safari 6.1+ */
+    -ms-flex: 1; /* IE 10 */ 
+    flex: 1;
+}
+
+/** Full Screen Overlay **/
+.slds-backdrop_white {
+	background: rgba(255,255,255,.8) !important;
+}
+
+.slds-backdrop .slds-spinner {
+    position:static !important;
+}
+
+/** Spinners (Auto-start) **/
+
+
+.slds-scope .slds-spinner::before {
+	animation-delay: -600ms !important;
+	-webkit-animation-delay: -600ms !important;
+	-moz-animation-delay: -600ms !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-scope .slds-spinner::after {
+	animation-delay: -183.3ms !important;
+	-moz-animation-delay: -183.3ms !important;
+	-webkit-animation-delay: -183.3ms !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-scope .slds-spinner__dot-a::before {
+	animation-delay: -516ms !important;
+	-moz-animation-delay: -516ms !important;
+	-webkit-animation-delay: -516ms !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-scope .slds-spinner__dot-a::after {
+	animation-delay:-16.6ms !important;
+	-moz-animation-delay:-16.6ms !important;
+	-webkit-delay:-16.6ms !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-scope .slds-spinner__dot-b::before {
+	animation-delay:-350ms !important;
+	-moz-animation-delay:-350ms !important;
+	-webkit-animation-delay:-350ms !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-scope .slds-spinner__dot-b::after {
+	animation-delay:150ms !important;
+	-moz-animation-delay:150ms !important;
+	-webkit-animation-delay:150ms !important;
+	background-color: #ec7039 !important;
+}
+
+
+/** Buttons **/
+.slds-button_brand, .slds-button--brand {
+	border: 1px solid #ec7039 !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-button_brand[disabled], .slds-button--brand[disabled], .slds-button_brand[disabled]:hover, .slds-button--brand[disabled]:hover {
+	background: #f2baa2 !important;
+	border-color: transparent!important;
+	color: #fff !important;
+}
+
+.slds-button_brand:hover, .slds-button--brand:hover {
+	background-color: #ce6131 !important;
+	border-color: #ce6131 !important;
+}
+
+.slds-scope .slds-section__title {
+	color: white !important;
+	background-color: #ec7039 !important;
+	border-top: 0 !important;
+	height: 32px !important;
+	
+}
+
+.slds-scope .slds-table {
+    background-color: transparent;
+}
+
+/** Select **/
+
+/* Firefox Exclusive */
+@-moz-document url-prefix() {
+    .slds-select {height: calc(1.875rem + (1px * 2)) !important;}
+}
+
+.slds-select_container-inline {
+	display: inline-block !important;
+}
+
+.slds-select_container::before {
+    content: none !important;
+
+}
+
+.slds-select_container::after {
+    border-top-width: 6px !important;
+    border-left-width: 4px !important;
+    border-right-width: 4px !important;
+    bottom: 0.80rem !important;
+    pointer-events:none;
+}
+
+
+/** Section **/
+.slds-section__title-action,.slds-section__title-action:hover,.slds-section__title-action:focus{
+	background-color: #ec7039 !important;
+}
+
+/** Navigation Tabs **/
+.slds-tabs_default__item.slds-is-active, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link:hover, 
+.slds-tabs_default__item .slds-tabs_default__link:hover, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+	color: #e96e25 !important;
+}
+
+.slds-tabs_default__item.slds-is-active:after, .slds-tabs_default__item.slds-has-focus:after, .slds-scope .slds-tabs_default__item:hover:after {
+	background-color: #e96e25 !important;
+}
+
+ul.slds-tabs_default__nav {
+	padding: 0 2rem !important;
+}
+
+ul.slds-tabs_default__nav > li.slds-tabs_default__item {
+	cursor:pointer !important;
+}
+
+/** Buttons **/
+.btn.slds-button.slds-button_neutral:focus {
+    outline: 0;
+    box-shadow: 0 0 3px #0070D2;
+}
+
+.btn.slds-button.slds-button_neutral:active {
+	border:1px solid rgb(216, 221, 230) !important;
+	color: #005fb2 !important;
+}
+
+/** Tooltip **/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 275px;
+    position:absolute;
+}
+
+.slds-popover {
+    text-align:left;
+}
+
+.tooltip:hover .tooltiptext, .tooltip-button:focus + .tooltiptext, .tooltip.showText .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip-button:focus {
+    border-radius: 0.25rem;
+}
+
+.tooltip-button {
+	background-position: -1px -1px !important;
+	width: 14px;
+    height: 14px;
+    background-size: 14px 28px !important;
+}
+
+.tooltip-button:hover,.tooltip-button:focus {
+	background-position: -15px -15px !important;
+}
+
+.tooltip_top {
+    left:-121%;
+    bottom:145%;
+}
+
+.tooltip-button_warning:focus {
+	box-shadow:none !important;
+}
+
+/** Checkbox **/
+.slds-checkbox .slds-checkbox_faux:after {
+	border-bottom: 2px solid #ec7039 !important;
+    border-left: 2px solid #ec7039 !important;
+}
+
+.slds-checkbox_add-button .slds-checkbox_faux:after {
+	border: none !important;
+}
+
+/** Radio **/
+.slds-radio_faux:after {
+	background: #ec7039 !important;
+}
+
+/* Style uiButtons (e.g. Analytics Report Charts)*/
+.uiButton--default {
+	color: #0070d2 !important;
+	border: 1px solid #d8dde6 !important;
+	background-color: #ffffff !important;
+	padding-left: 1rem !important;
+	padding-right:1rem !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	background: none !important;    
+	box-shadow: none !important;
+	text-shadow: none !important;
+	text-decoration: none !important;
+	border-radius: 0.25rem;
+}
+
+.uiButton--default .label {
+	color: #0070d2 !important;
+}
+
+.uiButton--default:hover .label {
+	color: #005fb2 !important;
+}
+
+.uiButton--default:hover, .uiButton--default:focus{
+	color: #005fb2 !important;
+	background-color: #f4f6f9 !important; 
+	outline: 0 !important; 
+}
+
+.uiButton--default:focus {
+	box-shadow: 0 0 3px #0070D2 !important;  
+}
+
+/* Font Styling */
+.bold {
+    font-weight: bold;   
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+/* Date Picker */
+.slds-date-bar {
+	display:flex;
+	display: -ms-flexbox;
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    align-items: center;
+}
+
+.datePicker {
+	background-color: #ffffff;
+	background-image:none;
+}
+
+.dateBar select:focus {
+	outline: 0 !important;
+	border-color: #1589ee !important;
+	background-color: #fff !important;
+}
+
+.datePicker .calDays .weekend, .datePicker .calDays .weekday {
+    background: none;
+    border: 0 !important;
+    padding: 2px 0 !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    border-radius: 50% !important;
+    margin: auto !important;
+    font-weight:normal !important;
+}
+
+.datePicker .calDays .todayDate {
+	background: none !important;
+	color: black !important;
+}
+
+.datePicker .calDays .selectedDate {
+    background-color: #005fb2 !important;    
+    color: white !important;
+}
+
+.datePicker .calDays .highlight {
+	background: none;
+}
+
+.calButton {
+    height:16px !important;
+    width:16px !important;
+    margin-top:2px !important;
+    margin-right:10px !important;
+    margin-left:10px !important;
+}
+
+.dateBar {
+	padding-top: 4px !important;
+}
+
+/** Dueling Picklist **/
+.slds-dueling-list .slds-select {
+	height: inherit !important;
+	min-width: 20vh;
+}

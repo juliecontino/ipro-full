@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Material Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Purchasing Information --></label>
+            <section>Purchasing Information</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You cannot change the product if the quantity allocated is greater than 0 --></errorMessage>
+        <name>AcctSeedERP__Product_Cannot_Be_Changed_If_Allocated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Product_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Project_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the quantity per unit if the quantity allocated is greater than 0 --></errorMessage>
+        <name>AcctSeedERP__Quantity_Cannot_Be_Changed_If_Allocated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value must be greater than or equal to 0 --></errorMessage>
+        <name>AcctSeedERP__Quantity_Per_Unit_Positive_Value</name>
+    </validationRules>
+</CustomObjectTranslation>

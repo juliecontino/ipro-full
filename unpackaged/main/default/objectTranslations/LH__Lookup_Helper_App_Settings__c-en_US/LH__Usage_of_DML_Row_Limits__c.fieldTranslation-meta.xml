@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Determines the percentage of DML row limit usage at which Lookup Helper should switch to asynchronous processing.  It is generally not recommended to lower this value below 60%, and the default is 90%. --></help>
+        <label><!-- DML Row Usage % of Limits --></label>
+        <name>LH__Usage_of_DML_Row_Limits__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Parent_Key</fullName>
+    <active>false</active>
+    <errorConditionFormula>TEXT(AcctSeed__Target_Object__c) !=  TEXT(AcctSeed__Import_Template__r.AcctSeed__Parent__c) &amp;&amp;  NOT(ISNULL( AcctSeed__Key_Field__c ))</errorConditionFormula>
+    <errorDisplayField>AcctSeed__Target_Object__c</errorDisplayField>
+    <errorMessage>The Parent Key Field must be on the Parent Object</errorMessage>
+</ValidationRule>

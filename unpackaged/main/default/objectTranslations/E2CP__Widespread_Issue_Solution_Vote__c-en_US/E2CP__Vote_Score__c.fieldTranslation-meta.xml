@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Total Vote Score. Downvotes represent -10 points and Upvotes represent +10 points. --></help>
+        <label><!-- Vote Score --></label>
+        <name>E2CP__Vote_Score__c</name>
+    </CustomFieldTranslation>

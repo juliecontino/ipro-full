@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Shipping Method --></label>
+        <name>Shipping_Method__c</name>
+        <picklistValues>
+            <masterLabel>FedEx 2-Day</masterLabel>
+            <translation><!-- FedEx 2-Day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Ground</masterLabel>
+            <translation><!-- FedEx Ground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Next Day Air Priority</masterLabel>
+            <translation><!-- FedEx Next Day Air Priority --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Next Day Air Standard</masterLabel>
+            <translation><!-- FedEx Next Day Air Standard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UPS Blue</masterLabel>
+            <translation><!-- UPS Blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UPS Ground</masterLabel>
+            <translation><!-- UPS Ground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UPS Red</masterLabel>
+            <translation><!-- UPS Red --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USPS</masterLabel>
+            <translation><!-- USPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USPS Priority Mail</masterLabel>
+            <translation><!-- USPS Priority Mail --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

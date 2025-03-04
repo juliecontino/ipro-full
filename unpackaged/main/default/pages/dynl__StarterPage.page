@@ -1,0 +1,157 @@
+<apex:page >
+    
+    <style type="text/css">
+    p {font-family: Calibri;font-size: medium;font-weight: 100;}
+    h1 {
+        font-family: Calibri;
+        font-weight: bold;
+        font-size: xx-large;
+        font-style: normal;
+    }
+    h2 {
+        font-family: Calibri;
+        font-size: large;
+        font-style: normal;
+    }
+    h3 {
+        font-family: Calibri;
+        font-size: small;
+        font-style: normal;
+        font-weight: bold;
+    }
+    ul {
+        font-family: Calibri;
+        font-size: medium;
+        font-style: normal;
+    }
+    ol {
+        font-family: Calibri;
+        font-size: medium;
+        font-style: normal;
+    }
+    /*td {
+        font-family: Calibri;
+        font-size: medium;
+        font-style: normal;
+    }*/
+    </style>
+  <div style="margin-bottom:1.5%"></div>
+  <h1>Dynamic Lookup</h1> <br /><br />
+  <h2>About</h2>
+  <p>The Dynamic Lookup app allows developers to add a component to their Visualforce pages that performs the function of lookup with custom filters without writing any code. 
+  This app has 2 parts, first is an object called Dynamic Lookup that allows users to define the objects and fields that need to be queried and the next is a component that allows the developers to add the defined query to any Visualforce page as a lookup.</p>
+  
+  <p>The Dynamic Lookup app allows the user to create a query easily that would fit their business requirements and provides a java script and component to the developers to use the query’s result as a lookup in any Visualforce page.</p>
+  
+  <p>Users can edit the query definitions in the Dynamic Lookup object any time without changing the Visualforce page code or the Apex controllers.</p>
+  <h2>Advantages</h2>
+  <ol>
+      <li>One line code to get the Lookup values.</li>
+      <li>Reuse the same code across multiple pages.</li>
+      <li>Use maximum 16 different lookup codes in a single Visualforce page.</li>
+      <li>Filtering is possible in the Product object which do not have a default lookup filter.</li>
+      <li>Filtering is possible with the Autonumber, Text, Text Area, Formula, URL and Rollup summary Field datatypes (these datatype fields cannot be used in default lookup filter).</li>
+      <li>Easy to update the query without any code change.</li>
+      <li>Group By functionality is possible.</li>
+  </ol>
+  <h2>User Guide</h2>
+  <ul>
+      <li>Navigate to the Dynamic Lookups Tab and click new to create a new Dynamic Lookup definition.</li>
+      <li>Enter the mandatory details like Lookup Name, Object Name, Field Name 1 and Field Name 2.</li>
+      <li>The Lookup Title will be the title for the lookup window.</li>
+      <li>Enter a brief description about the Lookup definition in the Description field.</li>
+      <li>The Where clause should be in correct format. For example, the keyword 'Where' is not required and the conditions should be formatted with proper quotes. The keyword ‘AND’ is required only if more than one condition is used.</li>
+      <li>'Aggregate Function For Group By' can handle aggregate functions. Aggregate Function will be applied on Field Name 2 by Field Name 1.</li>
+      <li>Order by can be done on Field Name 1, Field Name 2 or both the Fields. </li>
+      <li>The Preview button will check if the query is correct and then display the retrieved records in a popup window.</li>
+      <li>The Save button will save the Dynamic Lookup definition. The Save will not display any rows in the popup but it validates and saves the record.</li>
+      <li>The script and the code to be used to add the Lookup in the Visualforce page will be displayed in the Code to copy in VF Page field.</li>
+  </ul>
+  <h2>Screenshot of the Dynamic Lookup setup page</h2>
+  <div style="margin-left:5.5%;margin-top:3%;">
+      <apex:image value="{!$Resource.dynl__DynamicLookup}" style="width:700px; height:500px;" title="setup screen"/>
+  </div>
+  <div style="margin-top:3%;"></div>
+  <h2>Fields list with usage </h2>
+  <div style="margin-top:3%;margin-bottom:3%">
+      <table border='1'>
+          <tr>
+              <td><h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field Name </h3></td>
+              <td style="width:60%"><h3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usage </h3></td>
+              <td style="width:8%"><h3> &nbsp;Field Status </h3></td>
+          </tr>
+          <tr>
+              <td>Lookup Name</td>
+              <td>Name to identify the Lookup.</td>
+              <td>Mandatory </td>
+          </tr>
+          <tr>
+              <td>Object Name</td>
+              <td>Name of the object from where the records will be retrieved.</td>
+              <td>Mandatory </td>
+          </tr>
+          <tr>
+              <td>Field Name 1, Field Name 2</td>
+              <td>Field Names to be queried from the object. Field Name 1 is the selection field, i.e. This field will have the selection link during runtime.</td>
+              <td>Mandatory </td>
+          </tr>
+          <tr>
+              <td>Aggregate function for Group By</td>
+              <td>A drop down list to select the aggregate function for using the Group By Clause.</td>
+              <td>Optional </td>
+          </tr>
+          <tr>
+              <td>Lookup Title</td>
+              <td>The Title for the lookup window.</td>
+              <td>Optional </td>
+          </tr>
+          <tr>
+              <td>Description</td>
+              <td>A brief note about Dynamic Lookup definition.</td>
+              <td>Optional </td>              
+          </tr>
+          <tr>
+              <td>Where </td>
+              <td>The logical conditions to filter the retrieved records.</td>
+              <td>Optional </td>
+          </tr>          
+          <tr>
+              <td>Order By</td>
+              <td>Name of the field by which the retrieved records will be ordered.</td>
+              <td>Optional </td>              
+          </tr>
+          <tr>
+              <td>Order</td>
+              <td>Record order direction can be ascending or descending.</td>
+              <td>Optional </td>
+          </tr>
+          <tr>
+              <td style="width:20%">Code to copy in VF page</td>
+              <td>Code is generated here when user clicks on the preview button.</td>
+              <td>Optional </td>
+          </tr>
+      </table>
+   </div>
+   <p>Setup steps are now complete. To use the code in any Visualforce page, do the following:</p>
+   <ul>
+       <li>Copy the code from the code snippet and use in Visualforce page.</li>
+       <li>Refer any one of the standard Visualforce input component for Field Name 1 in the page (which should be dedicated to this component to pass the value of Field Name 1 to the Apex class) and provide a unique Id for it.</li>
+       <li>Refer any one of the standard Visualforce input component for Field Name 2 in the page (which should be dedicated to this component to pass the value of Field Name 2 to the Apex class) and provide an unique Id for it.</li>
+       <li>Refer any one of the standard Visualforce input component for selected record Id in the page (which should be dedicated to this component to pass the selected record Id to the Apex class) and provide an unique Id for it.</li>
+       <li>Provide the same Id in the script function (showComponentInputValue) assignment lines, i.e. in the place of ‘ID1’, ‘ID2’, ‘ID3’.</li>
+       <li>Call the script function from the onclick event of any button. The script function assigns the values to the standard VF component. Using the ‘Value’ attribute of the standard VF component the values can be passed to the Apex class using get and set.</li>       
+       <li>If more than one Dynamic Lookup is used then the component’s Id attribute should be unique for each lookup. The same Id should be used in the script function in the place of ‘Comp_Id’.</li>
+       <li>Give an unique Id for the ComponentIdentifier attribute and a name for the fieldLabelName attribute.</li>       
+       <li>Save and run the Visualforce page.</li>       
+       <li>Search is available in the component,i.e. the Lookup popup will return only the records matching the value entered in the text box.</li>       
+   </ul>
+   <div style="margin-top:3%;"></div>
+   <h2>Notes:</h2>
+   <ul>
+       <li>Maximum 16 components can be used per Visualforce page. Exceeding this count will cause Governor Limit violation.</li>       
+       <li>The Custom object names should be appended with ‘__c’.</li>
+       <li>Do not use special characters for component identifier, enter only text/number.</li>
+       <li>When using the Aggregate function in Lookup, the record Id cannot be retrieved and used in the apex class since Group By will have the aggregate value of more than one record.</li>       
+       <li><apex:outputLink value="/apex/contactnewpage"> Click here </apex:outputLink> for a sample demo page which uses two dynamic lookups, Account and Industry.</li>
+   </ul>
+</apex:page>

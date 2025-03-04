@@ -1,0 +1,5 @@
+To the Attention of: {!Vendor_Contact__r.Name} 
+
+Attached please find our purchase order #{!AcctSeedERP__Purchase_Order__c.Name} dated {!Purchase_Order__c.Date__c}. The current amount on this purchase order is {!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Total__c} 
+
+Thank you for your business.

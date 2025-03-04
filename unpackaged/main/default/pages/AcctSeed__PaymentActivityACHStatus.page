@@ -1,0 +1,18 @@
+<apex:page id="PaymentActivityACHStatus" title="Status | Accounting Seed" standardController="AcctSeed__Payment_Activity__c" recordSetVar="payments">
+
+    <apex:includeLightning />
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("AcctSeed:PaymentActivityACHStatusApp", function() {
+            $Lightning.createComponent("AcctSeed:PaymentActivityACHStatus",
+                {},
+                "lightning",
+                function(cmp) {
+                    // do some stuff
+                });
+        });
+    </script>
+
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is the date that the user becomes disabled in SpringCM.  Leave blank for never.  Put in today&apos;s date for immediately. --></help>
+        <label><!-- SpringCM Enabled End Date --></label>
+        <name>SpringCMEos__SpringCM_EnabledEndDate__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used as billing contact in Accounting Seed Billings. --></help>
+        <label><!-- Billing Contact --></label>
+        <name>AcctSeed__Billing_Contact__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Can enter up to 2 separate lines.
+Each line can be 35 characters at most. --></help>
+        <label><!-- Shipping Street --></label>
+        <name>zkfedex__ShippingStreet__c</name>
+    </CustomFieldTranslation>

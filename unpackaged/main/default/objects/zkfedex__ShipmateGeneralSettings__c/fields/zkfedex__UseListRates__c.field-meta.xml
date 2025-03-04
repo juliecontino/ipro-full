@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__UseListRates__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Will use List rates for shipment pricing as opposed to the rates of your FedEx account.</description>
+    <inlineHelpText>Will use List rates for shipment pricing as opposed to the rates of your FedEx account.</inlineHelpText>
+    <label>Use List Rates</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

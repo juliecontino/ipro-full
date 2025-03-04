@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The condition based on which the records will be filtered in the object. The &apos;Where&apos; keyword is not needed. --></help>
+        <label><!-- Where --></label>
+        <name>dynl__Where_Clause__c</name>
+    </CustomFieldTranslation>

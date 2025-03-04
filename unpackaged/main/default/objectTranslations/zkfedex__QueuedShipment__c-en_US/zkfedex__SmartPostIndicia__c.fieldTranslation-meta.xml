@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- SmartPost Indicia --></label>
+        <name>zkfedex__SmartPostIndicia__c</name>
+        <picklistValues>
+            <masterLabel>FedEx SmartPost Bound Printed Matter</masterLabel>
+            <translation><!-- FedEx SmartPost Bound Printed Matter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx SmartPost Media</masterLabel>
+            <translation><!-- FedEx SmartPost Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx SmartPost Parcel Select</masterLabel>
+            <translation><!-- FedEx SmartPost Parcel Select --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx SmartPost Parcel Select Lightweight</masterLabel>
+            <translation><!-- FedEx SmartPost Parcel Select Lightweight --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

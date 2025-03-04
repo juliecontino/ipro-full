@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Billable Expense Type --></label>
+        <name>Billable_Expense_Type__c</name>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass-Thru</masterLabel>
+            <translation><!-- Pass-Thru --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

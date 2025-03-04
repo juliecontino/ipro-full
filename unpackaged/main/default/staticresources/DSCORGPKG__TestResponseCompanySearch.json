@@ -1,0 +1,48 @@
+{
+	"page": 0,
+	"size": 20,
+	"total": 1,
+	"entities": [{
+		"id": 1263,
+		"name": "Wells Fargo",
+		"fullName": "Wells Fargo & Company",
+		"mainPhoneNumber": "(800) 511-2265",
+		"numEmployees": 262700,
+		"fiscalYearEnd": 12,
+		"fortuneRank": 26,
+		"fortuneRankYear": 2018,
+		"naics": "522110",
+		"sicPrimary": "6021",
+		"salesGrowth": 0,
+		"employeeGrowth": 0,
+		"websiteUrl": "www.wellsfargo.com",
+		"emailDomain": "wellsfargo.com",
+		"ownershipTypeId": 1,
+		"description": "Wells Fargo & Company is a diversified",
+		"logoFilename": "L/png/d/1/9/1/9/330374.png",
+		"iconFileName16": "F/small/png/8/2/1/7/a/647c52.png",
+		"iconFileName32": "F/large/png/9/d/a/d/e/69d89a.png",
+		"industry": {
+			"id": 1,
+			"name": "Banking"
+		},
+		"ownershipType": {
+			"id": 1,
+			"displayName": "Public"
+		},
+		"leadSource": "DiscoverOrg",
+		"defaultDepartmentId": 1,
+		"technologyCategories": [{
+			"id": 3,
+			"name": "Networking",
+			"technologyGroupId": 2,
+			"stringListTechnologies": "HP 3Com Routers & Switches, 3DNS, Telco DS3, Winsock"
+		}, {
+			"id": 23,
+			"name": "Data Management",
+			"technologyGroupId": 1,
+			"stringListTechnologies": "AccuCode, Adobe Illustrator, Benefits Management, TEAM Software"
+		}],
+		"revenue": 88389.0
+	}]
+}

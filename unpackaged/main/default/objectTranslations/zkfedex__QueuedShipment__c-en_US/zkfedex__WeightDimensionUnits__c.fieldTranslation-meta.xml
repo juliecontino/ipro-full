@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Weight/Dimension Units --></label>
+        <name>zkfedex__WeightDimensionUnits__c</name>
+        <picklistValues>
+            <masterLabel>KG / CM</masterLabel>
+            <translation><!-- KG / CM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LB / IN</masterLabel>
+            <translation><!-- LB / IN --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

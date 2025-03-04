@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__CsMrgDupeCaseListBtn</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Merge</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT("/soap/ajax/25.0/connection.js")}
+var records = {!GETRECORDIDS($ObjectType.csmrgp__Duplicate_Case__c)};
+
+if (records.length &lt; 2 || records.length &gt; 9){
+    alert("You must select between two and nine duplicate cases to merge.");
+} else {
+	var selectedIDs = ''; 
+	for (var i = 0; i &lt; records.length; i++){
+		selectedIDs += "'" + records[i] + "',";
+	}
+	selectedIDs = selectedIDs.substring(0, selectedIDs.length - 1);
+
+	var strQuery = "SELECT csmrgp__Case__c FROM csmrgp__Duplicate_Case__c WHERE csmrgp__Case__c != null AND ID IN (" + selectedIDs + ")"; 
+	var dupeCases = sforce.connection.query(strQuery).getArray("records");
+	var url;
+
+	if (dupeCases.length &lt; 2 || dupeCases.length &gt; 9){ 
+		alert("You must select between two and nine duplicate cases with non-null case ID references."); 
+	} else { 
+		url = '/apex/csmrgp__csmrgselect?'; 
+		
+		for (var i = 0; i &lt; dupeCases.length; i++){ 
+			url = url + "cs" + (i+1) + "=" + dupeCases[i].csmrgp__Case__c + "&amp;"; 
+		}
+		
+		if (typeof srcUp == 'function') { 
+			srcUp(url + 'isdtp=vw'); 
+		} else { 
+			window.location.href=url; 
+		}
+	}
+}</url>
+</WebLink>

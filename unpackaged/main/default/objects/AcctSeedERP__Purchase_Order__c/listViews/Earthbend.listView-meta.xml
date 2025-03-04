@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Earthbend</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeedERP__Vendor__c</columns>
+    <columns>AcctSeedERP__Shipping_Contact__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>Earthbend</label>
+    <language>en_US</language>
+</ListView>

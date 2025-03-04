@@ -1,0 +1,1 @@
+AcctSeed.ASModule=function(e,t,c){var n=c.currencyFormatterProxy;return c.pageLoad=function(){t(".jsFormattedCurrency").each(function(){t(this).text(n(t(this).text(),2,!1))})},t(e).ready(function(){c.pageLoad()}),c}((window,document),$j,AcctSeed.ASModule);

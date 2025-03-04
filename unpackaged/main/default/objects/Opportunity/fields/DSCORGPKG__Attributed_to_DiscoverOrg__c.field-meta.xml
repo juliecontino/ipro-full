@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DSCORGPKG__Attributed_to_DiscoverOrg__c</fullName>
+    <deprecated>false</deprecated>
+    <formula>Account.DSCORGPKG__DiscoverOrg_First_Update__c  &lt;  CreatedDate</formula>
+    <label>Attributed to DiscoverOrg</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,34 @@
+/* 
+    Document   : day
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@import url(agenda.css);
+@import url(area-menu.css);
+@import url(calendar-edit.css);
+@import url(calendar-filter.css);
+@import url(calendar-menu.css);
+@import url(calendar-settings.css);
+@import url(calendar.css);
+@import url(create-event.css);
+@import url(custom.css);
+@import url(day.css);
+@import url(event-detail.css);
+@import url(event-menu.css);
+@import url(event-tpl.css);
+@import url(gantt.css);
+@import url(ical.css);
+@import url(main-menu.css);
+@import url(month.css);
+@import url(plugin-ca-color.css);
+@import url(plugin-multi-select.css);
+@import url(print.css);
+@import url(swimlane.css);
+@import url(week.css);
+@import url(print/default.css);
+@import url(addon/chatter.css);
+@import url(addon/invite.css);
+@import url(addon/attach.css);

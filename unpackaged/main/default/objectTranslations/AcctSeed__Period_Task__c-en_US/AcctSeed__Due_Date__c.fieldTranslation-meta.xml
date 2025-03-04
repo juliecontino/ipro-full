@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Due date is used to calculate the number of days between the Create Date and the Due Date. A task created on the 10th of the month and the Due Date is 5 days later, the task due date is the 15th. However, this may vary at the end of the month. --></help>
+        <label><!-- Due Date --></label>
+        <name>AcctSeed__Due_Date__c</name>
+    </CustomFieldTranslation>

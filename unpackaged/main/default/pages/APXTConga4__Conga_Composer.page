@@ -1,0 +1,70 @@
+<apex:page controller="APXTConga4.ComposerPageController" showHeader="{!showHeader}" sidebar="{!showSidebar}" standardStylesheets="false" applyBodyTag="false">
+    <body>
+        <script>
+            // this following script is to validate all the queryString parameters and make sure no Cross-Site Scripting is included
+            var urlParams = {};
+            window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+                urlParams[decodeURIComponent(key)] = decodeURIComponent(value);
+            });
+            var params = Object.keys(urlParams).map(function(key) {
+                return key + ':' + urlParams[key];
+            }).join(',');
+            if (params.indexOf('<script>') !== -1 || params.indexOf('{!'</'}' + 'script>') !== -1) {
+                alert("Some Composer parameters contain <script> tags, and they are not allowed.");
+                window.stop();
+            } 
+        </script>
+
+        <!-- Canvas Object -->
+        <apex:canvasApp developerName="{!devName}"
+        height="{!pageHeight}px" width="100%"
+        border="0" scrolling="auto"
+        onCanvasAppError="done"
+        onCanvasAppLoad="done"
+        parameters="{!Parameters}" />
+        
+        <!-- Custom Loading splash screen -->
+        <apex:includeScript value="{!URLFOR($Resource.APXTConga4__ComposerResources,'apxt-bootstrapper.js')}" /> 
+        
+        <script>
+            var cnvs = null;
+            function hideLdr(){
+                cnvs.style.display = 'none';
+            };
+            function done(){
+                apxt.Mask.hide();
+                cnvs.style.display = '';
+            };
+            Sfdc.onReady(function () {
+                try {
+                    cnvs = document.getElementsByTagName('body')[0];
+                    hideLdr();
+                    apxt.Mask.show({
+                        target: cnvs.parentNode
+                        , msg: 'Loading Conga'
+                        , autoSize: true
+                    });
+                    
+                    if({!isLoaderAbsolute}) {
+                        var divs = document.getElementsByTagName("div");
+                        var maskContainer;
+
+                        for(var i = (divs.length -1 ); i >= 0; i--){
+                            if(divs[i].textContent == "Loading Conga"){
+                                maskContainer= divs[i].parentNode.parentNode;
+                                maskContainer.style.position = "absolute";
+                                break;
+                            }
+                        }
+                    }
+                    
+                    setTimeout(hideLdr,10);
+                    setTimeout(hideLdr,50);
+                    setTimeout(hideLdr,100);
+                } catch (ex) {
+                    console.log(ex);
+                }
+            });
+        </script>
+    </body>
+</apex:page>

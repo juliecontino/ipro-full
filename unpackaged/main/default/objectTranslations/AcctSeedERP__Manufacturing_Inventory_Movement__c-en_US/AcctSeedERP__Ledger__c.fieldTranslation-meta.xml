@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Denotes the associated ledger. --></help>
+        <label><!-- Ledger --></label>
+        <name>AcctSeedERP__Ledger__c</name>
+        <relationshipLabel><!-- Manufacturing Inventory Movements --></relationshipLabel>
+    </CustomFieldTranslation>

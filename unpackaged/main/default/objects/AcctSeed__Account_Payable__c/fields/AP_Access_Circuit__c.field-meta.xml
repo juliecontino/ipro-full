@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AP_Access_Circuit__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>Enter the Carrier Access Circuit telephone bill account number.</inlineHelpText>
+    <label>AP Access Circuit</label>
+    <referenceTo>Access_Circuits__c</referenceTo>
+    <relationshipName>Accounts_Payable</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

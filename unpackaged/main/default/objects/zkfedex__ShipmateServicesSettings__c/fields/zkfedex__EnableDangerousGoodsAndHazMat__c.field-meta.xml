@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__EnableDangerousGoodsAndHazMat__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This does not enable your FedEx account for Dangerous Goods or Hazardous Materials Shipping. This allows the Shipmate to display the options under special services. Please contact FedEx if you are unsure if your FedEx account is setup for this Shipping.</description>
+    <inlineHelpText>This does not enable your FedEx account for Dangerous Goods or Hazardous Materials Shipping. This allows the Shipmate to display the options under special services. Please contact FedEx if you are unsure if your FedEx account is setup for this Shipping.</inlineHelpText>
+    <label>Enable Dangerous Goods and HazMat</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

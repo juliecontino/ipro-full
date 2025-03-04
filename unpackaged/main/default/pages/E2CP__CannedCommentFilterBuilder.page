@@ -1,0 +1,83 @@
+<apex:page title="Edit Canned Response Filter" extensions="E2CP.CannedCommentFilterBuilderController" standardController="E2CP__Canned_Comment_Filter__c">
+    <style>
+        .arrow {
+            display: block;
+            margin-top: 1em;
+        }
+    </style>
+    <apex:form >
+        <apex:pageBlock title="Canned Response Filter Edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!saveFilter}" value="Save"/>
+                <apex:commandButton action="{!saveAndNew}" value="Save and New"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageMessages />
+            
+            <apex:pageBlockSection columns="1">
+                <apex:inputField style="width:400px;" value="{!ccFilter.E2CP__Description__c}"/>
+                <apex:pageBlockSectionItem helpText="The field on Case which will be checked to determine if these categories should be included in the displayed Canned Response options for the New Comment page.">
+                    <apex:outputLabel for="field" value="Controlling Case Field"/>
+                    <apex:selectList id="field" value="{!ccFilter.E2CP__Controlling_Field__c}" size="1">
+                        <apex:actionSupport event="onchange" action="{!changeField}" reRender="values"/>
+                        <apex:selectOptions value="{!fieldOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem helpText="Values for the Case Controlling Field that will need to match in order for these categories to be included in the available Canned Response options for the New Comment page.">
+                    <apex:outputLabel value="Controlling Field Values"/>
+                    <apex:outputPanel id="values">
+                        <table>
+                            <tr>
+                                <td>
+                                    <apex:selectList value="{!fieldValues.toAdd}" multiselect="true" size="5" style="min-width:150px;">
+                                        <apex:selectOptions value="{!fieldValues.addOptions}"/>
+                                    </apex:selectList>
+                                </td>
+                                <td>
+                                    <apex:image value="/s.gif" alt="Add" styleClass="picklistArrowRight arrow" title="Add">
+                                        <apex:actionSupport event="onclick" action="{!fieldValues.add}" reRender="values"/>
+                                    </apex:image>
+                                    <apex:image value="/s.gif" alt="Remove" styleClass="picklistArrowLeft arrow" title="Remove">
+                                        <apex:actionSupport event="onclick" action="{!fieldValues.remove}" reRender="values"/>
+                                    </apex:image>
+                                </td>
+                                <td>
+                                    <apex:selectList value="{!fieldValues.toRemove}" multiselect="true" size="5" style="min-width:150px;">
+                                        <apex:selectOptions value="{!fieldValues.removeOptions}"/>
+                                    </apex:selectList>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem helpText="The Canned Response Categories that will be available for selection on the New Comment page when the Case controlling field has a matching value.">
+                    <apex:outputLabel value="Canned Response Categories"/>
+                    <apex:outputPanel id="categories">
+                        <table>
+                            <tr>
+                                <td>
+                                    <apex:selectList value="{!categories.toAdd}" multiselect="true" size="5" style="min-width:150px;">
+                                        <apex:selectOptions value="{!categories.addOptions}"/>
+                                    </apex:selectList>
+                                </td>
+                                <td>
+                                    <apex:image value="/s.gif" alt="Add" styleClass="picklistArrowRight arrow" title="Add">
+                                        <apex:actionSupport event="onclick" action="{!categories.add}" reRender="categories"/>
+                                    </apex:image>
+                                    <apex:image value="/s.gif" alt="Remove" styleClass="picklistArrowLeft arrow" title="Remove">
+                                        <apex:actionSupport event="onclick" action="{!categories.remove}" reRender="categories"/>
+                                    </apex:image>
+                                </td>
+                                <td>
+                                    <apex:selectList value="{!categories.toRemove}" multiselect="true" size="5" style="min-width:150px;">
+                                        <apex:selectOptions value="{!categories.removeOptions}"/>
+                                    </apex:selectList>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

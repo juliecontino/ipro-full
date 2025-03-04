@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Disable Business Hours Batch Retry --></label>
+        <name>FLAGS__Disable_Business_Hours_Batch_Retry__c</name>
+    </CustomFieldTranslation>

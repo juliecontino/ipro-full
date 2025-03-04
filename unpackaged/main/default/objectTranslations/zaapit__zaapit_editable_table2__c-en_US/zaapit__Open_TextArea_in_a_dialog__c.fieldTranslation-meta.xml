@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Open TextArea in a dialog --></label>
+        <name>zaapit__Open_TextArea_in_a_dialog__c</name>
+    </CustomFieldTranslation>

@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Lead Layout</layout>
         <sections>
@@ -30,8 +12,20 @@
         <name>Create_Task</name>
     </quickActions>
     <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
         <label><!-- AltavistaNews --></label>
         <name>AltavistaNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ReportWrongInfotoDiscoverOrg --></label>
+        <name>DSCORGPKG__ReportWrongInfotoDiscoverOrg</name>
     </webLinks>
     <webLinks>
         <label><!-- GoogleMaps --></label>
@@ -61,4 +55,122 @@
         <label><!-- YahooMaps --></label>
         <name>YahooMaps</name>
     </webLinks>
+    <webLinks>
+        <label><!-- Add_to_Campaign --></label>
+        <name>zaapit__Add_to_Campaign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Auto_Mark --></label>
+        <name>zaapit__Auto_Mark</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Convert_leads --></label>
+        <name>zaapit__Convert_leads</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Convert --></label>
+        <name>zaapit__Mass_Convert</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Convert_L --></label>
+        <name>zaapit__Mass_Convert_L</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Emails --></label>
+        <name>zaapit__Mass_Emails</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Emails2 --></label>
+        <name>zaapit__Mass_Emails2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Merge --></label>
+        <name>zaapit__Mass_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Leads1 --></label>
+        <name>zaapit__Merge_Leads1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Leads_L --></label>
+        <name>zaapit__Merge_Leads_L</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- zp_actions --></label>
+        <name>zaapit__zp_actions</name>
+    </webLinks>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <workflowTasks>
+        <name>zaapit__Call_Lead</name>
+        <subject><!-- Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__Email_Lead</name>
+        <subject><!-- Email --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__Send_Letter_Lead</name>
+        <subject><!-- Send Letter --></subject>
+    </workflowTasks>
 </CustomObjectTranslation>

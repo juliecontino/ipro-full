@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Smart Activity Manager™ App by ZaapIT.com</description>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Smart Activity Manager™</label>
+    <logo>zaapit__icon_folder1/zaapit__Smart_Activity_Manager_app_logo.png</logo>
+    <tabs>zaapit__Tasks_Recent</tabs>
+    <tabs>zaapit__Events_Recent</tabs>
+    <tabs>zaapit__All_Tasks</tabs>
+    <tabs>zaapit__All_Events</tabs>
+    <tabs>Recurring_Billing_Line_Items__c</tabs>
+    <tabs>Billing_Master__c</tabs>
+    <tabs>Help</tabs>
+    <tabs>Quick_Account</tabs>
+    <tabs>Quick_Product</tabs>
+    <tabs>Project_task</tabs>
+    <tabs>Approval</tabs>
+    <tabs>AcctSeed__Recurring_Billing_Line__c</tabs>
+    <tabs>Project_Calendar__c</tabs>
+    <tabs>Project_Notes__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

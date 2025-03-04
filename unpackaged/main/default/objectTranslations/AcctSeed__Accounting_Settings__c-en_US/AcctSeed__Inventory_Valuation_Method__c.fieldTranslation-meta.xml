@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Denotes whether standard or average cost is used for Product Costing. --></help>
+        <label><!-- Inventory Valuation Method --></label>
+        <name>AcctSeed__Inventory_Valuation_Method__c</name>
+        <picklistValues>
+            <masterLabel>Average Cost</masterLabel>
+            <translation><!-- Average Cost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Cost</masterLabel>
+            <translation><!-- Standard Cost --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

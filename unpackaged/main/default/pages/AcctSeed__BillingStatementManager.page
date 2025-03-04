@@ -1,0 +1,348 @@
+<apex:page id="thePage" standardController="Account" title="Statements | Accounting Seed" contentType="text/html;charset=utf-8" extensions="AcctSeed.BillingStatementManager" lightningStylesheets="true">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.dataTables.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'javascript/bootstrap-tagsinput.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/billing-statement-manager.js')}" loadOnReady="true"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/bootstrap-tagsinput.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/jquery.dataTables.min.css')}" />
+
+    <!-- This CSS will be included only in case of SF Classic UI -->
+    <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme3'}">
+        <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+    </apex:outputPanel>
+
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+        AcctSeed.ASModule.setContactRemote = "{!$RemoteAction.BillingStatementManager.setContactRemote}";
+    </script>
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.Account.label}" subtitle="{!Account.Name}" />
+        <apex:tabPanel switchType="server" value="{!selectedTab}" id="theTabPanel" styleClass="theTabPanel"
+                       tabClass="theTabPanel" contentClass="tabContent"
+                       activeTabClass="activeTab" inactiveTabClass="inactiveTab">
+            <!-- ============================  OUTSTANDING TAB ================================================== -->
+            <apex:tab id="tabOne" label="Outstanding Statement" name="outstanding"
+                      oncomplete="AcctSeed.ASModule.loadFrame1();">
+                <apex:pageBlock title="{!$ObjectType.AcctSeed__Billing__c.label} Outstanding Statement">
+                    <apex:pageMessages escape="false" id="errorMessage"/>
+                    <apex:outputPanel id="emailErrorPanel" style="display:none">
+                        <apex:pageMessage summary="" severity="error" strength="3" />
+                    </apex:outputPanel>
+                    <apex:pageBlockButtons id="buttons" location="both" >
+                        <apex:commandButton id="saveAttachButton1" style="display:none"
+                                            value="Save PDF"
+                                            action="{!saveAttach}"
+                                            rendered="{!!isOutstandingFormatError && showPage}"
+                                            onClick="AcctSeed.ASModule.setCustomStyleOnBtn('Processing...');"/>
+                        <apex:commandButton id="emailAttachButton1"
+                                            style="display:none"
+                                            action="{!saveAndEmail}"
+                                            value="Send Email"
+                                            disabled="{!DisableOutstandingEmail}"
+                                            rendered="{!!isOutstandingFormatError && showPage}"
+                                            onClick="return AcctSeed.ASModule.validateEmails();"/>
+                        <apex:commandButton id="cancelButton1" action="{!cancel}" value="Back" immediate="true" />
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection title="Account Information" collapsible="false" rendered="{!!isOutstandingFormatError && showPage}">
+                        <apex:outputField value="{!Account.Name}" />
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Billing Contact" for="billingcontactname" />
+                            <apex:outputText id="billingcontactname"
+                                             value="{!Account.Billing_Contact__r.Name} ({!Account.Billing_Contact__r.Email})" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__Ledger__c.Label}"/>
+                                <apex:selectList required="true"
+                                                 id="ledgerInfo1"
+                                                 value="{!outstandingBill.AcctSeed__Ledger__c}"
+                                                 multiselect="false"
+                                                 size="1">
+                                    <apex:selectOptions value="{!allLedgers}" />
+                                    <apex:actionSupport event="onchange"
+                                                        action="{!changeOutstandingLedger}"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame1();"
+                                                        rerender="pdfBlock1, currencyInfo1, pdfformatInfo1, errorMessage" />
+                                </apex:selectList>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="{!$ObjectType.Account.fields.AcctSeed__Outstanding_Statement_Format__c.Label}"/>
+                            <apex:inputField value="{!proxyOutstandingPdfFormat.AcctSeed__Outstanding_Statement_Format__c}" id="pdfformatInfo1" required="true">
+                                <apex:actionSupport event="onchange"
+                                                        action="{!changeOutstandingPDFFormat}"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame1();"
+                                                        rerender="pdfBlock1, currencyInfo1, ledgerInfo1, fromAddress1, errorMessage" />
+                            </apex:inputField>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!isMultiCurrencyEnabled}">
+                            <apex:outputLabel value="Currency"/>
+                                <apex:selectList required="true"
+                                                 id="currencyInfo1"
+                                                 value="{!outstandingBill['CurrencyIsoCode']}"
+                                                 multiselect="false"
+                                                 size="1">
+                                    <apex:selectOptions value="{!availableCurrencies}" />
+                                    <apex:actionSupport event="onchange"
+                                                        action="{!changeOutstandingCurrencyIsoCode}"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame1();"
+                                                        rerender="pdfBlock1, pdfformatInfo1, ledgerInfo1, errorMessage" />
+                                </apex:selectList>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Email Sender and Recipient Information" collapsible="false" rendered="{!!isOutstandingFormatError && showPage}">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="From Address" for="fromAddress1" />
+                            <apex:outputPanel >
+                                <apex:selectList id="fromAddress1" value="{!outstandingSelectedOrgWideEmailAddress}"
+                                                 multiSelect="false" size="1" rendered="{!fromAddressPicklistEnabled}">
+                                    <apex:selectOptions value="{!orgWideEmailSelectOptions}"/>
+                                </apex:selectList>
+                                <apex:outputText value="{!outstandingSelectedOrgWideEmailAddress}" rendered="{!!fromAddressPicklistEnabled}"/>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="CC Me" for="ccUser" />
+                            <apex:inputCheckbox id="ccUser" value="{!outstandingCCUser}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Send to Contact" />
+                            <apex:actionRegion >
+                                <apex:inputField value="{!outstandingAccount.AcctSeed__Billing_Contact__c}">
+                                    <apex:actionSupport event="onchange"
+                                                        action="{!setOutstandingContact}"
+                                                        reRender="none"
+                                                        onComplete="AcctSeed.ASModule.setContact('{!acct.Id}','{!outstandingAccount.AcctSeed__Billing_Contact__c}','{!selectedTab}', '{!outstandingBill.AcctSeed__Ledger__c}');AcctSeed.ASModule.loadFrame1();" />
+                                </apex:inputField>
+                                <apex:outputPanel id="outstandingErrorPanel" style="color:red;display:none" layout="block"/>
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="CC Addresses" for="outstandingCCAddresses" />
+                            <apex:inputText id="outstandingCCAddresses"
+                                            value="{!outstandingCCAddresses}"
+                                            styleClass="form-control" html-data-role="tagsinput"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection id="outstandingEmailSection" title="Email Subject and Body Information" columns="1" collapsible="true"
+                                           rendered="{!!isOutstandingFormatError && showPage}">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Subject" />
+                            <apex:inputText id="outstandingEmailSubject"
+                                            value="{!outstandingStatementManager.custEmailTempl.emailSubject}" style="width:65%"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Body" />
+                            <apex:inputTextarea id="outstandingEmailBody"
+                                                value="{!outstandingStatementManager.custEmailTempl.emailBody}"
+                                                style="width:65%; line-height:1em; height:7em;"
+                                                richText="{!outstandingStatementManager.custEmailTempl.isHTML}"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection id="outstandingAttachment" title="Email Attachments" columns="1" collapsible="true"
+                                           rendered="{!!isOutstandingFormatError && showPage}">
+                        <apex:commandButton value="Attach file"
+                                            onClick="AcctSeed.ASModule.openCustomFilePicker('{!$Page.AcctSeed__EmailFileSelector}?entityId={!acct.Id}&stmMode=outstanding'); return false;"/>
+                        <apex:outputPanel layout="block" style="width:40%;">
+                            <table id="outstandingAttachmentsTable" ></table>
+                        </apex:outputPanel>
+                        <apex:inputHidden id="outstandingProxyInput" value="{!serializedCustomEmailAttachments}"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+                <apex:pageBlock id="pdfBlock1"
+                                title="{!$ObjectType.AcctSeed__Billing__c.label} Outstanding Statement PDF Preview"
+                                rendered="{!!isOutstandingFormatError && showIframe}">
+                    <div id="loader1" style="font-weight:bold;">
+                        <img src="/img/loading.gif" style="text-align:center" width="16" height="16" alt="loading gif" />
+                        &nbsp;&nbsp;Creating Outstanding Statement PDF...
+                    </div>
+                    <div id="frameDiv">
+                        <apex:iframe id="iframe1"
+                                     src="{!outstandingPDFName}?id={!Account.Id}&formatId={!outstandingPdfFormat.Id}&reportType=outstanding&ledgerId={!outstandingBill.AcctSeed__Ledger__c}&currencyIsoCode={!IF(isMultiCurrencyEnabled, outstandingBill['CurrencyIsoCode'], null)}" />
+                    </div>
+                </apex:pageBlock>
+            </apex:tab>
+            <!-- ============================  ACTIVITY TAB ====================================================== -->
+            <apex:tab id="tabTwo" label="Activity Statement" name="activity"
+                      oncomplete="AcctSeed.ASModule.loadFrame2();" rendered="{!showPage}">
+                <apex:pageBlock title="{!$ObjectType.AcctSeed__Billing__c.label} Activity Statement">
+                    <apex:pageMessages id="pageMessage" escape="false"/>
+                    <apex:outputPanel id="emailErrorPanel" style="display:none">
+                        <apex:pageMessage summary="" severity="error" strength="3" />
+                    </apex:outputPanel>
+                    <apex:pageBlockButtons id="buttons">
+                        <apex:commandButton id="saveAttachButton2"
+                                            style="display:none"
+                                            value="Save PDF"
+                                            action="{!saveAttach}"
+                                            onClick="AcctSeed.ASModule.setCustomStyleOnBtn('Processing...');"
+                                            rendered="{!!isActivityFormatError && !isValidationError}"/>
+                        <apex:commandButton id="emailAttachButton2"
+                                            style="display:none"
+                                            action="{!saveAndEmail}"
+                                            onClick="return AcctSeed.ASModule.validateEmails();"
+                                            value="Send Email"
+                                            disabled="{!DisableActivityEmail}"
+                                            rendered="{!!isActivityFormatError}"/>
+                        <apex:commandButton id="cancelButton2" action="{!cancel}" value="Back" immediate="true" />
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection title="Account Information" collapsible="false" rendered="{!!isActivityFormatError}">
+                        <apex:outputField value="{!Account.Name}" />
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Billing Contact" for="billingcontactname" />
+                            <apex:outputText id="billingcontactname"
+                                             value="{!Account.Billing_Contact__r.Name} ({!Account.Billing_Contact__r.Email})" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__Ledger__c.Label}"/>
+                            <apex:actionRegion >
+                                <apex:selectList required="true"
+                                                 id="ledgerInfo2"
+                                                 value="{!activityBill.AcctSeed__Ledger__c}"
+                                                 multiselect="false"
+                                                 size="1">
+                                    <apex:selectOptions value="{!allLedgers}" />
+                                    <apex:actionSupport event="onchange"
+                                                        action="{!changeActivityLedger}"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame2();"
+                                                        rerender="pdfBlock2, currencyInfo2, pdfformatInfo2, pageMessage" />
+                                </apex:selectList>
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="{!$ObjectType.Account.fields.AcctSeed__Activity_Statement_Format__c.Label}"/>
+                            <apex:inputField value="{!proxyActivityPdfFormat.AcctSeed__Activity_Statement_Format__c}" id="pdfformatInfo2" required="true">
+                                <apex:actionSupport event="onchange"
+                                                    action="{!changeActivityPDFFormat}"
+                                                    oncomplete="AcctSeed.ASModule.loadFrame2();"
+                                                    rerender="pdfBlock2, currencyInfo2, ledgerInfo2, fromAddress2, pageMessage" />
+                            </apex:inputField>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Include Alternate Payor"/>
+                            <apex:inputCheckbox value="{!isAltPayorIncluded}">
+                                <apex:actionSupport event="onchange"
+                                                    oncomplete="AcctSeed.ASModule.loadFrame2();"
+                                                    rerender="pdfBlock2, pageMessage" />
+                            </apex:inputCheckbox>
+                        </apex:pageBlockSectionItem>
+                        <!-- placeholder to save expected order of inputs when MC is enabled -->
+                        <apex:pageBlockSectionItem rendered="{!isMultiCurrencyEnabled}">
+                            <apex:outputText value=""/>
+                        </apex:pageBlockSectionItem>
+                        <!-- ================================================== -->
+                        <apex:pageBlockSectionItem rendered="{!isMultiCurrencyEnabled}">
+                            <apex:outputLabel value="Currency"/>
+                            <apex:actionRegion >
+                                <apex:selectList required="true"
+                                                 id="currencyInfo2"
+                                                 value="{!activityBill['CurrencyIsoCode']}"
+                                                 multiselect="false"
+                                                 size="1">
+                                    <apex:selectOptions value="{!availableCurrencies}" />
+                                    <apex:actionSupport event="onchange"
+                                                        action="{!changeActivityCurrencyIsoCode}"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame2();"
+                                                        rerender="pdfBlock2, pdfformatInfo2, ledgerInfo2, pageMessage" />
+                                </apex:selectList>
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Statement Period Options" collapsible="false" rendered="{!!isActivityFormatError}">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Billing Start Date" />
+                            <apex:actionRegion >
+                                <apex:inputField id="startDate2" value="{!activityBill.AcctSeed__Date__c}" label="Billing Start Date" required="true">
+                                    <apex:actionSupport event="onchange"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame2();" rerender="theForm" />
+                                </apex:inputField>
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Billing End Date"/>
+                            <apex:actionRegion >
+                                <apex:inputField id="endDate2" value="{!activityBill.AcctSeed__Due_Date2__c}" label="Billing End Date" required="true">
+                                    <apex:actionSupport event="onchange"
+                                                        oncomplete="AcctSeed.ASModule.loadFrame2();" rerender="theForm" />
+                                </apex:inputField>
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Email Sender and Recipient Information" collapsible="false" rendered="{!!isActivityFormatError}">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="From Address" for="fromAddress2" />
+                            <apex:outputPanel >
+                                <apex:selectList id="fromAddress2" value="{!activitySelectedOrgWideEmailAddress}"
+                                                 multiSelect="false" size="1" rendered="{!fromAddressPicklistEnabled}">
+                                    <apex:selectOptions value="{!orgWideEmailSelectOptions}"/>
+                                </apex:selectList>
+                                <apex:outputText value="{!activitySelectedOrgWideEmailAddress}" rendered="{!!fromAddressPicklistEnabled}"/>
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="CC Me" for="ccUser" />
+                            <apex:inputCheckbox id="ccUser" value="{!activityCCUser}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Send to Contact" />
+                            <apex:actionRegion >
+                                <apex:inputField value="{!activityAccount.AcctSeed__Billing_Contact__c}">
+                                    <apex:actionSupport event="onchange"
+                                                        action="{!setActivityContact}"
+                                                        rerender="none"
+                                                        onComplete="AcctSeed.ASModule.setContact('{!acct.Id}','{!activityAccount.AcctSeed__Billing_Contact__c}','{!selectedTab}', '{!activityBill.AcctSeed__Ledger__c}');AcctSeed.ASModule.loadFrame1();" />
+                                </apex:inputField>
+                                <apex:outputPanel id="activityErrorPanel" style="color:red;display:none" layout="block"/>
+                            </apex:actionRegion>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="CC Addresses" for="activityCCAddresses" />
+                            <apex:inputText id="activityCCAddresses"
+                                            value="{!activityCCAddresses}"
+                                            styleClass="form-control" html-data-role="tagsinput"/>
+                        </apex:pageBlockSectionItem>
+
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection id="activityEmailSection" title="Email Subject and Body Information" columns="1" collapsible="true"
+                                           rendered="{!!isActivityFormatError}">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Subject" />
+                            <apex:inputText id="activityEmailSubject"
+                                            value="{!activityStatementManager.custEmailTempl.emailSubject}" style="width:65%"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Body" />
+                            <apex:inputTextarea id="activityEmailBody"
+                                                value="{!activityStatementManager.custEmailTempl.emailBody}"
+                                                style="width:65%; line-height:1em; height:7em;"
+                                                richText="{!activityStatementManager.custEmailTempl.isHTML}"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection id="activityAttachment" title="Email Attachments" columns="1" collapsible="true"
+                                           rendered="{!!isActivityFormatError}">
+                        <apex:commandButton value="Attach file"
+                                            onClick="AcctSeed.ASModule.openCustomFilePicker('{!$Page.AcctSeed__EmailFileSelector}?entityId={!acct.Id}&stmMode=activity'); return false;"/>
+                        <apex:outputPanel layout="block" style="width:40%;">
+                            <table id="activityAttachmentsTable" ></table>
+                        </apex:outputPanel>
+                        <apex:inputHidden id="activityProxyInput" value="{!serializedCustomEmailAttachments}"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+                <apex:pageBlock id="pdfBlock2"
+                                title="Billing Activity Statement PDF Preview"
+                                rendered="{!!isActivityFormatError && !isValidationError && showIframe}">
+                    <div id="loader2" style="font-weight:bold;">
+                        <img src="/img/loading.gif" style="text-align:center" width="16" height="16" alt="loading gif" />
+                        &nbsp;&nbsp;Creating Activity Statement PDF...
+                    </div>
+                    <div id="frameDiv">
+                        <apex:iframe id="iframe2"
+                                     src="{!activityPDFName}?id={!Account.Id}&formatId={!activityPdfFormat.Id}&startDate={!ActivityStartDate}&endDate={!ActivityEndDate}&reportType=activity&ledgerId={!activityBill.AcctSeed__Ledger__c}&includeAltPayor={!isAltPayorIncluded}&currencyIsoCode={!IF(isMultiCurrencyEnabled, activityBill['CurrencyIsoCode'], null)}" />
+                    </div>
+                </apex:pageBlock>
+            </apex:tab>
+        </apex:tabPanel>
+    </apex:form>
+</apex:page>

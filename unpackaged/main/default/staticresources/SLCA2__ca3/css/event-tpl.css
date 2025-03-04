@@ -1,0 +1,61 @@
+/* 
+    Document   : month
+    Created on : 28 лют 2012, 19:47:04
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+
+.evt.tpl1 > span{background-image:url(../pic/tpl/tpl1.png) !important;}
+.evt.tpl2 > span{background-image:url(../pic/tpl/tpl2.png) !important;}
+
+.evt.tpl3 > span{background-image:url(../pic/tpl/tpl3.png) !important;}
+.evt.tpl4 > span{background-image:url(../pic/tpl/tpl4.png) !important;}
+.evt.tpl5 > span{background-image:url(../pic/tpl/tpl5.png) !important;}
+.evt.tpl6 > span{background-image:url(../pic/tpl/tpl6.png) !important;}
+.evt.tpl7 > span{background-image:url(../pic/tpl/tpl7.png) !important;}
+.evt.tpl8 > span{background-image:url(../pic/tpl/tpl8.png) !important;}
+.evt.tpl9 > span{background-image:url(../pic/tpl/tpl9.png) !important;}
+.evt.tpl10 > span{background-image:url(../pic/tpl/tpl10.png) !important;}
+.evt.tpl11 > span{background-image:url(../pic/tpl/tpl11.png) !important;}
+.evt.tpl12 > span{background-image:url(../pic/tpl/tpl12.png) !important;}
+.evt.tpl13 > span{background-image:url(../pic/tpl/tpl13.png) !important;}
+.evt.tpl14 > span{background-image:url(../pic/tpl/tpl14.png) !important;}
+.evt.tpl15 > span{background-image:url(../pic/tpl/tpl15.png) !important;}
+.evt.tpl16 > span{background-image:url(../pic/tpl/tpl16.png) !important;}
+.evt.tpl17 > span{background-image:url(../pic/tpl/tpl17.png) !important;}
+.evt.tpl18 > span{background-image:url(../pic/tpl/tpl18.png) !important;}
+
+.evt.tpl_fire > span{
+    -moz-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    -moz-animation-name: fire;
+    -webkit-animation-name: fire;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+}
+@-moz-keyframes fire {
+    from {background-position:0px top;}
+    20% {background-position:2px top;}
+    40% {background-position:4px top;}
+    60% {background-position:6px top;}
+    80% {background-position:8px top;}
+    to  {background-position:12px top;}
+}
+
+@-webkit-keyframes fire {
+    from {background-position:0px top;}
+    20% {background-position:2px top;}
+    40% {background-position:4px top;}
+    60% {background-position:6px top;}
+    80% {background-position:8px top;}
+    to  {background-position:12px top;}
+}
+
+
+
+
+
+

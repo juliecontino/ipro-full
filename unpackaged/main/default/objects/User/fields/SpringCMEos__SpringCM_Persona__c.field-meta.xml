@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpringCMEos__SpringCM_Persona__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Personas, or role-based user settings, displays different buttons and menu items depending upon the user's job function</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Type in the name of the Persona the user is to be assinged to.</inlineHelpText>
+    <label>SpringCM Persona</label>
+    <length>100</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

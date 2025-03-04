@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>FedEx Queued Shipment Layout</layout>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bulk Shipment --></label>
+            <section>Bulk Shipment</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Email Recipients --></label>
+            <section>Email Recipients</section>
+        </sections>
+        <sections>
+            <label><!-- Packaging Details --></label>
+            <section>Packaging Details</section>
+        </sections>
+        <sections>
+            <label><!-- Recipient (Sender for return shipments) --></label>
+            <section>Recipient (Sender for return shipments)</section>
+        </sections>
+        <sections>
+            <label><!-- Referenced Objects --></label>
+            <section>Referenced Objects</section>
+        </sections>
+        <sections>
+            <label><!-- References --></label>
+            <section>References</section>
+        </sections>
+        <sections>
+            <label><!-- Return Shipment --></label>
+            <section>Return Shipment</section>
+        </sections>
+        <sections>
+            <label><!-- Sender (Recipient for return shipments) --></label>
+            <section>Sender (Recipient for return shipments)</section>
+        </sections>
+        <sections>
+            <label><!-- Service Type Details --></label>
+            <section>Service Type Details</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Information --></label>
+            <section>Shipment Information</section>
+        </sections>
+        <sections>
+            <label><!-- SmartPost Details --></label>
+            <section>SmartPost Details</section>
+        </sections>
+        <sections>
+            <label><!-- Special Services --></label>
+            <section>Special Services</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

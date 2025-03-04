@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- When &quot;marked&quot; that entire table will be displayed in small font (8pt). --></help>
+        <label><!-- useSmallTableFont --></label>
+        <name>zaapit__useSmallTableFont__c</name>
+    </CustomFieldTranslation>

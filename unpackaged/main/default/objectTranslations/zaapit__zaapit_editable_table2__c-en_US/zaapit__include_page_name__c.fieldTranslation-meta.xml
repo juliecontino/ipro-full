@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Page to include on the top of the table. --></help>
+        <label><!-- include page name --></label>
+        <name>zaapit__include_page_name__c</name>
+    </CustomFieldTranslation>

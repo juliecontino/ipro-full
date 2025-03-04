@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Enable Side Panel 1 --></label>
+        <name>LS_VC__Enable_Side_Panel_1__c</name>
+    </CustomFieldTranslation>

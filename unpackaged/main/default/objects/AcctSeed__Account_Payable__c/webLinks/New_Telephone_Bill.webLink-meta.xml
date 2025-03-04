@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Telephone_Bill</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>New Telephone Bill</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')} 
+
+jQuery.noConflict();
+(function($,buttonObj) {
+var pageName = "AccountPayableDeepClone";
+var recordId = "a0S4000000A6GRH";
+var disabledLabel = "Cloning...";
+var packageName = (buttonObj.name.indexOf("acctseed") &gt;= 0 ? "acctseed__" : "");
+var submitUrl = "{!URLFOR('/apex/" + packageName + pageName + "')}";
+$("#topButtonRow &gt; .btn, #bottomButtonRow &gt; .btn").toggleClass("btnDisabled").val(disabledLabel).prop("disabled", true);
+window.location = submitUrl + "?id=" + recordId + "&amp;scontrolCaching=1";
+})(jQuery,this);</url>
+</WebLink>

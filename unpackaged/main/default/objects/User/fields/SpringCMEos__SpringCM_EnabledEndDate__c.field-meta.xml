@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpringCMEos__SpringCM_EnabledEndDate__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>This is the date that the user becomes disabled in SpringCM.  Leave blank for never.  Put in today's date for immediately.</inlineHelpText>
+    <label>SpringCM Enabled End Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Date</type>
+</CustomField>

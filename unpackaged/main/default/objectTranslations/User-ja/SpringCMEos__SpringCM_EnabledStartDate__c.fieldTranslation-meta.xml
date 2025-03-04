@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is that date that the user becomes enabled in SpringCM. Leave blank if enabled immediately. --></help>
+        <label><!-- SpringCM Enabled Start Date --></label>
+        <name>SpringCMEos__SpringCM_EnabledStartDate__c</name>
+    </CustomFieldTranslation>

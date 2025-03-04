@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__ShipmentDeleted__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicates whether this shipment was deleted from the shipping carrier, using the 'Modify/Cancel' utility.</description>
+    <inlineHelpText>Indicates whether this shipment was deleted from the shipping carrier, using the 'Modify/Cancel' utility.</inlineHelpText>
+    <label>Shipment Deleted</label>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Rec Payable Adv Line Manager Prompt</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Roboto, sans-serif; color: rgb(68, 68, 68); background-color: transparent;&quot;&gt;Hello! We have added enhancements to better manage recurring records. Some highlights are:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; background-color: transparent;&quot;&gt;Edit header and lines at the same time&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; background-color: transparent;&quot;&gt;View line item fields including your custom fields without the need to horizontally scroll&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; background-color: transparent;&quot;&gt;View buttons only when they are applicable&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Roboto, sans-serif; color: rgb(68, 68, 68); background-color: transparent;&quot;&gt;If you are seeing the new advanced line manager, no additional actions are needed. If you are seeing the old one,&lt;/span&gt;&lt;a href=&quot;https://support.accountingseed.com/hc/en-us/articles/360022945433-Set-up-a-Recurring-Payable&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 10pt; font-family: Roboto, sans-serif; color: rgb(68, 68, 68); background-color: transparent;&quot;&gt; &lt;/a&gt;&lt;a href=&quot;https://support.accountingseed.com/hc/en-us/articles/360022945433-Set-up-a-Recurring-Payable&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 10pt; font-family: Roboto, sans-serif; color: rgb(17, 85, 204); background-color: transparent;&quot;&gt;&lt;u&gt;this article&lt;/u&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 10pt; font-family: Roboto, sans-serif; color: rgb(68, 68, 68); background-color: transparent;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Roboto, sans-serif; color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;will guide you through the setup to enable the new feature.&lt;/span&gt;&lt;/p&gt;</body>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <header>Advanced Line Manager</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Rec Payable Adv Line Manager Prompt</masterLabel>
+        <publishedDate>2022-11-06</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
+        <startDate>2022-09-15</startDate>
+        <targetPageKey1>AcctSeed__Recurring_Account_Payable__c</targetPageKey1>
+        <targetPageKey2>view</targetPageKey2>
+        <targetPageType>standard__recordPage</targetPageType>
+        <timesToDisplay>3</timesToDisplay>
+        <title>Simpler Recurring Payables</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

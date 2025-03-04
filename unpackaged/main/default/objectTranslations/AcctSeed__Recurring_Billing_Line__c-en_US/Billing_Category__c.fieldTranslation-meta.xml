@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Billing Category --></label>
+        <name>Billing_Category__c</name>
+        <picklistValues>
+            <masterLabel>Carrier Access</masterLabel>
+            <translation><!-- Carrier Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Premise Equipment</masterLabel>
+            <translation><!-- Customer Premise Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Center Services</masterLabel>
+            <translation><!-- Data Center Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscellaneous</masterLabel>
+            <translation><!-- Miscellaneous --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taxes, Surcharges &amp; Fees</masterLabel>
+            <translation><!-- Taxes, Surcharges &amp; Fees --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

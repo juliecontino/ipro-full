@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- AvaTax for Line Level Posting orgs only: A generic Product whose name (example: AvaTax Tax) populates the Product field on the calculated AvaTax tax line. This should be assigned a $0.00 standard price and added to a price book. --></help>
+        <label><!-- Sales Tax Product --></label>
+        <name>AcctSeed__Sales_Tax_Product__c</name>
+        <relationshipLabel><!-- Tax Settings --></relationshipLabel>
+    </CustomFieldTranslation>

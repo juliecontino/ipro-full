@@ -1,0 +1,268 @@
+@import url(calendar.ipad.css) screen and (max-device-width: 1024px) and (orientation: landscape);
+@import url(calendar.ipad.css) screen and (device-width: 768px) and (orientation: portrait);
+
+div.CA_calendar{
+    position:absolute;
+    width:260px;
+    height:200px;
+    box-shadow: 0px 0px 3px #777;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index:999;
+    top:-205px;
+    left:40%;
+    margin-left:-20px;
+    overflow:hidden;
+    transition: top 0.5s;
+    -moz-transition: top 0.5s;
+    -webkit-transition: top 0.5s;
+    
+}
+
+.JQ_CA div.CA_calendar{
+    display:block !important;
+}
+div.CA_calendar.on{
+    height:200px;
+    top:5px;
+}
+
+div.CA_calendar.manual{
+    display: none !important;
+    transition : none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    position: fixed;
+    z-index:1001;
+        
+}
+
+div.CA_calendar.manual.on{
+    display:block !important;
+}
+
+    div.CA_calendar > .header{
+        display:absolute;
+        top:0px;
+        height:20px;
+        left:0px;
+        right:0px;
+        z-index:2;
+    }
+    
+        div.CA_calendar > .header > span[data-mode]{
+            position:absolute;
+            top:3px;
+            width:16px;
+            height:16px;
+            display:block;
+            background-image:url(../pic/icons.png);
+            cursor:pointer;
+        }
+
+        div.CA_calendar > .header > span.ll{left:3px;background-position: 0px -148px;}
+        div.CA_calendar > .header > span.l{left:19px; background-position: 0px -164px;}
+        div.CA_calendar > .header > span.rr{right:3px;background-position: 0px -196px;}
+        div.CA_calendar > .header > span.r{right:19px; background-position: 0px -180px;}
+        
+        div.CA_calendar > .header > .month{
+            left:35px;
+            right:35px;
+            text-align: center;
+            font-weight:bold;
+            vertical-align: middle;
+            top:3px;
+            position:absolute;
+            line-height: 17px;
+        }
+        
+            div.CA_calendar > .header > .month > select,
+            div.CA_calendar > .sf_literals{
+                border:1px solid #eee;
+                padding:0px;
+                margin:0px;
+                background-color:transparent;
+                font-size:12px;
+            }
+
+            div.CA_calendar > .header > .month > select[name="month"]{
+                width:100px;
+            }
+            
+            div.CA_calendar > .header > .month > select[name="year"]{
+                width:60px;
+            }
+    
+    div.CA_calendar > .week{
+        position:absolute;
+        top:20px;
+        height:20px;
+        line-height:20px;
+        left:0px;
+        right:0px;
+        padding:0;
+        cursor:default;
+        text-align: center;
+        z-index:2;
+    }
+    
+    
+        div.CA_calendar > .week > span{
+            display:inline-block;
+            width:14%;
+            height:20px;
+            font-weight:bolder;
+            color:#333;
+        }
+
+    div.CA_calendar > .days{
+        text-align: center;
+        position:absolute;
+        top:40px;
+        bottom:22px;
+        left:0px;
+        right:0px;
+        padding:0;
+        cursor:pointer;
+        text-align: center;
+        z-index:2;
+    }
+    
+        div.CA_calendar > .days > a{
+            display:inline-block;
+            width:12%;
+            height:18px;
+            line-height:18px;
+            border:1px solid #ddd;
+            margin:1px 1px;
+            padding:0px;
+            border-radius: 3px;
+            vertical-align: middle;
+
+        }
+        
+        div.CA_calendar > .days > a:hover{
+            background-color: #eee;
+        }
+        
+        div.CA_calendar > .days > a.current{
+            background-color: #aaa;
+        }
+        div.CA_calendar > .days > a.today{
+            box-shadow: inset 0 0 10px #aaa;
+        }
+        
+        div.CA_calendar > .days > a.off{
+            visibility: hidden;
+        }
+    div.CA_calendar > .time{
+        display:none;
+        position:absolute;
+        left:47px;right:80px;
+        bottom:2px;
+        height:20px;
+/*        border:1px solid red;*/
+        text-align: center;
+    }
+    div.CA_calendar > .time.on{
+        display:block;
+        z-index:3;
+    }
+    
+
+    div.CA_calendar.literals > .time.on{
+        text-align: left;
+    }
+    
+        div.CA_calendar > .time > input{
+            width:30px;
+            display:inline-block;
+            border:1px solid #ddd;
+            font-size:100%;
+        }
+        div.CA_calendar.literals > .time > input{
+            width:32px;
+        }
+        
+        div.CA_calendar > .time > select{
+            display: none;
+        }
+        
+        div.CA_calendar > .time._ampm > select{
+            display: inline-block;
+            width:40px;
+            margin-left: 3px;
+            border:1px solid #ddd;
+            background-color: #fff;
+        }
+
+    
+    div.CA_calendar > .footer{
+        position:absolute;
+        left:0px;right:0px;
+        bottom:0px;
+        height:15px;
+        z-index:2;
+    }
+    
+        div.CA_calendar > .footer > span{
+            position:absolute;
+            bottom:3px;
+            line-height:13px;
+            cursor:pointer;
+            font-weight: bolder;
+            display: block;
+            background-image:url(../pic/icons.png);
+            background-repeat:no-repeat;
+        }
+        
+        div.CA_calendar > .footer > span[data-mode="today"]{
+            left:5px;
+            background-position: 0 -438px;
+            width:16px;
+            height: 16px;
+        }
+        
+        div.CA_calendar > .footer > span[data-mode="close"]{
+            right:5px;
+            background-position: 0 -470px;
+            width:16px;
+            height: 16px;
+        }
+    
+        div.CA_calendar > .footer > span[data-mode="okset"]{
+            right:23px;
+            background-position: 0 -454px;
+            width:16px;
+            height: 16px;
+
+        }
+    div.CA_calendar > .hover{
+        position:fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0;
+        z-index: -1;
+        display:none;
+    }
+    
+    div.CA_calendar.on > .hover{
+/*        display:block;*/
+    }
+    
+        
+
+    
+    div.CA_calendar > .sf_literals{
+        display:none;
+        position:absolute;
+        right:42px;
+        bottom:2px;
+        height:20px;
+        width:80px;
+        z-index:4;
+    }
+    div.CA_calendar.literals > .sf_literals{
+        display: block;
+    }

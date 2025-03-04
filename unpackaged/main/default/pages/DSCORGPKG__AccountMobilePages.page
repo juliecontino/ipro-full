@@ -1,0 +1,1174 @@
+<apex:page controller="DSCORGPKG.InlinePagesCommonClass" sidebar="false" showHeader="false" standardStylesheets="false" applyHtmlTag="true" applyBodyTag="false"> 
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/styles/salesforce-lightning-design-system.css')}" type="text/css" rel="stylesheet" />
+            <link href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/styles/custom-styles.css')}" type="text/css" rel="stylesheet" />
+            <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'luminous-basic.css')}"/><!-- SFNA 2839-->
+            <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" />
+            <!-- ********* scripts ******* -->
+            <!-- SLDS Scripts -->
+            <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+            <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/svg4everybody.legacy.js')}"></script>
+            <script src="{!URLFOR($Resource.autocomplete_resource,'/js/jquery-ui.js')}"></script>
+            
+            <!-- Start By Neha Agrawal for SFNA: 1897 on 13/June/2018 -->
+                <link href="{!URLFOR($Resource.Semantic_Theme,'/semantic.min.css')}" type="text/css" rel="stylesheet" />    
+            <!-- End By Neha Agrawal for SFNA: 1897 on 13/June/2018 -->
+    
+            
+            <link href="{!URLFOR($Resource.autocomplete_resource,'/css/jquery-ui.css')}" rel="stylesheet" />
+                    
+            <style>
+                .scrollAbsolute{
+                    position : absolute !important;
+                }
+                .ui.animated.button{            
+                  padding: 0!important;       
+                  background: none;       
+                }
+                .ui.animated.button .hidden.content {
+                   position: relative;
+                }
+                
+                .greenText{
+                     color: green;
+                     font-weight: bold;
+                     border: 1px solid;
+                     padding: 0px 3px 0px 8px;
+                     width: 46px;
+                 }
+                 
+                 .redText{
+                     color: red;
+                     font-weight: bold;
+                     border: 1px solid;
+                     padding: 0px 3px 0px 8px;
+                     width: 46px;
+                 }
+                 
+                 .popTable tbody tr{
+                     background:white !important;
+                 }
+                 
+                 .popTable tbody tr:Hover{
+                     background:white !important;
+                 }
+                 
+                 .popTable tbody tr:Hover{
+                     background:white !important;
+                 }
+                 
+                 .indicator{
+                     vertical-align: top;
+                     margin-left: -4px;        
+                     border-image: initial;
+                     border-radius: 99px;
+                     border-top: none;
+                     border-right: none;
+                     font-style: normal !important;
+                     font-variant: normal !important;
+                     font-weight: normal !important;
+                     font-stretch: normal !important;
+                     font-size: 8px !important;
+                     line-height: 1 !important;
+                     font-family: FontAwesome !important;
+                     color: #cccccc;
+                     background: #cccccc;
+                     border: 1px solid white;
+                     height:10px;
+                     width:10px;
+                 }
+                 
+                 .matchCircle{
+                     padding: 3px;
+                     border-radius: 50%;
+                     display: inline-block;
+                     vertical-align:middle; 
+                     font-size: 0rem !important;           
+                 }
+                 
+                 .uploadFW,.uploadFW2{
+                     font: normal normal normal 14px/1 FontAwesome !important;
+                     color: #fff;
+                     
+                 }
+                 
+                 .svgClass{
+                     width: 14px;
+                     height: 14px;
+                 }
+                 
+                 .popoverDiv{
+                     background: white;
+                     padding: 13px;
+                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.32);
+                     border-radius: 8px;
+                     z-index: 1000;
+                     position: absolute;
+                     margin-left: 36px;
+                     top: -29px;
+                     display:none;
+                 }
+                 
+                 .noMatchFoundText{
+                     width: 160px;
+                     height: 17px;
+                     font-family: Open Sans !important;
+                     font-size: 12px;
+                     font-style: italic;
+                     color: #999999 !important;
+                     margin-left: 3px;
+                     margin-top:-20px;
+                 }
+                 
+                 .conLeadName{
+                     width: 160px;
+                     height: 24px;
+                     font-family: Open Sans !important;
+                     font-size: 18px;
+                     font-weight: 600;
+                     color: #1b5eac;
+                     margin-left:4px;
+                 }
+                 
+                 .arrow{
+                     position: absolute;
+                     height: 15px;
+                     width: 15px;
+                     background: white;
+                     margin-left: 35px;
+                     top: 4px;
+                     -ms-transform: rotate(45deg);
+                     -webkit-transform: rotate(45deg);
+                     transform: rotate(45deg);
+                     display: none;
+                     z-index: 1000;
+                 }
+                     
+               .uploadFW, .uploadFW2{
+                   font: normal normal normal 14px/1 FontAwesome !important;
+               }
+               
+               .indiDisable{
+                    pointer-events: none;
+                    opacity: 0.5;
+                    cursor: not-allowed;
+               }
+               
+               .slds-checkbox [type=checkbox]{
+                   position: fixed!important;
+               }
+               .oppAlertHeader .slds-text-body--small {
+                   font-weight: 600 !important;
+                   font-size: small;
+               }
+            </style>
+        </head>
+        <body>
+            <apex:form id="oppAlertFrm">
+                <!-- Action Functions Section -->
+                <apex:outputPanel id="actionFunPanel">
+                    <apex:actionFunction name="showSaveSuccessfulMsg" reRender="actionFunPanel" action="{!fatchoppdata}" oncomplete="console.log('#$#$#$#$sagar'); if('{!dupurl}' != ''){ $('#importdupIframe').attr('src', '/apex/MatchMultipleDupAccount?id={!dupurl}&fromType=ContactsPageNew'); $('.dupIframe').css('display','block'); } if('{!saveTypeString }' != ''){document.getElementById('toastNotify').innerHTML ='{!saveTypeString }'; $('.notificationToast').css('display','block');}hideStatusDiv1();resetIframeHeight();"/>
+                    <apex:actionFunction name="SaveIndivisualLead" reRender="actionFunPanel" action="{!SaveIndivisualLead}" oncomplete="$('#importIframe').attr('src', '/apex/ImportData?id={!doOrgId}&singlerecord=true&noDupsSingleImport=true');">
+                        <apex:param value="" name="LdId" assignTo="{!IndivisualLeadId}"/>
+                        <apex:param value="" name="Optype" assignTo="{!OperationType}"/>
+                        <apex:param value="" name="namedata" assignTo="{!savedataName}"/>
+                    </apex:actionFunction>
+                    <apex:actionFunction name="fetchMatchDataOppAlerts" reRender="actionFunPanel" action="{!fetchMatchDataOppAlerts}" oncomplete="onCompleteMatch('{!matchWrapJSON}');">
+                        <apex:param value="" name="allDoId" assignTo="{!allDoids}"/>
+                        <apex:param value="" name="allMailId" assignTo="{!allMailids}"/>
+                    </apex:actionFunction>
+                    
+                </apex:outputPanel>
+                <apex:pageMessages id="oppAlertMsg"/>                          
+                <div class="" style="width:100%; margin:auto; padding:2%;" id="myform"> 
+                    <apex:outputPanel rendered="{!oppAlertList.content != null && oppAlertList.content.size > 0}">
+                        <div class="slds-media__body">
+                            <div class="slds-grid">
+                                <div class="slds-col">
+                                    <h2 class="slds-text-heading--small " style="  height: 24px;  font-size: 18px; font-weight: 600; text-align: left; color: #666666;">OppAlerts <i class="fa fa-info-circle" title="Real-time information when companies are researching topics related to your business."  style="color: #54698d; font: normal normal normal 14px/1 FontAwesome !important;" aria-hidden="true"></i></h2>
+                                    <h2 style=" height: 17px;  font-size: 12px; text-align: left; color: #7f7f80;" class="slds-text-heading--small ">Displaying {!if(oppAlertList.content.size !=null && oppAlertList.content.size>0,oppAlertList.content.size,'0')} OppAlerts</h2>
+                                </div>
+                                <div class="slds-col">
+                                    <apex:outputPanel rendered="{!oppAlertList.content !=null && oppAlertList.content.size > 0 }">
+                                        <button class="slds-button addUpdateBtnOppAlert {!IF((userLockImportShowHide=='true'),'indiDisable','')}" style="width: 160px;height: 34px;border-radius: 4px;background-color: #1b5eac;color:white;float:right;">
+                                            Add/Update
+                                        </button>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{! (isAllowedToRefresh != null ) && isAllowedToRefresh }">
+                                        
+                                        <button class="slds-button refreshBtnOppAlert" style="width: 160px;height: 34px;border-radius: 4px;background-color: #1b5eac;color:white;float:right;margin-right: 2px;" onclick="refreshOperation(); return false;">
+                                            Refresh OppAlerts
+                                        </button>
+                                        
+                                        <apex:actionFunction name="submitOppAlertBatch" action="{!processOppAlertBatch}" reRender="" oncomplete="showSuccessMessage(); "/>
+                                        
+                                        <script>
+                                            function refreshOperation() {
+                                                $('.top-overlay, .overlay-div').show();
+                                                submitOppAlertBatch();
+                                            }
+                                            
+                                            function showSuccessMessage() {
+                                                $('.top-overlay, .overlay-div').hide();
+                                                
+                                                $('#toastNotify').text('Refresh has been scheduled');
+                                                $('.notificationToast').show();
+                                                
+                                                setTimeout(function(){
+                                                    $('.notificationToast').hide();
+                                                    $('#toastNotify').text('');
+                                                }, 6000);
+                                            }
+                                        </script>
+                                    </apex:outputPanel>
+                                 </div>
+                            </div>
+                        </div>
+                        
+                        <!-- =====================================dynamic coding ===================== -->
+                        <!-- Header Starts-->
+                        <div class="slds-grid slds-has-flexi-truncate slds-m-vertical--small blockGrid slds-grid--align-spread oppAlertHeader" >
+                            <div class="slds-col slds-size--2-of-12 slds-col--padded ">
+                                <div class="slds-text-body--small">Date</div>
+                            </div>
+                            <div class="slds-col slds-size--3-of-12 slds-col--padded">
+                                <div class="slds-text-body--small">Category</div>
+                            </div>
+                            <div class="slds-col slds-size--3-of-12 slds-col--padded">
+                                <div class="slds-text-body--small" >Topics</div>
+                            </div>
+                            <div class="slds-col slds-size--1-of-12 slds-col--padded" style="display: {!if(!showSurgeScore, 'none', '')};">
+                                <div class="slds-text-body--small">Signal Score</div>
+                            </div>                                         
+                            <div class="slds-col slds-size--1-of-12 slds-col--padded">
+                                <div class="slds-text-body--small ">Trend</div>
+                            </div>
+                            <div class="slds-col slds-size--2-of-12 slds-col--padded slds-text-align--right">
+                                <div class="slds-text-body--small ">Recommended Contacts</div>
+                            </div>
+                        </div>   
+                    </apex:outputPanel>
+                    <!-- SFNA 2657 --> 
+                    <apex:outputPanel rendered="{!!companyIdAvailable}">
+                        <div class= "slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture customMessage">
+                            <span>There is no DiscoverOrg ID associated with this record
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use> 
+                            </span>
+                        </div>
+                    </apex:outputPanel>         
+                    <!-- SFNA 2657 -->
+                    <!-- Header Ends -->
+                    <apex:variable value="{!1}" var="i"/>
+                       <apex:repeat value="{!oppAlertList.content}" var="opp">
+                                        
+                        <div class="slds-card slds-m-vertical--medium slds-clearfix"  style="height:100%; border-radius: 4px; margin-top: 0.5rem; background-color: #ffffff; border: solid 1px #d7dde6;" >
+                            <div class="slds-clearfix">
+                                <div class="slds-grid slds-has-flexi-truncate slds-m-vertical--small blockGrid slds-grid--align-spread" >
+                                    <div class="slds-col slds-size--2-of-12 slds-col--padded ">
+                                        <div class="slds-text-body--small">{!opp.issueDateStr}</div>
+                                    </div>
+                                    <div class="slds-col slds-size--3-of-12 slds-col--padded">
+                                        <div class="slds-text-body--small">{!opp.categoryName}</div>
+                                    </div>
+                                    <div class="slds-col slds-size--3-of-12 slds-col--padded">
+                                        <div class="slds-text-body--small" >{!opp.topicName}</div>
+                                    </div>
+                                    <div class="slds-col slds-size--1-of-12 slds-col--padded" style="display: {!if(!showSurgeScore, 'none', '')};">
+                                        <div class="slds-text-body--small">{!opp.score}</div>
+                                    </div>                                         
+                                    <div class="slds-col slds-size--1-of-12 slds-col--padded">
+                                        <div class="slds-text-body--small {!if(opp.trend != NULL, if(opp.trend > 0, 'greenText', 'redText'), '')}">{!if(opp.trend != NULL, if(opp.trend > 0, ' + ', ' - ') + TEXT(ABS(opp.trend)) + '%', '')}</div>
+                                    </div>
+                                    <div class="slds-col slds-size--2-of-12 slds-col--padded slds-text-align--right">
+                                        <p class="slds-text-body--small slds-truncate oppalertbestcont">Details&nbsp;<i class="changeit fa fa-caret-down" style="vertical-align: middle; color: #54698d; font: normal normal normal 14px/1 FontAwesome !important;" aria-hidden="true"></i></p>
+                                    </div>
+                                        
+                                </div>                                       
+                                            
+                                <div class=" oppalerttoggle hideClass ">
+                                    <div class="slds-m-top--large" style="max-height: 300px;margin-top:2px;border: 1px solid #D1D1D1;">
+                                        <table class="slds-table contacts-table" >
+                                            <tbody class="contacts-table-body " >
+                                                <apex:repeat value="{!opp.contacts}" var="a">
+                                                    <tr>
+                                                        <td style="padding-left: 7px;padding-right: 0px;">
+                                                            <apex:outputLabel styleClass="slds-checkbox" >
+                                                                <apex:inputCheckbox value="{!a.selected}"  styleClass="check-square---FontAwesome oppAlertChecks"></apex:inputCheckbox>
+                                                                <span class="slds-checkbox--faux"></span>
+                                                            </apex:outputLabel>
+                                                        </td>   
+                                                        <td data-label="Name" class="name-column" style="padding-top:0.25rem;">
+                                                            <div class="slds-truncate slds-text-body--small" title="{!HTMLENCODE(a.fullname)}" >
+                                                                <apex:outputText styleClass=""  value="{!a.fullname}"></apex:outputText>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                        <td data-label="Title" class="title-column" style="padding-top:0.25rem;">
+                                                            <div class="slds-truncate slds-text-body--small" title="{!HTMLENCODE(a.title)}" >
+                                                                <apex:outputText styleClass=""  value="{!a.title}"></apex:outputText>
+                                                            </div>
+                                                        </td>
+                                                        <td data-label="Icons" style="padding-top:0.25rem;width: 10%;padding: 0;text-align: center;">
+                                                            <span class="nameOpp" data-doid="{!a.id}" data-doemail="{!LOWER(a.email)}" style="display:none"><a>{!a.fullName}</a></span>
+                                                            <span>
+                                                                <a class="webui-popover-btn ui animated button {!IF((userLockImportShowHide=='true'),'indiDisable','')}" onmouseenter="showPopoverContactLead( this );" style="text-decoration: none;display: inline-block;">
+                                                                    <span  onclick="showStatusDiv1();SaveIndivisualLead('{!a.id}', 'AddUpdateSelectedLeads' , '{!a.fullName}'.replace(/(['.?*&+^$[\]\\(){}|-])/g, '')); " class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle matchCircle">
+                                                                        <div class="visible content"><i class="uploadFW">
+                                                                            <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">
+                                                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>
+                                                                            </svg></i>
+                                                                        </div>
+                                                                        <i class="fa fa-cloud-upload uploadFW" aria-hidden="true" style="display:none;"></i>
+                                                                    </span>
+                                                                    <div aria-hidden="true" class="fa  indicator leadIndi" sf-id=""></div>
+                                                                    <div class="popoverDiv"></div>
+                                                                    <div class="arrow"></div>
+                                                                 </a>
+                                                                 
+                                                                 <a class="webui-popover-btn ui animated button {!IF((userLockImportShowHide=='true'),'indiDisable','')}"  onmouseenter="showPopoverContactLead( this );" style="text-decoration: none;display: inline-block;">
+                                                                    <span onclick="showStatusDiv1();SaveIndivisualLead('{!a.id}', 'AddUpdateSelectedContacts' , '{!a.fullName}'.replace(/(['.?*&+^$[\]\\(){}|-])/g, '')); " class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle matchCircle">
+                                                                        <i class="uploadFW">
+                                                                            <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">
+                                                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact')}"></use>
+                                                                            </svg>
+                                                                        </i>
+                                                                        <i class="fa fa-cloud-upload uploadFW" aria-hidden="true" style="display:none;"></i>
+                                                                    </span>
+                                                                    <div aria-hidden="true" class="fa  indicator conIndi" sf-id=""></div>
+                                                                    <div class="popoverDiv"></div>
+                                                                    <div class="arrow"></div>
+                                                                 </a>                                                           
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div> 
+                    </apex:repeat>
+                </div>
+                <!-- Add/Update Modal -->
+                <div class="addUpdateModal" style="display: none;">
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open scrollAbsolute">
+                        <div class="slds-modal__container" style="display: inline-block;left: 25%;">
+                            <div class="slds-modal__header">
+                                <h2 class="slds-text-heading--medium">Add/Update</h2>
+                            </div>
+                            <div class="slds-modal__content">
+                                <div>
+                                    <script> <!--SFNA 2596 Sagar Sadhnani -->
+                                        function showhidecontactleadlabel() {
+                                         $('[id$="leadPenelId"]').hide();
+                                         $('[id$="contactPenelId"]').hide(); 
+                                         
+                                            if($('[id$="addOperationOppAlert"]').val() != '' && $('[id$="addOperationOppAlert"]').val() == "As Contacts"){
+                                                $('[id$="contactPenelId"]').show();
+                                                
+                                            } else if ($('[id$="addOperationOppAlert"]').val() !='' && $('[id$="addOperationOppAlert"]').val() == "As Leads"){
+                                                $('[id$="leadPenelId"]').show();
+                                            }
+                                         }
+                                         
+                                    </script>
+                                    <fieldset class="slds-form--compound">
+                                        <legend class="slds-form-element__label">Select Operation</legend>
+                                        <div class="form-element__group">
+                                            <div class="slds-form-element__row">
+                                                <label class="slds-form-element__control slds-size--1-of-1">
+                                                    <!-- Below dropdown is for contacts on opp alert : SFNA-2477 -->
+                                                    <apex:selectList id="addOperationOppAlert" value="{!addOperationSelected}" styleClass="slds-select" onchange="showhidecontactleadlabel(); return false" multiselect="false" size="1">
+                                                        <apex:selectOptions value="{!AddOperationsOppAlert}" />
+                                                    </apex:selectList>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                     <fieldset class="slds-form--compound">
+                                        <legend class="slds-form-element__label">Assign to Campaign (Optional)</legend>
+                                        <div class="form-element__group">
+                                            <div class="slds-form-element__row">
+                                                <input style="font-size:14px;" type="text" class="slds-input" id="sfjscontactautocomplete" placeholder="Search Campaign.."/>
+                                                <apex:inputHidden value="{!CampaignSelected}" id="tempSearchData"/> 
+                                            </div>
+                                        </div>
+                                    </fieldset>   
+                                </div>
+                                <!-- SFNA 2596 for Advanced Options -Code Start - Sagar Sadhnani -->
+                                <script>
+                                $(document).ready(function() {
+                                       $(".add-update-toggle > .slds-card__header").click(function() {
+                                           $(this).find(".toggleIcon").toggleClass("slds-hide").toggleClass("slds-show");
+                                           $(this).next(".slds-card__body").slideToggle();
+                                           $(this).toggleClass("open-header");
+                                           return false;
+                                       });
+        
+                                       $("[Id$='radio-default']").click(function() {
+        
+                                           $("[Id$='UserLookup']").val('');
+                                           $("[Id$='UserLookup_lkwgt']").css({
+                                               'pointer-events': 'none'
+                                           });
+                                       });
+        
+                                       $("[Id$='radio-specify-owner']").click(function() {
+                                           $("[Id$='UserLookup_lkwgt']").css({
+                                               'pointer-events': ''
+                                           });
+                                           if ($("[Id$='selectedUserId']").text() != 'Specify owner:') {
+                                               $("[Id$='UserLookup']").val($("[Id$='selectedUserId']").text());
+                                           }
+                                       });
+                                       
+                                       $("[id$='addOperation1']").change(function() {
+                                         var val = $(this).find("option:selected").text();
+                                         if( val=="Records As Contacts" || val=="Companies"){
+                                           $("#assignmentRules").text("Follow default rules");
+                                         }else{
+                                           $("#assignmentRules").text("Follow default assignment rules");
+                                         }
+                                       });
+                                       
+                                       resetValues();
+                                   });
+                                    
+                                </script>
+                                <apex:outputPanel rendered="{!autoUpdateObject.DSCORGPKG__isOwnerChange__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldLead__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldContact__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldAccount__c == true}">
+                                    <div class="slds-card add-update-toggle slds-m-around--small" style="width: 100%; margin: 0px;">
+                                        <div class="slds-card__header slds-grid">
+                                            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                                <div class="slds-media__body" style="font-size: 15px;">
+                                                    Advanced Options
+                                                </div>
+                                            </div>
+                                            <button class="slds-button slds-button--icon-container slds-header--toggle-button">
+                                                <span class="toggleIcon slds-hide">
+                                                     <img src="{!URLFOR($Resource.SLDS080, '/SLDS080/assets/icons/custom/custom_arrow_down.png')}" style="height: 20px;" onclick="return false;"/>
+                                                </span>
+                                                <span class="toggleIcon slds-show">
+                                                     <img src="{!URLFOR($Resource.SLDS080, '/SLDS080/assets/icons/custom/custom_arrow_right.png')}" style="height: 20px;" onclick="return false;"/>
+                                                </span>
+                                            </button>
+                                        </div> <!-- Card -->
+                                        <!-- (Start)--slds-card__footer for Owner -->
+                                         <div class="slds-card__body slds-hide" style="background: white;border-top: 1px solid #d8dde6;border-bottom: 1px solid #d8dde6;">   
+                                            <div class="slds-card__footer">
+                                            <apex:outputPanel id="ownerPenelId" rendered="{!autoUpdateObject.DSCORGPKG__isOwnerChange__c == true}">
+                                            
+                                            <fieldset class="slds-form--compound">
+                                              <div class="form-element__group customlook">
+                                                 <div class="slds-form-element__row">
+                                                     <label class="slds-form-element__control slds-size--1-of-1 lookupControl">
+                                                      <span style="font-size: 14px; color: #54698d;"> Owner for New Records </span><br/>                                                                                   
+                                                        <span style="color: #54698d; font-size: .96rem; margin-right: .75rem;">
+                                                           <input type="radio" id="radio-default" name="options" checked="checked" />                                                                   
+                                                             <label id="assignmentRules"> Follow default assignment rules</label>
+                                                        </span>
+                                                        <span>
+                                                           <input type="radio" id="radio-specify-owner" name="options" checked=""/>                                                                 
+                                                            <span Id="selectedUserId" style="color: #54698d; font-size: .96rem; margin-right: -12px;">
+                                                                 Specify owner:          
+                                                            </span>                                                                           
+                                                        </span>                                                              
+                                                          <apex:inputField required="false" value="{!conOwnerData.Ownerid}" id="UserLookup" onchange="messageShowFun();" style="width: .01%;color: white;padding: 0; border: 0; margin-bottom: 0px; !important;"/>     
+                                                       <br/><span style="font-size: 14px; color: #54698d;" id="addCustomTextId"></span>                                                                                                                      
+                                                   </label>
+                                             </div>
+                                           </div>
+                                           </fieldset>
+                                           </apex:outputPanel>
+                                           <apex:outputPanel id="leadPenelId" style="display:none" rendered="{!IF(autoUpdateObject.isCustomFieldLead__c == true , true, false) }">
+                                                    <div class="form-element__group">
+                                                        <div class="slds-form-element__row">
+                                                            <label class="slds-form-element__label" for="inputSampleLead"> Lead field: {!LeadCustomLabel}</label>
+                                                            <div class="slds-form-element__control slds-size--1-of-1">
+                                                                <apex:inputText id="customTextFieldLead" value="{!CustomTextLead}" onkeypress="return isNumberKeyLead(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" style="margin-bottom: 5px;" />
+                                                            </div>
+                                                        </div>
+                                                   </div>
+                                           </apex:outputPanel>
+                                           <apex:outputPanel id="contactPenelId" style="display:none" rendered="{!IF(autoUpdateObject.DSCORGPKG__isCustomFieldContact__c == true, true,false)}">
+                                                    <div class="form-element__group">
+                                                        <div class="slds-form-element__row">
+                                                            <label class="slds-form-element__label" for="inputSampleContact"> Contact field: {!ContactCustomLabel}</label>
+                                                            <div class="slds-form-element__control slds-size--1-of-1">
+                                                                <apex:inputText id="customTextFieldContact" value="{!CustomTextContact}" onkeypress="return isNumberKeyContact(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" />
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </apex:outputPanel>
+                                          </div>
+                                        </div> 
+                                        </div> 
+                                        <script>
+                                            if (document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt')) {
+                                                document.getElementsByClassName('lookupIcon')[0].src = "{!URLFOR($Resource.ChangeLookUp,'ChangeLookUp/changeIMG3.jpg')}";
+                                                document.getElementsByClassName('lookupIcon')[0].style.paddingBottom = '15px';
+                                                document.getElementsByClassName('lookupIcon')[0].style.marginLeft = '7px';
+                                                document.getElementsByClassName('lookupIcon')[0].style.marginBottom = '-15px';
+                                                document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt').style.width = '16%';
+                                                document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt').style.height = '37px';
+                                                document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt').style.paddingLeft = '7px';
+                                                document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt').style.paddingRight = '2px';
+                                                document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt').style.border = 'none'; 
+                                                document.getElementById('j_id0:oppAlertFrm:UserLookup_lkwgt').style.marginLeft = '0px';
+                                            }
+                                            var val = $("[id$='addOperation1']").find("option:selected").text();
+                                              if( val=="Records As Contacts" || val=="Companies"){
+                                                $("#assignmentRules").text("Follow default rules");
+                                              }else{
+                                                $("#assignmentRules").text("Follow default assignment rules");
+                                              }
+                                              
+                                          function messageShowFun() {
+                                            $("[Id$='selectedUserId']").text($("[Id$='UserLookup']").val());
+                                        }
+                            
+                                        </script>
+                                </apex:outputPanel>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <div class="slds-x-small-buttons--horizontal">
+                                    <button class="slds-button slds-button--neutral addUpdateModal-Close">Cancel</button>
+                                    <apex:commandButton id="searchSubmitButton" value="Submit"  styleClass="slds-button slds-button--neutral slds-button--brand" onclick="validateOperation(); return false;"/>
+                                    <apex:actionFunction name="callProcessing" action="{!processAddUpdate}" reRender="importWizard,pgemsg" oncomplete="$('#importIframe').attr('src', '/apex/ImportData?id={!doOrgId}&AccountId={!accountId}');$('.importFrame').show();$('.top-overlay, .overlay-div').hide();"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                </div>
+                
+                <!-- Duplicate Iframe -->
+                <div style="display:none;" class="dupIframe">
+             
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container" style="padding-top: 0px;width: 650px;">
+                            <div class="slds-modal__header">
+                                <h2 class="slds-text-heading--medium" style="height: 24px; font-family: Open Sans !important; font-size: 18px; text-align: center; color: #666666;background: white;border: 0px;">Update Account</h2>
+                                <p style="width: 100%; height: 17px; font-family: Open Sans !important; font-size: 12px; font-weight: 600; text-align: center; color: #535353;">Multiple matching records found, please select a salesforce record to update:</p>
+                            </div>
+                            <div class="slds-modal__content">
+                                <div>
+                                    <iframe id="importdupIframe" src="" style="border: 0px;height: 400px;width: 620px;margin-left: -4px;"/> 
+                                </div>
+                            </div>
+                           <div class="slds-modal__footer">
+                                <apex:commandButton value="close" onclick="$('.dupIframe').hide(); return false;" styleClass="slds-button slds-button--neutral"/>
+                                <apex:commandButton styleclass="slds-button slds-button--neutral  slds-button--brand" value="Update" onclick="$('#importdupIframe').contents().find('.updateBtsAccount').click(); return false;"/>
+                                
+                                <script>
+                                    function afterdupimportframe(){
+                                        $('.dupIframe').css('display','none');
+                                        oppAlertInit();
+                                    }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                </div>
+                
+                <!-- Nottification Modal -->
+                <div id="notification-modal12" style="display:none;z-index: 10000;" class="notificationpanel"> 
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open scrollAbsolute">
+                        <div class="slds-modal__container" style="display: inline-block;left: 25%;">
+                            <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h2 class="slds-text-heading--medium">Selection Required </h2> 
+                                            
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="slds-modal__content" id="notificationMsg">
+                                
+                            </div>
+                            <div class="slds-modal__footer">
+                                <input type="button" value="Close" onclick="closePop();return false;" class="cancel-research noti-cancel slds-button slds-button--neutral" />
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                </div>
+                
+                <div Class="slds-notify-container notificationToast" style="top:140px;display:none;">
+                 <div Class="slds-notify slds-notify--toast" style="min-width: 32rem;">
+                    <button class="slds-button slds-notify__close" onclick="closeToast(); return false;">
+                        <i class="fa fa-close" style="font: normal normal normal 22px/1 FontAwesome !important;color:white;"></i>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <div class="notify__content">
+                        <h2 class="slds-text-heading--small" id="toastNotify" style="background: transparent;border: 0px;color: white;"></h2>
+                    </div>
+                </div>
+                </div>
+                
+                <apex:outputPanel id="importWizard">
+                <script>
+                function CloseImportData(){
+                    
+                    var countConDup = 0, countAccDup = 0, chkleadConact = false;
+                    var importFrame = $('#importIframe');
+                    
+                    if (importFrame != null && importFrame.length === 1) {
+                        var importWindow = importFrame[0].contentWindow;
+                        try {
+                            countConDup = parseInt(importWindow.conDupCountId, 10);
+                        } catch (e) {}
+                        try {
+                            countAccDup = parseInt(importWindow.AccDupId, 10);
+                        } catch (e) {}
+                        chkleadConact = importWindow.checkLeadContact === 'true';
+                    }
+                    if(countConDup > 0 || countAccDup >0){
+                        if (confirm) { 
+                            $('.importFrame').hide();
+                            if(countAccDup == 1 && countConDup > 1) 
+                                var notif = countAccDup +' account and '+ countConDup +' contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                            else if(countAccDup == 1 && countConDup == 1)
+                                var notif = countAccDup +' account and '+ countConDup +' contact have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                else if(countAccDup > 1 && countConDup > 1)
+                                    var notif = countAccDup +' accounts and '+ countConDup +' contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                    else if(countAccDup == 0 && countConDup > 1 && chkleadConact == false)
+                                        var notif = countConDup +' Contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                        else if(countAccDup == 0 && countConDup == 1 && chkleadConact == false)
+                                            var notif = countConDup +' Contact has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                            
+                                            else if(countAccDup == 0 && countConDup > 1 && chkleadConact == true)
+                                                var notif = countConDup +' Leads have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                else if(countAccDup == 0 && countConDup == 1 && chkleadConact == true)
+                                                    var notif = countConDup +' Lead has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                            
+                                                    else if(countAccDup == 1 && countConDup == 0)
+                                                        var notif = countAccDup +' account has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup > 1 && countConDup == 0)
+                                                            var notif = countAccDup +' accounts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                            document.getElementById("notify").innerHTML = notif;
+                            $('#notification-modal1').show(); 
+                            
+                        }
+                        location.reload();
+                    }else{
+                        $('.importFrame').hide();
+                        $('#importIframe').attr('src', '');
+                        location.reload();
+                        
+                    }
+                    
+                    
+                }
+                </script>
+                <div style="display:none;" class="importFrame">
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open scrollAbsolute">
+                        <div class="slds-modal__container" style="width: 73%;display: inline-block;left: 25%;">
+                            <div class="slds-modal__header" style="padding: 9px;">
+                                <h2 class="slds-text-heading--medium addUpdateHeader" style="margin-top: 5px;">Import Status</h2>
+                                <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close" onclick="$('#importIframe').contents().find('#pauseBtn').click();document.getElementById('importIframe').contentWindow.callBackFunctionContact2();" oncomplete="CloseImportData();document.getElementById('importIframe').contentWindow.hideStatus();" style="float: right;margin-top: -35px;"/>
+                            </div>
+                            <div class="slds-modal__content" style="height: 420px;overflow: hidden;padding: 2px;">
+                                <div>                                                                            
+                                    <iframe id="importIframe" src="" style="border: 0px;height: 405px;width: 100%;"/>
+                                </div>
+                            </div>  
+                           
+                        </div>
+                    </div>
+                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                </div>
+            </apex:outputPanel>    
+            </apex:form>
+            
+            <div class="overlay-div"></div>
+            <div class="overlay top-overlay" style="">
+                <div class="top-overlay-content">
+                    <div class="slds-spinner--medium">
+                        <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/images/spinners/slds_spinner_inverse.gif')}" alt="Loading..." />
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                $(document).ready(function(){
+                    onCompleteTasks();
+                    showStatusDiv1();
+                    oppAlertInit();
+                    hideStatusDiv1();
+                    
+                    
+                });
+                
+                function hideStatusDiv1(){
+                   $('.top-overlay, .overlay-div').hide();
+                }
+                function showStatusDiv1(){
+                   $('.top-overlay, .overlay-div').show();
+                }
+                
+                function importFinished(){
+                    callMatchingOppAlert();
+                    showSaveSuccessfulMsg();
+                    
+                }
+                
+                function onCompleteTasks(){//SFNA-2477
+                    overridePageMessages(); 
+                    $("[role=tabpanel]").hide();
+                    $(".topPanelGrid").hide();
+                    $('.oppAlerts-tab').show();
+                    $(".hideClass").hide();
+                    
+                    $(".addUpdateBtnOppAlert").click(function(){ // SFNA-2477
+                                  
+                        if($('.oppAlertChecks:checked').length > 0){
+                            $(".addUpdateModal").fadeIn();
+                        }else{
+                            document.getElementById("notificationMsg").innerHTML = 'Please select at least one record to add/update.';
+                            $('#notification-modal12').show();
+                        }
+                        return false;
+                    });
+                    
+                    $(".addUpdateModal-Close").click(function(){
+                        $(".addUpdateModal").fadeOut();
+                        resetValues();
+                        return false;
+                        
+                    }); 
+                    
+                    $(".oppalertbestcont").click(function(){
+                        $(this).closest('.blockGrid').nextAll('.oppalerttoggle:first').slideToggle(1000);  
+                        $(this).children(".changeit").toggleClass('fa-caret-down fa-caret-right');
+                                               
+                    });  
+                    
+                }
+                
+                function validateOperation() {
+                    if ($( "[id*='addOperationOppAlert']" ).val() == '') {
+                        document.getElementById("notificationMsg").innerHTML = 'Please select desired Operation';
+                        $('#notification-modal12').show();
+                        $(".addUpdateModal").fadeOut();
+                    }else{
+                        $('.top-overlay').show();
+                        callProcessing();
+                        $(".addUpdateModal").fadeOut();
+                    }
+                   
+                }
+                
+                function callMatchingOppAlert(){
+                   oppAlertInit();
+                }
+                  
+                function oppAlertInit(){ //SFNA-2477
+                   mapOfrecords = new Map();
+                   
+                   //hide show add/update button
+                   if($('.oppAlertChecks').length > 0){
+                       $('.addUpdateBtnOppAlert').show();
+                   }else{
+                       $('.addUpdateBtnOppAlert').hide();
+                   }
+                   
+                   var allDoids = '';
+                   var allMailids = '';
+                   $(".nameOpp").each(function() {
+                       allDoids += $( this ).attr("data-doid") + "," ;
+                       allMailids += $( this ).attr("data-doemail") + "," ;
+                   });
+         
+                   var MatchWrapper;
+                   //Visualforce.remoting.timeout = 120000;
+                   
+                   fetchMatchDataOppAlerts(allDoids, allMailids);
+                   
+               }
+                
+                function onCompleteMatch(result){
+                    MatchWrapper = JSON.parse(result);
+                    for( var i =0;i<MatchWrapper.length ; i++){
+                        var rec = MatchWrapper[i];                                
+                        if( rec.matchRecDoId != null && rec.matchRecDoId != '' ){
+                            createHoverInfoOppAlert( rec, rec.isContact )
+                        }
+                        else if( rec.matchRecEmailId != null && rec.matchRecEmailId != '' ) {
+                            createHoverInfoOppAlert( rec, rec.isContact )
+                        }
+                        mapOfrecords.set(rec.Id , rec);
+                    }
+                    registerBinding();
+                }
+                
+                function registerBinding(){
+                    $(".webui-popover-btn").unbind();
+                    $(".webui-popover-btn").mouseleave(function(e){
+                        $(this).find(".popoverDiv").hide();
+                        $(this).find(".arrow").hide();
+                        $(this).find(".uploadFW").each(function() {
+                            $(this).toggle();
+                        });                             
+                    });
+                }
+                
+                function fetchNoMatchHtmlContLead(objName , name ){
+                    var htmlSt = '<table class="popTable" style="border-style: hidden;"><tr style="border-style: hidden;"><td style="border-style: hidden;">';
+                                if(objName == 'contact'){
+                                    htmlSt += '<span class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle contactIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                                       '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="width: 15px;height: 15px;fill: #fff;">'+
+                                           '<use xlink:href="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact")}"></use>'+
+                                       '</svg>'+
+                                   '</span>';
+                                }else{
+                                   htmlSt += '<span class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle leadIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                                       '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="width: 15px;height: 15px;fill: #fff;">'+
+                                           '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>'+
+                                       '</svg>'+
+                                   '</span>';
+                               }
+                                   
+                               htmlSt +='</td><td style="border-style: hidden;"><i class="fa fa-cloud-upload" style="font: normal normal normal 14px/1 FontAwesome !important;color: #1b5eac;margin-left:50px;position: absolute;right: 20px;top: 28px;width: 16px; height: 18px;" aria-hidden="true"></i></td>'+
+                               '<td style="border-style: hidden;">'+
+                                   '<div class="conLeadName" class="slds-truncate">'+name+'</div>'+
+                                   '<br/>';
+                               if(objName == 'contact'){    
+                                htmlSt += '<p class="noMatchFoundText">No Matching Contact Found</p>';
+                                }else{
+                                htmlSt += '<p class="noMatchFoundText" style="margin-top: -13px;">No Matching Lead Found</p>';
+                                }
+                               '</td>'+
+                               '<td style="vertical-align: top;border-style: hidden;">'+
+                                   '<i class="fa fa-cloud-upload" style="font: normal normal normal 14px/1 FontAwesome !important;color: #1b5eac;margin-left:50px;" aria-hidden="true"></i>'+
+                               '</td></tr></table>';
+                               
+                   return htmlSt;
+               }    
+               
+               function fetchMatchHtmlContLead(objName , recId , color ){
+                   var rec = mapOfrecords.get(recId);             
+                   var htmlSt = '<table class="popTable" style="width: 250px;height: 17px;font-family: Open Sans !important;font-size: 12px;color: #7f7f80;margin-left:4px;margin-top:5px;border-style: hidden;"><tr style="border-style: hidden;"><td style="min-width: 345px;border-style: hidden;" colspan="2">';
+      
+                                  if( rec.isContact ){
+                                      htmlSt += '<span class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle contactIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                                                      '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="width: 15px;height: 15px;fill: #fff;">'+
+                                                          '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact')}"></use>'+
+                                                      '</svg>'+
+                                                  '</span>';
+                                  }else{
+                                      htmlSt += '<span class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle leadIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                                                      '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="width: 15px;height: 15px;fill: #fff;">'+
+                                                          '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>'+
+                                                      '</svg>'+
+                                                  '</span>';
+                                  }
+      
+                         
+                          htmlSt +='<div class="conLeadName" class="slds-truncate"><a href="/'+rec.Id+'" target="_Blank" style="color: #0070d2  !important;">'+rec.Name+'</a></div>'+                                                                           
+                                   '<i class="fa fa-refresh" style="font: normal normal normal 14px/1 FontAwesome !important;color: '+color+';margin-left:50px;position: absolute;right: 20px;top: 35px; width: 16px; height: 18px;" aria-hidden="true"></i>'+ 
+                              '</td>'+
+                              '</tr>'+
+                              '<tr style="border-style: hidden;">'+
+                                  '<td style="padding-top: 10px;padding-bottom: 2px;color: #7f7f80;border-style: hidden;">Matched On <i aria-hidden="true" class="fa fa-circle indicator" style="color:'+color+';margin-left: 0px;"></i></td>'+
+                                  '<td style="padding-top: 10px;padding-bottom: 2px;color: #7f7f80;border-style: hidden;">Type</td>'+
+                              '</tr>'+
+                              '<tr style="border-style: hidden;">';
+                              
+                              if( rec.matchBy == 'doid' ){
+                                  htmlSt += '<td style="font-weight: 600;padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">DiscoverOrg ID</td>';
+                              }
+                              else{
+                                  htmlSt += '<td style="font-weight: 600;padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Email</td>';
+                              }
+                              
+                      htmlSt += '<td style="font-weight: 600;padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">'+objName+'</td>'+
+                              '</tr>'+
+                              '<tr style="border-style: hidden;">'+
+                                  '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Parent Account</td>'+
+                                  '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Record Owner</td>'+
+                              '</tr>'+
+                              '<tr style="border-style: hidden;">';
+                                  
+                                  if( rec.isContact ){
+                                      htmlSt += '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;"><a href="/'+rec.parentAccountId+'" target="_Blank" style="color: #0070d2  !important;">'+rec.parentAccount+'</a></td>';
+                                  }else{
+                                      htmlSt += '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">'+rec.parentAccount+'</td>';
+                                  }
+                                  
+                      htmlSt +=    '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;"><a href="/'+rec.recOwnerId+'" target="_Blank" style="color: #0070d2  !important;">'+rec.recOwner+'</a></td>'+
+                              '</tr>'+
+                              '<tr style="border-style: hidden;">'+
+                                  '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Created</td>'+
+                                  '<td></td>'+
+                              '</tr>'+
+                              '<tr style="border-style: hidden;">'+
+                                  '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">'+rec.Created+'</td>'+
+                                  '<td></td>'+
+                              '</tr>'+
+                              '</table>';
+                  return htmlSt;
+               }
+               
+               function loadInitIndicatorOppAlert(){    //SFNA-2477
+                   $(".nameOpp").next().each(function() {            
+                       var doidst = $(this).prev().attr("data-doid"); 
+                       var namest = $(this).prev().text().replace(/(['.?*&+^$[\]\\(){}|-])/g, "");
+                       var anchor = '<a class="webui-popover-btn ui animated button" onmouseenter="showPopoverContactLead( this );" style="text-decoration: none;display: inline-block;">'+
+                                       '<span  onclick="showStatusDiv1();SaveIndivisualLead('+doidst+', \'AddUpdateSelectedLeads\' ,\''+namest+'\');$(\'#updateHeadingofpopup\').html(\'Update Lead\');" class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle matchCircle">'+
+                                           '<div class="visible content"><i class="uploadFW"><svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">'+
+                                               '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>'+
+                                           '</svg></i></div>'+
+                                           '<i class="fa fa-cloud-upload uploadFW" aria-hidden="true" style="display:none;"></i>'+
+                                       '</span>'+
+                                       '<divi aria-hidden="true" class="fa  indicator leadIndi" sf-id=""></div>'+
+                                       '<div class="popoverDiv"></div>'+
+                                       '<div class="arrow"></div>'+
+                                    '</a>'+
+                                    '<a class="webui-popover-btn ui animated button"  onmouseenter="showPopoverContactLead( this );" style="text-decoration: none;display: inline-block;">'+
+                                       '<span onclick="showStatusDiv1();SaveIndivisualLead('+doidst+', \'AddUpdateSelectedContacts\' ,\''+namest+'\');$(\'#updateHeadingofpopup\').html(\'Update Contact\');" class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle matchCircle">'+
+                                           '<i class="uploadFW"><svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">'+
+                                           '<use xlink:href="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact")}"></use>'+
+                                       '</svg></i>'+
+                                       '<i class="fa fa-cloud-upload uploadFW" aria-hidden="true" style="display:none;"></i>'+
+                                       '</span>'+
+                                       '<div aria-hidden="true" class="fa  indicator conIndi" sf-id=""></div>'+
+                                       '<div class="popoverDiv"></div>'+
+                                       '<div class="arrow"></div>'+
+                                    '</a>';
+                            
+                       $(this).html( anchor );
+                   });
+               }
+               
+               function showPopoverContactLead(ele){                                
+                   var isContact = false;
+                   var mainNameEle = $(ele).parent().prev();
+                   var name = $(mainNameEle).find("a").html();
+                   
+                   if(  $(ele).find(".indicator").hasClass("conIndi") ){
+                       isContact = true;
+                   }
+                   
+                   //For Unmatched popup
+                   if( $(ele).find(".indicator").css("background-color") == 'rgb(204, 204, 204)' ){
+                       var popupHtml;
+                       if( isContact ){
+                           popupHtml = fetchNoMatchHtmlContLead('contact' , name);
+                       }
+                       else{
+                           popupHtml = fetchNoMatchHtmlContLead('lead' , name);
+                       }
+                       $(ele).find(".popoverDiv").html(popupHtml);
+                   }
+                   else{
+                       var popupHtml;
+                       var recId = $(ele).find(".indicator").attr("sf-id");
+                       var color = $(ele).find(".indicator").css("background-color");
+                       if( isContact ){
+                           popupHtml = fetchMatchHtmlContLead('Contact' , recId , color );
+                       }
+                       else{
+                           popupHtml = fetchMatchHtmlContLead('Lead' , recId , color );
+                       }
+                       $(ele).find(".popoverDiv").html(popupHtml);
+                   }
+                   
+                   var outHght = $(ele).find(".popoverDiv").outerHeight();
+                   var eleTop = $(ele).offset().top;
+                   var ptop = eleTop - (outHght/2) + 15;
+                   
+                   var pleft = $(ele).find(".popoverDiv").outerWidth();
+                   pleft = $(ele).offset().left - pleft -52;
+                                  
+                   $(ele).find(".popoverDiv").css("top", ptop-5+"px");
+                   $(ele).find(".popoverDiv").css("left", pleft+6+"px");
+                   $(ele).find(".popoverDiv").show(); 
+                   
+                   $(ele).find(".arrow").css("top", $(ele).offset().top+3+"px");
+                   $(ele).find(".arrow").css("left", $(ele).offset().left-52+"px"); 
+                   $(ele).find(".arrow").show();            
+                   $(ele).find(".matchCircle").find("i").each(function() {
+                        $(this).toggle();
+                   });   
+               } 
+               
+               function createHoverInfoOppAlert( record, isContact ){ //SFNA-2477                    
+                   var popoverHtmlDataLead = '';
+                   var popoverHtmlDataContact = '';
+                   var matchColor;
+                   var ele;
+                   var indiClass;
+                   var objName;
+                   var blockObj;
+                   if( record.matchBy == 'doid' ){
+                       ele = $("span.nameOpp[data-doid*='"+record.matchRecDoId+"']");
+                       matchColor = 'rgb(125, 191, 94)';            
+                   }
+                   else{
+                       ele = $("span.nameOpp[data-doemail*='"+record.matchRecEmailId+"']");
+                       matchColor = '#fad14b';
+                   }      
+                   if( isContact ){                
+                        indiClass = '.conIndi';
+                        objName = 'contact';
+                        blockObj = '.leadIndi';
+                   }
+                   else{
+                       indiClass = '.leadIndi'; 
+                       objName = 'lead'; 
+                       blockObj = '.conIndi';                                           
+                   }                                       
+                   
+                   if( record.matchBy == 'doid' ){
+                       $(ele).next().find("a").find(blockObj).parent().addClass("indiDisable"); 
+                   }
+                                   
+                   if( $(ele).next().find("a").find(indiClass).css("background-color") == 'rgb(204, 204, 204)' || $(ele).next().find("a").find(indiClass).css("background-color") == 'rgb(250, 209, 75)' ){
+                       $(ele).next().find("a").find(indiClass).css("background-color", matchColor).attr("sf-id", record.Id);                      
+                   }
+                   $(ele).next().find("a").find(".slds-icon-action-new-"+objName).find(".fa-cloud-upload").addClass("fa-refresh").removeClass("fa-cloud-upload");         
+               }
+               
+               function overridePageMessages(){    
+                    var textureEffect = '';
+                    //Uncomment below line for texture effect on page messages
+                    //textureEffect = 'slds-theme--alert-texture';
+                    
+                    $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+                    $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+                    $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+                    $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);    
+                    
+                    $('.errorM3').removeClass('errorM3'); 
+                    $('.confirmM3').removeClass('confirmM3'); 
+                    $('.infoM3').removeClass('infoM3');   
+                    $('.warningM3').removeClass('warningM3'); 
+                    
+                    $( "[data-apiname*='Fiscal_Year_End__c'], [data-apiname*='_Growth__c']" ).each(function( index ) {
+                        if( $( this ).attr("data-apiname").indexOf("Fiscal_Year_End__c") != -1){
+                            var m = $( this ).next().text();
+                            
+                            if( m == '12' ){
+                                $( this ).next().text('December');
+                            }
+                            else if( m == '11' ){
+                                $( this ).next().text('November');
+                            }
+                                else if( m == '10' ){
+                                    $( this ).next().text('October');
+                                }
+                                    else if( m == '9' ){
+                                        $( this ).next().text('September');
+                                    }
+                                        else if( m == '8' ){
+                                            $( this ).next().text('August');
+                                        }
+                                            else if( m == '7' ){
+                                                $( this ).next().text('July');
+                                            }
+                                                else if( m == '6' ){
+                                                    $( this ).next().text('June');
+                                                }
+                                                    else if( m == '5' ){
+                                                        $( this ).next().text('May');
+                                                    }
+                                                        else if( m == '4' ){
+                                                            $( this ).next().text('April');
+                                                        }
+                                                            else if( m == '3' ){
+                                                                $( this ).next().text('March');
+                                                            }
+                                                                else if( m == '2' ){
+                                                                    $( this ).next().text('February');
+                                                                }
+                                                                    else if( m == '1' ){
+                                                                        $( this ).next().text('January');
+                                                                    }
+                                                                        else if(m == '0'){
+                                                                            $( this ).parent().parent().css('display','none');
+                                                                        }
+                        }
+                        
+                        if( $( this ).attr("data-apiname").indexOf("_Growth__c") != -1){
+                            var grothAmount = $( this ).next().text();
+                            if(grothAmount == '0'){
+                                $( this ).parent().parent().css('display','none');
+                            }
+                            if(parseInt(grothAmount) > 0){
+                                $( this ).next().addClass('g-label').css('float','none');
+                                $( this ).next().css('color','#fff');
+                            }else if(parseInt(grothAmount) < 0){
+                                $( this ).next().addClass('r-label').css('float','none');
+                                $( this ).next().css('color','#fff');
+                            }
+                        }
+                        
+                    }); 
+                    
+                    //SFNA:1531
+                    try{
+                        var mystring = $( "[data-apiname*='AnnualRevenue']").next().html();
+                        var anrev = parseFloat( mystring.replace(/,/g , "") );
+                        $( "[data-apiname*='AnnualRevenue']").next().html( nFormatter(anrev) );
+                        
+                        var mystring2 = $( "[data-apiname*='IT_Budget__c']").next().children().html();
+                        var itBug = parseFloat( mystring2.replace(/,/g , "") );
+                        $( "[data-apiname*='IT_Budget__c']").next().html( nFormatter(itBug) );
+                    }
+                    catch(err) {}
+                }
+                
+                function closePop(){
+                    document.getElementById("notification-modal12").style.display = "none";
+                    if (document.getElementById("notificationMsg").innerHTML == 'Please select desired Operation') {
+                        $(".addUpdateModal").fadeIn();
+                    }
+                } 
+                function closeToast(){
+                    $(".notificationToast").css('display','none');
+                }    
+                
+                function resetIframeHeight(){
+                    
+                    if(350 > document.getElementById("j_id0:oppAlertFrm").scrollHeight){
+                        $(parent.document.getElementById('oppAlertIframe')).attr("height", "350px" );    
+                    }else{
+                        $(parent.document.getElementById('oppAlertIframe')).attr("height", document.getElementById("j_id0:oppAlertFrm").scrollHeight+"px" );
+                    }
+                    
+                    
+                    $('.overlay-div, .top-overlay').hide();
+                }
+                
+                function resetValues(){
+                    $("[Id$='selectedUserId']").text('Specify owner:');
+                    $("[Id$='UserLookup']").val('');
+                    $("[Id$='sfjscontactautocomplete']").val('');
+                    $("[Id$='addOperationOppAlert']").val('');
+                    $("[Id$='UserLookup_lkwgt']").css({'pointer-events': 'none'});
+                    $("[Id$='customTextFieldContact']").val('');
+                    $("[Id$='customTextFieldLead']").val('');
+                    $("#radio-default").prop("checked", "checked");
+                    
+                    showhidecontactleadlabel();
+                }
+    
+            </script> 
+        </body>
+        
+    </html> 
+</apex:page>

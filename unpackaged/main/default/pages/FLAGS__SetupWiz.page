@@ -1,0 +1,4 @@
+<apex:page title="Case Flags Setup Wizard" sidebar="none">
+    <meta http-equiv="refresh" content="0;url=/lightning/n/FLAGS__Case_Flags_Setup" />
+    <apex:pageMessage severity="error" strength="3" summary="This setup experience has been deprecated, please use the Case Flags Setup tab to configure the application." escape="false" />
+</apex:page>

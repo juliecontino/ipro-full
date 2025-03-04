@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to capture the source of the Journal. --></help>
+        <label><!-- Source --></label>
+        <name>AcctSeed__Source__c</name>
+        <picklistValues>
+            <masterLabel>Bank Direct Connect</masterLabel>
+            <translation><!-- Bank Direct Connect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Import</masterLabel>
+            <translation><!-- Import --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recurring Journal Entry</masterLabel>
+            <translation><!-- Recurring Journal Entry --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

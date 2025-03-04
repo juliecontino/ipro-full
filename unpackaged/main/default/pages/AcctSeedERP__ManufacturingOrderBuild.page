@@ -1,0 +1,92 @@
+<apex:page id="thePage" standardController="AcctSeed__Project__c" title="Build | Accounting Seed" extensions="AcctSeedERP.ManufacturingOrderBuild" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/erp-common.js')}"/>  
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+    </script>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Project - Manufacturing Order" subtitle="{!AcctSeed__Project__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Build Manufacturing Order">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeedERP.ASModule.disableButtons('Saving...')" />
+                <apex:commandButton id="saveButton" value="Build" status="saveStatus" action="{!build}" rendered="{!!isSuccess && !ISBLANK(AcctSeed__Project__c.AcctSeedERP__Manufactured_Product__c)}" reRender="theForm" />
+                <apex:commandButton id="cancelButton" value="Back" action="/{!AcctSeed__Project__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages rendered="{!isError || isSuccess}" escape="false"/>
+            <apex:pageMessage summary="You must specify a manufactured product in order to perform a build" severity="error" strength="3" rendered="{!!isError && ISBLANK(AcctSeed__Project__c.AcctSeedERP__Manufactured_Product__c)}" />
+            <apex:pageBlockSection title="Manufacturing Order Information" columns="2" collapsible="false" rendered="{!!isSuccess && !ISBLANK(AcctSeed__Project__c.AcctSeedERP__Manufactured_Product__c)}">
+                <apex:outputField value="{!AcctSeed__Project__c.AcctSeedERP__Manufactured_Product__c}" />
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Warehouse Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:actionRegion >
+                            <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                            <apex:selectList value="{!selectedWarehouse}" size="1">
+                                <apex:selectOptions value="{!warehouses}" />
+                                <apex:actionSupport event="onchange" action="{!setLocations}" rerender="location" />
+                            </apex:selectList>
+                            <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isWarehouseError}">
+                                <strong>Error:</strong> You must enter a value
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Inbound_Inventory_Movement__c.Fields.AcctSeedERP__Ledger__c.Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList required="true"
+                                         value="{!invInBound.AcctSeedERP__Ledger__c}"
+                                         multiselect="false"
+                                         size="1">
+                            <apex:selectOptions value="{!allLedgers}" />
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isLedgerError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Location Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList id="location" value="{!selectedLocation}" size="1">
+                            <apex:selectOptions value="{!locations}" />
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isLocationError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Build Information" columns="1" collapsible="false" rendered="{!!isSuccess && !ISBLANK(AcctSeed__Project__c.AcctSeedERP__Manufactured_Product__c)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Inbound_Inventory_Movement__c.Fields.AcctSeedERP__Quantity__c.Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputField value="{!invInBound.AcctSeedERP__Quantity__c}" style="width:60px;text-align:right" required="false" />
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isQuantityError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Inbound_Inventory_Movement__c.Fields.AcctSeedERP__Credit_GL_Account__c.Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputField value="{!invInBound.AcctSeedERP__Credit_GL_Account__c}" />
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isGLAccountError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:outputField value="{!AcctSeed__Project__c.Manufactured_Product__r.AcctSeedERP__Serialized__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeed__Project__c.Manufactured_Product__r.AcctSeed__Unit_Cost__c}" rendered="false" />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Length of the package, measured in the units specified by the &quot;dimension units&quot; field
+
+Field not necessary if using one of the following Packaging Types:
+FedEx 10KG Box
+FedEx 25KG Box
+FedEx Box
+FedEx Envelope
+FedEx Pak
+FedEx Tube --></help>
+        <label><!-- Length --></label>
+        <name>zkfedex__Length__c</name>
+    </CustomFieldTranslation>

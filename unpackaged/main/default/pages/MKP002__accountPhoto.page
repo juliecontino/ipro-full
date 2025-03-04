@@ -1,0 +1,46 @@
+<apex:page standardController="Account" extensions="MKP002.Photo_Extension" showHeader="false" >
+	<apex:slds />
+	<style>
+		.btn {
+			font-weight: bold;
+	    font-size: .9em;
+		}
+	</style>
+	<apex:form id="theForm">
+		<article class="slds-card">
+			<div class="slds-card__header slds-grid">
+				<header class="slds-media slds-media_center slds-has-flexi-truncate">
+					<div class="slds-media__figure">
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAMAAAAocOYLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADlQTFRF9JAe/OPH+siP/erV96xW9Zcs+Lpy+cGA97Nk+9Wr/vHj9qVI9Z46+s6d/Ny5+Lpz/vjx////////51Wq+AAAABN0Uk5T////////////////////////ALJ93AgAAAD5SURBVHjahJMJksQgCEUVBBSXnsn9DztmU1PRHipljA8o+BizbWjXpmb7mNOSgDNvw+udLfuA9UHrR24vnPc1KtdERZw4evCEY0wByCgjd3AhxiuQgkw4ozQHTZ370qJbBpHGk8ae/HY4cx48HC1xoLEG37k9j90hUHThcLDxwQkA9Piom5qPS68/89BsXZKJwVI/InUjj2oDP/ULaN3NM8aX/rvEdNXpJvPZ+9GM7/l2bsjDNy79ImmccJDGh5s08CrLqfCSK7BJtOZSiBBpySGa4hlxwX8C5toi/y54MSRf67vP5pzv9sucu9n2P659fsN/2/T/E2AAmkEGDrd+fmkAAAAASUVORK5CYII=" alt="Photo Uploader Logo" />
+					</div>
+					<div class="slds-media__body">
+						<h2 class="slds-card__header-title">
+							<a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Accounts">
+								<span>Photo Uploader</span>
+							</a>
+						</h2>
+					</div>
+					<div class="slds-no-flex">
+						<apex:commandButton value="Save" 
+																action="{!saveAttachment}" 
+																rendered="{!Account.MKP002__Photo_Id__c == null}" 
+																style="font-weight: bold; font-size: .9em;" />
+						<apex:commandButton value="Delete" 
+																action="{!deleteImage}" 
+																rendered="{!Account.MKP002__Photo_Id__c != null}" 
+																style="font-weight: bold; font-size: .9em;" />
+					</div>
+				</header>
+			</div>
+			<div class="slds-card__body slds-card__body_inner" style="text-align: center;">
+				<apex:inputFile value="{!abody}" filename="{!aname}" rendered="{!Account.MKP002__Photo_Id__c == null}" />
+				<apex:image id="theImage" value="{!imageURL}" rendered="{!Account.MKP002__Photo_Id__c != null}" width="100" height="100" />
+			</div>
+			<footer class="slds-card__footer">
+				Made with <span style="color: #e25555;">&hearts;</span> by
+				<a href="https://www.mkpartners.com" target="_blank"> MK Partners, Inc.</a>
+			</footer>
+		</article>
+	</apex:form>
+	<apex:outputField value="{!Account.MKP002__Photo_Id__c}" rendered="false" />
+</apex:page>

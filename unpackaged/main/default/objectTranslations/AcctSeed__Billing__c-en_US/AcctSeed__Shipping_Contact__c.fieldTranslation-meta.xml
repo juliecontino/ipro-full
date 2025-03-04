@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Shipping Contact --></label>
+        <name>AcctSeed__Shipping_Contact__c</name>
+        <relationshipLabel><!-- Billings (Shipping Contact) --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,1 @@
+AcctSeed.ASModule=function(c,e){"use strict";return e.checkControl=function(e){e.checked&&c("[id$=deposit]").attr("id")===e.id&&c("[id$=cashReceipt]").prop("checked",!0),e.checked||c("[id$=cashReceipt]").attr("id")!==e.id||c("[id$=deposit]").prop("checked",!1)},e}((window,document,$j),AcctSeed.ASModule);

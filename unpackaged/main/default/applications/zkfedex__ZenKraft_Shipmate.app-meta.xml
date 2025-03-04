@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>zkfedex__Shipment__c</defaultLandingTab>
+    <description>Shipmate provides seamless integration with FedEx Shipping allowing a user to create shipments, calculate shipping rates, generate shipping labels and tracking information.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Shipmate for FedEx</label>
+    <logo>zkfedex__ShipmateFolder/zkfedex__FedEx_Logo.gif</logo>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>zkfedex__Shipment__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>zkfedex__Package_Profiles</tabs>
+    <tabs>zkfedex__FedExShippingForms</tabs>
+    <tabs>zkfedex__InternationalCommodityData__c</tabs>
+    <tabs>zkfedex__ShipmatePreference__c</tabs>
+    <tabs>zkfedex__CustomAddressSource__c</tabs>
+    <tabs>zkfedex__Pickup__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

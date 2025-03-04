@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__LogicExtend__c</fullName>
+    <deprecated>false</deprecated>
+    <description>EventName tilda classNameSpace tilda ClassName pound EventName2 tilda classNameSpace tilda ClassName2 pound</description>
+    <inlineHelpText>EventName~classNameSpace~ClassName#EventName2~classNameSpace2~ClassName2
+The Class must Implement ZPTableHandler</inlineHelpText>
+    <label>LogicExtend</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

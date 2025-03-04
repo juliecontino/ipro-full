@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>AcctSeed__Period_Task__c.Activities$Subject</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Period_Task__c.Activities$Description</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Period_Task__c$Owner</field>
+    </columns>
+    <description>Exception report of Accounting Period Recurring Tasks that failed to create a Task during the Accounting Period Recurring Task Job.</description>
+    <filter>
+        <criteriaItems>
+            <column>AcctSeed__Period_Task__c.Activities$Subject</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Error</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>AcctSeed__Period_Task__c.Activities$Status</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Completed</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <field>AcctSeed__Period_Task__c.Activities$ActivityDate</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Period_Task__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Exceptions: AP Recurring Tasks</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AcctSeed__Accounting_Period_Recurring_Task_with_Activities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Period_Task__c$AcctSeed__Create_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

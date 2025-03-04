@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Shipmate Preferences Layout</layout>
+        <sections>
+            <label><!-- Action Timestamps --></label>
+            <section>Action Timestamps</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Address --></label>
+            <section>Billing Address</section>
+        </sections>
+        <sections>
+            <label><!-- Company Name --></label>
+            <section>Company Name</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Default Sender Details --></label>
+            <section>Default Sender Details</section>
+        </sections>
+        <sections>
+            <label><!-- Email Label Defaults --></label>
+            <section>Email Label Defaults</section>
+        </sections>
+        <sections>
+            <label><!-- FedEx Account --></label>
+            <section>FedEx Account</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Other Defaults --></label>
+            <section>Other Defaults</section>
+        </sections>
+        <sections>
+            <label><!-- Pick Up Information --></label>
+            <section>Pick Up Information</section>
+        </sections>
+        <sections>
+            <label><!-- Printer Info --></label>
+            <section>Printer Info</section>
+        </sections>
+        <sections>
+            <label><!-- Scale Setup --></label>
+            <section>Scale Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping Address --></label>
+            <section>Shipping Address</section>
+        </sections>
+        <sections>
+            <label><!-- Signature and LetterHead --></label>
+            <section>Signature and LetterHead</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- CloseFedExShipDay --></label>
+        <name>zkfedex__CloseFedExShipDay</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CloseFedExSmartPostShipDay --></label>
+        <name>zkfedex__CloseFedExSmartPostShipDay</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ManagePrinters --></label>
+        <name>zkfedex__ManagePrinters</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RegisterFedExUserButton --></label>
+        <name>zkfedex__RegisterFedExUserButton</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SetupPrinter --></label>
+        <name>zkfedex__SetupPrinter</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SetupThermalPrinter --></label>
+        <name>zkfedex__SetupThermalPrinter</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Setup_Signature_and_LetterHead --></label>
+        <name>zkfedex__Setup_Signature_and_LetterHead</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SubscribeFedExAccountButton --></label>
+        <name>zkfedex__SubscribeFedExAccountButton</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- VersionCapture --></label>
+        <name>zkfedex__VersionCapture</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field is read only for the user. Unpaid means the Account Payable has not been selected for payment. Paid means a related Cash Disbursement record has been created for this Account Payable. --></help>
+        <label><!-- Payment Status --></label>
+        <name>AcctSeed__Payment_Status__c</name>
+        <picklistValues>
+            <masterLabel>Unpaid</masterLabel>
+            <translation><!-- Unpaid --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

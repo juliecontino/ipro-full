@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field is populated based on the transaction source record. The mapping is Journal Entry Line Contact, Payable Contact or Cash Disbursement Contact field. --></help>
+        <label><!-- Contact --></label>
+        <name>AcctSeed__Contact__c</name>
+        <relationshipLabel><!-- Transactions --></relationshipLabel>
+    </CustomFieldTranslation>

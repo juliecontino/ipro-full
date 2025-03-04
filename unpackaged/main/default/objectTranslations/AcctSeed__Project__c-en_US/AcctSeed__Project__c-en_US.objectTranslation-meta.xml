@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Manufacturing Order Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Layout</layout>
+        <sections>
+            <label><!-- Assigned Resources --></label>
+            <section>Assigned Resources</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Project Flags --></label>
+            <section>Project Flags</section>
+        </sections>
+        <sections>
+            <label><!-- Project Tasks --></label>
+            <section>Project Tasks</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- This record type is used for creating work orders in the Accounting Cloud ERP package --></description>
+        <label><!-- Work Order --></label>
+        <name>AcctSeedERP__Manufacturing_Order</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This record type is used for creating standard projects --></description>
+        <label><!-- Project --></label>
+        <name>AcctSeedERP__Project</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Allocate --></label>
+        <name>AcctSeedERP__Allocate</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Build --></label>
+        <name>AcctSeedERP__Build</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Purchase_Order_Fullfill --></label>
+        <name>AcctSeedERP__Purchase_Order_Fullfill</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Clone_with_Project_Tasks --></label>
+        <name>AcctSeed__Clone_with_Project_Tasks</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Enter_Time_Card --></label>
+        <name>Enter_Time_Card</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Project_Cost_vs_Budget_Report --></label>
+        <name>Project_Cost_vs_Budget_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Project_Net_Profit_Report --></label>
+        <name>Project_Net_Profit_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Project_Revenue_vs_Budget_Report --></label>
+        <name>Project_Revenue_vs_Budget_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Project_Schedule --></label>
+        <name>Project_Schedule</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Search_Existing_Timecard --></label>
+        <name>Search_Existing_Timecard</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Time_Cards_by_Employee_Report --></label>
+        <name>Time_Cards_by_Employee_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Time_Cards_by_Period_Project_Report --></label>
+        <name>Time_Cards_by_Period_Project_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Time_Cards_by_Period_Report --></label>
+        <name>Time_Cards_by_Period_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ZP_Action --></label>
+        <name>ZP_Action</name>
+    </webLinks>
+</CustomObjectTranslation>

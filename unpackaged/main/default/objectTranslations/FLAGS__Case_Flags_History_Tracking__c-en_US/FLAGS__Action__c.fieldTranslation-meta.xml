@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Action --></label>
+        <name>FLAGS__Action__c</name>
+        <picklistValues>
+            <masterLabel>Case Closed</masterLabel>
+            <translation><!-- Case Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case Created</masterLabel>
+            <translation><!-- Case Created --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clear Flag Button</masterLabel>
+            <translation><!-- Clear Flag Button --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Attachment Added</masterLabel>
+            <translation><!-- Customer Attachment Added --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Received</masterLabel>
+            <translation><!-- Email Received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Sent</masterLabel>
+            <translation><!-- Email Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>External Comment Added</masterLabel>
+            <translation><!-- External Comment Added --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Comment Added</masterLabel>
+            <translation><!-- Internal Comment Added --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local Automation</masterLabel>
+            <translation><!-- Local Automation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Set Flag Button</masterLabel>
+            <translation><!-- Set Flag Button --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Task Completed</masterLabel>
+            <translation><!-- Task Completed --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__Dupe_Lookup_Test__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Dupe Record Lookup Test</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Lookup Helper Filters</relationshipLabel>
+    <relationshipName>Lookup_Helper_Filters2</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

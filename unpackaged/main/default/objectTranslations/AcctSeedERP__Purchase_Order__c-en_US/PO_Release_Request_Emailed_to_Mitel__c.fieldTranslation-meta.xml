@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- PO Release Request Emailed to Mitel --></label>
+        <name>PO_Release_Request_Emailed_to_Mitel__c</name>
+    </CustomFieldTranslation>

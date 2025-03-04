@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- B-City-State-Zip --></label>
+        <name>B_City_State_Zip__c</name>
+    </CustomFieldTranslation>

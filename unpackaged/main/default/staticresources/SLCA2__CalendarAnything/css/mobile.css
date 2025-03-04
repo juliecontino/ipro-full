@@ -1,0 +1,12 @@
+
+div.#hiddener_left, div.#hiddener_right {
+    background: url("../img/three_dots.png") no-repeat scroll center center transparent;
+    background-scale
+    height: 72px;
+    padding: 0 2px;
+    width: 16px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

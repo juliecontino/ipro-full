@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Exclude Fields From Total - use # as a sepeartor --></help>
+        <label><!-- Exclude Fields From Total --></label>
+        <name>zaapit__Exclude_Fields_From_Total__c</name>
+    </CustomFieldTranslation>

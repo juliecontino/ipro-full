@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Deferred</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Sort_Order__c</columns>
+    <columns>AcctSeed__Assignee__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <columns>AcctSeed__Frequency_Num__c</columns>
+    <columns>AcctSeed__Frequency_Type__c</columns>
+    <columns>AcctSeed__Priority__c</columns>
+    <columns>AcctSeed__Last_Accounting_Period_Task_Due_Date__c</columns>
+    <columns>AcctSeed__Next_Accounting_Period_Task_Due_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Status__c</field>
+        <operation>equals</operation>
+        <value>Deferred</value>
+    </filters>
+    <label>Deferred</label>
+</ListView>

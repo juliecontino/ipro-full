@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The method in which invoices should be delivered to the Client. This field can only be edited in the Account object. --></help>
+        <label><!-- Billing Delivery Method --></label>
+        <name>Billing_Delivery_Method__c</name>
+    </CustomFieldTranslation>

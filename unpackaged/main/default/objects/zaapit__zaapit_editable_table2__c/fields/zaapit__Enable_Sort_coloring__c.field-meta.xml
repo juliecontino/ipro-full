@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__Enable_Sort_coloring__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Enable Sort coloring: use Sort_color1 and Sort_color2 custom labels to change the colors</description>
+    <inlineHelpText>Enable Sort coloring: use Sort_color1 &amp; Sort_color2 custom labels to change the colors</inlineHelpText>
+    <label>Enable Sort coloring</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Target_Object__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Target Object</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>AcctSeed__Import_Objects</valueSetName>
+    </valueSet>
+</CustomField>

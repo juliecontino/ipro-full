@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The custom object field that indicates whether the recipient address is a residence. --></help>
+        <label><!-- Is Residence Field --></label>
+        <name>zkfedex__IsResidenceField__c</name>
+    </CustomFieldTranslation>

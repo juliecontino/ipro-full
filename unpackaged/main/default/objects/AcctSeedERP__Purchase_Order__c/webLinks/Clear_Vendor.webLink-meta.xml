@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clear_Vendor</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Clear Vendor</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/29.0/connection.js")}
+ 
+// identify the record
+var po = new sforce.SObject("AcctSeedERP__Purchase_Order__c");
+po.id = "{!AcctSeedERP__Purchase_Order__c.Id}";
+ 
+// make the field change
+//po.fieldsToNull = ['AcctSeedERP__Vendor__c'];
+
+//mkneill modified 06/20/16 - Clear all vendor address info
+po.fieldsToNull = ['AcctSeedERP__Vendor__c','AcctSeedERP__Vendor_Contact__c','AcctSeedERP__Vendor_Street__c','AcctSeedERP__Vendor_City__c','AcctSeedERP__Vendor_State__c','AcctSeedERP__Vendor_Postal_Code__c','AcctSeedERP__Vendor_Country__c'];
+
+// save the change
+sforce.connection.update([po]);
+ 
+//refresh the page
+window.location.reload();</url>
+</WebLink>

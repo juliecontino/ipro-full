@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field contains the scheduled date to close out recipt of a Delivery &amp; Acceptance Certificate or Tech Work Order. --></help>
+        <label><!-- Project D&amp;A End Date Rollup --></label>
+        <name>D_and_A_End_Date_rollup__c</name>
+    </CustomFieldTranslation>

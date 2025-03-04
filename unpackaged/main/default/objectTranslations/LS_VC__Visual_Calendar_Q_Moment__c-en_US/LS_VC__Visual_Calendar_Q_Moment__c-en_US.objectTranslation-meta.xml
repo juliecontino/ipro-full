@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Q Moment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Quarterly Moments can only be related to Quarterly Categories. --></errorMessage>
+        <name>LS_VC__Category_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must select a Priority for this Moment --></errorMessage>
+        <name>LS_VC__Priority_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Duplicate Case Count --></label>
+        <name>csmrgp__Duplicate_Case_Count__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Tracking Open Cases On Contact</label>
+    <protected>false</protected>
+    <values>
+        <field>LH__Category_Field__c</field>
+        <value xsi:type="xsd:string">contactid</value>
+    </values>
+    <values>
+        <field>LH__Child_Filter_Conditions__c</field>
+        <value xsi:type="xsd:string">{&quot;table&quot;:&quot;case&quot;,&quot;sorts&quot;:[],&quot;relSObjectType&quot;:{},&quot;offsetVar&quot;:&quot;&quot;,&quot;limitVar&quot;:&quot;50000&quot;,&quot;invalidBoolMessage&quot;:null,&quot;hasCriteriaPicklist&quot;:null,&quot;filterFieldType&quot;:null,&quot;dh&quot;:{},&quot;criterion&quot;:[{&quot;polyObj&quot;:&quot;&quot;,&quot;objName&quot;:&quot;case&quot;,&quot;logic&quot;:&quot;=&quot;,&quot;id&quot;:0,&quot;fieldType&quot;:&quot;BOOLEAN&quot;,&quot;field&quot;:&quot;isdeleted&quot;,&quot;condition&quot;:&quot;false&quot;},{&quot;polyObj&quot;:&quot;&quot;,&quot;objName&quot;:&quot;case&quot;,&quot;logic&quot;:&quot;!=&quot;,&quot;id&quot;:null,&quot;fieldType&quot;:&quot;PICKLIST&quot;,&quot;field&quot;:&quot;status&quot;,&quot;condition&quot;:&quot;&apos;Closed&apos;&quot;}],&quot;subFilters&quot;:[],&quot;subFilterRelField&quot;:null,&quot;subFilterLogic&quot;:&quot;&quot;,&quot;removeNullsLast&quot;:false,&quot;recName&quot;:&quot;FC-7621&quot;,&quot;isSubQuery&quot;:true,&quot;isBatch&quot;:true,&quot;groupBy&quot;:null,&quot;filterName&quot;:&quot;FC-7621&quot;,&quot;boolLogic&quot;:&quot;1 AND 2&quot;}</value>
+    </values>
+    <values>
+        <field>LH__Child_Object__c</field>
+        <value xsi:type="xsd:string">case</value>
+    </values>
+    <values>
+        <field>LH__Components_Included__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Description__c</field>
+        <value xsi:type="xsd:string">Populates lhuc_Tracking_Open_Cases_On_Contact__c with it&apos;s parent Contact record if the Case record is Open.</value>
+    </values>
+    <values>
+        <field>LH__FieldType__c</field>
+        <value xsi:type="xsd:string">Lookup</value>
+    </values>
+    <values>
+        <field>LH__Label__c</field>
+        <value xsi:type="xsd:string">Tracking Open Cases On Contact</value>
+    </values>
+    <values>
+        <field>LH__Logic__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Long_Description__c</field>
+        <value xsi:type="xsd:string">Populates lhuc_Tracking_Open_Cases_On_Contact__c with it&apos;s parent Contact record if the Case record is Open.</value>
+    </values>
+    <values>
+        <field>LH__Object__c</field>
+        <value xsi:type="xsd:string">Case</value>
+    </values>
+    <values>
+        <field>LH__Parent_Field__c</field>
+        <value xsi:type="xsd:string">id</value>
+    </values>
+    <values>
+        <field>LH__Parent_Object__c</field>
+        <value xsi:type="xsd:string">contact</value>
+    </values>
+    <values>
+        <field>LH__RelationshipName__c</field>
+        <value xsi:type="xsd:string">lhuc_Cases</value>
+    </values>
+    <values>
+        <field>LH__Relationship_Field__c</field>
+        <value xsi:type="xsd:string">lhuc_Tracking_Open_Cases_On_Contact__c</value>
+    </values>
+</CustomMetadata>

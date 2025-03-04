@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Statement Ending Date of the associated Bank Reconciliation. --></help>
+        <label><!-- Bank Reconciliation Date --></label>
+        <name>AcctSeed__Bank_Reconciliation_Date__c</name>
+    </CustomFieldTranslation>

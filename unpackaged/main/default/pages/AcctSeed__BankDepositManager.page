@@ -1,0 +1,194 @@
+<apex:page id="thePage" title="{!AcctSeed__Bank_Deposit__c.Name & ' | Accounting Seed'}"
+           standardController="AcctSeed__Bank_Deposit__c"
+           extensions="AcctSeed.BankDepositManager,AcctSeed.EnvironmentUtils" sidebar="false" lightningStylesheets="true">
+
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(IS_MULTI_CURRENCY_ENABLED, "true", "false"))}";
+        AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        AcctSeed.ASModule.getAssociatedRecordsAction = "{!$RemoteAction.BankDepositManager.getAssociatedRecords}";
+        AcctSeed.ASModule.getUnassociatedRecordsAction = "{!$RemoteAction.BankDepositManager.getUnassociatedRecords}";
+        AcctSeed.ASModule.processAssociationAction = "{!$RemoteAction.BankDepositManager.processAssociation}";
+        AcctSeed.ASModule.getTotalAssociation = "{!$RemoteAction.BankDepositManager.getTotalAssociation}";
+        AcctSeed.ASModule.packageQualifier = "{!JSENCODE(PACKAGE_QUALIFIER)}";
+        AcctSeed.ASModule.bankDepositId = "{!JSENCODE(AcctSeed__Bank_Deposit__c.Id)}";
+        AcctSeed.ASModule.bankAccountId = "{!JSENCODE(AcctSeed__Bank_Deposit__c.AcctSeed__Bank_Account__c)}";
+        AcctSeed.ASModule.bankLedgerId = "{!JSENCODE(AcctSeed__Bank_Deposit__c.AcctSeed__Ledger__c)}";
+        function setFocusOnLoad() {}
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/bank-manager.js')}" loadOnReady="true"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.dataTables.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/moment-with-locales.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/datetime-moment.js')}"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/common.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/jquery.dataTables.min.css')}"/>
+
+    <apex:sectionHeader title="Bank Deposit" subtitle="Manage Bank Deposit"/>
+    <apex:form id="theForm">
+        <apex:outputPanel >
+        <apex:pageBlock title="Bank Deposit Information">
+            <apex:pageMessages escape="false" rendered="{!isError}"/>
+            <apex:outputPanel id="errorPanel" style="display:none">
+                <apex:pageMessage summary="" severity="error" strength="3"/>
+            </apex:outputPanel>
+            <apex:outputPanel id="matchedBDWarning" rendered="{!isMatchedBD}">
+                <apex:pageMessage summary="This record is matched with downloaded bank transaction {!AcctSeed__Bank_Deposit__c.Bank_Transaction__r.Name}. Changing the amount will unmatch it on the Bank Direct Connect page." severity="warning" strength="3"/>
+            </apex:outputPanel>
+            <apex:pageBlockButtons id="buttons">
+                <apex:commandButton action="/{!$Page.BankDepositNew}?retURL=%2F{!$Page.BankDepositManager}?Id={!Bank_Deposit__c.Id}" value="New Bank Deposit" immediate="true"/>
+                <apex:commandButton action="/{!Bank_Deposit__c.Id}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2">
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.Name}"/>
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__Deposit_Date__c}"/>
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__Ledger__c}"/>
+                <apex:outputField id="totalAmount" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__Amount__c}"/>
+                <apex:outputField id="bankAccount" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__Bank_Account__c}"/>
+                <apex:outputField id="totalLedgerAmount" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__Ledger_Amount__c}" rendered="{!IS_MULTI_CURRENCY_ENABLED}"/>
+                <apex:outputText rendered="{!IS_MULTI_CURRENCY_ENABLED}"/>
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_1__c}"/>
+                <apex:outputText />
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_2__c}"/>
+                <apex:outputText />
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_3__c}"/>
+                <apex:outputText />
+                <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_4__c}"/>
+                <!-- =====================================Hidden rows================================================= -->
+                <input type="hidden" id="glavVar1" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_1__c}"/>
+                <input type="hidden" id="glavVar2" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_2__c}"/>
+                <input type="hidden" id="glavVar3" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_3__c}"/>
+                <input type="hidden" id="glavVar4" value="{!AcctSeed__Bank_Deposit__c.AcctSeed__GL_Account_Variable_4__c}"/>
+                <input type="hidden" id="bankTransaction" value="{!Bank_Deposit__c.Bank_Transaction__c}"/>
+                <!-- ================================================================================================= -->
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock id="loadingImage" rendered="{!!isError}">
+            <apex:pageBlockSection columns="1" collapsible="false">
+                <div id="loader1" style="font-weight:bold;left:60px;top:370px;width:84%;height:400px">
+                    <img src="/img/loading.gif" style="text-align:center" width="16" height="16" alt="loading gif"/>
+                    Loading...
+                </div>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+        <apex:outputPanel id="dataTablePanel" rendered="{!!isError}">
+            <apex:outputPanel id="thePanel" style="display:none">
+            <table style="width:100%">
+                <tr style="vertical-align: top;">
+                    <td style="width:50%">
+                        <apex:pageBlock id="cleared" title="Associated Records">
+                            <apex:outputPanel id="zeroAssociatedResults" style="display:none">
+                                <apex:pageMessage summary="There are currently no associated records"
+                                                  severity="info" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="unassociationCompleteMessage" style="display:none">
+                                <apex:pageMessage summary="The selected records have been unassociated with the bank deposit"
+                                        severity="confirm" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="selectAssociatedLimitError" style="display:none">
+                                <apex:pageMessage summary="You cannot unassociated more than 1000 records at a time."
+                                        severity="warning" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:pageBlockButtons id="unAssociatedButtonsBlock">
+                                <apex:actionStatus id="saveStatus"
+                                                   onstart="AcctSeed.ASModule.disableButtonsSpecialForBankManagerPage('Processing...')"/>
+
+                                <apex:commandButton id="unAssociateButton"
+                                                    value="Unassociate Selected"
+                                                    status="saveStatus"
+                                                    oncomplete="AcctSeed.ASModule.unassociateSelectedLines(); AcctSeed.ASModule.setSelectAllUnchecked('associatedCheckboxHeader');"
+                                                    reRender="theForm"/>
+
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockSection columns="2">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel id="mostRecentRecordDateLabel"
+                                                      value="Most Recent Record Date" style="display:none"/>
+                                    <div id="associatedMRDate"></div>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel id="leastRecentRecordDateLabel"
+                                                      value="Least Recent Record Date" style="display:none"/>
+                                    <div id="associatedLRDate"></div>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel value=""/>
+                                    <apex:outputText value="&nbsp;" escape="false"/>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            <table id="associatedTable" class="display"></table>
+                        </apex:pageBlock>
+                    </td>
+                    <td>
+                        <apex:pageBlock title="Unassociated Records">
+                            <apex:outputPanel id="zeroSearchResultMessage" style="display:none">
+                                <apex:pageMessage summary="No results were returned for the criteria provided. Please change the criteria and try again." severity="info" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="associationCompleteMessage" style="display:none">
+                                <apex:pageMessage summary="The selected records have been associated with the bank deposit"
+                                        severity="info" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="overSizeUnassociated" style="display:none">
+                                <apex:pageMessage summary="The associated bank deposit transaction limit of 4000 will be exceeded by associate the selected records." severity="error" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="lineLimitError" style="display:none">
+                                <apex:pageMessage summary="Your search has retrieved 4,000 records. There potentially are additional records not displayed. </br> Please refine your search criteria to reduce the number of records retrieved." severity="warning" strength="3" escape="false"/>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="selectUnassociatedLimitError" style="display:none">
+                                <apex:pageMessage summary="You cannot associate more than 1000 records at a time." severity="warning" strength="3"/>
+                            </apex:outputPanel>
+                            <apex:pageBlockButtons id="associatedButtonsBlock">
+                                <!-- SEARCH button -->
+                                <apex:commandButton id="searchButton" value="Search"
+                                                    status="saveStatus"
+                                                    oncomplete="AcctSeed.ASModule.getAssociatedRecords();AcctSeed.ASModule.getUnassociatedRecords();"
+                                                    rerender="thePanel"/>
+                                <!-- ASSOCIATE SELECTED button -->
+                                <apex:commandButton id="associateButton" value="Associate Selected"
+                                                    status="saveStatus"
+                                                    oncomplete="AcctSeed.ASModule.associateSelectedLines(); AcctSeed.ASModule.setSelectAllUnchecked('unassociatedCheckboxHeader');"
+                                                    reRender="theForm"/>
+
+                            </apex:pageBlockButtons>
+                            <apex:pageBlockSection columns="2">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel value="Start Date"/>
+                                    <apex:inputField id="startDate"
+                                                     value="{!searchStartDate.AcctSeed__Deposit_Date__c}"
+                                                     required="true" />
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel value="End Date"/>
+                                    <apex:inputField id="endDate"
+                                                     value="{!searchEndDate.AcctSeed__Deposit_Date__c}" required="true" />
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel value="Type"/>
+                                    <apex:selectList id="unassociatedType" value="{!selectedUnassociatedType}" size="1">
+                                        <apex:selectOptions value="{!type}"/>
+                                    </apex:selectList>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            <table id="unassociatedTable" class="display"></table>
+                        </apex:pageBlock>
+                    </td>
+                </tr>
+            </table>
+
+            <apex:outputField value="{!AcctSeed__Bank_Deposit__c.AcctSeed__Bank_Reconciliation__c}" rendered="false"/>
+            <apex:outputField value="{!AcctSeed__Bank_Deposit__c.Bank_Reconciliation__r.Name}" rendered="false"/>
+
+            </apex:outputPanel>
+        </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

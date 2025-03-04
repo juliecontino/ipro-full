@@ -1,0 +1,154 @@
+/**
+ *	01/30/18 	BE 	Various CSS SLDS overrides used all through CCOP. Most of these were pulled from Case Merge. (00156539)
+ */
+/** Body Padding **/
+.slds-scope {
+	padding:0;
+}
+
+/** SLDS Checkbox **/
+.slds-checkbox_faux:after {
+	border-bottom: 2px solid #ec7039 !important;
+    border-left: 2px solid #ec7039 !important;
+}
+
+/** SLDS Radio **/
+.slds-radio_faux:after {
+	background: #ec7039 !important;
+}
+
+/** SLDS Select **/
+/* Firefox Exclusive SLDS Select Fix */
+@-moz-document url-prefix() {
+    .slds-select {height: calc(1.875rem + (1px * 2)) !important;}
+}
+
+.slds-select_container-inline {
+	display: inline-block !important;
+}
+
+.slds-select_container::before {
+    content: none !important;
+}
+
+.slds-select_container::after {
+    border-top-width: 6px !important;
+    border-left-width: 4px !important;
+    border-right-width: 4px !important;
+    bottom: 0.80rem !important;
+    pointer-events:none;
+}
+
+/** Buttons **/
+
+/* Brand */
+.slds-button_brand {
+	border: 1px solid #ec7039 !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-button_brand[disabled] {
+	background: #e0e5ee !important;
+	border-color: transparent!important;
+	color: #fff !important;
+}
+
+/* Small */
+.sldsc-button_small {
+	padding-left:0.5rem !important;
+	padding-right: 0.5rem !important;
+	height: 1.5rem !important;
+	line-height: 1rem !important;
+}
+
+/** Overlays & Backdrops **/
+.slds-backdrop_white {
+	background-color: rgba(255,255,255,.8) !important;
+}
+
+.slds-backdrop_transparent {
+	background-color: rgba(255,255,255,0) !important;
+}
+
+.overlay-spinner {
+    position:static !important;
+}
+
+/** Spinners (Auto-start) **/
+.slds-scope .slds-spinner::before {
+	animation-delay: -600ms !important;
+	-webkit-animation-delay: -600ms !important;
+	-moz-animation-delay: -600ms !important;
+}
+
+.slds-scope .slds-spinner::after {
+	animation-delay: -183.3ms !important;
+	-moz-animation-delay: -183.3ms !important;
+	-webkit-animation-delay: -183.3ms !important;
+}
+
+.slds-scope .slds-spinner__dot-a::before {
+	animation-delay: -516ms !important;
+	-moz-animation-delay: -516ms !important;
+	-webkit-animation-delay: -516ms !important;
+}
+
+.slds-scope .slds-spinner__dot-a::after {
+	animation-delay:-16.6ms !important;
+	-moz-animation-delay:-16.6ms !important;
+	-webkit-delay:-16.6ms !important;
+}
+
+.slds-scope .slds-spinner__dot-b::before {
+	animation-delay:-350ms !important;
+	-moz-animation-delay:-350ms !important;
+	-webkit-animation-delay:-350ms !important;
+}
+
+.slds-scope .slds-spinner__dot-b::after {
+	animation-delay:150ms !important;
+	-moz-animation-delay:150ms !important;
+	-webkit-animation-delay:150ms !important;
+}
+
+/** Alerts **/
+.sldsc-alert-is-closed {
+	/* Show/Hide Transition */
+	max-height: 0px !important;
+	padding: 0 2rem 0 .5rem !important;
+	height: 0px !important;
+}
+
+.slds-notify_alert {
+	-webkit-transition: max-height 0.4s ease-out, padding 0.4s ease-out,height 0.4s ease-out;
+	-moz-transition: max-height 0.4s ease-out, padding 0.4s ease-out,height 0.4s ease-out;
+	-ms-transition: max-height 0.4s ease-out, padding 0.4s ease-out,height 0.4s ease-out;
+	-o-transition: max-height 0.4s ease-out, padding 0.4s ease-out,height 0.4s ease-out;
+	transition: max-height 0.4s ease-out, padding 0.4s ease-out,height 0.4s ease-out;
+	max-height:35px;
+	height: 35px;
+	overflow-y: hidden;
+}
+
+.slds-theme_alert-texture .slds-theme_success {
+	color: #fff;
+	background-color: #04844b;
+}
+
+/** SLDS Margin **/
+.sldsc-m-top_large-medium {
+	margin-top: 1.75rem;
+}
+
+.sldsc-m-left_xxx-large {
+	margin-left: 3.75rem;
+}
+
+/** OTHER **/
+.bold {
+	font-weight: 700 !important;
+}
+
+.inline-block {
+	display: inline-block;
+}

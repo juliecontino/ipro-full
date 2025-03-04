@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- For use with File Slayer, used to store a hash representation of this file. --></help>
+        <label><!-- File Slayer Hash --></label>
+        <name>icatp__Hash__c</name>
+    </CustomFieldTranslation>

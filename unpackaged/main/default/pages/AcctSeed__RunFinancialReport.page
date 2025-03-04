@@ -1,0 +1,7 @@
+<apex:page id="thePage" title="Financial Reports | Accounting Seed">
+    <apex:pageMessage summary="This is no longer a supported feature. Please use the link to the new Financial Reporter." severity="info" strength="3">
+        <apex:outputLink value="/lightning/n/AcctSeed__Financial_Reports">
+            <h3>Financial Reporter</h3>
+        </apex:outputLink>
+    </apex:pageMessage>
+</apex:page>

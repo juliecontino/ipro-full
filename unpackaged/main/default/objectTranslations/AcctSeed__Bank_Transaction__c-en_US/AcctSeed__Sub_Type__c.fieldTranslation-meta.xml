@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A more detailed classification that provides further information on the type of transaction; examples include purchases, payments, etc. --></help>
+        <label><!-- Sub Type --></label>
+        <name>AcctSeed__Sub_Type__c</name>
+    </CustomFieldTranslation>

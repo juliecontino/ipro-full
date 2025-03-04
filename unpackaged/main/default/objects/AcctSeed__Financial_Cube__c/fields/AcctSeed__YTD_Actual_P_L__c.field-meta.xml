@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__YTD_Actual_P_L__c</fullName>
+    <deprecated>false</deprecated>
+    <formula>IF(CONTAINS(AcctSeed__Ledger_Type__c, "Transactional"), AcctSeed__Year_To_Date__c * -1, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>YTD Actual (P&amp;L)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

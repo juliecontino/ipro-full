@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__Using_Scope__c</fullName>
+    <deprecated>false</deprecated>
+    <description>USING SCOPE
+Delegated
+Everything
+Mine
+mine_and_my_groups
+My_Territory
+My_Team_Territory
+Team
+https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_using_scope.htm</description>
+    <externalId>false</externalId>
+    <label>Using Scope</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

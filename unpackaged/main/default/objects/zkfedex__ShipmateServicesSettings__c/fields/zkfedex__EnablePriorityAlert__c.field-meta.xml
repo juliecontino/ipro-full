@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__EnablePriorityAlert__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This does not enable your FedEx account to allow for Priority Alert. This allows the Shipmate to display the Priority Alert option under special services. Please contact FedEx if you are unsure if your FedEx account is setup for Priority Alert.</description>
+    <inlineHelpText>This does not enable your FedEx account to allow for Priority Alert. This allows the Shipmate to display the Priority Alert option under special services. Please contact FedEx if you are unsure if your FedEx account is setup for Priority Alert.</inlineHelpText>
+    <label>Enable Priority Alert</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__TruncateRecipientCompanyName__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Truncate Recipient Name and Company Name if longer than 35 characters</description>
+    <inlineHelpText>Truncate Recipient Name and Company Name if longer than 35 characters</inlineHelpText>
+    <label>Truncate Recipient Name and Company Name</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

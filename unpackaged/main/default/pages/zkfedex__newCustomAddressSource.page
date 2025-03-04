@@ -1,0 +1,1910 @@
+<apex:page tabStyle="zkfedex__CustomAddressSource__c" standardController="zkfedex__CustomAddressSource__c" extensions="zkfedex.CustomAddressSourceController"  action="{! init }">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+    <!-- <apex:includeScript value="{!URLFOR($Resource.Jquery, '/jquery/jquery-1.4.2.js')}"  /> -->
+    <apex:includeScript value="{!URLFOR($Resource.zkfedex__SimpleModal, 'jquery-1.11.1.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.zkfedex__SimpleModal, 'jquery.simplemodal.1.4.4.min.js')}"/>
+    <apex:includeScript value="{! URLFOR($Resource.TypeaheadJS, 'handlebars.js') }"/>
+    <apex:includeScript value="{! URLFOR($Resource.TypeaheadJS, 'typeahead.bundle.js') }"/>
+    <script>
+        var App = angular.module('myApp', []);
+  
+        App.controller('myctrl', function ($scope) {
+            console.log('test');
+        });
+
+        $j = jQuery.noConflict();        
+
+        var objects = {! objectList };
+
+        var selectedObject = null;
+
+        var BloodObjects = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: objects
+        });
+
+        function nflTeamsWithDefaults(q, sync) {
+            if (q === '') {
+                sync( BloodObjects.all() );
+            } else {
+                var resArray = [];
+                for (indexNumber in BloodObjects.all()) {
+                    var obj = objects[indexNumber];
+                    if (obj.value.toUpperCase().indexOf(q.toUpperCase()) > -1) {
+                        resArray.push(obj);
+                    }
+                }
+                sync(resArray);
+            }
+        }
+
+        function loadObjects() {
+            $j('#ainput').typeahead(
+            { 
+              hint: true,
+              highlight: true,
+              minLength: 0
+            },
+            {
+              name: 'BloodObjects',
+              display: 'value',
+              source: nflTeamsWithDefaults,
+              limit: 20,
+              templates: {
+                empty: [
+                  '<div class="empty-message">',
+                    'No result',
+                  '</div>'
+                ].join('\n'),
+                suggestion: Handlebars.compile('<div><strong>{{value}}</strong></div>')
+              }
+            }).on('typeahead:selected', function (obj, datum) {
+                selectedObject = datum;
+                IsLoading();
+                doSelectObjectName(selectedObject.value);
+                
+            });
+        }
+
+        $j(function () {
+            loadObjects();
+        });
+    </script>
+    <apex:stylesheet value="{!$Resource.zkfedex__WizardCSS}"/>
+
+    <style type="text/css">
+        .custPopup{
+            background-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: fixed;
+            /* These are the 3 css properties you will need to change so the popup 
+            displays in the center of the screen. First set the width. Then set 
+            margin-left to negative half of what the width is. You can add 
+            the height property for a fixed size pop up if you want.*/
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;          
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <style>
+        .lightboxWizard {       
+            display: none;
+            background: #FFFFFF;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: 1000;
+        } 
+
+    </style>
+
+    <style>
+        .tt-menu{
+            position: absolute;
+            top: 100%;
+            left: 0px;
+            z-index: 100;
+            display: block;
+            width: 350px;
+            /*margin: 12px 0;*/
+            margin: 0;
+            padding: 8px 0;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+            -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+            box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        }
+        .typeahead.tt-hint{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border-color: transparent;
+            box-shadow: none;
+            opacity: 1;
+            background-attachment: scroll;
+            background-clip: border-box;
+            background-color: rgb(255, 255, 255);
+            background-image: none;
+            background-origin: padding-box;
+            background-size: auto;
+            background-position: 0% 0%;
+            background-repeat: repeat repeat;
+
+        }
+
+        .tt-hint{
+            color: #999
+        }
+
+        .tt-suggestion:hover{
+            cursor: pointer;
+            color: #fff;
+            background-color: #0097cf;
+        }
+
+        .tt-suggestion{
+            padding: 3px 20px;
+            font-size: 10px;
+            line-height: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .tt-cursor{
+            cursor: pointer;
+            color: #fff;
+            background-color: #0097cf;
+        }
+        .tt-dropdown-menu {
+          max-height: 150px;
+          overflow-y: auto;
+        }
+    </style>
+
+    <c:Loading id="LoadingControl"/>
+
+    <apex:sectionHeader title="Custom Address Source Edit"  subtitle="New Custom Address Source"/>
+        <apex:form id="formId">
+
+        <div ng-app="myApp" ng-controller="myctrl">
+
+        <script>   
+
+            loadObjects();         
+
+            function IsShowLightbox(whichLoading) {
+                $j('.lightboxWizard').show();
+            };
+
+            function IsOnlyLoading(whichLoading) {
+                $j('.' + whichLoading).toggle();
+            };
+
+            function IsLoadingIcon(whichLoading) {
+                $j('.lightboxWizard').show();
+                $j('.' + whichLoading).toggle();
+            };
+
+            function IsLoadingIconComplete() {
+                $j('.lightboxWizard').hide();
+            };
+        </script>
+
+        <apex:actionFunction action="{! closePopup }" name="doClosePopup" reRender="formId" oncomplete="IsLoadingIconComplete();" />
+
+        <apex:actionFunction action="{! doSelectObjectName }" name="doSelectObjectName" reRender="formId" oncomplete="FinishLoading();">
+            <apex:param name="firstParam" assignTo="{! SelectedCustomAddressSourceObject }" value="" />
+        </apex:actionFunction>
+
+        <apex:pageBlock title="Custom Address Source Edit" mode="detail">
+
+            <!-- pageBlockButtons -->
+            <!-- Dont specify rerender field. rerender whole page -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!saveNewCustomAddressSource}" value="Save"/>
+                <apex:commandButton action="{!cancelNewCustomAddressSource}" immediate="true" value="Cancel"/>
+            </apex:pageBlockButtons>
+
+
+            <!-- Error Messages -->
+            <apex:outputPanel id="customAddressSourceErrMsg">
+                <apex:pageMessage title="Error:" summary="{!CustomAddressSourceErrMsg}" rendered="{!CustomAddressSourceErrMsgRendered}" severity="error" strength="1"/>
+            </apex:outputPanel>
+
+
+            <!-- Record Name Section -->
+            <apex:outputPanel id="casNameSection">
+            <apex:pageBlockSection collapsible="false" title="Custom Address Source Name (* Denotes required field)">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Custom Address Source Name *"/>
+                    <apex:inputField required="false" value="{!CustomAddressSource.Name}"/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+
+
+            <!-- Custom Address Source Object Section -->
+            <apex:outputPanel id="casObjectSection">
+            <apex:pageBlockSection collapsible="false" columns="1" title="Custom Address Source Object (* Denotes required field)">
+
+<!--                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Filter (Starts With)"/>
+                    <apex:selectList value="{!SelectedObjectFilter}" size="1" multiselect="false" >
+                        <apex:actionSupport event="onchange" onsubmit="IsLoading();" oncomplete="FinishLoading();"/>
+                        <apex:selectOptions value="{!SourceObjectFilterOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem> -->
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Object Quick Search"/>
+                    <apex:outputPanel >
+                        <input id="ainput"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Object *"/>
+                    <apex:selectList value="{!SelectedCustomAddressSourceObject}" size="1" multiselect="false" >
+                        <apex:actionSupport event="onchange" action="{!customAddressSourceObjectSelectRefresh}" onsubmit="IsLoading();" oncomplete="FinishLoading();"/>
+                        <apex:selectOptions value="{!SourceObjectOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+
+
+
+
+            <!-- Shipment Object Lookup Field Section -->
+            <apex:outputPanel id="lookupFieldSection">
+                <apex:pageBlockSection collapsible="false" title="Shipment Object Lookup Field (* Denotes required field)">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Shipment Object Lookup Field *"/>
+                        <apex:selectList value="{!SelectedShipmentObjectLookupField}" size="1" multiselect="false" disabled="{!ShipmentLookupFieldOptionsDisabled}" >
+                            <apex:selectOptions value="{!ShipmentLookupFieldOptions}"/>
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Sender Fields Section -->
+            <apex:outputPanel id="senderFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Sender Address Fields">
+          
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Name"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderNameField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderNameField__c" />
+                                <apex:param name="field_label" value="Sender Name" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                        
+                    </apex:pageBlockSectionItem>
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Email"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderEmailField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderEmailField__c" />
+                                <apex:param name="field_label" value="Sender Email" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Company Name"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderCompanyNameField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderCompanyNameField__c" />
+                                <apex:param name="field_label" value="Sender Company Name" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Phone"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderPhoneField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderPhoneField__c" />
+                                <apex:param name="field_label" value="Sender Phone" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Street (TextArea option)"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderStreetTextAreaField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderStreetTextAreaField__c" />
+                                <apex:param name="field_label" value="Sender Street" />
+                                <apex:param name="field_type" value="TEXTAREA_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender City"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderCityField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderCityField__c" />
+                                <apex:param name="field_label" value="Sender City" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Street Line 1 (TextLine option)"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderStreet1TextLineField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderStreet1TextLineField__c" />
+                                <apex:param name="field_label" value="Sender Street Line 1" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender State"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderStateField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderStateField__c" />
+                                <apex:param name="field_label" value="Sender State" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Street Line 2 (TextLine option)"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderStreet2TextLineField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderStreet2TextLineField__c" />
+                                <apex:param name="field_label" value="Sender Street Line 2" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Postal Code"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderPostalCodeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderPostalCodeField__c" />
+                                <apex:param name="field_label" value="Sender Postal Code" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Country"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderCountryField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderCountryField__c" />
+                                <apex:param name="field_label" value="Sender Country" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Is Residential"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderIsResidenceField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderIsResidenceField__c" />
+                                <apex:param name="field_label" value="Is Residential" />
+                                <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+
+            <!-- Recipient Fields Section -->
+            <apex:outputPanel id="fieldsSection">
+            <apex:pageBlockSection collapsible="false" title="Recipient Address Fields">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Name"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__NameField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__NameField__c" />
+                            <apex:param name="field_label" value="Recipient Name" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Email"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__EmailField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__EmailField__c" />
+                            <apex:param name="field_label" value="Recipient Email" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Company Name"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__CompanyNameField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__CompanyNameField__c" />
+                            <apex:param name="field_label" value="Recipient Company Name" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Phone"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__PhoneField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__PhoneField__c" />
+                            <apex:param name="field_label" value="Recipient Phone" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Street (TextArea option)"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__StreetTextAreaField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__StreetTextAreaField__c" />
+                            <apex:param name="field_label" value="Recipient Street" />
+                            <apex:param name="field_type" value="TEXTAREA_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient City"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__CityField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__CityField__c" />
+                            <apex:param name="field_label" value="Recipient City" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Street Line 1 (TextLine option)"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__Street1TextLineField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__Street1TextLineField__c" />
+                            <apex:param name="field_label" value="Recipient Street Line 1" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient State"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__StateField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__StateField__c" />
+                            <apex:param name="field_label" value="Recipient State" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Street Line 2 (TextLine option)"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__Street2TextLineField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__Street2TextLineField__c" />
+                            <apex:param name="field_label" value="Recipient Street Line 2" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Postal Code"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__PostalCodeField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__PostalCodeField__c" />
+                            <apex:param name="field_label" value="Recipient Postal Code" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Recipient Country"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__CountryField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__CountryField__c" />
+                            <apex:param name="field_label" value="Recipient Country" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Is Residential"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__IsResidenceField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__IsResidenceField__c" />
+                            <apex:param name="field_label" value="Is Residential" />
+                            <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Billing Fields Section -->
+            <apex:outputPanel id="billFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Billing Fields">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Bill Transportation To"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__BillingField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__BillingField__c" />
+                                <apex:param name="field_label" value="Bill Transportation To" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Billing Account Number"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__BillingAccountField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__BillingAccountField__c" />
+                                <apex:param name="field_label" value="Billing Account Number" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Billing Country"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__BillingCountryField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__BillingCountryField__c" />
+                                <apex:param name="field_label" value="Billing Country" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: SENDER, RECIPIENT, THIRD_PARTY">
+                        <apex:outputLabel value="Bill Duties/Taxes To"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__BillDutiesField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__BillDutiesField__c" />
+                                <apex:param name="field_label" value="Bill Duties/Taxes To" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Bill Duties Account Number"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__BillDutiesAccountField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__BillDutiesAccountField__c" />
+                                <apex:param name="field_label" value="Bill Duties Account Number" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Bill Duties Country"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__BillDutiesCountryField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__BillDutiesCountryField__c" />
+                                <apex:param name="field_label" value="Bill Duties Country" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Reference Fields Section -->
+            <apex:outputPanel id="refFieldsSection">
+            <apex:pageBlockSection collapsible="false" title="Reference Fields">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Reference - Your Reference"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__ReferenceYourReferenceField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__ReferenceYourReferenceField__c" />
+                            <apex:param name="field_label" value="Reference - Your Reference" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Reference - P.O. Number"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__ReferencePoNumberField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__ReferencePoNumberField__c" />
+                            <apex:param name="field_label" value="Reference - P.O. Number" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Reference - Invoice Number"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__ReferenceInvoiceNumberField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__ReferenceInvoiceNumberField__c" />
+                            <apex:param name="field_label" value="Reference - Invoice Number" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Reference - Department Number"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__ReferenceDeptNumberField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__ReferenceDeptNumberField__c" />
+                            <apex:param name="field_label" value="Reference - Department Number" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Reference - RMA Number"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__ReferenceRmaNumberField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__ReferenceRmaNumberField__c" />
+                            <apex:param name="field_label" value="Reference - RMA Number" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+
+             <!-- TIN Fields Section -->
+            <apex:outputPanel id="taxFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Tax Identification Number (TIN) Fields">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sender Tax ID"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderTaxIDField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderTaxIDField__c" />
+                                <apex:param name="field_label" value="Sender Tax ID" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: EIN, Business National, Business State, Business Union, Personal National, Personal State">
+                        <apex:outputLabel value="Sender Tax ID Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SenderTaxIDTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SenderTaxIDTypeField__c" />
+                                <apex:param name="field_label" value="Sender Tax ID Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Recipient Tax ID"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__RecipientTaxIDField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__RecipientTaxIDField__c" />
+                                <apex:param name="field_label" value="Recipient Tax ID" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: EIN, Business National, Business State, Business Union, Personal National, Personal State">
+                        <apex:outputLabel value="Recipient Tax ID Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__RecipientTaxIDTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__RecipientTaxIDTypeField__c" />
+                                <apex:param name="field_label" value="Recipient Tax ID Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Recipient Customs ID"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__RecipientCustomsIDField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__RecipientCustomsIDField__c" />
+                                <apex:param name="field_label" value="Recipient Customs ID" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: COMPANY, INDIVIDUAL, PASSPORT">
+                        <apex:outputLabel value="Recipient Customs ID Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__RecipientCustomsIDTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__RecipientCustomsIDTypeField__c" />
+                                <apex:param name="field_label" value="Recipient Customs ID Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Email Recipient Fields Section -->
+            <apex:outputPanel id="emailRecipFieldsSection">
+            <apex:pageBlockSection collapsible="false" title="FedEx ShipAlert® / Email Recipient Fields">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Send FedEx ShipAlert® to Shipper"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__AlertToShipperField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__AlertToShipperField__c" />
+                            <apex:param name="field_label" value="Send FedEx ShipAlert® to Shipper" />
+                            <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Send FedEx ShipAlert® to Recipient"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__AlertToRecipientField__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__AlertToRecipientField__c" />
+                            <apex:param name="field_label" value="Send FedEx ShipAlert® to Recipient" />
+                            <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email Recipient 3"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__EmailRecipient3Field__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__EmailRecipient3Field__c" />
+                            <apex:param name="field_label" value="Email Recipient 3" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email Recipient 4"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__EmailRecipient4Field__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__EmailRecipient4Field__c" />
+                            <apex:param name="field_label" value="Email Recipient 4" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email Recipient 5"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__EmailRecipient5Field__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__EmailRecipient5Field__c" />
+                            <apex:param name="field_label" value="Email Recipient 5" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email Recipient 6"/>
+                    <apex:outputPanel >
+                        <apex:outputText value="{! addressSource.zkfedex__EmailRecipient6Field__c }" style="margin-right: 3px;"/>
+                        <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                            <apex:param name="field_name" value="zkfedex__EmailRecipient6Field__c" />
+                            <apex:param name="field_label" value="Email Recipient 6" />
+                            <apex:param name="field_type" value="STRING_TYPE" />
+                        </apex:commandButton>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Shipmate Preference Field Section-->
+            <apex:outputPanel id="shipmatePreferenceFieldSection">
+                <apex:pageBlockSection collapsible="false" title="Shipmate Preference/Label Image Type">
+
+                    <apex:pageBlockSectionItem helpText="Shipmate Preference Name">
+                        <apex:outputLabel value="Shipmate Preference"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__ShipmatePreferenceField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__ShipmatePreferenceField__c" />
+                                <apex:param name="field_label" value="Shipmate Preference" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values:PDF,PNG,Thermal 4x6 - Eltron,Thermal 4x6 - Zebra,Thermal 4x6.75 - Eltron,Thermal 4x6.75 - Zebra">
+                        <apex:outputLabel value="Label Image Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__LabelImageTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__LabelImageTypeField__c" />
+                                <apex:param name="field_label" value="Label Image Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: BUSINESS_SERVICE_CENTER, DROP_BOX, REGULAR_PICKUP, REQUEST_COURIER, STATION">
+                        <apex:outputLabel value="DropOff Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DropoffTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DropoffTypeField__c" />
+                                <apex:param name="field_label" value="DropOff Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <apex:outputPanel id="shipDateFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Ship Date / Pickup">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Ship Date"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__ShipDateField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__ShipDateField__c" />
+                                <apex:param name="field_label" value="Ship Date" />
+                                <apex:param name="field_type" value="DATE_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Saturday Delivery"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SaturdayDeliveryField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SaturdayDeliveryField__c" />
+                                <apex:param name="field_label" value="Saturday Delivery" />
+                                <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Format: Ready Time(HH:MM)-Close Time(HH:MM), e.g. 12:00-18:00">
+                        <apex:outputLabel value="Pickup Time"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__PickupTimeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__PickupTimeField__c" />
+                                <apex:param name="field_label" value="Pickup Time" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Pickup Instructions"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__PickupInstructionsField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__PickupInstructionsField__c" />
+                                <apex:param name="field_label" value="Pickup Instructions" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    
+
+                   
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Service Type Fields Section -->
+            <apex:outputPanel id="serviceTypeFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Service Types">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Domestic Service Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DomesticServiceTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DomesticServiceTypeField__c" />
+                                <apex:param name="field_label" value="Domestic Service Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="International Service Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__InternationalServiceTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__InternationalServiceTypeField__c" />
+                                <apex:param name="field_label" value="International Service Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Default Package Type -->
+            <apex:outputPanel id="defaultPackageTypeFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Package Types">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Default Packaging Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DefaultPackageTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DefaultPackageTypeField__c" />
+                                <apex:param name="field_label" value="Default Packaging Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Packages -->
+            <apex:outputPanel id="packagesSection">
+                <apex:pageBlockSection collapsible="false" title="Packages" columns="1">
+                    <apex:pageBlockTable value="{! CasEntry.CustomAddressSourceOutboundPackages }" var="packageRecord" width="100%" title="Packages">
+                        <apex:column >
+                            <apex:facet name="header">Entry No. (Number option)</apex:facet>
+                            <apex:outputText value="{!packageRecord.zkfedex__Index__c}"/>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Quantity (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__QuantityField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__QuantityField__c" />
+                                    <apex:param name="field_label" value="Quantity" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Weight (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__WeightField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__WeightField__c" />
+                                    <apex:param name="field_label" value="Weight" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Declared Value (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__DeclaredValueField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__DeclaredValueField__c" />
+                                    <apex:param name="field_label" value="Declared Value" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Length (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__LengthField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__LengthField__c" />
+                                    <apex:param name="field_label" value="Length" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Width (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__WidthField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__WidthField__c" />
+                                    <apex:param name="field_label" value="Width" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Height (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__HeightField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__HeightField__c" />
+                                    <apex:param name="field_label" value="Height" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Description</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__DescriptionField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__DescriptionField__c" />
+                                    <apex:param name="field_label" value="Description" />
+                                    <apex:param name="field_type" value="STRING_TYPE" />
+                                    <apex:param name="object_name" value="OUTBOUND_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:commandButton action="{! doRemovePackage }" value="Remove" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="packagesSection,packageSSSection" disabled="{! numberFieldOptionsDisabled }">
+                                <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                <apex:param name="package_type" value="OUTBOUND_PACKAGE" />
+                            </apex:commandButton>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+
+                <apex:commandButton action="{! CasEntry.addEmptyOutboundPackageObject }" value="New" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="packagesSection,packageSSSection" disabled="{! numberFieldOptionsDisabled }"/>
+            </apex:outputPanel>
+
+            <!-- Shipment Type -->
+            <apex:outputPanel id="shipmentTypeFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Shipment Type" columns="2">
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: OUTBOUND, RETURN, OUTBOUND_AND_RETURN">
+                        <apex:outputLabel value="Shipment Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__ShipmentTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__ShipmentTypeField__c" />
+                                <apex:param name="field_label" value="Shipment Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: PRINT, EXPTAG(Express Tag), GNDTAG(Ground Call Tag). Only PRINT returns label">
+                        <apex:outputLabel value="Return Label Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__ReturnLabelTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__ReturnLabelTypeField__c" />
+                                <apex:param name="field_label" value="Return Label Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Only for International, allowed values: EXHIBITION_TRADE_SHOW, FAULTY_ITEM, FOR_REPAIR, ITEM_FOR_LOAN, REJECTED, TRIAL or any other">
+                        <apex:outputLabel value="Return Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__ReturnTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__ReturnTypeField__c" />
+                                <apex:param name="field_label" value="Return Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <apex:outputPanel id="returnPackageFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Return Package (Outbound and Return shipments)" columns="2">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Domestic Return Service Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DomesticReturnServiceTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DomesticReturnServiceTypeField__c" />
+                                <apex:param name="field_label" value="Domestic Return Service Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="International Return Service Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__InternationalReturnServiceTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__InternationalReturnServiceTypeField__c" />
+                                <apex:param name="field_label" value="International Return Service Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Return Packaging Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__ReturnPackageTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__ReturnPackageTypeField__c" />
+                                <apex:param name="field_label" value="Return Packaging Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection collapsible="false" title="Return Packages (Outbound and Return shipments)" columns="1">
+                    <apex:pageBlockTable value="{! CasEntry.CustomAddressSourceReturnPackages }" var="packageRecord" width="100%" title="Packages">
+                        <apex:column >
+                            <apex:facet name="header">Entry No. (Number option)</apex:facet>
+                            <apex:outputText value="{!packageRecord.zkfedex__Index__c}"/>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Quantity (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__QuantityField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__QuantityField__c" />
+                                    <apex:param name="field_label" value="Quantity" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="RETURN_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Weight (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__WeightField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__WeightField__c" />
+                                    <apex:param name="field_label" value="Weight" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="RETURN_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Declared Value (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__DeclaredValueField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__DeclaredValueField__c" />
+                                    <apex:param name="field_label" value="Declared Value" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="RETURN_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Length (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__LengthField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__LengthField__c" />
+                                    <apex:param name="field_label" value="Length" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="RETURN_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Width (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__WidthField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__WidthField__c" />
+                                    <apex:param name="field_label" value="Width" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="RETURN_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Height (Number option)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__HeightField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__HeightField__c" />
+                                    <apex:param name="field_label" value="Height" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="RETURN_PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column >
+                            <apex:commandButton action="{! doRemovePackage }" value="Remove" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="returnPackageFieldsSection,packageSSSection" disabled="{! numberFieldOptionsDisabled }">
+                                <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                <apex:param name="package_type" value="RETURN_PACKAGE" />
+                            </apex:commandButton>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+
+                <apex:commandButton action="{! CasEntry.addEmptyReturnPackageObject }" value="New" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="returnPackageFieldsSection,packageSSSection" disabled="{! numberFieldOptionsDisabled }"/>
+            </apex:outputPanel>
+
+            <apex:outputPanel id="packageContentsFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="International Fields">
+
+                    <apex:pageBlockSectionItem helpText="Only for International, allowed values: LB, KG">
+                        <apex:outputLabel value="Weight Units"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__WeightUnitsField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__WeightUnitsField__c" />
+                                <apex:param name="field_label" value="Weight Units" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Only for International, allowed values: IN, CM">
+                        <apex:outputLabel value="Dimension Units"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DimensionUnitsField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DimensionUnitsField__c" />
+                                <apex:param name="field_label" value="Dimension Units" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Only for International, allowed values: Documents, Commodities">
+                        <apex:outputLabel value="Package Contents"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__PackageContentsField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__PackageContentsField__c" />
+                                <apex:param name="field_label" value="Package Contents" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Currency"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__CurrencyField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__CurrencyField__c" />
+                                <apex:param name="field_label" value="Currency" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Override Paperless"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__OverridePaperlessField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__OverridePaperlessField__c" />
+                                <apex:param name="field_label" value="Override Paperless" />
+                                <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>                    
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Special Services -->
+            <apex:outputPanel id="shipSpecialServicesFieldsSection">
+                <apex:pageBlockSection collapsible="false" title="Shipment Special Services">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="FedEx One Rate®"/>
+                        <apex:outputPanel >
+                            <apex:outputPanel >
+                                <apex:outputText value="{! addressSource.zkfedex__OneRateField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__OneRateField__c" />
+                                    <apex:param name="field_label" value="FedEx One Rate®" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="FedEx Home Delivery® Premium Type"/>
+                        <apex:outputPanel >
+                            <apex:selectList value="{! selectedHomeDeliveryTypeField }" size="1" multiselect="false">
+                                <apex:actionSupport event="onchange" onsubmit="IsLoadingIcon('loadingSSHomeDelivery');" oncomplete="IsLoadingIconComplete();" reRender="shipSpecialServicesFieldsSection" />
+                                <apex:selectOptions value="{! homeDeliveryTypeOptions }"/>
+                            </apex:selectList>
+                            <apex:image id="loadingSSHomeDelivery" styleClass="loadingSSHomeDelivery" value="{!$Resource.zkfedex__LoadingImage2}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! AND(selectedHomeDeliveryTypeField != null, selectedHomeDeliveryTypeField == 'DATE_CERTAIN') }">
+                        <apex:outputLabel value="FedEx Date Certain Home Delivery® Date Field"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DateCertainHDPField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DateCertainHDPField__c" />
+                                <apex:param name="field_label" value="FedEx Date Certain Home Delivery® Date" />
+                                <apex:param name="field_type" value="DATE_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! AND(selectedHomeDeliveryTypeField != null, selectedHomeDeliveryTypeField != 'DATE_CERTAIN') }">
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! selectedHomeDeliveryTypeField == null }">
+                    </apex:pageBlockSectionItem>                  
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="FedEx® Delivery Signature Options"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__DeliverySignatureOptionField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__DeliverySignatureOptionField__c" />
+                                <apex:param name="field_label" value="FedEx® Delivery Signature Options" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! addressSource.zkfedex__DeliverySignatureOptionField__c != null}">
+                        <apex:outputLabel value="Signature Release Number Field"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SignatureReleaseNumberField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SignatureReleaseNumberField__c" />
+                                <apex:param name="field_label" value="Signature Release Number Field" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! addressSource.zkfedex__DeliverySignatureOptionField__c == null }">
+                    </apex:pageBlockSectionItem>                    
+                </apex:pageBlockSection>
+
+            </apex:outputPanel>
+
+            <!-- Packages -->
+            <apex:outputPanel id="packageSSSection">                
+                <apex:pageBlockSection collapsible="false" title="Package Special Services" columns="1">                    
+                
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Dangerous Goods"/>
+                        <apex:outputPanel >
+                            <apex:inputCheckbox value="{! packageDangerousGoodsCheckbox }" >
+                                <apex:actionSupport event="onclick" action="{! doClearPackageField }" onsubmit="IsLoadingIcon('loadingDangerousGoodsClick');" oncomplete="IsLoadingIconComplete();" reRender="packageSSSection"/>
+                            </apex:inputCheckbox>
+                            <apex:image id="loadingDangerousGoodsClick" styleClass="loadingDangerousGoodsClick" value="{!$Resource.zkfedex__LoadingImage2}" />                            
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! packageDangerousGoodsCheckbox }">
+                        <apex:outputLabel value="Cargo Aircraft Only"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__CargoAircraftOnlyField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__CargoAircraftOnlyField__c" />
+                                <apex:param name="field_label" value="Cargo Aircraft Only" />
+                                <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! NOT(packageDangerousGoodsCheckbox) }">
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Dry Ice"/>
+                        <apex:outputPanel >
+                            <apex:inputCheckbox value="{! packageDryIceCheckbox }" >
+                                <apex:actionSupport event="onclick" action="{! doClearPackageField }" onsubmit="IsLoadingIcon('loadingDryIce');" oncomplete="IsLoadingIconComplete();" reRender="packageSSSection"/>
+                            </apex:inputCheckbox>
+                            <apex:image id="loadingDryIce" styleClass="loadingDryIce" value="{!$Resource.zkfedex__LoadingImage2}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Non Standard Packaging"/>
+                        <apex:outputPanel >
+                            <apex:inputCheckbox value="{! packageNonStandardCheckbox }" >
+                                <apex:actionSupport event="onclick" action="{! doClearPackageField }" onsubmit="IsLoadingIcon('loadingNonStandardPackaging');" oncomplete="IsLoadingIconComplete();" reRender="packageSSSection"/>
+                            </apex:inputCheckbox>
+                            <apex:image id="loadingNonStandardPackaging" styleClass="loadingNonStandardPackaging" value="{!$Resource.zkfedex__LoadingImage2}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Priority Alert"/>
+                        <apex:outputPanel >
+                            <apex:inputCheckbox value="{! packagePriorityAlertCheckbox }" >
+                                <apex:actionSupport event="onclick" action="{! doClearPackageField }"  onsubmit="IsLoadingIcon('loadingPriorityAlert');" oncomplete="IsLoadingIconComplete();" reRender="packageSSSection"/>
+                            </apex:inputCheckbox>
+                            <apex:image id="loadingPriorityAlert" styleClass="loadingPriorityAlert" value="{!$Resource.zkfedex__LoadingImage2}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Lithium Batteries/Cells"/>
+                        <apex:outputPanel >
+                            <apex:inputCheckbox value="{! packageLithiumBatteriesCellsCheckbox }" >
+                                <apex:actionSupport event="onclick" action="{! doClearPackageField }"  onsubmit="IsLoadingIcon('loadingLithiumBatteriesCells');" oncomplete="IsLoadingIconComplete();" reRender="packageSSSection"/>
+                            </apex:inputCheckbox>
+                            <apex:image id="loadingLithiumBatteriesCells" styleClass="loadingLithiumBatteriesCells" value="{!$Resource.zkfedex__LoadingImage2}" />
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockTable value="{! CasEntry.CustomAddressSourcePackages }" var="packageRecord" width="100%" title="Packages" rendered="{! IsPackageSpecialServicesRendered }">
+                        <apex:column >
+                            <apex:facet name="header">Package No.</apex:facet>
+                            <apex:outputText value="{0, number, 0}">
+                                <apex:param value="{!packageRecord.zkfedex__Index__c}" />
+                            </apex:outputText>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">Is Return Package</apex:facet>
+                            <apex:outputText value="{!IF(packageRecord.zkfedex__IsReturnPackage__c, 'Yes', 'No')}" />
+                        </apex:column>
+                        
+                        <apex:column rendered="{! packageDangerousGoodsCheckbox }">
+                            <apex:facet name="header">Dangerous Goods Accessibility</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__DangerousGoodsAccessibilityField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__DangerousGoodsAccessibilityField__c" />
+                                    <apex:param name="field_label" value="Dangerous Goods Accessibility" />
+                                    <apex:param name="field_type" value="STRING_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column> 
+                        <apex:column rendered="{! packageDryIceCheckbox }">
+                            <apex:facet name="header">Dry Ice Weight (KG)</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__DryIceWeightField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__DryIceWeightField__c" />
+                                    <apex:param name="field_label" value="Dry Ice Weight (KG)" />
+                                    <apex:param name="field_type" value="NUMBER_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>                      
+                        <apex:column rendered="{! packageNonStandardCheckbox }">
+                            <apex:facet name="header">Non Standard</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__NonStandardPackagingField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__NonStandardPackagingField__c" />
+                                    <apex:param name="field_label" value="Non Standard" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packagePriorityAlertCheckbox }">
+                            <apex:facet name="header">Priority Alert®</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__PriorityAlertField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__PriorityAlertField__c" />
+                                    <apex:param name="field_label" value="Priority Alert®" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packagePriorityAlertCheckbox }">
+                            <apex:facet name="header">Priority Alert Plus™</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__PriorityAlertPlusField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__PriorityAlertPlusField__c" />
+                                    <apex:param name="field_label" value="Priority Alert Plus™" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packagePriorityAlertCheckbox }">
+                            <apex:facet name="header">Priority Alert Content</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__PriorityAlertContentField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__PriorityAlertContentField__c" />
+                                    <apex:param name="field_label" value="Priority Alert Content" />
+                                    <apex:param name="field_type" value="STRING_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packageLithiumBatteriesCellsCheckbox }">
+                            <apex:facet name="header">Ion w/ Equip</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__IonWithEquipField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__IonWithEquipField__c" />
+                                    <apex:param name="field_label" value="Ion w/ Equip" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packageLithiumBatteriesCellsCheckbox }">
+                            <apex:facet name="header">Ion in Equip</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__IonInEquipField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__IonInEquipField__c" />
+                                    <apex:param name="field_label" value="Ion in Equip" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packageLithiumBatteriesCellsCheckbox }">
+                            <apex:facet name="header">Metal w/ Equip</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__MetalWithEquipField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__MetalWithEquipField__c" />
+                                    <apex:param name="field_label" value="Metal w/ Equip" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>
+                        <apex:column rendered="{! packageLithiumBatteriesCellsCheckbox }">
+                            <apex:facet name="header">Metal in Equip</apex:facet>
+                            <apex:outputPanel >
+                                <apex:outputText value="{! packageRecord.zkfedex__MetalInEquipField__c }" style="margin-right: 3px;"/>
+                                <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                    <apex:param name="field_name" value="zkfedex__MetalInEquipField__c" />
+                                    <apex:param name="field_label" value="Metal in Equip" />
+                                    <apex:param name="field_type" value="BOOLEAN_TYPE" />
+                                    <apex:param name="object_name" value="PACKAGE" />
+                                    <apex:param name="idx" value="{! packageRecord.Index__c }" />
+                                    <apex:param name="is_return_package" value="{! packageRecord.IsReturnPackage__c }" />
+                                </apex:commandButton>
+                            </apex:outputPanel>
+                        </apex:column>                        
+                    </apex:pageBlockTable>  
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- SmartPost fields -->
+            <apex:outputPanel id="smartPostSection">
+                <apex:pageBlockSection collapsible="false" title="SmartPost Fields" columns="2">
+
+                   <apex:pageBlockSectionItem helpText="Allowed values: PARCEL_SELECT, PRESORTED_STANDARD, PRESORTED_BOUND_PRINTED_MATTER, MEDIA_MAIL">
+                        <apex:outputLabel value="SmartPost Indicia Field"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SmartPostIndiciaField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SmartPostIndiciaField__c" />
+                                <apex:param name="field_label" value="SmartPost Indicia" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem helpText="Allowed values: ADDRESS_CORRECTION, CARRIER_LEAVE_IF_NO_RESPONSE, CHANGE_SERVICE, FORWARDING_SERVICE, RETURN_SERVICE">
+                        <apex:outputLabel value="SmartPost Ancillary Endorsement Field"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__SmartPostAncillaryEndorsementField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__SmartPostAncillaryEndorsementField__c" />
+                                <apex:param name="field_label" value="SmartPost Ancillary Endorsement" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Shipment Auto-create -->
+            <apex:outputPanel id="autoCreateSection">
+                <apex:pageBlockSection collapsible="false" title="Shipment Auto-create">
+
+                    <apex:pageBlockSectionItem >
+                        <apex:inputCheckbox value="{! CustomAddressSource.AutoCreateShipment__c }" />
+                        <apex:outputLabel value="Auto-create shipment if all required fields are set"/>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+            <!-- Shipment Auto-create -->
+            <apex:outputPanel id="autoPrintSection">
+                <apex:pageBlockSection collapsible="false" title="Auto Printing">
+                    <apex:pageBlockSectionItem >
+                        <apex:inputCheckbox value="{! CustomAddressSource.AutoPrint__c }" />
+                        <apex:outputLabel value="Auto print labels after creating shipment"/>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+             <apex:outputPanel id="outputRatePanelSection">
+                <apex:pageBlockSection collapsible="false" title="Choose Fields to Update on Original Object">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Invocable Rate Method"/>
+                        <apex:outputPanel >
+                            <apex:inputCheckbox value="{! isRenderRateOutput }" >
+                                <apex:actionSupport event="onclick" action="{! doSelectOutputRate }" onsubmit="IsLoadingIcon('loadingOutputRate');" oncomplete="IsLoadingIconComplete();" reRender="outputRatePanelSection"/>
+                            </apex:inputCheckbox>
+                            <apex:image id="loadingOutputRate" styleClass="loadingOutputRate" value="{!$Resource.zkfedex__LoadingImage2}" />                            
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem rendered="{! isRenderRateOutput }">
+                        <apex:outputLabel value="Service Type"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__OutputServiceTypeField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__OutputServiceTypeField__c" />
+                                <apex:param name="field_label" value="Service Type" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem rendered="{! isRenderRateOutput }">
+                        <apex:outputLabel value="Delivery Day of Week"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__OutputDeliveryDayOfWeekField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__OutputDeliveryDayOfWeekField__c" />
+                                <apex:param name="field_label" value="Delivery Day of Week" />
+                                <apex:param name="field_type" value="STRING_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem rendered="{! isRenderRateOutput }">
+                        <apex:outputLabel value="Delivery Date"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__OutputDeliveryDateField__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__OutputDeliveryDateField__c" />
+                                <apex:param name="field_label" value="Delivery Date" />
+                                <apex:param name="field_type" value="DATE_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem rendered="{! isRenderRateOutput }">
+                        <apex:outputLabel value="Net Charge"/>
+                        <apex:outputPanel >
+                            <apex:outputText value="{! addressSource.zkfedex__OutputNetCharge__c }" style="margin-right: 3px;"/>
+                            <apex:commandButton value="Select Field" action="{!showPopup}" onclick="IsLoading();" oncomplete="FinishLoading();" reRender="tstpopup" disabled="{!GlobalFieldOptionsDisabled}">
+                                <apex:param name="field_name" value="zkfedex__OutputNetCharge__c" />
+                                <apex:param name="field_label" value="Net Charge" />
+                                <apex:param name="field_type" value="NUMBER_TYPE" />
+                            </apex:commandButton>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+
+        </apex:pageBlock>
+        <apex:outputPanel id="tstpopup">
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+            <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+                <span class="close" onclick="IsLoadingIcon(); doClosePopup();">&times;</span>
+                <apex:outputPanel layout="block" style="border: 1px solid #919191; padding: 10px;">
+                    Select a field for {!currentFieldLabel}{!FieldTypeMessage}, then click Insert. Labels followed by a ">" indicate that there are more fields available.<br/><br/>
+                    <table style="display: table; border-collapse: separate; border-spacing: 2px; border-color: grey;">
+                        <tr>
+                            <td>
+                                <apex:selectList value="{! selectedOneField }" size="9" multiselect="false">
+                                    <apex:actionSupport event="onchange" action="{! doChangeFirstLevel }" onsubmit="IsLoadingIcon();" oncomplete="IsLoadingIconComplete();" reRender="tstpopup"/>
+                                    <apex:selectOptions value="{! FirstLevelFieldOptions }"/>
+                                </apex:selectList>
+                            </td>
+                            <td>
+                                <apex:selectList value="{! selectedTwoField }" size="9" multiselect="false" rendered="{! AND(isShowLevelTwo, insertButtonName != 'Clear') }">
+                                    <apex:actionSupport event="onchange" action="{! doChangeSecondLevel }" onsubmit="IsLoadingIcon();" oncomplete="IsLoadingIconComplete();" reRender="tstpopup"/>
+                                    <apex:selectOptions value="{! SecondLevelFieldOptions }"/>
+                                </apex:selectList>
+                            </td>
+                            <td>
+                                <apex:selectList value="{! selectedThreeField }" size="9" multiselect="false" rendered="{! AND(isShowLevelThree, insertButtonName != 'Clear') }">
+                                    <apex:actionSupport event="onchange" action="{! doChangeThirdLevel }" onsubmit="IsLoadingIcon();" oncomplete="IsLoadingIconComplete();" reRender="tstpopup"/>
+                                    <apex:selectOptions value="{! ThirdLevelFieldOptions }"/>
+                                </apex:selectList>
+                            </td>
+                            <td>
+                                <apex:outputPanel rendered="{! AND(isShowInsertView, insertButtonName == 'Insert') }">
+                                    <apex:outputPanel style="display: block; margin-bottom: 8px;">You have selected:</apex:outputPanel>
+                                    <apex:outputPanel style="display: block; margin-bottom: 8px; font-size: 100%;     font-weight: bold;">{! FinalFieldName }</apex:outputPanel>
+                                    <apex:outputPanel style="display: block; margin-bottom: 8px; text-align: center;">
+                                        <apex:commandButton value="INSERT" action="{! doInsertField }" onclick="IsLoadingIcon();" oncomplete="IsLoadingIconComplete();" rerender="formId"/> 
+                                    </apex:outputPanel>                         
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{! AND(isShowInsertView, insertButtonName == 'Clear') }">
+                                    <apex:outputPanel style="display: block; margin-bottom: 8px; text-align: center;">
+                                        <apex:commandButton value="Clear field" action="{! doInsertField }" onclick="IsLoadingIcon();" oncomplete="IsLoadingIconComplete();" rerender="formId"/>    
+                                    </apex:outputPanel>                         
+                                </apex:outputPanel>
+                            </td>
+                        </tr>
+                    </table>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" style="text-align: center; padding-top: 12px;">
+                    <apex:commandButton value="Close" action="{!closePopup}" onclick="IsLoading();" oncomplete="FinishLoading();" rerender="tstpopup"/>
+                </apex:outputPanel>
+            </apex:outputPanel>
+        </apex:outputPanel>
+        <div class="lightboxWizard">
+        </div>
+    </div>
+    </apex:form>
+
+</apex:page>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- MassAddEditRows --></label>
+        <name>AcctSeed__MassAddEditRows</name>
+    </fieldSets>
+    <layouts>
+        <layout>Journal Entry Line Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Only a value for debit or credit can be entered on a single journal entry line --></errorMessage>
+        <name>AcctSeed__Only_Debit_or_Credit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Journal Entry Line&apos;s Date must be less than or equal to the Journal Date on the Journal Entry. --></errorMessage>
+        <name>AcctSeed__Prevent_Date_greater_than_JE_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot associate records with dates that are after this Bank Deposit&apos;s Deposit Date. --></errorMessage>
+        <name>AcctSeed__Prevent_associating_with_Bank_Deposit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Project Task is required if a Project is selected --></errorMessage>
+        <name>AcctSeed__Project_Task_Required_With_Project</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A journal entry line must contain a value for either the debit or a credit field --></errorMessage>
+        <name>AcctSeed__Value_for_Debit_or_Credit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Value_for_GL_Account</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Mass_Add_Edit_Rows --></label>
+        <name>AcctSeed__Mass_Add_Edit_Rows</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Redirect --></label>
+        <name>AcctSeed__New_Redirect</name>
+    </webLinks>
+</CustomObjectTranslation>

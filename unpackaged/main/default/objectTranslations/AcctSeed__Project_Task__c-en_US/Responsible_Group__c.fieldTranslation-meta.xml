@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Responsible Group --></label>
+        <name>Responsible_Group__c</name>
+        <picklistValues>
+            <masterLabel>Assigned Engineer</masterLabel>
+            <translation><!-- Assigned Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cross Vergence</masterLabel>
+            <translation><!-- Cross Vergence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer</masterLabel>
+            <translation><!-- Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations</masterLabel>
+            <translation><!-- Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Manager and Assigned Engineer</masterLabel>
+            <translation><!-- Project Manager and Assigned Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Engineer</masterLabel>
+            <translation><!-- Sales Engineer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales and Operations</masterLabel>
+            <translation><!-- Sales and Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales/Crossvergence</masterLabel>
+            <translation><!-- Sales/Crossvergence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salesperson</masterLabel>
+            <translation><!-- Salesperson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salesperson and Ownership</masterLabel>
+            <translation><!-- Salesperson and Ownership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warehouse</masterLabel>
+            <translation><!-- Warehouse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warehouse and Assigned Engineer</masterLabel>
+            <translation><!-- Warehouse and Assigned Engineer --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

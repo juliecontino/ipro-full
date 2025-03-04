@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Determines how much of the limit to use. If 100 is entered then Rollup Helper will use all of the governor limit potentially and anything more than that will execute asynchronously in another execution context. By setting it lower it allows custom code. --></help>
+        <label><!-- Usage % of Limits --></label>
+        <name>rh2__Usage_of_Limits__c</name>
+    </CustomFieldTranslation>

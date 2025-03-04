@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- format: link-Text~https://na14.salesforce.com/{0}/e?close=1~tool tip text(optional)
+{0} is the rowID --></help>
+        <label><!-- CustomActionLink --></label>
+        <name>zaapit__CustomActionLink__c</name>
+    </CustomFieldTranslation>

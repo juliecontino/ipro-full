@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__Automerge_Enabled__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Is Automerge enabled for this record type detail? If so, what actions are taken.
+        Valid values are:
+            Disabled - Do nothing.
+            Detection Only - Collects data, but nothing else.
+            Detection with Automerge Indicator - Collects data and marks Case for automerge.
+            Enabled - Automerges the Case.</description>
+    <externalId>false</externalId>
+    <label>Automerge Enabled</label>
+    <length>34</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

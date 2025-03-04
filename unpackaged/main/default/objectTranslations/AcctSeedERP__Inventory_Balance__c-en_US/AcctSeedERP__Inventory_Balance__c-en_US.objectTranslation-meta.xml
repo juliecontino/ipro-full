@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Inventory Balance Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Location_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The aggregate outbound quantity on the inventory balance cannot be more than the aggregate inbound quantity --></errorMessage>
+        <name>AcctSeedERP__Outbound_Less_Than_Equal_Inbound</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the location if there are associated inventory movements. You must delete all inventory movements in order to change the location. --></errorMessage>
+        <name>AcctSeedERP__Prevent_Update_Location_if_Movements</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the product if there are associated inventory movements. You must delete all inventory movements in order to change the product. --></errorMessage>
+        <name>AcctSeedERP__Prevent_Update_Product_if_Movements</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change the warehouse if there are associated inventory movements. You must delete all inventory movements in order to change the warehouse. --></errorMessage>
+        <name>AcctSeedERP__Prevent_Update_Warehouse_if_Movements</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only a product where the inventory product field is true can be associated with an inventory balance --></errorMessage>
+        <name>AcctSeedERP__Product_Is_Inventory_Product</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Product_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Warehouse_Is_Required</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Create_Inventory_History --></label>
+        <name>AcctSeedERP__Create_Inventory_History</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Transfer --></label>
+        <name>AcctSeedERP__Transfer</name>
+    </webLinks>
+</CustomObjectTranslation>

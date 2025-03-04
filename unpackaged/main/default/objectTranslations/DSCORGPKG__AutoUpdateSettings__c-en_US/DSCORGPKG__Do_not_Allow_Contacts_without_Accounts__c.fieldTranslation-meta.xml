@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Do not Allow Contacts without Accounts --></label>
+        <name>DSCORGPKG__Do_not_Allow_Contacts_without_Accounts__c</name>
+    </CustomFieldTranslation>

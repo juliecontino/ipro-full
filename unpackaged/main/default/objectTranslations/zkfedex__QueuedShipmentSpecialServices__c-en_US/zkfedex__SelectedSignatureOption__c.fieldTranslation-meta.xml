@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Selected Signature Option --></label>
+        <name>zkfedex__SelectedSignatureOption__c</name>
+        <picklistValues>
+            <masterLabel>Adult Signature Required</masterLabel>
+            <translation><!-- Adult Signature Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Direct Signature Required</masterLabel>
+            <translation><!-- Direct Signature Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indirect Signature Required</masterLabel>
+            <translation><!-- Indirect Signature Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Signature Required</masterLabel>
+            <translation><!-- No Signature Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Default</masterLabel>
+            <translation><!-- Service Default --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

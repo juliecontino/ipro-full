@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_D_A_Date__c</fullName>
+    <description>This field contains the scheduled date to close out recipt of a Delivery &amp; Acceptance Certificate or Tech Work Order.</description>
+    <inlineHelpText>This field contains the scheduled date to close out recipt of a Delivery &amp; Acceptance Certificate or Tech Work Order.</inlineHelpText>
+    <label>Project D&amp;A Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

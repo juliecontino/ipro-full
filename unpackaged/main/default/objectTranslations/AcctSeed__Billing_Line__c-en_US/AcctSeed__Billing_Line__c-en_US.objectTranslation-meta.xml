@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- BillingFromOpportunity --></label>
+        <name>AcctSeed__BillingFromOpportunity</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MassAddEditRows --></label>
+        <name>AcctSeed__MassAddEditRows</name>
+    </fieldSets>
+    <layouts>
+        <layout>Project Billing Line Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- A Project Task is required if a Project is selected. --></errorMessage>
+        <name>AcctSeed__Project_Task_Required_With_Project</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The project you have selected is not associated with the customer listed in the billing header. The account (customer) field on this project must be the same as the customer on the billing header. --></errorMessage>
+        <name>AcctSeed__Project_must_be_associated_with_customer</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A billing line must contain a value for the rate field. --></errorMessage>
+        <name>AcctSeed__Value_for_Rate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A billing line must contain a value for the revenue GL account field. --></errorMessage>
+        <name>AcctSeed__Value_for_Revenue_GL_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A billing line must contain a value for the quantity field. --></errorMessage>
+        <name>AcctSeed__Value_for_Units</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Mass_Add_Edit_Rows --></label>
+        <name>AcctSeed__Mass_Add_Edit_Rows</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Redirect --></label>
+        <name>AcctSeed__New_Redirect</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Composer_First_National_Bank_Master_Billing --></label>
+        <name>Conga_Composer_First_National_Bank_Master_Billing</name>
+    </webLinks>
+</CustomObjectTranslation>

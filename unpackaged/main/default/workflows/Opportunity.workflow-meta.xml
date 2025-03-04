@@ -2645,4 +2645,88 @@ If(ISPICKVAL(Sale_Type__c, "AnyWare Support Only"),(AnyWare_Support_Total__c* Nu
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
+    <rules>
+        <fullName>zaapit__Call Opportunity</fullName>
+        <actions>
+            <name>zaapit__Call_oppts</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <description>Call Opportunity - by ZaapIT</description>
+        <formula>false</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>zaapit__Email Opportunity</fullName>
+        <actions>
+            <name>zaapit__Email_oppts</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <description>Email Opportunity - by ZaapIT</description>
+        <formula>false</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>zaapit__Send Letter Opportunity</fullName>
+        <actions>
+            <name>zaapit__Send_Letter_oppts</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <description>Send Letter Opportunity - by ZaapIT</description>
+        <formula>false</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>zaapit__Send Quote Opportunity</fullName>
+        <actions>
+            <name>zaapit__Send_Quote_oppts</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <description>Send Quote Opportunity - by ZaapIT</description>
+        <formula>false</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <tasks>
+        <fullName>zaapit__Call_oppts</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Call</subject>
+    </tasks>
+    <tasks>
+        <fullName>zaapit__Email_oppts</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Email</subject>
+    </tasks>
+    <tasks>
+        <fullName>zaapit__Send_Letter_oppts</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Send Letter</subject>
+    </tasks>
+    <tasks>
+        <fullName>zaapit__Send_Quote_oppts</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Send Quote</subject>
+    </tasks>
 </Workflow>

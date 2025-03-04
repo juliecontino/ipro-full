@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Lookup to Salesforce Products. Drives GL Revenue Account if selected and no Revenue GL Account is selected in the Billing Line. Also drives GL Account Variables on transaction line if no Project Task is selected on the Billing Line. --></help>
+        <label><!-- Product --></label>
+        <name>AcctSeed__Product__c</name>
+        <relationshipLabel><!-- Billing Lines --></relationshipLabel>
+    </CustomFieldTranslation>

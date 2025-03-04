@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Number of hours spent with flag 1 --></help>
+        <label><!-- Case Flags Age 1 Hours --></label>
+        <name>FLAGS__CaseTimeOffset1__c</name>
+    </CustomFieldTranslation>

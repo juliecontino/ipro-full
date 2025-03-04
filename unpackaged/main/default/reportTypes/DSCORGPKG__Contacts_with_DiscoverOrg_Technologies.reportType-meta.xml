@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Contact</baseObject>
+    <category>other</category>
+    <deployed>false</deployed>
+    <description>Contacts with DiscoverOrg Technologies wil be visible</description>
+    <join>
+        <outerJoin>false</outerJoin>
+        <relationship>DSCORGPKG__DiscoverOrg_Technologies__r</relationship>
+    </join>
+    <label>Contacts with DiscoverOrg Technologies</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Contact Name</displayNameOverride>
+            <field>Name</field>
+            <table>Contact</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Contact.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Technology Category Name</displayNameOverride>
+            <field>DSCORGPKG__Technology_Category__c</field>
+            <table>Contact.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <displayNameOverride>Technology Vendor Name</displayNameOverride>
+            <field>DSCORGPKG__Technology_Vendor__c</field>
+            <table>Contact.DSCORGPKG__DiscoverOrg_Technologies__r</table>
+        </columns>
+        <masterLabel>DiscoverOrg Technologies</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Showcase__c</field>
+            <table>Contact</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Account_Executive__c</field>
+            <table>Contact</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Connectwise_External_Id_c__c</field>
+            <table>Contact</table>
+        </columns>
+        <masterLabel>Contacts</masterLabel>
+    </sections>
+</ReportType>

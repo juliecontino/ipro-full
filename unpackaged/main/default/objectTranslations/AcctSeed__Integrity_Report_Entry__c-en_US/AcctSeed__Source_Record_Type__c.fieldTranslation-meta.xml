@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Source Record Type --></label>
+        <name>AcctSeed__Source_Record_Type__c</name>
+        <picklistValues>
+            <masterLabel>Account Payable Line</masterLabel>
+            <translation><!-- Account Payable Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Billing Cash Receipt</masterLabel>
+            <translation><!-- Billing Cash Receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Billing Line</masterLabel>
+            <translation><!-- Billing Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cash Disbursement</masterLabel>
+            <translation><!-- Cash Disbursement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cash Receipt</masterLabel>
+            <translation><!-- Cash Receipt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inbound Inventory Movement</masterLabel>
+            <translation><!-- Inbound Inventory Movement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journal Entry Line</masterLabel>
+            <translation><!-- Journal Entry Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing Order Inventory Movement</masterLabel>
+            <translation><!-- Manufacturing Order Inventory Movement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outbound Inventory Movement</masterLabel>
+            <translation><!-- Outbound Inventory Movement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchase Order Inventory Movement</masterLabel>
+            <translation><!-- Purchase Order Inventory Movement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transaction</masterLabel>
+            <translation><!-- Transaction --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

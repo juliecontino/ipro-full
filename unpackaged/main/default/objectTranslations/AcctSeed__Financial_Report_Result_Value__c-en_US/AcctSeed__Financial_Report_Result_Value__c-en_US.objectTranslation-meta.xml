@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Financial Report Result Value Layout</layout>
+        <sections>
+            <label><!-- Column Information --></label>
+            <section>Column Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Formatting Information --></label>
+            <section>Formatting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Row Information --></label>
+            <section>Row Information</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -1,0 +1,227 @@
+<apex:page standardController="E2CP__Canned_Comment__c" extensions="E2CP.CannedCommentBuilderCtrl" id="pg" title="{!IF(thisCC.Id == null,'New','Edit')} Canned Response">
+
+<style>
+    .mce-throbber {
+        position: fixed;
+        z-index: 99999;
+    }
+</style>
+
+<script>
+function insertField() {
+    
+    var myField = document.getElementById('pg:frm:pb:pbs2:Comment'),
+        fieldElem = document.getElementById('pg:frm:pb:pbs2:pbsiFieldList:selFieldList'),
+        relatedElem = document.getElementById('pg:frm:pb:pbs2:pbsiFieldList:selRelatedList');
+    
+    var sText = '{' + fieldElem.value + (relatedElem && relatedElem.value ? relatedElem.value : '') + '}';
+
+    if ({!ENABLE_HTML_SUPPORT}) {
+        tinyMCE.activeEditor.execCommand("mceInsertContent",false,sText);
+    } else {
+        if (document.selection) {  //IE
+            myField.focus();
+            sel = document.selection.createRange();
+            sel.text = sText;
+        }
+        else if (myField.selectionStart || myField.selectionStart == '0') { //firefox
+            var startPos = myField.selectionStart;
+            var endPos = myField.selectionEnd;
+            myField.value = myField.value.substring(0, startPos) + sText + myField.value.substring(endPos, myField.value.length);
+            setCaretToPos(myField,startPos+sText.length);
+        } 
+        else { 
+            myField.value += sText;
+        }
+    }
+}
+
+function setSelectionRange(input, selectionStart, selectionEnd) {
+    if (input.setSelectionRange) {
+        input.focus();
+        input.setSelectionRange(selectionStart, selectionEnd);
+    }
+    else if (input.createTextRange) {
+        var range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', selectionEnd);
+        range.moveStart('character', selectionStart);
+        range.select();
+    }
+}
+
+function setCaretToPos (input, pos) {
+    setSelectionRange(input, pos, pos);
+}
+
+</script>
+
+
+<script>
+function selectFirstField(){
+    try{
+        document.getElementById('pg:frm:pb:pbs2:pbsiFieldList:selFieldList').selectedIndex = 0;
+    }
+    catch(err){
+        //do nothing        
+    }
+}
+</script>
+
+<apex:form id="frm">
+    <apex:actionFunction name="uploadInlineFile" action="{!uploadInlineFile}" immediate="true" reRender="inlineImageScripting">
+        <apex:param name="inlineFileName" assignTo="{!inlineFileName}" value=""/>
+        <apex:param name="inlineFileBody" assignTo="{!inlineFileBody}" value=""/>
+    </apex:actionFunction>
+
+    <apex:pageMessages />
+
+    <apex:pageBlock title="Canned Response Edit" id="pb">
+
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!Save}" value="Save" onclick="selectFirstField();"/>
+            <Apex:commandButton action="{!saveAndNew}" value="Save and New" onclick="selectFirstField();"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel" onclick="selectFirstField();" />
+        </apex:pageBlockButtons>
+
+        <apex:pageBlockSection title="Information" columns="1">
+            <apex:inputField value="{!thisCC.E2CP__Active__c}"/>
+            <apex:inputField value="{!thisCC.E2CP__Category__c}" />
+            <apex:inputField value="{!thisCC.E2CP__Title__c}"/>
+        </apex:pageBlockSection>
+
+        <apex:pageBlockSection title="Comment" columns="1" id="pbs2">
+
+            <apex:pageBlockSectionItem id="pbsiFieldList">
+                <apex:outputLabel value="Insert Field" />
+                <apex:outputPanel id="opFieldList">
+                    <apex:actionRegion >
+                        <apex:selectList size="1" multiselect="false" id="selFieldList" value="{!selectedField}">
+                            <apex:actionSupport action="{!buildRelatedFieldOptions}" status="insertButton" event="onchange" reRender="opFieldList"/>
+                            <apex:selectOptions value="{!fieldOptions}" />
+                        </apex:selectList>
+                        <apex:actionStatus id="insertButton">
+                            <apex:facet name="stop">
+                            <apex:outputPanel layout="none">
+                                    <apex:selectList style="margin-left:10px;" size="1" multiselect="false" id="selRelatedList" rendered="{!relatedFieldOptions.size > 0}">
+                                        <apex:selectOptions value="{!relatedFieldOptions}"/>
+                                    </apex:selectList>
+                                    <input class="btn" id="btnInsertCanned" type="button" value="Insert" onclick="insertField();" />
+                                </apex:outputPanel>
+                            </apex:facet>
+                            <apex:facet name="start">
+                                <img style="height: 23px;vertical-align: middle;margin-left: 5px;" src="/img/spinner.gif"/>
+                                <span style="font-weight: bold;margin-left: 5px;">Loading...</span>
+                            </apex:facet>
+                        </apex:actionStatus>
+                    </apex:actionRegion>
+                </apex:outputPanel>
+            </apex:pageBlockSectionItem>
+
+            <apex:inputField value="{!thisCC.E2CP__Comment__c}" id="Comment" style="width:420px; height:120px;" rendered="{!!ENABLE_HTML_SUPPORT}"/>
+
+            <apex:inputTextarea value="{!thisCC.E2CP__Comment_HTML__c}" style="width:700px; height:300px;" id="Comment_HTML" required="false" rendered="{!ENABLE_HTML_SUPPORT}"/>
+
+        </apex:pageBlockSection>
+        
+    </apex:pageBlock>
+
+
+</apex:form>
+
+<apex:outputPanel rendered="{!ENABLE_HTML_SUPPORT}">
+    <apex:includeScript value="/soap/ajax/40.0/connection.js"/>
+    <!-- <script src="{!URLFOR($Resource.tinymce,'tinymce/js/tinymce/tinymce.min.js')}"></script> -->
+    <script src="{!URLFOR($Resource.tinymce,'tinymce5/tinymce.min.js')}"></script>
+
+    <script>
+        var inlineCallback,file;
+        
+        function initTinyMCE() {
+            tinymce.init({
+                selector: '#pg\\:frm\\:pb\\:pbs2\\:Comment_HTML',
+                //theme: 'modern',
+                theme: 'silver',
+                min_height: 300,
+                min_width: 700,
+                resize: true,
+                autoresize_bottom_margin: 25,
+                max_height: 1024,
+                branding: false,
+                statusbar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap anchor paste',
+                    'visualblocks visualchars code autoresize fullscreen codesample',
+                    'table imagetools textcolor colorpicker',
+                ],
+                menubar: false,
+                <apex:outputPanel rendered="{!!ENABLE_EXTENDED_EDITOR}" layout="none">
+                toolbar: 'bold italic underline removeformat | alignleft aligncenter alignright | bullist numlist outdent indent | table link image codesample | fullscreen code',
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!ENABLE_EXTENDED_EDITOR}" layout="none">
+                toolbar1: 'undo redo | bold italic underline removeformat | forecolor backcolor | alignleft aligncenter alignright alignjustify',
+                toolbar2: 'bullist numlist outdent indent | table link image codesample | fullscreen code',
+                </apex:outputPanel>
+                browser_spellcheck: true,
+                remove_script_host: false,
+                forced_root_block: 'div',
+                force_p_newlines : false,
+                indent_use_margin: true,
+                paste_data_images: false,
+                automatic_uploads: false,
+                relative_urls: false,
+                <apex:outputPanel rendered="{!hasContentDelivery}" layout="none">
+                file_picker_callback: function(cb, value, meta) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'file');
+                    input.setAttribute('accept', 'image/*');
+                    
+                    inlineCallback = cb;
+                    
+                    input.onchange = function() {
+                        tinyMCE.activeEditor.setProgressState(true);
+                        
+                        file = this.files[0];
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            if (reader.readyState != 2) return;
+                            
+                            uploadInlineFile(file.name,(new sforce.Base64Binary(binaryStringFromBufferArray(reader.result))).toString());
+                        };
+                        reader.readAsArrayBuffer(file);
+                    };
+                    
+                    input.click();
+                }</apex:outputPanel>
+            });
+        }
+        
+        function binaryStringFromBufferArray(buffer) {
+            var binary = '',
+                bytes = new Uint8Array(buffer),
+                len = bytes.byteLength;
+            
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return binary;
+        }
+        
+        initTinyMCE();
+    </script>
+
+    <apex:outputPanel id="inlineImageScripting">
+        <script>
+            if (inlineCallback) {
+                tinyMCE.activeEditor.setProgressState(false);
+                if ('{!JSENCODE(inlineImageURL)}' != '')
+                    inlineCallback('{!JSENCODE(inlineImageURL)}',{title: file.name, alt: file.name});
+                else
+                    alert('An error has occurred, please contact your Salesforce administrator.');
+                inlineCallback = null;
+            }
+        </script>
+    </apex:outputPanel>
+</apex:outputPanel>
+</apex:page>

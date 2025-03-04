@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field groups individual transaction lines by their source transaction. It matches Debit and Credit entries coming from the same source transaction. --></help>
+        <label><!-- Key --></label>
+        <name>AcctSeed__Key__c</name>
+    </CustomFieldTranslation>

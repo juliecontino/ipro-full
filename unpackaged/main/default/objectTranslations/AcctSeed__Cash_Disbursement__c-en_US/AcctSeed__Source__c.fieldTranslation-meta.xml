@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Denotes the source of the cash disbursement either &quot;Manual&quot; or &quot;Account Payable&quot;. --></help>
+        <label><!-- Source --></label>
+        <name>AcctSeed__Source__c</name>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

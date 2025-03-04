@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Duplicates DO ID Lead --></label>
+        <name>DSCORGPKG__Duplicates_DO_ID_Lead__c</name>
+    </CustomFieldTranslation>

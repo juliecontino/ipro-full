@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Suppress Zero Amount Rows --></label>
+        <name>AcctSeed__Suppress_Zero_Amount_Rows__c</name>
+    </CustomFieldTranslation>

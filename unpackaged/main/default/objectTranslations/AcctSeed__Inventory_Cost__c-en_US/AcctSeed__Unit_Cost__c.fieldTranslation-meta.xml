@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Denotes the average cost for the associated product. --></help>
+        <label><!-- Unit Cost --></label>
+        <name>AcctSeed__Unit_Cost__c</name>
+    </CustomFieldTranslation>

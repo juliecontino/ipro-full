@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Conga Mail Merge On Demand is the point-and-shoot solution for easy batch printing of mailing labels, envelopes and personalized letters directly from Salesforce.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Conga</label>
+    <logo>APXTConga4__Conga/APXTConga4__CongaLogo.gif</logo>
+    <tabs>APXTConga4__Conga_Setup</tabs>
+    <tabs>APXTConga4__Conga_Template__c</tabs>
+    <tabs>APXTConga4__Conga_Merge_Query__c</tabs>
+    <tabs>APXTConga4__Conga_Solutions_Setup_vf</tabs>
+    <tabs>APXTConga4__Conga_Solution__c</tabs>
+    <tabs>APXTConga4__Conga_Email_Template__c</tabs>
+    <tabs>APXT_BPM__About_Conga_Conductor</tabs>
+    <tabs>APXT_BPM__Conductor_Dashboard</tabs>
+    <tabs>APXT_BPM__Conductor_Setup</tabs>
+    <tabs>APXT_BPM__Conductor__c</tabs>
+    <tabs>Help</tabs>
+</CustomApplication>

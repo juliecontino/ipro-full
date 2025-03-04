@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The last User to insert this Canned Comment into a comment on the New Comment page. --></help>
+        <label><!-- Last Used By --></label>
+        <name>E2CP__Last_Used_By__c</name>
+        <relationshipLabel><!-- Canned Responses --></relationshipLabel>
+    </CustomFieldTranslation>

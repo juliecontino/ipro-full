@@ -1,0 +1,18 @@
+<apex:page standardController="Contact" recordSetVar="conts" extensions="AcctSeed.UpdateDefault1099InfoCntrlExt" showHeader="false" sidebar="false" >
+    <apex:outputpanel rendered="{!isMyDomainEnabled}">
+        <apex:includeLightning />
+        <div id="LightningComponentid" style="height:670px" />
+        <script>
+            $Lightning.use("AcctSeed:Update1099InfoApp", function() {
+                $Lightning.createComponent("AcctSeed:UpdateDefault1099Info",
+                { recordIds: "{!JSENCODE(recordIds)}", ltngOut: true },
+                "LightningComponentid",
+                function(cmp) {
+                });
+            });
+        </script>
+    </apex:outputpanel>
+    <apex:outputpanel rendered="{!!isMyDomainEnabled}">
+        <h3>Use of this feature requires the installation of My Domain. Please refer to <a href="https://developer.salesforce.com/docs/atlas.en-us.identityImplGuide.meta/identityImplGuide/domain_name_overview.htm">this My Domain - Knowledge Article</a> for further information.</h3>
+    </apex:outputpanel>
+</apex:page>

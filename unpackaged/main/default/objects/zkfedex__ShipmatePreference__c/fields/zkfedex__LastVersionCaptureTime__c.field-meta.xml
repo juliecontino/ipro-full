@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__LastVersionCaptureTime__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The last successful time 'version capture' was performed.</description>
+    <inlineHelpText>The last successful time 'version capture' was performed.</inlineHelpText>
+    <label>Last Version Capture Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

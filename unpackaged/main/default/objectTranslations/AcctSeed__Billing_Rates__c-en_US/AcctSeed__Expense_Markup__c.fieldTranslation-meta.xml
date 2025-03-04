@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The percentage to markup on an expense line which is billed for the given Project, Project Task, and Employee. --></help>
+        <label><!-- Expense Markup --></label>
+        <name>AcctSeed__Expense_Markup__c</name>
+    </CustomFieldTranslation>

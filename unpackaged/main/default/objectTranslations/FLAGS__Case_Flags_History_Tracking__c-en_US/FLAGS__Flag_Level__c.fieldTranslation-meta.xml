@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Flag level in text (L0 - L4), useful for analytics. --></help>
+        <label><!-- Flag Level --></label>
+        <name>FLAGS__Flag_Level__c</name>
+    </CustomFieldTranslation>

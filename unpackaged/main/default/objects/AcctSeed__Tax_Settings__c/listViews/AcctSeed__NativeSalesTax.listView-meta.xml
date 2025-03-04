@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__NativeSalesTax</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Tax_Settings_Method__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Tax_Settings_Method__c</field>
+        <operation>equals</operation>
+        <value>Accounting Seed Native Tax</value>
+    </filters>
+    <label>Accounting Seed Native Tax</label>
+</ListView>

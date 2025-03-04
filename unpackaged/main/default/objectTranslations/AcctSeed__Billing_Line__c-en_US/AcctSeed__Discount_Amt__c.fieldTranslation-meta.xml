@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to represent a sales discount amount from the list price of a product. --></help>
+        <label><!-- Discount Amount --></label>
+        <name>AcctSeed__Discount_Amt__c</name>
+    </CustomFieldTranslation>

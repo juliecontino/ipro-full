@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used in conjunction with the Type and Subtype 1 fields to further classify GL Accounts in reports. This pick list is dependent on Subtype 1. --></help>
+        <label><!-- Sub Type 2 --></label>
+        <name>AcctSeed__Sub_Type_2__c</name>
+        <picklistValues>
+            <masterLabel>Accounting</masterLabel>
+            <translation><!-- Accounting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Benefits</masterLabel>
+            <translation><!-- Benefits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cash</masterLabel>
+            <translation><!-- Cash --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commissions</masterLabel>
+            <translation><!-- Commissions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commissions Income</masterLabel>
+            <translation><!-- Commissions Income --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consulting</masterLabel>
+            <translation><!-- Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current Assets</masterLabel>
+            <translation><!-- Current Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Current Liabilities</masterLabel>
+            <translation><!-- Current Liabilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equity</masterLabel>
+            <translation><!-- Equity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Executive Benefits</masterLabel>
+            <translation><!-- Executive Benefits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fixed Assets</masterLabel>
+            <translation><!-- Fixed Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Human Resources</masterLabel>
+            <translation><!-- Human Resources --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interest Expense</masterLabel>
+            <translation><!-- Interest Expense --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interest Income</masterLabel>
+            <translation><!-- Interest Income --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Labor</masterLabel>
+            <translation><!-- Labor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal &amp; Professional</masterLabel>
+            <translation><!-- Legal &amp; Professional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Long Term Assets</masterLabel>
+            <translation><!-- Long Term Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Long Term Liabilities</masterLabel>
+            <translation><!-- Long Term Liabilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Events</masterLabel>
+            <translation><!-- Marketing Events --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Materials</masterLabel>
+            <translation><!-- Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miscellaneous</masterLabel>
+            <translation><!-- Miscellaneous --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overhead</masterLabel>
+            <translation><!-- Overhead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Payroll Taxes</masterLabel>
+            <translation><!-- Payroll Taxes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Family 1</masterLabel>
+            <translation><!-- Product Family 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Family 2</masterLabel>
+            <translation><!-- Product Family 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Family 3</masterLabel>
+            <translation><!-- Product Family 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rent</masterLabel>
+            <translation><!-- Rent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rental Income</masterLabel>
+            <translation><!-- Rental Income --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salary &amp; Wages</masterLabel>
+            <translation><!-- Salary &amp; Wages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Travel</masterLabel>
+            <translation><!-- Sales Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Family 1</masterLabel>
+            <translation><!-- Service Family 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Family 2</masterLabel>
+            <translation><!-- Service Family 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service Family 3</masterLabel>
+            <translation><!-- Service Family 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Software</masterLabel>
+            <translation><!-- Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sold Assets</masterLabel>
+            <translation><!-- Sold Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utilities</masterLabel>
+            <translation><!-- Utilities --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Accounting Period Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- The Accounting Period must be a numerical value between 1 and 12. --></errorMessage>
+        <name>AcctSeed__Period_between_1_and_12</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The start date cannot be greater than the end date. --></errorMessage>
+        <name>AcctSeed__Start_Date_Not_Greater_End_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Accounting Periods must be in the format YYYY-MM and must be numerical values. --></errorMessage>
+        <name>AcctSeed__YYYY_MM_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit the Accounting Period Name or Dates.  If you are attempting to change the accounting period on a related record, please hit the back arrow and use the lookup icon. --></errorMessage>
+        <name>Cannot_Change_the_Accounting_Period_Name</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Accounts_Payable_Aging_Historical --></label>
+        <name>Accounts_Payable_Aging_Historical</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Archive --></label>
+        <name>AcctSeed__Archive</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Balance_Sheet_Report --></label>
+        <name>Balance_Sheet_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Customer_Aging_Historical --></label>
+        <name>Customer_Aging_Historical</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Financial_Statements --></label>
+        <name>Financial_Statements</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Profit_Loss_Vs_Budget_Report --></label>
+        <name>Profit_Loss_Vs_Budget_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Profit_and_Loss_for_Current_Period_Report --></label>
+        <name>Profit_and_Loss_for_Current_Period_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Scheduled_Revenue_Expense_by_Period_Report --></label>
+        <name>Scheduled_Revenue_Expense_by_Period_Report</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Trial_Balance_Report --></label>
+        <name>Trial_Balance_Report</name>
+    </webLinks>
+</CustomObjectTranslation>

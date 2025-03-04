@@ -2,4 +2,8 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <hasActivationRequired>false</hasActivationRequired>
     <label>Activities Permission Set</label>
+    <tabSettings>
+        <tab>atplus__ActivitiesTabPlus</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

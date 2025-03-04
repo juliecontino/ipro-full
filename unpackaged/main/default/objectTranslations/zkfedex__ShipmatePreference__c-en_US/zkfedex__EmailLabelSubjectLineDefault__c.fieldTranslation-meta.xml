@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- For completed Shipments, this will be the default email subject line when sending shipping labels via email --></help>
+        <label><!-- Email Label Subject Line Default --></label>
+        <name>zkfedex__EmailLabelSubjectLineDefault__c</name>
+    </CustomFieldTranslation>

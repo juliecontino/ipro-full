@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Header</fullName>
+    <active>true</active>
+    <errorConditionFormula>AcctSeed__Import_Template__r.AcctSeed__Headers__c &amp;&amp; ISBLANK( AcctSeed__Column_Header__c )</errorConditionFormula>
+    <errorDisplayField>AcctSeed__Column_Header__c</errorDisplayField>
+    <errorMessage>You must assign a Column Header</errorMessage>
+</ValidationRule>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A notification is already emailed when shipped. If checked, the default action will be to also send the FedEx Email notification when an shipping exception occurs. --></help>
+        <label><!-- Email Notify on Exception Default --></label>
+        <name>zkfedex__EMailNotifyOnExceptionDefault__c</name>
+    </CustomFieldTranslation>

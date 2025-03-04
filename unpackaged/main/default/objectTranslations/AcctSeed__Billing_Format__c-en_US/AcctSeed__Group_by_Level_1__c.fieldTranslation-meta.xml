@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field has been deprecated. --></help>
+        <label><!-- zDep-Sort Order --></label>
+        <name>AcctSeed__Group_by_Level_1__c</name>
+        <picklistValues>
+            <masterLabel>Date</masterLabel>
+            <translation><!-- Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation><!-- Employee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL Account</masterLabel>
+            <translation><!-- GL Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Name</masterLabel>
+            <translation><!-- Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Task</masterLabel>
+            <translation><!-- Project Task --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Variable 1</masterLabel>
+            <translation><!-- Variable 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Variable 2</masterLabel>
+            <translation><!-- Variable 2 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

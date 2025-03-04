@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Bank_Reconciliation_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Associated Bank Reconciliation’s Statement Ending Date. Used by system’s query logic to determine which source records are uncleared as of a specific bank reconciliation’s statement ending date.</description>
+    <formula>AcctSeed__Bank_Reconciliation__r.AcctSeed__End_Date__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The Statement Ending Date of the associated Bank Reconciliation.</inlineHelpText>
+    <label>Bank Reconciliation Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

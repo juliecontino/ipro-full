@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- To use this component, copy this code to your VF page --></help>
+        <label><!-- Code to copy in VF Page --></label>
+        <name>dynl__Code_to_copy_in_VF_Page__c</name>
+    </CustomFieldTranslation>

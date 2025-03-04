@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Link Contacts to Account Owner</label>
+    <protected>false</protected>
+    <values>
+        <field>LH__Category_Field__c</field>
+        <value xsi:type="xsd:string">account.ownerid</value>
+    </values>
+    <values>
+        <field>LH__Child_Filter_Conditions__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Child_Object__c</field>
+        <value xsi:type="xsd:string">contact</value>
+    </values>
+    <values>
+        <field>LH__Components_Included__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Description__c</field>
+        <value xsi:type="xsd:string">Relates Contacts with a parent User when the Contact&apos;s Account.OwnerId = User.Id</value>
+    </values>
+    <values>
+        <field>LH__FieldType__c</field>
+        <value xsi:type="xsd:string">Lookup</value>
+    </values>
+    <values>
+        <field>LH__Label__c</field>
+        <value xsi:type="xsd:string">Link Contacts to Account Owner</value>
+    </values>
+    <values>
+        <field>LH__Logic__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Long_Description__c</field>
+        <value xsi:type="xsd:string">Populates lhuc_Contacts_To_Users__c with a parent User if the child Contact&apos;s Account.OwnerId field is equal to the User&apos;s Id.</value>
+    </values>
+    <values>
+        <field>LH__Object__c</field>
+        <value xsi:type="xsd:string">Contact</value>
+    </values>
+    <values>
+        <field>LH__Parent_Field__c</field>
+        <value xsi:type="xsd:string">id</value>
+    </values>
+    <values>
+        <field>LH__Parent_Object__c</field>
+        <value xsi:type="xsd:string">user</value>
+    </values>
+    <values>
+        <field>LH__RelationshipName__c</field>
+        <value xsi:type="xsd:string">lhuc_Contacts_To_Users</value>
+    </values>
+    <values>
+        <field>LH__Relationship_Field__c</field>
+        <value xsi:type="xsd:string">lhuc_Contacts_To_Users__c</value>
+    </values>
+</CustomMetadata>

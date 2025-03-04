@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Provides further information about a transaction, i.e., if the transaction is carried out on a biller or a subscriber. --></help>
+        <label><!-- Merchant Type --></label>
+        <name>AcctSeed__Merchant_Type__c</name>
+        <picklistValues>
+            <masterLabel>Billers</masterLabel>
+            <translation><!-- Billers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Subscription</masterLabel>
+            <translation><!-- Subscription --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

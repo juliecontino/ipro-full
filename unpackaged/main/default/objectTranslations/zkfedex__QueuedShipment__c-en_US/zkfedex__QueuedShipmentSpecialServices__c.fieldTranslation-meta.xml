@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Queued Shipment Special Services --></label>
+        <name>zkfedex__QueuedShipmentSpecialServices__c</name>
+        <relationshipLabel><!-- FedEx Queued Shipments --></relationshipLabel>
+    </CustomFieldTranslation>

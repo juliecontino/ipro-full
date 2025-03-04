@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__AccountIsSetupForSmartPostReturns__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>This indicates that your FedEx account is setup for SmartPost return shipping. Please contact FedEx if you are unsure if your FedEx account is setup for SmartPost return shipping.</description>
+    <inlineHelpText>This indicates that your FedEx account is setup for SmartPost return shipping. Please contact FedEx if you are unsure if your FedEx account is setup for SmartPost return shipping.</inlineHelpText>
+    <label>Account is Setup for SmartPost Returns</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

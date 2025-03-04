@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The amount applied to this account payable from credit memos. --></help>
+        <label><!-- Credit Memo Applied Amount --></label>
+        <name>AcctSeed__Credit_Memo_Applied_Amount__c</name>
+    </CustomFieldTranslation>

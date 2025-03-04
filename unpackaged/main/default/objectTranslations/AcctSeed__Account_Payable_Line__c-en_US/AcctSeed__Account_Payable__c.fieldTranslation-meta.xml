@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Reference to Accounts Payable Header. --></help>
+        <label><!-- Payable --></label>
+        <name>AcctSeed__Account_Payable__c</name>
+        <relationshipLabel><!-- Payable Lines --></relationshipLabel>
+    </CustomFieldTranslation>

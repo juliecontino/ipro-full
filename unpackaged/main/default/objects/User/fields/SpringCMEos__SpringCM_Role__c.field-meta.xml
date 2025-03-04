@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpringCMEos__SpringCM_Role__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>-Guest (View Only Access)
+-Limited Subscriber (Select access to features)
+-Full Subscriber (Complete access to features)
+-User Administrator (Complete access to features and some administrative power)
+-Super Administrator (Full administrative power)</inlineHelpText>
+    <label>SpringCM Role</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Full Subscriber</fullName>
+                <default>true</default>
+                <label>Full Subscriber</label>
+            </value>
+            <value>
+                <fullName>Super Administrator</fullName>
+                <default>false</default>
+                <label>Super Administrator</label>
+            </value>
+            <value>
+                <fullName>User Administrator</fullName>
+                <default>false</default>
+                <label>User Administrator</label>
+            </value>
+            <value>
+                <fullName>Limited Subscriber</fullName>
+                <default>false</default>
+                <label>Limited Subscriber</label>
+            </value>
+            <value>
+                <fullName>Guest</fullName>
+                <default>false</default>
+                <label>Guest</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

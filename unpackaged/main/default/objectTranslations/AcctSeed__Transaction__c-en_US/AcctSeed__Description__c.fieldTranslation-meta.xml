@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field is populated based on the transaction source record. The mapping is from Description field on related Cash Receipt, Cash Disbursement or Journal Entry Line record. --></help>
+        <label><!-- Description --></label>
+        <name>AcctSeed__Description__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter any comments needed to instruct the warehouse in delivery of these products. --></help>
+        <label><!-- Delivery Comments --></label>
+        <name>Delivery_Comments__c</name>
+    </CustomFieldTranslation>

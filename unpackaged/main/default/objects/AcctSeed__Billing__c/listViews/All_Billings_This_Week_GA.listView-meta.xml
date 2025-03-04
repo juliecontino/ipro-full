@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Billings_This_Week_GA</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Customer__c</columns>
+    <columns>Customer_Alias__c</columns>
+    <columns>AcctSeed__Accounting_Period__c</columns>
+    <columns>AcctSeed__Date__c</columns>
+    <columns>AcctSeed__Due_Date2__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <columns>AcctSeed__Type__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <columns>Tax_Amount__c</columns>
+    <columns>AcctSeed__Balance__c</columns>
+    <columns>AcctSeed__Age__c</columns>
+    <columns>AcctSeed__Billing_Comment__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>THIS_WEEK</value>
+    </filters>
+    <filters>
+        <field>CCE__c</field>
+        <operation>equals</operation>
+        <value>Wells Fargo</value>
+    </filters>
+    <label>All Billings - This Week-GA</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

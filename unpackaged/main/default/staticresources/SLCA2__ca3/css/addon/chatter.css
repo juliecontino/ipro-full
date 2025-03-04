@@ -1,0 +1,350 @@
+/* 
+    Document   : day
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA ._addon_chatter{
+    border:1px solid red;
+}
+
+.JQ_CA .CA_event_detail ._posts{
+    overflow-y: auto;
+    position: absolute;
+    top:20px;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1;
+}
+
+    .JQ_CA .CA_event_detail ._posts > div{
+        padding: 5px;
+        position: relative;
+        border-bottom: 1px dotted #ddd;
+    }
+    
+    .JQ_CA .CA_event_detail ._posts  b._block{
+        display: block;
+        min-height: 45px;
+        margin:0;
+        padding:0 0 0 50px;
+        font-weight: normal;
+    }
+    
+    .JQ_CA .CA_event_detail ._posts   .actor_foto{
+        display: inline-block;
+        vertical-align: top;
+        width:45px;
+        position: absolute;
+        top:0;
+        left:0;
+    }
+    
+    .JQ_CA .CA_event_detail ._posts .actor{
+        display: inline-block;
+        vertical-align: top;
+        font-weight: bolder;
+        font-size: 12px;
+    }
+    .JQ_CA .CA_event_detail ._posts > div  .date {
+        display: inline-block;
+        font-weight: normal;
+        margin-left:10px;
+        font-style: italic; 
+        font-size: 80%;
+    }
+    
+    .JQ_CA .CA_event_detail ._posts > div  .text{
+        display: block;
+        margin-top:5px;
+        font-size: 80%;
+    }
+    
+        .JQ_CA .CA_event_detail ._posts > div  .text a._mention,
+        .JQ_CA .CA_event_detail ._posts > div  .comments > .comment a._mention{
+            color:#7d7d84;
+            text-decoration: none;
+        }   
+        .JQ_CA .CA_event_detail ._posts > div  .text a._topic,
+        .JQ_CA .CA_event_detail ._posts > div  .comments > .comment a._topic{
+            color:#015ba7;
+            text-decoration: none;
+        }   
+    
+    .JQ_CA .CA_event_detail ._posts > div  .comments{
+        display: block;
+        padding-left:30px;
+        margin-top:3px;
+        border-top: 1px solid #eee;
+        
+    }
+    
+        .JQ_CA .CA_event_detail ._posts > div  .comments > .comment{
+            display: block;
+            margin-bottom:5px;
+            background: #fff;
+            position: relative;
+        }
+        
+        .JQ_CA .CA_event_detail ._posts > div  .comments > .comment:nth-child(odd){
+            background: #eee;
+        }
+        
+        .JQ_CA .CA_event_detail ._posts > div  .comments > .comment .body{
+            display: block;
+            margin-top:2px;
+            font-size: 11px;
+        }
+        
+    .JQ_CA .CA_event_detail ._posts > div  .link,
+    .JQ_CA .CA_event_detail ._posts > div  .file{
+        display: block;
+    }
+    
+        .JQ_CA .CA_event_detail ._posts > div  .link a,
+        .JQ_CA .CA_event_detail ._posts > div  .file a{
+            cursor: pointer;
+            font-style: italic;
+            text-decoration: underline;
+            color:#51A0D1;
+            font-size: 80%;
+        }
+    
+    .JQ_CA .CA_event_detail ._posts > div  .poll{
+        display: block;
+        border:1px solid #eee;
+        padding:2px;
+    }
+    
+        .JQ_CA .CA_event_detail ._posts > div  .poll .poll_title{
+            font-size: 90%;
+            font-weight: bolder;
+        }
+        
+        .JQ_CA .CA_event_detail ._posts > div  .poll > span{
+            font-size: 75%;
+            margin-left: 10px;
+            padding:3px;
+            display: block;
+        }
+        
+            .JQ_CA .CA_event_detail ._posts > div  .poll > span > input{
+                margin-right: 10px;
+                border:0;
+            }
+
+            .JQ_CA .CA_event_detail ._posts > div  .poll > span > i{
+                display: inline-block;
+                /*margin-left: 10px;*/
+                margin-right: 3px;
+                line-height: 15px;
+                height:15px;
+                border-radius: 3px;
+                vertical-align: middle;
+                background: #52A1D1;
+            }
+            
+        .JQ_CA .CA_event_detail ._posts > div  .poll > span.simple_button{
+            display: inline-block;
+        }
+        
+        
+    .JQ_CA .CA_event_detail ._posts > div  .actions{
+        display: block;
+        padding: 4px 0 ;
+    }
+        .JQ_CA .CA_event_detail ._posts > div  .actions  > a:first-child{
+            margin-left: 0;
+        }
+        .JQ_CA .CA_event_detail ._posts > div  .actions  > a {
+            cursor: pointer;
+            color:#52A1D1;
+            font-size: 70%;
+            margin-left: 15px;
+            display: inline-block;
+            padding:1px;
+            border-radius: 2px;
+        }
+        .JQ_CA .CA_event_detail ._posts > div  .actions  > sup{
+            display: inline-block;
+            font-size: 70%;
+            margin-left: 3px;
+            padding:1px;
+            vertical-align: middle;
+        }
+
+        .JQ_CA .CA_event_detail ._posts > div  .actions  > a:hover {
+            color:#fff;
+            background-color: #52A1D1;
+            
+        }
+        
+        .JQ_CA .CA_event_detail ._posts > div  .actions  > a.shadow{
+            opacity: 0.4;
+        }
+        
+        
+.JQ_CA .CA_event_detail ._post_form{
+    position: absolute;
+    top:0;
+    /*height:20px;*/
+    display: none;
+    bottom:0;
+    background: #fff;
+    left:0;
+    right:0;
+    z-index:2;
+    border-bottom:2px solid #ddd;
+}        
+
+.JQ_CA .CA_event_detail .show_form ._post_form{
+    display: block;
+    z-index:2;
+    background: #fff;
+}
+    
+    .JQ_CA .CA_event_detail ._post_form b{
+        position: absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        height:30px;
+        background: #fff;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .JQ_CA .CA_event_detail ._post_form textarea{
+        height:calc(100% - 35px);
+        border:1px solid #ddd;
+        background: #fff;
+        border-radius: 0;
+        position: relative;
+        /*width: 100%;*/
+        z-index:1;
+        font-size: 80%;
+        width: 100%;
+        /*width: calc(100% - 50px);*/
+        /*padding-right: 60px;*/
+    }
+    .JQ_CA .CA_event_detail ._post_form .tag_datalist{
+        position: absolute;
+        display: none;
+        z-index:2;
+        left:0;
+        right:0;
+        bottom:30px;
+        margin-bottom: -80px;
+        height:80px;
+        overflow-y: auto;
+        background-color: #fff;
+        box-shadow: 0 0px 4px #aaa;
+        border:1px solid #ddd;
+        padding:2px;
+        border-radius: 3px;
+    }
+    
+    .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist{
+        display: block;
+    }
+    
+        .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist > div{
+            cursor: pointer;
+            display: block;
+            padding:5px;
+            border-bottom: 1px dotted #ddd;
+        }
+        
+        
+        
+        .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist > div:nth-child(odd){
+            /*background-color: #c6e1ff;*/
+            background: #eee;
+        }
+        
+        .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist > div:hover,
+        .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist > div._sel{
+            background: #ddd;
+        }
+        
+            .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist > div > img{
+                display: inline-block;
+                margin-right:5px;
+                margin-left:10px;
+                width: 16px;
+                height:16px;
+                vertical-align: bottom;
+                font-size: 80%;
+            }
+            
+            .JQ_CA .CA_event_detail ._post_form.show_tag .tag_datalist > div > span{
+                font-weight: bolder;
+            }
+
+   
+    
+        .JQ_CA .CA_event_detail ._post_form b span.simple_button{
+            /*margin: 0 !important;*/
+            display: inline-block;
+            z-index:2;
+            margin-right:10px !important;
+        }
+    
+/*        .JQ_CA .CA_event_detail ._post_form span.simple_button:first-child{
+            left:20px;
+        }*/
+    
+    
+.JQ_CA .CA_event_detail .add_post_button{
+    display: block;
+    position: absolute;
+    top:0;
+    height:20px;
+    cursor: text;
+    border: 1px solid #ddd;
+    left:0;
+    right:80px;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom-left-radius:  2px;
+    border-bottom-right-radius:  2px;
+    box-shadow: inset 0 2px 2px #ddd;
+}
+
+.JQ_CA .CA_event_detail .follow_button{
+    display: block;
+    position: absolute;
+    top:0;
+    height:20px;
+    border: 1px solid #ddd;
+    left:auto;
+    width:80px;
+    right:0;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: pointer;
+    z-index:9;
+    line-height: 20px;
+    text-align: center;
+    font-size: 90% !important;
+}
+
+.JQ_CA .CA_event_detail .add_post_button:hover{
+    opacity: 1;
+}
+.JQ_CA .CA_event_detail .show_form .add_post_button,
+.JQ_CA .CA_event_detail .show_form .follow_button{
+    display: none;
+}
+
+.JQ_CA .CA_event_detail  .chatter_message{
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}

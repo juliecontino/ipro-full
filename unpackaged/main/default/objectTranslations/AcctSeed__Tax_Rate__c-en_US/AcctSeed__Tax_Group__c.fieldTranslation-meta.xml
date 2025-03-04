@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Tax Group serves as a container for the related child Tax Records and, when populated on the Billing Line, the calculated Tax Amount is a function of the Combined Tax Rate of all related child Tax Rates. --></help>
+        <label><!-- Tax Group --></label>
+        <name>AcctSeed__Tax_Group__c</name>
+        <relationshipLabel><!-- Tax Rates --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Offeror&apos;s name or contract number, per DOT regulation --></help>
+        <label><!-- Offeror --></label>
+        <name>zkfedex__Offeror__c</name>
+    </CustomFieldTranslation>

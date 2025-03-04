@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Provides access to all components required to interact with the Change Case Ownership Plus application.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>CCOP End User</label>
+    <classAccesses>
+        <apexClass>ChangeCaseOwner__CaseOwnerChangeLightningController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>ChangeCaseOwner__Case_Owner</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ChangeCaseOwner__case_owner_change</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

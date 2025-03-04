@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Indicates account is eligible for use in accounting application. --></help>
+        <label><!-- Accounting Active --></label>
+        <name>AcctSeed__Accounting_Active__c</name>
+    </CustomFieldTranslation>

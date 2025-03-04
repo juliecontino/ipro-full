@@ -1,0 +1,267 @@
+<apex:page standardController="rh2__RH_Job__c" title="Rollup Helper Run Page" extensions="rh2.PS_DefineJob_Controller" standardStylesheets="false" sidebar="false"  applyBodyTag="false" docType="html-5.0" showHeader="true">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	
+	<head> 
+    	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+         <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/RollupRun.js') }"/>
+    	 <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }"/>
+         <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/hs_breadcrumbs.js')}" />
+         <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+         <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/grayBackground.css')}" />
+         <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/customMessage.css') }" />
+         <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/font-awesome/css/font-awesome.min.css') }" />
+     </head>
+
+  <script>
+        
+        //Verify namespace is ready
+        var rh = rh || {};
+        var batchSize;
+        var overwriteFlag;
+            
+        
+        rh.j$ = jQuery.noConflict();
+        rh.j$(document).ready(function() {
+            batchSize = {!maxBatchSize};
+            calcMaxRecords();
+
+            selectBreadcrumb_HS();
+            overridePageMessages();
+        });
+
+        function calcMaxRecords() {
+            callMaxRecCount();
+        }
+
+         function setPositionOfTooltip(tooltip, label){
+            var xPos = 0;
+            var yPos = 0;
+            var height = 0;
+            
+            var item = document.getElementById(label);
+            
+            while(item){
+            
+                xPos += (item.offsetLeft - item.scrollLeft + item.clientLeft);
+                yPos += (item.offsetTop - item.scrollTop + item.clientTop);
+                
+                item = item.offsetParent;
+            }
+            var tt = document.getElementById(tooltip);
+            var height = rh.j$('#' + tooltip).outerHeight(true);
+            
+            tt.style.top = yPos - height - 13 + 'px';
+          
+            tt.style.left = xPos - 18 + 'px';
+        }
+        
+        function setShowTooltipFormatting(tooltip){
+            var tt = document.getElementById(tooltip);
+            
+            tt.style.display = 'block';
+            tt.style.overflow = 'visible';
+            tt.style.wordWrap = 'break-word';
+        }
+  </script>
+  
+    <body>
+    	<apex:form id="form" >
+        <apex:actionFunction name="callMaxRecCount" action="{!calculateMaxRecords}" reRender="runEstimate" status="loading"/>
+        <apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+        <apex:slds />
+	 	<div class="slds-scope" role="main"> 
+	 		<div class="slds-card grayBackground">
+  				<header class="slds-card__header">
+	       			<nav role="navigation">
+    					<ol class="slds-breadcrumb slds-list_horizontal">
+                            <li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!URLFOR($Page.PS_landingPage)}">{!$Label.Home}</a></li>
+   		   					<li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.PS_Allsettings)}">{!$Label.AllRollupSetting}</a></li>
+       					</ol>
+        			</nav>
+  				</header>
+  			</div>
+ 			<div class="slds-card grayBackground">
+				<header class="slds-card__header slds-grid">
+           			<div class="slds-col">
+               			<h2 class="slds-text-heading_medium slds-truncate">{!$Label.RunRollup}</h2>
+             		</div>
+             			
+         			<div class="slds-col_padded" align="right">   		
+                        <apex:commandLink onclick="showModal(true, 'manualRunInfoModal')" rerender="manualRunInfoModal" styleClass="slds-button slds-button_neutral" style="margin-right:15px;">{!$Label.rh2__About}</apex:commandLink>
+                        <apex:commandLink styleClass="slds-button slds-button_brand" onclick="showModal(true, 'manualRunHistoryModal');" rerender="manualRunHistoryModal">{!$Label.rh2__LastManualRunHistory}</apex:commandLink> 
+             			<apex:commandLink styleClass="slds-button slds-button_neutral" rendered="{!IsSourceObjectTriggerable}" action="{!goToEnableRealtime}">{!$Label.rh2__ManageRealtime}</apex:commandLink> 
+         			</div>        				
+                 </header>
+                <apex:outputPanel rendered="{!NOT(rollupSetting.rh2__exceptionMessage__c == null)}" styleClass="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning">
+                    <div>
+                        <h2>{!$Label.RollupExceptionFound}</h2>
+                        <h2>{!rollupSetting.exceptionMessage__c}</h2>
+                        <h2>{!$Label.ExceptionMayAffectProcessing} {!$Label.IfYouNeedFurtherAssistancePleaseContact}&nbsp; <apex:outputLink value="mailto:support@passagetech.com">support@passagetech.com</apex:outputLink>.</h2>
+                    </div>
+                </apex:outputPanel>
+         		<section class="slds-card__body">
+                    <apex:outputPanel id="pageMsgs">
+                        <apex:pageMessages />
+                    </apex:outputPanel>
+                    <center>
+                       <apex:outputPanel id="overwriteWarnings" style="width:80%;" styleClass="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" rendered="{!overwrite}">
+                           <apex:outputPanel id="overwriteWarning" rendered="{!AND(overwrite, blankOverwrite)}">
+                               {!$Label.rh2__WarningRunningThisRollup} {!targetField} {!$Label.rh2__FieldToBeOverwritten}
+                           </apex:outputPanel>
+                           <apex:outputPanel id="blankOverwriteWarning" rendered="{!AND(overwrite, !blankOverwrite)}">
+                               {!$Label.rh2__WarningRunningThisRollup} {!targetField} {!$Label.rh2__FieldToBeOverwrittenBlank} {!targetField} {!$Label.rh2__BlankOverwriteField}"
+                           </apex:outputPanel>
+                       </apex:outputPanel>              
+                   </center>  
+                   <br/>
+         			<div class="slds-grid slds-grid_align-center">                        
+         				<div class="slds-col slds-shrink" style="max-width:400px;">        			
+         					<div class="slds-box slds-theme_default slds-shrink">
+         						<div class="slds-grid slds-grid_align-center">
+	         						<span class="slds-text-heading_small" align="middle">'{!rollupLabel}' {!$Label.Rollup}</span>
+	                   				<apex:inputHidden value="{!rh2__RH_Job__c.rh2__Rollup_Name__c}" />	                  
+                                    <apex:inputHidden value="{!rh2__RH_Job__c.rh2__Unit__c}" />
+                                    <apex:inputHidden value="{!rh2__RH_Job__c.rh2__BatchSize__c}" />
+	               	 			</div>
+	               				<br/>
+	                			<div class="slds-grid slds-grid_align-center">
+	                				<span class="slds-col"> {!$Label.RunningThisRollup}</span>&nbsp;
+                                </div>
+                                <apex:outputPanel id="runEstimate" styleClass="slds-grid slds-grid_align-center">
+                                    <span style="color:red;">{!info.rollupRunTime} {!$Label.ToComplete}</span>&nbsp;
+                                    <a onmouseover="setShowTooltipFormatting('help-estimate'); setPositionOfTooltip('help-estimate', 'tooltipEmailRollover');  " onmouseout="document.getElementById('help-estimate').style.display = 'none';"  id="tooltipEmailRollover">
+                                    <img class="slds-icon slds-icon_x-small" src="/apexpages/slds/latest/assets/icons/utility/info_60.png"></img>
+                                    </a>
+                                    <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" id="help-estimate" style="position:fixed; z-index:99; display:none !important;">
+                                        <div class="slds-popover__body">
+                                            {!$Label.AnyRunInformation}
+                                        </div>
+                                    </div>
+                                    <br/><br/>
+                                </apex:outputPanel>
+
+                                <center>
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="filterList"> {!$Label.rh2__ParentFilterOptional}:</label> 
+                                        <apex:selectList value="{!selectedFilter}" size="1" style="width:100% !important;" styleClass="slds-form-element__control">
+                                            <apex:selectOptions value="{!ValidFiltersForObject}"/>
+                                            <apex:actionSupport event="onchange" action="{!calculateMaxRecords}" reRender="runEstimate, filterLinks" status="loading"/>
+                                        </apex:selectList>
+                                        <apex:outputPanel id="filterLinks">
+                                            <apex:outputPanel rendered="{!existingFilterSelected}">
+                                                <apex:commandLink style="padding-left:10px; padding-right:10px;" action="{!goToEditFilter}" value="{!$Label.rh2__Edit}"/>|
+                                            </apex:outputPanel> 
+                                            <apex:commandLink style="padding-left:10px;" action="{!goToNewFilter}" value="{!$Label.rh2__New}"/>
+                                        </apex:outputPanel>
+                                    </div>
+                                </center> <br/>
+                                <center>
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label"> {!$Label.rh2__NotificationEmailOptional}:</label>
+                                        <apex:outputPanel rendered="{! IsEmailDeliverabilityDisabled}">
+                                            <a onmouseover="setShowTooltipFormatting('email-deliverability'); setPositionOfTooltip('email-deliverability', 'tooltipRollover');  " onmouseout="document.getElementById('email-deliverability').style.display = 'none';"  id="tooltipRollover">
+                                                <i class="fa fa-exclamation-triangle slds-button__icon slds-button__icon_medium" style="color:rgb(248,144,56);"></i>
+                                            </a>
+                                            <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" id="email-deliverability" style="position:fixed; z-index:99; display:none !important;">
+                                                <div class="slds-popover__body">
+                                                    {!$Label.EmailDevlierability}
+                                                </div>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <br/> 
+                                        <apex:inputText style="width:90% !important;" value="{!notificationEmail}"/> 
+                                        <apex:outputText value="{!$Label.rh2__MultipleEmailsShouldBeSeparated}" style="width:100% !important;font-size:0.7rem;color:dimGray;"/>
+                                    </div>
+                                </center><br/>
+                                <center>
+                                    <apex:commandButton styleClass="slds-button slds-button_brand" id="runButton" value="{!$Label.rh2__StartRollupRun}" action="{!runForAllRecords}" oncomplete="overridePageMessages();" status="loading"  rerender="filterLinks,pageMsgs"/> &nbsp;
+                                    <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!allSettingsRedirect}" value="{!$Label.rh2__Cancel}" reRender="form"/>
+                                </center>                        
+                                <apex:inputHidden value="{!rh2__RH_Job__c.rh2__ParentFilter__c}" />             
+                                <apex:inputHidden value="{!rh2__RH_Job__c.rh2__RunForAllRecords__c}" />            		
+             				</div> 
+             			</div>
+             		</div>   
+            	</section> 
+                <div id="manualRunHistoryModal" style="display:none;">
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <div class="slds-modal__header">
+                                <button type="button" onclick="showModal(false, 'manualRunHistoryModal')" class="slds-button slds-button_icon-inverse slds-modal__close">
+                                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                        <use href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                    </svg>
+                                </button>
+                                <h2 class="slds-text-heading_medium">{!$Label.rh2__LastManualRunHistory}</h2>
+                            </div>
+                            <div class="slds-modal__content slds-p-around_medium">
+                                <apex:outputPanel rendered="{!noManualRuns}">
+                                    <center>
+                                        {!$Label.rh2__NoManualRuns}
+                                    </center>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!!noManualRuns}">
+                                    <center>
+                                        <b>{!$Label.LastRunDate}</b>
+                                        {!rollupSetting.Last_Run_Date__c}
+                                        <br />
+                                        <b>{!$Label.LastRanBy}</b>
+                                        {!rollupSetting.Last_Run_User__c}
+                                        <br />
+                                        <b>{!$Label.LastRunDuration}</b>
+                                        {!rollupSetting.Last_Run_Duration__c}
+                                        <br />
+                                        <b>{!$Label.NumberOfUsedRecords}</b>
+                                        <apex:outputText value="{0, number, 0}">
+                                            <apex:param value="{!rollupSetting.rh2__Number_Of_Past_Records__c}" />
+                                        </apex:outputText>
+                                        <br />
+                                        <b>{!$Label.NumberOfManualRuns}</b>
+                                        <apex:outputText value="{0, number, 0}">
+                                            <apex:param value="{!rollupSetting.rh2__Number_Of_Manual_Runs__c}" />
+                                        </apex:outputText>
+                                        <br />
+                                        <b>{!$Label.PastParentFilter}</b>
+                                        {!rollupSetting.Parent_Record_Filter_Name__c}
+                                        <br />
+                                    </center>
+                                </apex:outputPanel>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <apex:commandButton styleClass="slds-button slds-button_neutral" onclick="showModal(false, 'manualRunHistoryModal');" rerender="manualRunHistoryModal" value="Close" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>    
+                <div id="manualRunInfoModal" style="display: none;">
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <div class="slds-modal__header">
+                                <button type="button" onclick="showModal(false, 'manualRunInfoModal')" class="slds-button slds-button_icon-inverse slds-modal__close">
+                                    <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                        <use href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                    </svg>
+                                </button>
+                                <h2 class="slds-text-heading_medium">About Running Manual Rollups</h2>
+                            </div>
+                            <div class="slds-modal__content slds-p-around_medium">
+                                A rollup may be run manually to ensure all target field values are populated and current. It is recommended to run 
+                                a rollup manually when a rollup is initially created, or when changes to the rollup or associated filters are made. 
+                                A parent filter may be used to filter which target records get updated.
+                                Progress of any rollup job may be monitored from the&nbsp;<apex:outputLink value="{!JSINHTMLENCODE(RollupQueuePageLink)}" target="_blank">Rollup Queue page</apex:outputLink>.
+                            </div>
+                            <div class="slds-modal__footer">
+                                <apex:commandButton styleClass="slds-button slds-button_neutral" onclick="showModal(false, 'manualRunInfoModal');" rerender="manualRunInfoModal" value="{!$Label.rh2__Close}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>        	
+             </div>	
+             <c:Loading_Spinner opacity="1"/>
+         </div>
+	 	</apex:form>
+	</body>
+</html>
+</apex:page>

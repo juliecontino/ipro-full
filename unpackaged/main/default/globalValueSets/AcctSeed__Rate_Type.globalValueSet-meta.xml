@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Current</fullName>
+        <default>false</default>
+        <label>Current</label>
+    </customValue>
+    <customValue>
+        <fullName>Monthly Average</fullName>
+        <default>false</default>
+        <label>Monthly Average</label>
+    </customValue>
+    <masterLabel>Rate Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

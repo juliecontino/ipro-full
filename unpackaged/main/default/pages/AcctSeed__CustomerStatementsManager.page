@@ -1,0 +1,38 @@
+<apex:page standardController="Account" title="Statements | Accounting Seed" extensions="AcctSeed.CustomerStatementsManagerController" recordSetVar="customers" showHeader="true" sidebar="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/common.css')}" />
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.Account.labelPlural}" subtitle="Customer Statement PDFs" />
+        <apex:pageBlock id="thePageBlock" title="Mass Save and Email PDFs">
+            <apex:pageMessages escape="false" />
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" onstop="AcctSeed.ASModule.pageLoad()" />
+                <apex:commandButton id="saveButton" value="Save PDFs" action="{!savePDFs}" status="saveStatus" reRender="theForm" rendered="{!!isNoSelectedCustomers}" />
+                <apex:commandButton id="emailButton" value="Email PDFs" action="{!emailPDFs}" status="saveStatus" reRender="theForm" rendered="{!!isNoSelectedCustomers}" disabled="{!isAllMiss}"/>
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable columns="5" value="{!wrappedCustomers}" var="wrappedCustomer" rendered="{!!isNoSelectedCustomers}">
+                <apex:column headerValue="{!$ObjectType.Account.fields.Name.label}">
+                    <apex:outputLink value="/{!wrappedCustomer.customer.Id}">{!wrappedCustomer.customer.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.AcctSeed__Ledger__c.label}">
+                    <apex:selectList value="{!wrappedCustomer.selectedLedgerId}" size="1">
+                        <apex:selectOptions value="{!wrappedCustomer.availableLedgers}"/>
+                    </apex:selectList>
+                </apex:column>
+                <apex:column headerValue="Currency" rendered="{!isMultiCurrencyEnabled}">
+                    <apex:selectList value="{!wrappedCustomer.selectedCurrency}" size="1">
+                        <apex:selectOptions value="{!wrappedCustomer.availableCurrencies}"/>
+                    </apex:selectList>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.Account.fields.AcctSeed__Billing_Contact__c.label}">
+                    <apex:outputField value="{!wrappedCustomer.customer.AcctSeed__Billing_Contact__c}" />
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.Account.fields.AcctSeed__Billing_Contact__c.label} {!$ObjectType.Contact.fields.Email.label}">
+                    <apex:outputField value="{!wrappedCustomer.customer.Billing_Contact__r.Email}" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Additional notes provided by the user for a particular transaction through application or API services. --></help>
+        <label><!-- Memo --></label>
+        <name>AcctSeed__Memo__c</name>
+    </CustomFieldTranslation>

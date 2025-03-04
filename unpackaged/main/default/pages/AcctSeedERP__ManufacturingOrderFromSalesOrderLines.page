@@ -1,0 +1,28 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Sales_Order__c" title="Create Order | Accounting Seed" extensions="AcctSeedERP.ManufacturingOrderFromSalesOrderLines" recordSetVar="so" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />   
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Sales Order" subtitle="Create Manufacturing Orders" />
+        <apex:pageBlock id="thePageBlock" title="Manufacturing Orders">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Creating...')" />
+                <apex:commandButton id="saveButton" value="Create Manufacturing Orders" action="{!createManufacturingOrders}" status="saveStatus" reRender="theForm" rendered="{!!isError && mOrderWrapperList.size > 0 && !isProcessed}" />
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockTable value="{!mOrderWrapperList}" cellpadding="6" var="item" rendered="{!!isError && mOrderWrapperList.size > 0}">
+                <apex:column headerValue="Manufacturing Order" rendered="{!isProcessed}">
+                    <apex:outputLink value="/{!item.manProject.Id}" id="theLink">{!item.manProject.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column value="{!item.product.Name}" />
+                <apex:column value="{!item.product.ProductCode}" />
+                <apex:column headerValue="Template Name" value="{!item.product.Manufacturing_Order_Template__r.Name}" />
+                <apex:column width="80px" styleClass="align-right" headerClass="align-right" headerValue="Quantity" value="{!item.quantity}" />
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

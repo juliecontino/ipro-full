@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Select the Rate Type from the Exchange Rate to be used in the Foreign Currency Translation process. For example, you may want to select “Current” for certain Balance Sheet GL Accounts, and Monthly Average for certain P&amp;L GL Accounts. --></help>
+        <label><!-- Rate Type --></label>
+        <name>AcctSeed__Rate_Type__c</name>
+    </CustomFieldTranslation>

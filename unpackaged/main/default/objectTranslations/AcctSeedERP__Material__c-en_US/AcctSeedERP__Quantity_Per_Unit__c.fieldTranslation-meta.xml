@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Quantity to be used on work order or quantity per unit if building a kit. --></help>
+        <label><!-- Quantity Ordered --></label>
+        <name>AcctSeedERP__Quantity_Per_Unit__c</name>
+    </CustomFieldTranslation>

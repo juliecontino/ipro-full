@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- For a freight shipment, this is the number of packages on a single skid --></help>
+        <label><!-- Total Pieces On Skid --></label>
+        <name>zkfedex__TotalPiecesOnSkid__c</name>
+    </CustomFieldTranslation>

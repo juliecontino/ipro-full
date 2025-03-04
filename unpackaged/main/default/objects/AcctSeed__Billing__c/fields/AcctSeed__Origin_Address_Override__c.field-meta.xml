@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Origin_Address_Override__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Overrides the Billing's default origin address.</description>
+    <inlineHelpText>Overrides the Billing's default origin address.</inlineHelpText>
+    <label>Origin Address Override</label>
+    <referenceTo>AcctSeed__Address__c</referenceTo>
+    <relationshipLabel>Origin Billings</relationshipLabel>
+    <relationshipName>Origin_Billings</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

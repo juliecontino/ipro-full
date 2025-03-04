@@ -1,0 +1,342 @@
+<apex:page controller="LH.LH_ExceptionDisplay_Controller" title="Lookup Helper Exceptions" standardStylesheets="false"  sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/hs_breadcrumbs.js')}" /> 
+    <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }"/>  
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />
+    <script>
+        var rh = rh || {};
+        rh.j$ = jQuery.noConflict();
+        rh.j$(document).ready(function(){
+            overridePageMessages();
+        });
+        function showRetryModal(){
+            document.getElementById('retryJobModal').style.display = 'block';
+            document.getElementById('retryJobBackdrop').style.display = 'block';
+        }
+
+        function closeRetryModal(error){
+            if(!error){
+                document.getElementById('retryJobModal').style.display = 'none';	
+                document.getElementById('retryJobBackdrop').style.display = 'none';
+                refreshRetryJobInfo();
+            }	
+        }
+
+        function showDeleteModal(){
+            document.getElementById('deleteModal').style.display = 'block';
+            document.getElementById('deleteModalBackdrop').style.display = 'block';
+        }
+
+        function closeDeleteModal(error){
+            if(!error){
+                document.getElementById('deleteModal').style.display = 'none';	
+                document.getElementById('deleteModalBackdrop').style.display = 'none';
+            }	
+        }
+
+        function setShowTooltipFormatting(tooltip){
+            var tt = document.getElementById(tooltip);
+            
+            tt.style.display = 'block';
+            tt.style.overflow = 'visible';
+            tt.style.wordWrap = 'break-word';
+        }
+
+        function confirmDeleteAll(){           
+            return confirm("Are you sure that you want to delete ALL Lookup Helper Exception Records?");
+        }
+    </script>
+    <style type="text/css">	
+        .floatButtonsRight {
+            float:right; 
+            margin-left:0.25rem;
+        }	
+
+        .buttonTooltip {
+            max-height:0px;
+            overflow:visible;
+            overflow-y:visible;
+            position:relative;
+            float:right;
+        }
+
+        .width95PercentWithAutoMargins{
+            width:95%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .width10PercentWordBreakAuto{
+            width:10%;
+            word-break: break-all;
+        }
+    </style>
+    <apex:slds />
+    <apex:form >
+        <apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+        <apex:actionFunction name="refreshRetryJobInfo" action="{!initializeRetryLookupInfo}" reRender="existingRetryJobInfo" />
+        <apex:actionFunction action="{!cancelExceptionLifespanChange}" name="callCancelExceptionLifespan" rerender="exceptionLifespanModal,exceptionLifespanInput" status="loading"/>
+    
+    <div class="slds-scope" role="main" >
+        <apex:outputPanel id="amountOfErrors">
+            <script>
+                function amountOfRecordsDeleted(){
+                    var exactly1 = {!amountOfErrorsDeleted} == 1;
+                    var moreThan9999 = {!amountOfErrorsDeleted} > 9999;
+                    if(!exactly1){
+                        if(moreThan9999){
+                            alert("Over 10000 Lookup Helper Exception records are being deleted! Because of the large volume, a Batch Apex job has been submitted, and it may take a few minutes for all records to be deleted.");
+                            var url = window.location.href;
+                            if(url.indexOf(".lightning.force.com") > 0){
+                                window.location.href = '/lightning/setup/AsyncApexJobs/home';
+                            } else {
+                                window.location.href = "/apexpages/setup/listAsyncApexJobs.apexp";
+                            }
+                        } else {
+                            alert({!amountOfErrorsDeleted} + " Lookup Helper Exception records were deleted!");
+                            location.reload();
+                        }                        
+                    } else {
+                        alert({!amountOfErrorsDeleted} + " Lookup Helper Exception record was deleted!");
+                        location.reload();
+                    }
+                    return false;
+                }
+            </script>
+        </apex:outputPanel>
+                   
+        <div class="slds-card slds-card_empty">
+            <header class="slds-card__header slds-grid grid_flex-spread">
+                <nav role="navigation">
+                    <ol class="slds-breadcrumb slds-list_horizontal">
+                        <li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!$Page.LH_LandingPage}">Home</a></li>
+                        <li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.LH_All_Settings)}">All Lookup Settings</a></li>                        
+                        <li class="slds-list__item slds-text-heading_label"> <a class="slds-text-link_reset" href="{!URLFOR($Page.LH_viewExceptions)}">View Exceptions</a></li>
+                    </ol>
+                </nav>
+            </header>
+        </div> 
+        <div class="slds slds-p-top_medium"> 
+            <div class="slds-card ">
+                <header class="slds-card__header slds-grid">
+                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h4 class="slds-text-heading_small slds-truncate">Lookup Helper Exceptions</h4>
+                        </div>                    		
+                    </div>
+                </header>
+                
+                    <section class="slds-card__body"> 
+                        <div  style="margin-right:2.25rem;">                     
+                        <apex:outputPanel id="commandButtons">
+                            <apex:outputPanel rendered="{!displayDeleteButton}">
+                                <a onmouseover="setShowTooltipFormatting('deleteHelp');" onmouseout="document.getElementById('deleteHelp').style.display = 'none';" class="slds-button slds-button_neutral floatButtonsRight" onclick="showDeleteModal();">Delete Exceptions</a>
+                            </apex:outputPanel>
+                            <div class="buttonTooltip">
+                                <div class="slds-popover slds-theme--info slds-popover_tooltip" id='deleteHelp' style="display:none !important;">                       
+                                    <div class="slds-popover__body">
+                                        Click here to delete Lookup Helper Exceptions.
+                                    </div>
+                                </div>
+                            </div>
+                            <apex:outputPanel id="exceptionMonitorWarning" rendered="{!NOT(isExceptionMonitorScheduled)}" >
+                                <apex:commandLink styleClass="slds-button slds-button_neutral floatButtonsRight" onmouseover="setShowTooltipFormatting('exceptionMonitorHelp');" onmouseout="document.getElementById('exceptionMonitorHelp').style.display = 'none';" action="{!scheduleExceptionMonitor}" rerender="exceptionMonitorWarning" value="Submit Exception Monitor Job" oncomplete="location.reload();"></apex:commandLink>
+                                <div class="buttonTooltip">
+                                    <div class="slds-popover slds-theme--info" id='exceptionMonitorHelp' style="display:none !important;">                       
+                                        <div class="slds-popover__body">
+                                            Click here to schedule the Lookup Helper Exception Monitor.
+                                        </div>
+                                    </div>    
+                                </div>
+                            </apex:outputPanel>
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" onclick="showModal(true, 'exceptionLifespanModal');" style="float:right;" value="Adjust Exception Lifespan" onmouseover="setShowTooltipFormatting('exceptionLifespanHelp');" onmouseout="document.getElementById('exceptionLifespanHelp').style.display = 'none';" reRender="exceptionLifespanModal"/>
+                            <div class="buttonTooltip">
+                                <div class="slds-popover slds-theme--info" id='exceptionLifespanHelp' style="display:none !important;">                       
+                                    <div class="slds-popover__body">
+                                        Click here to adjust how long Lookup Helper Exception records are kept.
+                                    </div>
+                                </div>    
+                            </div>
+                            <apex:outputPanel id="existingRetryJobInfo">
+                                <apex:outputPanel rendered="{!isRetryJobScheduled}">
+                                    <div style="margin-left:15px; width:33%; float:right;" class="slds-box slds-box_x-small slds-theme_warning" role="alert">
+                                        <center>
+                                            {!retryJobInfo}
+                                        </center>
+                                    </div>
+                                    <br/>
+                                </apex:outputPanel>
+                            </apex:outputPanel>                         
+                        </apex:outputPanel>
+                    </div>
+                        <br/>
+                        <div class="slds-box slds-box_xsmall slds-theme_default slds-m-around_large" style="width:95%; margin-right: auto; margin-left: auto;">
+                            Please select a lookup setting from the list to view exceptions that have occurred. 
+                            <br/>
+                            <a onclick="showRetryModal();">Click here to configure a scheduled job to automatically retry lookups for records that have encountered exceptions.</a>
+                        </div>
+                        <apex:outputPanel id="displayingMaxErrorsWarning">
+                            <apex:outputPanel rendered="{! shouldDisplayMaxErrorLimit}">
+                                <div class="slds-box slds-box_xsmall slds-theme_default slds-m-around_large width95PercentWithAutoMargins" style="margin-right:2.25rem;">
+                                    Only 10,000 of the current exception are being displayed. Resolve the current exceptions to see more.
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <c:LH_Retry_Lookups />
+                        <apex:actionStatus id="objectSelectListStatus">
+                            <apex:facet name="stop">
+                                <apex:selectList value="{!selectedSetting}" size="1" styleclass="slds-align_absolute-center width95PercentWithAutoMargins">
+                                    <apex:actionSupport event="onchange" rerender="exceptionContainer, deletionCriteria, displayingMaxErrorsWarning" action="{!assignSettingToDelete}" status="objectSelectListStatus"/>             
+                                    <apex:selectOptions value="{!settingsWithExceptionSelectOption}"/>
+                                </apex:selectList>
+                            </apex:facet>
+                            <apex:facet name="start" >
+                                <select class="slds-align_absolute-center width95PercentWithAutoMargins" disabled="true">
+                                    <option>Processing...</option>
+                                </select>
+                            </apex:facet>
+                        </apex:actionStatus>
+                        <br />
+                        
+                        <apex:outputPanel id="exceptionContainer" >       
+                            
+                            <c:Paginate pageController="{! paginatedFormattedErrors }" renderedComponent="exceptionContainer" statusDisplay="objectSelectListStatus"/>
+                            
+                            <apex:outputPanel rendered="{!OR(errorsToDisplay == null, errorsToDisplay.size == 0)}">
+                                No Exception Records
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!AND(errorsToDisplay != null, errorsToDisplay.size > 0)}">
+                                
+                                <table class="slds-table slds-table_bordered slds-max-medium-table_stacked"> 
+                                    <thead>
+                                        <tr style="width:100%;">
+
+                                            <th class="slds-text-heading_label slds-cell-wrap" style="width:80%;">Exception Description</th> 
+                                            <th class="slds-text-heading_label slds-cell-wrap" style="width:10%;">Occurrences</th>
+                                            <th class="slds-text-heading_label slds-cell-wrap" style="width:10%;">Last Date Occurred</th>
+                                        </tr>	
+                                    </thead>
+                                    
+                                    
+                                    
+                                    <apex:repeat value="{!errorsToDisplay}" var="entry">
+                                        <tr>
+                                            <td class="slds-cell-wrap" style="width:80%;">
+                                                <apex:outputLink value="/{!entry.errRec.id}" target="_blank"> {!entry.errRec.LH__Error_Description__c} </apex:outputLink> 
+                                            </td>
+                                            
+                                            <td class="slds-cell-wrap width10PercentWordBreakAuto">
+                                                {!entry.occurrence}
+                                            </td>
+                                            
+                                            <td class="slds-cell-wrap width10PercentWordBreakAuto"> 
+                                                <apex:outputField value="{!entry.errRec.LH__Last_Occurence__c}"/> 
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                    
+                                </table>
+                            </apex:outputPanel>
+                        </apex:outputPanel>                                            
+                </section>
+                <div id="deleteModal" class="slds-modal slds-fade-in-open" style="display:none;">
+                    <div class="slds-modal__container" style="max-width: 43rem; width: 70%;">
+                        <div class="slds-modal__header">
+                            <h2 class="slds-text-heading--medium">Delete Lookup Helper Exceptions</h2>
+                            <button type="button" onClick="closeDeleteModal(false);" class="slds-button slds-button_icon-inverse slds-modal__close">
+                                <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                    <span class="slds-assistive-text">Close</span>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="slds-modal__content slds-p-around_small">
+                            <apex:selectRadio styleClass="slds-input" value="{!deleteMode}" layout="pageDirection">
+                                <apex:selectOption itemValue="DATE" itemLabel="Delete by Date"/>
+                                <apex:selectOption itemValue="SETTING" itemLabel="Delete by Setting"/>
+                                <apex:actionSupport event="onchange" reRender="deletionCriteria, deleteButtons, deleteSelectedButtons" status="loading"/>
+                            </apex:selectRadio>
+                            <apex:outputPanel id="deletionCriteria">
+                                <apex:outputPanel rendered="{!deleteMode == 'DATE'}">
+                                    Delete Lookup Helper Exceptions last occurred before: &nbsp;
+                                    <apex:input value="{!dateToDelete}" type="date">
+                                        <apex:actionSupport event="onchange" rerender="deleteButtons, deleteSelectedButtons" status="loading"/>
+                                    </apex:input>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!deleteMode == 'SETTING'}">
+                                    Delete Lookup Helper Exceptions from setting: &nbsp;
+                                    <apex:selectList size="1" value="{!settingToDeleteErrorsFrom}" >
+                                        <apex:actionSupport event="onchange" reRender="deleteButtons, deleteSelectedButtons" status="loading"/>
+                                        <apex:selectOptions value="{! settingsWithExceptionSelectOption }"/>
+                                    </apex:selectList>                                    
+                                </apex:outputPanel>   
+                            </apex:outputPanel> 
+                            <apex:outputPanel id="deleteSelectedButtons" style="margin-left:0.25rem;">
+                                <apex:commandButton styleClass="slds-button slds-button_brand" action="{!determineDeleteMode}" oncomplete="closeDeleteModal(false); amountOfRecordsDeleted();" reRender="pageMessages, commandButtons, objectSelectListStatus, exceptionContainer, amountOfErrors" disabled="{!OR(AND(dateToDelete == null, deleteMode == 'DATE'), AND(OR(settingToDeleteErrorsFrom == null, settingToDeleteErrorsFrom == '--Select A Setting--'), deleteMode == 'SETTING'))}" value="Delete Selected Exceptions" status="loading"/>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="slds-modal__footer">
+                            <div class="slds-x-small-buttons--horizontal"> 
+                                <center>
+                                    <apex:outputPanel id="deleteButtons">
+                                        <apex:commandButton styleClass="slds-button slds-button_brand" action="{!deleteAllExceptions}" oncomplete="closeDeleteModal(false); amountOfRecordsDeleted();" onClick="if (!confirmDeleteAll()) return false;" reRender="pageMessages, commandButtons, objectSelectListStatus, exceptionContainer, amountOfErrors" value="Delete All Lookup Helper Exceptions" status="loading"/>
+                                        <button class="slds-button slds-button--neutral" type="button" onclick="closeDeleteModal(false);">Cancel</button>
+                                    </apex:outputPanel>
+                                </center> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="deleteModalBackdrop" class="slds-backdrop slds-backdrop--open" style="display:none;"></div>
+                <c:Loading_Spinner opacity="1"/>
+                <div class="slds-scope" id="exceptionLifespanModal" style="display:none;">
+                    <apex:outputPanel >
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container" style="width:760px !important;">
+                                <div class="slds-modal__header">
+                                    <span>
+                                        <h2 class="slds-text-heading_medium">Adjust Exception Lifespan</h2>
+                                        <button type="button" onclick="callCancelExceptionLifespan();showModal(false, 'exceptionLifespanModal');" class="slds-button slds-button_icon-inverse slds-modal__close">
+                                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                                <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                            </svg>
+                                        </button>
+                                    </span>
+                                </div>
+            
+                                <div class="slds-modal__content" style="padding:15px;">
+                                    <apex:outputText >The Exception Lifespan custom setting controls how long Lookup Helper exceptions are kept before deletion. Exceptions created within this limit will not be deleted even if the relevant issue has been resolved. If no value is entered, exceptions will be retained for 24 hours by default.</apex:outputText>
+                                    <br/><br/>
+                                    <apex:outputText >Please note: The Lookup Helper Exception Monitor must be scheduled in order to delete exceptions according to the exception lifespan.</apex:outputText>
+                                    <br/><br/>
+                                    <apex:outputText >Please enter a value between 1 and 99:</apex:outputText><br/>
+                                    <apex:inputText id="exceptionLifespanInput" value="{!exceptionLifespan}" styleClass="slds-input" style="width:8%;" maxlength="2" onkeypress="return limitNumberInput(event);"/>
+                                    <apex:outputText > Days</apex:outputText>
+                                </div>
+            
+                                <div class="slds-modal__footer">
+                                    <div class="slds-x-small-buttons_horizontal">
+                                        <center>
+                                            <apex:commandButton styleClass="slds-button slds-button_neutral slds-button_small slds-m-button_x-small" value="Cancel" action="{!cancelExceptionLifespanChange}" onclick="showModal(false, 'exceptionLifespanModal');" rerender="exceptionLifespanModal,exceptionLifespanInput" status="loading"/>
+            
+                                            <apex:commandButton styleClass="slds-button slds-button_brand slds-button_small slds-m-button_x-small" value="Update" action="{!updateExceptionLifespan}" onclick="showModal(false, 'exceptionLifespanModal');" rerender="exceptionLifespanModal,exceptionLifespanInput" status="loading"/>
+                                        </center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-backdrop slds-backdrop_open"></div>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+        
+    </div>   
+    
+</apex:form>      
+    <script>
+      selectBreadcrumb_HS();
+    </script>
+    </html>
+</apex:page>

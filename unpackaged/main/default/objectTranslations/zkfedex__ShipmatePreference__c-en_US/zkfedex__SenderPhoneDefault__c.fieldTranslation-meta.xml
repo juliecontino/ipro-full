@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If specified, the sender phone will be defaulted to this value for all users. Otherwise, the sender phone will be the phone number of the user. --></help>
+        <label><!-- Sender Phone Default --></label>
+        <name>zkfedex__SenderPhoneDefault__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Determines the source from which this transaction was imported.  Possible values: Yodlee, Financial File Import --></help>
+        <label><!-- Source --></label>
+        <name>AcctSeed__Source__c</name>
+        <picklistValues>
+            <masterLabel>Financial File Import</masterLabel>
+            <translation><!-- Financial File Import --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yodlee</masterLabel>
+            <translation><!-- Yodlee --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

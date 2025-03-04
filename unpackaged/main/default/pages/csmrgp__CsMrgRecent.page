@@ -1,0 +1,22 @@
+<apex:page id="pg" standardcontroller="Case" showHeader="false" standardStylesheets="true" applyHtmlTag="false">
+    <!-- SLDS Version 2.3.1 -->
+    <apex:stylesheet value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/style/slds/assets/styles/salesforce-lightning-design-system-vf.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/style/csmrgp-style.css')}"/>
+    <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d'}">
+        <style type="text/css">
+            body{
+                padding: 0px !important;
+            }
+
+            select {
+                width:75%;
+            }
+        </style>
+    </apex:outputPanel>
+
+    <apex:form >
+        <div class="slds-scope">
+            <c:RecentlyViewedCases cid="{!record.Id}" callerName="CsMrgRecent"/>
+        </div>
+    </apex:form>
+</apex:page> <!-- 20px height -->

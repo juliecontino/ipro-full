@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__PackageProfile__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicates whether this record represents a Package Profile. Package Profiles are generic records that are used by Shipmate for Package 'Re-Use'</description>
+    <inlineHelpText>Indicates whether this record represents a Package Profile. Package Profiles are generic records that are used by Shipmate for Package 'Re-Use'</inlineHelpText>
+    <label>Package Profile</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

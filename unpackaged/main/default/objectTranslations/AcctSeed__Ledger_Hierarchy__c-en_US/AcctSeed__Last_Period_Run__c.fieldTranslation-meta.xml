@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Last Period Run --></label>
+        <name>AcctSeed__Last_Period_Run__c</name>
+        <relationshipLabel><!-- Ledger Hierarchy --></relationshipLabel>
+    </CustomFieldTranslation>

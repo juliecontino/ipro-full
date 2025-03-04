@@ -1,0 +1,2 @@
+<apex:page standardController="zkfedex__Shipment__c" recordSetVar="Shipment" extensions="zkfedex.ManagerPageRedirectController" action="{! init }">
+</apex:page>

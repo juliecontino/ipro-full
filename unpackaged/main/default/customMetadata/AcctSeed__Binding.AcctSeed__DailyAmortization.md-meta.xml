@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Straight Line - Daily</label>
+    <protected>false</protected>
+    <values>
+        <field>AcctSeed__Description__c</field>
+        <value xsi:type="xsd:string">Accounting Seed packaged daily amortization model.</value>
+    </values>
+    <values>
+        <field>AcctSeed__Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>AcctSeed__Namespace__c</field>
+        <value xsi:type="xsd:string">AcctSeed</value>
+    </values>
+    <values>
+        <field>AcctSeed__To__c</field>
+        <value xsi:type="xsd:string">DailyAmortization</value>
+    </values>
+    <values>
+        <field>AcctSeed__Type__c</field>
+        <value xsi:type="xsd:string">AbstractAmortization</value>
+    </values>
+</CustomMetadata>

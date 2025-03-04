@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The total amount of hours which have not been billed. --></help>
+        <label><!-- Unbilled Hours --></label>
+        <name>AcctSeed__Unbilled_Hours__c</name>
+    </CustomFieldTranslation>

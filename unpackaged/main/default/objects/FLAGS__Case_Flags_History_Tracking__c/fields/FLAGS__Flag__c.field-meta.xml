@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FLAGS__Flag__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This should be used to display the Case Flag if your organization is not using business hours.</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(FLAGS__Flag_Set__c),null,IF(FLAGS__Hours_Offset__c+FLAGS__Hours_Elapsed__c &gt;= FLAGS__CaseTimeOffset4__c, 
+IMAGE( "/servlet/servlet.FileDownload?flagsort=" &amp; FLAGS__Case__r.FLAGS__Case_Flag_Age_Text__c &amp; "&amp;file=" &amp; $Setup.FLAGS__FlagPref__c.FLAGS__Offset4Image__c, "L4", 16, 16), 
+IF(FLAGS__Hours_Offset__c+FLAGS__Hours_Elapsed__c &gt;= FLAGS__CaseTimeOffset3__c, 
+IMAGE( "/servlet/servlet.FileDownload?flagsort=" &amp; FLAGS__Case__r.FLAGS__Case_Flag_Age_Text__c &amp; "&amp;file=" &amp; $Setup.FLAGS__FlagPref__c.FLAGS__Offset3Image__c, "L3", 16, 16), 
+IF(FLAGS__Hours_Offset__c+FLAGS__Hours_Elapsed__c &gt;= FLAGS__CaseTimeOffset2__c, 
+IMAGE( "/servlet/servlet.FileDownload?flagsort=" &amp; FLAGS__Case__r.FLAGS__Case_Flag_Age_Text__c &amp; "&amp;file=" &amp; $Setup.FLAGS__FlagPref__c.FLAGS__Offset2Image__c, "L2", 16, 16),
+IF(FLAGS__Hours_Offset__c+FLAGS__Hours_Elapsed__c &gt;= FLAGS__CaseTimeOffset1__c,
+IMAGE( "/servlet/servlet.FileDownload?flagsort=" &amp; FLAGS__Case__r.FLAGS__Case_Flag_Age_Text__c &amp; "&amp;file=" &amp; $Setup.FLAGS__FlagPref__c.FLAGS__Offset1Image__c, "L1",16,16),
+IMAGE( "/servlet/servlet.FileDownload?flagsort=" &amp; FLAGS__Case__r.FLAGS__Case_Flag_Age_Text__c &amp; "&amp;file=" &amp; $Setup.FLAGS__FlagPref__c.FLAGS__BlankOffsetImage__c, "L0",16,16))
+))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Flag</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

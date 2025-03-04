@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>testcongaemail__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK("https://composer.congamerge.com/composer8/index.html?SessionId="
++ $Api.Session_ID + "&amp;ServerURL=" + $Api.Partner_Server_URL_290 +
+  Payment_Reminder_Conductor__c, "Send Payment Reminder Email")</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Email Payment Reminder</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- SmartPost Ancillary Endorsement --></label>
+        <name>zkfedex__SmartPostAncillaryEndorsement__c</name>
+        <picklistValues>
+            <masterLabel>Address Correction</masterLabel>
+            <translation><!-- Address Correction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carrier Leave If No Response</masterLabel>
+            <translation><!-- Carrier Leave If No Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Change Service</masterLabel>
+            <translation><!-- Change Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forwarding Service</masterLabel>
+            <translation><!-- Forwarding Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Return Service</masterLabel>
+            <translation><!-- Return Service --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AS_Tax__Product_must_have_rate_and_GL_Accounts</fullName>
+    <active>true</active>
+    <errorConditionFormula>or(
+ isNull(AS_Tax__Tax_Rate__r.AcctSeed__Tax_Rate__c),
+ not(isPickVal(
+       AS_Tax__Tax_Rate__r.AcctSeed__Accounting_Type__c, 
+       "Tax Rate")),
+ and(isPickVal(AS_Tax__Tax_Type__c, "Sales"),   
+     isBlank(
+       AS_Tax__Tax_Rate__r.AcctSeed__Revenue_GL_Account__c)
+    ),
+ and(isPickVal(AS_Tax__Tax_Type__c, "Purchase"),
+     isBlank(
+       AS_Tax__Tax_Rate__r.AcctSeed__Expense_GL_Account__c)
+     ),
+ and(isPickVal(AS_Tax__Tax_Type__c, "Sales &amp; Purchase"),
+   or(
+     isBlank(
+       AS_Tax__Tax_Rate__r.AcctSeed__Expense_GL_Account__c),
+     isBlank(
+       AS_Tax__Tax_Rate__r.AcctSeed__Expense_GL_Account__c)
+     )
+    )
+  )</errorConditionFormula>
+    <errorDisplayField>AS_Tax__Tax_Rate__c</errorDisplayField>
+    <errorMessage>The Tax Rate product must have a Tax Type of "Tax Rate", the field Tax Rate cannot be blank, and the Revenue/Expense GL Accounts must be populated appropriate to "Sales", "Purchase" or "Sales and Purchase".</errorMessage>
+</ValidationRule>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Number of days the account payable is past due. This is derived by subtracting the due date from the end date associated with the accounting period. --></help>
+        <label><!-- Days Past Due --></label>
+        <name>AcctSeed__Days_Past_Due__c</name>
+    </CustomFieldTranslation>

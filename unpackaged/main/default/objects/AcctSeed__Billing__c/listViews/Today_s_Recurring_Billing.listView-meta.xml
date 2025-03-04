@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Today_s_Recurring_Billing</fullName>
+    <columns>NAME</columns>
+    <columns>CCE__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>AcctSeed__Accounting_Period__c</columns>
+    <columns>AcctSeed__Customer__c</columns>
+    <columns>Customer_Alias__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <columns>Grand_Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <label>Today's Recurring Billing</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

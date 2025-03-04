@@ -1,0 +1,2339 @@
+<apex:page controller="DSCORGPKG.ContactDetailController"  id="pg" tabStyle="Contact" sidebar="false" showHeader="{!Not(isInlinePage)}" standardStylesheets="{!Not(isInlinePage)}" applyBodyTag="false">
+        <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <head>
+                <meta charset="utf-8"/>
+                <!-- Salesforce Lightning Design System -->
+                <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+                <link href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/styles/custom-styles.css')}" type="text/css" rel="stylesheet" />
+                <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" />
+                <!-- ********* scripts ******* -->
+                <!-- SLDS Scripts -->
+                <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+                <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/svg4everybody.legacy.js')}"></script>
+                
+                <link href = "{!URLFOR($Resource.autocomplete_resource,'/css/jquery-ui.css')}"  rel = "stylesheet"/>
+                <script src = "{!URLFOR($Resource.autocomplete_resource,'/js/jquery-ui.js')}"></script>
+                
+                <script type="text/javascript">
+                (function() {
+                    var walkme = document.createElement('script');
+                    walkme.type = 'text/javascript';
+                    walkme.async = true;                
+                    walkme.src = "{!URLFOR($Resource.DiscoverOrgUI, 'js/walkme.js')}";
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(walkme, s);
+                    window._walkmeConfig = {
+                        smartLoad: true
+                    };
+                })();
+                </script>
+                
+
+                <style>
+                    .slds-form-element__static{min-height: calc(1rem + 2px) !important; font-size: 12px !important; } 
+                     .slds-form-element__label{font-size: 0.80rem !important;}             
+                    .detail-tab a>span:hover {text-decoration: underline;}                    
+                    .detail-tab a>span{color: #0070d2;}
+                    .helpdetail { top:36px !important;    font-family: "Salesforce Sans", Arial, sans-serif!important;  font-size: 12px;}
+                    .helparr{margin-left:208px !important;}
+                    .slds-tabs__content h3.slds-text-heading--small.slds-text-heading-inverse { font-size: 1rem;}
+                     #quick-search-modal .slds-modal__footer {text-align: center;}                    
+                    .cdtail .slds-popover--tooltip{background: #061c3f;position: absolute;z-index: 9999;top: 0px;margin: auto;height: 40px;min-width: auto !important;max-width: 25rem;font-size: 12px;}
+                    .slds-nubbin--left:before {  width: 1rem;  height: 1rem;  position: absolute;  -webkit-transform: rotate(45deg);  transform: rotate(45deg);  content: "";  background-color: inherit;  top: 50%; left: -0.5rem;  margin-top: -0.5rem;  }                    
+                    .cdtail .slds-popover--tooltip .slds-popover__body{  color: #fff;  }
+                    div.contact-avatar{  display: inline-block;   float: left;  }                    
+                    td.contact--detail{   vertical-align: middle;  }
+                    .contact-info .titleName{float: left; margin-top: 6px; max-width: 69px; overflow: hidden; text-overflow: ellipsis; }
+                    #Feedback-modal .error{ border:1px solid #f00}
+                    #Feedback-modal textarea.slds-input{ line-height:normal; min-height:100px;}
+                    .slds-page-header{ border-right:1px solid #ccc}
+                    .company-technology-item {  min-height: auto;margin: 10px; }           
+                    .slds-backdrop {  transition-duration: .4s;  width: 100%;  height: 100%;  opacity: 1;  position: fixed;  top: 0;  right: 0;  bottom: 0;  left: 0;  background: rgba(126,140,153,.8); z-index: 9000;  }
+                    .addUpdate{height: 36px;width: 152px;min-width: 152px;margin: 0px;margin-left: -1px;border-bottom-right-radius: 4px;border-top-right-radius: 4px;    background: #1b5eac;   border: 1px solid #1b5eac;color: #fff;margin-top: 5px;float: left;margin-bottom: 5px; font-size: 14px; font-weight: normal;}
+                        button.addUpdate:hover{border-color:  #339933;color: #fff;}         
+                     .msgIcon {  display: none!important  }
+                    .customMessage * { color: #fff!important  }
+                    .customMessage {  margin: 5px 0!important;  max-width: 1280px;  opacity: 1!important;  width: 100%;  font-size: 12px;  border: 0px;  padding-left: 10px;  }
+                    .message {   opacity: .9  }    
+                     .standAlonePage .detailContainer{ float:left; width:100%; margin-bottom:20px}
+                    .detailContainer .col-1-3{ float:left; width:32%; margin-left:2%; border-left:1px solid #d8dde6;  border-bottom:1px solid #d8dde6;border-right:1px solid #d8dde6; min-height:400px; background-color: #eef6fe}
+                    .detailContainer  h3.slds-text-heading-inverse{ margin-top:0; display:block}
+                    .detailContainer .col-1-3:first-child{ margin-left:0}
+                    .detailContainer .col-1-3 .slds-size--2-of-2{ width:100%; padding-left:0}
+                    .detailContainer .col-1-3 .slds-m-bottom--xx-large{ border-bottom:none}
+                    .detailContainer .col-1-3 .slds-m-bottom--xx-large{ margin-bottom:0}
+                    .detailContainer .col-1-3 .slds-grid-details{ border-bottom:none}
+                    .standAlonePage{ float:left; width:100%; position:relative}
+                    .standAlonePage .slds-page-header{position:relative; z-index:9}
+                    .standAlonePage div.side-menu{ position:absolute; top:0}
+                    .standAlonePage div.right-panel{ padding-top:0}
+                    .standAlonePage #orgChartiframe{ border:1px solid #d8dde6;border-top:none;}
+                    .detailContainer .col-1-3 .slds-grid-details .slds-form-element__control{ margin:0 10px }
+                    .companyDetail span{ display: block; }
+                    .companyDetail{ display: inline-block; }
+                    .slds-grid .slds-col-main--selected{ border-left:none; border-right:0; }
+                    .slds-grid .slds-col-main--selected:nth-child(odd){ margin-right: 0 }
+                    #address-info span{ display: block; font-size: 15px;  }
+                    .right-panel .contactDetailCard{ background-color: transparent; margin: 10px 0; border-radius: 0; } 
+                    .contactDetailCard .slds-card__header{background:#1b5eac; padding-top: 7px}
+                    .side-menu ul.slds-tabs--default__nav li{ margin-left: 0 }
+                    .contactDetailCard .slds-tile__title a:hover{ color: #666666 }
+                    .topPanelGrid{ margin-top: 10px }
+                    .topPanelGrid .slds-grid.slds-size--1-of-3 {   margin-left: 1%;   max-width: 32.5%;    } //border-left: 1px solid #ccc;
+                    .topPanelGrid .slds-grid.slds-size--1-of-2 {   margin-left: 1%;} //   border-left: 1px solid #ccc;
+                    .topPanelGrid .slds-grid.slds-size--1-of-2 .companyDetail { margin: 0 auto}
+                    .topPanelGrid .slds-grid.slds-size--1-of-3:first-child{ margin-left: 0;  border-left:none; }
+                    //.topPanelGrid .MiddlieSection{ margin: 10px auto 0; }
+                    .title-info span,.title-info a{ display: block; }
+                    .topPanelGrid li{ margin-left: 0 }
+                    .topPanelGrid p.slds-tile__title span {font-size: 1.5rem; cursor: default;  text-decoration: none; color: #666666; }
+                     ul.MiddlieSection,.companyDetail{ color: #666;}
+                     .standAlonePage div.side-menu ul.slds-tabs--default__nav{ margin-top: 54px }
+                     .addUpdateSection{ position: relative; border-left: none !important }
+                      .addUpdateSection button{position: absolute; right: 0; top: 0}
+                      //.companyDetail { padding-left: 5px }
+
+                     .ui-autocomplete-loading {
+                          background: white url("{!URLFOR($Resource.SLDS080,'SLDS080/assets/images/spinners/slds_spinner.gif')}") right center no-repeat;
+                          background-size: 37px;
+                      } 
+                      .ui-autocomplete.ui-front{z-index:99999}                 
+                    
+                    highlight1 {
+                        background-color: #6ebe49;
+                        color: #ffffff;
+                    }
+                    
+                    .highlight1 {
+                        margin-left:5px;
+                        background-color: #6ebe49;
+                        padding: 0.25rem 0.5rem;
+                        border-radius: 15rem;
+                        font-size: 0.625rem;
+                        line-height: 1.25;
+                        text-transform: uppercase;
+                        letter-spacing: .0625em;
+                        color: #16325c;
+                        vertical-align: middle;
+                        white-space: nowrap;
+                    }
+                    .DescriptionTD{
+                        white-space: inherit;
+                        font-size: 12px;
+                        text-align: left;
+                        color: #7f7f80;
+                        vertical-align: top;
+                        padding: 5px 10px 5px 10px;
+                        line-height: 28px;
+                    }     
+                    .slds-disabled .fa {
+                        color: #ccc !important;
+                    }           
+                    
+                    .subitemDisabled{
+                       cursor:not-allowed;
+                    }      
+                    
+                    .indiDisable{
+                         pointer-events: none;
+                         opacity: 0.5;
+                         cursor: not-allowed;
+                    }
+                </style>
+                    
+                    
+                    
+                    <script>
+                    $(document).ready(function(){
+                           overridePageMessages();    
+                        });
+                            
+                        function overridePageMessages(){    
+                            var textureEffect = '';
+                            //Uncomment below line for texture effect on page messages
+                            //textureEffect = 'slds-theme--alert-texture';
+                                         
+                            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+                            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+                            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+                            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);    
+                                             
+                            $('.errorM3').removeClass('errorM3'); 
+                            $('.confirmM3').removeClass('confirmM3'); 
+                            $('.infoM3').removeClass('infoM3');   
+                            $('.warningM3').removeClass('warningM3');  
+                        }
+                    </script>
+            </head>
+        
+            <body>
+                <div class="slds">
+                    <apex:form id="slds-frm-no-access" rendered="{! !hasAccessToRequiredFields }">
+                        <apex:actionFunction name="initializePage" action="{!init}" rerender="slds-frm-no-access" oncomplete="afterInit()"/>
+                        <div class="slds-container--fluid  slds-container--center">
+                            <div class="slds-page-header" style="height: 49px; margin: 0px; padding:0px; background-color: #f8f8f8;    box-shadow: inset 0 -1px 0 0 #f4f6f9;" role="banner">
+                                <div class="slds-grid slds-grid-main" style="margin: 0px;width: 99%;max-width: 100%;">
+                                    <div class="slds-col slds-size--4-of-12">
+                                        <apex:outputLink value="https://go.discoverydb.com/" target="_blank">
+                                            <img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" style="width: 225px;margin: auto; padding: 10px;" />
+                                        </apex:outputLink>
+                                    </div>
+                                </div>
+                            </div>
+                            <apex:outputPanel layout="block" style="padding-top: 60px; padding-left: 15px;">
+                                You do not have access to the required fields to view the inline page. Please contact your Salesforce administrator to inquire about getting read-only access to these fields.
+                                <ul>
+                                    <apex:repeat value="{! requiredFields }" var="requiredField">
+                                        <li style="{! IF(NOT(requiredField.hasAccess), 'text-decoration:line-through', '') }">{! requiredField.name } ({! requiredField.apiname })</li>
+                                    </apex:repeat>
+                                </ul>
+                            </apex:outputPanel>
+                        </div>
+                        <script>
+                            function afterInit() {
+                                $('.top-overlay, .overlay-div').hide();
+                            }
+                        </script>
+                    </apex:form>
+                <apex:form id="slds-frm" rendered="{!hasAccessToRequiredFields}">
+                
+                <div id="lock-alert" style="display:none">
+                    <div class="slds-modal slds-fade-in-open" aria-hidden="false" role="dialog" style="display:block">
+                      <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                          <button class="slds-button slds-button--icon-inverse slds-modal__close">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                              <use xlink:href="/assets/icons/action-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Close</span>
+                          </button>
+                          <h2 class="slds-text-heading--medium">Notifcation</h2>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                          <div>
+                            <p>Unlock Record?<br/>{!$User.FirstName} {!$User.LastName} locked this record from DiscoverOrg updates. Are you sure you want to unlock?</p>
+                            
+                          </div>
+                        </div>
+                        <div class="slds-modal__footer">
+                          <button class="slds-button slds-button--neutral lockCloseBtn">Cancel</button>
+                          <button class="slds-button slds-button--neutral slds-button--brand lockSaveBtn">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop--open"></div>
+                         </div>
+                            
+                <div class="slds-container--fluid  slds-container--center {!if(isInlinePage,'','standAlonePage')}" style="min-height: 490px;">
+                    <div class="slds-page-header">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-has-flexi-truncate">
+                                <div class="slds-grid">
+                                    <div class="slds-grid slds-type-focus slds-no-space">
+                                        <a href="javascript:void();" onclick="windowOpenUrl();">
+                                            <h1 class="slds-text-heading--medium slds-truncate">
+                                                <img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" class="do-logo slds-tooltip-right" data-tooltip="View this contact on {!IF(isDOrg2User, 'go.discoverydb.com', 'www.discoverydb.com')}" style="width: 225px; margin-left: 16px;"/>
+                                            </h1>
+                                        </a>
+                                    </div>
+                                    <span class="intelligence-text">Intelligence On-Demand</span>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-button-group" role="group" style="float: right; padding-top:0px">
+                               <button class="slds-button slds-button--icon-border slds-button--icon-background myAccount slds-tooltip-left" data-tooltip="My Account" aria-haspopup="true" style="height: 36px;margin:0;background-color: white;">
+                                   <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/custom/user_60.png')}" style="width:50%;"/>     
+                               </button> 
+                               
+                               <apex:outputPanel >
+                                   <button class="fixitfun slds-button slds-button--icon-border slds-button--icon-background wrench slds-tooltip-left {!IF(applyingCssForStatusCode418,'slds-disabled not-active','')}" data-tooltip="Fixit" aria-haspopup="true" style="height: 36px;margin:0;background-color: white; {!IF(applyingCssForStatusCode418,'pointer-events: none;cursor:not-allowed','')}"> 
+                                            <i class="fa fa-wrench" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                                    </button>
+                               </apex:outputPanel>
+                               <button class="gotoDOrg slds-button slds-button--icon-border slds-button--icon-background gotoDOrg slds-tooltip-left" data-tooltip="View on DiscoverOrg Site" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                                   <i class="fa fa-globe" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                               </button>
+                               <apex:outputLink value="https://go.discoverydb.com/" styleClass="dorgLink" target="_blank"></apex:outputLink>    
+                          
+                               <div class="slds-dropdown-trigger slds-align-bottom" style="display:block;z-index:999; position:relative; ">
+                                   <button class="slds-button slds-button--icon-border slds-button--icon-background helpHoverBtn fa fa-question-circle" onclick="return false;" aria-haspopup="true" style="height: 36px;margin:0;border-radius: 0 0.25rem 0.25rem 0; border-left: 0;background-color: white;color:dimgray"/>
+                                   
+                                   
+                                   <c:doHelpMenu isDenied="{!applyingCssForStatusCode418}"/>
+                               </div>
+                           </div>
+                            
+                        </div>
+                      
+                    </div>
+                    
+                    
+                    
+                    <apex:outputPanel layout="none" rendered="{!AND( NOT(isAuthorizedUser), NOT(ISBLANK(accessErrorMessage) ) )}">
+                        <div class="slds-notify slds-notify--alert slds-theme--offline slds-theme--alert-texture" role="alert" style="padding-top: 60px;">
+                            <span class="slds-assistive-text">Offline</span>
+                            <h2>
+                                <span class="slds-avatar slds-avatar--large">
+                                    <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/utility/offline_60.png')}" style="max-width:300px" />
+                                </span>
+                                <apex:outputText escape="false" value="{!accessErrorMessage}"></apex:outputText>
+                            </h2>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    
+                    
+                    <apex:outputPanel layout="none" rendered="{!isAuthorizedUser}">
+                        <div class="slds-tabs--default" style="display:none;">
+                            <div class="side-menu">                                
+                                <ul class="slds-tabs--default__nav {!IF(OR( isPotentialMatchFound, NOT(isAuthorizedUser), isDeletedSearch), 'disable', '')}" role="tablist">
+                                    <li class="slds-tabs__item slds-text-heading--label {!IF(applyingCssForStatusCode418,'slds-disabled','slds-active')}" title="Details" role="presentation">
+                                        <a href="#" id="detail-tab" role="tab" tabindex="0" aria-selected="true">
+                                            <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/standard/contact_60.png')}" class="icon " />
+                                            <span class="tab-title">Details</span>
+                                         </a>
+                                    </li>
+                                    
+                                    <li class="slds-tabs__item slds-text-heading--label  {!IF( activateCompanyTab, IF( lstDO2TechnologiesHGDATA.size==0,'slds-disabled', ''), IF( OR(lstDO2TechnologiesHGDATA.size == 0, isPotentialMatchFound, showQuickSearch), 'slds-disabled', '') ) }" title="Technologies" role="presentation">
+                                        <a href="#" id="technologies-tab"  role="tab" tabindex="-1" aria-selected="false">
+                                            <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/standard/topic_60.png')}" class="icon " />
+                                            <span class="tab-title">&nbsp;&nbsp;&nbsp;Technologies&nbsp;&nbsp;&nbsp;</span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-tabs__item slds-text-heading--label" title="Scoops" role="presentation">
+                                        <a href="#" id="triggers-tab" role="tab" tabindex="-1" aria-selected="false">
+                                            <i aria-hidden="true" class="fa fa-newspaper-o icon" style="color:white;padding-top: 3px;"></i>
+                                            <span class="tab-title">Scoops</span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-tabs__item slds-text-heading--label {!IF( !activateCompanyTab , 'slds-hide slds-disabled', '' )}" title="Company Details" role="presentation">
+                                        <a href="#" id="company-details-tab" role="tab" tabindex="-1" aria-selected="false">
+                                            <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/standard/account_60.png')}" class="icon " />
+                                            <span class="tab-title">Company Details</span>
+                                        </a>
+                                    </li>
+                                    <li class="slds-tabs__item slds-text-heading--label slds-hide {!IF(isPotentialMatchFound, 'slds-active', 'slds-disabled' )}" title="Search" role="presentation">
+                                        <a href="#" id="potential-search-tab" role="tab" tabindex="-1" aria-selected="false">
+                                            <span class="tab-title">Potential Search</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                            <div class="right-panel">
+                                     
+                               <!--code start here-->
+                               <apex:outputPanel layout="none" rendered="{!applyingCssForStatusCode418}" style="margin:10px;">
+                                    <div style="width: 255px;background: #f2f2f2;padding: 10px;border-radius: 2px;position: fixed;margin-left: 33%;margin-top: 10%;text-align: center;">
+                                    <h1 style="color: #969899;">Locked Content <i class="fa fa-lock" aria-hidden="true" style="color: #969899;"></i></h1>
+                                    <div style="padding-top: 10px;padding-bottom: 10px;color: #969899;">
+                                        <h2>
+                                            Click below to contact your CSM and learn more about expanding your account&#39;s Access Scope.
+                                        </h2>
+                                        
+                                    </div>
+                                <a style="cursor: pointer; text-decoration: none; border: 1px solid #1b5eac; padding: 5px; background: #1b5eac; color: white; border-radius: 2px;" href="mailto:help@discoverorg.com?Subject=Access%20Request%20From%20{!$user.FirstName} {!$user.LastName}%3A%20{!SelectedRecord.contact.FirstName}%20{!SelectedRecord.contact.LastName}%20at%20{!SelectedRecord.company.account.name}&body=I%20am%20interested%20in%20more%20information%20on%20how%20to%20gain%20access%20to%20the%20data%20set%20which%20includes%20{!SelectedRecord.contact.FirstName}%20{!SelectedRecord.contact.LastName}%20at%20{!SelectedRecord.company.account.name}." target="_blank">     
+                                
+                                Contact your CSM <!-- <img src="/img/func_icons/util/mailCloseEnv16.gif" title="Send Email" />--></a>
+                                </div>
+                                </apex:outputPanel>     
+                                <!-- New Mockup -->
+                                <apex:outputPanel rendered="{!!applyingCssForStatusCode418}" >
+                                <div class="slds-grid topPanelGrid">
+                                    <div class="slds-grid slds-size--1-of-3">                                            
+                                        <div class="slds-media slds-tile">
+                                            <div class="slds-media__figure">
+                                                <span class="slds-avatar slds-avatar--large">
+                                                    <apex:outputPanel layout="none" rendered="{! SelectedRecord.profilepic == '' }">
+                                                    <img alt="{!SelectedRecord.contact.FirstName} {!SelectedRecord.contact.LastName}" src="{!URLFOR($Resource.DSCORGPKG__DiscoverOrgUI, '/images/DefaultSilhouette.png')}"/>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{! SelectedRecord.profilepic != '' }">
+                                                    <img alt="{!SelectedRecord.contact.FirstName} {!SelectedRecord.contact.LastName}" src="{!SelectedRecord.profilepic}"/>
+                                                    </apex:outputPanel>                                  
+                                                </span>
+                                            </div>
+                                            <div class="slds-media__body">
+                                                <p class="slds-tile__title slds-truncate">
+                                                    <span>
+                                                        <apex:outputText value="{!SelectedRecord.contact.FirstName} {!SelectedRecord.contact.LastName}"></apex:outputText>
+                                                    </span>
+                                                </p>
+                                                <ul class="slds-tile__detail slds-list--horizontal slds-has-dividers ">
+                                                    <li class="title-info">
+                                                        <span title="{!SelectedRecord.contact.title}"><apex:outputText value="{!SelectedRecord.contact.title}"/></span>                                                      
+                                                        
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <!-- add/update code -->
+                                         <div class="addUpdateModal" style="display: none;">
+                                          <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" style= "width: 970px; left: 16%;">
+                                            <div class="slds-modal__container" style="display: inline-block;left: 25%;">
+                                              <div class="slds-modal__header">
+                                                <h2 class="slds-text-heading--medium">Add/Update</h2>
+                                              </div>
+                                              <div class="slds-modal__content">
+                                                <div>
+                                                <script> //SFNA 2596 Sagar Sadhnani
+                                                    function showhidecontactleadlabel() {
+                                                     console.log('entered showhidecontactleadlabel');
+                                                     $('[id$="leadPenelId"]').hide();
+                                                     $('[id$="contactPenelId"]').hide(); 
+                                                     
+                                                        if($('[id$="addOperation"]').val() != '' && $('[id$="addOperation"]').val() == "AddUpdateSelectedContacts"){
+                                                            $('[id$="contactPenelId"]').show();
+                                                            
+                                                        } else if ($('[id$="addOperation"]').val() !='' && $('[id$="addOperation"]').val() == "AddUpdateSelectedLeads"){
+                                                            $('[id$="leadPenelId"]').show();
+                                                        }
+                                                     }
+                                                  </script>
+                                                    <fieldset class="slds-form--compound">
+                                                        <legend class="slds-form-element__label">Select Operation</legend>
+                                                        <div class="form-element__group">
+                                                            <div class="slds-form-element__row">
+                                                                <label class="slds-form-element__control slds-size--1-of-1">
+                                                                    <apex:selectList id="addOperation" value="{!addOperationSelected}" onchange="showhidecontactleadlabel(); return false;" styleClass="slds-select" multiselect="false" size="1" style="max-width: 100%;">
+                                                                        <apex:selectOptions value="{!AddOperations}" />
+                                                                    </apex:selectList>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <fieldset class="slds-form--compound">
+                                                        <legend class="slds-form-element__label">Assign to Campaign (Optional)</legend>
+                                                        <div class="form-element__group">
+                                                            <div class="slds-form-element__row">
+                                                                <input style="font-size:14px;" type="text" class="slds-input" id="sfjscontactautocomplete" placeholder="Search Campaign.."/>
+                                                                <apex:inputHidden value="{!CampaignSelected}" id="tempSearchData"/>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>   
+                                                </div>
+                                                <!-- SFNA-2596 Start -->
+                                                <script>
+                                                    $(document).ready(function() {
+                                                       $( ".add-update-toggle > .slds-card__header").unbind( "click" );
+                                                       $(".add-update-toggle > .slds-card__header").click(function() {
+                                                           $(this).find(".toggleIcon1").toggleClass("slds-hide");
+                                                           $(this).find(".toggleIcon").toggleClass("slds-hide");
+                                                           $(this).next(".slds-card__body").slideToggle();
+                                                           $(this).toggleClass("open-header");
+                                                           
+                                                       });
+                        
+                                                       $("[Id$='radio-default']").click(function() {
+                        
+                                                           $("[Id$='UserLookup']").val('');
+                                                           $("[Id$='UserLookup_lkwgt']").css({
+                                                               'pointer-events': 'none'
+                                                           });
+                                                       });
+                        
+                                                       $("[Id$='radio-specify-owner']").click(function() {
+                                                           $("[Id$='UserLookup_lkwgt']").css({
+                                                               'pointer-events': ''
+                                                           });
+                                                           if ($("[Id$='selectedUserId']").text() != 'Specify owner:') {
+                                                              // console.log('!Specify owner:' + $("[Id$='selectedUserId']").text());
+                                                               $("[Id$='UserLookup']").val($("[Id$='selectedUserId']").text());
+                                                           }
+                                                       });
+                                                       
+                                                       $("[id$='addOperation1']").change(function() {
+                                                         var val = $(this).find("option:selected").text();
+                                                       //console.log("----> Val: "+val);
+                                                         if( val=="Records As Contacts" || val=="Companies"){
+                                                           $("#assignmentRules").text("Follow default rules");
+                                                         }else{
+                                                           $("#assignmentRules").text("Follow default assignment rules");
+                                                         }
+                                                       });
+                                                   });
+                                                </script>
+                                                
+                                                <apex:outputPanel rendered="{!autoUpdateObject.DSCORGPKG__isOwnerChange__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldLead__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldContact__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldAccount__c == true}">
+                                                <div class="slds-card add-update-toggle slds-m-around--small" style="width: 100%; margin: 0px;">
+                                                    <div class="slds-card__header slds-grid">
+                                                        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                                            <div class="slds-media__body" style="font-size: 15px;">
+                                                                Advanced Options
+                                                            </div>
+                                                        </div>
+                                                    <button class="slds-button slds-button--icon-container slds-header--toggle-button" style = "height: 0px;">
+                                                        <span class="toggleIcon1 slds-hide">
+                                                           <!--  <svg aria-hidden="true" class="slds-button__icon">
+                                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#chevrondown')}"></use>
+                                                            </svg> -->
+                                                             <img src="{!URLFOR($Resource.SLDS080, '/SLDS080/assets/icons/custom/custom_arrow_down.png')}" style="height: 20px;" onclick="return false;"/>
+                                                        </span>
+                                                        <span class="toggleIcon ">
+                                                           <!--  <svg aria-hidden="true" class="slds-button__icon">
+                                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                                                            </svg> -->
+                                                             <img src="{!URLFOR($Resource.SLDS080, '/SLDS080/assets/icons/custom/custom_arrow_right.png')}" style="height: 20px;" onclick="return false;"/>
+                                                        </span>
+                                                    </button>
+                                                </div> <!-- Card -->
+                                                    
+                                            <div class="slds-card__body slds-hide" style="background: white;border-top: 1px solid #d8dde6;border-bottom: 1px solid #d8dde6;">   
+                                                <div class="slds-card__footer" style="text-align: left"> 
+                                                <apex:outputPanel id="ownerPenelId" rendered="{!autoUpdateObject.DSCORGPKG__isOwnerChange__c == true}">
+                                                
+                                                <fieldset class="slds-form--compound">
+                                                  <div class="form-element__group customlook">
+                                                      <div class="slds-form-element__row">
+                                                          <label class="slds-form-element__control slds-size--1-of-1 lookupControl">
+                                                           <span style="font-size: 14px; color: #54698d;"> Owner for New Records </span><br/>    
+                                                              <!-- <span class="slds-form-element__label" Id="selectedUserId" style="margin-right: -12px;">Follow default assignment rules 
+                                                                  <input Id="radio101" type="radio" name="gender" checked="checked" class="slds-radio" value="Follow default assignment rules" />  <span class="slds-form-element__label" Id="selectedUserId" style="margin-right: -12px;">Follow default assignment rules </span>
+                                                              </span>     
+                                                               <input Id="radio102" type="radio" name="gender" class="slds-radio" value="Specify owner:" />Specify owner: -->                                                     
+                                                             <span style="color: #54698d; font-size: .96rem; margin-right: .75rem;">
+                                                                <input type="radio" id="radio-default" name="options" checked="checked" />                                                                   
+                                                                  <label id="assignmentRules" style="font-size: 12px;"> Follow default assignment rules</label>
+                                                             </span>
+                                                             <span>
+                                                                <input type="radio" id="radio-specify-owner" name="options" checked=""/>                                                                 
+                                                                 <span Id="selectedUserId" style="color: #54698d; font-size: -0.04rem; margin-right: -17px;">
+                                                                      Specify owner:          
+                                                                 </span>                                                                           
+                                                             </span>                                                                
+                                                               <apex:inputField required="false" value="{!conOwnerData.Ownerid}" id="UserLookup" onchange="messageShowFun1();" style="width: .01%;color: white;padding: 0; border: 0; margin-bottom: 0px; !important;"/>     
+                                                            <br/><span style="font-size: 14px; color: #54698d;" id="addCustomTextId"></span>                                                                                                                      
+                                                        </label>
+                                                      </div>
+                                                  </div>
+                                               </fieldset>
+                                               </apex:outputPanel>
+                                               <apex:outputPanel id="leadPenelId" style="display:none" rendered="{!IF(autoUpdateObject.isCustomFieldLead__c == true , true, false) }">
+                                                        <div class="form-element__group">
+                                                            <div class="slds-form-element__row">
+                                                                <label class="slds-form-element__label" for="inputSampleLead"> Lead field: {!LeadCustomLabel} <!-- {!autoUpdateObject.customLeadField__c} : --></label>
+                                                                <div class="slds-form-element__control slds-size--1-of-1">
+                                                                    <apex:inputText id="customTextFieldLead" value="{!CustomTextLead}" onkeypress="return isNumberKeyLead(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" style="margin-bottom: 5px;" />
+                                                                </div>
+                                                            </div>
+                                                       </div>
+                                                 </apex:outputPanel>
+                                                 <apex:outputPanel id="contactPenelId" style="display:none" rendered="{!IF(autoUpdateObject.DSCORGPKG__isCustomFieldContact__c == true, true,false)}">
+                                                        <!--                                             <fieldset class="slds-form--compound"><legend class="slds-form-element__label">Contact</legend></fieldset>                                             -->
+                                                        <div class="form-element__group">
+                                                            <div class="slds-form-element__row">
+                                                                <label class="slds-form-element__label" for="inputSampleContact"> Contact field: {!ContactCustomLabel} <!-- {!autoUpdateObject.customContactField__c} : --></label>
+                                                                <div class="slds-form-element__control slds-size--1-of-1">
+                                                                    <apex:inputText id="customTextFieldContact" value="{!CustomTextContact}" onkeypress="return isNumberKeyContact(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" />
+                                                                    <!-- <input class="slds-input" type="text" id="cusTextFieldNameContact" placeholder="Enter Value" />
+                                                                    <apex:inputHidden value="{!CustomTextContact}" id="customTextFieldContact"/> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel id="accountPenelId" style="display:none" rendered="{!IF(autoUpdateObject.DSCORGPKG__isCustomFieldAccount__c == true, true, false)}">
+                                                        <div class="form-element__group">
+                                                            <div class="slds-form-element__row">
+                                                                <label class="slds-form-element__label" for="inputSampleAccount"> Account field: {!AccountCustomLabel}  <!--{!autoUpdateObject.customAccountField__c} :-->  </label>
+                                                                <div class="slds-form-element__control slds-size--1-of-1">
+                                                                    <apex:inputText id="customTextFieldAccount" value="{!CustomTextAccount}" onkeypress="return isNumberKeyAcccount(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" />
+                                                                    <!-- <input class="slds-input" type="text" id="cusTextFieldNameAccount" placeholder="Enter Value" />
+                                                                    <apex:inputHidden value="{!CustomTextAccount}" id="customTextFieldAccount"/> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                              </div>
+                                          </div>
+                                                            
+                                        </div>
+                                        <script>
+                                            if (document.getElementById('pg:slds-frm:UserLookup_lkwgt')) {
+                                                document.getElementsByClassName('lookupIcon')[0].src = "{!URLFOR($Resource.ChangeLookUp,'ChangeLookUp/changeIMG3.jpg')}";
+                                                document.getElementsByClassName('lookupIcon')[0].style.marginLeft = '7px';
+                                                document.getElementsByClassName('lookupIcon')[0].style.marginBottom = '4px';
+                                                document.getElementsByClassName('lookupIcon')[0].style.width = '62px';
+                                                //$('[id$=UserLookup_lkwgt]').html('<p>[Change]</p>');
+                                                document.getElementById('pg:slds-frm:UserLookup_lkwgt').style.width = '60px';
+                                                document.getElementById('pg:slds-frm:UserLookup_lkwgt').style.height = '37px';
+                                                document.getElementById('pg:slds-frm:UserLookup_lkwgt').style.paddingLeft = '7px';
+                                                document.getElementById('pg:slds-frm:UserLookup_lkwgt').style.paddingRight = '2px';
+                                                document.getElementById('pg:slds-frm:UserLookup_lkwgt').style.border = 'none'; 
+                                                document.getElementById('pg:slds-frm:UserLookup_lkwgt').style.marginLeft = '0px';
+                        
+                                            }
+                                            console.log('Lookp Changed#####');
+                                            var val = $("[id$='addOperation1']").find("option:selected").text();
+                                           // console.log("----> Val: "+val);
+                                              if( val=="Records As Contacts" || val=="Companies"){
+                                                $("#assignmentRules").text("Follow default rules");
+                                              }else{
+                                                $("#assignmentRules").text("Follow default assignment rules");
+                                              }
+                                              
+                                          function messageShowFun1() {
+                                                console.log('@@@@@1232--> '+$("[Id$='UserLookup']").val());
+                                                console.log('@@@@@1233--> '+$("[Id$='selectedUserId']").text());
+                                                $("[Id$='selectedUserId']").text($("[Id$='UserLookup']").val());
+                                            }
+                                        </script>
+                                        </apex:outputPanel>
+                                      </div>
+                                       <!-- SFNA-2596 Stop -->
+                                              <div class="slds-modal__footer">
+                                                <div class="slds-x-small-buttons--horizontal">
+                                                  <button class="slds-button slds-button--neutral addUpdateModal-Close" onclick="return false">Cancel</button>
+                                                  <button id="searchSubmitButton"  Class="slds-button slds-button--neutral slds-button--brand" onclick="validateOperation(); return false;">Submit</button>
+                                                  <apex:actionFunction name="callProcessing" action="{!processAddUpdate}" reRender="importWizard,pgemsg" oncomplete="$('.importFrame').show();$('.top-overlay, .overlay-div').hide();"/>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="slds-backdrop slds-backdrop--open"></div>
+                                        </div>
+                                        <apex:outputPanel id="importWizard">
+                                            <script>
+                                            function CloseImportData(){
+                                                
+                                                var countConDup = 0, countAccDup = 0, chkleadConact = 0;
+                                                var importFrame = $('#importIframe');
+
+                                                if (importFrame != null && importFrame.length === 1) {
+                                                    var importWindow = importFrame[0].contentWindow;
+                                                    try {
+                                                        countConDup = parseInt(importWindow.conDupCountId, 10);
+                                                    } catch (e) {}
+                                                    try {
+                                                        countAccDup = parseInt(importWindow.AccDupId, 10);
+                                                    } catch (e) {}
+                                                    chkleadConact = importWindow.checkLeadContact === 'true';
+                                                }
+                                                if(countConDup > 0 || countAccDup >0){
+                                                    if (confirm) { 
+                                                         $('.importFrame').hide();
+                                                         if(countAccDup == 1 && countConDup > 1) 
+                                                            var notif = countAccDup +' account and '+ countConDup +' contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup == 1 && countConDup == 1)
+                                                            var notif = countAccDup +' account and '+ countConDup +' contact have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup > 1 && countConDup > 1)
+                                                            var notif = countAccDup +' accounts and '+ countConDup +' contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup == 0 && countConDup > 1 && chkleadConact == false)
+                                                            var notif = countConDup +' Contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup == 0 && countConDup == 1 && chkleadConact == false)
+                                                            var notif = countConDup +' Contact has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        
+                                                        else if(countAccDup == 0 && countConDup > 1 && chkleadConact == true)
+                                                            var notif = countConDup +' Leads have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup == 0 && countConDup == 1 && chkleadConact == true)
+                                                            var notif = countConDup +' Lead has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        
+                                                        else if(countAccDup == 1 && countConDup == 0)
+                                                            var notif = countAccDup +' account has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        else if(countAccDup > 1 && countConDup == 0)
+                                                            var notif = countAccDup +' accounts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                        document.getElementById("notify").innerHTML = notif;
+                                                        $('#notification-modal1').show(); 
+                                                    }
+                                                }else{
+                                                    $('.importFrame').hide();
+                                                     window.location.reload();
+                                                    
+                                                }
+                                                
+                                                
+                                            }
+                                            </script>
+                                        <div style="display:none;" class="importFrame">
+                                          <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" style="display: inline-block;left: 33%; top: 11%; width: 492px;">
+                                            <div class="slds-modal__container" style="width: 73%;display: inline-block;left: 25%;">
+                                              <div class="slds-modal__header" style="padding: 9px;">
+                                                <h2 class="slds-text-heading--medium addUpdateHeader" style="margin-top: 5px;">Import Status</h2>
+                                                <!-- <button class="slds-button slds-modal__close" onclick="showHidePopup('importFrame');return false;" id="AddUpdateSVG"></button> -->
+                                                <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close" onclick="$('#importIframe').contents().find('#pauseBtn').click();document.getElementById('importIframe').contentWindow.callBackFunctionContact2();" oncomplete="CloseImportData();document.getElementById('importIframe').contentWindow.hideStatus();" style="float: right;margin-top: -3px;"/>
+                                              </div>
+                                              <div class="slds-modal__content" style="height: 420px;overflow: hidden;padding: 2px;">
+                                                <div>                                                                            
+                                                    <iframe id="importIframe" src="/apex/ImportData?id={!DoObj.id}" style="border: 0px;height: 396px; width: 100%;"/>
+                                                </div>
+                                              </div>  
+                                           
+                                            </div>
+                                          </div>
+                                          <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                                          </div>
+                                          </apex:outputPanel>
+                                        <!-- notification  -->
+                                            <apex:outputPanel >
+                                                <div id="notification-modal1" style="display:none;z-index: 10000;">
+                                                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                                                        <div class="slds-modal__container">
+                                                            <div class="slds-modal__header">
+                                                                <table>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <h2 class="slds-text-heading--medium"> Notification </h2>
+                
+                                                                        </td>
+                                                                        <td>
+                
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div class="slds-modal__content">
+                                                                <div id="notify" style="font-family: Arial,Helvetica,sans-serif;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="slds-modal__footer">
+                                                                <input type="button" value="Close" onclick="OkPopup();return false;" class="cancel-research noti-cancel slds-button slds-button--neutral" />
+                                                                <input type="button" value="Back" onclick="closePopupSfdc();return false;" class="cancel-research noti-cancel slds-button slds-button--neutral" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <script>
+                                                function closePopupSfdc() {
+                                                    document.getElementById("notification-modal1").style.display = "none";
+                                                    $('.importFrame').show();
+                                                }
+                
+                                                function OkPopup() {
+                                                    document.getElementById("notification-modal1").style.display = "none";
+                                                    location.reload();
+                                                }
+                                            </script>
+                                        
+                                            <div id="notification-modal12" style="display:none;z-index: 10000;" class="notificationpanel"> 
+                                            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                                                <div class="slds-modal__container" style="display: inline-block;left: 25%;">
+                                                    <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    <h2 class="slds-text-heading--medium">Selection Required </h2> 
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                  
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="slds-modal__content" id="notificationMsg">
+                                                          
+                                                    </div>
+                                                    <div class="slds-modal__footer">
+                                                        <input type="button" value="Close" onclick="closePop();return false;" class="cancel-research noti-cancel slds-button slds-button--neutral" />
+                                                        
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                                        </div>
+                                        <script>
+                                        function closePop(){
+                                            document.getElementById("notification-modal12").style.display = "none";
+                                            if(document.getElementById("notificationMsg").innerHTML == 'Please select desired Operation'){
+                                                $('.addUpdateModal').css('display','block');
+                                            }
+                                        }
+                                     </script>
+                                     
+                                     <!-- end -->
+                                     
+                                        <div class="slds-grid slds-size--1-of-3">
+                                            
+                                         
+                                        
+                                        <div class="companyDetail" style="margin-left: 3px;">
+                                            <span class="slds-avatar" style="float: left; margin-right: 5px">
+                                                <img src="{!SelectedRecord.company.logoFilename}" style="max-width: 250px;max-height: 88px;"/> 
+                                            </span>
+                                            <div style="float: left;">
+                                                <p class="slds-tile__title  slds-truncate" >
+                                                <span title="{!SelectedRecord.company.account.name}" class="slds-truncate" style="display:block; max-width:400px" target="_blank">{!SelectedRecord.company.account.name}</span>
+                                                </p> 
+                                                <a href="{!IF(CONTAINS( SelectedRecord.company.account.website, 'http' ), '', 'http://')}{!SelectedRecord.company.account.website}" class="slds-truncate" style="max-width:400px; display:block" title="{!SelectedRecord.company.account.website}" target="_blank">
+                                                    {!SelectedRecord.company.account.website}
+                                                </a>
+                                            </div>
+                                       </div>
+                                    </div>
+                                     
+                                    <div class="slds-grid addUpdateSection slds-size--1-of-3">
+                                            <apex:outputPanel rendered="{!isMatchFound}" layout="none">
+                                            <ul class="MiddlieSection" style="margin-left: 4%">
+                                                <li>
+                                                    <apex:outputPanel layout="none" rendered="{!isMatchFound}">    
+                                                        Match Status:<strong>Linked</strong>
+                                                        <i style="color:#6ebe49; margin-right:2px" class="fa fa-link" aria-hidden="true"></i>                                                       
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{!NOT(isMatchFound)}">    
+                                                        Match Status:
+                                                        <strong> Not Linked </strong><i style="color:#faa926; margin-right:2px" class="fa fa-unlink" aria-hidden="true"></i>
+                                                    </apex:outputPanel>
+                                                </li>
+                                                
+                                                <li>
+                                                    Nightly Updates : 
+                                                    <apex:outputPanel layout="none" rendered="{!IsNightlyActive}">
+                                                        <strong>Active</strong>
+                                                        <i  style="color:#6ebe49; margin-right:2px"  class="fa fa-check" aria-hidden="true"></i>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{!Not(IsNightlyActive)}">
+                                                        <strong>Inactive</strong>
+                                                        <i style="color:#B51D00" class="fa fa-close" aria-hidden="true"></i>
+                                                    </apex:outputPanel>
+                                                </li>
+                                                <apex:outputPanel layout="none" rendered="{!SelectedRecord.lastConfirmedDate !=''}">
+                                                <li>
+
+                                                    Last Confirmed On :<strong> {! SelectedRecord.lastConfirmedDate}</strong> <i  style="color:#6ebe49; margin-right:2px"  class="fa fa-check" aria-hidden="true"></i>
+                                                </li>
+
+                                                </apex:outputPanel>
+
+                                                <li>
+                                                    <apex:outputPanel layout="none" rendered="{!ExcludeFromDO}">
+                                                        Lock Status:<strong>Locked</strong>&nbsp;<i style="color:#B51D00; margin-right:2px"  class="fa fa-lock" aria-hidden="true"></i>
+                                                        <a href="#" onclick="unlockRecord(); return false; " style="text-decoration:underline">Click to Unlock</a>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{! !ExcludeFromDO}">
+                                                        Lock Status:<strong>Unlocked</strong>
+                                                        &nbsp;
+                                                        <i style="color:#6ebe49; margin-right:2px"  class="fa fa-unlock" aria-hidden="true"></i> 
+                                                        <a href="#" onclick="javascript:document.getElementById('pnlLoadingtop').style.display='block';clickExcludeCheck()" style="text-decoration:underline">  Click to Lock
+                                                        </a>
+                                                    </apex:outputPanel>
+                                                </li>
+                                            </ul>
+                                            </apex:outputPanel>
+                                            <button class="addUpdate {!IF(userLockImportShowHide,'indiDisable','')}" onclick="return false;">Add/Update</button>
+                                     </div>                                       
+                                </div>
+                                
+                                <!-- New Mockup-->
+                                
+                                <hr/>                     
+                                </apex:outputPanel>
+                                
+                                <div class="slds-tabs__content detail-tab slds-show" aria-labelledby="detail-tab" role="tabpanel">
+                                    <apex:outputPanel id="record-detail-panel">
+                                        
+                                       <apex:outputPanel rendered="{!!applyingCssForStatusCode418}" >
+                                        <!-- Contact Info -->
+                                        <apex:outputpanel styleClass="detailContainer">
+                                            <apex:outputpanel layout="{!if(isInlinePage,'none','block')}" styleClass="col-1-3">
+                                                <h3 class="slds-text-heading--small slds-text-heading-inverse" >Contact Information</h3>
+                                                <div class="slds-grid slds-wrap slds-grid-details contact-info">
+                                                <apex:repeat value="{!fields}" var="field" first="8" rows="4">
+                                                    <apex:outputPanel layout="none" rendered="{!IF(field.fieldDBValue=='', false, true)}">
+                                                        <div id="fieldDiv_{!field.apiName}" class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main {!IF(AND( isUpdateAuthorizedUser, field.conflict ), 'slds-col-main--selected', '')}">
+                                                            <div class="slds-form-element__control {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-p-left--large')}">
+                                                                
+                                                                <span class="slds-form-element__label">{!field.Name}:</span>
+                                                                <apex:outputPanel layout="none" rendered="{!NOT(field.isURLField)}">
+                                                                    <apex:outputText rendered="{!field.fieldType != 'EMAIL'}" value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    <apex:outputLink rendered="{!field.fieldType == 'EMAIL'}" value="mailto:{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink> 
+                                                                   
+                                                                    <!---for fixit start---->
+                                                                    <apex:outputPanel rendered="{!if(field.fieldType== 'EMAIL'||field.fieldType == 'PHONE',true,false)}" style="width:70%;!important;text-align: right;" id="iconPanel"> 
+                                                                      <i  style="width:15%;font: normal normal normal 12px/1 FontAwesome !important;color: #FF0000;display: none;"  class="fa fa-wrench fixitfun" aria-hidden="true" id="fixItReqIcon{!field.apiName}" ></i>
+                                                                    </apex:outputPanel>
+                                                                   <!---for fixit finish---->
+                                                                                                                                       
+                                                                </apex:outputPanel>
+                                                                
+                                                                <apex:outputPanel layout="none" rendered="{!field.isURLField}">
+                                                                    <apex:outputLink target="_Blank" value="{!IF(contains(field.fieldDBStrValue, 'http'), '', 'http://')}{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:repeat> 
+                                                <apex:repeat value="{!fields}" var="field"  first="0" rows="5">
+                                                    <apex:outputPanel layout="none" rendered="{!IF(field.fieldDBValue=='', false, true)}">
+                                                        <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main {!IF(AND( isUpdateAuthorizedUser, field.conflict ), 'slds-col-main--selected', '')}">
+                                                            <div class="slds-form-element__control {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-p-left--large')}">
+                                                                
+                                                                <span class="slds-form-element__label">{!field.Name}:</span>
+                                                                <apex:outputPanel layout="none" rendered="{!NOT(field.isURLField)}">
+                                                                    <apex:outputText rendered="{!field.fieldType != 'EMAIL'}" value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    <apex:outputLink rendered="{!field.fieldType == 'EMAIL'}" value="mailto:{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                                <apex:outputPanel layout="none" rendered="{!field.isURLField}">
+                                                                    <apex:outputLink target="_Blank" value="{!IF(contains(field.fieldDBStrValue, 'http'), '', 'http://')}{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:repeat>
+                                                <apex:repeat value="{!fields}" var="field" first="11" rows="1">
+                                                    <apex:outputPanel layout="none" rendered="{!IF(field.fieldDBValue=='', false, true)}">
+                                                        <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main {!IF(AND( isUpdateAuthorizedUser, field.conflict ), 'slds-col-main--selected', '')}">
+                                                            <div class="slds-form-element__control {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-p-left--large')}">
+                                                                
+                                                                <span class="slds-form-element__label">{!field.Name}:</span>
+                                                                <apex:outputPanel layout="none" rendered="{!NOT(field.isURLField)}">
+                                                                    <apex:outputText rendered="{!field.fieldType != 'EMAIL'}" value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    <apex:outputLink rendered="{!field.fieldType == 'EMAIL'}" value="mailto:{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                                <apex:outputPanel layout="none" rendered="{!field.isURLField}">
+                                                                    <apex:outputLink target="_Blank" value="{!IF(contains(field.fieldDBStrValue, 'http'), '', 'http://')}{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:repeat> 
+                                                </div>
+                                            </apex:outputpanel>
+                                            <!-- Company Details -->
+                                            <apex:outputpanel layout="{!if(isInlinePage,'none','block')}" styleClass="col-1-3">
+                                                <h3 class="slds-text-heading--small slds-text-heading-inverse">Company Details</h3>
+                                                <div class="slds-grid slds-wrap slds-grid-details company-details">
+                                                <apex:repeat value="{!fields}" var="field" first="12" rows="8">
+                                                
+                                                    <apex:outputPanel layout="none" rendered="{!IF(field.fieldDBValue=='', false, IF(OR( field.apiName=='DiscoverOrg_Company_ID__c', field.apiName=='DiscoverOrg_ID__c', field.name == 'DiscoverOrg Technologies'), false, true))}">
+                                                        <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main {!IF(AND( isUpdateAuthorizedUser, field.conflict ), 'slds-col-main--selected', '')}" style="{!IF(field.fieldDBValue=='', 'display:none;', '')}">
+                                                            <div class="slds-form-element__control {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-p-left--large')}">
+                                                                
+                                                                <span class="slds-form-element__label">{!field.Name}:</span>
+                                                                <apex:outputPanel layout="none" rendered="{!NOT(field.isURLField)}">
+                                                                    <apex:outputText escape="false" rendered="{!field.fieldType != 'EMAIL'}" value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    <apex:outputLink rendered="{!field.fieldType == 'EMAIL'}" value="mailto:{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                                <apex:outputPanel layout="none" rendered="{!field.isURLField}">
+                                                                    <apex:outputLink target="_Blank" value="{!IF(contains(field.fieldDBStrValue, 'http'), '', 'http://')}{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel> 
+                                                </apex:repeat> 
+                                                </div>
+                                            </apex:outputpanel>
+                                            <!-- Other Details -->
+                                             
+                                            <apex:outputpanel layout="{!if(isInlinePage,'none','block')}" styleClass="col-1-3">
+                                                <h3 class="slds-text-heading--small slds-text-heading-inverse">Other Details</h3>
+                                                <div class="slds-grid slds-wrap slds-grid-details other-details slds-m-bottom--xx-large">
+                                                    <apex:repeat value="{!fields}" var="field"  first="20">
+                                                         <apex:outputPanel layout="none" rendered="{!IF(field.fieldDBValue=='', false, IF(OR( field.apiName=='DiscoverOrg_Company_ID__c', field.apiName=='DiscoverOrg_ID__c', field.name == 'DiscoverOrg Technologies'), false, true))}">
+                                                        <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main {!IF(AND( isUpdateAuthorizedUser, field.conflict ), 'slds-col-main--selected', '')}" style="{!IF(field.fieldDBValue=='', 'display:none;', '')}">
+                                                            <div class="slds-form-element__control {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-p-left--large')}">
+                                                                
+                                                                
+                                                                    
+                                                                <span class="slds-form-element__label">{!field.Name}:</span>
+                                                                <apex:outputPanel layout="none" rendered="{!NOT(field.isURLField)}">
+                                                                    <apex:outputText rendered="{!field.fieldType != 'EMAIL'}" value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static" />
+                                                                    <apex:outputLink rendered="{!field.fieldType == 'EMAIL'}" value="mailto:{!field.fieldDBValue}">
+                                                                        <apex:outputText value="{!field.fieldDBValue}" title="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" styleClass="slds-form-element__static"/>
+                                                                    </apex:outputLink>
+                                                                </apex:outputPanel>
+                                                                
+                                                                <apex:outputPanel layout="none" rendered="{!field.isURLField}">
+                                                                    <apex:outputLink target="_Blank" title="{!field.fieldDBValue}" value="{!IF(contains(field.fieldDBStrValue, 'http'), '', 'http://')}{!field.fieldDBValue}">
+                                                                        <apex:outputText style="max-width:200px; vertical-align:middle" value="{!field.fieldDBValue}" title="{!field.fieldDBValue}" styleClass="slds-form-element__static slds-truncate"/>
+                                                                    </apex:outputLink>
+                                                                    <apex:outputpanel layout="none" rendered="{! contains(field.Name, 'LinkedIn') && (NOT(isInlinePage))}">
+                                                                        <a href="{!field.fieldDBValue}" title="{!field.fieldDBValue}" target="_blank" ><i class="fa fa-linkedin-square" style="    font-size: 24px;    margin-right: 3px;    position: relative;    z-index: 1;"></i></a>
+
+                                                                    </apex:outputpanel>
+                                                                </apex:outputPanel>
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel> 
+                                                     </apex:repeat> 
+                                                </div>
+                                            </apex:outputpanel>
+                                        </apex:outputpanel>
+                                        </apex:outputpanel>
+                                        <apex:outputPanel rendered="{!!applyingCssForStatusCode418}" >
+                                        <apex:outputpanel layout="{!if(isInlinePage,'none','block')}" rendered="{!NOT(isInlinePage)}" styleClass="detailContainer">
+
+                                            <h3 class="slds-text-heading--small slds-text-heading-inverse">Org Chart</h3>
+                                            <div class="slds-grid slds-wrap slds-grid-details contact-info">
+                                                <apex:iframe id="orgChartiframe" src="/apex/DSCORGPKG__ITOrgChart?co_id={!URLENCODE(selectedRecord.company.account.DSCORGPKG__DiscoverOrg_ID__c)}&CoName={!URLENCODE(selectedRecord.company.account.Name)}&ConName={!URLENCODE(selectedRecord.contact.FirstName)}+{!URLENCODE(selectedRecord.contact.LastName)}&scrollTo={!URLENCODE(selectedRecord.contact.DSCORGPKG__DiscoverOrg_ID__c)}&commingpage=Account&isIframe=true&userLockImport={!userLockImportShowHide}&dept_id={!URLENCODE(selectedRecord.departmentIdPerson)}" scrolling="true"  width="100%" height="800" />
+                                            </div>
+                                            
+                                        </apex:outputpanel>
+                                        </apex:outputPanel>
+                                            
+                                        <apex:outputPanel layout="none" id="updateAllToSalesforce" rendered="{!AND( conflictFound, isMatchFound, isUpdateAuthorizedUser )}">
+                                           
+                                        </apex:outputPanel> 
+                                        
+                                        <div id="address-info--modal" class="slds-hide">
+                                            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                                                <div class="slds-modal__container">
+                                                    <div class="slds-modal__header">
+                                                        <h2 class="slds-text-heading--medium">Address Information</h2>
+                                                        <button class="slds-button slds-modal__close address-info--close">
+                                                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                                            </svg>
+                                                            <span class="slds-assistive-text">Close</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="slds-modal__content">
+                                                        <apex:repeat value="{!fields}" var="field"  rows="5">
+                                                            <apex:outputPanel layout="none" rendered="{!IF(field.fieldDBValue=='', false, true)}">
+                                                                <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1 slds-col-main {!IF(AND( isUpdateAuthorizedUser, field.conflict ), 'slds-col-main--selected', '')}">
+                                                                    <div class="slds-form-element__control {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-p-left--large')}">
+                                                                        <apex:outputLabel styleClass="slds-checkbox" for="checkbox" rendered="{!AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate )}">
+                                                                            <apex:inputCheckbox value="{!field.conflict}" id="checkbox" styleClass="slds-conflict__checkbox"/>
+                                                                            <span class="slds-checkbox--faux {!IF(AND( isUpdateAuthorizedUser, field.conflict, !field.fieldsForNotUpdate ), '', 'slds-hide')}"></span>
+                                                                        </apex:outputLabel>
+                                                                        <span class="slds-form-element__label">{!field.Name}:</span>
+                                                                        <span class="slds-form-element__static slds-tooltip-right" style="{!IF(OR( field.conflict, field.fieldsForNotUpdate ), 'color:#ff0000;','color:#666666;')};" data-tooltip="Current Value: {!IF(field.fieldSFValue==null || field.fieldSFValue=='', 'blank', field.fieldSFValue)}" ><apex:outputText value="{!field.fieldDBValue}"></apex:outputText></span>
+                                                                    </div>
+                                                                </div>
+                                                            </apex:outputPanel>
+                                                        </apex:repeat>
+                                                    </div>
+                                                    <div class="slds-modal__footer">
+                                                        <button class="slds-button slds-button--neutral address-info--close">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                                        </div>
+                                        
+                                    </apex:outputPanel>   
+                                </div>
+                                 
+                                <div class="slds-tabs__content slds-hide" aria-labelledby="technologies-tab" role="tabpanel">
+                                   
+                                    <div class="slds-grid slds-wrap technology-grid" style="margin-top: 23px;">
+                                        <!--<apex:outputPanel layout="none" rendered="{!!activateCompanyTab}">-->
+                                            <apex:repeat value="{!lstDO2TechnologiesHGDATA}" var="tech">
+                                                <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-box slds-box--small company-technology-item">
+                                                    <a href="http://www.google.com/search?q={!URLENCODE(tech.name)}" target="_blank">{!tech.name}</a>
+                                                    <br/>
+                                                    <span class="techDescription"><apex:outputText value="{!tech.stringListTechnologies}"></apex:outputText></span>
+                                                </div>
+                                            </apex:repeat>
+                                       
+                                    </div>    
+                                </div>
+                                <div class="slds-tabs__content slds-hide" aria-labelledby="triggers-tab" role="tabpanel">
+                                    
+                                    
+                                    <ul id="rttTriggers" class="triggersList" style="display:none;">
+                                    </ul>
+                                    
+                                    <table id="rtt-table" class="slds-table slds-table--bordered">
+                                        <thead>
+                                            <tr class="slds-text-heading--label">
+                                                <th class="" scope="col">Scoops</th>
+                                                <th class="" scope="col">Date</th>
+                                                <th class="" scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="rtt-items">
+                                        
+                                        </tbody>
+                                    </table>
+                                    
+                                    <script>
+                                        function unlockRecord(){
+                                        
+                                           $('#lock-alert').show();
+                                           
+                                        }
+                                        
+                                       $(function(){
+                                         $('#lock-alert .lockSaveBtn').click(function(e){
+                                            e.preventDefault();
+                                            clickExcludeUnCheck();
+                                            $('#lock-alert').hide();
+                                        });
+                                        
+                                        $('#lock-alert .lockCloseBtn').click(function(e){
+                                            e.preventDefault();
+                                            $('#lock-alert').hide();
+                                        })
+                                       })
+                                        
+                                        document.getElementById('rttTriggers').innerHTML = '{!JSENCODE(realTimeTriggers)}';
+                                        
+                                        if( ( $(".triggersList li").length == 1 && $(".triggersList li").text() == "No Result found." ) || $(".triggersList li").length == 0 ){
+                                           
+                                            $("#triggers-tab").parent().addClass("slds-disabled");
+                                        }
+                                        
+                                        $(".triggersList li").each( function(){
+                                            if($(this).text() != 'No Result found.'){
+                                                
+                                                
+                                                var liHTML = $(this).html();
+                                                var rttdate = liHTML.substring(liHTML.length - 12, liHTML.length).replace("(", "").replace(")", "");
+
+                                                var new_row = document.createElement('tr');
+                                                var cell0 = new_row.insertCell(0);
+                                                var cell1 = new_row.insertCell(1);
+                                                var cell2 = new_row.insertCell(2);
+                                                
+                                                
+                                                cell0.className = 'DescriptionTD';
+                                                cell0.innerHTML = liHTML.substring(0, liHTML.length - 12);
+                                                
+                                                cell1.className = 'DateTD';         
+                                                cell1.innerHTML = rttdate ; 
+                                                        
+                                                cell2.innerHTML = '<td><span class="slds-icon_container"> <img alt="" class="ChatterBtnClass" src="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/utility__c/share_post_60.png")}" style="width: 20px; max-width: none;cursor: pointer;"/></span> <img alt="" class="emailBtnClass" src="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/utility__c/email_60.png")}" style="width: 20px; max-width: none;cursor: pointer;" /></td>';
+                                                $("#rtt-table .rtt-items").html( $("#rtt-table .rtt-items").html() + '<tr class="slds-hint-parent">'+new_row.innerHTML+'</tr>' );      
+                                                
+                                            }
+                                            
+                                        });
+                                        
+                                        $(".triggersList").remove();
+
+                                    </script>
+                                </div>
+                                <c:Chatter_Email_Comp />
+                                
+                                <apex:outputPanel layout="none" rendered="{!activateCompanyTab}">
+                                    <div class="slds-tabs__content slds-hide" id="company-details-top" aria-labelledby="company-details-tab" role="tabpanel">
+                                        <div class="slds-media slds-tile">
+                                            <div class="slds-media__body">
+                                                <p class="slds-tile__title slds-truncate"><a href="#"><apex:outputText value="{!company.account.Name}"/></a></p>
+                                            </div>
+                                            
+                                            <div class="slds-button-group" role="group">
+                                                <button class="slds-button slds-button--icon-border slds-button--search slds-tooltip-left" data-tooltip="Search for a different contact">
+                                                    <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/custom/custom_search.png')}"/>
+                                                </button>   
+                                                
+                                                <button class="slds-button slds-button--neutral" onclick="viewOrgChart( '{!URLENCODE(company.account.DiscoverOrg_ID__c)}','{!URLENCODE(company.account.Name)}', '','', '{!URLENCODE(company.departmentId)}','false' ); return false;">
+                                                    
+                                                    Org Chart
+                                                    <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/custom/org_chart_icon.png')}"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        
+                                        <!-- Company Details -->
+                                        <h3 class="slds-text-heading--small slds-text-heading-inverse">Company Information</h3>
+                                        <div class="slds-grid slds-wrap slds-grid-details">
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Company Name:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputLink value="/apex/CompanyDetails?Co_Id={!company.account.DSCORGPKG__DiscoverOrg_ID__c}" target="_blank"><apex:outputText value="{!company.account.Name}"/></apex:outputLink>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Website:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputLink value="http://{!company.account.Website}" target="_blank"><apex:outputText value="{!company.account.Website}"/></apex:outputLink>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Phone:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.Phone}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Billing Street:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.BillingStreet}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Billing City:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.BillingCity}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Billing State/Province:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.BillingState}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Billing Country:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.BillingCountry}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Billing Zip/PostalCode:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.BillingPostalCode}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Industry:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.Industry}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">No. Of Employees:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.NumberOfEmployees}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Annual Revenue:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{0, number, 000,000.00}" >
+                                                        <apex:param value="{!company.account.AnnualRevenue}"/>
+                                                    </apex:outputText>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        
+                                            <div class="slds-col slds-size--2-of-2 slds-medium-size--3-of-6 slds-large-size--6-of-12 slds-col-main">
+                                              <div class="slds-form-element__control">
+                                                <span class="slds-form-element__label">Description:</span>
+                                                <span class="slds-form-element__static">
+                                                    <apex:outputText value="{!company.account.Description}"/>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <iframe src="" id="companyIframe" scrolling="auto" frameborder="0" width="100%" height="0" ></iframe>
+                                        <a href="#company-details-top" class="cd-top" title="Back to Top">Top</a>
+                                    </div>
+                                </apex:outputPanel>
+                                
+                                <div class="slds-tabs__content  {!IF( isPotentialMatchFound, 'slds-show', 'slds-hide')}" aria-labelledby="potential-search-tab" role="tabpanel">
+                                    <apex:outputPanel id="potential-search-panel" rendered="{!isPotentialMatchFound}">
+                                            
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1">
+                                                <div class="tabDetail" id="potentialMatch" style="display:block">
+                                                    <div class="slds-searchtab slds-m-bottom--medium">
+                                                        
+                                                        <div class="slds-searchtab__content slds-show">
+                                                            <p>
+                                                                <apex:outputPanel rendered="{!IF(contacts.size == 0, false, true)}">
+                                                                    Still don’t see what you’re looking for?
+                                                                    <div class="slds-m-bottom--small"></div>
+                                                                </apex:outputPanel>
+                                                            </p>
+                                                            
+                                                            <p>Search by another name, or submit details to the DiscoverOrg Research Team.</p>
+                                                            <div class="slds-m-bottom--medium"></div>
+                                                            <div class="slds-grid slds-wrap">
+                                                                <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-6 slds-large-size--1-of-3">
+                                                                    <apex:outputPanel rendered="{!!isDOrg2User}" layout="none">
+                                                                        <fieldset class="slds-form--compound">
+                                                                            <div class="form-element__group">
+                                                                                <div class="slds-form-element__row">
+                                                                                    <apex:selectRadio value="{!selectedQuickSearchOption}" styleClass="custom-radio-options" id="selected-potential-Type-search-option" >
+                                                                                        <apex:selectOptions value="{!QuickSearchOptions}" id="potentialTypeSearchRadio"/>
+                                                                                    </apex:selectRadio>
+                                                                                </div>
+                                                                            </div>
+                                                                        </fieldset>
+                                                                    </apex:outputPanel>
+                                                                    <fieldset class="slds-form--compound">
+                                                                        <div class="form-element__group">
+                                                                            <div class="slds-form-element__row">
+                                                                                <apex:selectRadio value="{!quickSearchMatchOption}" styleClass="custom-radio-options" id="selected-potential-Match-search-option" >
+                                                                                    <apex:selectOptions value="{!SearchMatchOptions}" id="potentialMatchSearchRadio"/>
+                                                                                </apex:selectRadio>
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-3">
+                                                                    <div class="slds-form--inline">
+                                                                        <div class="slds-form-element {!IF(isDOrg2User, '', 'slds-m-top--medium')}" style="display:block;margin-right: 0;">
+                                                                            <div class="slds-form-element__control" style="display:flex;">
+                                                                                <apex:inputText value="{!quickSearchText}" styleClass="slds-input" id="potential-search-text" html-placeholder="Search Contact Name"  style="border-right: none;border-bottom-right-radius: 0px;border-top-right-radius: 0px;"/>
+                                                                                <apex:commandButton styleClass="slds-button slds-button--brand" value="Search" id="potential-search-btn" onclick="searchByName(); return false;" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                    
+                                                                </div>
+                                                                <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-3" style="display: inherit;">
+                                                                    <div class="slds-small-show slds-m-left--medium">&nbsp;</div>
+                                                                    <button class="slds-button slds-button--neutral request-new-company {!IF(isDOrg2User, '', 'slds-m-top--medium')}">Submit a Research Request!</button>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1">
+                                                <div class="slds-card">
+                                                  <div class="slds-card__header slds-grid">
+                                                    <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                                      <div class="slds-media__figure">
+                                                          <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/standard/contact_60.png')}"  class="slds-icon slds-icon-standard-contact slds-icon--medium" style="background-color: #1B5EAC;"/>
+                                                      </div>  
+                                                      <div class="slds-media__body">
+                                                        <apex:outputPanel title="No matches found for “{!(quickSearchText)}”" rendered="{!IF(contacts.size == 0, true, false)}">
+                                                            <h2 class="slds-text-heading--small slds-truncate">No matches found for “<apex:outputText value="{!quickSearchText}"/>”</h2>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel title="Potential Match(es) for “{!(quickSearchText)}”" rendered="{!IF(contacts.size == 0, false, true)}">
+                                                            <h2 class="slds-text-heading--small slds-truncate">Potential Match(es) for “<apex:outputText value="{!quickSearchText}"/>”</h2>
+                                                        </apex:outputPanel>
+                                                      </div>
+                                                    </div>
+                                                    <div class="slds-no-flex">
+                                                      
+                                                    </div>
+                                                  </div>
+                                                  <div class="slds-card__body">
+                                                    <div class="slds-scrollable--x">
+                                                        <table class="slds-table slds-table--bordered">
+                                                            <thead>
+                                                                <tr class="slds-text-heading--label">
+                                                                    <th scope="col">
+                                                                        <span class="slds-truncate">Contact Name</span>
+                                                                    </th>
+                                                                    <th scope="col">
+                                                                        <span class="slds-truncate">Company</span>
+                                                                    </th>
+                                                                    <th scope="col">
+                                                                        <span class="slds-truncate">Title</span>
+                                                                    </th>
+                                                                    <th scope="col" style="text-align:center;">
+                                                                        <span class="slds-truncate">DEPT</span>
+                                                                    </th>
+                                                                    <th scope="col">
+                                                                        <span class="slds-truncate">Address</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <apex:repeat value="{!contacts}" var="con">
+                                                                    <tr>
+                                                                        <td data-label="Contact Name"  class="contact--detail">
+
+                                                                            <div class="contact-avatar slds-p-top--x-small slds-p-right--x-small slds-p-bottom--x-small">
+                                                                                <apex:outputPanel styleClass="slds-avatar slds-avatar--large" title="{!con.contact.FirstName} {!con.contact.LastName}" >
+                                                                                    <apex:outputPanel layout="none" rendered="{! con.profilepic == '' }">
+                                                                                        <img src="{!URLFOR($Resource.DiscoverOrgUI, '/images/DefaultSilhouette.png')}" style="max-width:300px" />
+                                                                                    </apex:outputPanel>
+                                                                                    <apex:outputPanel layout="none" rendered="{! con.profilepic != '' }">
+                                                                                        <img src="{!con.profilepic}" style="max-width:300" />
+                                                                                    </apex:outputPanel>  
+                                                                                </apex:outputPanel>
+                                                                            </div>
+
+                                                                            <div class="cdtail" style="position: relative;">
+                                                                                <div class="slds-button slds-button--view-inline slds-truncate" onclick="openSelectedRecord(this);return false;" style="max-width: 9.5rem;cursor: pointer;">
+                                                                                    <span class="slds-button__icon slds-button__icon--left view-inline-icon">
+                                                                                        <img src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/custom/custom_view_inline1.jpg')}"/>
+                                                                                    </span>
+                                                                                    <apex:outputText value="{!con.contact.FirstName} {!con.contact.LastName}"/>
+                                                                                </div>
+                                                                                <div class="slds-popover slds-popover--tooltip slds-nubbin--left viewInlinePopup" role="tooltip" style="display:none;left: 120px;">
+                                                                                    <div class="slds-popover__body">View Contact Inline</div>
+                                                                                </div>
+                                                                                
+                                                                                <apex:inputCheckbox value="{!con.selected}" style="display:none;"/>
+                                                                                <br/>
+                                                                                <apex:outputPanel rendered="{!!ISBLANK(con.contact.phone)}" layout="none">
+                                                                                    <div class="slds-truncate" title="{!con.contact.phone}" style="padding-left:25px;"><apex:outputText value="{!con.contact.phone}"/></div>
+                                                                                </apex:outputPanel>
+                                                                                <apex:outputPanel rendered="{!!ISBLANK(con.contact.email)}" layout="none">
+                                                                                    <div class="slds-truncate" style="padding-left:25px;"><a href="mailto:{!con.contact.email}" title="{!con.contact.email}" class="cEmail"><apex:outputText value="{!con.contact.email}"/></a></div>
+                                                                                </apex:outputPanel>
+                                                                                <div style="position:relative;"><!-- con.Contact.DiscoverOrg_ID__c -->
+                                                                                    <apex:outputLink value="javascript:void(0);" onclick="viewOrgChart('{!URLENCODE(con.company.account.DSCORGPKG__DiscoverOrg_ID__c)}', '{!URLENCODE(con.company.account.Name)}', '{!URLENCODE(con.contact.FirstName)} {!URLENCODE(con.contact.LastName)}', '{!URLENCODE(con.contact.DSCORGPKG__DiscoverOrg_ID__c)}', '{!URLENCODE(con.departmentIdPerson)}','false');" style="padding-left:20px;" styleClass="view-OrgChart-icon">
+                                                                                         <img src="{!URLFOR($Resource.DSCORGPKG__SLDS080, 'SLDS080/assets/icons/custom/org_chart_icon.png')}"/>
+                                                                                    </apex:outputLink>
+                                                                                    <div class="slds-popover slds-popover--tooltip slds-nubbin--left viewOrgChartPopup" role="tooltip" style="display:none;left: 150px;">
+                                                                                        <div class="slds-popover__body">View Org Chart</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="slds-truncate" data-label="Company Name">
+                                                                            <span>
+                                                                                <apex:outputLink value="{!IF( isDOrg2User, 'https://go.discoverydb.com/eui/#/company/', 'https://www.discoverydb.com/EXEC/SiteImprov/MVC/Views/CompanyInfo.php?co.CO_ID=')}{!con.company.account.DSCORGPKG__DiscoverOrg_ID__c}" target="_Blank">
+                                                                                    <apex:outputText value="{!con.company.account.Name}" title="{!con.company.account.Name}"/>
+                                                                                </apex:outputLink>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td data-label="Title" class="slds-truncate" >
+                                                                            <span >
+                                                                                <apex:outputText value="{!con.contact.title}" title="{!con.contact.title}"/>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td class="slds-truncate" data-label="Department" style="text-align: center;">
+                                                                            <span>
+                                                                                <apex:outputText value="{!con.contact.DSCORGPKG__department__c}" />
+                                                                            </span>
+                                                                        </td>
+                                                                        <td class="slds-truncate" data-label="Address">
+                                                                            <span>
+                                                                                <apex:outputText value="{!con.contact.MailingStreet}"/><br/>
+                                                                                <apex:outputText value="{!con.contact.MailingCity}"/>,&nbsp;<apex:outputText value="{!con.contact.MailingState}"/>&nbsp;<apex:outputText value="{!con.contact.MailingPostalCode}"/>,&nbsp;<apex:outputText value="{!con.contact.MailingCountry}"/>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                </apex:repeat>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                   </div>
+                                                  <div class="slds-card__footer"></div>  
+                                                </div> 
+                                            </div>
+                                        </div>    
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="none" id="quick-search-panel" rendered="{!showQuickSearch}">
+                        <div>
+                            <div id="quick-search-modal" aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container">
+                                    <div class="slds-modal__header">
+                                        <h2 class="slds-text-heading--medium">Quick Search</h2>
+                                        <button class="slds-button slds-modal__close">
+                                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                            </svg>
+                                            <span class="slds-assistive-text">Close</span>
+                                        </button>                                           
+                                    </div>
+                                    <div class="slds-modal__content">
+                                        <div>
+                                            
+                                            <p>
+                                                <span class="{!IF(contains(quickSearchMsg, 'not found'), 'not-found', '')}" style="font-family:inherit"><b>{!IF(contains(quickSearchMsg, 'not found'), quickSearchMsg, '')}</b></span>
+                                            </p>
+                                            <div class="slds-m-top--medium"></div>
+                                            <span>Search by another name</span>
+                                            <div class="slds-m-top--x-small"></div>
+                                            <div class="slds-col slds-size--1-of-1 slds-medium-size--6-of-6 slds-large-size--1-of-1">
+                                                <apex:outputPanel rendered="{!!isDOrg2User}" layout="none">
+                                                    <fieldset class="slds-form--compound">
+                                                        <div class="form-element__group">
+                                                            <div class="slds-form-element__row">
+                                                                <apex:selectRadio value="{!selectedQuickSearchOption}" styleClass="custom-radio-options" id="selected-Type-search-option" >
+                                                                    <apex:selectOptions value="{!QuickSearchOptions}" id="quickTypeSearchRadio"/>
+                                                                </apex:selectRadio>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </apex:outputPanel>
+                                        
+                                                <fieldset class="slds-form--compound">
+                                                    <div class="form-element__group">
+                                                        <div class="slds-form-element__row">
+                                                            <apex:selectRadio value="{!quickSearchMatchOption}" styleClass="custom-radio-options" id="selected-Match-search-option" >
+                                                                <apex:selectOptions value="{!SearchMatchOptions}" id="quickMatchSearchRadio"/>
+                                                            </apex:selectRadio>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                    
+                                            <div class="slds-m-top--medium"></div>
+                    
+                                            <div class="slds-col slds-size--1-of-1 slds-medium-size--5-of-6 slds-large-size--3-of-4">
+                                                <div class="slds-form--inline">
+                                                    <div class="slds-form-element slds-m-top--medium" style="display:block;margin-right: 0;">
+                                                        <div class="slds-form-element__control" style="display:flex;">
+                                                            <apex:inputText value="{!quickSearchText}" styleClass="slds-input" id="quick-search-val" html-placeholder="Search for Specific Contact"  style="border-right: none;border-bottom-right-radius: 0px;border-top-right-radius: 0px;"/>
+                                                            <apex:commandButton styleClass="slds-button slds-button--brand" value="Search" id="quick-search-submit" onclick="startQuickSearch(); return false;" style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;"/>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-m-top--medium"></div>
+                                    </div> 
+                                    <div class="slds-modal__footer">
+                                        <p>Or submit details to the DiscoverOrg Research Team.</p>
+                                        <div class="slds-m-top--x-small"></div>
+                                        <apex:commandButton styleClass="slds-button slds-button--brand request-new-company" value="Submit a Research Request!" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                        </div>
+                    </apex:outputPanel>
+                    
+                    
+                      <div id="help-research-request" class="slds-hide">
+                        <div aria-hidden="false" role="dialog"  id="help-research-request-modal" class="slds-modal slds-fade-in-open">
+                          <c:ResearchRequest />
+                         
+                        </div>
+                        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>                                        
+                
+                        <apex:outputPanel id="help-research-request-script">
+                        <script>
+                            function helpResearchRequestOnComplete(){
+                                if( "{!sentResearchRequest}" == "true"){
+                                    alert('A notification has been sent to DiscoverOrg for your Research Request. Thank You!!');
+                                }else{
+                                    alert('Unable to submit Research Request on DiscoverOrg for Salesforce.');
+                                }
+                                
+                                $('.top-overlay, .overlay-div').hide();
+                                $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+                            }
+                        </script>
+                        </apex:outputPanel>
+                      </div>
+                    
+                    
+                    <div id="new-company--modal" class="slds-hide">
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header">
+                                    <h2 class="slds-text-heading--medium">New Company Request</h2>
+                                    <button class="slds-button slds-modal__close">
+                                        <svg aria-hidden="true" class="slds-button__icon slds-button__icon--inverse slds-button__icon--large">
+                                            <use xlink:href="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                        </svg>
+                                        <span class="slds-assistive-text">Close</span>
+                                    </button>
+                                </div>
+                                <div class="slds-modal__content">
+                                    <div>
+                                        <span>Submit the following information to DiscoverOrg for further research:</span>
+                                        <apex:inputTextarea id="research-textarea" value="{!researchRequestText}" styleClass="slds-textarea research-textarea"/>
+                                    </div>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <button class="slds-button slds-button--neutral" id="new-company--close">Cancel</button>
+                                    <apex:commandButton value="Submit" styleClass="slds-button slds-button--neutral slds-button--brand" onclick="initResearchRequest();return false;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                    
+                        <apex:outputPanel id="research-request-panel-script">
+                            <script>
+                                function researchRequestOnComplete(){
+                                    if( "{!sentResearchRequest}" == "true"){
+                                        alert('A notification has been sent to DiscoverOrg for your Research Request. Thank You!!');
+                                    }else{
+                                        alert('Unable to submit Research Request on DiscoverOrg for Salesforce.');
+                                    }
+                                    
+                                    $('.top-overlay, .overlay-div').hide();
+                                    $("#new-company--modal").addClass("slds-hide").removeClass("slds-show");
+                                    if("{!showQuickSearch}" == "true"){
+                                        $("#quick-search-modal").removeClass("slds-hide").addClass("slds-show");
+                                    }
+                                }
+                            </script>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                
+                <!--Notification popup end here-->
+                <apex:actionFunction name="clickExcludeCheck" action="{!clickExcludeCheck}" reRender="pg" oncomplete="funReload()" />
+                <apex:actionFunction name="clickExcludeUnCheck" action="{!clickExcludeUnCheck}" reRender="pg" oncomplete="funReload()" />    
+                <apex:actionFunction name="initializePage" action="{!init}" reRender="slds-frm" oncomplete="dynamicElementsScript();afterInit();"/>
+                <apex:actionFunction name="populateRecord" action="{!populateFields}" reRender="slds-frm" oncomplete="afterInit();dynamicElementsScript();"/>
+                <apex:actionFunction name="updateAccountRecord" action="{!updateRecord}" reRender="slds-frm" oncomplete="refreshParentURL();dynamicElementsScript();"/>
+                <apex:actionFunction name="activatePotentialSearch" action="{!activePotentialSearch}" reRender="slds-frm" oncomplete="afterInit();dynamicElementsScript();"/>
+                <apex:actionFunction name="submitHelpReseachRequest" action="{!SendResearchEmailAlert}" oncomplete="helpResearchRequestOnComplete();" reRender="help-research-request-inputs, help-research-request-script"/>
+                <apex:actionFunction name="submitDOQuickSearch" action="{!findPotentialMatchesByName}" reRender="slds-frm" oncomplete="dynamicElementsScript();afterInit();"/>
+                <apex:actionFunction name="findByName" action="{!findPotentialMatchesByName}" reRender="slds-frm" oncomplete="dynamicElementsScript();afterInit();"/>
+                <apex:actionFunction name="submitReseachRequest" action="{!SendEmailResearchRequest}" oncomplete="researchRequestOnComplete();" reRender="research-request-panel-script"/>
+                <apex:includeScript value="/support/console/34.0/integration.js"/>
+                
+                <apex:outputPanel style="display:none;">
+                    <apex:outputLink value="/apex/DiscoverOrgSetup?retUrl=MainPage" styleClass="myaccountLink" target="_blank"></apex:outputLink>
+                    
+                    <apex:outputPanel >
+                        <apex:outputLink value="https://go.discoverydb.com/eui/#/person/{!selectedRecord.contact.DSCORGPKG__DiscoverOrg_ID__c}" styleClass="dorgLink" target="_blank"></apex:outputLink> <!-- &apikey={!settings.SessionId_Dorg2__c} -->
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <!---------------------------  Fix It Request ------------------------------->
+                <div id="help-fixit-request" class="slds-hide">
+                    <div aria-hidden="false" role="dialog"  id="help-fixit-request-modal" class="slds-modal slds-fade-in-open">
+                        <c:FixIt typeOfObject="Contact" nameOfEmpOrComp="{!selectedRecord.contact.firstname} {!selectedRecord.contact.lastname}" doidVar="{!selectedRecord.contact.DSCORGPKG__DiscoverOrg_ID__c}"/>
+                    </div>
+                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                </div> 
+                <!---------------------------  Fix It Request ------------------------------->
+                <div Class="slds-notify-container notificationToast" style="top:140px;display:none;">
+                 <div Class="slds-notify slds-notify--toast" style="min-width: 32rem;">
+                    <button class="slds-button slds-notify__close" onclick="closeToast(); return false;">
+                        <i class="fa fa-close" style="font: normal normal normal 22px/1 FontAwesome !important;color:white;"></i>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <div class="notify__content">
+                        <h2 class="slds-text-heading--small" id="toastNotify" style="background: transparent;border: 0px;color: white;"></h2>
+                    </div>
+                </div>
+                </div>
+                <script>                    
+                    function closeToast(){
+                        $(".notificationToast").css('display','none');
+                    }
+                </script>
+                
+                <script>
+                    function funReload(){
+                        document.getElementById('pnlLoadingtop').style.display='none';
+                        window.location.reload();
+                        
+                    }
+                    var totalNotification = 5;
+                    var dialogcontent = '<h1>hey here is dummy notification</h1>';
+                    
+                    //Function calls on complete of initializePage 
+                    function afterInit(){
+                        $('.top-overlay, .overlay-div').hide();
+                        $(".slds-tabs--default").show(); 
+                    }                
+                    
+                    //Show notification popup         
+                    function showNotificationPopup(){
+                        if( totalNotification > 0 ){                                                
+                            document.getElementById('notificationdialog').innerHTML=dialogcontent;
+                            $( "#notificationdialog" ).dialog("open");
+                            totalNotification = 0;
+                            setTotalNotification();
+                        }
+                    }
+                    
+                    //Set notification
+                    function setTotalNotification(){
+                        if( totalNotification > 0 ){
+                            document.getElementById('totalnotification').innerHTML=totalNotification+'';
+                            document.getElementById('notificationarea').style.background = '#67EE5C';
+                            document.getElementById('notificationarea').style.boxShadow = 'rgb(126, 224, 76) 0px 0px 6px 1px';
+                        }else{
+                            document.getElementById('totalnotification').innerHTML='0';
+                            document.getElementById('notificationarea').style.background = '#F6F6F6';
+                            document.getElementById('notificationarea').style.boxShadow= '#494949 0px 0px 6px 1px';
+                        }
+                    }
+                    
+                    $(document).ready(function(){
+                        $(".myAccount").click(function(){
+                            if( isLightningExperienceOrSalesforce1() ) {
+                                $(".myaccountLink").removeAttr('target');
+                                
+                            }
+                            $(".myaccountLink")[0].click();
+                            return false;
+                        });
+                        
+                        $(".gotoDOrg").click(function(){
+                            if( isLightningExperienceOrSalesforce1() ) {
+                                var isFirefox = typeof InstallTrigger !== 'undefined';
+                                if( isFirefox ){
+                                    $(".dorgLink").removeAttr('target');
+                                    var targetURL = j$('.dorgLink').attr('href');
+                                    targetURL = targetURL.substring(targetURL.lastIndexOf("srcUp('")+7,targetURL.lastIndexOf("');"));
+                                    window.open( decodeURIComponent(targetURL) );
+                                    return false;
+                                }
+                            }
+                            $(".dorgLink")[0].click();
+                            return false;
+                        }); 
+                              
+                        $(".addUpdate").click(function(){
+                            $(".addUpdateModal").show();
+                        });
+
+                        $(".addUpdateModal-Close").click(function(){
+                            $(".addUpdateModal").hide();
+                        });
+                        
+                        var ExcludeFromDO='{!ExcludeFromDO}';
+                        if(ExcludeFromDO =='true'){
+                            $('input[type=checkbox]').attr('disabled','true');
+                        }
+                        
+                        $(".techDescription").each(function(){
+                            if( $(this).text().length > 200 ){
+                                $(this).attr("full-data-value",$(this).text());
+                                var short_txt = $(this).text().substring(0, 180);
+                                $(this).html( short_txt +' <a href="javascript:void(0);" class="see-more">See More...</a>');
+                            }
+                        });
+                        
+                        $(".tech-item a").each(function(){
+                            $(this).attr("target", "_blank");
+                        });
+                        
+                        $('[id$="search-trigger-val"]').keypress(function(event) { 
+                            if (event.keyCode == 13) {
+                                event.preventDefault();
+                                $(".search-trigger").trigger("click"); 
+                            } 
+                        });
+                        
+                        $('[id$="potential-search-text"]').keypress(function(event) {
+                            if (event.keyCode == 13) {
+                                event.preventDefault();
+                                $("[id$='potential-search-btn']").trigger("click");
+                            }
+                        });
+                        
+                        $('[id$="quick-search-val"]').keypress(function(event) { 
+                            if (event.keyCode == 13) {
+                                event.preventDefault();
+                                $('[id$="quick-search-submit"]').trigger("click");
+                            } 
+                        });
+                        
+                        $(document).on("click", ".see-more", function(){
+                            $(this).parent().html( $(this).parent().attr("full-data-value") +' <a href="javascript:void(0);" class="see-less">See Less...</a>');
+                        });
+                        
+                        $(document).on("click", ".see-less", function () {
+                            var full_txt = $(this).parent().attr("full-data-value");
+                            
+                            if( full_txt.length > 200 ){
+                                var short_txt = full_txt.substring(0, 180);
+                                $(this).parent().html( short_txt +' <a href="javascript:void(0);" class="see-more">See More...</a>');
+                            }
+                        });
+                        
+                        $(".detailTable :checkbox").change(function(){
+                            if( $(this).is(":checked")){
+                                $(this).parent().addClass("selected");
+                                if( $(this).parent().hasClass("description-li") )
+                                    $(this).parent().css("background-color", "#eef6fe");
+                            }else{
+                                $(this).parent().removeClass("selected");
+                                if( $(this).parent().hasClass("description-li") )
+                                    $(this).parent().css("background-color", "white");
+                            }
+                        }); 
+                        
+                        $(".slds-button--view-inline .view-inline-icon").hover(function(){ $(this).parent().parent().find(".viewInlinePopup").show();},function(){$(this).parent().parent().find(".viewInlinePopup").hide(); });
+                        
+                        
+                        $(".cdtail a.view-OrgChart-icon").on( "mouseenter", function() {
+                            $(this).next().show();
+                          })
+                          .on( "mouseleave", function() {
+                            $(this).next().hide(); 
+                        });
+                    });
+                    
+                    function validateOperation() {
+                        if ($( "[id*='addOperation']" ).val() == '') {
+                            document.getElementById("notificationMsg").innerHTML = 'Please select desired Operation';
+                            $('#notification-modal12').show();
+                            $('.addUpdateModal').css('display','none');
+                        }else{
+                            $('.top-overlay, .overlay-div').show();
+                            callProcessing();
+                            $(".addUpdateModal").fadeOut();
+                        }
+                    }
+                    
+                    function openSelectedRecord( selectedView ){
+                        $( selectedView ).parent().find(":checkbox").prop('checked', true);
+                        $('.top-overlay, .overlay-div').show();
+                        populateRecord();
+                    }
+                    
+                    function startQuickSearch(){
+                        if( $('[id$="quick-search-val"]').val().trim() == '' ){
+                            $('[id$="quick-search-val"]').val('');
+                            alert('Please specify contact name to begin search.');
+                            return false;
+                        }
+                        $('.top-overlay, .overlp ay-div').show();
+                        submitDOQuickSearch();
+                    }
+                    
+                    function initResearchRequest(){
+                        
+                        if($(".research-textarea").val().trim() == "" ){
+                            alert('Please specify what you want us to research for.');
+                            $(".research-textarea").css("border-color","red");
+                            return;
+                        }
+                        $(".research-textarea").css("border-color","darkgrey");
+                        $('.top-overlay, .overlay-div').show();
+                        submitReseachRequest();
+                    }
+                    
+                    function initHelpResearchRequest(){
+                        
+                        if( $("[id$='research-sel-option']").val() == 'Select a Research Option' ){
+                            alert('Please selected a search option.');
+                            $("[id$='research-sel-option']").css("border-color","red");
+                            return;
+                        }
+                        
+                        if($("[id$='help-research-textarea']").val().trim() == "" ){
+                            alert('Please specify what you want us to research for.');
+                            $("[id$='help-research-textarea']").css("border-color","red");
+                            return;
+                        }
+                        $("[id$='help-research-textarea'], [id$='research-sel-option']").css("border-color","darkgrey");
+                        $('.top-overlay, .overlay-div').show();
+                        submitHelpReseachRequest();
+                    }
+                    
+                    function refreshParentURL(){
+                        $('.top-overlay, .overlay-div').hide();
+                        if('{!JSENCODE(refreshParent)}' == 'yes'){
+                            if( isLightningExperienceOrSalesforce1() ) {
+                                
+                                
+                            }else if (sforce.console.isInConsole()) {
+                                
+                                sforce.console.getFocusedPrimaryTabId(showTabId);
+                            }else {
+                                
+                               
+                                return true;
+                            }
+                        }else{
+                            return false;
+                        }
+                    }
+                    
+                    var showTabId = function showTabId(result) {
+                        sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
+                    };
+                    
+                    var refreshSuccess = function refreshSuccess(result) {
+                        if (result.success == false) {
+                            alert('ERROR: Unable to refresh tab. Please refresh this tab.');
+                        }
+                    };
+                    
+                    function searchByName(){
+                        if( $("[id$='potential-search-text']").val().trim() == "" ){
+                            $("[id$='potential-search-text']").val('');
+                            alert('Please specify contact name to begin search.');
+                            return false;
+                        }
+                        $('.top-overlay, .overlay-div').show();
+                        findByName();
+                    }
+                    
+                    function saveRecord(){
+                        if( $(".contact-info, .company-details, .other-details, #address-info--modal").find("input[type=checkbox]:checked").length > 0 || "{!conflictFound}" == "true"){
+                            $('.top-overlay, .overlay-div').show();
+                            updateAccountRecord(); 
+                        }else{
+                            alert('Please select atleast one Salesforce field to begin update.');
+                        }
+                    }
+                    
+                    
+                    function viewOrgChart( companyDOId, companyName, contactName, scrollTo, deptId, userLockImportShowHide){
+                        var orgChartWin = window.open('/apex/DSCORGPKG__ITOrgChart?co_id='+ companyDOId +'&CoName='+ companyName +'&ConName='+ contactName +'&scrollTo='+scrollTo+'&dept_id='+deptId+'&userLockImport='+userLockImportShowHide,'name','scrollbars=1, height=750,width=1200,top=60,left=60');                        
+                    }
+                    
+                    function windowOpenUrl(){ 
+                        if( '{!JSENCODE(selectedRecord.Contact.DiscoverOrg_ID__c)}' != '' ){
+                            var publicSite = "{!isDOrg2User}" == "true" ? "https://go.discoverydb.com/eui/#/person/{!JSENCODE(selectedRecord.contact.DiscoverOrg_ID__c)}" : "https://www.discoverydb.com/EXEC/SiteImprov/MVC/Views/CompanyInfo.php?co.CO_ID={!JSENCODE(selectedRecord.contact.DiscoverOrg_ID__c)}";
+                            
+                            window.open( publicSite, '_blank');
+                        }else{
+                            var publicSite = "{!isDOrg2User}" == "true" ? "https://go.discoverydb.com/" : "https://www.discoverydb.com";
+                            window.open( publicSite );
+                        }
+                    }
+                    
+                    $(".orgChartBtn").click(function(){
+                       
+                        if( $(this).hasClass("companyOrgChart") ){
+                            var orgChartWin = window.open('/apex/DSCORGPKG__ITOrgChart?co_id='+$(this).attr('companyId')+'&CoName='+$(this).attr('companyName')+'&CFI=true','name','scrollbars=1, height=750,width=1200,top=60,left=60');
+                        }else{
+                                                
+                            var orgChartWin = window.open('/apex/DSCORGPKG__ITOrgChart?co_id={!URLENCODE(selectedRecord.company.account.DiscoverOrg_ID__c)}&CoName={!URLENCODE(selectedRecord.company.account.Name)}&ConName={!URLENCODE(selectedRecord.contact.FirstName)}+{!URLENCODE(selectedRecord.contact.LastName)}&scrollTo={!URLENCODE(selectedRecord.contact.DiscoverOrg_ID__c)}&dept_id={!URLENCODE(selectedRecord.departmentIdPerson)}','name','scrollbars=1, height=750,width=1200,top=60,left=60');
+                        }
+                        return false;
+                    }); 
+                    
+                    
+                    
+                    var companyContactsURL = '/apex/CompanyDetailsNew?Co_Id={!URLENCODE(company.account.DiscoverOrg_ID__c)}&CFI=true&userLockImport={!userLockImportShowHide}';
+                    $("#company-details-tab").on( "click", function(){
+                        var frmSRC = document.getElementById("companyIframe").src;
+                        if( frmSRC == "" || frmSRC.indexOf( companyContactsURL ) == -1 ){
+                            document.getElementById("companyIframe").src = companyContactsURL ;
+                            $('.top-overlay, .overlay-div').show();
+                        }
+                    });
+                    
+                    $('#companyIframe').on("load",function (){
+                        var iFrameID = document.getElementById('companyIframe');
+                        iFrameID.height = "";
+                        iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
+                        $(this).show();
+                        $('.top-overlay, .overlay-div').hide();
+                    });
+
+                </script>
+                   
+                        <apex:outputPanel id="script-panel">
+                            <script>
+                            
+                                $(function(){
+                                    $('.helpHoverBtn').mouseenter(function(){
+                                        $('.helpdetail').fadeIn();
+                                        
+                                       
+                                    });
+                                    
+                                    $('.slds-align-bottom').mouseleave(function(){
+                                        $('.helpdetail').fadeOut("slow");
+                                    })
+                                
+                                })
+                                
+                                                                               
+                               $(document).ready(function(){ 
+                                                           
+                                   $("#sfjscontactautocomplete").autocomplete({
+                                        source: "/apex/AutoCompleteSearch",
+                                        select: function(event, ui) {
+                                            $('input[id*=tempSearchData]').val(ui.item.id);
+                                            
+                                         }
+                                    }).focus(function() {
+                                        if (document.getElementById("sfjscontactautocomplete").value.length == 0) {
+                                            $(this).autocomplete("search", "-----ON-FOCUS-----");
+                                        }
+                                    });
+                                           
+                               });    
+                               
+                                
+                            </script>
+                        </apex:outputPanel>
+                      
+                
+                </apex:form>
+                <div class="overlay-div"></div>
+                <div class="overlay top-overlay" style="">
+                    <div class="top-overlay-content">
+                        <div class="slds-spinner--medium">
+                            <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/images/spinners/slds_spinner_inverse.gif')}" alt="Loading..." />
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="slds-tooltip-right" class="slds-tooltip slds-nubbin--left slds-m-left--small address-info-tooltip" role="tooltip" style="display: none;position:absolute;z-index: 9010;">
+                    <div class="slds-tooltip__content">
+                        <div class="slds-tooltip__body"></div>
+                    </div>
+                </div>
+                
+                <div id="slds-tooltip-left" class="slds-tooltip slds-nubbin--right slds-m-top--small address-info-tooltip" role="tooltip" style="display: none;position:absolute;z-index: 9010;">
+                    <div class="slds-tooltip__content">
+                        <div class="slds-tooltip__body"></div>
+                    </div>
+                </div>
+                <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+                    <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                        <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>                     
+                    </div>
+                </div>
+                
+                <script>
+                    $(document).ready(function(){
+                        $('.top-overlay, .overlay-div').show();
+                        initializePage();                    
+                    });
+                </script>
+                
+                <script>
+                    $(document).ready(function(){
+                        svg4everybody(); // run it now or whenever you are ready
+                    
+                        dynamicElementsScript();
+                    });
+                    
+                    function dynamicElementsScript(){
+                    
+                    var ExcludeFromDO='{!ExcludeFromDO}';
+                    if(ExcludeFromDO =='true'){
+                        $('input[type=checkbox]').attr('disabled','true');
+                    }
+                        $("[role$='tab']").on( "click", function(){
+                            if( !$(this).parent().hasClass("slds-disabled") ){
+                                $("[role$='tab']").attr("aria-selected","false").attr("tabindex","-1");
+                                $("[role$='tab']").parent().removeClass("slds-active");
+                                $(this).attr("aria-selected","true").attr("tabindex","0").parent().addClass("slds-active");
+                                $("div.slds-tabs__content").removeClass("slds-show").addClass("slds-hide");
+                                $("[aria-labelledby$='"+$(this).attr("id")+"']").removeClass("slds-hide").addClass("slds-show");
+                            }
+                        });
+                        
+                        
+                        $(".select-all-checkbox").click( function(){
+                            if( $(this).is(":checked") ){
+                                $(".slds-conflict__checkbox").prop("checked", true);
+                                $(".slds-conflict__checkbox").parent().parent().parent().addClass("slds-col-main--selected");
+                            }else{
+                                $(".slds-conflict__checkbox").prop("checked", false);
+                                $(".slds-conflict__checkbox").parent().parent().parent().removeClass("slds-col-main--selected");
+                            }
+                        });
+                        
+                        $(".slds-grid-details .slds-col-main input[type=checkbox]").on( "change", function(){
+                            if( $(this).is(":checked")){
+                                $(this).parent().parent().parent().addClass("slds-col-main--selected");
+                            }else{
+                                $(this).parent().parent().parent().removeClass("slds-col-main--selected");
+                            }
+                            
+                            if( $(".contact-info, .company-details, .other-details, #address-info--modal").find("input[type=checkbox]:checked").length == $(".contact-info, .company-details, .other-details, #address-info--modal").find("input[type=checkbox]").length ){
+                                $(".select-all-checkbox").prop("checked", true);
+                            }else{
+                                $(".select-all-checkbox").prop("checked", false);
+                            }
+                        });
+                        
+                        $(".custom-radio-options td").each( function(){
+                            $(this).find("input[type='radio']").next("label").addClass("slds-form-element__label");
+                            $(this).find("input[type='radio']").after("<span class='slds-radio--faux'></span>");
+                            var parentLabel = '<label class="slds-radio" for="'+$(this).find("input[type='radio']").attr("id") +'">';
+                            var tdInnerHTML = parentLabel + $(this).html() +'</label>';
+                            $(this).html( tdInnerHTML );
+                        });
+                        
+                        $(".slds-button--search").click(function(){
+                           $(".slds-tabs__item").removeClass("slds-active");
+                           $('#potential-search-tab').parent().removeClass("slds-disabled");
+                           $("#potential-search-tab").trigger("click");
+                           return false;
+                        });
+                        
+                        $(".slds-button--twistSection").click(function(){
+                            if( $(this).hasClass("slds-button-show-content") ){
+                                $(this).find("img").attr("src", "{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/custom/custom_arrow_right.png')}");
+                                $(this).find("img").attr("title", "Show Section - "+$(this).parent().text());
+                            }else{
+                                $(this).find("img").attr("src", "{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/custom/custom_arrow_down.png')}");
+                                $(this).find("img").attr("title", "Hide Section - "+$(this).parent().text());
+                            }
+                            
+                            $(this).toggleClass("slds-button-show-content").toggleClass("slds-button-hide-content");
+                            $(".slds-searchtab__content").toggleClass("slds-show").toggleClass("slds-hide");
+                            return false;
+                        });
+                        
+                        $("#new-company--close").click(function(){
+                            $("#new-company--modal").toggleClass("slds-hide").toggleClass("slds-show");
+                            $("#quick-search-modal").addClass("slds-show").removeClass("slds-hide");
+                            
+                            return false;
+                        });
+                        
+                        $(".request-new-company").click(function(){
+                            $("#new-company--modal").toggleClass("slds-hide").toggleClass("slds-show", 500);
+                            $("#quick-search-modal").addClass("slds-hide").removeClass("slds-show");
+                            return false;
+                        });
+                        
+                       <!----for fixit start---->
+                       
+                         $("#fieldDiv_Phone").hover(function(){
+                                $("#fixItReqIconPhone").show();
+                                return false;
+                                
+                         });
+                            
+                        $("#fieldDiv_Phone").mouseleave(function(){
+                            $("#fixItReqIconPhone").hide();
+                    
+                           return false;
+                    
+                        });  
+                        
+                         $("#fieldDiv_MobilePhone").hover(function(){
+                                $("#fixItReqIconMobilePhone").show();
+                                return false;
+                                
+                         });
+                            
+                        $("#fieldDiv_MobilePhone").mouseleave(function(){
+                            $("#fixItReqIconMobilePhone").hide();
+                    
+                           return false;
+                    
+                        }); 
+                
+                            $("#fieldDiv_Email").hover(function(){
+                            $("#fixItReqIconEmail").show();
+                                return false;
+                            });
+                            
+                            $("#fieldDiv_Email").mouseleave(function(){
+                            $("#fixItReqIconEmail").hide();
+                            return false;
+                    
+                            });
+                            
+                        $(".fixitfun").click(function(){
+                            if( $("#fixItReqIconEmail").is(':visible') ){
+                                
+                                $("#help-fixit-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                                $("[id*='selOptFix']").val('2');
+                                return false;
+                            }else if( $("#fixItReqIconPhone").is(':visible') ){
+                                $("#help-fixit-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                                $("[id*='selOptFix']").val('1');
+                                return false;
+                           
+                            }else if( $("#fixItReqIconMobilePhone").is(':visible') ){
+                                $("#help-fixit-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                                $("[id*='selOptFix']").val('1');
+                                return false;
+                            }else {
+                                $("#help-fixit-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                                $("[id$='research-sel-option']").val("Select a Research Option");
+                                $("#quick-search-modal").addClass("slds-hide").removeClass("slds-show");
+                                callOptionsDisplay("Select a Research Option");
+                            }
+                            
+                            
+                            return false;
+                        });
+                       
+                       
+                       <!----for fixit finish---->
+
+                       
+                        // Research request
+                        $("#submit-research-request").click(function(){
+                            $("#help-research-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                            $("[id$='research-sel-option']").val("Select a Research Option");
+                            callOptionsDisplay("Select a Research Option");
+                            return false;
+                        });
+                        
+                        $(".slds-button--Help-model-close").click(function(){
+                            $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+                            $("[id$='help-research-textarea']").val("");
+                            return false;
+                        });
+                        
+                        $(".toggleNav").click(function(){
+                            if( $(this).hasClass("show-more") ){
+                                $(".tab-title").css("display", "none");
+                                $(".right-panel").css("margin-left", "60px");
+                                $(this).removeClass("show-more").addClass("show-less");
+                            }else{
+                                $(".tab-title").css("display", "inline-block");
+                                $(".right-panel").css("margin-left", "185px");
+                                $(this).removeClass("show-less").addClass("show-more");
+                            }
+                        });
+                        
+                        
+                        $(".addressUpdate").click(function(){
+                            $("#address-info--modal").removeClass("slds-hide").addClass("slds-show");
+                        });
+                        
+                        $(".address-info--close").click(function(){
+                            $("#address-info--modal").removeClass("slds-show").addClass("slds-hide");
+                            return false;
+                        });
+                        
+                        $('.slds-tooltip-right').hover(function() {
+                                setPosition( $(this), "right" );                    
+                                $("#slds-tooltip-right").show();
+                            }, function() {
+                                $("#slds-tooltip-right").hide();
+                        });
+                        
+                        $('.slds-tooltip-left').hover(function() {
+                                setPosition( $(this), "left" );                    
+                                $("#slds-tooltip-left").show();
+                            }, function() {
+                                $("#slds-tooltip-left").hide();
+                        });
+                        
+                        $('#detail-tab').hover(function() {
+                            if( !$(this).parent().hasClass("slds-disabled") )
+                                $(this).find("img.icon").css("background", "rgb(160, 147, 238)");
+                        }, function() {
+                            $(this).find("img.icon").css("background", "transparent");
+                        });
+                        
+                        $('#technologies-tab').hover(function() {
+                            if( !$(this).parent().hasClass("slds-disabled") )
+                                $(this).find("img.icon").css("background", "rgb(72, 157, 208)");
+                        }, function() {
+                            $(this).find("img.icon").css("background", "transparent");
+                        });
+                        
+                        $('#triggers-tab').hover(function() {
+                            if( !$(this).parent().hasClass("slds-disabled") )
+                                $(this).find("img.icon").css("background", "rgb(75, 192, 118)");
+                        }, function() {
+                            $(this).find("img.icon").css("background", "transparent");
+                        });
+                        
+                        $('#company-details-tab').hover(function() {
+                            if( !$(this).parent().hasClass("slds-disabled") )
+                                $(this).find("img.icon").css("background", "rgb(46, 203, 190)");
+                        }, function() {
+                            $(this).find("img.icon").css("background", "transparent");
+                        });
+                        
+                        $(".slds-button--lock").hover(function(){
+                            $(this).find("img").attr("src", "{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/custom/custom_lock.png')}");
+                        },
+                        function(){
+                            $(this).find("img").attr("src", "{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/custom/custom_unlock.png')}");
+                        });
+                        
+                        // browser window scroll (in pixels) after which the "back to top" link is shown
+                        var offset = 300,
+                        //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+                        offset_opacity = 1200,
+                        //duration of the top scrolling animation (in ms)
+                        scroll_top_duration = 700,
+                        //grab the "back to top" link
+                        $back_to_top = $('.cd-top');
+                    
+                        //hide or show the "back to top" link
+                        $(window).scroll(function(){
+                            ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+                            if( $(this).scrollTop() > offset_opacity ) { 
+                                $back_to_top.addClass('cd-fade-out');
+                            }
+                        });
+                    
+                        //smooth scroll to top
+                        $back_to_top.on('click', function(event){
+                            event.preventDefault();
+                            $('body,html').animate({
+                                scrollTop: 0 ,
+                                }, scroll_top_duration
+                            );
+                        });
+                    }
+                    
+                    function setPosition( element, position){
+                        var eTop = element.offset().top; //get the offset top of the element
+                        var eLeft = element.offset().left; //get the offset top of the element
+                        
+                        //set position
+                        <apex:outputpanel layout="none" rendered="{!isInlinePage}">
+                            if( position == "right"){
+                                $( "#slds-tooltip-right" ).find(".slds-tooltip__body").html( element.attr("data-tooltip") );
+                                $( "#slds-tooltip-right" ).css('left',  eLeft + element.outerWidth() );
+                                $( "#slds-tooltip-right" ).css('top',  ( eTop - $( "#slds-tooltip-right" ).outerHeight()/2 ) + ( element.outerHeight()/2 ) );
+                                $( "#slds-tooltip-right" ).css('z-index', '9010');
+                            }
+                            
+                            //set position
+                            if( position == "left"){
+                                $( "#slds-tooltip-left" ).find(".slds-tooltip__body").html( element.attr("data-tooltip") );
+                                $( "#slds-tooltip-left" ).css('left',  ( eLeft -  ( $( "#slds-tooltip-left" ).outerWidth() + 10 ) ) );
+                                $( "#slds-tooltip-left" ).css('top',  ( eTop -10- $( "#slds-tooltip-left" ).outerHeight()/2 ) + ( element.outerHeight()/2 ) );
+                                $( "#slds-tooltip-left" ).css('z-index', '9010');
+                            }
+
+                        </apex:outputpanel>
+
+                        <apex:outputpanel layout="none" rendered="{!NOT(isInlinePage)}">
+                            if( position == "right"){
+                                $( "#slds-tooltip-right" ).find(".slds-tooltip__body").html( element.attr("data-tooltip") );
+                                $( "#slds-tooltip-right" ).css('left',  eLeft + element.outerWidth() );
+                                $( "#slds-tooltip-right" ).css('top',  eTop-$('#AppBodyHeader').height());
+                                $( "#slds-tooltip-right" ).css('z-index', '9010');
+                            }
+                            
+                            //set position
+                            if( position == "left"){
+                                $( "#slds-tooltip-left" ).find(".slds-tooltip__body").html( element.attr("data-tooltip") );
+                                $( "#slds-tooltip-left" ).css('left',  ( eLeft -  ( $( "#slds-tooltip-left" ).outerWidth() + 10 ) ) );
+                               $( "#slds-tooltip-left" ).css('top',  ( eTop - $( "#slds-tooltip-left" ).outerHeight()/2 )-$('#AppBodyHeader').height()  );
+                                $( "#slds-tooltip-left" ).css('z-index', '9010');
+                            }
+
+                        </apex:outputpanel>
+                    }
+                    
+                    function getIframeTop(){
+                        return $("#companyIframe").offset().top - $(".slds-page-header").outerHeight();
+                    }
+                    
+                    function isLightningExperienceOrSalesforce1() {
+                        return((typeof sforce != 'undefined') && sforce && (!!sforce.one));
+                    }
+
+                    
+                </script>
+                </div>
+            </body>
+        </html>
+    </apex:page>

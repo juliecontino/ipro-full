@@ -1,0 +1,16 @@
+<apex:page id="thePage" standardController="AcctSeed__Project__c" title="Clone | Accounting Seed" extensions="AcctSeed.ProjectDeepClone" >
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Clone {!$ObjectType.AcctSeed__Project__c.label}" subtitle="{!AcctSeed__Project__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Clone {!$ObjectType.AcctSeed__Project__c.label}">
+            <apex:pageMessage summary="The clone function will clone the {!$ObjectType.AcctSeed__Project__c.label} and all associated {!$ObjectType.AcctSeed__Project__c.label} Tasks." severity="info" strength="3" />
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...');"/>
+                <apex:commandButton action="{!deepClone}" status="saveStatus" reRender="theForm" value="Clone {!$ObjectType.AcctSeed__Project__c.label}"/>
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

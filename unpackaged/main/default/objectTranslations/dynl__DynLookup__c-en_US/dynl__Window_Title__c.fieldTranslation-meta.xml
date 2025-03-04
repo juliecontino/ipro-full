@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Title for the Lookup window. If this is empty, the Lookup name will be used as the Lookup title --></help>
+        <label><!-- Lookup Title --></label>
+        <name>dynl__Window_Title__c</name>
+    </CustomFieldTranslation>

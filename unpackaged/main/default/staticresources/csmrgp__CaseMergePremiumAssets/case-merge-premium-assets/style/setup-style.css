@@ -1,0 +1,133 @@
+.slds-scope * {
+    font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+.calButton img {
+    width: 12px;
+    margin: -1px 0 0 -1px;
+}
+
+.calButton:first-of-type img {
+    margin-left: -3px;
+}
+
+.slds-tabs_default__content .slds-box {
+    background-repeat: no-repeat;
+    background-position: right -12px bottom -12px;
+    background-size: 160px;
+}
+
+#csmrgp-header-icon > .slds-icon_container {
+    background: linear-gradient(135deg, #228eff, #8d31f7) !important;
+    background-color:#8d31f7 !important;
+}
+
+.slds-scope .slds-page-header {
+    background-color: #000 !important;
+}
+
+.slds-scope #csmrgp-header-text {
+    color: #fff !important;
+}
+
+.slds-scope a {
+    color: #8D31F7 !important;
+}
+.slds-scope a:hover, .slds-scope a:focus {
+    color: #6F1CD8 !important;
+}
+
+.slds-scope .slds-spinner::before {
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner::after {
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-a::before {
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-a::after {
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-b::before {
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-b::after {
+	background-color: #8D31F7 !important;
+}
+
+
+/** Buttons **/
+.slds-scope .slds-button {
+    color: #8D31F7;
+}
+
+.slds-scope .slds-button_neutral {
+    color: #8D31F7 !important;
+    border-color: #DDDBDA !important;
+}
+
+.slds-scope .uiButton--default .label {
+	color: #8D31F7 !important;
+}
+
+.slds-scope .slds-button_neutral:hover,
+.slds-scope .uiButton--default:hover .label {
+    color: #6F1CD8 !important;
+}
+
+.slds-scope .slds-section__title-action, .slds-scope a.slds-button_brand {
+    color: #fff !important;
+}
+
+.slds-scope .slds-button_brand, .slds-scope .slds-button--brand {
+    color: #fff;
+	border: 1px solid #8D31F7 !important;
+	background-color: #8D31F7 !important;
+}
+
+.slds-button_brand:hover, .slds-button--brand:hover {
+	background-color: #6F1CD8 !important;
+	border-color: #6F1CD8 !important;
+}
+
+.slds-scope .slds-section__title {
+	background-color: #8D31F7 !important;
+}
+
+/** Section **/
+.slds-section__title-action,.slds-section__title-action:hover,.slds-section__title-action:focus{
+	background-color: #8D31F7 !important;
+}
+
+/** Navigation Tabs **/
+.slds-scope .slds-tabs_default__link,
+.slds-tabs_default__item.slds-is-active, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link:hover, 
+.slds-tabs_default__item .slds-tabs_default__link:hover, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+	color: #000 !important;
+    text-decoration: none !important;
+}
+
+.slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+    text-shadow: -0.25px 0px 0px #000, 0px -0.25px 0px #000;
+}
+
+.slds-tabs_default__item.slds-is-active:after, .slds-tabs_default__item.slds-has-focus:after, .slds-scope .slds-tabs_default__item:hover:after {
+	background-color: #6F1CD8 !important;
+}
+
+/** Checkbox **/
+.slds-checkbox .slds-checkbox_faux:after {
+	border-bottom: 2px solid #8D31F7 !important;
+    border-left: 2px solid #8D31F7 !important;
+}
+
+/** Radio **/
+.slds-radio_faux:after {
+	background: #8D31F7 !important;
+}

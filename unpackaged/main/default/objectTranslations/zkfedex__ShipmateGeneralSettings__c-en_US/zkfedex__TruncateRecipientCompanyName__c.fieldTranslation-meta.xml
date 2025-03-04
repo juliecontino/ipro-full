@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Truncate Recipient Name and Company Name if longer than 35 characters --></help>
+        <label><!-- Truncate Recipient Name and Company Name --></label>
+        <name>zkfedex__TruncateRecipientCompanyName__c</name>
+    </CustomFieldTranslation>

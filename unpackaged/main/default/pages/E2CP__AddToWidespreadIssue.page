@@ -1,0 +1,33 @@
+<apex:page standardController="Case" extensions="E2CP.WidespreadIssueComponentController" recordSetVar="cs" action="{!redirect}">
+    <apex:outputPanel rendered="{!message != null}">
+        <apex:includeScript value="/support/console/48.0/integration.js"/>
+        <apex:slds />
+ 
+        <div class="slds-notify_container slds-is-relative">
+            <div class="slds-notify slds-notify_toast slds-theme_error" style="min-width: unset;">
+                <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="slds-icon slds-icon_small" aria-hidden="true">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
+                    </svg>
+                </span>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small ">{!message}</h2>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" onclick="back()" class="slds-button slds-button_neutral slds-align_absolute-center">&lt; Back</button>
+
+        <script>
+            function back() {
+                history.back();
+
+                if(sforce && sforce.console && sforce.console.isInConsole()) {
+                    sforce.console.getEnclosingTabId(function(result) {
+                        sforce.console.closeTab(result.id);
+                    });
+                }
+            }
+        </script>
+    </apex:outputPanel>
+</apex:page>

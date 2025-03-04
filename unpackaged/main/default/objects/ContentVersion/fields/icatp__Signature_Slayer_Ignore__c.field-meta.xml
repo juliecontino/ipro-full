@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>icatp__Signature_Slayer_Ignore__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>When checked this file will not appear on the File Slayer Lightning App</description>
+    <label>File Slayer Ignore</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,8 @@
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>E2CPKnowledgeExtension</members>
+		<members>E2CPKnowledgeExtensionTest</members>
+		<name>ApexClass</name>
+	</types>
+	<version>58.0</version>
+</Package>

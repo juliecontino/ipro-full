@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is the default ledger used to post transaction records --></help>
+        <label><!-- Default Ledger --></label>
+        <lookupFilter>
+            <errorMessage><!-- The ledger type must be Transactional --></errorMessage>
+        </lookupFilter>
+        <name>AcctSeed__Default_Ledger__c</name>
+        <relationshipLabel><!-- Accounting_Settings --></relationshipLabel>
+    </CustomFieldTranslation>

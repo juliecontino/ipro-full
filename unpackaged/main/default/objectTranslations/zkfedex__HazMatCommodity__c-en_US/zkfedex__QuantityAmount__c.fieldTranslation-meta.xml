@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Number of units, in the units specified by the Quantity Amount Units --></help>
+        <label><!-- Quantity Amount --></label>
+        <name>zkfedex__QuantityAmount__c</name>
+    </CustomFieldTranslation>

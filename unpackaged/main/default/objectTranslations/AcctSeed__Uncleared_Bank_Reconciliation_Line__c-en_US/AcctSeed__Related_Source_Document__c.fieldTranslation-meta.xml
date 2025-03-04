@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The name of the source document associated with this Uncleared Bank Reconciliation Line. This is a system populated field. --></help>
+        <label><!-- Related Source Document --></label>
+        <name>AcctSeed__Related_Source_Document__c</name>
+    </CustomFieldTranslation>

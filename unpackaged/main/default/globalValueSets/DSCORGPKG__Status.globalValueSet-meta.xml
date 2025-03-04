@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Queued</fullName>
+        <default>false</default>
+        <label>Queued</label>
+    </customValue>
+    <customValue>
+        <fullName>Started</fullName>
+        <default>false</default>
+        <label>Started</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Completed</fullName>
+        <default>false</default>
+        <label>Not Completed</label>
+    </customValue>
+    <customValue>
+        <fullName>Completed</fullName>
+        <default>false</default>
+        <label>Completed</label>
+    </customValue>
+    <description>This value set will be used as status picklist in objects which are maintaining processes</description>
+    <masterLabel>Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

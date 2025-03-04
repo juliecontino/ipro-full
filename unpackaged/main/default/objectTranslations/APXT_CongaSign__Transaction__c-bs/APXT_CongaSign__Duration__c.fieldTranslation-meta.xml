@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Transakcija za prijavu na Conga je završena na datum - Transakcija za prijavu na Conga je napravljena na datum. Vraća minimalnu vrijednost od jednog dana i cjelobrojnu vrijednost.</help>
+        <label><!-- Duration Days --></label>
+        <name>APXT_CongaSign__Duration__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,69 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Shipment__c" title="Pack | Accounting Seed" extensions="AcctSeedERP.ShipmentPack" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Shipment" subtitle="{!AcctSeedERP__Shipment__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Pack Shipment">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Saving...')" />
+                <apex:commandButton id="recalcButton" value="Save & Refresh" action="{!saveRefresh}" status="saveStatus" reRender="theForm" rendered="{!NOT(isOrderFullfilled)}" />
+                <apex:commandButton id="saveButton" value="Save & Complete" action="{!saveComplete}" status="saveStatus" reRender="theForm" rendered="{!NOT(isOrderFullfilled)}" />
+                <apex:commandButton id="cancelButton" value="Back" action="/{!Shipment__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages rendered="{!showMessage}" escape="false"/>
+            <apex:pageBlockSection columns="1" rendered="{!salesOrderLines.size>0}">
+                <apex:outputField value="{!salesOrder.AcctSeedERP__Customer__c}" />
+                <apex:outputField value="{!salesOrder.Name}" />
+            </apex:pageBlockSection>
+            <br/>
+            <apex:repeat value="{!salesOrderLines}" var="sOrders">
+                <apex:pageBlockTable value="{!sOrders}" var="orderLine">
+                    <apex:column value="{!orderLine.salesOrderLine.Name}" style="width:30px;vertical-align:top" />
+                    <apex:column value="{!orderLine.salesOrderLine.Product__r.Name}" style="width:30px;vertical-align:top" />
+                    <apex:column value="{!orderLine.salesOrderLine.Product__r.ProductCode}" style="width:30px;vertical-align:top" />
+                    <apex:column value="{!orderLine.salesOrderLine.Product__r.Description}" style="width:30px;vertical-align:top" />
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.salesOrderLine.AcctSeedERP__Quantity_Ordered__c}" style="width:30px;vertical-align:top" />
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.salesOrderLine.AcctSeedERP__Quantity_Allocated__c}" style="width:30px;vertical-align:top" />
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.salesOrderLine.AcctSeedERP__Quantity_Needed__c}" style="width:30px;vertical-align:top" />
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.salesOrderLine.AcctSeedERP__Quantity_Shipped__c}" style="width:30px;vertical-align:top" />
+                </apex:pageBlockTable>
+                <br/>
+                <apex:outputPanel rendered="{!sOrders.invMovementList.size=0}" style="margin-left:50px;font-weight:bold">No inventory available to pack
+                    <br/>
+                </apex:outputPanel>
+                <apex:pageBlockTable value="{!sOrders.invMovementList}" rendered="{!sOrders.invMovementList.size!=0}" var="inv" headerClass="invHeader" style="width:90%;margin-bottom:25px" align="right" cellpadding="4" cellspacing="0">
+                    <apex:facet name="header">Ready for Shipment</apex:facet>
+                    <apex:column style="width:200px" value="{!inv.deliverInvMovement.Inventory_Balance__r.Warehouse__r.Name}">
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Warehouse" />
+                        </apex:facet>
+                    </apex:column>
+                    <apex:column style="width:100px" value="{!inv.deliverInvMovement.Inventory_Balance__r.Location__r.Name}">
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Location" />
+                        </apex:facet>
+                    </apex:column>
+                    <apex:column styleClass="align-right" headerClass="align-right" style="width:80px;" value="{!inv.QuantityForShipment}">
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Quantity Allocated" />
+                        </apex:facet>
+                    </apex:column>
+                    <apex:column styleClass="align-right" headerClass="align-right" style="width:60px;vertical-align:top">
+                        <apex:facet name="header">
+                            <apex:outputText rendered="{!inv.isSerial}">Quantity to Ship</apex:outputText>
+                            <apex:outputText rendered="{!NOT(inv.isSerial)}">Ship All?</apex:outputText>
+                        </apex:facet>
+                        <apex:inputField value="{!inv.shipLine.AcctSeedERP__Quantity_Shipped__c}" style="width:60px;text-align:right" required="false" rendered="{!inv.isSerial}" />
+                        <apex:inputCheckbox value="{!inv.isSelected}" rendered="{!NOT(inv.isSerial)}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+                <br/>
+            </apex:repeat>
+            <apex:outputField value="{!AcctSeedERP__Shipment__c.AcctSeedERP__Sales_Order__c}" rendered="false" />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

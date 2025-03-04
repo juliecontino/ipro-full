@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Billing total equals minus received amount, adjustment amount, and credit memo applied amount. --></help>
+        <label><!-- Balance --></label>
+        <name>AcctSeed__Balance__c</name>
+    </CustomFieldTranslation>

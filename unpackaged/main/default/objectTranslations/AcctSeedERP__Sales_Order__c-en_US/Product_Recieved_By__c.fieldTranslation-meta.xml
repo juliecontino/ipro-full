@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Product Recieved By --></label>
+        <name>Product_Recieved_By__c</name>
+        <relationshipLabel><!-- Sales Order --></relationshipLabel>
+    </CustomFieldTranslation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ready_To_Bill</fullName>
+    <columns>NAME</columns>
+    <columns>Billing__c</columns>
+    <columns>AcctSeedERP__Customer__c</columns>
+    <columns>AcctSeedERP__Status__c</columns>
+    <columns>AcctSeedERP__Opportunity__c</columns>
+    <columns>Case__c</columns>
+    <columns>AcctSeedERP__Total__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Billing__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>AcctSeedERP__Status__c</field>
+        <operation>equals</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Ready To Bill</label>
+    <language>en_US</language>
+</ListView>

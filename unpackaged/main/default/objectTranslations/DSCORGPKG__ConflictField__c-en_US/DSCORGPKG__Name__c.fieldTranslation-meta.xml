@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Name --></label>
+        <name>DSCORGPKG__Name__c</name>
+        <picklistValues>
+            <masterLabel>AnnualRevenue</masterLabel>
+            <translation><!-- AnnualRevenue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BillingCity</masterLabel>
+            <translation><!-- BillingCity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BillingPostalCode</masterLabel>
+            <translation><!-- BillingPostalCode --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BillingState</masterLabel>
+            <translation><!-- BillingState --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BillingStreet</masterLabel>
+            <translation><!-- BillingStreet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Description</masterLabel>
+            <translation><!-- Description --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FirstName</masterLabel>
+            <translation><!-- FirstName --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industry</masterLabel>
+            <translation><!-- Industry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LastName</masterLabel>
+            <translation><!-- LastName --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MailingCity</masterLabel>
+            <translation><!-- MailingCity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MailingState</masterLabel>
+            <translation><!-- MailingState --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Name</masterLabel>
+            <translation><!-- Name --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NumberOfEmployees</masterLabel>
+            <translation><!-- NumberOfEmployees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone</masterLabel>
+            <translation><!-- Phone --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShippingCity</masterLabel>
+            <translation><!-- ShippingCity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShippingPostalCode</masterLabel>
+            <translation><!-- ShippingPostalCode --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShippingState</masterLabel>
+            <translation><!-- ShippingState --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ShippingStreet</masterLabel>
+            <translation><!-- ShippingStreet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Title</masterLabel>
+            <translation><!-- Title --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Website</masterLabel>
+            <translation><!-- Website --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

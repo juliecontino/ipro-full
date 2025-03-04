@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LS_VC__Visual_Calendar_HomePage_Admin__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Visual Calendar HomePage Admin</label>
+    <referenceTo>LS_VC__Visual_Calendar_HomePage__c</referenceTo>
+    <relationshipLabel>Visual Calendar Categories</relationshipLabel>
+    <relationshipName>Visual_Calendar_Categories</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

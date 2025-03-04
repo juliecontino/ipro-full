@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Effective_To__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Rate is effective to this date.</description>
+    <formula>IF(ISBLANK(AcctSeed__Next_Exchange_Rate__c), null, AcctSeed__Next_Exchange_Rate__r.AcctSeed__Effective_From__c - 1)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This rate is effective to this date.</inlineHelpText>
+    <label>Effective To</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

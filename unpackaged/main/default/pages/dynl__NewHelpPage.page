@@ -1,0 +1,92 @@
+<apex:page showHeader="false" sidebar="false">
+    <apex:form >
+      <body>
+        <div style="margin-left:2.5%;margin-top:5%">
+            <table border = '1'>
+                <tr>
+                    <td><h1>&nbsp;&nbsp; Field Names &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1></td>
+                    <td><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Usage </h1></td>
+                </tr>
+                <tr>
+                    <td><h1> Name* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h1></td>
+                    <td> Enter any desired name for your definition &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Object Name* </h1></td>
+                    <td> Enter the Object Name from which the rows to be retrieved. &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Field Name 1* </h1></td>
+                    <td> Enter the First Field Name from the corresponding object to be retrieved. &nbsp;</td>
+                </tr>
+                <tr>
+                    <td><h1> Field Name 2* </h1></td>
+                    <td> Enter the Second Field Name from the corresponding object to be retrieved. &nbsp;</td>
+                </tr>
+                <tr>
+                    <td><h1> Window Title </h1></td>
+                    <td> Window Title is the title for the preview popup window. &nbsp;</td>
+                </tr>
+                <tr>
+                    <td><h1> Description </h1></td>
+                    <td> Brief about your Dynamic Lookup definition here. &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Where Clause </h1></td>
+                    <td> The retrieved rows can be filtered using where conditions. &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Group By </h1></td>
+                    <td> The retrieved rows can be Grouped using both 1st and 2nd fields. Both fields should be specified with comma without empty space in between. It wont perform any aggregate functions, but, it will group the records with similar characters. Perform Group By using both field1 and field2  &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Order By </h1></td>
+                    <td> The retrieved rows can be ordered based on either one or both 1st and 2nd fields. If using both fields for order by, then specify with comma without empty space in between.&nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Order </h1></td>
+                    <td> Rows can be ordered in ascending or in descending order. &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Preview^ </h1></td>
+                    <td> This button displays the rows returned by the result of the query with the help of popup window. &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Code to copy in VF Page </h1></td>
+                    <td> The Script and Component code can be copied from here to use in your Visualforce Page. &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Save^ </h1></td>
+                    <td> Inserts a new record to the object. It must have atleast one row retrieved from the generated query to save this as a record. If there is no row retrieved, then the record is not saved.  &nbsp; </td>
+                </tr>
+                <tr>
+                    <td><h1> Cancel^ </h1></td>
+                    <td> Cancels the current creation of a new record. &nbsp; </td>
+                </tr>
+            </table>
+        </div> <br /> <br /> <br />
+        <div style="margin-left:2.5%">
+            <table>
+            <tr>
+                <td> <h1> *    &nbsp;- Indicates that it is a Mandatory Field. </h1> </td>
+            </tr>
+            <tr>
+                <td> <h1> ^ - Indicates that it is a Command Button. </h1> </td>
+            </tr>
+            </table>
+        </div>
+        <div style="margin-left:8%;margin-top:3%">
+            <apex:outputText value="Setup Screen" style="font-weight:bolder;font-size:50"/>
+        </div>
+        <div style="margin-left:10%;margin-top:2%">
+            <table>
+                <tr>
+                    <td>
+                        <apex:image value="{!$Resource.dynl__SetupScreenShot}" title="Setup Screen"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+      </body>
+    </apex:form>
+</apex:page>

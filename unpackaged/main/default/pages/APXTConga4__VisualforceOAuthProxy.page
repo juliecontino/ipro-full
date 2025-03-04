@@ -1,0 +1,50 @@
+<apex:page controller="APXTConga4.MergeController" showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" standardStyleSheets="false">
+    <apex:slds />
+    <html lang="en">
+        <head>
+            <meta charset="utf-8"></meta>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+            <meta name="description" content="oAuth proxy page"></meta>
+            <meta name="author" content="Conga"></meta>
+            <title>oAuth proxy page</title>
+        </head>
+        <body>
+            <div style="display: flex;flex-direction:column; height: 500px; justify-content: center; align-items: center; font-size: 18px; text-align: center; margin-left: 7px; margin-right: 7px">
+                <apex:image url="{!$Resource.APXTConga4__Composer_SF1_Icon}" style="margin-bottom: 20px" width="50" height="50"/>
+                <div style="margin-bottom: 7px" id="authMessage1">{!$Label.Oauth_Success_Sf1_0}</div>
+                <div style="margin-bottom: 7px" id="authMessage2"> </div>
+            </div>
+            <script> 
+                'use strict';
+                (function () {
+                    function getUrlParameter(name) {
+                        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                        var results = regex.exec(location.search);
+                        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                    }
+
+                    var code = getUrlParameter('code');
+                    // jQuery/JavaScript remoting
+                    APXTConga4.MergeController.getAccessTokenForSF1(code,
+                        function (result, event) {
+                            if (event.type === 'exception') {
+                                console.log("Event.message: " + event.message);
+                                alert(event.message);
+                            } else if (event.status) {
+                                document.getElementById("authMessage1").innerHTML = '{!$Label.Oauth_Success_Sf1_1}';
+                                document.getElementById("authMessage2").innerHTML = '{!$Label.Oauth_Success_Sf1_2}';
+                            } else {
+                                console.log("Event.message: " + event.message);
+                                alert(event.message);
+                            }
+                        }, {
+                            buffer: false, escape: false
+                        }
+                    );
+                }());
+            </script>
+        </body>
+    </html>
+</apex:page>

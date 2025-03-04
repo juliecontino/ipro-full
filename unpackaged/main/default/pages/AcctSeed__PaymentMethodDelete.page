@@ -1,0 +1,32 @@
+<apex:page standardController="AcctSeed__Payment_Method__c" title="Delete Payment Method | Accounting Seed" extensions="AcctSeed.PaymentMethodDeleteController" id="PaymentMethodDelete">
+    <apex:form >
+        <apex:pageBlock title="Delete Payment Method">
+            <apex:pageMessage severity="warning" strength="3" summary="Changes made in this screen will affect both Accounting Seed and Stripe." rendered="{!isConnectedWithStripe}"/>
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!deleteViaUI}" value="Delete" rendered="{!isConnectedWithStripe}"/>
+                <apex:commandButton action="{!forceDelete}" value="Force Delete" style="color:red;" rendered="{!NOT(isConnectedWithStripe)}"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2" title="Details" collapsible="false" rendered="{!!isACH}">
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Customer__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Type__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Card_Holder_Name__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Last_Four_Digits__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Status__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Expiration_Year__c}" />
+                <apex:outputText value="" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Expiration_Month__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" title="Details" collapsible="false" rendered="{!isACH}">
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Customer__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Bank_Name__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Card_Holder_Name__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Bank_Account_Type__c}" />
+
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Status__c}" />
+                <apex:outputField value="{!AcctSeed__Payment_Method__c.AcctSeed__Last_Four_Digits__c}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

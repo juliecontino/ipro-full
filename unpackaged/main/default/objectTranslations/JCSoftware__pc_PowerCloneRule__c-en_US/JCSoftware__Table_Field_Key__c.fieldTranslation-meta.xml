@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to verify only one rule can exist for a Table / Field combination --></help>
+        <label><!-- Table Field Key --></label>
+        <name>JCSoftware__Table_Field_Key__c</name>
+    </CustomFieldTranslation>

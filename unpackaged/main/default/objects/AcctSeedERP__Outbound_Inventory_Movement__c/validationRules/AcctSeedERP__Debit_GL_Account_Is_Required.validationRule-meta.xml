@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeedERP__Debit_GL_Account_Is_Required</fullName>
+    <active>true</active>
+    <description>The Debit GL Account field is required unless the type field is "Non-Accounting" or "Inventory Transfer"</description>
+    <errorConditionFormula>TEXT(AcctSeedERP__Type__c) != "Non-Accounting"  &amp;&amp; TEXT(AcctSeedERP__Type__c) != "Inventory Transfer" &amp;&amp; ISBLANK(AcctSeedERP__Debit_GL_Account__c)</errorConditionFormula>
+    <errorDisplayField>AcctSeedERP__Debit_GL_Account__c</errorDisplayField>
+    <errorMessage>You must enter a value</errorMessage>
+</ValidationRule>

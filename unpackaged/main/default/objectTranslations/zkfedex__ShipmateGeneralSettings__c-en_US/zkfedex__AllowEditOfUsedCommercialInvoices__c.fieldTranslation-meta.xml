@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If Checked, user will be allowed to edit FedEx Commercial Invoice records that have already been used in a Shipment. Any changes made will no longer reflect the data submitted to FedEx with the existing shipments. --></help>
+        <label><!-- Allow Edit of Used Commercial Invoices --></label>
+        <name>zkfedex__AllowEditOfUsedCommercialInvoices__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,55 @@
+/* 
+    Document   : week.ipad
+    Created on : 31 трав 2012, 18:46:34
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events.new_events > div.evt{
+    opacity:1 !important;
+    display:none !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events.new_events > div.evt.new_event{
+    display:block !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week   div.evt{
+    opacity:1 !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events.new_events > div.new_event > span{
+    box-shadow: 0px 0px 0px 0px transparent !important;
+}
+
+
+/*.JQ_CA.mobile > .CA_r > div._mode-week   div.month_scroll > div > div.events > div.on > span.title,
+.JQ_CA.mobile > .CA_r > div._mode-week   div.sub_events > div.on > span.title,
+.JQ_CA.mobile > .CA_r > div._mode-week   div.hand_on > span.title {
+    box-shadow: 0px 0px 0px 0px transparent !important;
+}*/
+
+
+
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events > div.evt > span > span.l,
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events > div.evt > span > span.r{
+    width:15px !important;
+    background-size: cover;
+/*    border:10px solid red;*/
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events > div.evt > span > span.t,
+.JQ_CA.mobile > .CA_r > div._mode-week   div.events > div.evt > span > span.b{
+    height:10px !important;
+    background-size: cover;
+}
+
+
+.JQ_CA.mobile > .CA_r > div._mode-week > div.bottom > div.data div.evt > span,
+.JQ_CA.mobile > .CA_r > div._mode-week > div.top > div.data > div.events > div > span.title, 
+.JQ_CA.mobile > .CA_r > div._mode-week div.sub_events > div > span.title,
+.JQ_CA.mobile > .CA_r > div._mode-week div.hand_on > span.title {
+    background-image: none;
+}

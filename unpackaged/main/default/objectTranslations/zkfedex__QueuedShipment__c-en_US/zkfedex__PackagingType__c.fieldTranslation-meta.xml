@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Packaging Type --></label>
+        <name>zkfedex__PackagingType__c</name>
+        <picklistValues>
+            <masterLabel>FedEx 10kg Box</masterLabel>
+            <translation><!-- FedEx 10kg Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx 25kg Box</masterLabel>
+            <translation><!-- FedEx 25kg Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Box</masterLabel>
+            <translation><!-- FedEx Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Envelope</masterLabel>
+            <translation><!-- FedEx Envelope --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Pak</masterLabel>
+            <translation><!-- FedEx Pak --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Tube</masterLabel>
+            <translation><!-- FedEx Tube --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Your Packaging</masterLabel>
+            <translation><!-- Your Packaging --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

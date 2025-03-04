@@ -1,0 +1,33 @@
+<!-- the CloudFront url for dev is:  https://dev-docgen.congamerge.com/<branchName>/ -->
+<!-- the CloudFront url for staging is:  https://staging-docgen.congamerge.com/setup/ -->
+<!-- the CloudFront url for red-testing is:  https://staging-docgen.congamerge.com/setup_red/ -->
+<!-- the CloudFront url for prod is:  https://docgen.congamerge.com/setup/ -->
+
+<apex:page controller="APXTConga4.ComposerSetupController" sidebar="false" title="Composer Setup">
+    <apex:iframe src="https://dev-docgen.congamerge.com/index.html?hasSign={!HasCongaSign}&isSandbox={!IsSandbox}&orgId={!OrgId}&username={!Username}&serverUrl={!URLENCODE(ServerUrl)}&orgRegion={!OrgRegion}&composerHost={!ComposerHost}&pod={!Pod}&userId={!UserId}&lng={!Language}" scrolling="true" id="setupPage"/>
+    <script>
+        (function () {
+            var windowOnresize = window.onresize;
+            window.onresize = function () {
+                if (windowOnresize) {
+                    windowOnresize();
+                }
+                document.getElementById('setupPage').height = window.innerHeight;
+            };
+        }());
+        Sfdc.onReady(function () {
+            document.getElementById('setupPage').height = window.innerHeight;
+        });
+    </script>
+    <script>
+        pendo.initialize({
+            visitor: {
+                id: "{! $Organization.Id }-{! $User.Id }"
+            },
+            account: {
+                id: "{! $Organization.Id }",
+                name: "{! $Organization.Name }"
+            }
+        });
+    </script>
+</apex:page>

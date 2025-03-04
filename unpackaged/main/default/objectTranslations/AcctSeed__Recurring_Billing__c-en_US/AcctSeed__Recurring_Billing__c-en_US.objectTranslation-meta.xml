@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Merge Billing Fields --></label>
+        <name>Merge_Billing_Fields</name>
+    </fieldSets>
+    <layouts>
+        <layout>Recurring Billing Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Funding Details --></label>
+            <section>Funding Details</section>
+        </sections>
+        <sections>
+            <label><!-- Master Billing --></label>
+            <section>Master Billing</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Recast --></label>
+            <section>Recast</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Clone w/Lines --></label>
+        <name>AcctSeed__Clone_w_Lines</name>
+    </quickActions>
+    <webLinks>
+        <label><!-- Create_Billing --></label>
+        <name>AcctSeed__Create_Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Billings --></label>
+        <name>AcctSeed__Create_Billings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- CustomLink1 --></label>
+        <name>CustomLink1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PowerClone --></label>
+        <name>PowerClone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Recurring_Billing_Detail_Report --></label>
+        <name>Recurring_Billing_Detail_Report</name>
+    </webLinks>
+</CustomObjectTranslation>

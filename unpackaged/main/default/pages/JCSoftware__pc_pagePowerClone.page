@@ -1,0 +1,126 @@
+<apex:page Controller="JCSoftware.pc_controllerPowerClone" id="pc_PowerClonePage">
+	<script>
+		function unCheckAll() {
+			//Uncheck all checkboxes
+			for (i = 0; i < document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList').rows.length; i++) {
+				//Set CheckArray to empty
+				if (!document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + i).disabled)
+					document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + i).checked = false;
+			}
+		}
+
+		function checkAll() {
+			var Object;
+
+			for (k = 0; k < document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList').rows.length; k++) {
+				if (!document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + k).disabled) {
+					//if we go over the limit, dont check anything else
+					if (!document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + k).checked) {
+						//ok to check
+						Object = document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + k);
+						document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + k).checked = true;
+						if (OkToSelect(Object, true) == false) {
+							document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + k).checked = false;
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		function getSelectedItemCount() {
+			//Reinitialize the counter
+			checkedCount = 0;
+
+			for (i = 0; i < document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList').rows.length; i++) {
+				//Is checkbox checked?
+				if (document.getElementById('pc_PowerClonePage:PowerCloneForm:SelectChildren:ChildTitle:SelectedChildList:' + i).checked) {
+					//Increment counter
+					checkedCount = checkedCount + 1;
+				}
+			}
+			return checkedCount;
+		}
+
+		function IsOverMax() {
+			var MAX_OBJECTS = 900;
+			var CheckedCount = getSelectedItemCount();
+
+			//Under the Max?
+			if (CheckedCount > MAX_OBJECTS) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function IsOverMaxCount() {
+			var MAX_CLONES = 100;
+
+			//Under the Max?
+			if (document.getElementById('pc_PowerClonePage:PowerCloneForm:TitleBlock:PowerCloneNumber').value > MAX_CLONES) {
+				OverMaxCloneAlert();
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function OkToSelect(aObject, aShowError) {
+			if (IsOverMax() == false) {
+				return true;
+			} else {
+				if (aShowError == true) {
+					OverMaxChildAlert();
+				}
+				aObject.checked = false;
+				return false;
+			}
+		}
+
+		function OkToClone() {
+			if (IsOverMaxCount() == false) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function OverMaxCloneAlert() {
+			alert('The number of clones cannot exceed 100.');
+		}
+
+		function OverMaxChildAlert() {
+			alert('Maximum child objects selected (9).');
+		}
+	</script>
+
+	<apex:form id="PowerCloneForm">
+		<apex:pageMessages rendered="{!errorMessage != ''}"/>
+		<apex:pageBlock id="TitleBlock" title="Clone '{!ObjectName}'" tabStyle="JCSoftware__pc_PowerCloneRule__c" rendered="{!errorMessage = ''}">
+			<apex:pageblockSection id="CloneTitle" title="How many times do you want to clone this object?" collapsible="false">
+				<apex:pageBlockSectionItem helpText="Please limit your clone count multiplied by the selected child objects to 100.">
+					<apex:outputPanel layout="block">
+						<apex:inputText style="align=left" id="PowerCloneNumber" value="{!CloneNumber}"/>
+						<apex:outputText value=""/><br/>
+						<apex:commandButton id="PowerCloneSubmit" value="Clone Record" action="{!CloneRecord}" />
+						<apex:commandButton id="PowerCloneCancel" value="Cancel" action="{!Cancel}" />
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+
+			<apex:pageMessages />
+
+		</apex:pageBlock>
+		
+		<apex:pageBlock id="SelectChildren" title="Child objects for '{!ObjectName}'" tabStyle="JCSoftware__pc_PowerCloneRule__c" rendered="{!errorMessage = ''}">
+			<apex:pageBlockSection id="ChildTitle" collapsible="false" title="Select additional child objects to clone.">
+				<apex:selectCheckboxes id="SelectedChildList" layout="pageDirection" value="{!SelectedChildren}" onclick="OkToSelect(this, true)">
+					<apex:selectOptions id="ChildrenOption" value="{!ChildrenNames}"/>
+				</apex:selectCheckboxes>
+			</apex:pageBlockSection>
+			<apex:commandButton id="SelectAll" immediate="true" value="Select All" rerender="SelectChildren" onclick="checkAll()"/>
+			<apex:commandButton id="DeselectAll" immediate="true" value="Deselect All" rerender="SelectChildren" onclick="unCheckAll()"/> 
+		</apex:pageBlock>
+	</apex:form> 
+</apex:page>

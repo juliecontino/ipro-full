@@ -1,0 +1,196 @@
+<apex:page standardController="Opportunity" title="Create Recurring Billing | Accounting Seed" sidebar="false" extensions="AcctSeed.RecurringBillingFromOpportunity,AcctSeed.EnvironmentUtils" lightningStylesheets="true">
+
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/common.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/billing-opp.css')}" />
+     <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/post-table.css')}" />
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+        AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        function setFocus() {}
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/currency-formatter.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/recurring-billing.js')}" loadOnReady="true" />
+    <!-- Checkboxes -->
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/checkbox-set.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/checkbox-set-billing.js')}" loadOnReady="true" />
+    <!-- /Checkboxes -->
+    <apex:form id="theForm">
+
+        <apex:sectionHeader title="{!$ObjectType.Opportunity.label}" subtitle="{!Opportunity.Name}" />
+
+        <apex:pageBlock id="thePageBlock" title="Create Recurring Billing">
+            <apex:pageMessages escape="false" rendered="{!isError}" />
+            <apex:outputPanel id="theMessages">
+                <apex:pageMessage summary="There are existing recurring billings associated with this opportunity"
+                                  severity="warning"
+                                  strength="3"
+                                  rendered="{!isExistingRBill}" />
+            </apex:outputPanel>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onstop="AcctSeed.ASModule.pageLoad(); AcctSeed.ASModule.billingCheckBoxes.rebind(); AcctSeed.ASModule.toggleSpinner('false');" />
+                <apex:commandButton id="saveButton"
+                                    action="{!createRecurringBilling}"
+                                    value="Create Recurring Billing"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!NOT(ISBLANK(Opportunity.AccountId)) && NOT(showOnlyMessages) && !mainDTO.isTaxMethodError}" />
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Recurring Billing"
+                                   collapsible="false"
+                                   columns="2"
+                                   id="recurringBilling"
+                                   rendered="{!NOT(ISBLANK(Opportunity.AccountId)) && NOT(showOnlyMessages)}">
+                
+                <apex:outputField value="{!Opportunity.AccountId}" />
+                <apex:pageBlockSectionItem labelStyleClass="width5" dataStyleClass="width5">
+                    <apex:outputLabel value="Total" />
+                    <apex:outputText id="amount-full" value="{!mainDTO.TotalAmount}" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Billing__c.fields.AcctSeed__Ledger__c.Label}"/>
+                    <apex:selectList required="true"
+                                     value="{!mainDTO.recurringBilling.AcctSeed__Ledger__c}"
+                                     multiselect="false"
+                                     size="1">
+                        <apex:actionSupport action="{!selectLedger}"
+                                            event="onchange"
+                                            rerender="theForm"
+                                            onsubmit="AcctSeed.ASModule.toggleSpinner('true');"
+                                            oncomplete="AcctSeed.ASModule.calculateBillingDate(); AcctSeed.ASModule.rerenderPage();"/>
+                        <apex:selectOptions value="{!allLedgers}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <apex:inputField id="billingFrequency"
+                                 value="{!mainDTO.recurringBilling.AcctSeed__Billing_Frequency__c}"
+                                 required="true"
+                                 onChange="AcctSeed.ASModule.calculateBillingDate();">
+                </apex:inputField>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputpanel >
+                        <apex:outputLabel value="Tax Method on Ledger" />
+                        <img src="/s.gif" class="helpImg" title="This is the tax method on the selected ledger’s tax setting record."/>
+                    </apex:outputpanel>
+                    <apex:outputPanel layout="block">
+                        <apex:outputText value="{!mainDTO.taxMethod}" rendered="{!!mainDTO.isTaxMethodError}"/>
+                        <apex:outputPanel layout="block" styleClass="errorMsg" rendered="{!mainDTO.isTaxMethodError}">
+                            Please select a tax setting for the chosen Ledger.
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:inputField id="recNextBillDate" value="{!mainDTO.recurringBilling.AcctSeed__Next_Billing_Date__c}" />
+
+                <apex:inputField value="{!mainDTO.recurringBilling.Name}" required="true"/>
+                <apex:inputField value="{!mainDTO.recurringBilling.AcctSeed__End_Date__c}" />
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value=""/>
+                </apex:pageBlockSectionItem>
+                <apex:inputField value="{!mainDTO.recurringBilling.AcctSeed__Status__c}" required="true" />
+               
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Billing"
+                                   collapsible="false"
+                                   columns="2"
+                                   rendered="{!NOT(ISBLANK(Opportunity.AccountId)) && NOT(showOnlyMessages)}">
+
+                <apex:inputCheckbox id="initialBilling"
+                                    label="Create Initial Billing?"
+                                    value="{!createInitialBilling}"
+                                    onChange="AcctSeed.ASModule.calculateBillingDate();">
+                </apex:inputCheckbox>
+                <apex:outputText label="Billing Date" id="oppCloseDate" value="{!nextDateFormatted}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Recurring Billing Lines" collapsible="false" rendered="{!NOT(ISBLANK(Opportunity.accountId)) && NOT(showOnlyMessages)}" columns="1">
+
+                <apex:outputPanel styleClass="custom-js-exec-spinner" layout="block">
+                    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                        &nbsp;
+                    </div>
+                    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                            <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+                <apex:pageBlockTable value="{!mainDTO.recurringBillingLineWrappers}" var="wrappedRBLine" styleClass="auto-layout">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <input type="checkbox" class="rbLines_checkbox_all" />
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!wrappedRBLine.isSelected}" styleClass="rbLines_checkbox" disabled="{!wrappedRBLine.isLockedDownRow}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Date__c.Label}" styleClass="amount-row-date">
+                        <apex:inputField id="recBillDate" value="{!wrappedRBLine.rbLine.AcctSeed__Date__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Quantity__c.Label}" styleClass="amount-row-quantity">
+                        <apex:inputField value="{!wrappedRBLine.rbLine.AcctSeed__Quantity__c}" rendered="{!NOT(wrappedRBLine.isLockedDownRow)}"/>
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Quantity__c}" rendered="{!wrappedRBLine.isLockedDownRow}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!HEADER_RATE_LABEL}" styleClass="amount-row-price">
+                        <apex:inputField value="{!wrappedRBLine.rbLine.AcctSeed__Rate__c}" rendered="{!NOT(wrappedRBLine.isLockedDownRow)}"/>
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Rate__c}" rendered="{!wrappedRBLine.isLockedDownRow}"/>
+                    </apex:column>
+                    <apex:column headerClass="amount-all align-right" styleClass="amount-row align-right nowrap">
+                        <apex:facet name="header">
+                            <apex:outputText value="{!SubTotalLabel}" />
+                        </apex:facet>
+                        <apex:outputText id="billingAmount" value="{!wrappedRBLine.rbLine.AcctSeed__Rate__c * wrappedRBLine.rbLine.AcctSeed__Quantity__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Tax_Group__c.Label}"
+                                 headerClass="align-right" styleClass="align-right nowrap" rendered="{!isHeaderLevelPostEnabled && !isAvalaraTaxCalcEnabled}">
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Tax_Group__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Tax_Amount__c.Label}"
+                                 headerClass="align-right" styleClass="amount-row-tax align-right nowrap" rendered="{!isHeaderLevelPostEnabled}">
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Tax_Amount__c}"/>
+                    </apex:column>
+                    <apex:column id="totalAmount" headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Total__c.Label}"
+                                 headerClass="align-right" styleClass="amount-row-total align-right nowrap" rendered="{!isHeaderLevelPostEnabled}">
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Total__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__List_Price__c.Label}"
+                                 headerClass="amount-all align-right" styleClass="align-right nowrap">
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__List_Price__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Product__c.Label}">
+                        <apex:inputField value="{!wrappedRBLine.rbLine.AcctSeed__Product__c}" rendered="{!NOT(wrappedRBLine.isLockedDownRow)}"/>
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Product__c}" rendered="{!wrappedRBLine.isLockedDownRow}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.fields.AcctSeed__Revenue_GL_Account__c.Label}">
+                        <apex:inputField value="{!wrappedRBLine.rbLine.AcctSeed__Revenue_GL_Account__c}" rendered="{!NOT(wrappedRBLine.isLockedDownRow)}"/>
+                        <apex:outputField value="{!wrappedRBLine.rbLine.AcctSeed__Revenue_GL_Account__c}" rendered="{!wrappedRBLine.isLockedDownRow}"/>
+                    </apex:column>
+                    <apex:repeat value="{!$ObjectType.AcctSeed__Recurring_Billing_Line__c.FieldSets.AcctSeed__RecurringBillingFromOpportunity}" var="dynamicField">
+                        <apex:column headerValue="{!dynamicField.Label}">
+                            <apex:inputField value="{!wrappedRBLine.rbLine[dynamicField.fieldPath]}"
+                                             styleClass="{!IF(dynamicField.type == 'textarea', 'fieldComment', '') + IF($User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u', 'LEX', '')}" />
+                        </apex:column>
+                    </apex:repeat>
+                    <apex:column >
+                        <apex:inputHidden id="lineTaxRate" value="{!wrappedRBLine.taxRate}" rendered="{!isHeaderLevelPostEnabled && !isAvalaraTaxCalcEnabled}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:inputHidden id="nextDateConst" value="{!nexDateConst}"/>
+    </apex:form>
+</apex:page>

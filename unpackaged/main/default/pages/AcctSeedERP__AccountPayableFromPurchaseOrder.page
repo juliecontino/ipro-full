@@ -1,0 +1,109 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Purchase_Order__c" title="Create Payable | Accounting Seed" extensions="AcctSeedERP.AccountPayableFromPurchaseOrder,AcctSeedERP.EnvironmentUtils" sidebar="false" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true" />    
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/account-payable-from-purchase-order.js')}" loadOnReady="true"/>
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+    </script>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Purchase Order" subtitle="{!AcctSeedERP__Purchase_Order__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Create Payable">
+            <apex:pageMessage severity="info" strength="3"
+                              summary="You must include a value for amount to pay and quantity to pay for each line you want to include on the payable "
+                              rendered="{!!showOnlyMessages && !isBlockerError}" />
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" onstop="AcctSeed.ASModule.formatCurrency()"/>
+                <apex:commandButton status="saveStatus"
+                                    value="Create Payable"
+                                    action="{!createAccountPayable}"
+                                    rendered="{!!isBlockerError}"
+                                    reRender="theForm"/>
+                <apex:commandButton value="Back" action="/{!Purchase_Order__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+
+            <apex:pageMessages rendered="{!showMessages}" escape="false" />
+            <apex:pageBlockSection columns="2" rendered="{!!showOnlyMessages && !isBlockerError}">
+                <apex:outputField value="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c}" />
+                <apex:inputField value="{!acctPayable.AcctSeed__Date__c}" required="true" />
+                <apex:outputField value="{!acctPayable.AcctSeed__Ledger__c}" />
+                <apex:inputField value="{!acctPayable.AcctSeed__Due_Date__c}" required="true" />
+                <apex:pageBlockSectionItem />
+                <apex:pageBlockSectionItem helpText="{!$ObjectType.AcctSeedERP__Purchase_Order__c.fields.AcctSeedERP__Status__c.InlineHelpText}" rendered="{!isPOStatusFieldUpdateable}">
+                    <apex:outputLabel value="Purchase Order Status" />
+                    <apex:inputField value="{!purchaseOrder.AcctSeedERP__Status__c}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <br/>
+            <apex:pageBlockTable id="thePageBlockTable" value="{!polWrapper}" var="pow" rendered="{!!showOnlyMessages && !isBlockerError}">
+                <apex:column headerClass="align-top" value="{!pow.poLine.Name}" />
+                <apex:column headerClass="align-top" value="{!pow.poLine.Product__r.Name}" />
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Quantity Ordered">
+                    <apex:outputText id="quantityOrdered" value="{0, number, 0.000000}">
+                        <apex:param value="{!pow.poLine.AcctSeedERP__Quantity__c}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Quantity Received">
+                    <apex:outputText id="quantityReceived" value="{0, number, 0.000000}">
+                        <apex:param value="{!pow.quantityReceived}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Quantity Unreceived">
+                    <apex:outputText id="quantityUnreceived" value="{0, number, 0.000000}">
+                        <apex:param value="{!pow.poLine.AcctSeedERP__Quantity__c - pow.quantityReceived}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Invoiced Quantity">
+                    <apex:outputText id="paidQuantity" value="{0, number, 0.000000}">
+                        <apex:param value="{!pow.paidQuantity}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Quantity to Pay">
+                    <apex:inputField id="quantity" styleClass="align-right" value="{!pow.apl.AcctSeed__Quantity__c}" onchange="AcctSeed.ASModule.calculateAmount(this)" onkeyup="AcctSeed.ASModule.calculateAmount(this)" required="false" style="width:80px">
+                    </apex:inputField>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Total Amount">
+                    <apex:outputText id="totalAmount" value="{!pow.poLine.AcctSeedERP__Total__c}" />
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Invoiced Amount">
+                    <apex:outputText id="paidAmount" value="{!pow.paidAmount}"/>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" styleClass="align-right" headerValue="Outstanding Amount">
+                    <apex:outputText id="outstandingAmount" value="{!pow.poLine.AcctSeedERP__Total__c - pow.paidAmount}"/>
+                </apex:column>
+                <apex:column headerClass="align-right align-top" footerClass="align-right" styleClass="align-right">
+                    <apex:facet name="header">
+                        <apex:actionRegion >
+                            Amount to Pay
+                            <br/>Pay All?:&nbsp;
+                            <apex:selectList id="payAllSelect" value="{!selectedPayAll}" onchange="AcctSeed.ASModule.payAll()" size="1">
+                                <apex:selectOption itemValue="No" itemLabel="No" />
+                                <apex:selectOption itemValue="Yes" itemLabel="Yes" />
+                            </apex:selectList>
+                        </apex:actionRegion>
+                    </apex:facet>
+                    <apex:inputField id="amount" value="{!pow.apl.AcctSeed__Amount__c}" required="false" onchange="AcctSeed.ASModule.calculateQuantity(this)" onkeyup="AcctSeed.ASModule.calculateQuantity(this)" styleClass="align-right" style="width:100px">
+                    </apex:inputField>
+                    <apex:facet name="footer">
+                        <apex:outputText id="footerAmount" value="{!0}"/>
+                    </apex:facet>
+                </apex:column>
+            </apex:pageBlockTable>
+            <input type="hidden" id="poLineCount" value="{!polWrapper.size}" />
+            <apex:outputField value="{!AcctSeedERP__Purchase_Order__c.AcctSeedERP__Vendor__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Purchase_Order__c.Name}" rendered="false" />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

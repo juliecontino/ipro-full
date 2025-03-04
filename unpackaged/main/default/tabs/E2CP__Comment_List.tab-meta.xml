@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Displays the Comment List for a specific Case in a standalone tab.</description>
+    <flexiPage>E2CP__Comment_List</flexiPage>
+    <label>Timeline</label>
+    <motif>Custom62: Chalkboard</motif>
+</CustomTab>

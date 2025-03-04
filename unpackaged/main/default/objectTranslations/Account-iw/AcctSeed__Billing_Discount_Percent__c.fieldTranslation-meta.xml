@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to determine the discount off the total price of a billing if payment is received within billing discount days due. --></help>
+        <label><!-- Billing Discount % --></label>
+        <name>AcctSeed__Billing_Discount_Percent__c</name>
+    </CustomFieldTranslation>

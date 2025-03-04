@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Leave this checkbox unchecked so Journal Entries are created from this Recurring Journal Entry when you have automation set up. Check it to exclude Journal Entries from being automatically created. --></help>
+        <label><!-- Exclude From Automation --></label>
+        <name>AcctSeed__Exclude_From_Automation__c</name>
+    </CustomFieldTranslation>

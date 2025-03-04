@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Transaction Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Related Transactions --></label>
+            <section>Related Transactions</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Create_TM_Billings --></label>
+        <name>AcctSeed__Create_TM_Billings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mark_Processed --></label>
+        <name>AcctSeed__Mark_Processed</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mark_Unprocessed --></label>
+        <name>AcctSeed__Mark_Unprocessed</name>
+    </webLinks>
+</CustomObjectTranslation>

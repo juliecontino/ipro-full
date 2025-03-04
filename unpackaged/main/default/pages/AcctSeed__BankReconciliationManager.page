@@ -1,0 +1,5 @@
+<apex:page id="thePage" title="{!AcctSeed__Bank_Reconciliation2__c.Name & ' | Accounting Seed'}" standardController="AcctSeed__Bank_Reconciliation2__c">
+    <apex:pageMessage title="Bank Reconciliation Functionality Moved" severity="info" strength="3">
+        This functionality has been moved to the new and improved Lightning Experience <a href="/lightning/r/AcctSeed__Bank_Reconciliation2__c/{!AcctSeed__Bank_Reconciliation2__c.Id}/view">Bank Reconciliation</a>.
+    </apex:pageMessage>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Default_Form_Category_Id__c</fullName>
+    <deprecated>false</deprecated>
+    <description>External reference to the default Form Category Id used for this account. This field should not be changed manually.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>The DeveloperName to the default Form Category Id used for this account. This field should not be changed manually.</inlineHelpText>
+    <label>Default Form Category Id</label>
+    <length>18</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

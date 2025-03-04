@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__BasedOnPackageProfile__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The Package Profile that was used to create this package</description>
+    <inlineHelpText>The Package Profile that was used to create this package</inlineHelpText>
+    <label>Based on Package Profile</label>
+    <referenceTo>zkfedex__Package__c</referenceTo>
+    <relationshipName>Packages</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

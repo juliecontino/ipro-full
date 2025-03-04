@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Dropoff Type --></label>
+        <name>zkfedex__DropoffType__c</name>
+        <picklistValues>
+            <masterLabel>Business Service Center</masterLabel>
+            <translation><!-- Business Service Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drop Box</masterLabel>
+            <translation><!-- Drop Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regular Pickup</masterLabel>
+            <translation><!-- Regular Pickup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Request Courier</masterLabel>
+            <translation><!-- Request Courier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Station</masterLabel>
+            <translation><!-- Station --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

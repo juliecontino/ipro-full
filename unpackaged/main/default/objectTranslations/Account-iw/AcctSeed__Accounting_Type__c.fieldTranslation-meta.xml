@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used in filtered lookups for Accounts Payable and Billing screens to limit selection of Accounts to those marked as Customers or Vendors for use by Accounting. --></help>
+        <label><!-- Accounting Type --></label>
+        <name>AcctSeed__Accounting_Type__c</name>
+        <picklistValues>
+            <masterLabel>Customer</masterLabel>
+            <translation><!-- Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer and Vendor</masterLabel>
+            <translation><!-- Customer and Vendor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vendor</masterLabel>
+            <translation><!-- Vendor --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

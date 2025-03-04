@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__ServiceType__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Service Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Domestic: FedEx First Overnight</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx First Overnight</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx Priority Overnight</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx Priority Overnight</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx Standard Overnight</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx Standard Overnight</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx 2Day</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx 2Day</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx 2Day A.M.</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx 2Day A.M.</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx Express Saver</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx Express Saver</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx Ground</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx Ground</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx Home Delivery</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx Home Delivery</label>
+            </value>
+            <value>
+                <fullName>Domestic: FedEx SmartPost</fullName>
+                <default>false</default>
+                <label>Domestic: FedEx SmartPost</label>
+            </value>
+            <value>
+                <fullName>International: FedEx Europe First</fullName>
+                <default>false</default>
+                <label>International: FedEx Europe First</label>
+            </value>
+            <value>
+                <fullName>International: FedEx International Economy</fullName>
+                <default>false</default>
+                <label>International: FedEx International Economy</label>
+            </value>
+            <value>
+                <fullName>International: FedEx International Economy Freight</fullName>
+                <default>false</default>
+                <label>International: FedEx International Economy Freight</label>
+            </value>
+            <value>
+                <fullName>International: FedEx International First</fullName>
+                <default>false</default>
+                <label>International: FedEx International First</label>
+            </value>
+            <value>
+                <fullName>International: FedEx International Priority</fullName>
+                <default>false</default>
+                <label>International: FedEx International Priority</label>
+            </value>
+            <value>
+                <fullName>International: FedEx International Priority Freight</fullName>
+                <default>false</default>
+                <label>International: FedEx International Priority Freight</label>
+            </value>
+            <value>
+                <fullName>International: FedEx International Ground</fullName>
+                <default>false</default>
+                <label>International: FedEx International Ground</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

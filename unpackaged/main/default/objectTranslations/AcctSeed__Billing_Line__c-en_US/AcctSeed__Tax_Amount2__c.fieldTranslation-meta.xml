@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Calculated based on Sub-Total x Tax Group&apos;s Combined Tax Rate on Billing Line, unless using AvaTax. --></help>
+        <label><!-- Tax Amount --></label>
+        <name>AcctSeed__Tax_Amount2__c</name>
+    </CustomFieldTranslation>

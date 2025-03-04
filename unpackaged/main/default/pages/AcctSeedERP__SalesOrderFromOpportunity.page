@@ -1,0 +1,140 @@
+<apex:page standardController="Opportunity" sidebar="false" title="Create Sales Order | Accounting Seed" extensions="AcctSeedERP.SalesOrderFromOpportunity,AcctSeedERP.EnvironmentUtils" lightningStylesheets="true">
+
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/salesorder-opp.css')}" />
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/currency-formatter.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/checkbox-set.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/checkbox-set-billing.js')}" loadOnReady="true" />
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, "true", "false"))}";
+        AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        function setFocus() {}
+    </script>
+
+    <apex:form id="theForm" styleClass="soFromOpp">
+
+        <apex:sectionHeader title="{!$ObjectType.Opportunity.label}" subtitle="{!Opportunity.Name}" />
+
+        <apex:pageBlock id="theBlock" title="Create {!$ObjectType.AcctSeedERP__Sales_Order__c.label}">
+
+            <apex:pageMessages escape="false" />
+
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onstop="AcctSeed.ASModule.pageLoad(); AcctSeed.ASModule.billingCheckBoxes.rebind(); AcctSeed.ASModule.toggleSpinner('false');" />
+                <apex:commandButton id="saveButton"
+                                    action="{!createSalesOrder}"
+                                    value="Create"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!!isError}" />
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection id="firstBlockSection"
+                                   title="Sales Order"
+                                   collapsible="false"
+                                   columns="2"
+                                   rendered="{!!isError}">
+                <apex:pageBlockSectionItem labelStyleClass="width5" dataStyleClass="width5">
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Sales_Order__c.fields.AcctSeedERP__Customer__c.Label}" />
+                    <apex:outputField value="{!Opportunity.Account.Name}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem labelStyleClass="width5" dataStyleClass="width5">
+                    <apex:outputLabel value="{!$ObjectType.Opportunity.fields.Amount.Label}" />
+                    <apex:outputText id="amount-full" value="{!Opportunity.Amount}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Sales_Order__c.fields.AcctSeedERP__Ledger__c.Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList required="true"
+                                         value="{!proxySalesOrder.AcctSeedERP__Ledger__c}"
+                                         multiselect="false"
+                                         size="1">
+                            <apex:selectOptions value="{!allLedgers}" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Sales Order Lines"
+                                   collapsible="false"
+                                   rendered="{!!isError}">
+
+                <apex:outputPanel styleClass="custom-js-exec-spinner" layout="block">
+                    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.25; z-index: 1000; background-color: black;">
+                        &nbsp;
+                    </div>
+                    <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 15% 50%">
+                        <div style="display: inline-block; padding: 2px; background-color: #fff; width: 125px;">
+                            <img src="/img/loading.gif" style="float: left; margin: 8px;" />
+                            <span style="display: inline-block; padding: 10px 0px;">Please Wait...</span>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+                <apex:pageBlockTable value="{!solLineWrappers}" var="line" styleClass="auto-layout">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <input type="checkbox" class="rbLines_checkbox_all" />
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!line.isSelected}" styleClass="rbLines_checkbox" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__Quantity_Ordered__c.Label}" styleClass="amount-row-quantity">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__Quantity_Ordered__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__Unit_Price__c.Label}" styleClass="amount-row-price">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__Unit_Price__c}" />
+                    </apex:column>
+                    <apex:column headerClass="amount-all align-right" styleClass="amount-row align-right nowrap">
+                        <apex:facet name="header">
+                            <apex:outputText value="{!$ObjectType.Opportunity.fields.Amount.Label}" />
+                        </apex:facet>
+                        <apex:outputText id="soAmount"
+                                         value="{!line.soLine.AcctSeedERP__Quantity_Ordered__c * line.soLine.AcctSeedERP__Unit_Price__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__Product__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__Product__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__Project__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__Project__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__Project_Task__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__Project_Task__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__Comment__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__Comment__c}" styleClass="{!'fieldComment' + IF($User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u', 'LEX', '')}" style="margin-bottom:0px"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__GL_Account_Variable_1__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__GL_Account_Variable_1__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__GL_Account_Variable_2__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__GL_Account_Variable_2__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__GL_Account_Variable_3__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__GL_Account_Variable_3__c}" />
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.AcctSeedERP__Sales_Order_Line__c.fields.AcctSeedERP__GL_Account_Variable_4__c.Label}">
+                        <apex:inputField value="{!line.soLine.AcctSeedERP__GL_Account_Variable_4__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+
+    </apex:form>
+
+</apex:page>

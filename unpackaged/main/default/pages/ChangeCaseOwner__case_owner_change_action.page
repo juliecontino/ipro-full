@@ -1,0 +1,332 @@
+<apex:page id="pg" showHeader="false" sidebar="false" doctype="html-5.0" title="{!myCase.CaseNumber}: Change Owner" standardController="Case" extensions="ChangeCaseOwner.Case_Owner_Change_Cntr" applyBodyTag="false">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <link rel="stylesheet" href="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/style/jquery-ui.css')}" id="theme"/>
+        <script type="text/javascript" src="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/js/jquery.min.js')}"></script>
+        <script type="text/javascript" src="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/js/jquery-ui.min.js')}"></script>
+        <script type="text/javascript">
+            ccop_$ = $.noConflict();
+        
+            var __sfdcSessionId = '{!GETSESSIONID()}';
+        </script>
+        <script src="/soap/ajax/29.0/connection.js"></script>
+        <script src="/canvas/sdk/js/publisher.js"></script>
+    
+        <style>
+            .datePicker {
+                display: none;
+            }
+            
+            body.ccop-sf1 {
+                font-family: ProximaNovaSoft-Regular;
+                color: #686c70;
+                background: transparent;
+                font-size: 13px;
+                line-height: 13px;
+                font-weight: normal;
+            }
+
+            .bottomBar {
+                position:fixed;
+                right:0;
+                bottom : 0;
+                margin-right:0.5rem;
+            }
+        </style>
+        <apex:slds />
+        <apex:stylesheet value="{!URLFOR($Resource.ChangeCaseOwner__Change_Case_Owner_Assets, 'change-case-owner-assets/style/style.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ChangeCaseOwner__Change_Case_Owner_Assets, 'change-case-owner-assets/js/action-overlays.js')}"/>
+        
+    </head>
+
+    <body style="margin: 8px; background: transparent;">
+        <div class="slds-scope">
+            <script>
+                if(typeof sforce.one != 'undefined' && sforce.one != null)
+                    document.body.className += ' ccop-sf1';
+            
+                ccop_$(function() {
+                    ccop_$('#pg\\:frm\\:addAsMember').click(function(){
+                        if (ccop_$(this).prop('checked')) {
+                            ccop_$('#pg\\:frm\\:selCaseTeamRole').attr('disabled', false);
+                        }
+                        else {
+                            ccop_$('#pg\\:frm\\:selCaseTeamRole').attr('disabled', true);
+                        }
+                    });
+                });
+
+                /*
+                * Creates a type-ahead search from a text input
+                * @param txtInputName jQuery wrapped text input element
+                * @param txtOutputId jQuery wrapped hidden field element to store selection Id
+                * @param lookupFunc function to lookup suggestions of the form: Void lookupFunc(String searchTerm, callback(sObject[]))
+                */
+                function setupAutocomplete(txtInputName, txtOutputId, lookupFunc) {
+                    txtInputName.autocomplete({
+                        minLength: 1,
+                        delay: 250,
+                        dataType: 'json',
+                        source: function(request, response) {
+                                    var term = request.term.trim();
+            
+                                    lookupFunc(term, function(rows) {
+                                        if(rows.length == 1) 
+                                            txtOutputId.val(rows[0].Id);
+            
+                                        var items = [];
+                                        for(var row in rows)
+                                            items.push( {label : rows[row].Name, value : rows[row].Id} );
+                                        
+                                        response(items);
+                                    })
+                                },
+                        select: function(event, ui) {
+                            txtInputName.val(ui.item.label);
+                            txtOutputId.val(ui.item.value);
+                            return false;
+                        },
+                        focus: function(event, ui) {
+                            return false;
+                        }
+                    });
+                }
+                
+                ccop_$(function() {
+                    setupAutocomplete(ccop_$('#awesome-bar'), ccop_$('#pg\\:frm\\:awesomeId'), function(term, callback) {
+                        if(term == null || term.trim() == '') {
+                            callback([]);
+                            return;
+                        }
+                    
+                        term = term.trim().replace("'", "\\'");
+
+                        var userTypes = 'Standard';
+                        if(document.getElementById('pg:frm:selUserType') != null)
+                            userTypes = document.getElementById('pg:frm:selUserType').value.replace("'", "\\'").split(';').join("','");
+
+                        var users = sforce.connection.query(
+                            "SELECT Id, Name " +
+                            "FROM User " +
+                            "WHERE UserType IN ('" + userTypes + "') AND IsActive = true AND Name LIKE '%" + term + "%' " +
+                            "ORDER BY Name " +
+                            "LIMIT 4"
+                        ).getArray('records');
+                               
+                        var queues = sforce.connection.query(
+                            "SELECT Id, Name "+
+                            "FROM Group " +
+                            "WHERE Type = 'Queue' AND Id IN (SELECT QueueId FROM QueueSobject WHERE SobjectType = 'Case') AND Name LIKE '%" + term + "%' " +
+                            "ORDER BY Name " +
+                            "LIMIT 4"
+                        ).getArray('records');
+                        
+                        var results = [];
+                        for(var i = 0; i < queues.length && results.length < 4; ++i)
+                            results.push({Id: queues[i].Id, Name: 'Queue: ' + queues[i].Name});
+                            
+                        for(var i = 0; i < users.length && results.length < 4; ++i)
+                            results.push({Id: users[i].Id, Name: 'User: ' + users[i].Name});
+            
+                        callback(results);
+                    });
+                });
+                
+                //Refresh case details after changing ownership in case feeds
+                function refreshFeed() {
+                    if({!inMobile} || {!inLightning}) {
+                        Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{ refresh:"true"}});
+                    }
+                    else {
+                        Sfdc.canvas.publisher.publish({name: 'publisher.refresh', payload: {feed: true, objectRelatedLists: {}, objectFields: {}}});
+                        document.getElementById('awesome-bar').value = '';
+                    }
+                }
+                
+                function showSpinner() {
+                    ccop_$('#changeOverlay').show();
+                    ACTION_OVERLAYS.setEnableTabsForPage(false);
+                }
+                
+                function hideSpinner() {
+                    ccop_$('#changeOverlay').hide();
+                    ACTION_OVERLAYS.setEnableTabsForPage(true);
+                }
+            </script>
+
+            <div id="changeOverlay" style="display:none;">
+                <div class="slds-backdrop slds-backdrop_open {!IF(!inLightning && !inMobile,'slds-backdrop_white','slds-backdrop_transparent')}" style="display:flex;">
+                    <div class="slds-align_absolute-center">
+                        <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand overlay-spinner">
+                            <span class="slds-assistive-text">Saving</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <apex:form id="frm">
+                <apex:actionFunction action="{!save}" name="save" oncomplete="refreshFeed(); hideSpinner();">
+                    <apex:param name="savedFromUI" value="true" assignTo="{!savedFromUI}"/>
+                    <apex:param name="caseOwnerIsUser" value="true" assignTo="{!caseOwnerIsUser}"/> <!-- Queue Id is also in dummyCase.OwnerId -->
+                </apex:actionFunction>
+                <div class="slds-grid slds-wrap">
+                    <!-- Send Notification Email Checkbox -->
+                    <div class="slds-size_2-of-3 slds-m-bottom_x-small">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <span class="slds-checkbox">
+                                    <apex:inputCheckbox value="{!emailNoteUser}" id="emailNoteUser" selected="{!emailNoteUser}"/>
+                                    <label class="slds-checkbox__label bold" for="{!$Component.emailNoteUser}">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Send Notification Email</span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- User Type Select -->
+                    <div class="slds-size_1-of-3 slds-m-bottom_x-small">
+                        <div class="slds-select_container">
+                            <apex:selectList rendered="{!havePartners }" id="selUserType" value="{!userTypes}" size="1" styleClass="slds-select">
+                                <apex:selectOption itemValue="Standard" itemLabel="Internal"/>
+                                <apex:selectOption itemValue="PowerPartner" itemLabel="Partner"/>
+                                <apex:actionSupport event="onchange" action="{!queryUsers}" reRender="" oncomplete="initTypeAhead();"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                    <!-- User/Queue Input -->
+                    <div class="slds-size_1-of-1 slds-m-bottom_small">
+                        <apex:inputText id="awesomeId" style="display:none;" value="{!dummyCase.OwnerId}"/>
+                        <input id="awesome-bar" class="slds-input" type="text" placeholder="User or Queue" onkeydown="sf1Submit(event);"></input>
+                    </div>
+                    <!-- Case Team Member Checkbox -->
+                    <apex:outputPanel layout="block" id="ctm-checkbox" styleClass="slds-size_1-of-1 slds-m-bottom_x-small">
+                        <apex:outputPanel layout="none" rendered="{!AND(caseTeamSupport,NOT(disableTeams)) }">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-checkbox">
+                                        <apex:inputCheckbox id="addAsMember" styleClass="memberCkbx" value="{!addAsMember}"/>
+                                        <label class="slds-checkbox__label bold" for="{!$Component.addAsMember}">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">Add {!myUser.FirstName} {!myUser.LastName} as a Case Team Member:</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <!-- Case Team Member Select -->
+                    <apex:outputPanel layout="block" id="ctm-select" styleClass="slds-size_1-of-1">
+                        <apex:outputPanel layout="none" rendered="{!AND(caseTeamSupport,NOT(disableTeams)) }">
+                            <div class="slds-select_container">
+                                <apex:selectList id="selCaseTeamRole" styleClass="slds-select" size="1" value="{!selectedRole}">
+                                    <apex:selectOptions value="{!roleOptions}"/>
+                                </apex:selectList>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <!-- Change Button -->
+                    <apex:outputPanel rendered="{!!inMobile}">
+                        <div id="bottomBar" class="slds-size_1-of-1 slds-m-top_small bottomBar">
+                            <apex:commandLink rerender="ctm-select, ctm-checkbox" styleClass="slds-button slds-button_brand slds-float_right" value="Change" action="{!save}" oncomplete="refreshFeed(); hideSpinner();" onclick="showSpinner();">
+                                <apex:param value="true" assignTo="{!savedFromUI}"/>
+                                <apex:param value="true" assignTo="{!caseOwnerIsUser}"/> <!-- Queue Id is also in dummyCase.OwnerId -->
+                            </apex:commandLink>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </apex:form>
+        </div>
+        
+        <script>
+            if(/*typeof sforce.one != 'undefined' && sforce.one != null &&*/ {!inMobile}) {
+                //document.querySelector('#bottomBar').style.display = 'none';
+                
+                Sfdc.canvas.publisher.subscribe({
+                    name: "publisher.showPanel",
+                    onData:function(e) {
+                        Sfdc.canvas.publisher.publish({name:"publisher.setValidForSubmit", payload:"true"});
+                    }
+                });
+                
+                Sfdc.canvas.publisher.subscribe({ 
+                    name: "publisher.post",
+                    onData: function(e) {
+                        showSpinner();
+                        save();
+                    }
+                }); 
+            }
+            
+            function sf1Submit(event) {
+                if(event.keyCode == 13 && {!inMobile}) {
+                    showSpinner();
+                    save();
+                }
+            }
+        </script>
+        
+        <!-- HTML5 placeholder attribute polyfill -->
+        <script>
+            (function() {
+                if(!('placeholder' in document.createElement('input'))) {
+                    var elms = document.getElementsByTagName('input');
+                    for(var i in elms) {
+                        var elm = elms[i];
+                        if(elm.type == 'text') {
+                            var ph = elm.getAttribute('placeholder');
+                            if(ph != null && ph != '') {
+                                elm.value = ph;
+                                elm.style.color = '#999';
+                            }
+            
+                            function placeholderFocus() {
+                                var elm = event.srcElement; //Since we only get here in IE
+                                var ph = elm.getAttribute('placeholder');
+                                if(elm.value == ph) {
+                                    elm.value = '';
+                                    elm.style.color = '#000';
+                                }
+                            }
+                            
+                            function placeholderBlur() {
+                                var elm = event.srcElement; //Since we only get here in IE
+                                var ph = elm.getAttribute('placeholder');
+                                if(ph != null && ph != '') {
+                                    if(elm.value == null || elm.value == '') {
+                                        elm.value = ph;
+                                        elm.style.color = '#999';
+                                    }
+                                }
+                            }
+                            
+                            function formSubmit() {
+                                var form = event.srcElement; //Since we only get here in IE
+                                var inputs = form.getElementsByTagName('input');
+                                for(var i in inputs)
+                                    if(inputs[i].type == 'text' && inputs[i].value == inputs[i].getAttribute('placeholder'))
+                                        inputs[i].value = '';
+                            }
+                            
+                            //IE 9
+                            if(elm.addEventListener) {
+                                elm.addEventListener('focus', placeholderFocus);
+                                elm.addEventListener('blur', placeholderBlur);
+                                if(elm.form) elm.form.addEventListener('submit', formSubmit);
+                            }
+                            //IE < 9
+                            else if(elm.attachEvent) {
+                                elm.attachEvent('onfocus', placeholderFocus);
+                                elm.attachEvent('onblur', placeholderBlur);
+                                if(elm.form) elm.form.attachEvent('onsubmit', formSubmit);
+                            }
+                        }
+                    }
+                }
+            })();
+        </script>
+       
+    </body>
+</apex:page>

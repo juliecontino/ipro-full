@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Base currency ISO Code in a currency pair. For example if the rate for CAD/USD = .78, this means that 1 Canadian Dollar is exchanged for .78 US Dollars. CAD is the base currency and USD is the relative currency. --></help>
+        <label><!-- From Currency Code (ISO) --></label>
+        <name>AcctSeed__From_Currency_Code__c</name>
+    </CustomFieldTranslation>

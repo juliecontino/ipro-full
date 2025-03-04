@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Package Profile that was used to create this package --></help>
+        <label><!-- Based on Package Profile --></label>
+        <name>zkfedex__BasedOnPackageProfile__c</name>
+        <relationshipLabel><!-- FedEx Packages --></relationshipLabel>
+    </CustomFieldTranslation>

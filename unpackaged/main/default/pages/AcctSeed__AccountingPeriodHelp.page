@@ -1,0 +1,28 @@
+<apex:page >
+<!-- Begin Default Content REMOVE THIS -->
+<h1>Accounting Periods</h1>
+<br/>
+Overview:
+<br/>
+Accounting Periods are the fundamental data element to capture accounting transactions in the dimension of time. An accounting period typically spans an entire month. Accounting periods allow for full accrual accounting and support the Accounting Matching  principle.  The format for an Accounting Period must be YYYY-MM. The month must be a value between 1-12. Accounting periods over 12 months are not supported.
+<br/>
+DANGER!:
+<br/> 
+Allowing for gaps in days between Accounting Periods may cause Time Card data to post incorrectly. Editing the dates of an Accounting Period after Time Card Periods have been established may cause Time Card data to post in correctly. Time Card Periods should be deleted and recreated if Accounting periods are edited to ensure data is posted correctly to the transactions table.
+<br/>
+Recommendations:
+<br/>
+It is ideal to set up a complete years’ worth of periods in advance. For example, it is good practice to add all of the 2012 accounting periods at the end of 2011. Attached to this page is a sample load file for a calendar year company for 2010, 2011, and 2012.
+<br/>
+A tip for quick entry is to set up Accounting Periods in mass in a spreadsheet and import them into Accounting Cloud with the import tool or Data Loader. Attached to this page is a sample load file for a calendar year company for 2010, 2011, and 2012.
+<br/>
+<br/>
+<br/>
+Setting up Accounting Periods Field by Field:
+<br/>
+Accounting Period Name-Use the recommended format from above to input your first month.   
+Start Date- This denotes the beginning of the period. Fiscal Months are supported. A period beginning date can not cross over into the start and end date range of another period.
+End Date-This denotes the end of the period. Fiscal Months are supported. A period end date can not cross over into the start and end date range of another period.
+Status- Selecting "Open" allows new transactions to be saved to this period. Selecting "Closed" prevents new records from being saved to this period. If transactions need to be saved a closed period, the period would have to be opened and saved to open status first. After the transactions have been made the user can close it again. 
+<br/>
+</apex:page>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Provides access to all components required to interact with the File Slayer application. In addition to this permission set, ensure users have read, insert, and delete access to the Document Object in Salesforce.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>File Slayer End User</label>
+    <license>Salesforce</license>
+    <classAccesses>
+        <apexClass>icatp__SignatureSlayerComponentController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>icatp__RecordHitList</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>icatp__Assigned_Signature_Slayer_License</name>
+    </customPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>icatp__Usage_Update__e</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+</PermissionSet>

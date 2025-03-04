@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpringCMEos__Use_Legacy_Frame__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>When enabled, Folder Portal and SpringCM Content will authenticate using the legacy iframe and Salesforce session ID instead of Canvas. This is useful for orgs that are reaching Canvas governor limits.</description>
+    <label>Use Legacy Frame</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

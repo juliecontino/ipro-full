@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used in expense report entry screen to provide a more user friendly name for a GL Account. --></help>
+        <label><!-- Expense Report Name --></label>
+        <name>AcctSeed__Expense_Report_Name__c</name>
+    </CustomFieldTranslation>

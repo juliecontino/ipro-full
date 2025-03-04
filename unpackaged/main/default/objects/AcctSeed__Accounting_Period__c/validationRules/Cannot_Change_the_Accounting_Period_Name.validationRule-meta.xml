@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_the_Accounting_Period_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>And(
+Not(isnew()),
+or(
+ischanged( Name ),
+ischanged(  AcctSeed__Start_Date__c ),
+ischanged(  AcctSeed__End_Date__c )
+))</errorConditionFormula>
+    <errorMessage>You cannot edit the Accounting Period Name or Dates.  If you are attempting to change the accounting period on a related record, please hit the back arrow and use the lookup icon.</errorMessage>
+</ValidationRule>

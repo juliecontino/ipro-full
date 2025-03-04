@@ -1,0 +1,3176 @@
+<apex:page controller="DSCORGPKG.ITOrgChartController" standardStylesheets="false" applyBodyTag="false" id="pg" sidebar="false" showHeader="false">
+    
+    <head>
+        <title>{!hOrgChartName} - Org Chart</title>
+        <apex:includeScript value="/soap/ajax/28.0/connection.js" />
+        <apex:includeScript value="/soap/ajax/28.0/apex.js" />
+        <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+        <link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.DiscoverOrgChart, 'css/customstyle.css')}" />
+        <link type="text/css" rel="stylesheet" href="{!URLFOR($Resource.DiscoverOrgChart, 'css/orgchart.css')}" />
+        <link href="{!URLFOR($Resource.DiscoverOrgUI,'css/style.css')}" type="text/css" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.DiscoverOrgUI,'css/fonts/fonts.css')}" type="text/css" rel="stylesheet" />
+        <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'familyOpenSans.css')}"/><!-- SFNA 2839-->
+        <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'familyRaleway.css')}"/><!-- SFNA 2839-->
+        <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" /><!-- SFNA 2839-->
+        
+        
+        
+        
+        <script src="{!URLFOR($Resource.SLDS080, 'SLDS080/assets/script/jquery.min.js')}"></script>
+        <!-- Start By Neha Agrawal for SFNA: 1897 on 13/June/2018 -->
+            <link href="{!URLFOR($Resource.Semantic_Theme,'/semantic.min.css')}" type="text/css" rel="stylesheet" />    
+            <!-- End By Neha Agrawal for SFNA: 1897 on 13/June/2018 -->
+            
+            <script>
+            var mapOfrecords = new Map();
+                                       
+                                       $(document).on("click",".fa-plus-circle", function () {
+                                           $('.fa-minus-circle').click();
+                                           var clicked = $(this).attr('per-node-id');
+                                           var extendelemnt = $('#'+clicked).attr('reportstoid');
+                                           if(extendelemnt!=null && extendelemnt!= '')
+                                               if(extendelemnt.indexOf(',') !== -1){
+                                                   var arrbyid=extendelemnt.split(',');
+                                                   arrbyid.forEach(function(element) {                 
+                                                       var ielement = $('#'+element).children('div.vertline').find('i')[0];
+                                                       $(ielement).addClass('insertemementclass'+element);
+                                                       $('.insertemementclass'+element).click();                                                                
+                                                   });
+                                               }else{             
+                                                   var ielement = $('#'+extendelemnt).children('div.vertline').find('i')[0];
+                                                   $(ielement).addClass('insertemementclass'+extendelemnt);
+                                                   $('.insertemementclass'+extendelemnt).click();
+                                               }
+                                       });
+                                       </script>
+        
+        <style>
+            .horizontalScrollBar {
+            overflow-x: auto !important;
+            }
+            .slds-hide{
+            display:none;
+            }     
+            .ui.animated.button{            
+            padding: 0!important;       
+            background: none;       
+            }
+            .ui.animated.button .hidden.content {
+            position: relative;
+            display:inline;
+            
+            }
+            
+            @-moz-document url-prefix() {
+            .ui.animated.button .hidden.content {
+            position: relative;
+            display:inline-block;
+            margin-top:-12px;
+            
+            }
+            }
+            
+            @supports (-ms-ime-align: auto) {
+            .ui.animated.button .hidden.content {
+            position: relative;
+            display:inline-block;
+            margin-top:-13px;
+            
+            }
+            }
+            
+            
+            
+            .fa-minus-circle:before {
+            
+            content: "";
+            }
+            
+            .fa-plus-circle:before {
+            
+            
+            content: ""
+            }
+            
+            .nodeLevel i {
+            font-size: 18px!important;
+            background: #fff;
+            }
+            
+            .nodeLevel {
+            top: 93px;
+            left: -8px;
+            display: block;
+            position: absolute;
+            z-index: 101;
+            cursor: pointer;
+            }
+            
+            a.nodeLevel:focus,
+            a.nodeLevel:hover {
+            color: #113a6a;
+            }
+            
+            .vertline {
+            z-index: 100;
+            }
+            
+            *,
+            *:before,
+            *:after {
+            box-sizing: content-box;
+            }
+            
+            button,
+            html input[type="button"],
+            input[type="reset"],
+            input[type="submit"] {
+            box-sizing: border-box;
+            }
+            
+            #orgChartBody {
+            margin: 0 0 40px 6vw;
+            padding: 20px;
+            }
+            
+            #orgchart-collapse-section li {
+            display: inline-block;
+            }
+            
+            .org-chart-plus {
+            float: right;
+            font-size: 35px;
+            color: white;
+            cursor: pointer;
+            }
+            
+            .org-chart-placeholder-text {
+            font-size: 15px;
+            color: white;
+            }
+            
+            .left-grey-box-placeholder {
+            width: 280px;
+            }
+            
+            .hit-count {
+            padding-left: 5px;
+            }
+            
+            .data-management-container span {
+            background: none;
+            border: none;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 15px;
+            border-radius: 0px;
+            padding: 0px;
+            float: left;
+            margin-right: 0px;
+            font-size: 16px;
+            margin-bottom: 0px;
+            }
+            
+            .category {
+            background-color: #6DA239;
+            width: 100%;
+            border-radius: 5px 5px 5px 5px;
+            color: white;
+            padding: 1.2px;
+            margin-right: 5px;
+            font-size: 11px;
+            padding-left: 4px;
+            padding-right: 4px;
+            text-decoration: none !important;
+            color: white !important;
+            margin-left: 5px;
+            }
+            
+            .highlight {
+            background-color: yellow !important;
+            font-size: 100% !important;
+            }
+            
+            #technology-search {
+            color: gray !important;
+            }
+            
+            .hit-count {
+            color: yellow
+            }
+            
+            .tinytitle {
+            font-size: 11px !important;
+            }
+            
+            .newsCoLink {
+            color: #6DA239 !important;
+            }
+            
+            .disbaled {
+            opacity: .2;
+            background: url("/img/btn-blue-right.png") no-repeat scroll right top transparent;
+            color: #FFFFFF;
+            float: left;
+            font-family: 'HelveticaNeue-Bold';
+            font-size: 16px;
+            height: 36px;
+            line-height: 36px;
+            padding: 0 12px 0 6px;
+            border-radius: 5px;
+            margin-left: 5px;
+            }
+            
+            #no-itchart {
+            display: none;
+            }
+            
+            #no-itchart h4 {
+            color: #777;
+            }
+            
+            .searchButtonClass {
+            font-family: "Arial" !important;
+            background: #76AB3F;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            height: 30px;
+            padding: 3px 20px;
+            margin-top: 0px;
+            font-family: Arial;
+            cursor: pointer;
+            margin: 0px;
+            font-weight: bold
+            }
+            
+            .searchButtonClass:hover {
+            background:url({!URLFOR($Resource.DiscoverOrgImages,'DiscoverOrgImages/input_main_bg_hover.jpg')
+            }
+            
+            ) repeat;
+            }
+            body {
+            font-family: Arial, Helvetica, sans-serif;
+            }
+            .sResearch-sRmodal {
+            display: none;
+            position: fixed;
+            top: 150px;
+            border: 1px solid lightgray;
+            left: 25%;
+            box-shadow: 0 2px 40px #ccc;
+            z-index: 110;
+            width: 650px;
+            background: #f8f8f8;
+            height: 100px;
+            border-radius: 3px;
+            padding: 15px;
+            }
+            .sRmodal-header {
+            margin-bottom: 3px;
+            }
+            .sRmodal-title {
+            border-radius: 2px;
+            display: block;
+            margin-top: 0px;
+            background: none repeat scroll 0 0 #86bc50;
+            border: 1px solid #75a841;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 8px 20px;
+            font-size: 15px;
+            }
+            .sRmodal-body {
+            padding: 0 10px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            }
+            .research-overlay {
+            display: none;
+            top: 0;
+            width: 100%;
+            background: #222;
+            height: 100%;
+            position: fixed;
+            opacity: 0.5;
+            z-index: 9000;
+            }
+            .messageCell {
+            color: black;
+            }
+            .messageText h4 {
+            color: blue;
+            font-weight: normal;
+            height: 12px;
+            }
+            .divfm {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            }
+            .searchClass {
+            padding: 3px 20px;
+            font-family: "Arial" !important;
+            background: #0255A3;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            height: 30px;
+            }
+            .searchClass:hover {
+            
+            
+            cursor: pointer;
+            
+            }
+            .orgChartHeader {
+            position: relative;
+            
+            top: 0;
+            background: #fff;
+            width: 100%;
+            border-bottom: 1px solid #dedede
+            
+            }
+            .allLevel {
+            margin-top: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 9999
+            
+            }
+            .allLevel ul {
+            padding: 5px 0;
+            border-bottom: 1px solid #dedede
+            
+            }
+            .orgcard {
+            height: auto;
+            min-height: 50px;
+            margin-bottom: 29px;
+            border: 1px solid black;
+            
+            
+            }
+            .name {
+            font-family: Raleway, 'Open Sans', Arial;
+            
+            }
+            .maincard p {
+            font-family: 'Open Sans', Arial;
+            color: #666666 !important;
+            
+            }
+            .cardtext a {
+            color: #666666 !important;
+            
+            }
+            .maincard span.title {
+            margin-top: -10px;
+            font-weight: 400 !important;
+            font-size: 12px;
+            color: #666666 !important;
+            padding: 8px 0 6px;
+            font-family: 'Open Sans', Arial;
+            
+            
+            }
+            .name a {
+            font-size: 16px;
+            font-weight: 600 !important;
+            color: #666666 !important;
+            font-size: 18px;
+            
+            }
+            .checkSelection {
+            float: right;
+            
+            }
+            .left-grey-box {
+            min-width: 460px;
+            
+            }
+            .card-actions {
+            float: right;
+            color: white;
+            font-family: 'Open Sans', arial;
+            font-size: 12px;
+            
+            }
+            .card-actions div {
+            display: inline;
+            
+            }
+            .orgchart-1,
+            li.active-1 {
+            background-color: #265fa1 !important;
+            
+            }
+            .orgchart-2,
+            li.active-2 {
+            background-color: #73b156 !important;
+            
+            }
+            .orgchart-3,
+            li.active-3 {
+            background-color: #eda127 !important;
+            
+            }
+            .orgchart-4,
+            li.active-4 {
+            background-color: #666 !important;
+            
+            }
+            .orgchart-5,
+            li.active-5 {
+            background-color: #cba115 !important;
+            
+            }
+            .orgchart-6,
+            li.active-6 {
+            background-color: #3592C4 !important;
+            
+            }
+            .orgchart-7,
+            li.active-7 {
+            background-color: #c46735 !important;
+            
+            }
+            .orgchart-8,
+            li.active-8 {
+            background-color: #7ac65b !important;
+            
+            }
+            .orgchart-9,
+            li.active-9 {
+            background-color: #039 !important;
+            
+            }
+            .orgchart-10,
+            li.active-10 {
+            background-color: #393 !important;
+            
+            }
+            .nodeLevel-1 {
+            color: #265fa1
+            
+            }
+            .nodeLevel-2 {
+            color: #73b156
+            
+            }
+            .nodeLevel-3 {
+            color: #eda127
+            
+            }
+            .nodeLevel-4 {
+            color: #666
+            
+            }
+            .nodeLevel-5 {
+            color: #cba115
+            
+            }
+            .nodeLevel-6 {
+            color: #3592C4
+            
+            }
+            .nodeLevel-7 {
+            color: #c46735
+            
+            }
+            .nodeLevel-8 {
+            color: #7ac65b
+            
+            }
+            .nodeLevel-9 {
+            color: #039
+            
+            }
+            .nodeLevel-10 {
+            color: #393
+            
+            }
+            .overlay-div,
+            .overlay-div1 {
+            background-color: #16325c;
+            width: 100%;
+            position: fixed;
+            
+            
+            top: 0;
+            left: 0;
+            height: 100%;
+            opacity: 0.6;
+            z-index: 9999;
+            
+            }
+            .orgcard {
+            padding-bottom: 2px !important;
+            
+            }
+            .orgchart-11 {
+            width: 100%;
+            
+            }
+            .orgchart-22 {
+            width: 95%;
+            
+            }
+            .orgchart-33 {
+            width: 90%;
+            
+            }
+            .orgchart-44 {
+            width: 85%;
+            
+            }
+            .orgchart-55 {
+            width: 80%;
+            
+            }
+            .orgchart-66 {
+            width: 75%;
+            
+            }
+            .orgchart-77 {
+            width: 70%;
+            
+            }
+            .orgchart-88 {
+            width: 70%;
+            
+            }
+            .orgchart-99 {
+            width: 60%;
+            
+            }
+            .orgchartSearchBox{
+            height: 34px;
+            border-radius: 2px;
+            background-color: #ffffff;
+            border: solid 1px #d7dde6;
+            width: 260px;
+            font-size: 18px;
+            text-align: center;
+            padding-right: 28px;
+            text-align: left;
+            padding-left: 5px;
+            }
+        </style>
+        <style type="text/css">
+            
+            
+            
+            .col-xs-12 {
+            width: 100%;
+            float: left;
+            }
+            
+            .col-lg-1,
+            .col-lg-10,
+            .col-lg-11,
+            .col-lg-12,
+            .col-lg-2,
+            .col-lg-3,
+            .col-lg-4,
+            .col-lg-5,
+            .col-lg-6,
+            .col-lg-7,
+            .col-lg-8,
+            .col-lg-9,
+            .col-md-1,
+            .col-md-10,
+            .col-md-11,
+            .col-md-12,
+            .col-md-2,
+            .col-md-3,
+            .col-md-4,
+            .col-md-5,
+            .col-md-6,
+            .col-md-7,
+            .col-md-8,
+            .col-md-9,
+            .col-sm-1,
+            .col-sm-10,
+            .col-sm-11,
+            .col-sm-12,
+            .col-sm-2,
+            .col-sm-3,
+            .col-sm-4,
+            .col-sm-5,
+            .col-sm-6,
+            .col-sm-7,
+            .col-sm-8,
+            .col-sm-9,
+            .col-xs-1,
+            .col-xs-10,
+            .col-xs-11,
+            .col-xs-12,
+            .col-xs-2,
+            .col-xs-3,
+            .col-xs-4,
+            .col-xs-5,
+            .col-xs-6,
+            .col-xs-7,
+            .col-xs-8,
+            .col-xs-9 {
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+            }
+            
+            
+            
+            .nav {
+            cursor: pointer;
+            }
+            
+            .showSliderBase .orgchart-level-tabs li {
+            background-color: #F8F8F8;
+            border: 1px solid #6EBE49;
+            display: inline-block;
+            font-size: 14px;
+            height: 30px;
+            margin-right: -1px;
+            margin-top: -25px;
+            text-align: center;
+            margin-left: 0;
+            box-sizing: border-box;
+            width: 20%;
+            }
+            
+            
+            
+            .showSliderBase .orgchart-level-tabs li a {
+            border: none;
+            color: #545454;
+            line-height: 28px;
+            margin-right: 0;
+            padding: 0;
+            text-decoration: none;
+            }
+            
+            .oc-name,
+            .showSliderBase .orgchart-level-tabs li a {
+            font-family: Raleway, Helvetica, Arial, sans-serif;
+            }
+            
+            
+            
+            @media (min-width: 768px) {
+            .col-sm-1,
+            .col-sm-10,
+            .col-sm-11,
+            .col-sm-12,
+            .col-sm-2,
+            .col-sm-3,
+            .col-sm-4,
+            .col-sm-5,
+            .col-sm-6,
+            .col-sm-7,
+            .col-sm-8,
+            .col-sm-9 {
+            float: left;
+            }
+            .col-sm-offset-2 {
+            margin-left: 16.66667%;
+            }
+            .col-sm-10 {
+            width: 83.33333%;
+            }
+            }
+            
+            
+            
+            a,
+            body {
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            }
+            
+            .showSliderBase .orgchart-level-tabs li.active a {
+            color: #FFF;
+            background-color: #6EBE49;
+            }
+            
+            
+            
+            .showSliderBase .orgchart-level-tabs li.active {
+            background-color: #6EBE49;
+            }
+            
+            
+            .slds-button {
+            font-size: 14px;
+            }
+            
+            input.slds-button--brand {
+            background: #6EBE49;
+            border-color: #6EBE49;
+            }
+            
+            .slds-button:focus {
+            outline: 0;
+            box-shadow: 0 0 3px #339933;
+            }
+            
+            .slds-button--brand:hover,
+            .slds-button--brand:focus {
+            background-color: #0070d2;
+            
+            border: 1px solid #0070d2;
+            color: #fff;
+            }
+            
+            .header-text {
+            font-size: 14px;
+            color: white;
+            display: inline-block;
+            width: 50% !important;
+            }
+            
+            .main-header {
+            background-color: #ffffff;
+            border: none;
+            box-shadow: 0px 5px 10px 1px #9A9A9A;
+            }
+            
+            .slds-page-header {
+            padding: 1.5rem 1.5rem 0.75rem;
+            }
+            
+            body button,
+            body .x-btn,
+            body .btn,
+            body .btnDisabled,
+            body .btnCancel,
+            body .menuButton .menuButtonButton {
+            font-weight: normal;
+            }
+            
+            .OrgChartType {
+            width: 196px;
+            height: 32px;
+            padding: 0 10px;
+            }
+            
+            .main-header {
+            display: none;
+            }
+            
+            #fixed-header {
+            width: 100%;
+            z-index: 1000;
+            position: fixed !important;
+            background: white;
+            }
+            
+            .addUpdateHeader {
+            font-weight: 300;
+            font-size: 1.5rem;
+            line-height: 1.25;
+            font-family: "Salesforce Sans", Arial, sans-serif;
+            background: #fff;
+            color: #16325c;
+            border: none;
+            }
+            
+            .OrgChartTitle {
+            color: #fff;
+            font-size: 20px;
+            padding-left: 14px;
+            width: 100%;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            }
+            
+            .fa-mobile {
+            font-size: 14px !important;
+            }
+            
+            .cardtext {
+            width: 100% !important;
+            }
+            
+            .left-grey-box {
+            width: 100%;
+            }
+            
+            li:hover {
+            text-decoration: none;
+            color: white;
+            background-color: blue;
+            }
+            li a:hover{
+            text-decoration: none;
+            color: white;
+            }
+            
+            .slds-checkbox .slds-checkbox--faux{
+            z-index: 12;
+            margin-left: -35px;
+            margin-top: 12px;
+            width: 14px;
+            height: 14px;
+            }
+            
+        </style>
+        <apex:outputpanel layout="none" rendered="{!isCalledFromIframe}">
+            <style type="text/css">
+                .slds-page-header {
+                display: none
+                }
+                
+                
+                #addUpdateBtn {
+                background: #79c653
+                }
+                
+                .orgchart-2,
+                li.active-2 {
+                background: #7eba61 !important;
+                }
+                
+                #unmapped-nodes {
+                max-width: 100% !important
+                }
+               
+                .blueBtn{
+                font-family: Open Sans !important;
+                font-size: 14px;
+                font-weight: normal;
+                font-style: normal;
+                font-stretch: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: #ffffff;
+                height: 30px;
+                background-color: #1b5eac;
+                margin-left: 8px;
+                border-radius: 6px;
+                
+                border: 0px;
+                width: 128px;
+                height: 34px;
+                border-radius: 4px;
+                
+                }
+                .blueBtn:Hover{
+                color:#ffffff;
+                background-color:#14539c;
+                }
+                
+                .sel-box{
+                position:relative;
+                }
+                a{
+                text-decoration:none;
+                }
+                #select{
+                display:block;
+                width:235px;
+                height:20px;
+                border:1px solid #999;
+                padding:5px;
+                }
+                .toc-odd{
+                position:absolute;
+                top:32px;
+                background:#f1f1f1;
+                width:250px;
+                display:none;
+                }
+                #loading {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                }
+            </style>
+        </apex:outputpanel>
+        <script>
+        var contactListFillArray = [];
+        var leadListFillArray = [];
+        
+        //Contact
+        let setOfConids = new Set();
+        let setOfConEmails = new Set();
+        var mapOfConid = new Map();
+        var mapOfConEmail = new Map();
+        
+        //Lead
+        let setOfLeadids = new Set();
+        let setOfLeadEmails = new Set();
+        var mapOfLeadid = new Map();
+        var mapOfLeadEmail = new Map();
+        </script>
+    </head>
+    
+    <body style="text-overflow: ellipsis;">
+       
+        <apex:form >
+            <!--Page Header Start Here-->
+            <div>
+                
+            <div id="fixed-header" style="width:100%;">
+                <apex:outputPanel id="OrgChartTitle">
+                    <apex:outputPanel rendered="{!IF(hOrgChartName!=null && hOrgChartName!='', true, false)}">
+                        <table style="width:100%;border-radius: 2px; background-color: #1b5eac;">
+                            <tr>
+                                <td class="OrgChartTitle"> {!hOrgChartName} Org Chart</td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!If(DepartmentsList!=null && DepartmentsList.size>0, true, false)}" >
+                    <div class="slds-page-header main-header">
+                        <div class="slds-1grid slds-page-header-grid">
+                            
+                            <div class="header-text">
+                                <apex:outputPanel id="select-frm" >
+                                    <apex:outputPanel id="appTest"></apex:outputPanel>
+                                    <apex:actionFunction name="onclickTabSwitch" action="{!orgChartCommonJSONCall}" reRender="frm,Pagination, optp, pgmsg, OrgChartTitle showLvl" onComplete="createOrgChart('Person');return false;" />
+                                    <div class="slds-form-element" >
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <label style="width: 71px; height: 17px; font-family: OpenSans; font-size: 12px; font-weight: 600; text-align: left; color: #666666;">Department</label>
+                                                </td>
+                                                <td style="width: 16px;"></td>
+                                                <td>
+                                                    <label style="width: 71px; height: 17px; font-family: OpenSans; font-size: 12px; font-weight: 600; text-align: left; color: #666666;">Show Levels</label>
+                                                </td>
+                                                
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:selectList value="{!selectedDepartment}" onchange="onclickSwitchTab('Person');return false;" styleClass="slds-select OrgChartType" size="1" multiselect="false" style="display:none; width: {!if(headerwidth == '115', '136px', '')};" rendered="{!If(DepartmentsList!=null && DepartmentsList.size>0, true, false)}">
+                                                            <apex:selectOptions value="{!DepartmentsList}" id="dept" />
+                                                        </apex:selectList>
+                                                    </div>
+                                                </td>
+                                                <td style="width: {!if(headerwidth == '115', '10px', '16px')}"></td>
+                                                <td>
+                                                    <apex:outputPanel id="showLvl">
+                                                        <div class="slds-form-element__control">
+                                                            <div class="orgchart-level-control col-xs-12">
+                                                                <div class="orgchart-level-tabs col-sm-10 col-sm-offset-2 sel-box" style="width: {!if(headerwidth == '115', '55px', '100px')}; margin-left: -31px;">
+                                                                    <div id='select' style="background-color: #fff; color: #16325c; border: 1px solid #d8dde6; border-radius: .25rem; width: 100%;height: 26px; padding-left: 13px; padding-top: 4px;">All  <i class="fa fa-sort-desc" aria-hidden="true" style=" float: right; margin-right: 6px; "></i></div>
+                                                                    <ul class="nav nav-tabs toc-odd" role="tablist" id="sel-option" style="position: absolute;color: black;width: {!if(headerwidth == '115', '52px', '92px')};display: none;background-color: white;box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 8px 0px;border: 1px solid rgb(255, 255, 255);border-radius: 4px;z-index: 9999;padding: 10px;margin-top: 6px;">
+                                                                        
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </apex:outputPanel>
+                                                </td>
+                                                <td>
+                                                    <apex:inputText onfocus="$(this).focus();" id="srchid" styleclass="orgchartSearchBox" onkeyup="doSearch(this.value);return false;"  html-placeholder="Search Org Chart..."  style="background-color: #fff; color: #16325c; border: 1px solid #d8dde6; border-radius: .25rem; width: {!if(headerwidth == '115', '75%', '80%')};height: 26px; padding-left: 13px; padding-top: 2.5px; padding-bottom: 2.5px;"/>
+                                                    
+                                                    
+                                                    <i class="fa fa-times leftPanelSearchIcon" id="crossSrchIconTrig" onclick="$('.trigrSearchBox').val('').keyup();" style="display:none;left: -21px;margin-top: -25px; cursor: pointer; font-style: normal !important; font-variant: normal !important; font-weight: normal !important; font-stretch: normal !important; font-size: 14px !important; line-height: 1 !important; font-family: FontAwesome !important;"></i>
+                                                </td>
+                                                
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    
+                                </apex:outputPanel>
+                            </div> 
+                            
+                            
+                            <apex:outputPanel rendered="{!If(DepartmentsList!=null && DepartmentsList.size>0, true, false)}">
+                                <div class="slds-col slds-align-bottom" style="display:inline-block;float:right;">
+                                    <input type="button" value="Return to Org Chart" id="returnToOrgChart" Class="slds-button slds-button--brand slds-button--small" style="float: right; margin-top:-22px;" onclick="javascript: document.getElementById('pnlLoadingtop').style.display = 'block'; returnToOrgChart();return false;" />
+                                    <div class="slds-button action-buttons" role="group" style="float: right;margin-top: 15px;">
+                                        <!-- By Neha Agrawal : uncomment this code for SFNA-2481 -->
+                                        <input type="button" value="Summary Report" id="saveAsPdf" Class="slds-button slds-button--neutral slds-button--small" onclick="clickSubmit();return false;" />
+                                        <button onclick="selectDeselectAll(); return false;" id="selectDeselectAllBtn" class="slds-button slds-button--neutral" style="min-width: 110px;">Select All</button>
+                                        <input type="button" class="slds-button slds-button--brand slds-button--small {!IF((userLockImportShowHide=='true'),'indiDisable','')}" value="Add/Update Selected" id="addUpdateBtn" onclick="onAddUpdate(); return false;"/>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+                            
+                        </div>
+                    </div>
+                </apex:outputPanel>
+                
+                <div class="showSliderBase" style="display:none;">
+                    <div class="orgchart-level-control col-xs-12"  style="display: none;">
+                        <div class="col-sm-2" style="float: left;">Show&nbsp;Levels:</div>
+                        <div class="orgchart-level-tabs col-sm-10 col-sm-offset-2 sel-box">
+                            <span id='select'>Select</span>
+                            <ul class="nav nav-tabs toc-odd" role="tablist" id="sel-option">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Page Header End Here -->
+             <div id="pnlLoadingtop" style=" z-index: 10000; height: 100%; width: 100%; opacity: 0.7; filter: alpha(opacity = 70);position: absolute; text-align: center; padding-top: 50px; top:200px; left:0px; display:none; ">
+                <div style="position:fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div style="text-align: center; padding: 50px;">
+                        <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/images/spinners/slds_spinner_inverse.gif')}" style="width:62px;" /><br/>
+                        <p style="margin-top: 15px; color:white;"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="overlay-div" style="display: none; "> </div>
+            <div class="research-overlay" style="display: block; "></div>
+            <div class="orgChartHeader">
+                <script>
+                function importFinished(){
+                    showSaveSuccessfulMsg();
+                    remoteFunMatching();
+                }
+                
+                var isClose = false;
+                function importFinished2(){
+                    if( isClose ){
+                        doCloseImport();
+                    }
+                }
+                
+                function doCloseImport(){
+                    if ( $('#importIframe').contents().find('#pauseBtn').css("display") == 'none' ){
+                        $(".checkSelection").prop("checked",false);
+                        CloseImportData();
+                        remoteFunMatching();
+                        $("#selectDeselectAllBtn").text("Select All");
+                        $("[id*='theHiddenInput']").val("");
+                    }
+                }
+                </script>
+                <apex:outputPanel id="frm">
+                    <apex:outputPanel id="actionFunPanel">
+                        <apex:actionFunction name="SaveIndivisualLead" reRender="actionFunPanel" action="{!SaveIndivisualLead}" oncomplete="$('#importIframe').attr('src', '/apex/ImportData?id={!JSENCODE(DoObj.id)}&AccountId={!AccId}&{!IF(NOT(ISNULL(AccId)), 'noDupsSingleImport=true&', '')}singlerecord=true&track={!trackValue}');">
+                            <apex:param value="" name="LdId" assignTo="{!IndivisualLeadId}"/>
+                            <apex:param value="" name="Optype" assignTo="{!OperationType}"/>
+                            <apex:param value="" name="namedata" assignTo="{!savedataName}"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction name="showSaveSuccessfulMsg" reRender="actionFunPanel" action="{!fatchoppdata}" oncomplete="if('{!dupurl}' != ''){ $('#importdupIframe').attr('src', '/apex/MatchMultipleDupAccount?id={!dupurl}&fromType=ContactsPageNew'); $('.dupIframe').css('display','block'); } if('{!dupURLForcontactLead}' != ''){ $('#importdupIframe1').attr('src', '/apex/MultipleContactLeadPage?id={!dupURLForcontactLead}&type=Contact/Lead'); $('.dupIframe1').css('display','block'); }  if('{!saveTypeString }' != ''){document.getElementById('toastNotify').innerHTML ='{!saveTypeString }'; $('.notificationToast').css('display','block');}hideStatusDiv();"/>
+                    </apex:outputPanel>
+                    <div style="display:none;" class="dupIframe1">
+                        
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" style="width: 100%;">
+                            <div class="slds-modal__container" style="padding-top: 0px;">
+                                <div class="slds-modal__header">
+                                    <h2 class="slds-text-heading--medium" id="updateHeadingofpopup" style="width: 96%; height: 24px; font-family: Open Sans !important; font-size: 18px; text-align: center; color: #666666;background: white;border: 0px;"></h2>
+                                    <p style="width: 100%; height: 17px; font-family: Open Sans !important; font-size: 12px; font-weight: 600; text-align: center; color: #535353;">Multiple matching records found, please select a salesforce record to update:</p>
+                                </div>
+                                <div class="slds-modal__content horizontalScrollBar">
+                                    <div>
+                                        <iframe id="importdupIframe1" src="" style="border: 0px;height: 300px;width: 620px;margin-left: -4px;"/>
+                                    </div>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <apex:commandButton styleclass="slds-button slds-button--neutral ccssaply" value="Cancel" onclick="$('.dupIframe1').css('display','none'); return false;"/>
+                                    <apex:commandButton styleclass="slds-button slds-button--neutral  slds-button--brand ccssaply" value="Update" onclick="$('#importdupIframe1').contents().find('.updateBts').click(); return false;"/>
+                                </div>
+                                <script>
+                                function afterdupimportframe1(){
+                                    $('.dupIframe1').css('display','none');
+                                    callMatching();
+                                }
+                                </script>
+                            </div>
+                        </div>
+                        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                    </div>
+                    <div style="display:none;" class="dupIframe">
+                        
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open" >
+                            <div class="slds-modal__container" style="padding-top: 0px; width: 640px;">
+                                <div class="slds-modal__header">
+                                    <h2 class="slds-text-heading--medium" style="width: 96%; height: 24px; font-family: Open Sans !important; font-size: 18px; text-align: center; color: #666666;background: white;border: 0px;"></h2>
+                                    <p style="width: 100%; height: 17px; font-family: Open Sans !important; font-size: 12px; font-weight: 600; text-align: center; color: #535353;">Multiple matching records found, please select a salesforce record to update:</p>
+                                </div>
+                                <div class="slds-modal__content horizontalScrollBar">
+                                    <div>
+                                        <iframe id="importdupIframe" src="" style="border: 0px;height: 400px;width: 630px;"/>
+                                    </div>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <apex:commandButton value="close" onclick="$('.dupIframe').css('display','none'); return false;" styleClass="slds-button slds-button--neutral ccssaply"/>
+                                    <apex:commandButton styleclass="slds-button slds-button--neutral  slds-button--brand ccssaply" value="Update" onclick="$('#importdupIframe').contents().find('.updateBtsAccount').click(); return false;"/>
+                                    <script>
+                                    function afterdupimportframe(){
+                                        $('.dupIframe').css('display','none');
+                                        remoteFunMatching();
+                                    }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                    </div>
+                    
+                    <div Class="slds-notify-container notificationToast" style="top:140px;display:none;">
+                        <div Class="slds-notify slds-notify--toast" style="min-width: 32rem;">
+                            <button class="slds-button slds-notify__close" onclick="closeToast(); return false;">
+                                <i class="fa fa-close" style="font: normal normal normal 22px/1 FontAwesome !important;color:white;"></i>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <div class="notify__content">
+                                <h2 class="slds-text-heading--small" id="toastNotify" style="background: transparent;border: 0px;color: white;"></h2>
+                            </div>
+                        </div>
+                        <script>
+                        function closeToast(){
+                            $(".notificationToast").css('display','none');
+                        }
+                        </script>
+                    </div>
+                    
+                    <apex:actionFunction name="returnToOrgChart" reRender="pg" action="{!returnToOrgChart}" />
+                    <apex:actionFunction name="onLoadFunction" action="{!onLoadFunction}" rerender="frm, optp, OrgChartTitle,Pagination" onComplete="init(); onloadOver();" />
+                    <apex:actionFunction name="clickSubmit" oncomplete="onClickPdf();" reRender="submitReportPnl"/>
+                    
+                    <apex:outputPanel id="submitReportPnl">
+                        <script>
+                        function onClickPdf() {
+                            var refreshedToken = '{!$Setup.DSCORGPKG__SessionSettings__c.DSCORGPKG__SessionId_Dorg2__c}';
+                            if ({!settings.DSCORGPKG__Dorg2_User__c} == false) {
+                                url = 'http://www.discoverydb.com/pdf/discoverorg_' + "{!URLENCODE(persId)}" + '.pdf';
+                            } else {
+                                url = 'https://rapi.discoverydb.com/rapi/api/rest/sf/orgcharts/generateOrgChart?companyId={!URLENCODE(persId)}&apiKey='+refreshedToken ;
+                            }
+                            window.open(url, '_Blank');
+                        }
+                        
+                        setOfConids = new Set();
+                        setOfConEmails = new Set();
+                        mapOfConid = new Map();
+                        mapOfConEmail = new Map();
+                        
+                        //Lead
+                        setOfLeadids = new Set();
+                        setOfLeadEmails = new Set();
+                        mapOfLeadid = new Map();
+                        mapOfLeadEmail = new Map();
+                        </script> 
+                        
+                    </apex:outputPanel>
+                    
+                </apex:outputPanel>
+                
+            </div>
+            
+            <apex:outputPanel id="Pagination">
+                 <div style=" position: fixed;bottom: 0;width: 100%;background: white; z-index: 1000; padding: 5px 0 3px 0;" >
+                    
+                    <div style="display:flex;justify-content:center">
+                        <apex:commandButton styleClass="slds-button slds-button--neutral" style="margin-right: 10px;" value="Previous" id="prev" action="{!getPrevRemainingData}" onclick="$('.overlay-div').css('display', 'block'); $('#pnlLoadingtop').css('display', 'block');" oncomplete="createOrgChart('Person');" disabled="{!IF((IndexData >0),'false','true')}" reRender="Pagination,optp" />
+                    
+                        <apex:commandButton styleClass="slds-button slds-button--neutral" value="Next" id="Next" style="padding: 0 30px;" action="{!NextRemainingData}" onclick="$('.overlay-div').css('display', 'block'); $('#pnlLoadingtop').css('display', 'block');"  disabled="{!IF((IndexData <ListSize),'false','true')}" oncomplete="createOrgChart('Person');" reRender="optp,Pagination" />
+                    </div>
+                    
+                </div>
+                <div id="container" style="margin-top: 155px;">
+                    <div class="pageMessages">
+                        <apex:pageMessages escape="false" id="pgmsg" />
+                    </div>
+                   
+                    
+                    <div id="loading" style="display:none; position: fixed;background: #000;  opacity: 0.5; z-index: 1050;height: 100%; width: 100%;">
+                        <div style="z-index:200;position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+                            <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:70px;margin-left: 30px;" /><br/>
+                            <p style="margin-top: 15px;color:white;font-size: medium">Loading Org Chart....</p>
+                        </div>
+                    </div>
+                    <div id="no-itchart">
+                        <apex:pageMessage id="pg-msg" severity="Warning" strength="3" title="Content locked. All available departments are outside of your access scope."></apex:pageMessage>
+                    </div>
+                    
+                    <div data-role="content" id="orgChartBody" style="display:none;">
+                        <div id="mapped-nodes"></div>
+                        <div id="unmapped-nodes" style="position: relative;width: 1100px;"></div>
+                    </div>                               
+                
+                
+                
+                </div>
+            </apex:outputPanel>  
+            
+            <apex:outputPanel id="frm1"  >
+                
+                <!-- Add/update Request Popup -->
+                <div id="sResearch-sRmodal" style="display:none;">
+                    <div id="pnlLoadingtop1" style=" z-index: 10000; height: 100%; width: 100%; opacity: 0.7; filter: alpha(opacity = 70); 
+                                                    position: absolute; text-align: center; padding-top: 50px; top:200px; left:0px; display:none; ">
+                        <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                            <div style="text-align: center; padding: 50px; padding-top:0px; padding-left:30px;">
+                                <img src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/images/spinners/slds_spinner_inverse.gif')}" style="width:62px;" /><br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay-div1" style="display: none; "> </div>
+                    
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container" style="padding: 0px;">
+                            <div class="slds-modal__header">
+                                <h2 class="slds-text-heading--medium addUpdateHeader">Add/Update Selected As</h2>
+                            </div>
+                            <div class="slds-modal__content">
+                                <div>
+                                    <script> <!--SFNA 2596 -->
+                                    function showhidecontactleadlabel() {
+                                        // console.log('entered showhidecontactleadlabel');
+                                        //$('[id$="leadPenelId"]').hide();
+                                        
+                                        if($('[id$="addOperation"]').val() != '' && $('[id$="addOperation"]').val() == "As Leads"){
+                                            $('[id$="contactPenelId"]').hide();
+                                            $('[id$="leadPenelId"]').show();
+                                            
+                                        } else if ($('[id$="addOperation"]').val() !='' && $('[id$="addOperation"]').val() == "As Contacts"){
+                                            $('[id$="leadPenelId"]').hide();
+                                            $('[id$="contactPenelId"]').show();
+                                        }
+                                    }
+                                    
+                                    function resetValues(){
+                                        $("[Id$='selectedUserId']").text('Specify owner:');
+                                        $("[Id$='UserLookup_lkid']").val('');
+                                        $("[Id$='addOperation']").val('As Contacts');
+                                        $("[Id$='UserLookup_lkwgt']").css({'pointer-events': 'none'});
+                                        $("[Id$='customTextFieldContact']").val('');
+                                        $("[Id$='customTextFieldLead']").val('');
+                                        $("#radio-default").prop("checked", "checked");
+                                        
+                                        showhidecontactleadlabel();
+                                    }
+                                    </script>
+                                    <apex:inputHidden value="{!DoIdsString}" id="theHiddenInput" />
+                                    <div class="slds-form-element">
+                                        <apex:outputLabel for="research-sel-option" value="Select Operation:" styleClass="slds-form-element__label" />
+                                        <div class="slds-form-element__control">
+                                            <apex:selectList id="addOperation" value="{!selectedAction}" onchange="showhidecontactleadlabel(); return false" styleClass="slds-select" multiselect="false" size="1">
+                                                <apex:selectOptions value="{!AddOperations}" />
+                                            </apex:selectList>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- SFNA 2596 18th July 2018 Advanced Options Code Start -->
+                                
+                                <script>
+                                $(document).ready(function() {
+                                    $(".add-update-toggle > .slds-card__header").click(function() {
+                                        $(this).find(".toggleIcon").toggleClass("slds-hide").toggleClass("slds-show");
+                                        $(this).next(".slds-card__body").slideToggle();
+                                        $(this).toggleClass("open-header");
+                                        //event.preventDefault();
+                                        return false;
+                                    });
+                                    
+                                    $("[Id$='radio-default']").click(function() {
+                                        $("[Id$='UserLookup']").val('');
+                                        $("[Id$='UserLookup_lkwgt']").css({
+                                            'pointer-events': 'none'
+                                        });
+                                    });
+                                    
+                                    $("[Id$='radio-specify-owner']").click(function() {
+                                        $("[Id$='UserLookup_lkwgt']").css({
+                                            'pointer-events': ''
+                                        });
+                                        if ($("[Id$='selectedUserId']").text() != 'Specify owner:') {
+                                            // console.log('!Specify owner:' + $("[Id$='selectedUserId']").text());
+                                            $("[Id$='UserLookup']").val($("[Id$='selectedUserId']").text());
+                                        }
+                                    });
+                                    
+                                    $("[id$='addOperation1']").change(function() {
+                                        var val = $(this).find("option:selected").text();
+                                        //console.log("----> Val: "+val);
+                                        if( val=="Records As Contacts" || val=="Companies"){
+                                            $("#assignmentRules").text("Follow default rules");
+                                        }else{
+                                            $("#assignmentRules").text("Follow default assignment rules");
+                                        }
+                                    });
+                                    
+                                    resetValues();
+                                });
+                                
+                                </script>
+                                
+                                <apex:outputPanel rendered="{!autoUpdateObject.DSCORGPKG__isOwnerChange__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldLead__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldContact__c == true || autoUpdateObject.DSCORGPKG__isCustomFieldAccount__c == true}">
+                                    <div class="slds-card add-update-toggle slds-m-around--small" style="width: 100%; margin: 8px; margin-left: 0px;">
+                                        <div class="slds-card__header slds-grid">
+                                            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                                <div class="slds-media__body" style="font-size: 15px;">
+                                                    Advanced Options
+                                                </div>
+                                            </div>
+                                            <button class="slds-button slds-button--icon-container slds-header--toggle-button">
+                                                <span class="toggleIcon slds-hide">
+                                                    <img src="{!URLFOR($Resource.SLDS080, '/SLDS080/assets/icons/custom/custom_arrow_down.png')}" style="height: 20px;" onclick="return false;"/>
+                                                </span>
+                                                <span class="toggleIcon slds-show">
+                                                    <img src="{!URLFOR($Resource.SLDS080, '/SLDS080/assets/icons/custom/custom_arrow_right.png')}" style="height: 20px;" onclick="return false;"/>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="slds-card__body slds-hide" style="background: white;border-top: 1px solid #d8dde6;border-bottom: 1px solid #d8dde6;">   
+                                            <div class="slds-card__footer">
+                                                <apex:outputPanel id="ownerPenelId" rendered="{!autoUpdateObject.DSCORGPKG__isOwnerChange__c == true}">
+                                                    
+                                                    <fieldset class="slds-form--compound">
+                                                        <div class="form-element__group customlook">
+                                                            <div class="slds-form-element__row">
+                                                                <label class="slds-form-element__control slds-size--1-of-1 lookupControl">
+                                                                    <span style="font-size: 14px; color: #54698d;"> Owner for New Records </span><br/>    
+                                                                    <!-- <span class="slds-form-element__label" Id="selectedUserId" style="margin-right: -12px;">Follow default assignment rules 
+<input Id="radio101" type="radio" name="gender" checked="checked" class="slds-radio" value="Follow default assignment rules" />  <span class="slds-form-element__label" Id="selectedUserId" style="margin-right: -12px;">Follow default assignment rules </span>
+</span>     
+<input Id="radio102" type="radio" name="gender" class="slds-radio" value="Specify owner:" />Specify owner: -->                                                     
+                                                                    <span style="color: #54698d; font-size: .96rem; margin-right: .75rem;">
+                                                                        <input type="radio" id="radio-default" name="options" checked="checked" />                                                                   
+                                                                        <label id="assignmentRules"> Follow default assignment rules</label>
+                                                                    </span>
+                                                                    <span>
+                                                                        <input type="radio" id="radio-specify-owner" name="options" checked=""/>                                                                 
+                                                                        <span Id="selectedUserId" style="color: #54698d; font-size: .96rem; margin-right: -12px;">
+                                                                            Specify owner:          
+                                                                        </span>                                                                           
+                                                                    </span>                                                                
+                                                                    <apex:inputField required="false" value="{!conOwnerData.Ownerid}" id="UserLookup" onchange="messageShowFun();" style="width: .01%;color: white;padding: 0; border: 0; margin-bottom: 0px; !important;"/>     
+                                                                    <br/><span style="font-size: 14px; color: #54698d;" id="addCustomTextId"></span>                                                                                                                      
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel id="leadPenelId" style="display:none" rendered="{!IF(autoUpdateObject.isCustomFieldLead__c == true , true, false) }">
+                                                    <div class="form-element__group">
+                                                        <div class="slds-form-element__row">
+                                                            <label class="slds-form-element__label" for="inputSampleLead"> Lead field: <apex:outputText value="{!LeadCustomLabel}"/> <!-- {!autoUpdateObject.customLeadField__c} : --></label>
+                                                            <div class="slds-form-element__control slds-size--1-of-1" style = "width: 399px;">
+                                                                <apex:inputText id="customTextFieldLead" value="{!CustomTextLead}" onkeypress="return isNumberKeyLead(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" style="margin-bottom: 5px;" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel id="contactPenelId" rendered="{!IF(autoUpdateObject.DSCORGPKG__isCustomFieldContact__c == true, true,false)}">
+                                                    <!--                                             <fieldset class="slds-form--compound"><legend class="slds-form-element__label">Contact</legend></fieldset>                                             -->
+                                                    <div class="form-element__group">
+                                                        <div class="slds-form-element__row">
+                                                            <label class="slds-form-element__label" for="inputSampleContact"> Contact field: {!ContactCustomLabel} <!-- {!autoUpdateObject.customContactField__c} : --></label>
+                                                            <div class="slds-form-element__control slds-size--1-of-1" style = "width: 399px;">
+                                                                <apex:inputText id="customTextFieldContact" value="{!CustomTextContact}" onkeypress="return isNumberKeyContact(event);" html-placeholder="Add notes, instructions, or information" styleclass="slds-input" />
+                                                                <!-- <input class="slds-input" type="text" id="cusTextFieldNameContact" placeholder="Enter Value" />
+<apex:inputHidden value="{!CustomTextContact}" id="customTextFieldContact"/> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <script>
+                                    if ($('[id$=UserLookup_lkwgt]')) {
+                                        document.getElementsByClassName('lookupIcon')[0].src = "{!URLFOR($Resource.DSCORGPKG__ChangeLookUp,'ChangeLookUp/changeIMG3.jpg')}";
+                                        document.getElementsByClassName('lookupIcon')[0].style.paddingBottom = '6px';
+                                        document.getElementsByClassName('lookupIcon')[0].style.marginLeft = '7px';
+                                        document.getElementsByClassName('lookupIcon')[0].style.marginBottom = '-15px';
+                                        //$('[id$=UserLookup_lkwgt]').html('<p>[Change]</p>');
+                                        document.getElementById('pg:frm:UserLookup_lkwgt').style.width = '16%';
+                                        document.getElementById('pg:frm:UserLookup_lkwgt').style.height = '37px';
+                                        document.getElementById('pg:frm:UserLookup_lkwgt').style.paddingLeft = '7px';
+                                        document.getElementById('pg:frm:UserLookup_lkwgt').style.paddingRight = '2px';
+                                        document.getElementById('pg:frm:UserLookup_lkwgt').style.border = 'none'; 
+                                        document.getElementById('pg:frm:UserLookup_lkwgt').style.marginLeft = '0px';
+                                    }
+                                    //('Lookp Changed#####');
+                                    var val = $("[id$='addOperation1']").find("option:selected").text();
+                                    // console.log("----> Val: "+val);
+                                    if( val=="Records As Contacts" || val=="Companies"){
+                                        $("#assignmentRules").text("Follow default rules");
+                                    }else{
+                                        $("#assignmentRules").text("Follow default assignment rules");
+                                    }
+                                    
+                                    function messageShowFun() {
+                                        $("[Id$='selectedUserId']").text($("[Id$='UserLookup']").val());
+                                    }
+                                    </script>
+                                </apex:outputPanel>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <div class="slds-x-small-buttons--horizontal">
+                                    <apex:commandButton id="searchSubmitButton" value="Submit" styleClass="slds-button slds-button--neutral slds-button--brand" onclick="validateOperation(); return false;" />
+                                    <apex:actionFunction name="AddUpdateSelectedFun" action="{!AddUpdateSelected}" reRender="importWizard,pgemsg" oncomplete="$('.importFrame').show();resetValues();hideStatusDiv();" />
+                                    <input type="button" value="Cancel" class="cancel-research slds-button slds-button--neutral" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop--open"></div>
+                    
+                </div>
+                <!-- notification  -->
+                <apex:outputPanel >
+                    <div id="notification-modal1" style="display:none;z-index: 10000;">
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <h2 class="slds-text-heading--medium addUpdateHeader"> Notification </h2>
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="slds-modal__content">
+                                    <div id="notify" style="font-family: Arial,Helvetica,sans-serif;">
+                                    </div>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <input type="button" value="Close" onclick="OkPopup();return false;" class="cancel-research noti-cancel slds-button slds-button--neutral" />
+                                    <input type="button" value="Back" onclick="closePopupSfdc();return false;" class="cancel-research noti-cancel slds-button slds-button--neutral" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                    </div>
+                </apex:outputPanel>
+                <script>
+                $('.uploadFW').click(function(){
+                    $('#iframeId').css({
+                        'width': '131%'
+                    });
+                });
+                $('.ccssaply').click(function(){
+                    $('#iframeId').css({
+                        'width': '100%'
+                    });
+                });
+                function closePopupSfdc() {
+                    document.getElementById("notification-modal1").style.display = "none";
+                    $('.importFrame').show();
+                }
+                
+                function OkPopup() {
+                    document.getElementById("notification-modal1").style.display = "none";
+                    var OrgChatUrl = window.location.href;
+                    
+                    if ('{!JSENCODE($CurrentPage.parameters.dept_id)}' != '{!JSENCODE(selectedDepartment)}') {
+                        var res = OrgChatUrl.replace("dept_id={!JSENCODE($CurrentPage.parameters.dept_id)}", "dept_id={!JSENCODE(selectedDepartment)}");
+                        window.location.href = res;
+                    } else {
+                        window.location.href = OrgChatUrl;
+                    }
+                }
+                </script>
+                
+                
+                <div id="notification-modal12" style="display:none;z-index: 10000;" class="notificationpanel">
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container" style="display: inline-block;left: 26%;">
+                            <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h2 class="slds-text-heading--medium addUpdateHeader">Selection Required </h2>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="slds-modal__content" id="notificationMsg" style="font-family: Arial,Helvetica,sans-serif;">
+                                
+                            </div>
+                            <div class="slds-modal__footer">
+                                <input type="button" value="Close" onclick="closePop();return false;" class="slds-button slds-button--neutral" />
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                </div>
+                <script>
+                function closePop() {
+                    document.getElementById("notification-modal12").style.display = "none";
+                    if (document.getElementById("notificationMsg").innerHTML == 'Please select desired Operation') {
+                        $('#sResearch-sRmodal').fadeIn();
+                    }
+                }
+                </script>
+                <!-- iFrame -->
+                <apex:outputPanel id="importWizard">
+                    <script>
+                    function CloseImportData() {
+                        
+                        
+                        var countConDup = 0, countAccDup = 0, chkleadConact = 0;
+                        var importFrame = $('#importIframe');
+                        
+                        if (importFrame != null && importFrame.length === 1) {
+                            var importWindow = importFrame[0].contentWindow;
+                            try {
+                                countConDup = parseInt(importWindow.conDupCountId, 10);
+                            } catch (e) {}
+                            try {
+                                countAccDup = parseInt(importWindow.AccDupId, 10);
+                            } catch (e) {}
+                            chkleadConact = importWindow.checkLeadContact === 'true';
+                        }
+                        if (countConDup > 0 || countAccDup > 0) {
+                            if (confirm) {
+                                $('.importFrame').hide();
+                                if (countAccDup == 1 && countConDup > 1)
+                                    var notif = countAccDup + ' account and ' + countConDup + ' contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                else if (countAccDup == 1 && countConDup == 1)
+                                    var notif = countAccDup + ' account and ' + countConDup + ' contact have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                    else if (countAccDup > 1 && countConDup > 1)
+                                        var notif = countAccDup + ' accounts and ' + countConDup + ' contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                        else if (countAccDup == 0 && countConDup > 1 && chkleadConact == false)
+                                            var notif = countConDup + ' Contacts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                            else if (countAccDup == 0 && countConDup == 1 && chkleadConact == false)
+                                                var notif = countConDup + ' Contact has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                
+                                                else if (countAccDup == 0 && countConDup > 1 && chkleadConact == true)
+                                                    var notif = countConDup + ' Leads have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                    else if (countAccDup == 0 && countConDup == 1 && chkleadConact == true)
+                                                        var notif = countConDup + ' Lead has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                
+                                                        else if (countAccDup == 1 && countConDup == 0)
+                                                            var notif = countAccDup + ' account has not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                                            else if (countAccDup > 1 && countConDup == 0)
+                                                                var notif = countAccDup + ' accounts have not been added/updated due to unreconciled issues. Are you sure you want to close? To resolve later, access the DiscoverOrg Operations tab';
+                                document.getElementById("notify").innerHTML = notif;
+                                $('#notification-modal1').show();
+                            }
+                        } else {
+                            $('.importFrame').hide();
+                            
+                        }
+                    }
+                    </script>
+                    <div style="display:none;" class="importFrame">
+                        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container" style="padding-top: 0px;">
+                                <div class="slds-modal__header">
+                                    <h2 class="slds-text-heading--medium addUpdateHeader">Import Status</h2>
+                                    <button class="slds-button slds-modal__close" onclick="showHidePopup('importFrame');return false;" id="AddUpdateSVG"></button>
+                                </div>
+                                <div class="slds-modal__content" style="height: 420px;">
+                                    <div>
+                                        <iframe id="importIframe" src="/apex/ImportData?id={!DoObj.id}&AccountId={!AccId}&{!IF(NOT(ISNULL(AccId)), 'noDupsSingleImport=true&', '')}track={!trackValue}" style="border: 0px;height: 405px;width: 100%;" />
+                                    </div>
+                                </div>
+                                <div class="slds-modal__footer">
+                                    <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close" onclick="$('#importIframe').contents().find('#pauseBtn').click(); isClose = true; doCloseImport(); return false;" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                    </div>
+                </apex:outputPanel>
+                <!-- end -->
+                <script>
+                
+                function hideStatusDiv() {
+                    $("#sResearch-sRmodal").css("display", "none");
+                    $(".research-overlay").css("display", "none");
+                    $(".overlay-div1").css("display", "none");
+                    $(".overlay-div").css("display", "none");
+                    $("#pnlLoadingtop").css("display", "none");
+                }
+                
+                function validateOperation() {
+                    
+                    var commentText = $("[id$='addOperation']").val();
+                    if (commentText == '' || commentText.trim().length == 0) {
+                        
+                        document.getElementById("notificationMsg").innerHTML = 'Please select desired Operation';
+                        $('#notification-modal12').show();
+                        $('#sResearch-sRmodal').fadeOut();
+                    } else {
+                        isClose = false;
+                        AddUpdateSelectedFun();
+                        $(".overlay-div").css("display", "inline-block");
+                        $("#pnlLoadingtop").css("display", "inline-block");
+                        $(".overlay-div1").css("display", "inline-block");
+                        return true;
+                    }
+                }
+                </script>
+                
+                
+                
+            </apex:outputPanel>
+            
+            
+            
+            <script>
+            var getScrollToID = '';
+            
+            function funcall() {
+                $("#sResearch-sRmodal, .research-overlay").fadeIn();
+            }
+            
+            $(document).ready(function() {
+                $( "#addUpdateBtn,.orgchartSearchBox,.OrgChartType,#selectDeselectAllBtn" ).click(function() {
+                    $('#sel-option').css('display','none');                  
+                });
+                
+                $( "#orgChartBody" ).mouseenter(function() {
+                    $('#sel-option').css('display','none');
+                    $(".orgchart-11").css('z-index','1'); 
+                    $(".orgchart-22").css('z-index','1');  
+                });
+                
+                
+                var headerOffSet = $("#fixed-header").offset().top + 100;
+                $(window).scroll(function() {
+                    if (headerOffSet < $(window).scrollTop()) {
+                        $("#fixed-header").css({
+                            "position": "fixed",
+                            "top": "0px",
+                            // "z-index": "1000"
+                        });                            
+                    } else {
+                        $("#fixed-header").css({
+                            "position": "",
+                            //"z-index": "1000"                              
+                            
+                        });
+                        
+                    }
+                });
+                
+                $(".slds-button").removeClass('btn');
+                $(".research-overlay").hide();
+                $("[id*='frm']").hide();
+                $("[id*='addUpdateBtn']").hide();
+                $("[id*='returnToOrgChart']").hide();
+                
+                if ('{!loadAsPerReturn}' == 'false') {
+                    
+                    $("[id*='addUpdateBtn']").hide();
+                    $("[id*='saveAsPdf']").hide();
+                    showLoadingImage();
+                    
+                    onLoadFunction();
+                    
+                    $("[id*='frm']").show();
+                }
+                if ('{!activateButton}' == 'true') {
+                    $('#saveAsPdf, #addUpdateBtn').hide();
+                    $(".main-header, [id*='returnToOrgChart']").show();
+                }
+                
+                $("#submit-research-request").click(function() {
+                    $("[id$='research-sel-option']").val("New Contact Request");
+                    $("[id$='research-textarea']").val("");
+                    $("#research-modal, .research-overlay").fadeIn();
+                });
+                
+                $(".cancel-research").click(function() {
+                    $(".sRsubmit-sResearch").attr("disabled", false).css("opacity", '').css("cursor", 'pointer');
+                    $("#research-modal, .research-overlay, #sResearch-sRmodal").fadeOut();
+                    resetValues();
+                    
+                });
+                
+            });
+            
+            function convertCheckBoxToLDS() {
+                var Row = document.getElementsByClassName("checkSelection");
+                for (var k = 0; k < Row.length; k++) {
+                    if ($(Row[k]).hasClass("converted") == false) {
+                        var colTds = Row[k].getElementsByTagName("td");
+                        for (var i = 0; i < colTds.length; i++) {
+                            var inrHtml = colTds[i].innerHTML;
+                            var chkId = inrHtml.substring(inrHtml.indexOf("id=") + 4, inrHtml.indexOf("\"", inrHtml.indexOf("id=") + 4));
+                            var chkBx = inrHtml.substring(inrHtml.indexOf("<input"), inrHtml.indexOf(">") + 1);
+                            var chkLable = colTds[i].getElementsByTagName("label")[0].textContent;
+                            var typeOfInput = colTds[i].getElementsByTagName("input")[0].getAttribute("type");
+                            var newChkBox = '<label class="slds-' + typeOfInput + '" for="' + chkId + '">' + chkBx +
+                                '<span class="slds-' + typeOfInput + '--faux"></span>' +
+                                '<span class="slds-form-element__label">&nbsp;' + chkLable.trim() + '</span>' +
+                                '</label>';
+                            colTds[i].innerHTML = newChkBox;
+                        }
+                    }
+                }
+                $(".checkSelection").addClass("converted");
+            }
+            function onloadOver() {
+                $(".imgToolTip").each(function() {
+                    if ($(this).attr('title') == 'null' || $(this).attr('title') == '') {
+                        $(this).remove();
+                    }
+                });
+                $("p[id*='expColl']").show();
+                $("[id*='addUpdateBtn'], [id*='saveAsPdf'], .OrgChartType,.main-header").show();
+                
+                $('#select').click(function(){
+                    $('#sel-option').toggle(); 
+                    if($('#sel-option').css('display') == 'none'){
+                        $(".orgchart-11").css('z-index','1'); 
+                        $(".orgchart-22").css('z-index','1');  
+                    }else{
+                        $(".orgchart-11").css('z-index','-1'); 
+                        $(".orgchart-22").css('z-index','-1');       
+                    }
+                });
+                $('#sel-option a').click(function(e){
+                    $('#sel-option').hide(); 
+                    $('#select').text($(this).text());
+                    
+                    $(this).addClass('current');
+                    $('#select').append('<i class="fa fa-sort-desc" aria-hidden="true" style=" float: right; margin-right: 6px; "></i>');
+                    e.preventDefault();
+                });
+                
+                
+            }
+            
+            function imgToolTip(fc) {
+                $(fc).attr("title", $(fc).attr("title").split(",").join("\n"));
+            }
+            
+            function oncheckSelect(th) {
+                if ($(th).is(':checked')) {
+                    $(th).attr('checked', true);
+                } else {
+                    $(th).removeAttr('checked', false);
+                }
+            }
+            
+            function onAddUpdate() {
+                var s = '';
+                $(".checkSelection").each(function() {
+                    if ( $(this).prop("checked") ) {
+                        s = s + $(this).val() + ',';
+                    }
+                    
+                });
+                
+                if (s != null && s != '') {
+                    $("[id*='theHiddenInput']").val(s);
+                    funcall();
+                } else {
+                    document.getElementById("notificationMsg").innerHTML = 'Please select at least one record to add/update.';
+                    $('#notification-modal12').show();
+                }
+            }
+            
+            function showLoadingImage() {
+                //$("[id*='loading']").css("display", "block");
+                $('.overlay-div').css('display', 'block');
+                $('#pnlLoadingtop').css('display', 'block');
+            }
+            
+            function HideLoadingImage() {
+                $("[id*='loading']").css("display", "none");
+            }
+            
+            function showHideAll() {
+                
+                if ($("#showHideAllBtn").text() == 'Show All Details') {
+                    $(".leaf-control").each(function(index) {
+                        if ($(this).hasClass('fa-expand')) {
+                            $(this).parent().click();
+                        }
+                    });
+                    $("#showHideAllBtn").text("Hide All Details");
+                } else {
+                    $(".leaf-control").each(function(index) {
+                        if ($(this).hasClass('fa-compress')) {
+                            $(this).parent().click();
+                        }
+                    });
+                    $("#showHideAllBtn").text("Show All Details");
+                }
+            }
+            
+            function selectDeselectAll() {
+                if ($("#selectDeselectAllBtn").text() == 'Select All') {
+                    $('input:checkbox').prop('checked', true);
+                    $("#selectDeselectAllBtn").text("Deselect All");
+                } else {
+                    $('input:checkbox').prop('checked', false);
+                    $("#selectDeselectAllBtn").text("Select All");
+                }
+            }
+            
+            function createUnmappedNodes(data) {
+                if (!(typeof data == 'undefined') && data) {
+                    
+                    var orphanCount = 0;
+                    var scrollToId = '{!JSENCODE(scrollTo)}';
+                    for (var i = 0; i < data.length; i++) {
+                        var personInfo = data[i];
+                        var top = orphanCount / 3;
+                        var left = (orphanCount / 3 - top) * 3;
+                        top = top * 70;
+                        left = left * 450;
+                        
+                        var titleClass = (personInfo.title.length > 48) ? (personInfo.title.length > 58) ? "title tinytitle" : "title smalltitle" : "title";
+                        
+                        var maincard = "<div class='maincard'><div class='left-grey-box' style='margin-top: -2px;' onclick=\"expCollFun(\'#leafIcon" + personInfo.pers_id + "\', \'expColl" + personInfo.pers_id + "\');\" ><span class='name' name=\""+personInfo.pers_id+"\" data-doid=\""+personInfo.pers_id+"\" data-doemail=\""+personInfo.email.toLowerCase()+"\">    <a title=\"" + personInfo.name.toLowerCase() + "\" class='nameAnch' target=_blank href=\"/apex/DorgContactDetailPage?personId=" + personInfo.pers_id + "&isInline=false \" style='float: left; margin-right: 6px; margin-top: -13px;'>" + personInfo.name + "</a><span class='" + titleClass + "'>" + personInfo.title + "</span></span> <span style='margin-right: 27px;margin-top: -21px;float: right;'></span> <!--<i class='fa fa-lg fa-expand leaf-control' id=\"leafIcon" + personInfo.pers_id + "\" style='float: right;color: white;margin-right: 30px;cursor:pointer;'></i> --> <p style='display:none;' id='expColl" + personInfo.pers_id + "'> <span title='" + (personInfo.checkphoneTyp == "2" ? "This is a mobile number" : (personInfo.checkphoneTyp == "3" ? "This is a company phone number" : "")) + "'> " + personInfo.phone + "</span> " + (personInfo.phone.trim().length > 0 ? ((personInfo.checkphoneTyp == "2" ? "<span title='This is a mobile number'>* <i class='fa fa-mobile' aria-hidden='true'></i> </span>" : (personInfo.checkphoneTyp == "3" ? "<span title='This is a company phone number'>*</span>" : "")) + (personInfo.email != ''? '&nbsp;|&nbsp;' : '')) : "") + "<a href='mailto:" + personInfo.email + "'  class='cEmail'>" + personInfo.email + "</a></p></div></div>";
+                        
+                        var scrollTo = (new String(window.location).match(/scrollTo=(\d+)/)) ? RegExp.$1 : "";
+                        var f = '';
+                        if (scrollTo != null && scrollTo != '') {
+                            if (scrollTo == personInfo.pers_id) {
+                                //f = "<span id='" + personInfo.pers_id + "'  class='pointer' style='position: absolute; top: 7px; color: red; left: -20px; font-size: 16pt;'>▶</span>";
+                                f = "<span id='selectedelid'  class='pointer' style='position: absolute; top: 7px; color: red; left: -20px; font-size: 16pt;'>▶</span>";
+                                //
+                                getScrollToID = scrollTo;
+                            }
+                        }
+                        //
+                        
+                        var chekckBoxOnLine = '<label  class="slds-checkbox" for="st' + personInfo.pers_id + '"><input type="checkbox" class="checkSelection" name="checkSelection" id="st' + personInfo.pers_id + '" value="' + personInfo.pers_id + '" onclick="oncheckSelect(this)" style="float: left;margin-left: -25px;margin-top: 14px;z-index: 26;position: absolute;"> <span class="slds-checkbox--faux"></span> <span class="slds-form-element__label"></span> </label><div style="background: #999 !important; width: 8px;height: 54px;border-radius: 2px;position: absolute; margin-left:-2px;z-index:999;margin-top: -29px;"></div>';
+                        var orgcard = "<div id='" + personInfo.name + "' level='-1' class='orgcard' style='width: 826px;'>" + chekckBoxOnLine + f + "<span class='cardtext'>" + maincard + "</span></div>";
+                        //
+                        
+                        
+                        $('#unmapped-nodes').append(orgcard);
+                        
+                        
+                        orphanCount++;
+                    }
+                }
+            }
+            
+            var linesToLeave = [];
+            
+            function createMappedNodes(data) {
+                if (data != null) {
+                    for (var i = 0; i < data.length; i++) {
+                        window.perviousLevel = 0;
+                        constructDescendOrgChart(data[i], 0, linesToLeave, 0);
+                    }
+                }
+            }
+            
+            var images = ['orgchart-1', 'orgchart-2', 'orgchart-3', 'orgchart-4', 'orgchart-5', 'orgchart-6', 'orgchart-8', 'orgchart-9', 'orgchart-10'];
+            var imagesWidth = ['orgchart-11', 'orgchart-22', 'orgchart-33', 'orgchart-44', 'orgchart-55', 'orgchart-66', 'orgchart-88', 'orgchart-99', 'orgchart-10']; 
+            window.orgchartNodes = [];
+            var totalLevels = 0;
+            levelsToToggle = new Array();
+            window.checkedLevel = new Array();
+            var lastTopNode = '';
+            
+            function expCollFun(leafIcoId, pid) {
+                
+            }
+            
+            function constructDescendOrgChart(data, curlevel, linesToSkip, isLast) {
+                var skipLine = linesToSkip;
+                var personInfo = data,
+                    level = curlevel,
+                    adjustHeight = (level == 0) ? "position:relative;top-5px;" : "",
+                    titleClass = (personInfo.title.length > 48) ? (personInfo.title.length > 58) ? "title tinytitle" : "title smalltitle" : "title";
+                
+                var maincard = '';
+                personNodeId = personInfo.reportsToId; 
+                if (in_array(levelsToToggle, curlevel) || curlevel == 0 || levelsToToggle.length == 0) {
+                    maincard = "<div class='maincard'><div class='left-grey-box' style='margin-top: -3px;' onclick=\"expCollFun(\'#leafIcon" + personInfo.pers_id + "\', \'expColl" + personInfo.pers_id + "\');\" ><span class='name' name=\""+personInfo.pers_id+"\"  data-doid=\""+personInfo.pers_id+"\" data-doemail=\""+personInfo.email.toLowerCase()+"\"><a title=\"" + personInfo.name.toLowerCase() + "\" class='nameAnch' target=_blank href=\"/apex/DorgContactDetailPage?personId=" + personInfo.pers_id + "&isInline=false \" style='float: left; margin-right: 6px; margin-top: -13px;'>" + personInfo.name + "</a><span class='" + titleClass + "'>" + personInfo.title + "</span>   </span><span style='margin-right: 27px;margin-top: -21px;float: right;'></span>  <!-- <i class='fa fa-lg fa-expand leaf-control' id=\"leafIcon" + personInfo.pers_id + "\"  style='float: right;color: white;margin-right: 30px;cursor:pointer;'></i>--> <p style='display:none;' id='expColl" + personInfo.pers_id + "'><span title='" + (personInfo.checkphoneTyp == "2" ? "This is a mobile number" : (personInfo.checkphoneTyp == "3" ? "This is a company phone number" : "")) + "'> " + personInfo.phone + "</span>" + (personInfo.phone.trim().length > 0 ? ((personInfo.checkphoneTyp == "2" ? "<span title='This is a mobile number'>* <i class='fa fa-mobile' aria-hidden='true'></i> </span>" : (personInfo.checkphoneTyp == "3" ? "<span title='This is a company phone number'>*</span>" : "")) + (personInfo.email != ''? '&nbsp;|&nbsp;' : '')) : "") + "<a href='mailto:" + personInfo.email + "'  class='cEmail'>" + personInfo.email + "</a></p></div></div>";
+                } else {
+                    maincard = "<div class='maincard' style='display: none'><div class='left-grey-box' style='margin-top: -2px;' onclick=\"expCollFun(\'#leafIcon" + personInfo.pers_id + "\', \'expColl" + personInfo.pers_id + "\');\" ><span class='name' name=\""+personInfo.pers_id+"\"  data-doid=\""+personInfo.pers_id+"\" data-doemail=\""+personInfo.email.toLowerCase()+"\"><a title=\"" + personInfo.name.toLowerCase() + "\" class='nameAnch' target=_blank href=\"/apex/DorgContactDetailPage?personId=" + personInfo.pers_id + "&isInline=false \" >" + personInfo.name + "</a></span><p><span class='" + titleClass + "'>" + personInfo.title + "</span> <span title='" + (personInfo.checkphoneTyp == "2" ? "This is a mobile number" : (personInfo.checkphoneTyp == "3" ? "This is a company phone number" : "")) + "'> " + personInfo.phone + "</span>" + (personInfo.checkphoneTyp == "2" ? "<span title='This is a mobile number'>* <i class='fa fa-mobile' aria-hidden='true' ></i> </span>" : (personInfo.checkphoneTyp == "3" ? "<span title='This is a company phone number'>*</span>" : "")) + "&nbsp;|&nbsp;<a href='mailto:" + personInfo.email + "'  class='cEmail'>" + personInfo.email + "</a></p></div></div>";
+                }
+                left = (level * 59) + 'px',
+                    
+                    leftLine = "<div class='leftline' style='position:absolute;display:block;visibility:visible;z-index:1;left:-61px;top:20px;width:60px;height:1px;overflow:hidden;background-repeat:no-repeat;border-top:1px solid black;'></div>";
+                
+                
+                
+                cardImage = images[level];
+                cardWidth = imagesWidth[level];
+                var chekckBoxOnLine = '<label class="slds-checkbox" for="st' + personInfo.pers_id + '"><input type="checkbox" class="checkSelection" name="checkSelection" id="st' + personInfo.pers_id + '" value="' + personInfo.pers_id + '" onclick="oncheckSelect(this)" style="float: left;margin-left: -25px;margin-top: 14px;z-index: 26;position: absolute;"/><span class="slds-checkbox--faux"></span> <span class="slds-form-element__label"></span> </label><div style="width: 8px;height: 54px;border-radius: 2px;position: absolute; margin-left:-2px;z-index:999;margin-top: -29px;" class="' + cardImage + '"></div>';
+                var vertline = '';
+                var vertleft = '';
+                var vertheight = '';
+                
+                personToScroll = personInfo.pers_id;
+                personNodeId = personInfo.pers_id;
+                scrollToPerson = personToScroll == scrollToId ? personNodeId : scrollToPerson;
+                
+                for (var i = 0; i < level; i++) {
+                    vertleft = (i * -59 - 60) + "px";
+                    vertheight = ((isLast) && (i == 0)) ? "102px" : "120px";
+                    
+                    if (skipLine.length > 0) {
+                        if (in_array(skipLine, level - i)) {
+                            continue;
+                        }
+                    }
+                    
+                    var collapseSymbol = '';
+                    
+                    var isPlus = false;
+                    if (levelsToToggle.length == 0) {
+                        collapseSymbol = '<a class="nodeLevel nodeLevel-' + (curlevel + 1) + '"><i class="fa fa-minus-circle" style="margin-top: -20px;" per-node-id="' + personNodeId + '"" level="' + curlevel + '"></i></a>';
+                    } else if (in_array(levelsToTogle, curlevel) && curlevel == Math.max.apply(0, levelsToToggle)) {
+                        collapseSymbol = '<a class="nodeLevel nodeLevel-' + (curlevel + 1) + '"><i class="fa fa-plus-circle" style="margin-top: -20px;" per-node-id="' + personNodeId + '"" level="' + curlevel + '"></i></a>';
+                        isPlus = true;
+                    } else if (in_array(levelsToToggle, curlevel) && curlevel < Math.max.apply(0, levelsToToggle)) {
+                        collapseSymbol = '<a class="nodeLevel nodeLevel-' + (curlevel + 1) + '"><i class="fa fa-minus-circle" style="margin-top: -20px;" per-node-id="' + personNodeId + '"" level="' + curlevel + '"></i></a>';
+                    } else {
+                        collapseSymbol = '<a class="nodeLevel nodeLevel-' + (curlevel + 1) + '"><i class="fa fa-plus-circle" style="margin-top: -20px;" per-node-id="' + personNodeId + '"" level="' + curlevel + '"></i></a>';
+                        
+                        isPlus = true;
+                    }
+                    
+                    if (i == 0){
+                        if(data.childNodeSize > 0){
+                            
+                            vertline = vertline + "<div class='vertline' id='one199120' style='position:absolute;z-index: 1; left:" + vertleft + ";top:-62px;width:1px;height:" + '82px'+ ";border-left:1px solid black;'>" + (data.childNodeSize > 0 ? collapseSymbol : "") + (scrollToId == personToScroll ? "<div class='pointer' id='selectedelid' style='position:absolute;top:62px;color:red;left:41px;font-size:24pt; float:left;'>▶</div>" : "") + "</div>";
+                            
+                        }else{
+                            vertline = vertline + "<div class='vertline' id='one199120' style='position:absolute;z-index: 1; left:" + vertleft + ";top:-62px;width:1px;height:" + '82px'+ ";border-left:1px solid black;'>" + (data.childNodeSize > 0 ? collapseSymbol : "") + (scrollToId == personToScroll ? "<div class='pointer' id='selectedelid' style='position:absolute;top:62px;color:red;left:41px;font-size:24pt; float:left;'>▶</div>" : "") + "</div>";
+                            
+                        }
+                        
+                    }else{
+                        if(vertleft=='-119px'){
+                            vertline = vertline + "<div class='vertline' id='two199' style='position:absolute;z-index: 1; left:" + vertleft + ";top:-53px;width:1px;height:" + vertheight + ";border-left:1px solid black;'></div>";
+                        }else{
+                            vertline = vertline + "<div class='vertline' id='two120' style='position:absolute;z-index: 1; left:" + vertleft + ";top:-81px;width:1px;height:" + vertheight + ";border-left:1px solid black;'></div>";
+                        } 
+                    }  
+                }
+                
+                if (level == 0) {
+                    leftLine = ""
+                    vertline = ""
+                }
+                
+                var curLevelMatchToPrevLevel = window.perviousLevel == curlevel ? true : false;
+                reportsToId = personInfo.reportsToId;
+                
+                if (levelsToToggle.length > 0) {
+                    if (in_array(levelsToToggle, curlevel) || curlevel == 0) {
+                        var a = typeof $('#' + reportsToId).attr('reportsToId') == 'undefined' || $('#' + reportsToId).attr('reportsToId') == null ? '' : $('#' + reportsToId).attr('reportsToId') + ',';
+                        
+                        if (curlevel != 0)
+                            orgCard = "<div  id=" + personNodeId + " reportsToId=" + a + ',' + reportsToId + "  isPrev=" + curLevelMatchToPrevLevel + " level=" + level + " class='orgcard " + cardWidth + "' style='left:" + left + " !important'>" + leftLine + chekckBoxOnLine + vertline + "<span class='cardtext'>" + maincard + "</span></div>";
+                        else
+                            orgCard = "<div  id=" + personNodeId + "  isPrev=" + curLevelMatchToPrevLevel + " level=" + level + " class='orgcard " + cardWidth + "' style='left:" + left + " !important'>" + leftLine + chekckBoxOnLine + vertline + "<span class='cardtext'>" + maincard + "</span></div>";
+                    } else {
+                        maincard = maincard + "<div class='place-holder-card'><div class='left-grey-box-placeholder'> <span class='org-chart-placeholder-text'>Click plus to reveal this contacts</span><span class='org-chart-plus' onclick=''></span></div>";
+                        var a = typeof $('#' + reportsToId).attr('reportsToId') == 'undefined' || $('#' + reportsToId).attr('reportsToId') == null ? '' : $('#' + reportsToId).attr('reportsToId') + ',';
+                        orgCard = "<div   id=" + personNodeId + "  reportsToId=" + a + ',' + reportsToId + "  isPrev=" + curLevelMatchToPrevLevel + " level=" + level + " class='orgcard " + cardWidth + "' style='display:none;left:" + left + "!important'>" + leftLine + chekckBoxOnLine + vertline + "<span class='cardtext'>" + maincard + "</span></div>";
+                        if (window.perviousLevel == curlevel) {
+                            $('#mapped-nodes .orgcard').last().hide();
+                        }
+                        
+                    }
+                } else {
+                    var a = typeof $('#' + reportsToId).attr('reportsToId') == 'undefined' || $('#' + reportsToId).attr('reportsToId') == null ? '' : $('#' + reportsToId).attr('reportsToId') + ',';
+                    
+                    if (curlevel != 0)
+                        orgCard = "<div   id=" + personNodeId + " reportsToId=" + a + reportsToId + "  isPrev=" + curLevelMatchToPrevLevel + " level=" + level + " class='orgcard " + personToScroll + " " + cardWidth + "' style='left:" + left + "!important'>" + leftLine + chekckBoxOnLine + vertline + "<span class='cardtext'>" + maincard + "</span></div>";
+                    else
+                        orgCard = "<div  id=" + personNodeId + "  isPrev=" + curLevelMatchToPrevLevel + " level=" + level + " class='orgcard " + personToScroll + " " + cardWidth + "' style='left:" + left + "!important'>" + leftLine + chekckBoxOnLine + vertline + "<span class='cardtext'>" + maincard + "</span></div>";
+                }
+                
+                
+                if (window.perviousLevel == curlevel) {
+                    $('#mapped-nodes .cardtext').last().children('.card-actions').children('.minus').remove();
+                    $('#mapped-nodes .cardtext').last().children('.card-actions').children('.plus').remove();
+                } else if (window.perviousLevel > curlevel) {
+                    $('#mapped-nodes .cardtext').last().children('.card-actions').children('.minus').remove();
+                    $('#mapped-nodes .cardtext').last().children('.card-actions').children('.plus').remove();
+                }
+                
+                
+                
+                $('#mapped-nodes').append(orgCard);
+                
+                var vertLeft = (curlevel * -150 - 60) + "px";
+                var vertlineForLevelOneNode = '<div class="vertline zeroLine"  style="position:absolute;z-index:1;left:' + vertLeft + ';top:-81px;width:1px;height:120px;border-left:1px solid black;"></div></div>';
+                
+                if (curlevel == 0) {
+                    lastTopNode = personNodeId;
+                    
+                    var vertline = '<div class="vertline zeroLine" id="two1" style="position:absolute;z-index:101;left:-60px;top:-32px;width:1px;height:52px;border-left:0px solid black;"><a class="nodeLevel nodeLevel-' + (curlevel + 1) + '" style="top:44px;"><i class="fa fa-minus-circle" per-node-id="' + personNodeId + '"" level="0"></i></a></div></div>';
+                    
+                    var leftLine = '<div class="leftline" style="position:absolute;display:block;visibility:visible;z-index:1;left:-61px;top:20px;width:60px;height:1px;overflow:hidden;background-repeat:no-repeat;border-top:1px solid black;"></div>';
+                    $('#' + personNodeId).append(vertline);
+                    $('#' + personNodeId).append(leftLine);
+                    if (scrollToId == personToScroll) {
+                        $('#' + personNodeId).append('<div class="pointer" id="selectedelid" style="position: absolute; top: 7px; color: red; left: -20px; font-size: 16pt; float:left; z-index:999">▶</div>');
+                    }
+                } else {
+                    
+                }
+                
+                window.perviousLevel = curlevel;
+                
+                if (isLast) {
+                    skipLine.push(curlevel);
+                }
+                
+                if (data.childNodeSize > 0) {
+                    level++
+                    for (var i = 0; i < data.childNodeSize; i++) {
+                        
+                        if (i != data.childNodeSize - 1) {
+                            
+                            constructDescendOrgChart(data.childNodes[i], level, skipLine, false);
+                            if (level > totalLevels)
+                                totalLevels = level;
+                        } else {
+                            
+                            constructDescendOrgChart(data.childNodes[i], level, skipLine, true);
+                            skipLine.pop();
+                            if (level > totalLevels)
+                                totalLevels = level;
+                        }
+                    }
+                }
+            }
+            
+            function createCollapseMenus() {
+                
+                $(document).on("click", "a.minus, div.minus, i.fa-minus-circle", function() {
+                    var personId = $(this).attr('per-node-id');
+                    var curlevel = $(this).attr('level');
+                    var nextLevel = Number(Number(curlevel) + 1);
+                    
+                    $("#" + personId).addClass("expend");
+                    
+                    $(this).removeClass("fa-minus-circle").addClass("fa-plus-circle");
+                    
+                    
+                    
+                    $('.orgcard[reportstoid*=' + personId + ']').hide();
+                    
+                    $(".fa-plus-circle").closest("div.vertline").css("z-index", "108");
+                });
+                
+                $(document).on("click", "a.plus, div.plus, i.fa-plus-circle", function() {
+                    var personId = $(this).attr('per-node-id');
+                    var curlevel = $(this).attr('level');
+                    var nextLevel = Number(Number(curlevel) + 1);
+                    $("#" + personId).removeClass("expend");
+                    $(this).removeClass("fa-plus-circle").addClass("fa-minus-circle");
+                    $('.orgcard[reportstoid*=' + personId + '][level=' + nextLevel + ']').show();
+                    cardsToHide = [];
+                    expandCards( $('.orgcard[reportstoid*=' + personId + '][level=' + nextLevel + ']'), personId );
+                    
+                    if( cardsToHide.length > 0 ){
+                        $.each( cardsToHide, function(i, val ){
+                            $(".orgcard[reportstoid*=" + val + "]").hide();
+                            
+                        });
+                        
+                    }
+                    
+                    $(".fa-plus-circle").closest("div.vertline").css("z-index", "108");
+                    
+                });
+                
+                $('#mapped-nodes .orgcard').last().find('.minus').remove();
+                
+                createCollapseMenu();
+                
+                $('#orgchart-collapse-section input').attr('disabled', false);
+                var lastZeroLevelId = $('#mapped-nodes .orgcard[level="0"]').last().attr('id');
+                $('#mapped-nodes .orgcard[level="0"]').last().children('.zeroLine').css('height', '52px');
+                $('#mapped-nodes .orgcard[reportstoid*="' + lastZeroLevelId + '"]').children('.zeroLine').remove();
+                
+                if (lastTopNode != null || lastTopNode != '') {
+                    
+                }
+                
+                $(".orgchart-level-control > .orgchart-level-tabs > .nav-tabs").on("click", "a.nav-tab-item", function() {
+                    $("#orgChartBody").hide();
+                    
+                    var level = $(this).attr('level');
+                    if (level != -1) {
+                        $(".orgcard").each(function() {
+                            if ($(this).attr('level') > level) {
+                                if ($(this).has("a.nodeLevel").length)
+                                    $(this).addClass("expend");
+                                $(this).hide();
+                            } else {
+                                if ($(this).attr('level') < level) {
+                                    $(this).find("i.fa-plus-circle").removeClass("fa-plus-circle").addClass("fa-minus-circle");
+                                    $(this).removeClass("expend");
+                                } else {
+                                    $(this).find("i.fa-minus-circle").removeClass("fa-minus-circle").addClass("fa-plus-circle");
+                                    if ($(this).has("a.nodeLevel").length)
+                                        $(this).addClass("expend");
+                                }
+                                $(this).show();
+                            }
+                        });
+                        
+                        $("a.nav-tab-item").parent().attr("class", "");
+                        $(this).parent().addClass('active-' + (parseInt(level) + 1));
+                    } else {
+                        $("a.nav-tab-item").parent().attr("class", "");
+                        $(this).parent().addClass('active');
+                        
+                        $(".orgcard").each(function() {
+                            $(this).find("i.fa-plus-circle").removeClass("fa-plus-circle").addClass("fa-minus-circle");
+                            $(this).removeClass("expend");
+                        });
+                        
+                        $(".orgcard").show();
+                    }
+                    $("#orgChartBody").show();
+                    
+                });
+                
+                
+                $("#orgchart-collapse-section").on("click", "input", function() {
+                    
+                    $("#orgChartBody").hide();
+                    
+                    var level = $(this).attr('level');
+                    if (level != -1) {
+                        $(".orgcard").each(function() {
+                            if ($(this).attr('level') > level) {
+                                if ($(this).has("a.expand-collapse").length)
+                                    $(this).addClass("expend");
+                                $(this).hide();
+                            } else {
+                                if ($(this).attr('level') < level) {
+                                    $(this).find("a.expand-collapse").removeClass("plus").addClass("minus").html("").html("Collapse");
+                                    $(this).removeClass("expend");
+                                } else {
+                                    $(this).find("a.expand-collapse").removeClass("minus").addClass("plus").html("").html("Expend");
+                                    if ($(this).has("a.expand-collapse").length)
+                                        $(this).addClass("expend");
+                                }
+                                $(this).show();
+                            }
+                        });
+                        
+                    } else {
+                        $(".orgcard").each(function() {
+                            $(this).find("a.expand-collapse").removeClass("plus").addClass("minus").html("").html("Collapse");
+                            $(this).removeClass("expend");
+                        });
+                        $(".orgcard").show();
+                        alert();
+                    }
+                    $("#orgChartBody").show();
+                    
+                });
+            }
+            
+            var cardsToHide = [];
+            function expandCards( thisCard, personId ){
+                $( thisCard ).each(function() { // '.orgcard[reportstoid*=' + personId + ']'
+                    if( $(this).find('>div.vertline a.nodeLevel').length > 0 ){
+                        console.log('---> inside has - a.nodeLevel: '+ $(this).find('a.nodeLevel i.fa-minus-circle').length > 0 );
+                        
+                        if( $(this).find('>div.vertline a.nodeLevel i.fa-minus-circle').length > 0 ){
+                            
+                            $(this).find(".cardtext .place-holder-card").hide();
+                            $(this).find(".cardtext .maincard").show();
+                            
+                            
+                            var curlevel = $(this).attr('level');
+                            var nextLevel = Number(Number(curlevel) + 1);
+                            
+                            personId = $( this ).attr('id');
+                            $('.orgcard[reportstoid*=' + personId + '][level=' + nextLevel + ']').show();
+                            $('.orgcard[reportstoid*=' + personId + '][level=' + nextLevel + ']').each(function() {
+                                var child = this;
+                                if( $( child ).find('>div.vertline a.nodeLevel i.fa-plus-circle').length > 0 ){
+                                    cardsToHide.push( $( child ).attr('id') );
+                                }
+                                
+                                personId = $( child ).attr('id');
+                                //$(child).show();
+                                if( $( child ).find('>div.vertline a.nodeLevel i.fa-plus-circle').length == 0 && $('.orgcard[reportstoid*=' + $( child ).attr('id') + ']').length > 0 ){
+                                    expandCards( $(child), personId );
+                                }
+                            });
+                            
+                            
+                        }else{
+                            var currentLevel = $(this).attr('level');
+                            if( parseInt( currentLevel ) > 1 ){
+                                
+                                var lastlevel = currentLevel-1;
+                                var reportstoidlst = $(this).attr('reportstoid').split(',');
+                                
+                                personId = $( this ).attr('id');
+                                
+                                var parentReportToId = reportstoidlst[lastlevel];
+                                if( $(this).find('>div.vertline a.nodeLevel i.fa-plus-circle').length > 0 ){
+                                    
+                                    cardsToHide.push( $(this).attr('id') );
+                                    
+                                    
+                                    
+                                }else{
+                                    
+                                }
+                            }
+                        }
+                    }
+                });
+                
+            }
+            
+            function showCIOsAndCFOs() {
+                $('#mapped-nodes .orgcard').hide();
+                $('#companyBox').show();
+                
+                $('#mapped-nodes .orgcard[level="0"]').filter(function() {
+                    
+                    var id = $(this).attr('id');
+                    $(this).children('.zeroLine').children('.expand-collapse').remove();
+                    var plusSign = "<div class='plus expand-collapse' per-node-id='" + id + "' level='0' style='position:relative;top:42px;color:#0455a3;left: -9px;font-size:16pt;cursor:pointer'></div>";
+                });
+                $('#mapped-nodes .orgcard[level="0"]').show();
+            };
+            
+            function in_array(array, id) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] == id)
+                        return true;
+                }
+                return false;
+            }
+            
+            function createCollapseMenu() {
+                $(".orgchart-level-control > .orgchart-level-tabs > .nav-tabs ").html('');
+                
+                levelCollapse = '';
+                
+                var tabWidth = 100;
+                for (var i = 0; i < totalLevels; i++) {
+                    levelCollapse += '<li style="width:' + tabWidth + '%;"><a class="nav-tab-item st' + i + '" level="' + i + '">' + getGetOrdinal(i + 1) + '&nbsp;&nbsp;&nbsp;</a></li>';
+                }
+                levelCollapse += '<li style="width:' + tabWidth + '%;" class="active"><a class="nav-tab-item All" level="-1">All&nbsp;&nbsp;&nbsp;</a></li>';
+                $(".orgchart-level-control > .orgchart-level-tabs > .nav-tabs ").html(levelCollapse);
+                $(".showSliderBase").show();
+            }
+            
+            
+            // Convert numbers to words
+            // copyright 25th July 2006, by Stephen Chapman http://javascript.about.com
+            // permission to use this Javascript on your web page is granted
+            // provided that all of the code (including this copyright notice) is
+            // used exactly as shown (you can change the numbering system if you wish)
+            
+            // American Numbering System
+            var th = ['', 'thousand', 'million', 'billion', 'trillion'];
+            var dg = ['zero', 'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth'];
+            var tn = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            var tw = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            
+            function toWords(s) {
+                s = s.toString();
+                s = s.replace(/[\, ]/g, '');
+                if (s != parseFloat(s)) return 'not a number';
+                var x = s.indexOf('.');
+                if (x == -1) x = s.length;
+                if (x > 15) return 'too big';
+                var n = s.split('');
+                var str = '';
+                var sk = 0;
+                for (var i = 0; i < x; i++) {
+                    if ((x - i) % 3 == 2) {
+                        if (n[i] == '1') {
+                            str += tn[Number(n[i + 1])] + ' ';
+                            i++;
+                            sk = 1;
+                        } else if (n[i] != 0) {
+                            str += tw[n[i] - 2] + ' ';
+                            sk = 1;
+                        }
+                    } else if (n[i] != 0) {
+                        str += dg[n[i]] + ' ';
+                        if ((x - i) % 3 == 0) str += 'hundred ';
+                        sk = 1;
+                    }
+                    if ((x - i) % 3 == 1) {
+                        if (sk) str += th[(x - i - 1) / 3] + ' ';
+                        sk = 0;
+                    }
+                }
+                if (x != s.length) {
+                    var y = s.length;
+                    str += 'point ';
+                    for (var i = x + 1; i < y; i++) str += dg[n[i]] + ' ';
+                }
+                return str.replace(/\s+/g, ' ');
+            }
+            
+            //auto scroll...
+            $.fn.autoscroll = function(speed) {
+                $('html,body').animate({
+                    scrollTop: (this.offset().top - $(window).height() / 2 + 50)
+                },
+                                       speed
+                                      );
+                return this;
+            };
+            
+            
+            </script>
+            
+            <apex:outputpanel id="optp">
+                
+                <script>
+                var constring = '{!JSENCODE(contactListString)}';
+                var leadstring = '{!JSENCODE(leadListString)}';
+                
+                var conFinalStr = []; 
+                
+                var tempRec = constring.split('},');
+                for (i = 0; tempRec.length > i; i++) {
+                    if (tempRec[i] != null && tempRec[i] != '') {
+                        var obj = tempRec[i] + '}'
+                        conFinalStr.push(obj);
+                    }
+                }
+                
+                var leadFinalStr = [];
+                var tempRec = leadstring.split('},');
+                for (i = 0; tempRec.length > i; i++) {
+                    if (tempRec[i] != null && tempRec[i] != '') {
+                        leadFinalStr.push(tempRec[i] + '}');
+                    }
+                }
+                
+                function init() {
+                    
+                    var scrollTo = (new String(window.location).match(/scrollTo=(\d+)/)) ? RegExp.$1 : "";
+                   
+                    if (scrollTo != null && scrollTo.length > 0) {
+                        var objPerson = JSON.parse('{!JSENCODE(orgChartCommonJSON)}');
+                        totalLevels = 0;
+                        $(".showSliderBase").hide();
+                        createOrgChart('Person');
+                    } else {
+                        totalLevels = 0;
+                        $(".showSliderBase").hide();
+                        createOrgChart('Person');
+                    }
+                    
+                    
+                }
+                
+                var scrollToId = '';
+                var scrollToPerson = '';
+                var xAttempt = false;
+                
+                function createOrgChart(paramVal) {
+                    $('#companyBox').remove();
+                    
+                    var scrollTo = (new String(window.location).match(/scrollTo=(\d+)/)) ? RegExp.$1 : "";
+                    
+                    if (typeof scrollTo == 'undefined')
+                        scrollToId = '';
+                    else {
+                        scrollToId = parseInt(scrollTo);
+                    }
+                    var valS = '';
+                    valS = '{!JSENCODE(orgChartCommonJSON)}';
+                    
+                    
+                    
+                    if( '{!DepartmentsList.size}' == 0 ){
+                        $("#no-itchart").show();
+                        $("[id*='showLvl']").hide();
+                        $("#pnlLoadingtop, .overlay-div, #orgChartBody").hide();
+                        return true;
+                    }
+                    if (valS == '') {
+                        $("#no-itchart").show();
+                        $("[id*='showLvl']").hide();
+                        $("#pnlLoadingtop, .overlay-div, #orgChartBody").hide();
+                        return true;
+                    }
+                    
+                    var companyBox = "<div id='companyBox' class='orgcard' style='left: -86px;top: 25px;'><span><img src='{!URLFOR($Resource.DSCORGPKG__DiscoverOrgChart, '/images/orgchart.png')}'/></span></div>";
+                    $('#mapped-nodes').prepend(companyBox);
+                    
+                    if (valS != null && valS != '') {
+                        $('#mapped-nodes').html('');
+                        $('#unmapped-nodes').html('');
+                        var obj = JSON.parse('{!JSENCODE(orgChartCommonJSON)}');
+                        
+                        
+                        createMappedNodes(obj["0"]);
+                        createUnmappedNodes(obj["-1"]);
+                        createUnmappedNodes(obj["-2"]);
+                        
+                        createCollapseMenus();
+                        $("#orgChartBody").show();
+                        $("#no-itchart").hide();
+                    } else {
+                        $("#no-itchart").show();
+                        $("#pnlLoadingtop, .overlay-div, #orgChartBody").hide();
+                        return true;
+                    }
+                    
+                    if (scrollToPerson != '') {
+                        if (xAttempt == false) {
+                            xAttempt = true;
+                        }
+                    }
+                    if ('{!loadAsPerReturn}' == 'false') {
+                        onloadOver();
+                    }
+                    
+                    if (getScrollToID == '') {
+                        getScrollToID = scrollTo;
+                    }
+                    
+                    var div = document.getElementById(getScrollToID);
+                    
+                    if (div != null) {
+                        var rect = div.getBoundingClientRect();
+                    }
+                    
+                     $("#pnlLoadingtop").hide();
+                     $(".overlay-div").hide();
+                   
+                    remoteFunMatching();
+                    $("p[id*='expColl']").show();
+                    var sPageURL = window.location.href,
+                        sURLVariables = sPageURL.split('&'),
+                        i;
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[1] == 'Account') {
+                            $(".st0 ").click();
+                        }
+                        
+                        
+                        if (sParameterName[1] == 'Lead' || sParameterName[1] == 'Contact') {
+                            $(".fa-minus-circle").click();
+                            var idarray = $('#selectedelid').parent().parent().attr('reportstoid');
+                            if(idarray!=null && idarray!=''){                                  
+                                var res = idarray.split(",");
+                                
+                                res.forEach(function(element) {                 
+                                    var ielement = $('#'+element).children('div.vertline').find('i')[0];
+                                    $(ielement).addClass('insertemementclass'+element);
+                                    $('.insertemementclass'+element).click();                                                                
+                                }); 
+                            }     
+                        }
+                        
+                        
+                    }
+                    
+                    var elmnt = document.getElementById('selectedelid'); 
+                    if(elmnt!=null && elmnt!=''){                              
+                        var rect = elmnt.getBoundingClientRect();
+                        
+                        window.scrollTo(0,rect.top-300);
+                    }
+                    
+                    
+                    
+                }
+                </script>
+                
+                
+            </apex:outputpanel>
+            
+            <!--- Javascript -->
+            <script type="text/javascript">
+            function getValues(obj, key) {
+                var objects = [];
+                for (var i in obj) {
+                    if (!obj.hasOwnProperty(i)) continue;
+                    if (typeof obj[i] == 'object') {
+                        objects = objects.concat(getValues(obj[i], key));
+                    } else if (i == key) {
+                        objects.push(obj[i]);
+                    }
+                }
+                return objects;
+            }
+            
+            function getGetOrdinal(n) {
+                var s = ["th", "st", "nd", "rd"],
+                    v = n % 100;
+                return n + (s[(v - 20) % 10] || s[v] || s[0]);
+            }
+            </script>
+            <!--- Javascript -->
+            <script type="text/javascript">                
+            function addZero(x,n) {
+                while (x.toString().length < n) {
+                    x = "0" + x;
+                }
+                return x;
+            }
+            
+            function myFunction() {
+                var d = new Date();
+                //var x = document.getElementById("demo");
+                var h = addZero(d.getHours(), 2);
+                var m = addZero(d.getMinutes(), 2);
+                var s = addZero(d.getSeconds(), 2);
+                var ms = addZero(d.getMilliseconds(), 3);
+                return ( h + ":" + m + ":" + s + ":" + ms );
+            }
+            </script>
+            
+            </div>
+        </apex:form>
+    </body>
+    
+    <div>
+        <div role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open" id="confirmPopup" style="display: none; z-index: 9999">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header slds-modal__header slds-modal__header--empty">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <p>Selections are discarded when switching departments.</p>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="$('#confirmPopup').hide(); $('.overlay-div').hide();$('.OrgChartType').val(curOrgChartType); return false">Cancel</button>
+                    <button class="slds-button slds-button--brand" id="switckOK" onclick="switchTabOk($(this).attr('rel')); return false">Ok</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop slds-backdrop--open"></div>
+        
+    </div>
+    
+    <script>
+    var batchNo = 0;
+    var currentBatch = 1;
+    var mapOfIdBatches = new Map();
+    var mapOfEmailBatches = new Map(); 
+    var timeoutVar;
+    
+    function remoteFunMatching(){
+        $('#sel-option a').click(function(e){
+            $('#select').text($(this).text());
+            $('#sel-option').hide(); 
+            $(this).addClass('current');
+            $('#select').append('<i class="fa fa-sort-desc" aria-hidden="true" style=" float: right; margin-right: 6px; "></i>');
+            e.preventDefault();
+        });
+        
+        for( var i = 2 ; i < 10 ; i++ ){
+            $(".orgchart-"+i+''+i).width( $(".orgchart-11").width()-59*(i-1) )
+        }
+        $(".orgchart-"+88).width( $(".orgchart-11").width()-59*(8-1)+58 );
+        $(".orgchart-"+99).width( $(".orgchart-11").width()-59*(9-1)+58 );
+        $("#unmapped-nodes").find(".orgcard").width( $(".orgchart-11").width() );
+        
+        Visualforce.remoting.timeout = 120000;
+        
+        loadInitIndicator();
+        
+        var allDoids = '';
+        var allMailids = '';
+        mapOfIdBatches = new Map();
+        mapOfEmailBatches = new Map(); 
+        mapOfrecords = new Map();                       
+        var count = 0;
+        
+        $(".name").each(function() {
+            allDoids += $( this ).attr("data-doid") + "," ;
+            allMailids += $( this ).attr("data-doemail") + "," ;
+            
+            if( count == 50 ){
+                batchNo++;
+                mapOfIdBatches.set( batchNo+'' , allDoids );
+                mapOfEmailBatches.set( batchNo+'' , allMailids );                    
+                count = 0;
+                allDoids = '';
+                allMailids = '';
+            }
+            else{
+                count++;
+            }
+        });
+        
+        if( count> 0 ){
+            batchNo++;
+            mapOfIdBatches.set( batchNo+'' , allDoids );
+            mapOfEmailBatches.set( batchNo+'' , allMailids );                
+            count = 0;
+            allDoids = '';
+            allMailids = '';
+        }
+        
+        callNextBatch();
+        
+        registerBinding();
+        
+    }
+    
+    function callNextBatch(){
+        if( currentBatch <= batchNo ){
+            batchMatching( mapOfIdBatches.get(currentBatch+'') ,  mapOfEmailBatches.get(currentBatch+'') );
+            currentBatch++;
+        }
+        else{
+        }
+    }
+    
+    function batchMatching( dids, mids ){  
+        var MatchWrapper;
+        
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.ITOrgChartController.fetchMatchData}',
+            dids, 
+            mids,
+            function(result, event){
+                if (event.status) {
+                    MatchWrapper = result;                            
+                    for( var i =0;i<MatchWrapper.length ; i++){
+                        var rec = MatchWrapper[i];                                
+                        if( rec.matchRecDoId != null && rec.matchRecDoId != '' ){
+                            createHoverInfo( rec, rec.isContact )
+                        }
+                        else if( rec.matchRecEmailId != null && rec.matchRecEmailId != '' ) {
+                            createHoverInfo( rec, rec.isContact )
+                        }
+                        mapOfrecords.set(rec.Id , rec);
+                    }
+                    callNextBatch();
+                    registerBinding();
+                    
+                } else if (event.type === 'exception') {
+                }
+            }, 
+            {escape: true}
+        );
+    }
+    
+    function registerBinding(){
+        $(".webui-popover-btn").unbind();
+        $(".webui-popover-btn").mouseleave(function(e){
+            $(this).find(".popoverDiv").hide();
+            $(this).find(".arrow").hide();
+            $(this).find(".uploadFW").each(function() {
+                $(this).toggle();
+            });                             
+        });
+    }
+    
+    function fetchNoMatchHtml(objName , name ){
+        var htmlSt = '<table class="popTable" style="border-style: hidden;"><tr style="border-style: hidden;"><td style="border-style: hidden;">';
+        if(objName == 'contact'){
+            htmlSt += '<span class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle contactIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">'+
+                '<use xlink:href="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact")}"></use>'+
+                '</svg>'+
+                '</span>';
+        }else{
+            htmlSt += '<span class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle leadIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">'+
+                '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>'+
+                '</svg>'+
+                    '</span>';
+        }
+        
+        htmlSt +='</td><td style="border-style: hidden;"><i class="fa fa-cloud-upload" style="font: normal normal normal 14px/1 FontAwesome !important;color: #1b5eac;margin-left:50px;position: absolute;right: 20px;top: 15px;width: 16px; height: 18px;" aria-hidden="true"></i></td>'+
+            '<td style="border-style: hidden;">'+
+            '<div class="conLeadName" class="slds-truncate">'+name+'</div>'+
+            '<br/>';
+        if(objName == 'contact'){    
+            htmlSt += '<p class="noMatchFoundText">No Matching Contact Found</p>';
+        }else{
+            htmlSt += '<p class="noMatchFoundText">No Matching Lead Found</p>';
+        }
+        '</td>'+
+            '<td style="vertical-align: top;border-style: hidden;">'+
+            '<i class="fa fa-cloud-upload" style="font: normal normal normal 14px/1 FontAwesome !important;color: #1b5eac;margin-left:50px;" aria-hidden="true"></i>'+
+            '</td></tr></table>';
+        
+        return htmlSt;
+    }
+    
+    function fetchMatchHtml(objName , recId , color ){
+        var rec = mapOfrecords.get(recId);             
+        var htmlSt = '<table class="popTable" style="width: 250px;height: 17px;font-family: Open Sans !important;font-size: 12px;color: #7f7f80;margin-left:4px;margin-top:5px;border-style: hidden;"><tr style="border-style: hidden;"><td style="min-width: 125px;border-style: hidden;">';
+        
+        if( rec.isContact ){
+            htmlSt += '<span class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle contactIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="width: 15px;height: 15px;fill: #fff;">'+
+                '<use xlink:href="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact")}"></use>'+
+                '</svg>'+
+                '</span>';
+        }else{
+            htmlSt += '<span class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle leadIcon" style="padding: .5rem;display: inline-block;float: left;margin-right: 5px;">'+
+                '<svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="width: 15px;height: 15px;fill: #fff;">'+
+                '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>'+
+                '</svg>'+
+                    '</span>';
+        }
+        
+        
+        htmlSt +='<div class="conLeadName" class="slds-truncate"><a href="/'+rec.Id+'" target="_Blank" style="color: #0070d2  !important;">'+rec.Name+'</a></div>'+   
+            '</td>'+
+            '<td style="min-width: 125px;border-style: hidden;border-style: hidden;">'+                                                    
+            '<i class="fa fa-refresh" style="font: normal normal normal 14px/1 FontAwesome !important;color: '+color+';margin-left:50px;position: absolute;right: 20px;top: 20px;" aria-hidden="true"></i>'+ 
+            '</td>'+
+            '</tr>'+
+            '<tr style="border-style: hidden;">'+
+            '<td style="padding-top: 10px;padding-bottom: 2px;color: #7f7f80;border-style: hidden;">Matched On <i aria-hidden="true" class="fa fa-circle indicator" style="color:'+color+';margin-left: 0px;"></i></td>'+
+            '<td style="padding-top: 10px;padding-bottom: 2px;color: #7f7f80;border-style: hidden;">Type</td>'+
+            '</tr>'+
+            '<tr style="border-style: hidden;">';
+        
+        if( rec.matchBy == 'doid' ){
+            htmlSt += '<td style="font-weight: 600;padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">DiscoverOrg ID</td>';
+        }
+        else{
+            htmlSt += '<td style="font-weight: 600;padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Email</td>';
+        }
+        
+        htmlSt += '<td style="font-weight: 600;padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">'+objName+'</td>'+
+            '</tr>'+
+            '<tr style="border-style: hidden;">'+
+            '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Parent Account</td>'+
+            '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Record Owner</td>'+
+            '</tr>'+
+            '<tr style="border-style: hidden;">';
+        
+        if( rec.isContact ){
+            htmlSt += '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;"><a href="/'+rec.parentAccountId+'" target="_Blank" style="color: #0070d2  !important;">'+rec.parentAccount+'</a></td>';
+        }else{
+            htmlSt += '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">'+rec.parentAccount+'</td>';
+        }
+        
+        htmlSt +=    '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;"><a href="/'+rec.recOwnerId+'" target="_Blank" style="color: #0070d2  !important;">'+rec.recOwner+'</a></td>'+
+            '</tr>'+
+            '<tr style="border-style: hidden;">'+
+            '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">Created</td>'+
+            '<td></td>'+
+            '</tr>'+
+            '<tr style="border-style: hidden;">'+
+            '<td style="padding-bottom: 2px;padding-top: 2px;color: #7f7f80;border-style: hidden;">'+rec.Created+'</td>'+
+            '<td></td>'+
+            '</tr>'+
+            '</table>';
+        return htmlSt;
+    }
+    
+    function loadInitIndicator(){
+        var isUpdateSettingDisableForContact = {!isUpdateSettingDisableForContact};
+        var isUpdateSettingDisableForLead = {!isUpdateSettingDisableForLead}; 
+        var userLockImportShowHide  = {!userLockImportShowHide}; 
+        $(".name").next().each(function() {            
+            var doidst = $(this).prev().attr("data-doid"); 
+            var namest = $(this).prev().find("a").text().replace(/(['.?*&+^$[\]\\(){}|-])/g, "");
+            var anchor = '<a class="webui-popover-btn ui animated button '+ ( isUpdateSettingDisableForLead || userLockImportShowHide ? 'indiDisable': '') +' " onmouseenter="showPopover( this );" style="text-decoration: none;display: inline;">'+
+                '<span  onclick="showStatusDiv();SaveIndivisualLead('+doidst+', \'AddUpdateSelectedLeads\' ,\''+namest+'\');$(\'#updateHeadingofpopup\').html(\'Update Lead\');" class="slds-icon_container slds-icon-action-new-lead slds-icon_container--circle matchCircle">'+
+                '<div class="visible content"><i class="uploadFW"><svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">'+
+                '<use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_lead')}"></use>'+
+                '</svg></i></div>'+
+                    '<div class="hidden content"><i class="fa fa-cloud-upload uploadFW" aria-hidden="true" style="display:none;"></i></div>'+
+                    '</span>'+
+                    '<i aria-hidden="true" class="fa fa-circle indicator leadIndi" sf-id=""></i>'+
+                    '<div class="popoverDiv"></div>'+
+                    '<div class="arrow"></div>'+
+                    '</a>'+
+                    '<a class="webui-popover-btn ui animated button '+ ( isUpdateSettingDisableForContact || userLockImportShowHide ? 'indiDisable': '') +' "  onmouseenter="showPopover( this );" style="text-decoration: none;display: inline;">'+
+                    '<span onclick="showStatusDiv();SaveIndivisualLead('+doidst+', \'AddUpdateSelectedContacts\' ,\''+namest+'\');$(\'#updateHeadingofpopup\').html(\'Update Contact\');" class="slds-icon_container slds-icon-action-new-contact slds-icon_container--circle matchCircle">'+
+                    '<div class="visible content"><i class="uploadFW"><svg aria-hidden="true" class="slds-input__icon slds-icon-text-default svgClass" style="fill: #fff;">'+
+                    '<use xlink:href="{!URLFOR($Resource.SLDS080,"SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_contact")}"></use>'+
+                    '</svg></i></div>'+
+                    '<div class="hidden content"><i class="fa fa-cloud-upload uploadFW" aria-hidden="true" style="display:none;"></i></div>'+
+                    '</span>'+
+                    '<i aria-hidden="true" class="fa fa-circle indicator conIndi" sf-id=""></i>'+
+                    '<div class="popoverDiv"></div>'+
+                    '<div class="arrow"></div>'+
+                    '</a>';
+            
+            $(this).html( anchor );
+        });
+    }
+    
+    function showPopover(ele){                                
+        var isContact = false;
+        var mainNameEle = $(ele).parent().prev();
+        var name = $(mainNameEle).find("a").html();
+        
+        if(  $(ele).find(".indicator").hasClass("conIndi") ){
+            isContact = true;
+        }
+        
+        //For Unmatched popup
+        if( $(ele).find(".indicator").css("color") == 'rgb(204, 204, 204)' ){
+            var popupHtml;
+            if( isContact ){
+                popupHtml = fetchNoMatchHtml('contact' , name);
+            }
+            else{
+                popupHtml = fetchNoMatchHtml('lead' , name);
+            }
+            $(ele).find(".popoverDiv").html(popupHtml);
+        }
+        else{
+            var popupHtml;
+            var recId = $(ele).find(".indicator").attr("sf-id");
+            var color = $(ele).find(".indicator").css("color");
+            if( isContact ){
+                popupHtml = fetchMatchHtml('Contact' , recId , color );
+            }
+            else{
+                popupHtml = fetchMatchHtml('Lead' , recId , color );
+            }
+            $(ele).find(".popoverDiv").html(popupHtml);
+        }
+        
+        var outHght = $(ele).find(".popoverDiv").outerHeight();
+        var eleTop = $(ele).position().top;
+        var ptop = eleTop - (outHght/2) + 15;
+        
+        var pleft = $(ele).find(".popoverDiv").outerWidth();
+        pleft = $(ele).position().left - pleft -52;
+        
+        $(ele).find(".popoverDiv").css("top", ptop-5+"px");
+        $(ele).find(".popoverDiv").css("left", pleft+6+"px");
+        $(ele).find(".popoverDiv").show(); 
+        
+        $(ele).find(".arrow").css("top", $(ele).position().top+7+"px");
+        $(ele).find(".arrow").css("left", $(ele).position().left-52+"px"); 
+        $(ele).find(".arrow").show();            
+        $(ele).find(".matchCircle").find("i").each(function() {
+            $(this).toggle();
+        });   
+    }  
+    
+    function createHoverInfo( record, isContact ){     
+        var popoverHtmlDataLead = '';
+        var popoverHtmlDataContact = '';
+        var matchColor;
+        var ele;
+        var indiClass;
+        var objName;
+        var blockObj;
+        
+        if( record.matchBy == 'doid' ){
+            ele = $(".left-grey-box span.name[data-doid*='"+record.matchRecDoId+"']");
+            matchColor = 'rgb(125, 191, 94)';            
+        }
+        else{
+            ele = $(".left-grey-box span.name[data-doemail*='"+record.matchRecEmailId+"']");
+            matchColor = '#fad14b';
+        }      
+        
+        if( isContact ){                
+            indiClass = '.conIndi';
+            objName = 'contact';
+            blockObj = '.leadIndi';
+        }
+        else{
+            indiClass = '.leadIndi'; 
+            objName = 'lead';  
+            blockObj = '.conIndi';                     
+        }       
+        
+        if( record.matchBy == 'doid' ){
+            $(ele).next().find("a").find(blockObj).parent().addClass("indiDisable"); 
+        }
+        
+        if( $(ele).next().find("a").find(indiClass).css("color") == 'rgb(204, 204, 204)' || $(ele).next().find("a").find(indiClass).css("color") == 'rgb(250, 209, 75)' ){
+            $(ele).next().find("a").find(indiClass).css("color", matchColor).css("background", matchColor).attr("sf-id", record.Id);                      
+        }                  
+        $(ele).next().find("a").find(".slds-icon-action-new-"+objName).find(".fa-cloud-upload").addClass("fa-refresh").removeClass("fa-cloud-upload");         
+    }      
+    
+    function showStatusDiv(){
+        $("#pnlLoadingtop").css("display", "inline-block");
+        $(".overlay-div").css("display", "inline-block");
+        
+        
+        
+        
+    }  
+    
+    $(".orgchartSearchBox").keypress(function(event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+    var findenl=true;
+    function doSearch(searchableString){
+        
+        $( ".name" ).each(function( index ) {
+            //console.log($(this));
+            Removehilight( $(this) );
+        });
+        
+        if(searchableString.length<3){
+            window.scrollTo(0,0);                            
+            
+        }
+        
+        if( searchableString.length >=3){
+            searchableString = searchableString.toLowerCase();
+            var strMatchDoid;
+            $('[title*="' + searchableString + '"]').each(function( index ) {
+                
+                if( $(this).parent().css("display") != 'none' ){
+                    strMatchDoid = $(this).parent().attr('data-doid');
+                    hilight($(this) , searchableString);                                      
+                    clearTimeout(timeoutVar);
+                    timeoutVar = setTimeout(FetchData,10);
+                    
+                    function FetchData() {            
+                        
+                        var i=0;
+                        var breakLoop = false;
+                        
+                        $('.highlight').each(function(){
+                            if(breakLoop){
+                                return false;
+                            }
+                            
+                            if($(this).closest('.orgcard').css('display') == 'block'){
+                                var ec = $(this)
+                                
+                                if(ec!=null){
+                                    
+                                    window.scrollTo(0,(($(this).offset().top)-461));
+                                    breakLoop = true;
+                                }
+                            }
+                        });
+                        
+                    }  
+                }
+            });
+        }
+        
+        
+    }
+    
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+    
+    function hilight(ele, search) {
+        var sbody = $(ele).html();
+        sbody = decodeHtml(sbody);
+        
+        var re = new RegExp('(' + search + ')(?![^.<]*>|[^<>]*</)', 'gim');
+        var eid=$(ele).parent().attr('data-doid');
+        subst = '<font id="'+eid+'" class="highlight">$1</font>';
+        
+        var lcString=sbody.toLowerCase();
+        var lcSearchString=search.toLowerCase();
+        if(lcString.indexOf(lcSearchString)>=0){
+            var result = sbody.replace(re, subst);
+            $(ele).html(result);
+        }
+        
+    }
+    
+    function Removehilight(ele) {
+        
+        var sbody = $(ele).html();
+        var coplrstr = $(ele).find('a').text(); 
+        
+        var startChar = $(ele).find('font').text(); 
+        
+        $(ele).find('font').remove();
+        
+        $(ele).find('a').text(coplrstr);
+        
+    }
+    function switchTabOk(c) {
+        
+        if (c != null && c != '') {                               
+            
+            
+            var badaUrl = window.location.href;
+            var deptidprm = badaUrl.substr( badaUrl.indexOf("dept_id=") , 10);
+            badaUrl = badaUrl.replace(deptidprm,"dept_id="+ $(".OrgChartType").val() );
+            window.location.href = badaUrl;
+            $(".overlay-div").show();
+        }
+        $('#confirmPopup').hide();
+        $("#pnlLoadingtop").show();
+        
+    }
+    var curOrgChartType='';
+    $('.OrgChartType').on('focusin', function(){
+        curOrgChartType = $(this).val();                            
+    });                      
+    function onclickSwitchTab(c) {
+        
+        $("#pnlLoadingtop").show();
+        $(".overlay-div").show();
+        var p = '';
+        $(".checkSelection").each(function() {
+            if ($(this).is(':checked')) {
+                p = p + $(this).val() + ',';
+            }
+        });
+        
+        var newval = $(".OrgChartType").val();
+        
+        $("#loadingpng").hide();
+        
+        
+        if (p != null && p != '') { //  popupshow here
+            $("#pnlLoadingtop").hide();
+            $('#switckOK').attr('rel', c);
+            $(".overlay-div").show();
+            $('#confirmPopup').show();
+            
+            
+            
+        } else {
+            
+            
+            window.location.href = window.location.href.replace(/dept_id=\d*/, 'dept_id=' + $(".OrgChartType").val());
+            
+            $(".overlay-div").show();
+            
+        }
+        
+        
+    }
+    
+    
+    </script>
+    
+    <style>
+        .popTable tbody tr{
+        background:white !important;
+        
+        }
+        
+        .popTable tbody tr:Hover{
+        background:white !important;
+        
+        }
+        
+        .popTable tbody tr:Hover{
+        background:white !important;
+        
+        }
+        
+        .indicator{
+        vertical-align: top;
+        margin-left: -4px;        
+        border-image: initial;
+        border-radius: 99px;
+        border-top: none;
+        border-right: none;
+        font-style: normal !important;
+        font-variant: normal !important;
+        font-weight: normal !important;
+        font-stretch: normal !important;
+        font-size: 8px !important;
+        line-height: 1 !important;
+        font-family: FontAwesome !important;
+        color: #cccccc;
+        border: 1px solid white;
+        }
+        
+        .matchCircle{
+        padding: 3px;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align:middle;  
+        height: 24px;
+        width: 24px;          
+        }
+        .svgClass{
+        width: 16px;
+        height: 16px;
+        }
+        
+        .uploadFW,.uploadFW2{
+        font: normal normal normal 18px/1 FontAwesome !important;
+        color: #fff;
+        margin-top: 2px;
+        margin-left: 2px;
+        padding: 1px;
+        }
+        
+        .popoverDiv{
+        background: white;
+        padding: 13px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.32);
+        border-radius: 8px;
+        z-index: 1000;
+        position: absolute;
+        margin-left: 41px;
+        top: -29px;
+        display:none;
+        }
+        
+        .noMatchFoundText{
+        width: 160px;
+        height: 17px;
+        font-family: Open Sans !important;
+        font-size: 12px;
+        font-style: italic;
+        color: #999999 !important;
+        margin-left: 3px;
+        margin-top:-20px;
+        }
+        
+        .conLeadName{
+        
+        width: 246px;
+        margin-top: 2px;
+        height: 24px;
+        font-family: Open Sans !important;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1b5eac;
+        margin-left:4px;
+        }
+        
+        .arrow{
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        background: white;
+        margin-left: 34px;
+        margin-top: -5px;
+        top: 8px;
+        -ms-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        display: none;
+        z-index: 10000;
+        }
+        .indiDisable{
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+        }
+    </style>
+</apex:page>

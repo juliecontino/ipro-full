@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Total hours recorded for all Time Card Lines for the current period. --></help>
+        <label><!-- Total Hours --></label>
+        <name>AcctSeed__Total_Hours__c</name>
+    </CustomFieldTranslation>

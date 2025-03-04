@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Status --></label>
+        <name>APXT_CongaSign__Status__c</name>
+        <picklistValues>
+            <masterLabel>CANCELLED</masterLabel>
+            <translation>취소됨</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMPLETE</masterLabel>
+            <translation>완료</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DECLINED</masterLabel>
+            <translation>거부됨</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRAFT</masterLabel>
+            <translation>초안</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EXPIRED</masterLabel>
+            <translation>만료됨</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PENDING_EXPIRATION</masterLabel>
+            <translation>PENDING_EXPIRATION</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SENT</masterLabel>
+            <translation>전송됨</translation>
+        </picklistValues>
+    </CustomFieldTranslation>

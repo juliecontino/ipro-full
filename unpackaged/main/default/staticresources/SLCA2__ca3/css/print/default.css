@@ -1,0 +1,549 @@
+/* 
+    Document   : week.ipad
+    Created on : 31 трав 2012, 18:46:34
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body.ca_print_body .JQ_CA > .CA_popup._full{
+    padding: 0;
+    position: absolute;
+}
+
+body.ca_print_body .JQ_CA.CA_chrome > .CA_popup._full{
+    padding: 0 10px;
+}
+
+body.ca_print_body .JQ_CA .CA_popup .ca_print_layout{
+    padding-top:30px;
+    padding: 30px 2px 0;
+    /*min-height: 100px;*/
+/*    display: block;
+    position: relative;*/
+    
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}        
+body.ca_print_body .JQ_CA.CA_chrome .CA_popup .ca_print_layout{
+    /*display: inline;*/
+    /*position: inherit;*/
+    padding:30px 20px 0 0;
+}
+
+.ca_print_day > div{
+    margin-left:0 !important;
+    padding-left:0 !important;
+    margin-bottom:10px !important;
+    /*border-bottom: 1px dotted #ddd;*/
+    padding-top:20px !important;
+}
+
+/*.ca_print_day > div._month{
+    page-break-after: always ;
+}*/
+
+    .ca_print_day > div > b{
+        display: inline-block;
+        font-size: 18px;
+        width:50%;
+    }
+    
+    .ca_print_day > div > i{
+        display: inline-block;
+        width:50%;
+        text-align: right;
+        font-size: 14px;
+        font-style: normal;
+        white-space: nowrap;
+    }
+    
+    .ca_print_day > div._day > table{
+        width: 100%;
+        padding:0;
+        margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:1px solid #aaa;
+        width: 100%;
+        border-top: 1px solid #ddd;
+    }
+    
+        
+    
+        .ca_print_day > div._day > table td:first-child{
+            background-color: #eee;
+            font-weight: bolder;
+            width:70px;
+            font-size: 14px;
+            border-right:1px solid #ddd;
+        }
+        
+        .ca_print_day > div._day > table td{
+            padding:3px;
+            border-bottom:1px solid #ddd;
+            page-break-inside:avoid
+        }
+        
+        
+            .ca_print_day > div._day  ._el{
+                margin-bottom:3px;
+                /*page-break-inside:avoid*/
+            }
+.ca_print_day > p._group{
+    font-size: 16px;
+    font-weight: bolder;
+    padding:0;
+    padding-top:20px !important;
+    margin:0;
+    margin-bottom: -10px;
+    font-style: italic;
+}
+.ca_print_day > p._split{
+    page-break-before: always;
+}
+            
+    .ca_print_day > div._day > div {
+        display: block;
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        background-color: #eee;
+    }
+    .ca_print_day > div._day > div:first-of-type {        
+        border-top: 1px solid #ddd;
+    }
+        .ca_print_day > div._day > div  > span{
+            display: inline-block;
+        }
+        
+        .ca_print_day > div._day > div  > span._t{
+            width:50pt;
+            font-weight: bolder;
+            font-size: 14px;
+            text-align: left;
+            box-sizing: border-box;
+            padding-left:3px;
+            vertical-align: top;
+        }
+        
+        .ca_print_day > div._day > div  > span._d._first{
+            width: calc(100% - 51pt);
+            min-height: 20px;
+            display: inline-block;
+            margin-left: 0;
+        }
+        
+        .ca_print_day > div._day > div  > span._d{
+            border-left:1px solid #ddd;
+            background-color: #fff;
+/*            min-height: 20px;*/
+            box-sizing: border-box;
+            padding:1px 3px 1px;
+            margin-left: 50pt;
+            display: block;
+            page-break-inside:avoid;
+        }
+    
+            
+            
+            .ca_print_day > div   ._el > span,
+            .ca_print_day > div   ._el > b,
+            .ca_print_day > div   ._el > i{
+                display: block;
+            }
+            .ca_print_day > div._day   ._el > i{
+                font-size:11px;
+                font-style: normal;
+            }
+                .ca_print_day > div   ._el > b._spec_reccuring > a:before{
+                    content: url(../../pic/recurring_activity.png);
+                }
+            .ca_print_day > div   ._el > b{
+                color:#3B73AF;
+                font-weight: normal;
+            }
+                .ca_print_day > div   ._el > b > a{
+                    text-decoration: none;
+                    color:#3B73AF;
+                    font-weight: normal;
+                    font-size:12px;
+                }
+                
+                .ca_print_day > div  ._el > b > a:hover{
+                    text-decoration: underline;
+                }
+                
+            .ca_print_day > div   ._el > span._time{
+                font-weight: bolder;
+                font-size: 13px;
+            }
+            
+            .ca_print_day > div   ._el > u{
+                text-decoration: none;
+            }
+            
+            .ca_print_day > div   ._el > u._field{
+                /*font-weight: bolder;*/
+                font-style: italic;
+            }
+            
+    .ca_print_day > div._month > table{
+        width: 100%;
+        padding:0;
+        margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:1px solid #aaa;
+        width: 100%;
+        border-top: 1px solid #ddd;
+    }
+    
+        .ca_print_day > div._month > table th{
+            background-color: #eee;
+            font-weight: bolder;
+            min-width:100px;
+            font-size: 14px;
+            border-right:1px solid #ddd;
+            border-bottom:1px solid #ddd;
+            text-align: center;
+            width:14%;
+        }
+        
+        .ca_print_day > div._month > table td{
+            padding:3px;
+            border-bottom:1px solid #ddd;
+            border-right:1px solid #ddd;
+            vertical-align: top;
+            height: 15px;
+        }
+        
+        .ca_print_day > div._month > table tr._date td{
+            /*text-align: right;*/
+            font-size: 11px;
+            color:#000;
+            background-color: #f3f3f3;
+        }
+        
+            .ca_print_day > div._month > table tr td ._el{
+                margin-bottom: 7px;
+            }
+        
+        
+/*            .ca_print_day > div._month > table td > div._el{
+                margin-bottom:3px;
+                page-break-inside:avoid;
+            }
+            
+            
+            .ca_print_day > div._month > table td > ._el > span,
+            .ca_print_day > div._month > table td > ._el > b,
+            .ca_print_day > div._month > table td > ._el > i{
+                display: block;
+            }
+            .ca_print_day > div._month > table td > ._el > i{
+                font-size: 90%;
+                font-style: normal;
+            }
+            */
+            
+            
+.ca_print_settings {
+    display: block;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    min-height: 100px;
+    height: 100px;
+}
+
+    .ca_print_settings ._buttons{
+        height:40px;
+        position: absolute;
+        left:0;
+        right:0;
+        top:0;
+        background: #ddd;
+        /*background: rgba(250,250,250,0.7);*/
+        text-align: right;
+    }
+    .ca_print_settings ._panel{
+        position: absolute;
+        top:40px;
+        left:0;
+        right:0;
+        background: #ddd;
+
+/*        background: rgba(0,0,0,0.2);*/
+        display: none;
+        text-align: right;
+    }
+    
+    .ca_print_settings ._panel._on{
+        display: block;
+    }
+
+    
+.CA_popup .gantt_blocks{
+    margin-top: 50px;
+}    
+.ca_print_body .CA_color_select{
+    display: none;
+}
+
+body.ca_print_body ._ca_print_hide{
+    display: none !important;
+}
+    
+@media print  {
+    body, 
+    body.hasMotif{
+        margin:0.3cm !important;
+        padding:0.1cm !important;
+        background: white !important;
+        width: auto !important;
+        overflow:visible !important;
+    }
+    
+    body.CA_msie,
+    body.hasMotif.CA_msie{
+        margin:0 !important;
+        padding:0 !important;
+    }
+     
+        
+/*        body > *,*/
+        body._special_ie_print #AppBodyHeader,
+        body._special_ie_print .bPageFooter,
+        .ca_print_settings
+        {
+            display:none;
+        }
+        
+            body._special_ie_print .Custom32Tab .brdPalette,
+            body._special_ie_print .bodyDiv {
+                border-top-color: #fff;
+                border-bottom-color: #fff;
+                border-bottom-width: 0;
+                border-top-width: 0;
+            }
+            
+        
+        body._special_ie_print > #contentWrapper, 
+        body._special_ie_print > .JQ_CA.ie{
+            display: block;
+            
+        }
+        
+        body._special_ie_print > #contentWrapper .JQ_CA.ie{
+            z-index:1000;
+            background-color: #fff;
+        }
+        
+        body > #CA_Print{
+            display:none;
+            position:static;
+            height:3200px;
+            background-color: #eee;
+        }
+        
+        body._special_ie_print > #CA_Print{
+            display: block;
+            position: fixed;
+            top:0;
+            bottom:0;
+            right:0;
+            left:0;
+            background-color: #fff;
+        }
+        
+        body > img#ca_printable{
+            display:block;
+        }
+            
+            body > #CA_Print > ._printing_panel{
+                display:none;
+            }
+            
+        body .JQ_CA.ie.CA_Print_maximize{
+            display:block;
+            right:auto;
+            width:280mm;
+        }
+        
+        body.ca_print_body .JQ_CA > .CA_h,
+        body.ca_print_body .JQ_CA > .CA_l,
+        body.ca_print_body .JQ_CA > .CA_r
+        {
+            display: none;
+        }
+        
+        body.ca_print_body .JQ_CA > .CA_popup._full{
+            display: block;
+            position: inherit;
+            border: none;
+        }
+        
+        body.ca_print_body .JQ_CA{
+            box-shadow: none !important;
+            border: none !important;
+            position: inherit;
+            top:auto;
+            bottom:auto;
+            overflow:visible !important;
+        }
+        
+        body.ca_print_body ._ca_print_hide_off{
+            position: static !important;
+            left:auto !important;
+            right:auto !important;
+            bottom:auto !important;
+            top: auto !important;
+            box-shadow: none !important;
+            border:0 !important;
+            overflow:visible !important;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            margin:0 !important;
+            padding:0 !important;
+            padding-left:0 !important;
+            width:100% !important;
+            height:auto !important;
+            
+        }
+        body.ca_print_body table#bodyTable{
+            height:auto !important;
+            overflow:visible !important;
+        }
+        
+        
+        
+        
+            body.ca_print_body .JQ_CA .CA_popup,
+            body.ca_print_body .JQ_CA .CA_popup .ca_print_layout,
+            body.ca_print_body .JQ_CA.CA_chrome .CA_popup .ca_print_layout{
+                display: block;
+                overflow:visible !important;
+                padding-top:0;
+                position: inherit !important;
+            }
+        
+            
+    @page { 
+        /*size : landscape ;*/
+        margin:0;
+        padding:0;
+    }
+    
+    
+    
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div > b                            {font-size: 30px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div > i                            {font-size: 22px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div._day > table td:first-child    {font-size: 18px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div._day > div  > span._t          {font-size: 20px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div._day   ._el > i                {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day    ._el > i                          {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day    ._el > b                          {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div   ._el > b > a                 {font-size: 18px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div   ._el > span._time            {font-size: 20px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div._month > table th              {font-size: 24px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day > div._month > table tr._date td     {font-size: 18px;padding-bottom:3px;}
+    .JQ_CA.CA_msie._ca_frame {font-size: 20px;}
+    
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div > b                            {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div > i                            {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div._day > table td:first-child    {font-size: 10px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div._day > div  > span._t          {font-size: 13px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div._day   ._el > i                {font-size: 11px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800    ._el > i                          {font-size: 11px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800    ._el > b                          {font-size: 11px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div   ._el > b > a                 {font-size: 11px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div   ._el > span._time            {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div._month > table th              {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w800 > div._month > table tr._date td     {font-size: 10px;padding-bottom:0px;}
+    .JQ_CA.CA_msie._ca_frame {font-size: 11px;}
+    
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div > b                            {font-size: 19px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div > i                            {font-size: 13px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div._day > table td:first-child    {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div._day > div  > span._t          {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div._day   ._el > i                {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024    ._el > i                          {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024    ._el > b                          {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div   ._el > b > a                 {font-size: 12px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div   ._el > span._time            {font-size: 13px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div._month > table th              {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1024 > div._month > table tr._date td     {font-size: 11px;padding-bottom:0px;}
+    .JQ_CA.CA_msie._ca_frame {font-size: 12px;}
+    
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div > b                            {font-size: 22px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div > i                            {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div._day > table td:first-child    {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div._day > div  > span._t          {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div._day   ._el > i                {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280    ._el > i                          {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280    ._el > b                          {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div   ._el > b > a                 {font-size: 14px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div   ._el > span._time            {font-size: 15px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div._month > table th              {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1280 > div._month > table tr._date td     {font-size: 13px;padding-bottom:0px;}
+    .JQ_CA.CA_msie._ca_frame {font-size: 14px;}    
+
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div > b                            {font-size: 27px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div > i                            {font-size: 20px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div._day > table td:first-child    {font-size: 16px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div._day > div  > span._t          {font-size: 17px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div._day   ._el > i                {font-size: 16px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600    ._el > i                          {font-size: 16px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600    ._el > b                          {font-size: 16px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div   ._el > b > a                 {font-size: 16px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div   ._el > span._time            {font-size: 19px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div._month > table th              {font-size: 23px;}
+    .JQ_CA.CA_msie._ca_frame .ca_print_day._w1600 > div._month > table tr._date td     {font-size: 17px;padding-bottom:0px;}
+    .JQ_CA.CA_msie._ca_frame {font-size: 16px;}
+
+    .JQ_CA.CA_msie._ca_frame  .ca_print_day > div._month > table td             {padding-bottom:6px;}
+    
+    
+    
+    .evt a{
+        text-decoration: underline;
+        color: #015ba7;
+        font-size: 12px;
+    }
+}
+
+@media screen {
+    body > img#ca_printable{                
+        display:none;
+    }    
+}
+
+
+.ca_print_frame{
+    width: 0;
+    height: 0;
+    border: 0;
+}
+
+
+
+
+/*
+@media print and (orientation:landscape) {
+    #CA_Print img{
+        width:260mm;
+        height:850mm;
+    }
+}
+
+@media print and (orientation:portrait) {
+    #CA_Print img{
+        width:180mm;
+        height:550mm;
+    }
+}*/
+
+
+

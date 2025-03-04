@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Projects_In_Progress</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>Project_Manager_OPS__c</columns>
+    <columns>AcctSeed__Project_Manager__c</columns>
+    <columns>NAME</columns>
+    <columns>Project_Status_Ops__c</columns>
+    <columns>Project_Next_Steps__c</columns>
+    <columns>Opportunity_Contract_Number__c</columns>
+    <columns>Opportunity_Ops_Category__c</columns>
+    <columns>AcctSeed__Account__c</columns>
+    <columns>AcctSeed__Opportunity__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Estimated_Cut_over_Date__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Status_Ops__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Canceled</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Template_Project__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Account_Source_ACQ__c</field>
+        <operation>notEqual</operation>
+        <value>Comm3</value>
+    </filters>
+    <label>Projects In Progress</label>
+    <language>en_US</language>
+</ListView>

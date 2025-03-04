@@ -1,0 +1,16 @@
+/** Buttons **/
+.slds-button_brand, .slds-button--brand {
+	border: 1px solid #ec7039 !important;
+	background-color: #ec7039 !important;
+}
+
+.slds-button_brand[disabled], .slds-button--brand[disabled], .slds-button_brand[disabled]:hover, .slds-button--brand[disabled]:hover {
+	background: #f2baa2 !important;
+	border-color: transparent!important;
+	color: #fff !important;
+}
+
+.slds-button_brand:hover, .slds-button--brand:hover {
+	background-color: #ce6131 !important;
+	border-color: #ce6131 !important;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__CA_Calendar__c</fullName>
+    <deprecated>false</deprecated>
+    <label>CA_Calendar</label>
+    <referenceTo>SLCA2__CA_Calendar__c</referenceTo>
+    <relationshipLabel>CA_CreatingFields</relationshipLabel>
+    <relationshipName>CA_CreatingFields</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

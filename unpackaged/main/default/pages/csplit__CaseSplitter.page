@@ -1,0 +1,35 @@
+<apex:page standardController="Case">
+    <script src="/support/console/48.0/integration.js"></script>
+    <script>
+        function openNewTabAndCloseCurrent(url) {
+            sforce.console.getEnclosingPrimaryTabId(function(result) {
+                var currentTabId = result.id;
+                sforce.console.openSubtab(currentTabId, url, true, 'Case Split', null, function(openResult) {                    
+                    sforce.console.getEnclosingTabId(function(result) {
+                         var closeableTabId = result.id;
+                         sforce.console.closeTab(closeableTabId, function(closeResult) {
+                         });
+                    });
+                });
+            });
+        }
+        
+        function initRedirect() {
+            var url = '/lightning/cmp/csplit__CaseSplitWrapper?csplit__caseId={!$CurrentPage.parameters.id}&csplit__fieldSet={!$CurrentPage.parameters.fieldset}&csplit__mode={!$CurrentPage.parameters.mode}&csplit__ccid={!$CurrentPage.parameters.ccid}';
+            if (typeof sforce != 'undefined' && sforce && sforce.one) {
+                if (typeof sforce.console != 'undefined' && sforce.console.isInConsole()) {
+                    openNewTabAndCloseCurrent(url);
+                } else {
+                    sforce.one.navigateToURL(url);
+                }
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        // Use window.onload to ensure the script runs after everything is loaded
+        window.onload = function() {
+            initRedirect();
+        };
+    </script>
+</apex:page>

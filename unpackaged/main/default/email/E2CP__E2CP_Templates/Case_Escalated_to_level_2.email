@@ -1,0 +1,10 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<span style="font-size: 12pt;">The following case has been escalated to Level 2:</span><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;">Account:&nbsp;{!Account.Name}</div><div style="font-size: 12pt;">Case:&nbsp;{!Case.CaseNumber}</div><div style="font-size: 12pt;">Case Detail Link:&nbsp;{!Case.Link}</div><div style="font-size: 12pt;">Last Modified by:&nbsp;{!Case.LastModifiedBy}</div><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;"><br></div><div style="font-size: 12pt;"><br></div><div><br><div><font size="1"><br></font></div><div><p class="MsoPlainText"><font size="2">This is an automated message from Salesforce<o:p></o:p></font></p>
+
+<p class="MsoPlainText"><o:p><font size="2">&nbsp;</font></o:p></p>
+
+<p class="MsoPlainText"><font size="2"><font>Workflow Rule: Object: CASE Rule name:&nbsp;</font><span style="background-color: rgb(255, 255, 255); font-family: Arial, Helvetica, sans-serif; white-space: nowrap;">Edit Rule Escalate to level 2</span></font></p></div></div>]]></td>
+</tr>
+</table>

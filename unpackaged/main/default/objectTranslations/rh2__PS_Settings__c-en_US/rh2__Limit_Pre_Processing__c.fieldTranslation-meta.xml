@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Leave this unchecked if you only want rollups / records to be processed where a change was actually made to the source field.  Removes non-essential processing such as filtering out fields that don&apos;t need to be updated (Can help w/ Timeout issues). --></help>
+        <label><!-- Limit Pre Processing --></label>
+        <name>rh2__Limit_Pre_Processing__c</name>
+    </CustomFieldTranslation>

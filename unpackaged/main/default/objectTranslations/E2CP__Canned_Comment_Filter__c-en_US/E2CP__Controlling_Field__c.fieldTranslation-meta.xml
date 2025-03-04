@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The field on Case which will be checked to determine if this group should be included in the displayed Canned Comment options for the New Comment page. --></help>
+        <label><!-- Controlling Field --></label>
+        <name>E2CP__Controlling_Field__c</name>
+    </CustomFieldTranslation>

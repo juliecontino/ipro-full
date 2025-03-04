@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- CCE Portfolio --></label>
+        <name>CCE_Portfolio__c</name>
+        <picklistValues>
+            <masterLabel>GA-019130-0000</masterLabel>
+            <translation><!-- GA-019130-0000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA-019130-0001</masterLabel>
+            <translation><!-- GA-019130-0001 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IPRO-1</masterLabel>
+            <translation><!-- IPRO-1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MTL-1</masterLabel>
+            <translation><!-- MTL-1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TSB-1</masterLabel>
+            <translation><!-- TSB-1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WF-207778.0000</masterLabel>
+            <translation><!-- WF-207778.0000 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

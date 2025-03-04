@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Advanced Line Manager Columns --></label>
+        <name>AcctSeed__Advanced_Line_Manager_Columns</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Advanced Line Manager Drawer --></label>
+        <name>AcctSeed__Advanced_Line_Manager_Drawer</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- RecurringBillingFromOpportunity --></label>
+        <name>AcctSeed__RecurringBillingFromOpportunity</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Merge Billing Fields --></label>
+        <name>Merge_Billing_Fields</name>
+    </fieldSets>
+    <layouts>
+        <layout>Recurring Billing Line Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contract Information --></label>
+            <section>Contract Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Accounting Variable 1 Type must be an Accounting Variable 1 --></errorMessage>
+        <name>Accounting_Variable_1_Type_must_be_same</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Accounting Variable 2 Type must be an Accounting Variable 2 --></errorMessage>
+        <name>Accounting_Variable_2_Type_must_be_same</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The project you have selected is not associated with the customer listed in the billing header. The account (customer) field on this project must be the same as the customer on the billing header. --></errorMessage>
+        <name>AcctSeed__Project_Must_Be_Associated_With_Customer</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Project Task is required if a Project is selected. --></errorMessage>
+        <name>AcctSeed__Project_Task_Required_With_Project</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- New_Redirect --></label>
+        <name>AcctSeed__New_Redirect</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PowerClone --></label>
+        <name>PowerClone</name>
+    </webLinks>
+</CustomObjectTranslation>

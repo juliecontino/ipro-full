@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Schedule Comment For --></label>
+        <name>E2CP__Schedule_Comment_For__c</name>
+    </CustomFieldTranslation>

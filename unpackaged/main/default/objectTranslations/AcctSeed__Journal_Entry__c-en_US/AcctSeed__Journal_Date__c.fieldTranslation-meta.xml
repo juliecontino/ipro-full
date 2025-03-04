@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to date transaction lines of journal entry line unless populates specifically on the journal entry line. --></help>
+        <label><!-- Journal Date --></label>
+        <name>AcctSeed__Journal_Date__c</name>
+    </CustomFieldTranslation>

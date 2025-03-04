@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Check this box to record the costing of the sale of products.  With this enabled a new billing will record a debit to Cost of Goods and a credit to inventory. --></help>
+        <label><!-- Enable Product Costing --></label>
+        <name>AcctSeed__Enable_Product_Costing__c</name>
+    </CustomFieldTranslation>

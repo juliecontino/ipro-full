@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- GL Account Variable 4 --></label>
+        <name>AcctSeedERP__GL_Account_Variable_4__c</name>
+        <relationshipLabel><!-- Sales Order Inventory Movements (GL Account Variable 4) --></relationshipLabel>
+    </CustomFieldTranslation>

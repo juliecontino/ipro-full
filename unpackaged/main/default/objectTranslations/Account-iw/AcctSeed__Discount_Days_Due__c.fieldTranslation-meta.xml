@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used in the calculation of payment discounts in the accounts payable process. A discount will be automatically taken in the cash disbursements process if payment is made within the discount days due of the issue date. --></help>
+        <label><!-- Payable Discount Days Due --></label>
+        <name>AcctSeed__Discount_Days_Due__c</name>
+    </CustomFieldTranslation>

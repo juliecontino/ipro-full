@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Import Template --></label>
+        <name>AcctSeed__Import_Template__c</name>
+        <relationshipLabel><!-- Import Fields --></relationshipLabel>
+    </CustomFieldTranslation>

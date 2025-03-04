@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Custom Address Source Layout</layout>
+        <sections>
+            <label><!-- Auto Printing --></label>
+            <section>Auto Printing</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Field Names --></label>
+            <section>Billing Field Names</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Object Name --></label>
+            <section>Custom Object Name</section>
+        </sections>
+        <sections>
+            <label><!-- FedEx ShipAlert®  / Email Recipient Field Names --></label>
+            <section>FedEx ShipAlert®  / Email Recipient Field Names</section>
+        </sections>
+        <sections>
+            <label><!-- International Fields --></label>
+            <section>International Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Output Fields --></label>
+            <section>Output Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Package Types --></label>
+            <section>Package Types</section>
+        </sections>
+        <sections>
+            <label><!-- Recipient Address Fields --></label>
+            <section>Recipient Address Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Field Names --></label>
+            <section>Reference Field Names</section>
+        </sections>
+        <sections>
+            <label><!-- Return Package --></label>
+            <section>Return Package</section>
+        </sections>
+        <sections>
+            <label><!-- Sender Address Fields --></label>
+            <section>Sender Address Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Service Types --></label>
+            <section>Service Types</section>
+        </sections>
+        <sections>
+            <label><!-- Ship Date / Pickup --></label>
+            <section>Ship Date / Pickup</section>
+        </sections>
+        <sections>
+            <label><!-- Shipmate Preference/Label Image Type --></label>
+            <section>Shipmate Preference/Label Image Type</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Auto-create --></label>
+            <section>Shipment Auto-create</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Object Lookup Field Name --></label>
+            <section>Shipment Object Lookup Field Name</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Special Services --></label>
+            <section>Shipment Special Services</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Type --></label>
+            <section>Shipment Type</section>
+        </sections>
+        <sections>
+            <label><!-- SmartPost Fields --></label>
+            <section>SmartPost Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Tax Identification Number (TIN) Names --></label>
+            <section>Tax Identification Number (TIN) Names</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

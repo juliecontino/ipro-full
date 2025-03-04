@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mitel</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Vendor__c</columns>
+    <columns>AP_Account_Alias__c</columns>
+    <columns>AcctSeed__Payee_Reference__c</columns>
+    <columns>AcctSeed__Due_Date__c</columns>
+    <columns>AcctSeed__Balance__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Payee__c</field>
+        <operation>contains</operation>
+        <value>Mitel</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Payment_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Paid</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Total__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <label>Mitel-Unpaid</label>
+    <language>en_US</language>
+</ListView>

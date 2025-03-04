@@ -1,0 +1,116 @@
+<apex:page standardController="case" extensions="takeownership.TakeOwnershipPassThruCtrl" recordSetVar="Cases" showHeader="false" sidebar="false">
+    <style>
+        .datePicker {
+            display: none;
+        }
+        .message-container {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+        .message-box {
+            position: relative;
+            top: 40%;
+            background-color: #354452;
+            width: 100px;
+            min-height: 100px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: auto;
+            color: white;
+            text-align: center;
+            font-family: "ProximaNovaSoft-Regular", Calibri,
+                "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI",
+                 Arial, sans-serif;
+        }
+        @-moz-keyframes spin {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+            100% {
+                -moz-transform: rotate(359deg);
+            }
+        }
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(359deg);
+            }
+        }
+        @-o-keyframes spin {
+            0% {
+                -o-transform: rotate(0deg);
+            }
+            100% {
+                -o-transform: rotate(359deg);
+            }
+        }
+        @-ms-keyframes spin {
+            0% {
+                -ms-transform: rotate(0deg);
+            }
+            100% {
+                -ms-transform: rotate(359deg);
+            }
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+        .spinner {
+            -webkit-animation: spin 1.6s infinite linear;
+            -moz-animation: spin 1.6s infinite linear;
+            -o-animation: spin 1.6s infinite linear;
+            animation: spin 1.6s infinite linear;
+        }
+        .message{
+            background-color: #c00;
+        }
+        .messageText{
+            color:#fff;
+        }
+        h4{
+            color:white;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds-scope">
+    <apex:form >
+        <apex:actionFunction action="{!redir}" name="redir"/>
+
+        <apex:pageMessages />
+        <apex:commandButton styleClass="slds-button slds-button_neutral" style="margin-left:45%; " action="{!returnToListView}" value="Back"/>
+
+        <!--<apex:pageBlock rendered="{!complete && !ConsoleNavigate}">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!cancel}" value="Back" oncomplete="if ({!ConsoleNavigate}) sforce.one.back();"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>-->
+
+         <apex:outputPanel rendered="{!!hasMessages}" >
+            <div class="slds-backdrop slds-backdrop_open" style="display:flex; background:#ffffff">
+                <div class="slds-align_absolute-center">
+                    <div style="margin-left:-125px;" role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                    <div><div class="slds-text-heading_large" style="font-weight:700;margin-left:100px">Taking Ownership </div></div>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    </div>
+    <script>
+        if ({!!complete  && !hasMessages})
+            redir();
+    </script>
+</apex:page>

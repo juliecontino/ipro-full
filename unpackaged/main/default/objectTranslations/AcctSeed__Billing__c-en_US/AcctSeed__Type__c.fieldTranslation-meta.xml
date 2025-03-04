@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- A billing can either be an Invoice or Credit memo. An invoice represents money due to your organization. A credit memo represents forgiveness of an Invoice. --></help>
+        <label><!-- Type --></label>
+        <name>AcctSeed__Type__c</name>
+    </CustomFieldTranslation>

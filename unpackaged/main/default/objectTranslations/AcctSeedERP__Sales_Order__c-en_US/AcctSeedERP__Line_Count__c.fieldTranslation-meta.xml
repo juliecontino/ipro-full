@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The number of sales order lines associated with the sales order --></help>
+        <label><!-- Line Count --></label>
+        <name>AcctSeedERP__Line_Count__c</name>
+    </CustomFieldTranslation>

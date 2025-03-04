@@ -1,0 +1,465 @@
+<apex:page Controller="DSCORGPKG.DiscoverOrgSetupController" id="orgSetup" action="{!onLOadFunction}" tabStyle="DiscoverOrgSearch__tab" sidebar="false"><!--   -->
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <!--Walk Me Script-->
+    <script type="text/javascript">
+        (function() {
+            var walkme = document.createElement('script');
+            walkme.type = 'text/javascript';
+            walkme.async = true;
+            walkme.src = "{!URLFOR($Resource.DiscoverOrgUI, 'js/walkme.js')}";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(walkme, s);
+            window._walkmeConfig = {
+                smartLoad: true
+            };
+        })();
+    </script>
+    
+        <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+        <apex:includeScript value="{!URLFOR($Resource.DSCORGPKG__MultiSelectJquery,'/jquery-3.3.1.min.js')}"/>
+        <style>
+            .searchBtnCss {  background: #6EBE49;  border: 1px solid #6EBE49;   color: white;   font-size: 14px;  }
+            .searchBtnCss1 {  background: #6EBE49;  border: 1px solid #6EBE49;   color: white;   font-size: 14px;  }
+            .searchBtnCss2 {  background: #6EBE49;  border: 1px solid #6EBE49;   color: white;   font-size: 14px;  }
+            .searchBtnCss:Hover {   background: #339933;    border: 1px solid #339933;  color: white;    font-size: 14px;    }
+            .searchBtnCss1:Hover {   background: #339933;    border: 1px solid #339933;  color: white;    font-size: 14px;    }
+            .searchBtnCss2:Hover {   background: #339933;    border: 1px solid #339933;  color: white;    font-size: 14px;    }
+            
+            .slds-grid-main {  max-width: 1280px;  margin: 0 auto;  }
+            *{  font-family: "Salesforce Sans", Arial, sans-serif !important; }
+            .innerTable1 td{  border: 0px;   padding: 0px;  }
+            .innerTable1 tr td {  box-shadow: #d8dde6 0 0px 0 inset !important;  }
+            .slds{ min-height:500px}
+            .dorgCrdSection .slds-tile,.insFrm  .slds-tile,.showAPI  .slds-tile{ background:#f4f6f9; font-size:18px;}
+            .message{  opacity: 0.1; } 
+            .slds-notify--alert {   padding: 0.5rem;   text-align: center;  margin: 0.5rem;  border-radius: 3px; }
+            .customMessage * {  color: white !important; }
+            .table-section tr td label{ font-size: 16px;   }
+            .table-section tr td .slds-input{ max-width:350px}
+            .slds-container--smal{ max-width:850px}
+            .slds-notify{
+                font-size: 14px;
+                font-weight: 400;
+            }
+            
+            .slds-nubbin--left:before {
+                width: 1rem;
+                height: 1rem;
+                position: absolute;
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+                content: "";
+                background-color: inherit;
+                top: 50%;
+                left: -0.5rem;
+                margin-top: -0.5rem;
+            }
+            
+            .slds-popover--tooltip{
+                background: #061c3f;
+                position: absolute;
+                z-index: 9999;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                height: 40px;
+                max-width: 25rem;
+                left: 56px;
+            }
+            
+            .slds-popover--tooltip .slds-popover__body{
+                color: #fff;
+            }
+            td.messageCell {
+                font-weight: 400 !important;
+            }
+            
+            .bPageHeader .left div img {
+                max-width: inherit;
+                width: 148px;
+            }
+            
+            .bPageHeader .phHeader .left .spacer, .bPageHeader .phHeader td.left {
+                width: auto !important;
+            }
+            
+            .noSidebarCell, .sidebarCell .fixed {
+                padding: 0 0 20px;
+            }
+            
+            .msgIcon {
+                display: none!important
+            }
+            .customMessage * {
+                color: #fff!important
+            }
+            .customMessage {
+                margin: 5px 0!important;
+                max-width: 1280px;
+                opacity: 1!important;
+                width: 100%;
+                font-size: 12px;
+                border: 0px;
+                padding-left: 10px;
+            }
+            .message {
+                opacity: .1
+            }
+        </style>
+        <script>
+            var authWindow;
+            $(document).ready(function() {
+                resetBinding();
+                
+                $(".dorg2Help").hover(function(){
+                    $(".dorg2Helppopup").fadeIn();
+                }, 
+                function(){
+                    $(".dorg2Helppopup").fadeOut();
+                });
+                
+                $('#divProcessing').hide();
+            });
+            
+            function authenticateDiscoverOrg(){
+                authWindow = window.open("{!ssoWrap.data.authorizeUrl}", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=200,left=300,width=750,height=600");
+                $('#divProcessing').show();
+                afterSSOAuthorization();    
+            }
+            
+            function afterSSOAuth(authorizedAuto, ssoInProgress){
+                if(authorizedAuto){
+                    postLogin();
+                    authWindow.close();
+                }else if(ssoInProgress){
+                    
+                    setTimeout(afterSSOAuthorization, 2000);
+                }else{
+                    authWindow.close();
+                    $('#divProcessing').hide();
+                }
+            }
+            
+            function resetBinding(){
+                $('.btn').removeClass('btn');
+            }
+            // The load function has been deprecated in 1.8 and removed in 3.0
+            $(window).on("load",function () {
+                resetBinding();
+                overrideBtnAndMsgStyle();
+            });
+            
+            function overrideBtnAndMsgStyle(){
+                $('.btn').removeClass('btn');    
+                $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture customMessage');  
+                $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture customMessage');    
+                $('.infoM3').addClass('slds-notify slds-notify--toast slds-theme--alert-texture customMessage');    
+                $('.errorM3').removeClass('errorM3'); 
+                $('.confirmM3').removeClass('confirmM3'); 
+                $('.infoM3').removeClass('infoM3'); 
+                $('.infoM3').removeClass('infoM3'); 
+                $('.message').removeClass('message'); 
+            }
+            
+        </script>
+        <link href="{!URLFOR($Resource.DiscoverOrgUI,'css/style.css')}" type="text/css" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.DiscoverOrgUI,'css/fonts/fonts.css')}" type="text/css" rel="stylesheet" />
+    <apex:outputPanel id="jsPanel">
+        <script type="text/javascript">
+            var authenticated = {!isAuthorized};
+            var updaters;
+            function postLogin() {
+                if (authenticated) {
+                    $('.loading-subtext').text('Loading DiscoverOrg Metadata...');
+                    // replace LEGACY_SCOOP_TYPE with LEGACY_SCOOP_TOPIC below : Sagar Sadhnani
+                    updaters = [
+                        {name: 'Industries', endpoint: 'selectoption/INDUSTRY'},
+                        {name: 'Categories', endpoint: 'selectoption/JOB_FUNCTION'},
+                        {name: 'Mgmt Categories', endpoint: 'selectoption/SENIORITY_LEVEL'},
+                        {name: 'Departments', endpoint: 'selectoption/DEPARTMENT'},
+                        {name: 'Technology Categories', endpoint: 'selectoption/TECHNOLOGY_CATEGORY'},
+                        {name: 'Scoop_Topics', endpoint: 'selectoption/SCOOP_TOPIC'},
+                        {name: 'Scoop_Legacy_Topics', endpoint: 'selectoption/LEGACY_SCOOP_TOPIC'},
+                        {name: 'Scoop_Types', endpoint: 'selectoption/SCOOP_TYPE'},
+                        {name: 'Continents', endpoint: 'presenceregions/CONTINENT?page=0&pageSize=1000&sortOrder=asc'},
+                        {name: 'Countries', endpoint: 'presenceregions/COUNTRY?page=0&pageSize=1000&sortOrder=asc'},
+                        {name: 'States', endpoint: 'presenceregions/STATE_PROVINCE_TERRITORY?page=0&pageSize=1000&sortOrder=asc'},
+                        {name: 'Area Codes', endpoint: 'presenceregions/AREA_CODE?page=0&pageSize=1000&sortOrder=asc'},
+                        {name: 'Marketing Regions', endpoint: 'presenceregions/MARKET_REGION?page=0&pageSize=1000&sortOrder=asc'}
+                    ];
+                    runUpdater();
+                } else {
+                    $('#divProcessing').hide();
+                }
+            }
+
+            function runUpdater() {
+                var currentUpdater = updaters.pop();
+                if (currentUpdater != null) {
+                    runLoginUpdater(currentUpdater.name, currentUpdater.endpoint);
+                } else {
+                    loadAutoUpdateSettings();
+                }
+            }
+        </script>
+    </apex:outputPanel>
+        <div id="divProcessing" class="slds-modal-backdrop slds-modal-backdrop--open" style="z-index:10000000; ">
+            <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>
+                <b style="color:white;font-size: 14px;" class="loading-subtext">{!if(authorizedAuto, 'Please Wait for Authoriztion...', 'Please Wait...')}</b>
+            </div>
+        </div>
+        <div class="slds">
+            <apex:form id="insFrm">
+                <apex:actionFunction name="afterSSOAuthorization" action="{!afterSSOAuthorization}" reRender="insFrm, jsPanel" oncomplete="afterSSOAuth({!authorizedAuto}, {!ssoInProgress});"/>
+                <apex:actionFunction name="updateUserInfoSSOFunc" action="{!updateUserInfoSSO}" reRender="jsPanel"/>
+                <apex:actionFunction name="runLoginUpdater" action="{!runUpdater}" reRender="none" onComplete="runUpdater()">
+                    <apex:param name="metadataName" assignTo="{!metadataName}" value=""/>
+                    <apex:param name="updater" assignTo="{!metadataEndpoint}" value=""/>
+                </apex:actionFunction>
+                <apex:actionFunction name="loadAutoUpdateSettings" action="{!createAutoUpdateSettings}" reRender="none" onComplete="setupScheduledJobs()"/>
+                <apex:actionFunction name="setupScheduledJobs" action="{!setupScheduledJobs}" reRender="none" onComplete="determineRedirect()"/>
+                <apex:actionFunction name="determineRedirect" action="{!determineRedirect}" reRender="none"/>
+                
+                <!--- New styling ------>
+                <!--Page Header Start Here-->  
+                <div class="slds-page-header" role="banner">
+                    <div class="slds-grid slds-grid-main" style="padding-left:8px;">
+                        <div class="slds-col slds-size--10-of-12">
+                            <a href="https://www.discoverorg.com" target="_blank"><img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}"  style="width: 225px; margin-top: -6px; margin-left: 16px;"/></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Page Header End Here-->
+                
+                <div Class="slds-container--fluid  slds-container--center  slds-container--smal">
+                    
+                    <apex:outputPanel id="pgeMsg2" layout="block" >
+                        <apex:outputPanel rendered="{!IF(pageMessage!=null && pageMessage!='', true, false)}"><!-- {!NOT(ISBLANK(pageMessage))} -->
+                            <div class="slds-notify {!IF( isAuthorized, 'slds-notify--alert slds-theme--success', 'slds-notify--alert slds-theme--error')}  slds-theme--alert-texture">
+                                <h2>
+                                    <svg aria-hidden="true" class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small">
+                                        <apex:outputPanel layout="none" rendered="{!isAuthorized}">
+                                            <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/action-sprite/svg/symbols.svg#new_custom15')}"></use>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel layout="none" rendered="{!NOT(isAuthorized)}">
+                                            <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#offline')}"></use>
+                                        </apex:outputPanel>
+                                    </svg>
+                                    <span><apex:outputText value="{!pageMessage}"/></span>
+                                </h2>
+                            </div>
+                        </apex:outputPanel>                                                                        
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel id="pgeMsg" layout="block" >
+                        <apex:pageMessages escape="false"/>
+                        <apex:outputPanel layout="block" rendered="{!Not(isDorg2User)}">
+                            <div class="slds-notify slds-notify--toast slds-theme--error" role="alert" data-reactid=".c.3.0">
+                                <div class="notify__content slds-grid" >
+                                    <div class="slds-col slds-align-middle" >
+                                        <h2 class="slds-text-heading--small" >We are no longer supporting connecting to the legacy DiscoverOrg database. We strongly recommend connecting to our new platform, which includes additional data, and vastly improved performance</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                          
+                    <apex:outputPanel >
+                        <div class="slds-grid" style="text-align: center;">
+                            <div class="slds-col slds-m-vertical--small">
+                                <h2 class="slds-tile__title" style="font-size:24px">The leading sales &amp; marketing intelligence solution.</h2>
+                            </div>
+                        </div>
+                        <div class="slds-media slds-tile" style="padding: 15px;">
+                            <div class="slds-media__body">
+                                <p class="slds-tile__title slds-truncate" style="font-size: 18px;">
+                                    <span class="slds-icon__container" >
+                                        <svg aria-hidden="true" class="slds-icon icon__svg slds-icon-standard-people slds-icon--large" >
+                                            <use  xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/standard-sprite/svg/symbols.svg#people')}"></use>
+                                        </svg>
+                                    </span>
+                                    Hello {!$User.FirstName}, please enter your DiscoverOrg credentials below to login
+                                </p>
+                            </div>
+                        </div>
+                    </apex:outputPanel> 
+                </div>
+                
+                <apex:outputPanel >
+                    <div class="slds-container--smal  slds-container--center " >
+                        <div class="dorgCrdSection">
+                            <div class="slds-media slds-tile" style="padding: 15px ">
+                                <div class="slds-media__body">
+                                    <div class="slds-tile__detail slds-text-body--small">
+                                        <p class="slds-truncate" style="font-size: 15px; font-weight:bold">
+                                            DiscoverOrg Credentials
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="slds-table slds-table--bordered table-section">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:right;width:30%;">
+                                            <apex:outputLabel value="Salesforce Username"/>
+                                        </td>
+                                        <td>
+                                            <apex:outputLabel value="{!sfdcusername}" id="SFDCUsername"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;width:30%;">
+                                            <apex:outputLabel value="DiscoverOrg Username"/>
+                                        </td>
+                                        <td>
+                                            <apex:inputText styleClass="slds-input" value="{!username}" id="Username"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:right;width:30%;">
+                                            <apex:outputLabel value="DiscoverOrg Password" />
+                                        </td>
+                                        <td>
+                                            <apex:inputSecret styleClass="slds-input" value="{!password}" id="Password"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td style="text-align:left;">
+                                            <apex:outputLabel >&nbsp;</apex:outputLabel>
+                                            <apex:commandButton styleClass="slds-button slds-button--neutral searchBtnCss"  action="{!save}" value="Log In" onclick="javascript:document.getElementById('divProcessing').style.display = 'block';" reRender="insFrm,pgeMsg,jsPanel"  oncomplete="javascript:overrideBtnAndMsgStyle();postLogin()" style="font-size: 14px;margin-right: 6px;"/><!-- -->
+                                            <apex:commandButton styleClass="slds-button slds-button--brand" value="Authenticate DiscoverOrg" onclick="authenticateDiscoverOrg();" reRender="insFrm,pgeMsg,jsPanel"  oncomplete="updateUserInfoSSOFunc();javascript:overrideBtnAndMsgStyle();" style="font-size: 14px" rendered="{!ssoEnabledOrg}"/>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 0px;"></td>
+                                        <td style="text-align:left;border: 0px;padding-left: 11px;">
+                                            <a href="https://go.discoverydb.com/eui/#/forgot-password" target="_Blank">Forgot Password</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="slds-text-align--center">
+                                            <svg aria-hidden="true" class="slds-button__icon" style="fill: #000000ba !important;">
+                                                <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+                                            </svg> <b>Note: {!$Label.SSONotification}</b>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <apex:outputPanel layout="block" id="after30SecPanel">                        
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                    <apex:actionFunction name="saveLogin" action="{!save}" reRender="insFrm,pgeMsg"  oncomplete="javascript:overrideBtnAndMsgStyle();document.getElementById('divProcessing').style.display = 'none';" />
+                    <script>
+                        $("[id*='Password'], [id*='Username']").keypress(function(event){
+                            if ( event.keyCode === 13) {  //event.keyCode === 10 ||
+                                event.preventDefault();
+                                $(".searchBtnCss").click();
+                            }
+                        });
+                    </script>
+                </apex:outputPanel>
+                
+                <div class="slds-modal__footer" style="background-color:rgb(27, 94, 172);">
+                    <div class="slds-grid slds-page-header-grid" style="display:block;height:30px;">                                 
+                     </div>
+                </div>
+                <!-- reRender="pgmain" -->
+                <div id="divProcessing" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+                    <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                        <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>
+                        <b style="color:white;font-size: 14px;">Processing</b>                   
+                    </div>
+                </div>
+            
+            
+                <div class="slds-container--fluid  slds-container--center slds-container--smal " >
+                    <div class="insFrm" style="display:{!if(isshowInstanceBlock,'block','none')}">
+                        <script>
+                            $(document).ready(function() {
+                                resetBinding();
+                            });
+                             
+                        </script>
+                        <div class="slds-media slds-tile" style="padding: 15px ">
+                            <div class="slds-media__body">
+                                <div class="slds-tile__detail slds-text-body--small">
+                                    <p class="slds-truncate" style="font-size: 15px; font-weight:bold">
+                                        Instance
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="slds-table slds-table--bordered table-section">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Current Instance"/>
+                                        <apex:outputLabel value="{!previousInstance}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="New Instance"/>
+                                        <apex:inputText styleClass="slds-input" value="{!newInstance}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel >&nbsp;</apex:outputLabel>
+                                        
+                                        <button class="slds-button slds-button--neutral searchBtnCss1" onclick="updateInstance();return false;">Update Instance</button>
+                                        <apex:actionFunction name="updateInstance" action="{!updateInstance}" reRender="insFrm" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="showAPI"  style="display:{!if(isshowInstanceBlock,'block','none')}">
+                        <script>
+                            $(document).ready(function() {
+                                resetBinding();
+                            });
+                        </script>
+                        <div class="slds-media slds-tile" style="padding: 15px; font-weight:bold ">
+                            <div class="slds-media__body">
+                                <div class="slds-tile__detail slds-text-body--small">
+                                    <p class="slds-truncate" style="font-size: 15px;">Show API Information</p>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="slds-table slds-table--bordered  table-section">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="Show API"/>
+                                        <div class="slds-form-element">
+                                            <label class="slds-checkbox" for="orgSetup:insFrm:showapi">
+                                                <apex:inputCheckbox value="{!isShowAPI}" id="showapi" />
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">&nbsp;</span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel >&nbsp;</apex:outputLabel>
+                                        <button class="slds-button slds-button--neutral searchBtnCss2" onclick="updateAPIBlock();return false;">Update</button>
+                                        <apex:actionFunction name="updateAPIBlock" action="{!updateAPIBlock}" reRender="insFrm" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <apex:actionFunction name="loadPreviousInstance" action="{!onLOadFunction}" reRender="insFrm"/>
+            </apex:form>
+        </div>
+    </html>
+</apex:page>

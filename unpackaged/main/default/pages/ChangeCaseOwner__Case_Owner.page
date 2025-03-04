@@ -1,0 +1,87 @@
+<apex:page extensions="ChangeCaseOwner.CaseOwnerController" standardController="Case" showHeader="false" applyHtmlTag="false">
+    
+    <apex:includeScript value="/support/console/43.0/integration.js"/>
+    <apex:slds />
+    <!-- Lightning Exclusive (LEx, Lightning Console, Salesforce Mobile) -->
+    <apex:outputPanel layout="none" rendered="{!$User.UIThemeDisplayed == 'Theme4d' || inLightningConsole || $User.UIThemeDisplayed == 'Theme4t'}">
+        <style type="text/css">
+            body {
+                padding: 0px !important;
+                margin: 0px !important;
+            }
+
+            #lightning.slds-scope, #console.slds-scope {
+                line-height: 1.1 !important;
+            }
+
+            .lightningOwnerName {
+                max-width: 65%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .lightningOwnerChange {
+                width: 35%;
+            }
+        </style>
+    </apex:outputPanel>
+
+    <div id="standard" style="display:none;">
+        <a href="{!IF(BEGINS(cs.OwnerId,'00G'),'/p/own/Queue/d?id=','/')+cs.OwnerId}" target="_top">{!cs.Owner.Name}</a>&nbsp;<a href="/apex/ChangeCaseOwner__Case_Owner_Change?cid={!cs.Id}" target="_top">[Change]</a>
+    </div>
+    
+    <div id="console" class="{!IF(inLightningConsole,'slds-scope','')}" style="display:none;">
+        <a class="{!IF(inLightningConsole, 'lightingOwnerName','')}" href="javascript:sforce.console.getEnclosingPrimaryTabId(openOwnerTab);" title="{!cs.Owner.Name}">{!cs.Owner.Name}</a>&nbsp;<a class="{!IF(inLightningConsole, 'lightingOwnerChange','')}" href="javascript:sforce.console.getFocusedPrimaryTabId(openChangeOwnerTab);">[Change]</a>
+    </div>
+    
+    <div id="lightning" class="slds-scope" style="display:none">
+        <span class="slds-avatar slds-avatar_circle" style="{!IF(activeUser != null, 'display:block;', 'display:none;')} margin-right:5px; width: 20px; height: 20px; line-height:20px;">
+            <apex:image styleClass="uiImage" value="{!activeUser.SmallPhotoURL}"/>
+        </span>
+        <a class="lightningOwnerName" style="line-height: 20px;" href="javascript:sforce.one.navigateToSObject('{!cs.OwnerId}');" title="{!cs.Owner.Name}">{!cs.Owner.Name}</a>&nbsp;<a class="lightningOwnerChange"  style="line-height: 20px;" href="javascript:sforce.one.navigateToURL('/lightning/cmp/ChangeCaseOwner__changeCaseOwnerAura?ChangeCaseOwner__case={!cs.Id}');">[Change]</a>
+    </div>
+    
+    <script>
+        function openOwnerTab(result) {
+            sforce.console.openSubtab(result.id,"{!IF(BEGINS(cs.OwnerId,'00G'),'/p/own/Queue/d?id=','/')+cs.OwnerId}",true);
+        }
+        
+        function openChangeOwnerTab(result) {
+            sforce.console.openSubtab(result.id,'/apex/ChangeCaseOwner__Case_Owner_Change?cid={!cs.Id}',true);
+        }
+        
+        //if ({!$User.UIThemeDisplayed == "Theme4d"})
+        if (sforce && sforce.console && sforce.one) {
+            document.getElementById("lightning").style.display = "flex";
+        } else if (sforce && sforce.console && sforce.console.isInConsole()) {
+            document.getElementById("console").style.display = ({!inLightningConsole}) ? "flex" : "block";
+        }
+        else {
+            document.getElementById("standard").style.display = "block";
+        }
+
+        // [BE] - In Lightning console, have a listener that refreshes the inline page the CCOP Change page is closed with an updated Case Owner.
+        if(sforce && sforce.console && sforce.console.isInConsole() && {!inLightningConsole}) {
+            var EVENT_UPDATED_CASE_OWNER = 'UPDATED_CASE_OWNER';
+            sforce.console.addEventListener(EVENT_UPDATED_CASE_OWNER, function(evt) {
+                var caseId = evt.message;
+                sforce.console.getEnclosingTabId(function(tab) {
+                    sforce.console.getPageInfo(tab.id, function(pageInfo) {
+                        if(caseId !== JSON.parse(pageInfo.pageInfo).objectId) { // if tab is not for the correct case, ignore it.
+                            return;
+                        }
+                        else {
+                            sforce.console.refreshPrimaryTabById(tab.id, false, function(refreshResult) {   // try primary
+                                if(!refreshResult.success) {    // try sub
+                                    sforce.console.refreshSubtabById(tab.id, false);
+                                }
+                            });
+                        }
+                    });
+
+                });
+            });
+        }
+    </script>
+</apex:page>

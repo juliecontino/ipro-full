@@ -1,0 +1,482 @@
+<apex:page sidebar="false" controller="DSCORGPKG.DiscoverOrgOperationController" action="{!init}" title="DiscoverOrg Operations">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            
+            <!-- Salesforce Lightning Design System -->
+            <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+            <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" /><!-- SFNA 2839-->
+            <style>
+                .tooltipResReqArrow {  background-color: #061c3f;   color: white;  display: none;   height: 19px;   margin-top: 3px;   position: absolute;  right: 26px;  transform: rotate(45deg); width: 20px;   z-index: 20000; }
+                .tooltipResReq {  background-color: #061c3f;  color: white;  display: none;  padding: 17px;  position: absolute;  right: 1px;  top: 59px;  width: 100%; z-index: 10000;}
+                #Feedback-modal .error{ border:1px solid #f00}
+                #Feedback-modal textarea.slds-input{ line-height:normal; min-height:100px;}
+                .slds-page-header{ position:static; border-right:1px solid #d8dde6; padding: 0.5rem 1.5rem 0.5rem;}
+                .slds-notify.slds-notify--toast,.slds-notify.slds-notify--alert{margin:0.5rem 1.5rem 0; display:block}
+                .messageText {margin: 0 auto;  max-width: 1280px; padding: 0 12px; color:#fff}
+                .messageTable span{ color:#fff}
+                 .slds-nubbin--top:before, .slds-nubbin--right:before {   width: 1rem;   height: 1rem;   position: absolute;   -webkit-transform: rotate(45deg);   transform: rotate(45deg);   content: "";     background-color: inherit;   }
+                .slds-nubbin--top:before{  left: 50%;   top: -0.5rem;  margin-left: -0.5rem;  }
+                .slds-nubbin--right:before {    top: 50%;   right: -0.5rem;  margin-top: -0.5rem;  }
+                .slds-popover{    border:none;    position: absolute;   min-width: 120px;  background: #061c3f;  color: white;  font-size: 13px;   font-family: "Salesforce Sans",Arial,sans-serif;  font-weight: 500;  }
+                .slds-card__body th strong{ text-transform: uppercase;}
+                * {
+                    font-family: "Salesforce Sans", Arial, sans-serif!important
+                }
+                td.noSidebarCell{
+                    padding: 0;
+                }
+            </style>
+            <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+           
+            <script type="text/javascript">
+                (function() {
+                var walkme = document.createElement('script');
+                walkme.type = 'text/javascript';
+                walkme.async = true;
+                walkme.src = "{!URLFOR($Resource.DiscoverOrgUI, 'js/walkme.js')}";
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(walkme, s);
+                window._walkmeConfig = {
+                    smartLoad:true
+                };
+                })();
+                
+                // Script Addded by Balram Starts Here :: 
+                
+                $(function(){  
+                    $('button.otherLink').mouseenter(function(){
+                        $('.otherTabsLink').fadeIn();
+                    });
+                    $('.otherTabArea').mouseleave(function(){
+                        $('.otherTabsLink').fadeOut();
+                    });
+                                      
+                    $(".myAccount").click(function(){
+                    
+                       
+                        
+                        $(".myaccountLink")[0].click();
+                        return false;
+                    });
+                    
+                     $(".gotoDOrg").click(function(){
+                        
+                        $(".dorgLink")[0].click();
+                        return false;
+                    });
+                    
+                     $(".myAccount, .gotoDOrg").mouseover(function() { 
+                        $(this).find(".slds-popover--tooltip").show();
+                      })
+                      
+                     .mouseout(function() {
+                        $(this).find(".slds-popover--tooltip").hide();
+                      });             
+                                    
+                });
+                
+                
+                // Script Addded by Balram Ends Here ::
+            </script>
+            </head>
+                <body>
+                
+                <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+                  <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                     <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>                     
+                  </div>
+                </div>
+                    <div class="slds">
+                        <apex:form id="frm">
+                        <apex:outputPanel id="scriptPanel">
+                        <script>
+                            $(function(){
+                                        $('.viewImportData').click(function(e){
+                                            e.preventDefault();
+                                            opId=$(this).attr('rel');
+                                            $('.importFrame').find('iframe').attr('src','/apex/ImportData?id='+opId+'&isOperation=true');
+                                           
+                                            $('.importFrame').delay(5000).show();
+                                            $('#importIframe').on("load",function (){
+                                            })
+                                        })
+                                        
+                                    
+                                        $('.slds-button').removeClass('btn');
+                                    
+                                        $("#selectAll").change(function(){
+                                        
+                                            if($(this).is(':checked')){
+                                                $('tbody .slds-checkbox input').prop('checked',true);
+                                            }else{
+                                                $('tbody .slds-checkbox input').prop('checked',false);
+                                            }
+                                        });
+                                    
+                                        overrideBtnAndMsgStyle();
+                                    
+                                     /* Help Pop Start*/
+                                        $('button.help-link').mouseenter(function(){
+                                            $('.helpdetail').fadeIn();});
+                                        $('.slds-dropdown-trigger').mouseleave(function(){
+                                            $('.helpdetail').fadeOut();})
+                                        /* Help Pop Ends */
+                                        
+                                        
+                                
+                                })
+                                
+                                function deleteSelectedValidation(){
+                                    var totalChecked=$('.slds-checkbox').find('input:checked').length; 
+                                    if(totalChecked>0){
+                                        deleteOperationJs();
+                                        $('#pnlLoadingtop').show();
+                                    }else{
+                                     alert("Please select a record");
+                                    }
+                                }
+                                
+                                function overrideBtnAndMsgStyle(){
+                                    $('.btn').removeClass('btn');    
+                                    $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture customMessage');  
+                                    $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture customMessage');    
+                                    $('.infoM3').addClass('slds-notify slds-notify--toast slds-theme--alert-texture customMessage');    
+                                    $('.errorM3').removeClass('errorM3'); 
+                                    $('.confirmM3').removeClass('confirmM3'); 
+                                    $('.infoM3').removeClass('infoM3'); 
+                                    $('.infoM3').removeClass('infoM3'); 
+                                    $('.message').removeClass('message'); 
+                                    
+                                    $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture customMessage');  
+                                    $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture customMessage');    
+                                    $('.infoM3').addClass('slds-notify slds-notify--toast slds-theme--alert-texture customMessage');    
+                                    $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--alert-texture customMessage');  
+                                    
+                                    $('.errorM3').removeClass('errorM3'); 
+                                    $('.confirmM3').removeClass('confirmM3'); 
+                                    $('.infoM3').removeClass('infoM3');   
+                                    $('.warningM3').removeClass('warningM3');  
+                                 }
+                                 
+                                 function gotoPageNumber(){
+                                    pageNumber=$("#pageNo").val();
+                                    if(pageNumber==''){
+                                        alert('Please enter page number');
+                                    }else if(isNaN(pageNumber)){
+                                        alert('Please enter a valid page number');
+                                    }else if(pageNumber > parseInt('{!totalPages}')){
+                                     alert('Please enter a page number less then {!totalPages}')
+                                    }else{
+                                        $('#pnlLoadingtop').show();
+                                        gotoPagejs(pageNumber);
+                                    }
+                                 
+                                 }
+                                
+                            </script>
+                            </apex:outputPanel>
+                        <apex:actionFunction action="{!filter}" name="initJs" reRender="frm,scriptPanel" oncomplete="$('#pnlLoadingtop').hide()"></apex:actionFunction>
+                        <apex:actionFunction action="{!deleteOperation}" name="deleteOperationJs"  oncomplete="$('#pnlLoadingtop').hide()" reRender="frm,scriptPanel"></apex:actionFunction>
+                        <apex:actionFunction action="{!next}" name="pagiNext" oncomplete="$('#pnlLoadingtop').hide()" reRender="frm,scriptPanel" />
+                        <apex:actionFunction action="{!prev}" name="pagiPrev" oncomplete="$('#pnlLoadingtop').hide()" reRender="frm,scriptPanel" />
+                        <apex:actionFunction action="{!firstPage}" name="pagifirst" oncomplete="$('#pnlLoadingtop').hide()" reRender="frm,scriptPanel" />
+                        <apex:actionFunction action="{!lastPage}" name="pagiLast" oncomplete="$('#pnlLoadingtop').hide()" reRender="frm,scriptPanel" /> 
+                        <apex:actionFunction action="{!gotoPage}" name="gotoPagejs" oncomplete="$('#pnlLoadingtop').hide()" reRender="frm,scriptPanel" >
+                             <apex:param name="pageNo" value=""/>
+                        </apex:actionFunction>                      
+     <div class="slds-container--fluid  slds-container--center">
+                          <!--Page Header Start Here-->  
+                                <div class="slds-page-header" role="banner">
+                                       <div class="slds-grid slds-wrap slds-grid-main" style="padding-left:8px;">
+                                          <div class="slds-col slds-size--1-of-3 slds-medium-size--6-of-6 slds-large-size--4-of-12" style="margin-top:auto;margin-bottom:auto;">
+                                            <apex:outputLink value="/apex/MainPage" target="_blank"><img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" style="width: 225px; margin-top: 15px; margin-left: -7px;" /></apex:outputLink>
+                                          </div>
+                                          
+                                          <div class="slds-col slds-size--1-of-3 slds-medium-size--3-of-6 slds-large-size--3-of-12">
+                                              <div class="slds-button-group" role="group" style="float: left; padding-top:4px;margin-left: 427px;">
+                                    <button class="slds-button slds-button--icon-border slds-button--icon-background myAccount slds-tooltip-left" data-tooltip="My Account" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                                       <i class="fa fa-user" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                                       <div class="slds-popover slds-popover--tooltip slds-nubbin--top" role="tooltip" style="left: -45px; top: 45px;display:none;">
+                                            <div class="slds-popover__body">My Account</div>
+                                        </div>
+                                   </button>
+                                   <apex:outputLink value="/apex/DiscoverOrgSetup?retUrl=MainPage" styleClass="myaccountLink" target="_blank"></apex:outputLink>
+                                   
+                                   <button class="gotoDOrg slds-button slds-button--icon-border slds-button--icon-background gotoDOrg slds-tooltip-left" data-tooltip="View on DiscoverOrg Site" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                                       <i class="fa fa-globe" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                                       <div class="slds-popover slds-popover--tooltip slds-nubbin--right" role="tooltip" style="left: -180px; top: -1px;display:none;position:absolute;">
+                                            <div class="slds-popover__body">View on DiscoverOrg Site</div>
+                                        </div>
+                                   </button>
+                                   <apex:outputLink value="https://go.discoverydb.com/" styleClass="dorgLink" target="_blank"></apex:outputLink>
+                                   
+                                    <div class="slds-dropdown-trigger" style="display:block;position:relative;">
+                                        <button onclick="return false;" class="slds-button slds-button--icon-border slds-button--icon-background help-link" aria-haspopup="true" style="height: 35px;margin:0;border-radius: 0 0.25rem 0.25rem 0; border-left: 0;background-color: #ffffff;width: 40px;">
+                                           <i class="fa fa-question-circle-o" aria-hidden="true" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>   
+                                           <i class="fa fa-sort-desc" aria-hidden="true" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;float: right; margin-top: -4px;margin-right: 4px;"></i>   
+                                       </button>
+                                        <c:doHelpMenu pname="showhidefixit" />
+                                    </div>
+                                </div>
+                                
+                                <div class="otherTabArea">
+                               <button onclick="return false;" class="slds-button slds-button--icon-border slds-button--icon-background otherLink" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;margin-top: 4px;float: right;">
+                                   <i class="fa fa-caret-down" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                               </button>
+                   
+                               <!--Other Tab Drop Down Start Here-->
+                               <div style="position: absolute; right:0px; top:38px;  z-index: 202; padding-top:5px; display:none;width: 228px;height: 197px;" class="otherTabsLink">
+                                <div class="innerHelp" style=" background-color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);border: solid 1px #cccccc;border-radius: 4px;">
+                                    <table style="font-size: 14px;color: #666666 !important;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding-left: 10px;padding-top: 10px; {!IF($Permission.DSCORGPKG__HasAdminPermissionSet, 'padding-bottom: 5px;', 'padding-bottom: 10px;')}"><a style="color: #666666;" target="_blank" href="/apex/DorgConflictResolver">DiscoverOrg Conflicts</a></td>
+                                            </tr>
+                                            <tr style="{!IF($Permission.DSCORGPKG__HasAdminPermissionSet, 'display:block;', 'display:none;')}">
+                                                <td style="padding-left: 10px;padding-bottom: 10px;"><a style="color: #666666;" target="_blank" href="/apex/UpdatableFields">DiscoverOrg Administration</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                
+                              </div>
+                              <!--Other Tab Drop Down End Here-->
+                          </div>
+                        
+                                        </div>   
+                                    </div>
+                                     </div>
+                             <apex:pageMessages />
+                                <!-- code Added by Balram :: Starts Here :: -->
+                                
+                                
+                                <!-- Research Request Popup Start Here-->
+                                <div id="help-research-request" class="slds-hide">
+                                    <div aria-hidden="false" role="dialog"  id="help-research-request-modal" class="slds-modal slds-fade-in-open">
+                                        <c:ResearchRequest />
+                                    </div>
+                                    <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                                </div>
+                        
+                                 <apex:outputPanel id="help-research-request-script">
+                                    <script>
+                                    function helpResearchRequestOnComplete(){
+                                        if( "{!sentResearchRequest}" == "true"){
+                                            alert('A notification has been sent to DiscoverOrg for your Research Request. Thank You!!');
+                                        }else{
+                                            alert('Unable to submit Research Request on DiscoverOrg for Salesforce.');
+                                        }
+                                        
+                                        $('.top-overlay, .overlay-div').hide();
+                                        $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+                                    }
+                                    
+                                    // Research request
+                                    $("#submit-research-request").click(function(){
+                                        $("#help-research-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                                        $("[id$='research-sel-option']").val("Select a Research Option");
+                                        callOptionsDisplay("Select a Research Option");
+                                        return false;
+                                    });
+                                    
+                                    $(".slds-button--Help-model-close").click(function(){
+                                        $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+                                        $("[id$='help-research-textarea']").val("");
+                                        //$("[id$='research-sel-option']").val("Select a Research Option");
+                                        return false;
+                                    });
+                                    </script>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel style="display:none;">
+                                    <apex:outputLink value="/apex/DiscoverOrgSetup?retUrl=DiscoverOrgOperation" styleClass="myaccountLink" target="_blank"></apex:outputLink>
+                                    <apex:outputLink value="https://www.discoverydb.com" styleClass="dorgLink" target="_blank"></apex:outputLink>
+                                </apex:outputPanel>
+                                
+                                <!-- code Added by Balram :: Ends Here :: -->
+                                <div class="slds-card">
+                                    <div class="slds-card__header slds-grid">
+                                      <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                        <div class="slds-media__figure">
+                                         
+                                        </div>
+                                        <div class="slds-media__body">
+                                          <h2 class="slds-text-heading--small slds-truncate slds-text-heading--small slds-truncate" style="font-size:17px">Add/Update Operations</h2>
+                                          
+                                         
+                                          
+                                        </div>
+                                      </div>
+                                      <div class="slds-form--inline">
+                                      <apex:outputPanel layout="none" rendered="{!IF(totalPages != NULL,IF(totalPages > 1,true,false),false)}">
+                                        <div class="slds-form-element">
+                                        
+                                         <apex:commandLink styleClass="slds-button slds-button--brand"  value="<" onclick="pagiPrev(); $('#pnlLoadingtop').show(); return false;"/>
+                                         <apex:commandLink styleClass="slds-button slds-button--brand" value="1"  style="display:{!if(pageNumber>1,'','none')}" onclick="pagifirst(); $('#pnlLoadingtop').show(); return false;"/>
+                                         <apex:commandLink styleClass="slds-button slds-button--brand"  value="{!pageNumber-1}"  style="display:{!if(pageNumber>2,'','none')}" onclick="pagiPrev(); $('#pnlLoadingtop').show(); return false;"/>
+                                         <apex:commandLink styleClass="slds-button slds-button--inverse"  value="{!pageNumber}"   onclick="return false;"/>
+                                         <apex:commandLink styleClass="slds-button slds-button--brand"  value="{!pageNumber+1}" style="display:{!if(pageNumber+1<totalPages,'','none')}"  onclick="pagiNext(); $('#pnlLoadingtop').show(); return false;"/>
+                                         <apex:commandLink styleClass="slds-button slds-button--brand"  value="{!totalPages}" style="display:{!if(pageNumber!=totalPages,'','none')}"  onclick="pagiLast(); $('#pnlLoadingtop').show(); return false;"/>
+                                         <apex:commandLink styleClass="slds-button slds-button--brand"  value=">"  onclick="pagiNext(); $('#pnlLoadingtop').show(); return false;"/>
+                                         
+                                         </div>
+                                         
+                                         <div class="slds-form-element">
+                                            <input id="pageNo" type="text" class="slds-input" placeholder="Jump to page Number"  style="width:104px; color:#000 !important"  value=""   />
+                                         </div>
+                                         <div class="slds-form-element">
+                                             <apex:commandLink styleClass="slds-button slds-button--brand"  value="Go"  onclick="gotoPageNumber(); return false;"/>
+                                         </div> 
+                                          </apex:outputPanel>
+                                        
+                                      </div>
+                                      
+                                      <div class="slds-form--inline">
+                                      <div class="slds-form-element">
+                                          <label class="slds-form-element__label">{!totalRecord} {! if(totalRecord==1,'RECORD','RECORDS') } FOUND </label>
+                                        </div>
+                                        <div class="slds-form-element" style="margin-right:0">
+                                       <label class="slds-form-element__label" style="color:#000;font-size: 14px;">Show:</label>
+                                      </div>
+                                         <div class="slds-form-element">
+                                            
+                                            <div class="slds-form-element__control">
+                                             
+                                              <div class="slds-select_container">
+                                              
+                                              <apex:selectList value="{!selectedOption}" size="1" styleClass="slds-select" onchange="initJs(); $('#pnlLoadingtop').show()">
+                                                <apex:selectOption itemValue="All" itemLabel="All" />
+                                                <apex:selectOption itemValue="Incompleted" itemLabel="Incomplete" />
+                                                <apex:selectOption itemValue="Completed" itemLabel="Completed" />
+                                              </apex:selectList>
+                                              
+                                              </div>
+                                            </div>
+                                          
+                                          </div>
+                                          <div class="slds-form-element">
+                                            <button class="slds-button slds-button--brand" style="font-size: 14px!important;font-weight: 500;" onClick="deleteSelectedValidation();  return false">Delete Selected</button>
+                                            </div>
+                                      </div>
+                                    </div>
+                                    <div class="slds-card__body">
+                                      <table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal slds-no-row-hover">
+                                        <thead>
+                                          <tr>
+                                            <th>
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                      <label class="slds-checkbox" for="selectAll">
+                                                        <input type="checkbox" name="options" id="selectAll"  />
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                  
+                                            </th>
+                                            <th><span class="slds-truncate slds-text-heading--label">OPERATION DETAILS</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">Object</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">Running User</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">Date Created</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">Total Records</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">Batches Completed</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">Total Batches</span></th>
+                                            
+                                            
+                                            <th><span class="slds-truncate slds-text-heading--label">View Conflicts</span></th>
+                                            <th><span class="slds-truncate slds-text-heading--label">View Duplicates</span></th>                                       
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <apex:repeat value="{!opwrapper}" var="opList"> 
+                                          <tr>
+                                          <td>
+                                            <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                      <apex:outputLabel styleClass="slds-checkbox" for="complete">
+                                                        <apex:inputCheckbox value="{!opList.toDelete}" id="complete" />
+                                                        
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        
+                                                      </apex:outputLabel>
+                                                    </div>
+                                                  </div>
+                                          </td>
+                                            <td>
+                                                <a href="#" class="viewImportData" rel="{!JSENCODE(opList.operation.Id)}">
+                                                <img style="width: 15px;" src="{!URLFOR($Resource.SLDS080,'/SLDS080/assets/icons/custom/custom_view_inline1.jpg')}"/>
+                                                View Details
+                                                </a>
+                                            </td>
+                                            <td>{!HTMLENCODE(opList.contentType)}</td>
+                                            
+                                            <td><a href="/{!JSENCODE(opList.operation.owner.Id)}">{!opList.operation.owner.Name}</a></td>
+                                            <td>
+                                            <apex:outputText value="{0, date, MMMM d','  yyyy}">
+                                                <apex:param value="{!opList.operation.CreatedDate}" /> 
+                                            </apex:outputText></td>
+                                            <td>{!opList.operation.Total_Records__c} </td>
+                                             <td>{!opList.operation.Total_Batches_Completed__c}</td>
+                                            <td>{!opList.operation.Total_Batches__c}</td>
+                                           
+                                            
+                                            <td>
+                                            <apex:outputPanel layout="none" rendered="{!opList.isConflict}">
+                                            <a  href="/apex/DorgConflictResolver?id={!JSENCODE(opList.operation.id)}" target="_blank">View Conflicts</a >
+                                            </apex:outputPanel>
+                                            </td>
+                                            
+                                            <td>
+                                            <apex:outputPanel layout="none" rendered="{!opList.isDuplicate}">
+                                             <a href="/apex/DuplsImportManager?id={!JSENCODE(opList.operation.id)}" target="_blank">View Duplicates</a>
+                                             </apex:outputPanel>
+                                             </td>                                      
+                                            
+                                        </tr>
+                                       </apex:repeat>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="slds-card__footer">
+                                     
+                                    </div>
+                                  </div>
+                             
+                             </div>
+                             
+                              <apex:outputPanel id="importWizard">
+                                <div style="display:none;" class="importFrame">
+                                  <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                                    <div class="slds-modal__container">
+                                      <div class="slds-modal__header">
+                                        <h2 class="slds-text-heading--medium">Import Status</h2>
+                                        <button class="slds-button slds-modal__close" onclick="showHidePopup('importFrame');return false;" id="AddUpdateSVG"></button>
+                                      </div>
+                                      <div class="slds-modal__content">
+                                        <div>                                                                            
+                                            <iframe id="importIframe" src="" style="border: 0px;height: 320px;width: 100%;"/>
+                                        </div>
+                                      </div>  
+                                     <div class="slds-modal__footer">
+                                         <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close" onclick="$('#importIframe').contents().find('#pauseBtn').click(); $('.importFrame').hide(); $('.importFrame').find('iframe').attr('src','');$('#pnlLoadingtop').show();initJs(); return false; " />
+                                     </div>
+                                    </div>
+                                  </div>
+                                  <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+                                </div>  
+                            </apex:outputPanel>
+                             
+                             
+                          </apex:form>
+                    </div>
+                </body>
+                <style>
+                    .helpdetail{
+                        margin-top: -11px;
+                    }
+                </style>
+            </html>
+</apex:page>

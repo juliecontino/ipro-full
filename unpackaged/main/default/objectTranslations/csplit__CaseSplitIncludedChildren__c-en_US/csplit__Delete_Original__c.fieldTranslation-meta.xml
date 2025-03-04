@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Checking this will cause the original record to be deleted when copying it over to the new case. --></help>
+        <label><!-- Delete Original --></label>
+        <name>csplit__Delete_Original__c</name>
+    </CustomFieldTranslation>

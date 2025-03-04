@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This does not enable your FedEx account to allow for Alcohol Shipping. This allows the Shipmate to display the Alcohol Shipping option under special services. Please contact FedEx if you are unsure if your FedEx account is setup for Alcohol Shipping. --></help>
+        <label><!-- Enable Alcohol Shipping --></label>
+        <name>zkfedex__EnableAlcoholShipping__c</name>
+    </CustomFieldTranslation>

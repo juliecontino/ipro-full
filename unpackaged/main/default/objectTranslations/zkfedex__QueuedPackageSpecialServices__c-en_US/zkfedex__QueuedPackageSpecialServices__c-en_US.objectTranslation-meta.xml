@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>FedEx Queued Package Special Services Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dry Ice --></label>
+            <section>Dry Ice</section>
+        </sections>
+        <sections>
+            <label><!-- Non Standard Packaging --></label>
+            <section>Non Standard Packaging</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

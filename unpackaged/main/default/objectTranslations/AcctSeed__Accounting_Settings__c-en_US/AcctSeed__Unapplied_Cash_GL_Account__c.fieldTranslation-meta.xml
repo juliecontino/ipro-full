@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This GL Account is credited upon entering a cash receipt.   After applying the cash receipt to a bill, the amount is removed (debits) from this account and a reduces (credits) Accounts Receivable.   Typical placement of this account is next to AR. --></help>
+        <label><!-- Unapplied A/R GL Account --></label>
+        <name>AcctSeed__Unapplied_Cash_GL_Account__c</name>
+        <relationshipLabel><!-- Accounting_Settings (Unapplied Cash GL Account) --></relationshipLabel>
+    </CustomFieldTranslation>

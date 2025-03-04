@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The GL Category type classifies GL accounts according to where they are found on your financial statements. In this way they are similar to Type and Sub Type 1 fields which are reporting driven. This field tells the system what function it serves. --></help>
+        <label><!-- GL Category --></label>
+        <name>AcctSeed__GL_Category__c</name>
+        <picklistValues>
+            <masterLabel>Input VAT</masterLabel>
+            <translation><!-- Input VAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Output VAT</masterLabel>
+            <translation><!-- Output VAT --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

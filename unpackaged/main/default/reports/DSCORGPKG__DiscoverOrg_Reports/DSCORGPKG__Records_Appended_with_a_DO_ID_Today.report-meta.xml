@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Account__c</field>
+    </columns>
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Contact__c</field>
+    </columns>
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Lead__c</field>
+    </columns>
+    <columns>
+        <field>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__New_Value__c</field>
+    </columns>
+    <description>Records appended with a DiscoverOrg ID today.</description>
+    <filter>
+        <criteriaItems>
+            <column>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__FieldName__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>discoverorg_id__c</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Old_Value__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Records Appended with a DO ID Today</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$DSCORGPKG__DiscoverOrg_Update_History__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>DSCORGPKG__DiscoverOrg_Update_History__c.DSCORGPKG__Account__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_TODAY</interval>
+    </timeFrameFilter>
+</Report>

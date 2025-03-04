@@ -1,0 +1,857 @@
+<apex:page title="Duplicate Matching" controller="DSCORGPKG.ContactsImportDetails" tabStyle="DiscoverOrgSearch__tab" action="{!pageInit}" sidebar="false" showHeader="false" >
+<link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+<apex:includeScript value="{!URLFOR($Resource.DSCORGPKG__MultiSelectJquery,'/jquery-3.3.1.min.js')}"/>
+    
+    <style>
+        .searchBtnCss {
+            background: #6EBE49;
+            border: 1px solid #6EBE49;
+            color: white;      
+            font-size: 14px;
+        }
+        .searchBtnCss:Hover {    
+            background: #339933;
+            border: 1px solid #339933;
+            color: white;  
+            font-size: 14px;    
+        }
+        .slds-grid-main {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .innerTable1 td{
+            border: 0px;
+            padding: 0px;
+        }
+        .innerTable1 tr td {
+            box-shadow: #d8dde6 0 0px 0 inset !important;
+        }
+        .slds{ min-height:293px}
+        .message{  opacity: 0.1; } 
+        .slds-notify--alert {   padding: 0.5rem;   text-align: center;  margin: 0.5rem;  border-radius: 3px; }
+        .customMessage * {  color: white !important; }
+        .slds-theme--alert-texture{ width:100%}
+        
+        .msgIcon {
+            display: none!important
+        }
+        .customMessage * {
+            color: #fff!important
+        }
+        .customMessage {
+            margin: 5px 0!important;
+            max-width: 1280px;
+            opacity: 1!important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+        .message {
+            opacity: .1
+        }
+        .paginationBtns {
+            padding: 9px 5px;
+            background: #fff;
+            border: 1px solid #D4D1D1;
+            margin: 1px;
+            cursor: pointer;
+            text-decoration: none!important;
+            font-size: 14px;
+            font-weight: 100;
+            border-radius: 3px;
+            color: #0070d2!important
+        }
+        .paginationBtns:Hover {
+            background: #eee
+        }
+        .messageTable, .messageText {
+            word-break: break-all
+        }
+
+        #returnsRdo, .serachFor .btn-group button {
+            display: none
+        }
+        #returnsRdo {
+            position: absolute;
+            z-index: 1000;
+            background: #fff;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 0 4px 1px #BBB;
+            border-radius: 3px
+        }
+        
+        .accountInfoTooltip, .contactInfoTooltip{
+            position: absolute;
+            background-color: #061C3F;
+            z-index: 10000;
+            padding: 10px;
+            display: none;
+            width: auto;
+            color: #fff;
+            margin-top: 9px;
+        }
+        
+        .accountInfoTooltipArr, .contactInfoTooltipArr{
+            position: absolute;
+            z-index: 10000;
+            height: 19px;
+            width: 20px;
+            background-color: #061C3F;
+            transform: rotate(45deg);
+            margin-top: 3px;
+            display: none;
+            color: #fff;
+            margin-left: 4px;
+        }
+        
+        .accountInfoTooltip table tr td{
+            background-color: #061C3F !important;
+            padding-left: 5px !important;
+            color:white;
+            border-bottom: 0px;
+        }
+        
+        .contactInfoTooltip table tr td{
+            background-color: #061C3F !important;
+            padding-left: 5px !important;
+            color:white;
+            border-bottom: 0px;
+        }
+        
+        .searchBtnCss {
+            background: #6EBE49;
+            border: 1px solid #6EBE49;
+            color: white;      
+            font-size: 14px;
+        }
+        .searchBtnCss:Hover {    
+            background: #339933;
+            border: 1px solid #339933;
+            color: white;  
+            font-size: 14px;    
+        }
+        .slds-grid-main {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .innerTable1 td{
+            border: 0px;
+            padding: 0px;
+        }
+        .innerTable1 tr td {
+            box-shadow: #d8dde6 0 0px 0 inset !important;
+        }
+         .slds{ min-height:500px}
+         
+        
+        .th1{
+            width:20%;
+        }
+        .th2{
+            width:3%;         
+        }
+        .th3{
+            width:22%;
+        }
+        .th4{
+            width:15%;
+        }
+        .th5{
+            width:10%;
+        }
+        .th6{
+            width:10%;
+        }
+        .th7{
+            width:20%;
+        }
+        .updateBts{
+            position: fixed;
+            top: -400px;
+        }
+        .ith1{
+            width:7%;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 6px 0px 2px 25px !important;
+            vertical-align: top;
+            text-align: left;
+        }
+        .ith2{
+            width:4%;
+            padding-left: 0px !important;
+            vertical-align: middle;
+            padding: 0px 0px 0px 0px !important;
+        }
+        .ith3{
+            width:28%;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith4{
+            width:20%;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith5{
+            width:13%;
+            padding-left: 7px !important;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith6{
+            width:13%;
+            padding-left: 3px !important;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith7{
+            width:22%;  
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        
+        
+        tr.internalTr td {
+            
+        }
+        
+        .innerTable1>tbody>tr:last-child>td{
+            border-bottom: 0px;
+        }
+        
+        .solid {
+            display: block;
+            margin: 5px;
+            border: 1px #d7dde6 solid;
+            border-radius: 5px;
+        }
+        
+        
+    </style>
+    
+    <!--Not Renderable Javacript Start Here-->
+    <script>
+        var selectedFilter = 'All';
+        var startPage = 1;
+        
+        $(document).ready(function() {
+            resetBinding();
+            overrideBtnAndMsgStyle();
+            
+            radioHack();
+            
+        });                
+        
+        function radioHack(){
+            $( "input:checkbox" ).each(function() {
+                $(this).attr("type" , "radio");
+            });
+        
+            $( "input:radio" ).click(function() {
+                $( "input:radio" ).prop("checked" , false);
+                $(this).prop("checked" , true);
+            });
+            
+            if( $("input[matchdoid=true]").length == 1 ){
+                $("input[matchdoid=true]").prop("checked",true);
+            }
+        }
+        
+        function resetBinding(){                        
+            $(".accountNameA").mouseover(function() {
+                $(this).parent().find(".accountInfoTooltip").show("fast");
+                $(this).parent().find(".accountInfoTooltipArr").show("fast");
+            });
+            
+            $(".accountNameA").mouseout(function(e) {
+                var container = $(this).parent().find(".accountInfoTooltip");                
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    $(this).parent().find(".accountInfoTooltip").hide("fast");
+                    $(this).parent().find(".accountInfoTooltipArr").hide("fast");                                        
+                }                
+            });
+            
+            $(".contactNameA").mouseover(function() {
+                $(this).parent().find(".contactInfoTooltip").show("fast");
+                $(this).parent().find(".contactInfoTooltipArr").show("fast");
+            });
+            
+            $(".contactNameA").mouseout(function(e) {
+                var container = $(this).parent().find(".contactInfoTooltip");                
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    $(this).parent().find(".contactInfoTooltip").hide("fast");
+                    $(this).parent().find(".contactInfoTooltipArr").hide("fast");                                        
+                }                
+            });
+        }
+        
+        function overrideBtnAndMsgStyle(){                
+            var textureEffect = '';
+            //Uncomment below line for texture effect on page messages
+            //textureEffect = 'slds-theme--alert-texture';                         
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);                                 
+            $('.errorM3').removeClass('errorM3'); 
+            $('.confirmM3').removeClass('confirmM3'); 
+            $('.infoM3').removeClass('infoM3');   
+            $('.warningM3').removeClass('warningM3');  
+            $('#divProcessing').hide();
+            $('.btn').removeClass('btn');
+            $('.btnDisabled ').removeClass('btnDisabled ');                        
+            makeSelectOption();
+            resetBinding();
+        }                              
+        
+        function showStatus(){
+            document.getElementById('pnlLoadingtop').style.display = 'block';
+        }
+        function hideStatus(){
+            overrideBtnAndMsgStyle();
+            makeSelectOption();
+            document.getElementById('pnlLoadingtop').style.display = 'none';                
+        } 
+        
+        function focusParentWindow(){
+            if (window.opener) {
+                window.opener.callBackFunctionContact1();
+                
+            }
+            
+            window.close();
+            window.open('','parent').focus();
+        }
+    </script>
+    <!--Not Renderable Javacript End Here-->
+
+<apex:form styleClass="frm">
+    <div class="slds" style="margin-bottom: 15%;min-height:193px">        
+        <!---Status / Process Section Start Here-->
+        <div id="divProcessing" class="slds-modal-backdrop slds-modal-backdrop--open" style="z-index:10000000;">
+            <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/> <b style="color:white;font-size: 14px;">Please Wait...</b>
+            </div>
+        </div>
+        
+        <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+          <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+             <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>                     
+          </div>
+        </div>
+        <!---Status / Process Section End Here-->
+
+        <!--Page Header Start Here--> 
+        <apex:outputPanel id="frm1">
+            <apex:actionFunction name="goToPageFun" action="{!goToPageFun}" reRender="frm1,parentPanel" oncomplete="hideStatus();"/>      
+            <apex:inputHidden value="{!currentPage}" id="pageNoId"/>
+    
+            <div>    
+                <script>
+                    var maximumPage = {!totalPage};
+                    var gotoPageNumnber = {!currentPage};                                        
+        
+                    function jumpToPage() { 
+                        var jumpToPGNo = $('#jumpTo').val();    
+                        if( jumpToPGNo != gotoPageNumnber ){
+                            if( jumpToPGNo >= 1 && jumpToPGNo <= maximumPage ){
+                                goToPageByNumber(jumpToPGNo);
+                            }else{
+                                alert('Please give input from 1 to '+ maximumPage);        
+                            }
+                        }
+                    }
+                    
+                    function makeSelectOption() {    
+                        try{
+                            var btnSeq = updatePageLinks(gotoPageNumnber,maximumPage);
+                            var btnStr = '';      
+                            for( var i=0;i<btnSeq.length;i++){
+                                if( gotoPageNumnber == btnSeq[i] ){
+                                    btnStr += '<a style="background:#D2D2D2;" class="paginationBtns dynaPageTag">'+btnSeq[i]+'</a>';
+                                }else{
+                                    btnStr += '<a onclick="goToPageByNumber('+btnSeq[i]+');" class="paginationBtns dynaPageTag">'+btnSeq[i]+'</a>';
+                                }
+                            }
+                            if( btnSeq.length > 0 ){
+                                $("#paginationsTags").find(".dynaPageTag").remove();
+                                $("#paginationsTags").children().next().next().first().after(btnStr);
+                            }
+                        }catch(e){}    
+                                                
+                        doFilter(selectedFilter);       
+                    }
+                    
+                    function updatePageLinks(current, allPages) {
+                        var btnSeq = new Array();
+                        if(allPages==0) return;
+                        if(current>2) {        
+                            if(current===allPages&&allPages>3)
+                                btnSeq.push(current-2);        
+                            btnSeq.push(current-1);
+                        }
+                        if(current!=1&&current!=allPages)
+                            btnSeq.push(current);
+                        if(current<allPages-1) {
+                            btnSeq.push(current+1);
+                            if(current==1&&allPages>3)
+                                btnSeq.push(current+2);        
+                        }
+                        return btnSeq; 
+                    }
+                    
+                    function goToPageByNumber(pageNumber) {    
+                        $('input[id*=pageNoId]').val(pageNumber);
+                        showStatus();
+                        goToPageFun();
+                    }
+                    
+                    function onclickOfSeaTypeDown() {
+                        var pos = $("#searchTypeDown").position();
+                        if ($("#returnsRdo").css("display") != 'block') {
+                            $("#returnsRdo").css({
+                                top: pos.top + $("#searchTypeDown").height() + 4,
+                                left: pos.left - 164,            
+                            });
+                            $("#returnsRdo").show("fast");
+                        } else {
+                            $("#returnsRdo").hide("fast");
+                        }
+                    }                                        
+                    
+                    //Show Only By Emails ( Website )
+                    function showOnlyByEmails(){
+                        hideByAll();                        
+                        $(".emailAddMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });                        
+                    }
+                    
+                    //Show only By Company Names
+                    function showOnlyByCompanyName(){
+                        hideByAll();                        
+                        $(".cmpnyNameMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });                                               
+                    }
+                    
+                    //Show only By DO Id
+                    function showOnlyByID(){
+                        hideByAll();
+                        $(".discIdMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });                        
+                    }
+                    
+                    //Hide All
+                    function hideByAll(){
+                        $(".discIdMO").each(function() {
+                            $(this).parent().parent().css("display","none");
+                        });
+                        
+                        $(".cmpnyNameMO").each(function() {
+                            $(this).parent().parent().css("display","none");
+                        });
+                        
+                        $(".emailAddMO").each(function() {
+                            $(this).parent().parent().css("display","none");
+                        });
+                    }
+                    
+                    //Show All                 
+                    function showByAll(){
+                        $(".discIdMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });
+                        
+                        $(".emailAddMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });
+                        
+                        $(".cmpnyNameMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });
+                    }
+               
+                    function seleDeselAll(){                        
+                        $(".externalTr").find(".innerCBox").prop("checked", $("#selectAllChk").prop("checked") );
+                    }
+                </script>
+                <div class="slds-grid slds-grid-main" style="padding-left:8px;">
+                  
+                </div>   
+            </div>
+        </apex:outputPanel>
+        <!--Page Header End Here-->
+        
+        <!--Parent Panel Start Here-->
+        <apex:outputPanel id="parentPanel">
+            <!--Contact Manager Start Here-->
+            <apex:outputPanel id="frm2" rendered="{!!isAccountManager && !isForLead }">               
+                
+                <div class="slds-container--fluid  slds-container--center slds-grid-main" id="containerDiv">  
+                    <!-- <apex:pageMessages escape="false" /> -->
+                    
+                    <div class="slds-section-title--divider">
+                   </div>
+                    
+                    <!--Contact Multi Dups Start Here-->
+                    
+                            <div  id="buttons" role="group" >
+                                <!--Contact Header-->
+                                <apex:outputPanel layout="none" rendered="{!!isAccountManager && !isForLead }">
+                                    <apex:actionFunction name="goToPageFunContact" action="{!goToPageFun}" reRender="frm1,parentPanel" oncomplete="saveContactAll();overrideBtnAndMsgStyle();makeSelectOption();"/> 
+                                    <apex:actionFunction name="saveContactAll" action="{!SaveContactsAll}" reRender="frm1,parentPanel" oncomplete="saveAllContactNNext();overrideBtnAndMsgStyle();makeSelectOption();"/>          
+                                    <script>            
+                                        function saveAllContactNNext(){                                        
+                                            showStatus();
+                                            if( startPage <= {!totalpage} ){
+                                                $('input[id*=pageNoId]').val(startPage);
+                                                goToPageFunContact();
+                                                startPage++;
+                                            }else{
+                                                hideStatus();
+                                            }                                       
+                                        }
+                                        
+                                        function doFilter(filterSelVal){            
+                                            if( filterSelVal == 'DiscoverOrg ID' ){
+                                                showOnlyByID();
+                                            }
+                                            else if( filterSelVal == 'Contact Email' ){
+                                                showOnlyByEmails();
+                                            }
+                                            else{
+                                                showByAll();
+                                            }
+                                            selectedFilter = filterSelVal;
+                                        }
+                                        
+                                        function pickOnChange(){
+                                            doFilter( $("#fltrOpt").val() );
+                                        }
+                                    </script>                                                                        
+                                    
+                                    
+                                </apex:outputPanel>
+                           
+                        <div class="slds-card__body" style="padding-bottom: 0px;">
+                            <table>
+                               
+                                <tbody>                                   
+                                    <!--For Contact--->
+                                    <apex:repeat value="{!result.multiDups}" var="dup">
+                                        
+                                        <tr class="externalTr">
+                                            
+                                            <td style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                                <table class="innerTable1" style="width:100%;">
+                                                    <apex:repeat value="{!dup.ValMap2}" var="conMap">
+                                                        <apex:repeat value="{!dup.ValMap2[conMap]}" var="con">
+                                                        <tr class="solid" style="border-bottom: white; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+                                                           <td></td> 
+                                                            <td style="width: 20%;padding: 0px 0px 0px 1px;" class="AccName"> 
+                                                                <p style="margin-left: -18px;width: 200px; height: 19px;font-size: 14px; font-weight: 600; color: #535353;"> <a class="contactNameA" href="/{!con.sObj['id']}" target="_blank" style="color: #535353;">{!dup.contact.FirstName} {!dup.contact.LastName}</a></p>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            
+                                                            
+                                                        </tr>
+                                                            <tr class="internalTr solid" style="border-bottom: white;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;margin-top: -6px;border-top: white;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+                                                                <td style="width: 5%;padding: .5rem;text-align: right;border-bottom: 0px;">
+                                                                    <apex:outputLabel for="inchk1" styleClass="slds-radio"> 
+                                                                           <apex:inputCheckbox styleClass="innerCBox" id="inchk1" value="{!con.isCheck}" html-matchDoid="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }"/>
+                                                                        
+                                                                        <span class="slds-radio--faux"></span>
+                                                                        <span class="slds-form-element__label"></span>
+                                                                    </apex:outputLabel> 
+                                                                </td>
+                                                                <td style="padding: .5rem;width:10%">
+                                                                    <span style="white-space: nowrap;width: 127px; height: 17px;font-size: 12px; color: #7f7f80;"> Account:{!con.sObj['account.name']} </span>
+                                                                    
+                                                                </td>
+                                                                <td style="color: #7f7f80;">|</td>
+                                                                <td style="padding: .5rem;color: #16325c;width:10%">
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <span class="discIdMO" style="white-space: nowrap;width: 127px; height: 17px;font-size: 12px; color: #7f7f80;">Matched:DiscoverOrg ID</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <span class="emailAddMO" style="white-space: nowrap;width: 127px; height: 17px;font-size: 12px; color: #7f7f80;">Matched:Email Address</span>
+                                                                    </apex:outputPanel>
+                                                                </td>
+                                                                <td style="color: #7f7f80;">|</td>
+                                                                
+                                                                <td style="padding: .5rem;">
+                                                                    <p style="width: 134px; height: 17px;font-size: 12px; color: #7f7f80;">Owner:{!con.sObj['owner.name']} </p>
+                                                                </td> 
+                                                               
+                                                            </tr>
+                                                            <tr class="solid" style=" margin-top: -15px; border-top: white; border-top-left-radius: 0px; border-top-right-radius: 0px; ">
+                                                             
+                                                             <td></td>
+                                                             <td style="padding: .5rem;">
+                                                                    <p style="height: 17px;font-size: 12px; color: #7f7f80;margin-left: 31px;">Created:<apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!con.sObj['CreatedDate']}" /></apex:outputText></p>
+                                                                </td>     
+                                                                <td style="color: #7f7f80;">|</td>                                                                                                                                           
+                                                                <td style="padding: .5rem;">
+                                                                    <p style="height: 17px;font-size: 12px; color: #7f7f80;">Modified:<apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!con.sObj['LastModifiedDate']}" /></apex:outputText></p>
+                                                                </td>
+                                                               </tr>
+                                                        </apex:repeat>
+                                                    </apex:repeat>                                                                                                                                                         
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                        <apex:commandButton action="{!SaveContacts}"  oncomplete="hideStatus();radioHack();window.parent.afterdupimportframe1();" onclick="showStatus();" styleClass="updateBts slds-button slds-button--brand" reRender="parentPanel,frm1" value="Update Selected" style="font-size: 14px;min-width: 140px;font-weight: 500;margin-left: 12px;" disabled="{!If(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'false','true')}"/>
+                    </div>
+                    <!--Contact Multi Dups End Here-->
+                                         
+                    
+
+                    <!--Contact Successful End Here-->
+                    <div style="margin-top: 20px;display:{!if(AND(NOT(ISNULL(result.successful)),result.successful.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Will be added (total {!result.successful.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">Name</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Account Name</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Phone</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.successful}" var="dup">
+                                            <tr>
+                                                <td>
+                                                    <apex:outputText >{!dup.contact.FirstName} {!dup.contact.LastName} </apex:outputText>
+                                                </td>
+                                                <td>
+                                                    <apex:outputText >{!dup.contact.Account.Name}</apex:outputText> 
+                                                </td>
+                                                <td>
+                                                    <apex:outputText >{!dup.contact.Phone}</apex:outputText> 
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                        
+                    </div> 
+                    <!--Contact Successful End Here-->
+                    
+                </div>      
+            </apex:outputPanel>
+            <!--Contact Manager End Here-->
+            
+            <!--Lead Manager Start Here-->
+            <apex:outputPanel id="frm4" rendered="{!isForLead}">               
+                <div class="slds-container--fluid  slds-container--center slds-grid-main" id="containerDiv">  
+                    
+                   
+                    
+                    <!--Contact Multi Dups Start Here-->
+                    <div >
+                        <div >
+                             <div id="buttons" role="group" >
+                                <!--Lead Header-->
+                                <apex:outputPanel layout="none" rendered="{!isForLead }">
+                                    <apex:actionFunction name="goToPageFunContact" action="{!goToPageFun}" reRender="frm1,parentPanel" oncomplete="saveContactAll();overrideBtnAndMsgStyle();makeSelectOption();"/> 
+                                    <apex:actionFunction name="saveContactAll" action="{!SaveLeadsAll}" reRender="frm1,parentPanel" oncomplete="saveAllLeadNNext();overrideBtnAndMsgStyle();makeSelectOption();"/> 
+                                                                       
+                                    <script>            
+                                        function saveAllLeadNNext(){                                        
+                                            showStatus();
+                                            if( startPage <= {!totalpage} ){
+                                                $('input[id*=pageNoId]').val(startPage);
+                                                goToPageFunContact();
+                                                startPage++;
+                                            }else{
+                                                hideStatus();
+                                            }                                       
+                                        }
+                                        
+                                        function doFilter(filterSelVal){            
+                                            if( filterSelVal == 'DiscoverOrg ID' ){
+                                                showOnlyByID();
+                                            }
+                                            else if( filterSelVal == 'Contact Email' ){
+                                                showOnlyByEmails();
+                                            }
+                                            else{
+                                                showByAll();
+                                            }
+                                            selectedFilter = filterSelVal;
+                                        }
+                                        
+                                        function pickOnChange(){
+                                            doFilter( $("#fltrOpt").val() );
+                                        }
+                                    </script>
+  
+                                    
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                        <div class="slds-card__body" style="padding-bottom: 0px;">
+                            <table>
+                                
+                                <tbody>                                   
+                                    <apex:repeat value="{!result.multiDups}" var="dup">
+                                        <tr class="externalTr">
+                                            
+                                            <td style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                                <table class="innerTable1" style="width:100%;">
+                                                    <apex:repeat value="{!dup.ValMap2}" var="conMap">
+                                                        <apex:repeat value="{!dup.ValMap2[conMap]}" var="con">
+                                                        <tr class="solid" style="border-bottom: white; border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
+                                                            <td></td>
+                                                            <td style="width: 15%;padding: 0px 0px 0px 1px;" class="AccName"> 
+                                                                 <p style="margin-left: -32px;width: 126px; height: 19px;font-size: 14px; font-weight: 600; color: #535353;"><a class="contactNameA" href="/{!con.sObj['id']}" target="_blank" style="color: #535353;">{!dup.lead.FirstName} {!dup.lead.LastName}</a></p>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                            <tr class="internalTr solid" style="margin-top: -6px;border-top: white; border-top-left-radius: 0px; border-top-right-radius: 0px;">
+                                                                <td style="width: 5%;padding: .5rem;text-align: right;border-bottom: 0px;">
+                                                                    <apex:outputLabel for="inchk" styleClass="slds-radio"> 
+                                                                        <apex:inputCheckbox styleClass="innerCBox" id="inchk" value="{!con.isCheck}" html-matchDoid="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }"/>
+                                                                    
+                                                                        <span class="slds-radio--faux"></span>
+                                                                        <span class="slds-form-element__label"></span>
+                                                                    </apex:outputLabel>
+                                                                </td>
+                                                                <td style="width: 15%;padding: .5rem;color: #16325c;">
+                                                                <apex:outputPanel layout="none" rendered="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <span class="discIdMO" style="white-space: nowrap;width: 127px; height: 17px;font-size: 12px; color: #7f7f80;">Matched:DiscoverOrg ID</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <span class="emailAddMO" style="white-space: nowrap;width: 127px; height: 17px;font-size: 12px; color: #7f7f80;">Matched:Email Address</span>
+                                                                    </apex:outputPanel>
+                                                                </td>
+                                                                <td style="color: #7f7f80;">|</td>
+                                                                <td style="width: 15%;padding: .5rem;">
+                                                                    <p style="width: 134px; height: 17px;font-size: 12px; color: #7f7f80;">Owner:{!con.sObj['owner.name']} </p>
+                                                                </td>
+                                                                <td style="color: #7f7f80;">|</td>
+                                                                <td style="padding: .5rem;">
+                                                                    <p style="height: 17px;font-size: 12px; color: #7f7f80;">Created:<apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!con.sObj['CreatedDate']}" /></apex:outputText></p>
+                                                                </td>     
+                                                                <td style="color: #7f7f80;">|</td>                                                                                                                                           
+                                                                <td style="padding: .5rem;">
+                                                                    <p style="height: 17px;font-size: 12px; color: #7f7f80;">Modified:<apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!con.sObj['LastModifiedDate']}" /></apex:outputText></p>
+                                                                </td>
+                                                            </tr>
+                                                        </apex:repeat>
+                                                    </apex:repeat>                                                                                                                                                         
+                                                </table>
+                                            </td>
+                                        </tr>                                                                                
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                        <apex:commandButton action="{!SaveLeads}"  oncomplete="hideStatus();radioHack();window.parent.afterdupimportframe1();" onclick="showStatus()" styleClass="updateBts  slds-button slds-button--brand" reRender="parentPanel,frm1" value="Update Selected" style="font-size: 14px;min-width: 140px;font-weight: 500;margin-left: 12px;" disabled="{!If(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'false','true')}"/>
+                    </div>
+                    <!--Lead Multi Dups End Here-->
+                                         
+                    
+
+                    <!--Lead Successful End Here-->
+                    <div style="margin-top: 20px;display:{!if(AND(NOT(ISNULL(result.successful)),result.successful.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Will be added (total {!result.successful.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">Name</span>
+                                            </th>     
+                                            <th scope="col">
+                                                <span class="slds-truncate">Phone</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.successful}" var="dup">
+                                            <tr>
+                                                <td>
+                                                    <apex:outputText >{!dup.lead.FirstName} {!dup.lead.LastName} </apex:outputText>
+                                                </td>
+                                                <td>
+                                                    <apex:outputText >{!dup.lead.Phone}</apex:outputText> 
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                        
+                    </div> 
+                    <!--Lead Successful End Here-->
+                   
+                </div>      
+            </apex:outputPanel>
+            <!--Lead Manager End Here-->
+
+            
+        </apex:outputPanel>
+        <!--Parent Panel End Here-->
+    </div>
+
+</apex:form>
+</apex:page>

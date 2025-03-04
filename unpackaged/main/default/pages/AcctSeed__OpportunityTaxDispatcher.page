@@ -1,0 +1,4 @@
+<apex:page id="OpportunityTaxDispatcher"
+           title="Sales Tax | Accounting Seed" standardController="Opportunity" extensions="AcctSeed.TaxDispatcherExt" action="{!redirectTo}">
+    
+</apex:page>

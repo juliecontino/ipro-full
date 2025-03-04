@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Alcohol Recipient Type --></label>
+        <name>zkfedex__AlcoholRecipientType__c</name>
+        <picklistValues>
+            <masterLabel>CONSUMER</masterLabel>
+            <translation><!-- CONSUMER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LICENSEE</masterLabel>
+            <translation><!-- LICENSEE --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

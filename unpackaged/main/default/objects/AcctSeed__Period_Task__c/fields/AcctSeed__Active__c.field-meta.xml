@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Active__c</fullName>
+    <deprecated>false</deprecated>
+    <formula>IF(ISPICKVAL(AcctSeed__Ends_On__c, 'Never'), true,
+					IF(AND(ISPICKVAL(AcctSeed__Ends_On__c, 'End Date'),  AcctSeed__Next_Accounting_Period_Task_Date__c &gt;=  AcctSeed__End_Date__c), false,
+					    IF(AND(ISPICKVAL(AcctSeed__Ends_On__c, 'Number of Occurrences'),  AcctSeed__Occurrences__c &gt;= AcctSeed__Number_of_Occurrences__c), false
+,true)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Active</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

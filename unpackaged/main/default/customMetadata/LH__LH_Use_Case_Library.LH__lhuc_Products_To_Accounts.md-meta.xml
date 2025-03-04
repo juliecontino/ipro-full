@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Products to Accounts</label>
+    <protected>false</protected>
+    <values>
+        <field>LH__Category_Field__c</field>
+        <value xsi:type="xsd:string">opportunity.accountid</value>
+    </values>
+    <values>
+        <field>LH__Child_Filter_Conditions__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Child_Object__c</field>
+        <value xsi:type="xsd:string">opportunitylineitem</value>
+    </values>
+    <values>
+        <field>LH__Components_Included__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Description__c</field>
+        <value xsi:type="xsd:string">Relates OpportunityLineItems with a parent Account if the child OpportunityLineItem&apos;s Opportunity.AccountId = Account.ID</value>
+    </values>
+    <values>
+        <field>LH__FieldType__c</field>
+        <value xsi:type="xsd:string">Lookup</value>
+    </values>
+    <values>
+        <field>LH__Label__c</field>
+        <value xsi:type="xsd:string">Display Products on Account Page</value>
+    </values>
+    <values>
+        <field>LH__Logic__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>LH__Long_Description__c</field>
+        <value xsi:type="xsd:string">Relates OpportunityLineItems with a parent Account if the child Opportunity Products&apos;s Opportunity.ID field is equal to the Account&apos;s ID.</value>
+    </values>
+    <values>
+        <field>LH__Object__c</field>
+        <value xsi:type="xsd:string">OpportunityLineItem</value>
+    </values>
+    <values>
+        <field>LH__Parent_Field__c</field>
+        <value xsi:type="xsd:string">id</value>
+    </values>
+    <values>
+        <field>LH__Parent_Object__c</field>
+        <value xsi:type="xsd:string">account</value>
+    </values>
+    <values>
+        <field>LH__RelationshipName__c</field>
+        <value xsi:type="xsd:string">lhuc_Products_To_Accounts</value>
+    </values>
+    <values>
+        <field>LH__Relationship_Field__c</field>
+        <value xsi:type="xsd:string">lhuc_Products_To_Accounts__c</value>
+    </values>
+</CustomMetadata>

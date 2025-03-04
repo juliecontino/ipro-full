@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partial_Recurring_Bill__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check true if this Billing is a partial month Recurring Billing.</inlineHelpText>
+    <label>Manually Adjust Billing Period</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

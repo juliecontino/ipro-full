@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to record the parent of a polymorphic lookup field. --></help>
+        <label><!-- Lookup_Source_Polymorphic_Parent --></label>
+        <name>LH__Lookup_Source_Polymorphic_Parent__c</name>
+    </CustomFieldTranslation>

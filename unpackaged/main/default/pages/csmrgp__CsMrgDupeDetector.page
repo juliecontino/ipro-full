@@ -1,0 +1,78 @@
+<apex:page id="pg" standardcontroller="Case" extensions="csmrgp.CsMrgDupeDetectorCtrl" showHeader="false" standardStylesheets="true" applyHtmlTag="false">
+
+    <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4u'}">
+        <style type="text/css">
+            body{
+                padding: 0px !important;
+            }
+        </style>
+    </apex:outputPanel>
+
+    <apex:includeScript value="/support/console/43.0/integration.js"/>
+
+    <script type="text/javascript">
+        function triggerQuery(){
+            // only do this with rerender if you are not in lightning
+            if('{!JSENCODE($User.UIThemeDisplayed)}' == 'Theme3'){
+                startQuery();
+                return false;
+            }
+        }
+    </script>
+
+    <apex:form id="frm">
+        <!-- <body> -->
+        <body onload="triggerQuery();">
+            <apex:actionFunction name="startQuery" action="{!runCaseSearch}" rerender="lblPanel"/>
+            <apex:outputPanel layout="block" id="lblPanel">
+                <script>
+                    let linkUrl = '{!JSENCODE(linkUrl)}';
+                    function openCMP(){
+                        if(sforce.console.isInConsole()) {
+                            sforce.console.getEnclosingPrimaryTabId(navCMP);
+                        }
+                        else if(sforce.one != null) {
+                            sforce.one.navigateToURL(linkUrl, false);
+                        }
+                        else {
+                            window.top.location = linkUrl;
+                        }
+                    }
+
+                    function openNewCaseTab(){
+                        if(sforce.console.isInConsole()) {
+                            sforce.console.openPrimaryTab(null, linkUrl, true);
+                        }else if(sforce.one != null) {
+                            sforce.one.navigateToURL(linkUrl, false);
+                        }
+                        else {
+                            window.top.location = linkUrl;
+                        }
+                    }
+
+                    var navCMP = function navCMP(result) {
+                        var primaryTabId = result.id;
+                        sforce.console.openSubtab(primaryTabId , linkUrl, true);
+                    };
+                </script>
+
+                <div style="height: 20px; line-height:20px;">
+                    <apex:outputText id="lblSearching" rendered="{!queryRunning}" value="Searching..."></apex:outputText>
+                    <apex:outputPanel layout="none" rendered="{!NOT(queryRunning)}">
+                        <apex:outputPanel layout="none" rendered="{!dupesFound}">
+                            <a href="#" onclick="openCMP();" style="background-color:gold;">{!linkText}</a>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="block" rendered="{!isMerged}" style="height: 20px; display: inline-block;">
+                            <apex:outputText style="display: inline-block;" value="Merged • View Primary→"></apex:outputText>
+                            <a href="#" onclick="openNewCaseTab();">Case</a>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(isMerged || dupesFound)}">
+                            <apex:outputText value="None"/>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </div>
+            </apex:outputPanel>
+        </body>
+    </apex:form>
+
+</apex:page> <!-- 15px height -->

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Units by which the hazardous commodity is measured. For IATA commodity, the units values are restricted based on regulation type --></help>
+        <label><!-- Quantity Amount Units --></label>
+        <name>zkfedex__QuantityAmountUnits__c</name>
+    </CustomFieldTranslation>

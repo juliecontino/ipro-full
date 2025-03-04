@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This option allows you to display more details in the drop down list when selecting a Package Profile for ReUse in the Shipping Wizard. This drop down list only appears on Package section of the Shipping Wizard if a saved Package for ReUse exists. --></help>
+        <label><!-- Detailed View - ReUse Package List --></label>
+        <name>zkfedex__DetailedViewReUsePackageList__c</name>
+    </CustomFieldTranslation>

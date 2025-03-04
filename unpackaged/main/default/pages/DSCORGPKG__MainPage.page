@@ -1,0 +1,1966 @@
+<apex:page title="Main Page" controller="DSCORGPKG.DiscoverOrg_clsBrowse" action="{!LoadPage}" sidebar="false" tabStyle="DiscoverOrgSearch__tab" standardStylesheets="false" showHeader="true" id="pg">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <title>Main Page</title>
+    <link href = "{!URLFOR($Resource.autocomplete_resource,'/css/jquery-ui.css')}"  rel = "stylesheet"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.autocomplete_resource,'/css/jquery.webui-popover.min.css')}" />
+    <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+    <link href="{!$Resource.MainPageSLDSCss}" type="text/css" rel="stylesheet" />
+    <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" /><!-- SFNA 2839-->
+    <apex:includeScript value="{!$Resource.DSCORGPKG__DiscoverOrgJSMin}" />
+    <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'familyOpenSans.css')}"/><!-- SFNA 2839-->
+    <style>
+        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          color: #cccccc !important;
+        }
+        ::-moz-placeholder { /* Firefox 19+ */
+          color: #cccccc !important;
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+          color: #cccccc !important;
+        }
+        :-moz-placeholder { /* Firefox 18- */
+          color: #cccccc !important;
+        }
+        .slds-checkbox [type="checkbox"]:checked ~ .parent--faux::after {
+            border-bottom: 2px solid #fff;
+            border-left: 2px solid #fff;
+        }
+        #myInputNumber{
+            width: 57px !important;
+        }
+    </style>
+                
+    <script>
+        var imageURLEvent = '{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#event')}';
+        $(window).bind("load", function() {
+            afterLoadAddScript();            
+        });
+        
+        function afterLoadAddScript() {
+            var script = document.createElement('script');
+            script.setAttribute('src', '{!$Resource.MainPageSLDSJs}');
+            script.setAttribute('type', 'text/javascript');
+            document.getElementsByTagName('head')[0].appendChild(script);
+            
+            var walkme = document.createElement('script');
+            walkme.type = 'text/javascript';
+            walkme.async = true;                
+            walkme.src = "{!URLFOR($Resource.DiscoverOrgUI, 'js/walkme.js')}";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(walkme, s);
+            window._walkmeConfig = {
+                smartLoad: true
+            };
+
+            document.getElementById('pnlLoadingtop').style.display = 'none';
+        }
+        $(document).ready(function(){
+            if(jQuery('#myInputNumber').val() == null || jQuery('#myInputNumber').val() == ''){
+                jQuery('#myInputNumber').val('0')
+            }
+            
+            if({!isUserLock}){
+                $("#userLockPopup").show();
+            }
+            
+        });
+        
+        function hideUserLockPopUp(){
+            hideLockPeriodPopUp();
+            $("#userLockPopup").hide();
+        }
+        
+        $(function () {
+          $("#myInputNumber").keydown(function () {
+            // Save old value.
+            if (!$(this).val() || (parseInt($(this).val()) <= 99 && parseInt($(this).val()) >= 0))
+            $(this).data("old", $(this).val());
+            var num = $(this).val().match(/^\d+$/);
+            if (num === null) {
+                // If we have no match, value will be empty.
+                $(this).val('');
+            }
+            
+          });
+          $("#myInputNumber").keyup(function () {
+            // Check correct, else revert back to old value.
+            if (!$(this).val() || (parseInt($(this).val()) <= 99 && parseInt($(this).val()) >= 0))
+              ;
+            else
+              $(this).val($(this).data("old"));
+              
+            var num = $(this).val().match(/^\d+$/);
+            if (num === null) {
+                // If we have no match, value will be empty.
+                $(this).val('');
+          }  
+          });
+        });
+        function setZeroOnInput(){
+            if(jQuery('[id$=myInputNumber]').val() == null || jQuery('[id$=myInputNumber]').val() == ''){
+                jQuery('[id$=myInputNumber]').val('0');
+            }
+        }
+        function setInputNumberRecordAdded(){
+            jQuery('[id$=myInputNumber]').val(jQuery('[id$=myHiddenNumber]').val());     
+        }
+        // By Neha Agrawal for SFNA-2548
+        function assignDate(){
+            jQuery('[id$=myHiddenNumber]').val(jQuery('#myInputNumber').val());                       
+        }
+        function unCheckChanged(){
+            $("[id*='recordChanged']").prop('checked', false);
+        }
+        function unCheckAdded(){
+           $("[id*='recordAdded']").prop('checked', false);
+        }
+    </script>
+    <script>
+      function disab(){
+        setTimeout(function() {
+        $("#disableIt").attr('disabled',true);
+      }, 5000);
+        
+      }  
+    </script>
+   
+    
+    <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+        <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+            <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;" />
+        </div>
+    </div>
+    
+    <apex:form id="frm" styleClass="frm">
+        <apex:actionFunction name="hideLockPeriodPopUp" action="{!updateDiscoverOrgSectionRender}" rerender="userLockPopup"/>
+        <apex:actionFunction name="sendResearchRequest" action="{!SendResearchEmailAlert}" reRender="ResearchRequestPanel" oncomplete="onCompOfResReq();jqyeryInitialization();" />
+        <apex:actionFunction name="filterUpdateAjax" action="{!doSearch}" reRender="PgeMsg,ifrm,recentSechPanel" > 
+            <apex:param value="st" name="st" assignTo="{!selectedSearchOption}"/>
+            <apex:param value="dp" name="dp" assignTo="{!dealPredictOpt}"/>
+        </apex:actionFunction>
+        <apex:actionFunction name="removeLegacyTopic" action="{!removeLegacyTopic}" reRender="recentSechPanel" oncomplete="filterUpdate();"> 
+            <apex:param value="" name="lri" assignTo="{!legacyRemoveId}"/>
+        </apex:actionFunction><!-- This action is for SFNA-2296-->          
+        <apex:actionFunction name="doCountFun" action="{!doCount}" reRender="countOutPanel" oncomplete="updateCountPanel();">        
+            <apex:param value="st" name="st" assignTo="{!selectedSearchOption}"/>
+
+        </apex:actionFunction>
+        <apex:inputHidden value="{!selectedTechnologyIds}" id="selectedTechnologyIdsHide"/>     
+        <apex:actionFunction name="callMetaData" action="{!callMetaDataUpdater}" oncomplete="javascript:location.reload();" />
+        
+        <!-- Check if User is in Lock Period or not popup -->
+        <div style="display:none;" id="userLockPopup">
+            <c:userLockPeriodPopUp />
+        </div>
+        
+        <!--Page Header Start Here-->
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid slds-grid-main" style="margin: 0px;width: 99%;max-width: 100%;height: 60px;">
+                <div class="slds-col slds-size--4-of-12">
+                    <apex:outputLink value="https://go.discoverydb.com" target="_blank">
+                        <img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" style="margin-left: 10px;width: 225px;margin-top: 15px;margin-left: 16px;" />
+                    </apex:outputLink>
+                </div>
+                <div class="slds-col slds-size--11-of-12" style="margin-top: 6px;">
+                    <div class="slds-form-element" style="width: 97px;float: right;margin-top: 7px;">
+                     <div class="slds-form-element__control">
+                        <div class="slds-select_container" style="font-family: Open Sans !important; font-size: 14px; font-weight: 600; text-align: left; color: #1b5eac; border: #cccccc;">
+                          
+                        </div>
+                      </div>
+                    </div>
+                </div>
+ 
+                <div class="slds-col slds-size--6-of-12 slds-tabs--default" align="right" style="margin-top: 6px;">
+                    <table>
+                        <tr>
+                            <td>
+                            
+                            </td>
+                            <td style="min-width: 330px;">
+                               
+                                <div id="divQuickSearch">
+                                    <c:QuickSearch id="quickSearch"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="slds-button-group" role="group" style="float: right; padding-top:13px;margin-right: 10px;">
+                    
+                    <apex:outputPanel layout="none" rendered="{!showRefreshBtn}">
+                        <a onclick="javascript: document.getElementById('pnlLoadingtop').style.display='block'; callMetaData(); return false;" class="slds-button slds-button--neutral WalkMe_Refresh" title="Refresh search cards" style="padding: 0px;height: 35px;margin:0px;min-width: 36px;font-size: 14px;cursor: pointer; ">
+                            <i class="fa fa-refresh" aria-hidden="true" style="color: #666666;margin-top: 8px;"></i>
+                        </a>
+                    </apex:outputPanel>
+                    
+                    <button class="slds-button slds-button--icon-border slds-button--icon-background myAccount slds-tooltip-left" data-tooltip="My Account" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                       <i class="fa fa-user" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                   </button>
+                   <apex:outputLink value="/apex/DiscoverOrgSetup?retUrl=MainPage" styleClass="myaccountLink" target="_blank"></apex:outputLink>
+                   
+                   <button class="slds-button slds-button--icon-border slds-button--icon-background gotoDOrg slds-tooltip-left" data-tooltip="View on DiscoverOrg Site" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                       <i class="fa fa-globe" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                   </button>
+                   <apex:outputLink value="https://go.discoverydb.com/" styleClass="dorgLink" target="_blank"></apex:outputLink>
+                   
+                    <div class="slds-dropdown-trigger" style="display:block;z-index:999; position:relative;">
+                        <button onclick="return false;" class="slds-button slds-button--icon-border slds-button--icon-background help-link" aria-haspopup="true" style="height: 35px;margin:0;border-radius: 0 0.25rem 0.25rem 0; border-left: 0;background-color: #ffffff;width: 40px;">
+                           <i class="fa fa-question-circle-o" aria-hidden="true" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>   
+                           <i class="fa fa-sort-desc" aria-hidden="true" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;float: right; margin-top: -4px;margin-right: 4px;"></i>   
+                       </button>
+                        <c:doHelpMenu pname="showhidefixit" />
+                    </div>
+                </div>
+                
+                <div class="otherTabArea">
+                   <button onclick="return false;" class="slds-button slds-button--icon-border slds-button--icon-background otherLink" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;margin-top: 13px;">
+                       <i class="fa fa-caret-down" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                   </button>
+                   
+                   <!--Other Tab Drop Down Start Here-->
+                   <div style="position: absolute; right:0px; top:46px;  z-index: 202; padding-top:5px; display:none;width: 228px;height: 197px;" class="otherTabsLink">
+                    <div class="innerHelp" style=" background-color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);border: solid 1px #cccccc;border-radius: 4px;">
+                        <table style="font-size: 14px;color: #666666 !important;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding-left: 10px;padding-top: 10px; {!IF($Permission.DSCORGPKG__HasAdminPermissionSet, '', 'padding-bottom: 10px;')}"><a style="color: #666666;" target="_blank" href="/apex/DorgConflictResolver">DiscoverOrg Conflicts</a></td>
+                                </tr>
+                                <tr style="{!IF($Permission.DSCORGPKG__HasAdminPermissionSet, 'display:block;', 'display:none;')}">
+                                    <td style="padding-left: 10px; padding-bottom: 10px;"><a style="color: #666666;" target="_blank" href="/apex/UpdatableFields">DiscoverOrg Administration</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                
+                  </div>
+                  <!--Other Tab Drop Down End Here-->
+              </div>
+            
+            </div>
+            
+            <div class="slds-grid slds-grid-main" style="margin: 0px;width: 100%;max-width: 100%;background-color: #1b5eac;height:40px;padding-left: 25px;">
+                <div class="tabDiv">
+                    <a class="tabA">Advanced Search</a>
+                    <div id="divPati"></div>
+                    <div style="height: 15px;width: 15px;background: #f8f8f8;position: absolute;-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);transform: rotate(45deg);margin-left: 44px;margin-top: 5px;"></div>
+                </div>
+                <div class="tabDiv" style="margin-left: 5px;">
+                    <a class="tabA" href="/apex/DSCORGPKG__BulkMatch">ListMatch</a>
+                </div>
+            </div>
+        </div>
+        <!--Page Header End Here-->              
+        <apex:inputText value="{!BMCcount}" styleClass="BMCCount" style="display:none;"/>
+        
+        <!--Main Panel Start Here-->
+        <div class="slds-grid slds-grid-main" style="margin: 0px;">                        
+            <!--Left Panel Start-->
+            <div class="slds-col slds-size--2-of-12" style="background:#f8f8f8;height:900px;width:35px;max-width:35px;display:none;" id="leftPanelCollapse" >
+                <div class="miniBarItemDiv WalkMe_ExpandCriteria" style="margin-top: 15px;border: none;" onclick="hideMiniLeftPanel();">
+                    <i class="fa fa-arrow-right" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;margin-left: 5px;margin-top: 4px;"></i>
+                </div>
+                
+                <div class="miniBarItemDiv" style="margin-top: 30px;">
+                    <i class="fa fa-search" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 5px;margin-top: 4px;"></i>
+                </div>
+                
+                <div class="miniBarItemDiv" style="margin-top: 30px;">
+                    <div class="notificationDot" id="locationNotification"></div>
+                    <i class="fa fa-map-marker" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 8px;margin-top: 5px;"></i>
+                </div>
+                
+                <div class="miniBarItemDiv">
+                    <div class="notificationDot" id="CompaniesNotification"></div>
+                    <i class="fa fa-building" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 6px;margin-top: 5px;"></i>
+                </div>
+                
+                <div class="miniBarItemDiv">
+                    <div class="notificationDot" id="EmployeesNotification"></div>
+                    <i class="fa fa-users" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 4px;margin-top: 5px;"></i>
+                </div>
+                <div class="miniBarItemDiv">
+                    <div class="notificationDot" id="TriggersNotification"></div>
+                    <i class="fa fa-laptop" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 4px;margin-top: 5px;"></i>
+                </div>
+                <div class="miniBarItemDiv">
+                    <div class="notificationDot" id="TechnologyNotification"></div>
+                    <i class="fa fa-laptop" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 4px;margin-top: 5px;"></i>
+                </div>
+                
+                
+                <div class="miniBarItemDiv">
+                    <div class="notificationDot" id="KeywordNotification"></div>
+                    <i class="fa fa-key" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #666666;margin-left: 6px;margin-top: 5px;"></i>
+                </div>
+               
+                <div class="miniBarItemDiv" style="margin-top: 60px;">
+                    <i class="fa fa-floppy-o" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #1b5eac;margin-left: 6px;margin-top: 5px;"></i>
+                </div>
+                
+                <div class="miniBarItemDiv">
+                    <i class="fa fa-clock-o" aria-hidden="true"  style="font: normal normal normal 14px/1 FontAwesome !important;color: #1b5eac;margin-left: 6px;margin-top: 5px;"></i>
+                </div>                
+            </div>
+            
+            <div class="slds-col slds-size--2-of-12" style="background:#f8f8f8;height:900px;width:265px !important;max-width: 265px;" id="leftPanelExpanded" >
+                <div style="margin-top: 20px;">    
+                    <div style="float: left;width: 80%;padding-left: 16px;">
+                        <font class="Search-DiscoverOrg">Search DiscoverOrg</font> 
+                    </div>
+                    <div style="float: left;width: 20%;text-align:right;padding-right: 16px;">
+                        <i class="fa fa-arrow-left" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;cursor:pointer;" onclick="showMiniLeftPanel();"></i>
+                    </div>
+                </div>
+                
+                <!--Location Start Here-->
+                <div style="margin-top: 60px;padding-left: 10%;">    
+                    <i onclick="showHideSubtabs('Location');" id="LocationFA" class="fa fa-caret-right" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;vertical-align: top;"></i>
+                    <font id="Location" onclick="showHideSubtabs('Location');">Location</font> <span class="countOval" id="LocationCount">0</span>
+                    <table id="LocationTable" class="filterTable">
+                        <tr>
+                            <td class="subTab" id="LocationGeographySubTag" onclick="openPopupPanel( 'LocationGeographyPopup', 'LocationGeographySubTag' );">Geography <font style="display:none;">Continent Country State Metro Area Area Codes</font> <span class="countOvalSubTab LocationGeographyCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'LocationGeographyPopup', 'LocationGeographySubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('LocationGeographyPopup', 'LocationGeographySubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="LocationPostalCodeSubTag" onclick="openPopupPanel( 'LocationPostalCodePopup', 'LocationPostalCodeSubTag' );">Postal Code <font style="display:none;">Search by Specific Codes Search by Radius Miles From Postal Code</font><span class="countOvalSubTab LocationPostalCodeCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'LocationPostalCodePopup', 'LocationPostalCodeSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('LocationPostalCodePopup', 'LocationPostalCodeSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--Location End Start Here-->
+                
+                
+                <!--Companies Panel Start Here-->
+                <div style="margin-top: 20px;padding-left: 10%;" id="CompaniesPanel">    
+                    <i onclick="showHideSubtabs('Companies');" class="fa fa-caret-right" id="CompaniesFA" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;vertical-align: top;"></i>
+                    <font id="Companies" onclick="showHideSubtabs('Companies');">Companies</font> <span class="countOval" id="companiesCount">0</span>
+                    <table id="CompaniesTable" class="filterTable">
+                        <tr>
+                            <td class="subTab" id="companyNameSubTag" onclick="openPopupPanel( 'companyNamePopup', 'companyNameSubTag' );">Name <span class="countOvalSubTab ComapnyNameCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'companyNamePopup', 'companyNameSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('companyNamePopup', 'companyNameSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="companyOwnershipSubTag" onclick="openPopupPanel( 'companyOwnershipPopup', 'companyOwnershipSubTag' );">Ownership <span class="countOvalSubTab ComapnyOwnershipCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'companyOwnershipPopup', 'companyOwnershipSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('companyOwnershipPopup', 'companyOwnershipSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="companyIndustrySubTag" onclick="openPopupPanel( 'companyIndustryPopup', 'companyIndustrySubTag' );">Industry <font style="display:none;">Industry Categories Industry Codes</font> <span class="countOvalSubTab ComapnyIndustryCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'companyIndustryPopup', 'companyIndustrySubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('companyIndustryPopup', 'companyIndustrySubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="companySizeSubTag" onclick="openPopupPanel( 'companySizePopup', 'companySizeSubTag' );">Size <font style="display:none;">Number of employees Revenue (Millions) 3-Year Growth (%) - Employees 3-Year Growth (%) - Sales Volume Fortune/Global Rank</font> <span class="countOvalSubTab ComapnySizeCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'companySizePopup', 'companySizeSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('companySizePopup', 'companySizeSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="companyDepartmentSizeSubTag" onclick="openPopupPanel( 'companyDepartmentSizePopup', 'companyDepartmentSizeSubTag' );">Department Size  <font style="display:none;">C-Suite Customer Service Finance Human Resources Information Technology Legal Marketing Sales TEDD</font><span class="countOvalSubTab ComapnyDepartmentSizeCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'companyDepartmentSizePopup', 'companyDepartmentSizeSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('companyDepartmentSizePopup', 'companyDepartmentSizeSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="companyAdditionalDetailsSubTag" onclick="openPopupPanel( 'companyAdditionalDetailsPopup', 'companyAdditionalDetailsSubTag' );">Additional Details <font style="display:none;">Business Model Number of Location Number of Hospital Beds</font> <span class="countOvalSubTab ComapnyAdditionalDetailsCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'companyAdditionalDetailsPopup', 'companyAdditionalDetailsSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('companyAdditionalDetailsPopup', 'companyAdditionalDetailsSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div> 
+                <!--Companies End Start Here-->
+                
+                <!--Employees Panel Start Here-->
+                <div style="margin-top: 20px;padding-left: 10%;">    
+                    <i onclick="showHideSubtabs('Employees');" id="EmployeesFA" class="fa fa-caret-right" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;vertical-align: top;"></i>
+                    <font id="Employees" onclick="showHideSubtabs('Employees');">Employees</font> <span class="countOval" id="EmployeesCount">0</span>
+                    <table id="EmployeesTable" class="filterTable">
+                        <tr>
+                            <td class="subTab" id="EmployeesContactDetailsSubTag" onclick="openPopupPanel( 'EmployeesContactDetailsPopup', 'EmployeesContactDetailsSubTag' );">Contact Details <span class="countOvalSubTab EmployeesContactDetailsCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'EmployeesContactDetailsPopup', 'EmployeesContactDetailsSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('EmployeesContactDetailsPopup', 'EmployeesContactDetailsSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="EmployeesDepartmentSubTag" onclick="openPopupPanel( 'EmployeesDepartmentPopup', 'EmployeesDepartmentSubTag' );">Departments <span class="countOvalSubTab EmployeesDepartmentCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'EmployeesDepartmentPopup', 'EmployeesDepartmentSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('EmployeesDepartmentPopup', 'EmployeesDepartmentSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="EmployeesJobFunctionSubTag" onclick="openPopupPanel( 'EmployeesJobFunctionPopup', 'EmployeesJobFunctionSubTag' );">Job Function <span class="countOvalSubTab EmployeesJobFunctionCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'EmployeesJobFunctionPopup', 'EmployeesJobFunctionSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('EmployeesJobFunctionPopup', 'EmployeesJobFunctionSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="EmployeesSeniorityLevelSubTag" onclick="openPopupPanel( 'EmployeesSeniorityLevelPopup', 'EmployeesSeniorityLevelSubTag' );">Seniority Level <span class="countOvalSubTab EmployeesSeniorityLevelCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'EmployeesSeniorityLevelPopup', 'EmployeesSeniorityLevelSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('EmployeesSeniorityLevelPopup', 'EmployeesSeniorityLevelSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="EmployeesAdditionalDetailSubTag" onclick="openPopupPanel( 'EmployeesAdditionalDetailPopup', 'EmployeesAdditionalDetailSubTag' );">Additional Details <span class="countOvalSubTab EmployeesAdditionalDetailCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="setZeroOnInput();openPopupPanel( 'EmployeesAdditionalDetailPopup', 'EmployeesAdditionalDetailSubTag' );" class="fa fa-angle-right angleRight" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('EmployeesAdditionalDetailPopup', 'EmployeesAdditionalDetailSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--Employees End Start Here-->
+                
+                <!--Triggers Panel Start Here-->
+                <apex:outputPanel id="triggerSidebarPanel">
+                <div style="margin-top: 20px;padding-left: 10%;">    
+                    <i onclick="showHideSubtabs('Triggers');" id="TriggersFA" class="fa fa-caret-right" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;vertical-align: top;"></i>
+                    <font id="Triggers" onclick="showHideSubtabs('Triggers');">Scoops</font> <span class="countOval" id="TriggersCount">0</span>
+                    <table id="TriggersTable" class="filterTable">
+                        <tr>
+                            <td class="subTab" id="TriggersTypeSubTag" onclick="openPopupPanel( 'TriggersTypePopup', 'TriggersTypeSubTag' );">Type <span class="countOvalSubTab TriggersTypeCount ScoopsClassForFilter">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'TriggersTypePopup', 'TriggersTypeSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('TriggersTypePopup', 'TriggersTypeSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td class="subTab" id="TriggersDepartmentSubTag" onclick="openPopupPanel( 'TriggersDepartmentPopup', 'TriggersDepartmentSubTag' );">Departments <span class="countOvalSubTab TriggersDepartmentCount ScoopsClassForFilter">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'TriggersDepartmentPopup', 'TriggersDepartmentSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('TriggersDepartmentPopup', 'TriggersDepartmentSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="TriggersDateRangeSubTag" onclick="openPopupPanel( 'TriggersDateRangePopup', 'TriggersDateRangeSubTag' );">Date Range<span class="countOvalSubTab TriggersDateRangeCount ScoopsClassForFilter">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'TriggersDateRangePopup', 'TriggersDateRangeSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('TriggersDateRangePopup', 'TriggersDateRangeSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="subTab" id="TriggersCategoriesSubTag" onclick="openPopupPanel( 'TriggersCategoriesPopup', 'TriggersCategoriesSubTag' );">Topics <span class="countOvalSubTab TriggersCategoriesCount ScoopsClassForFilter">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'TriggersCategoriesPopup', 'TriggersCategoriesSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('TriggersCategoriesPopup', 'TriggersCategoriesSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                        <tr id="TriggersLegacyTopicsTr" style="display: none;">
+                            <td class="subTab" id="TriggersLegacyTopicsSubTag" onclick="openPopupPanel( 'TriggersLegacyTopicsPopup', 'TriggersLegacyTopicsSubTag' );">Legacy Topics <span class="countOvalSubTab TriggersLegacyTopicsCount ScoopsClassForFilter">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'TriggersLegacyTopicsPopup', 'TriggersLegacyTopicsSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('TriggersLegacyTopicsPopup', 'TriggersLegacyTopicsSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                </apex:outputPanel>
+                <!--Trigger End Start Here-->
+                
+                <!--Technology Products Panel Start Here-->
+                <div style="margin-top: 20px;padding-left: 10%;">    
+                    <table id="TechnologyProductsTable" class="filterTable" style="margin-left: 3px;width: 85%;">
+                        <tr>
+                            <td class="subTab" id="TechnologySubTag" onclick="openPopupPanel( 'TechnologyPopup', 'TechnologySubTag' );createDynamicIdsOnCheckBoxesforTech();">Technologies<span class="countOvalSubTab TechnologyCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'TechnologyPopup', 'TechnologySubTag' );createDynamicIdsOnCheckBoxesforTech();" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('TechnologyPopup', 'TechnologySubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--Technology Products End Start Here-->
+  
+               <!--Keyword Panel Start Here-->
+                <div style="margin-top: 20px;padding-left: 10%;">    
+                    <table id="KeywordTable" class="filterTable" style="margin-left: 3px;width: 85%;">
+                        <tr>
+                            <td class="subTab" id="KeywordSubTag" onclick="openPopupPanel( 'KeywordPopup', 'KeywordSubTag' );">Keyword <span class="countOvalSubTab KeywordCount">0</span></td>
+                            <td class="angleRightTd">
+                                <i onclick="openPopupPanel( 'KeywordPopup', 'KeywordSubTag' );" class="fa fa-angle-right" style="color: #666666;vertical-align: top;"></i>
+                                <i onclick="closePopupPanel('KeywordPopup', 'KeywordSubTag');" class="fa fa-times" style="color: white;vertical-align: top;display:none;"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+               <!--Keyword End Start Here-->
+
+                
+                <hr style="margin-left: 10%;margin-right: 10%;"/>
+                <font class="Search-History">Search History</font>
+                
+                <!--My Saved Searches Start here-->
+                <apex:actionFunction name="fetchSearch" action="{!fetchSavedSearch}" reRender="frm" oncomplete="setInputNumberRecordAdded();jqyeryInitialization();resetNumbering();hitForCount();">
+                    <apex:param assignTo="{!IdToSearch}" name="a" value="a"/>
+                </apex:actionFunction>
+                                
+                <apex:actionFunction name="fetchAllSavedSearchs" action="{!fillSavedSearchList}" reRender="savedSearchList,savedSearchList1" oncomplete="$('.savedSearchLoading').hide();"/>
+                
+                <div style="margin-left: 16px;margin-top: 15px;cursor: pointer;" onclick="showHideMySavedSearches();" id="savedSrCls">
+                    <div class="searchHistoryDiv1" id="MySavedSearchesBtn" >
+                        <i class="fa fa-floppy-o" style="color: #1b5eac;vertical-align: top;font-size: 14px !important;padding-top: 9px;padding-left: 11px;"></i>
+                    </div>
+                    <div class="searchHistoryDiv2">
+                        My Saved Searches
+                    </div>
+                    <div class="searchHistoryDiv3">
+                        <i class="fa fa-caret-down" style="color: #1b5eac;vertical-align: top;"></i>
+                    </div>
+                </div>
+                <apex:outputPanel layout="block" styleclass="searchHistoryCatDropDown" id="SavedSearchesCategory" style="overflow: auto;">
+                    <div class="savedSearchCategory" id="savedSearchsSFNATab" >
+                        Salesforce App
+                        <i class="fa fa-caret-right" style="color: #666666;vertical-align: top;position: absolute;right: 16px;font: normal normal normal 14px/1 FontAwesome !important;top: 12px;"></i>
+                    </div>
+
+                    <div class="savedSearchCategory" id="savedSearchsDOTab" >
+                        DiscoverOrg Platform
+                        <i class="fa fa-caret-right" style="color: #666666;vertical-align: top;position: absolute;right: 16px;font: normal normal normal 14px/1 FontAwesome !important;top: 54px;"></i>
+                    </div>
+                </apex:outputPanel>
+                
+                <div class="savedSearchsSFNA">
+                    <apex:image styleClass="savedSearchLoading" value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="height: 30px;width: 30px;margin-left: 45%;display:none;margin-top:40%;" />
+                    <apex:outputPanel layout="block" id="savedSearchList">
+                        <table>
+                            <apex:repeat value="{!lstSavedSearches}" var="f" >
+                                <tr  id="{!JSENCODE(f.value)}" style="height: 32px;" class="saveSearchTr"  onclick="techset = new Set(); techMap = new Map(); fetchSearch('{!JSENCODE(f.value)}'); showStatusDiv(); return false;">
+                                    <td style="padding: 3px 0px 0px 15px;"><a style="text-decoration: none;font-size: 14px;color: #535353;cursor: pointer;">{!f.label}</a></td>
+                                </tr>                                 
+                            </apex:repeat>
+                        </table>
+                    </apex:outputPanel>
+                </div>
+                <div class="savedSearchsDO">
+                    <apex:image styleClass="savedSearchLoading" value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="height: 30px;width: 30px;margin-left: 45%;display:none;margin-top:40%;" />
+                    <apex:outputPanel layout="block" id="savedSearchList1">
+                        <table>
+                            <apex:repeat value="{!lstSavedSearchesDO}" var="f" >
+                                <tr  id="{!JSENCODE(f.value)}" style="height: 32px;" class="saveSearchTr" onclick="techset = new Set(); techMap = new Map();fetchSearch('{!JSENCODE(f.value)}'); showStatusDiv(); return false;" >
+                                    <td style="padding: 3px 0px 0px 15px;"><a style="text-decoration: none;font-size: 14px;color: #535353;cursor: pointer;">{!f.label}</a></td>
+                                </tr>                                 
+                            </apex:repeat>
+                        </table>
+                    </apex:outputPanel>
+                </div>
+                
+                
+                <!--My Saved Searches End here-->
+                <apex:outputPanel rendered="{!isSaveRecenttechnology}">
+                <script>
+                var selChkTds = document.getElementsByClassName('makeIdsForCheckBoxes');
+                   
+                   for (var i = 0; i < selChkTds.length; i++) {
+                     var newId = $(selChkTds[i]).attr('for');                
+                        var newName = $(selChkTds[i]).children("input").attr('title');//SFNA-2418
+                                           
+                     $(selChkTds[i]).children("input").attr("id", newId);        
+                     $('#'+newId).prop('checked', true);
+                        if(!techset.has($(this).attr("id"))){
+                          techset.add(newId);   
+                          techMap.set(newId,newName); //SFNA-2418
+                        } 
+                    }
+                    
+                </script>
+                </apex:outputPanel>
+                <!--Recent Searches Start here-->
+                <apex:actionFunction name="fetchRecentSearchFun" action="{!fetchRecentSearch}" reRender="frm" oncomplete="setInputNumberRecordAdded(); jqyeryInitialization(); resetNumbering(); hitForCount();">
+                    <apex:param assignTo="{!IdToSearch}" value="its" name="its" />
+                </apex:actionFunction>
+                
+                <apex:outputPanel layout="block" id="recentSechPanel">
+                    <div style="margin-left: 16px;margin-top: 15px;float: left;cursor: pointer;"  onclick="showHideRecentSearches();" id="recentSrCls">
+                        <div class="searchHistoryDiv1" id="RecentSearchesBtn">
+                            <i class="fa fa-clock-o" style="color: #1b5eac;vertical-align: top;font-size: 14px !important;padding-top: 9px;padding-left: 11px;"></i>
+                        </div>
+                        <div class="searchHistoryDiv2">
+                            Recent Searches
+                        </div>
+                        <div class="searchHistoryDiv3">
+                            <i class="fa fa-caret-down" style="color: #1b5eac;vertical-align: top;"></i>
+                        </div>
+                    </div>
+                    <div class="searchHistoryDropDown" id="RecentSearchesPopup" style="overflow: auto;">                    
+                        <table>                        
+                            <apex:repeat value="{!dSearchResults}" var="f">
+                                <tr  id="{!JSENCODE(f.id)}" >
+                                    <td style="padding: 3px 0px 0px 15px;"><a onclick="techset = new Set(); techMap = new Map(); fetchRecentSearchFun('{!JSENCODE(f.id)}'); showStatusDiv();techset = new Set(); return false;" style="font-size: 14px;color: #535353;cursor: pointer;">{!f.recSearchName__c}</a></td>
+                                </tr>                                 
+                            </apex:repeat>
+                        </table>                    
+                    </div>
+                </apex:outputPanel>
+                <!--Recent Searches End here-->
+                
+            </div>
+            <!--Left End Start-->
+            
+            <!--Right Panel Start-->
+            <div class="slds-col slds-size--10-of-12" style="width:80%;">
+                <apex:outputPanel id="PgeMsg" layout="block">
+                    <apex:pageMessages ></apex:pageMessages>
+                </apex:outputPanel>
+                
+                <apex:outputPanel layout="block" id="countOutPanel">
+                    <script>  if(typeof(dateRangeInits) == 'function') dateRangeInits(); </script>
+                    <apex:outputPanel layout="none" rendered="{!searchCriteriaScoped!=null}">
+                        <apex:outputPanel layout="none" rendered="{! !isBlank(searchCriteriaScoped ) }">
+                            <script>                                      
+                                searchCriteriaScoped = {!searchCriteriaScoped};
+                                searchCriteriaNoScope = {!searchCriteriaNoScope};
+                            </script>                        
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                
+                <apex:outputPanel layout="block" id="ResearchRequestPanel">
+                    <script>
+                        reportSubmited = '{!JSENCODE(reportSubmited)}';
+                        reportNotSubmited = '{!JSENCODE(reportNotSubmited)}';
+                        var x = 0;
+                    </script>
+                </apex:outputPanel>
+                    
+                <apex:outputPanel layout="block" id="ifrm">                                        
+                    <iframe  src="/apex/RTTSearch?searchid={!searchid}&selectedSearchOption={!selectedSearchOption}&{!dealPredictOpt}" id="searchResIfrm" style="width: 100%;border: 0px;max-height: 900px;" scrolling="no" onload="adjustIframe(); return false;"/>
+                </apex:outputPanel>
+            </div>
+            <!--Right End Start-->
+        </div>
+        <!--Main Panel End Here-->
+        
+        
+        <!--Popups Start here-->
+
+        <!--Company-Name Popup Start Here-->
+        <div id="companyNamePopup" class="panelPopups">
+            <apex:actionfunction name="basicsearch" action="{!basicsearch}" reRender="companylst,companylstBtn" oncomplete="hideStatusForAll('companyDivProcess');jqyeryInitialization();" />
+            <apex:actionFunction name="extractAllCompanyNamesFor" action="{!extractAllCompanyNamesForChar}" reRender="PgeMsg,companylst" oncomplete="hideStatusForAll('companyDivProcess');jqyeryInitialization();">
+                <apex:param assignTo="{!alphaCopy}" value="" name="ti1" />
+                <apex:param assignTo="{!pageNoCompany}" value="" name="ti2" />
+            </apex:actionFunction>
+            <apex:actionFunction name="firstComp" action="{!firstCompany}" reRender="PgeMsg,,companylst,compPag" oncomplete="hideStatusForAll('companyDivProcess');jqyeryInitialization();" />
+            <apex:actionFunction name="previousComp" action="{!previousCompany}" reRender="PgeMsg,companylst,compPag" oncomplete="hideStatusForAll('companyDivProcess');jqyeryInitialization();" />
+            <apex:actionFunction name="nextComp" action="{!nextCompany}" reRender="PgeMsg,companylst,compPag" oncomplete="hideStatusForAll('companyDivProcess');jqyeryInitialization();" />
+            <apex:actionFunction name="lastComp" action="{!LastCompany}" reRender="PgeMsg,companylst,compPag" oncomplete="hideStatusForAll('companyDivProcess');jqyeryInitialization();" />
+
+            
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('companyNamePopup', 'companyNameSubTag');" class="fa fa-times" aria-hidden="true"  style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Company Name</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval ComapnyNameCount">0</span></div>
+                <div id="companyDivProcess" style="position: absolute;right: 22px;top: 58px;display:none;">
+                    <img id="img_processing" style="margin-bottom: 10px;height: 32px;" class="waitingImage" src="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" title="Please Wait..." />
+                </div>
+            </div>
+            
+            <div style="width:100%;">
+                <i class="fa fa-search leftPanelSearchIcon" style="font: normal normal normal 14px/1 FontAwesome !important;left: 21px;"></i>
+                <apex:inputText value="{!searchKeyword}" styleclass="PanelSearchBox" id="searchKeyword" html-placeholder="e.g. Wells Fargo" style="width: 284px;margin-left: 12px;"/>
+                <apex:commandButton id="goSearch" value="Go" style="display:none;" onclick="checkCompanyFilled(); return false;" />
+            </div>
+            
+            <div style="width:100%;">
+                <apex:outputPanel id="companylstBtn">
+                    <apex:commandButton disabled="{!CompaniesList.size == 0}" value="Select All" styleClass="blueBtn companyName2Btn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#pg\\:frm\\:companylst').find('input').prop('checked', true); companyClicked(); return false;"/>
+                    <apex:commandButton disabled="{!CompaniesList.size == 0}" value="Clear" styleClass="blueBtn greyBtn companyName2Btn" style="margin-left: 13px;margin-top: 10px;width: 135px;" onclick="$('#pg\\:frm\\:companylst').find('input').prop('checked', false); companyClicked();  return false;"/>
+                </apex:outputPanel>                
+            </div>
+            
+            <div style="height: 300px;padding: 12px;">
+                
+                <apex:outputPanel layout="block" id="companylst">
+                    <div class="containerinner" style="width:100%;height:280px;overflow:auto;margin-top:5px;overflow-x: hidden;padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes id="company" value="{!selectedCompanies}" layout="pageDirection" style="width:300px;margin-top:0px" styleClass="selectOptionCheck convertToLSD">
+                            <apex:selectOptions value="{!CompaniesList}" />
+                        </apex:selectCheckboxes>
+
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="slds-col slds-size--6-of-12" id="paginationDisable" style="background: #f8f8f8; width:100%; height:22px; margin-top:0px; ">
+                <center>
+                    <apex:outputPanel id="compPag">
+                        <table style="width:200px;vertical-align:middle; display:inline; font-size: 12px; ">
+                            <tr>
+                                <td>
+                                    <apex:commandLink value="First" style="margin-right:10px;" rendered="{!IF(pageCountCompany==0 || pageCountCompany==1,false,true)}" onclick="showStatusForAll('companyDivProcess');firstComp();return false;"></apex:commandLink>
+                                </td>
+                                <td>
+                                    <apex:commandLink value="<<" style="margin-right:10px;" rendered="{!IF(pageCountCompany==0 || pageCountCompany==1,false,true)}" onclick="showStatusForAll('companyDivProcess');previousComp();return false;"></apex:commandLink>
+                                </td>
+                                <td>
+                                    <apex:outputLabel value="{!IF(pageNoCompany==0,1,pageNoCompany)} /" rendered="{!IF(pageCountCompany==0,false,true)}" />
+                                    <apex:outputLabel style="margin-right:10px;" value="{!IF(pageCountCompany==0,1,pageCountCompany)}" rendered="{!IF(pageCountCompany==0,false,true)}" />
+                                </td>
+                                <td>
+                                    <apex:commandLink value=">>" style="margin-right:10px;" rendered="{!IF(pageCountCompany==0 || pageCountCompany==1,false,true)}" onclick="showStatusForAll('companyDivProcess'); nextComp();return false;"></apex:commandLink>
+                                </td>
+                                <td>
+                                    <apex:commandLink value="Last" rendered="{!IF(pageCountCompany==0 || pageCountCompany==1,false,true)}"  onclick="showStatusForAll('companyDivProcess');lastComp();return false;"></apex:commandLink>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+                </center>
+            </div>
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('companyNamePopup', 'companyNameSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Company-Name Popup End Here-->
+        
+        <!--Company-Ownership Popup Start Here-->
+        <div id="companyOwnershipPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('companyOwnershipPopup', 'companyOwnershipSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Ownership</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval ComapnyOwnershipCount">0</span></div>
+                
+            </div>
+         
+            <div style="width:100%;">
+                <apex:commandButton value="Select All" styleClass="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#OwnershipDiv').find('input').prop('checked', true); OwnershipClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn" style="margin-left: 14px;margin-top: 10px;width: 135px;" onclick="$('#OwnershipDiv').find('input').prop('checked', false); OwnershipClicked(); return false;"/>
+            </div>
+            
+            <div style="height: 95px;padding: 12px;">
+                <apex:outputPanel layout="block" id="Ownershiplst">                    
+                    <div class="slds-col containerinner" id="OwnershipDiv"  style="width:100%;height:75px;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <table style="width:100%;margin-top: 10px;">
+                            <tr>
+                                <td>
+                                    <apex:outputLabel styleClass="slds-checkbox" for="privateownership">
+                                        <apex:inputCheckbox value="{!privateownership}" id="privateownership" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label">Private</span>
+                                    </apex:outputLabel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <apex:outputLabel styleClass="slds-checkbox" for="publicownership">
+                                        <apex:inputCheckbox value="{!publicownership}" id="publicownership" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label">Public</span>
+                                    </apex:outputLabel>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td> 
+                                    <apex:outputLabel styleClass="slds-checkbox" for="governmentownership">
+                                        <apex:inputCheckbox value="{!governmentownership}" id="governmentownership" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-form-element__label">Government</span>
+                                    </apex:outputLabel>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('companyOwnershipPopup', 'companyOwnershipSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px"/>
+            </div>
+        </div>
+        <!--Company-Ownership Popup End Here-->
+        
+        <!--Company-Industry Popup Start Here-->
+        <div id="companyIndustryPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('companyIndustryPopup', 'companyIndustrySubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Industry</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval ComapnyIndustryCount">0</span></div>
+            </div>
+            
+            <div style="margin-top: 10px;color: #666666;margin-left: 12px;">Search in:</div>
+            
+            <apex:selectRadio value="{!selectedIndustryOption}" styleClass="convertToLSD" style="margin-left: 10px;" id="IndustryType">
+                <apex:selectOptions value="{!IndustryOptions}"></apex:selectOptions>
+            </apex:selectRadio>
+            
+            <div class="industryOptDiv" onclick="openCloseIndCate();">
+                Industry Categories
+                <i class="fa fa-angle-left indCatgFA" style="color: #666666;vertical-align: middle;float: right;"></i>
+            </div>
+            
+            
+            <div style="width:100%;" class="indCatgEles">
+                <i class="fa fa-search leftPanelSearchIcon" style="font: normal normal normal 14px/1 FontAwesome !important;left: 21px;"></i>
+                <input class="PanelSearchBox" id="industrySearchInput" placeholder="e.g. Retail" style="width: 283px;margin-left: 9px;" type="text"/>
+            </div>
+            
+            <div style="width:100%;" class="indCatgEles">
+                <apex:commandButton value="Select All" styleClass="blueBtn companyIndustry2Btn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#pg\\:frm\\:Industrylst').find('input').prop('checked', true); industryClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn companyIndustry2Btn" style="margin-left: 13px;margin-top: 10px;width: 135px;" onclick="$('#pg\\:frm\\:Industrylst').find('input').prop('checked', false); industryClicked();  return false;"/>
+            </div>
+            
+            <div style="height: 300px;padding: 10px;" class="indCatgEles">
+                <apex:outputPanel layout="block" id="Industrylst">                    
+                    <div class="slds-col containerinner" id="IndustryDiv"  style="width:99%;height:283px;overflow:auto;margin-top:5px;padding-left: 2px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes value="{!IndustriesSelected}" id="indSelect" layout="pageDirection" styleClass="convertToLSD">
+                            <apex:selectOptions value="{!IndustriesList}" />
+                        </apex:selectCheckboxes>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <hr class="induDiffHr"/>
+            <div class="industryOptDiv" onclick="openCloseIndCode();">
+                Industry Codes
+                <i class="fa fa-angle-left indCodeFA" style="color: #666666;vertical-align: middle;float: right;"></i>
+            </div>
+            
+            <div style="padding: 10px;padding-left: 12px;padding-top: 0px;" class="indCodeEles">
+                <span style="font-size: 12px;font-weight: bold;color: #7f7f80;">NAICS CODES</span>
+                <apex:inputTextarea styleClass="indCodes" id="NAISCCODES" value="{!NAISCCODES}" style="width: 285px;height: 116px;margin-bottom: 20px;resize: none;"/>
+                
+                <span style="font-size: 12px;font-weight: bold;color: #7f7f80;">SIC CODES</span>
+                <apex:inputTextarea styleClass="indCodes" id="SICCODES" value="{!SICCODES}" style="width: 285px;height: 116px;margin-bottom: 10px;resize: none;"/>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('companyIndustryPopup', 'companyIndustrySubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px"/>
+            </div>
+        </div>
+        <!--Company-Industry Popup End Here-->
+        
+        <!--Company-Size Popup Start Here-->
+        <div id="companySizePopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('companySizePopup', 'companySizeSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Size</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval ComapnySizeCount">0</span></div>
+            </div>
+            
+            <div style="width:100%;margin-left: 12px;margin-right: 13px;">
+                <table style="margin-top: 10px;margin-bottom: 13px;">
+                    <tr>
+                        <td colspan="2"><div style="color: #666666;">Number of employees</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minEmployees}" id="minEmployees" style="width: 135px;" styleClass="slds-input companyInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxEmployees}" id="maxEmployees" style="width: 135px;margin-left: 4%;" styleClass="slds-input companyInputs" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Revenue (Millions)</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minRevenue}" id="minRevenue" style="width: 135px;" styleClass="slds-input companyInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxRevenue}" id="maxRevenue" style="width: 135px;margin-left: 4%;" styleClass="slds-input companyInputs" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">3-Year Growth (%) - Employees</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minEmpGrowth}" id="minEmpGrowth" style="width: 135px;" styleClass="slds-input companyInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxEmpGrowth}" id="maxEmpGrowth" style="width: 135px;margin-left: 4%;" styleClass="slds-input companyInputs" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">3-Year Growth (%) - Sales Volume</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minSales}" id="minSales" style="width: 135px;" styleClass="slds-input companyInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxSales}" id="maxSales" style="width: 135px;margin-left: 4%;" styleClass="slds-input companyInputs" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Fortune/Global Rank</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;" colspan="2">
+                            <apex:selectList value="{!selectedFortune}" size="1" multiselect="false" styleClass="slds-select companyInputsFortune" id="companyInputsFortuneid" style="width: 284px;">
+                                <apex:selectOption itemLabel="----"></apex:selectOption>
+                                <apex:selectOption itemLabel="Fortune 500" itemValue="fortune500"></apex:selectOption>
+                                <apex:selectOption itemLabel="Fortune 1000" itemValue="fortune1000"></apex:selectOption>
+                                <apex:selectOption itemLabel="Global 2000" itemValue="Global2000"></apex:selectOption>
+                                <!-- Commented By Paritosh 17-08-2018
+                                <!--<apex:selectOption itemLabel="Fortune 500 and Global 2000" itemValue="Fortune500 And Global2000"></apex:selectOption>
+                                <apex:selectOption itemLabel="Fortune 1000 and Global 2000" itemValue="Fortune1000 And Global2000"></apex:selectOption>x:selectOption itemLabel="Fortune 1000 and Global 2000" itemValue="Fortune1000 And Global2000"></apex:selectOption>
+                                -->
+                                <apex:selectOption itemLabel="Fortune 500 and Global 2000" itemValue="fortune500Global2000"></apex:selectOption>
+                                <apex:selectOption itemLabel="Fortune 1000 and Global 2000" itemValue="fortune1000Global2000"></apex:selectOption>
+                            </apex:selectList>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('companySizePopup', 'companySizeSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px"/>
+            </div>
+        </div>
+        <!--Company-Size Popup End Here-->
+        
+        <!--Company-Department-Size Popup Start Here-->
+        <div id="companyDepartmentSizePopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('companyDepartmentSizePopup', 'companyDepartmentSizeSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Department Size</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval ComapnyDepartmentSizeCount">0</span></div>
+            </div>
+            
+            <div style="width:100%;margin-left: 12px;margin-right: 12px;" class="dataBodyPanel">
+                <table style="margin-top: 10px;margin-bottom: 13px;">
+                    <tr>
+                        <td colspan="2"><div style="color: #666666;">C-Suite</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minCSuite}" id="minCSuite" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxCSuite}" id="maxCSuite" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Customer Service</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minCustomerService}" style="width: 135px;" id="minCustomerService" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxCustomerService}" id="maxCustomerService" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Finance</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minFinance}" style="width: 135px;" id="minFinance" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxFinance}" id="maxFinance" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Human Resources</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minHumanResources}" id="minHumanResources" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxHumanResources}" id="maxHumanResources" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Information Technology</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minInfoTech}" id="minInfoTech" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxInfoTech}" id="maxInfoTech" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Legal</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                             <apex:inputText value="{!minLegal}" id="minLegal" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxLegal}" id="maxLegal" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Marketing</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minMarketing}" id="minMarketing" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxMarketing}" id="maxMarketing" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Sales</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minDeptSales}" id="minDeptSales" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxDeptSales}" id="maxDeptSales" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">TEDD</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 45%;">
+                            <apex:inputText value="{!minTEDD}" id="minTEDD" style="width: 135px;" styleClass="slds-input companyDeptInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td>
+                            <apex:inputText value="{!maxTEDD}" id="maxTEDD" style="width: 135px;margin-left: 7%;" styleClass="slds-input companyDeptInputs companyDeptInputsTd2" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('companyDepartmentSizePopup', 'companyDepartmentSizeSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Company-Department-Size Popup End Here-->
+        
+        <!--Company-Additional Details Popup Start Here-->
+        <div id="companyAdditionalDetailsPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('companyAdditionalDetailsPopup', 'companyAdditionalDetailsySubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Additional Details</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval ComapnyAdditionalDetailsCount">0</span></div>
+            </div>
+
+            <div style="height: 240px;padding: 16px;padding-top: 8px;padding-left: 12px;">
+                Business Model:
+                <table style="width:100%;margin-top: 10px;" id="BusinessModel">
+                    <tr>
+                        <td>
+                            <apex:outputLabel styleClass="slds-checkbox" for="b2b">
+                                <apex:inputCheckbox id="b2b" value="{!b2b}" />
+                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-form-element__label">B2B</span>
+                            </apex:outputLabel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 
+                            <apex:outputLabel styleClass="slds-checkbox" for="b2c">
+                                <apex:inputCheckbox id="b2c" value="{!b2c}"/>
+                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-form-element__label">B2C</span>
+                            </apex:outputLabel>
+                         </td>
+                    </tr>
+                    <tr>
+                        <td> 
+                            <apex:outputLabel styleClass="slds-checkbox" for="b2g">
+                                <apex:inputCheckbox id="b2g" value="{!b2g}"/>
+                                <span class="slds-checkbox--faux"></span>
+                                <span class="slds-form-element__label">B2G</span>
+                            </apex:outputLabel>
+                        </td>
+                    </tr>
+                </table>
+                
+                <table style="margin-top: 10px;margin-bottom: 13px;">
+                    <tr>
+                        <td colspan="2"><div style="color: #666666;">Number of Locations</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%;">
+                            <apex:inputText id="minNumberofLocation" value="{!minLocations}" style="width: 135px;" styleClass="slds-input AdditionalDetailsInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td style="width: 50%;">
+                            <apex:inputText id="maxNumberofLocation" value="{!maxLocations}" style="margin-left: 7%;width: 135px;" styleClass="slds-input AdditionalDetailsInputs" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div style="margin-top: 10px;color: #666666;">Number of Hospital Beds:</div></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%;">
+                            <apex:inputText id="minHospitalBeds" value="{!minHospitalBeds}" style="width: 135px;" styleClass="slds-input AdditionalDetailsInputs" html-placeholder="From" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>                                                                            
+                        </td>
+                        <td style="width: 50%;">
+                            <apex:inputText id="maxHospitalBeds" value="{!maxHospitalBeds}" style="margin-left: 7%;width: 135px;" styleClass="slds-input AdditionalDetailsInputs" html-placeholder="To" onkeydown="return isNumber(event);" onkeyup="valueBlank(this);"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('companyAdditionalDetailsPopup', 'companyAdditionalDetailsySubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Company-Additional Details Popup End Here-->
+        
+        <!--Employees-Department Popup Start Here-->
+        <div id="EmployeesDepartmentPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('EmployeesDepartmentPopup', 'EmployeesDepartmentSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Department</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval EmployeesDepartmentCount">0</span></div>
+            </div>
+         
+            <div style="width:100%;">
+                <apex:commandButton value="Select All" styleClass="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#DepartmentDiv').find('input').prop('checked', true); DepartmentClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn" style="margin-left: 14px;margin-top: 10px;width: 135px;" onclick="$('#DepartmentDiv').find('input').prop('checked', false); DepartmentClicked(); return false;"/>
+            </div>
+            
+            <div style="height: 245px;padding: 10px;padding-left: 12px;" class="dataBodyPanel">
+                <apex:outputPanel layout="block" id="Departmentlst">                    
+                    <div class="slds-col containerinner" id="DepartmentDiv"  style="padding-top:10px;width:100%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes id="deptSelect" value="{!selectedDepartments}" layout="pageDirection" styleClass="convertToLSD ">
+                            <apex:selectOptions value="{!DepartmentsList}"/>
+                        </apex:selectCheckboxes>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('EmployeesDepartmentPopup', 'EmployeesDepartmentSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Employees-Department Popup End Here-->
+        
+        <!--Employees-Job Function Popup Start Here-->
+        <div id="EmployeesJobFunctionPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('EmployeesJobFunctionPopup', 'EmployeesJobFunctionSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Job Function</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval EmployeesJobFunctionCount">0</span></div>
+            </div>
+             
+            <div style="width:100%;">
+                <i class="fa fa-search leftPanelSearchIcon" style="font: normal normal normal 14px/1 FontAwesome !important;left: 20px;"></i>
+                <input class="PanelSearchBox" id="jobFunctionSearchInput" placeholder="e.g. Officer" style="width: 286px;margin-left: 8px;" type="text"/>
+            </div>
+            
+            <div style="width:100%;">
+                <apex:commandButton value="Select All" styleClass="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#JobFunctionDiv').find('input').prop('checked', true); JobFunctionClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn" style="margin-left: 16px;margin-top: 10px;width: 135px;" onclick="$('#JobFunctionDiv').find('input').prop('checked', false); JobFunctionClicked(); return false;"/>
+            </div>
+            
+            <div style="height: 300px;padding: 10px;padding-left: 0px;">
+                <apex:outputPanel layout="block" id="JobFunctionlst" style="margin-left: 12px;">                    
+                    <div class="slds-col containerinner" id="JobFunctionDiv"  style="height:284px;padding-top:10px;width:100%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes id="jobFunctionSelect" value="{!CategoriesSelected}" layout="pageDirection" styleClass="convertToLSD ">
+                            <apex:selectOptions value="{!CategoriesList}" />
+                        </apex:selectCheckboxes>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel"  onclick="closePopupPanel('EmployeesJobFunctionPopup', 'EmployeesJobFunctionSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Employees-Job Function Popup End Here-->
+        
+        <!--Employees-Seniority Level Popup Start Here-->
+        <div id="EmployeesSeniorityLevelPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('EmployeesSeniorityLevelPopup', 'EmployeesSeniorityLevelSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Seniority Level</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval EmployeesSeniorityLevelCount">0</span></div>
+            </div>
+            
+            <div style="width:100%;">
+                <i class="fa fa-search leftPanelSearchIcon" style="font: normal normal normal 14px/1 FontAwesome !important;left: 20px;"></i>
+                <input class="PanelSearchBox" id="senlevelSearchInput" placeholder="e.g. VP" style="width: 286px;margin-left: 8px;" type="text"/>
+            </div>
+            
+            <div style="width:100%;">
+                <apex:commandButton value="Select All" styleClass="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#SeniorityLevelDiv').find('input').prop('checked', true); SeniorityLevelClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn" style="margin-left: 15px;margin-top: 10px;width: 135px;" onclick="$('#SeniorityLevelDiv').find('input').prop('checked', false); SeniorityLevelClicked(); return false;"/>
+            </div>
+            
+            <div style="height: 350px;padding: 10px;padding-left: 0px;">
+                <font style="font-size: 12px;color: #666666;margin-left: 12px;">Display Results:</font><br/>
+                <font style="font-size: 14px;font-weight: bold;color: #666666;margin-left: 12px;">Reports Directly to C-level:</font>
+                <label class="switch" style="height: 15px;position: absolute;right: -7px;" for="{!$Component.clvl}">         
+                  <apex:inputCheckbox value="{!ReportsDirectlyToCLvl}" id="clvl" styleClass="clvl"/>
+                </label>
+                
+                <apex:outputPanel layout="block" id="SeniorityLevellst" style="margin-top: 10px;">                    
+                    <div class="slds-col containerinner" id="SeniorityLevelDiv"  style="margin-left: 12px;height:284px;padding-top:10px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes id="senlevelSelect" value="{!MgmtCategoriesSelected}" layout="pageDirection" styleClass="convertToLSD ">
+                            <apex:selectOptions value="{!MgmtCategoriesList}" />
+                        </apex:selectCheckboxes>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('EmployeesSeniorityLevelPopup', 'EmployeesSeniorityLevelSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Employees-Seniority Level Popup End Here-->
+        
+        <!-- Additional Details Popup Start Here By Neha-->
+        <div id="EmployeesAdditionalDetailPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('EmployeesAdditionalDetailPopup', 'EmployeesAdditionalDetailSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Additional Detail</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval EmployeesAdditionalDetailCount">0</span></div>
+            </div>
+            
+            <div style="height: 140px;padding: 10px;padding-left: 0px;">
+                
+                <apex:outputPanel layout="block" id="AdditionalDetaillst" style="margin-top: 10px;">                    
+                    <div class="slds-col containerinner" id="AdditionalDetailDiv"  style="margin-left: 12px;height:284px;padding-top:10px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">                       
+                        <div class="slds-form">                            
+                            <div class="slds-form-element__row">
+                               <div class="slds-form-element">
+                                  <label class="slds-checkbox">
+                                        <apex:inputcheckbox id="recordAdded" styleclass="slds-input _typeCheckbox" value="{!recordAdded}" onclick="unCheckChanged();" />
+                                           <span class="slds-checkbox--faux"></span>
+                                           <span class="slds-form-element__label">Records Added</span>
+                                  </label>
+                               </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                               <div class="slds-form-element">
+                                  <label class="slds-checkbox">
+                                        <apex:inputcheckbox id="recordChanged" styleclass="slds-input _typeCheckbox" value="{!recordChecked}" onclick="unCheckAdded();"/>
+                                           <span class="slds-checkbox--faux"></span>
+                                           <span class="slds-form-element__label">Records Changed</span>
+                                  </label>
+                               </div>
+                            </div>
+                            <div class= "slds-form-element" style="padding-top: 20px;">
+                                <span>within the last</span>
+                                <input type="number" id="myInputNumber" class="myInputNumberClass" min="0" max="99" onKeyPress="if(this.value.length==2) return false;"/>
+                                <apex:inputHidden id="myHiddenNumber" value="{!lastWithinDays}"/>
+                                <span>day(s)</span>
+                                <i class="fa fa-info-circle slds-tooltip-right employeeAdditionalTooltip" data-tooltip="This retrieves records that have a change in a field that generates an alert. It does not include information being verified." style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>                                                              
+                            </div> 
+                        </div>                  
+                    </div>         
+                </apex:outputPanel>
+            </div>
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('EmployeesAdditionalDetailPopup', 'EmployeesAdditionalDetailSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="assignDate();filterUpdate(); return false;" styleClass="blueBtn greenBtn recordAddButton" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>                    
+        <!-- Additional Details Popup End Here -->
+        
+        <!--Employees Contact Details Popup Start Here-->
+        <div id="EmployeesContactDetailsPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('EmployeesContactDetailsPopup', 'EmployeesContactDetailsSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Contact Details</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval EmployeesContactDetailsCount">0</span></div>
+            </div>
+
+            <div style="height: 80px;padding: 10px;padding-left: 12px;">
+                <div id="ContactDetailsDiv">
+                    <font style="color: #666666;">Only Return Contacts With...</font>
+                    <br/>
+                    <apex:outputLabel styleClass="slds-checkbox" for="havingDirectPhone" style="margin-left: 0px;">
+                        <apex:inputCheckbox style="vertical-align:middle" value="{!havingDirectPhone}" id="havingDirectPhone" />
+                        <span class="slds-checkbox--faux"></span>
+                        <span class="slds-form-element__label">Phone Numbers</span>
+                    </apex:outputLabel>
+                    <br/>
+                    <apex:outputLabel styleClass="slds-checkbox" for="havingEmail" style="margin-left: 0px;">
+                        <apex:inputCheckbox style="vertical-align:middle" value="{!havingEmail}" id="havingEmail" />
+                        <span class="slds-checkbox--faux"></span>
+                        <span class="slds-form-element__label">E-mail Addresses</span>
+                    </apex:outputLabel>
+                </div>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('EmployeesContactDetailsPopup', 'EmployeesContactDetailsSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Employees Contact Details Popup End Here-->
+        
+                                                                                                                                                            
+        <!--Technology Popup Start Here-->
+        <div id="TechnologyPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('TechnologyPopup', 'TechnologySubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Technologies</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval TechnologyCount">0</span></div>
+                
+                <div id="TechnologiesdivProcess" style="position: absolute;right: 22px;top: 58px;display:none;">
+                    <img id="img_processing" style="margin-bottom: 10px;height: 32px;" class="waitingImage" src="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" title="Please Wait..." />
+                </div>
+            </div>
+            <style>
+                #techCategoryType table tbody tr td label .slds-form-element__label{
+                    font-size: 12px !important;
+                    color: #666666  !important;
+                    font-weight: normal  !important;
+                }
+            </style>
+            <div style="width:100%;">
+                
+                <apex:actionFunction name="technologyByText" action="{!technologyByText}" reRender="PgeMsg,Technologylst,techPagi" oncomplete="hideStatusForAll('TechnologiesdivProcess');jqyeryInitialization();createDynamicIdsOnCheckBoxesforTech();aftersearchchecktruetechnology();" />
+                <apex:actionFunction name="loadTechnologies" action="{!loadTechnologies}" reRender="PgeMsg,Technologylst,techPagi" oncomplete="hideStatusForAll('TechnologiesdivProcess');jqyeryInitialization();createDynamicIdsOnCheckBoxesforTech();aftersearchchecktruetechnology();" />
+                <apex:actionFunction name="firsttech" action="{!firsttech}" reRender="PgeMsg,Technologylst,techPagi" oncomplete="hideStatusForAll('TechnologiesdivProcess');jqyeryInitialization();createDynamicIdsOnCheckBoxesforTech();aftersearchchecktruetechnology();"/>
+                <apex:actionFunction name="lasttech" action="{!lasttech}" reRender="PgeMsg,Technologylst,techPagi" oncomplete="hideStatusForAll('TechnologiesdivProcess');jqyeryInitialization();createDynamicIdsOnCheckBoxesforTech();aftersearchchecktruetechnology();"/>
+                <apex:actionFunction name="nexttech" action="{!nexttech}" reRender="PgeMsg,Technologylst,techPagi" oncomplete="hideStatusForAll('TechnologiesdivProcess');jqyeryInitialization();createDynamicIdsOnCheckBoxesforTech();aftersearchchecktruetechnology();"/>
+                <apex:actionFunction name="previoustech" action="{!previoustech}" reRender="PgeMsg,Technologylst,techPagi" oncomplete="hideStatusForAll('TechnologiesdivProcess');jqyeryInitialization();createDynamicIdsOnCheckBoxesforTech();aftersearchchecktruetechnology();"/>
+                
+                <div style="margin-left: 12px;" id="techCategoryType">
+                    <font style="color: #666666;">Apply Search to:</font>
+                    <br/>
+                    <apex:selectRadio id="techType" value="{!technologiesApplication}" style="margin-top:0px;" layout="pageDirection" styleClass="selectOptionCheck1 convertToLSD">
+                        <apex:selectOptions value="{!techAppList}" />
+                    </apex:selectRadio>
+                </div>
+                
+                <i class="fa fa-search leftPanelSearchIcon" style="font: normal normal normal 14px/1 FontAwesome !important;left: 20px;"></i>
+                <apex:inputText value="{!technologySearchTxt}" styleClass="PanelSearchBox" id="technoSeTxtID" html-placeholder="e.g. VMware" style="width: 285px;margin-left: 12px;"/>                
+                
+                <apex:selectList style="font-size: 14px;width: 285px;margin-left: 12px;margin-top: 10px;cursor:pointer;" id="techlistdd" size="1" styleClass="selectOptionClass1 slds-select" value="{!selectedTechCategory}" onchange="showStatusForAll('TechnologiesdivProcess'); loadTechnologies();">
+                    <apex:selectOptions value="{!TechCategories}" />
+                </apex:selectList>
+            </div>
+            
+            <div style="width:100%;">
+                <input type="button" value="Select All" Class="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#TechnologyDiv').find('input').prop('checked', true); checkallGetSelectedId();TechnologyClicked();return false;"/>
+                <input type="button" value="Clear" Class="blueBtn greyBtn" style="margin-left: 15px;margin-top: 10px;width: 135px;" onclick="$('#TechnologyDiv').find('input').prop('checked', false);techset = new Set(); TechnologyClicked(); return false;"/>
+            </div>           
+            <div style="height: 300px;padding: 10px;padding-left:0px;">
+                <apex:outputPanel layout="block" id="Technologylst">                    
+                    <div class="slds-col containerinner" id="TechnologyDiv"  style="margin-left:12px;height:284px;padding-top:10px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+
+                        
+                        <table>
+                          <apex:repeat value="{!technologymap}" var="tech" >
+                                <tr>
+                                 <td style="border: 0px;padding: 0px;width: 6px;">
+                                 <label class="slds-checkbox makeIdsForCheckBoxes"  for="{!JSENCODE(tech)}">
+                                    <apex:inputCheckbox value="{!technologymap[tech]}" title="{!technologymap[tech]}" onclick="countSelectedTchChkBox(this,{!JSENCODE(tech)});" styleClass="techChkUnchk"/>
+                                    <apex:outputText value="{!tech}__{!technologymap[tech]}" id="tref_tcat" styleclass="slds-hide"/>
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-form-element__label">{!technologymap[tech]}</span>
+                                </label> 
+                                </td>
+                            </tr>
+                           </apex:repeat> 
+                        </table> 
+                        
+                    </div>
+                </apex:outputPanel>
+            </div>
+           
+            <apex:outputPanel id="techPagi" layout="block">
+                <apex:outputPanel rendered="{!pageCountTechnology!=0}" layout="block" styleClass="slds-grid" id="tech-pagination-panel" html-align="center" style="border-top: 1px solid #D8DDE6;">
+                <div class="slds-col" align="center">
+                    <table style="width: 80%;margin-top: 5px;">
+                        <tr>
+                            <td style="text-align: center;">
+                                <apex:outputLabel styleClass="slds-button slds-button--neutral" value="First" style="cursor:pointer;display: inline;line-height: 0;{!IF(pageNoTechnology==0||pageNoTechnology==1,'pointer-events: none;','')}" rendered="{!IF(pageCountTechnology==0 || pageCountTechnology==1,false,true)}" onclick="showStatusForAll('TechnologiesdivProcess');firsttech();return false;" />
+                            </td>
+                            <td style="text-align: center;">
+                                <apex:outputLabel styleClass="slds-button slds-button--neutral" value="<<" style="padding-left:10px;cursor:pointer;display: inline;line-height: 0;{!IF(pageNoTechnology==0||pageNoTechnology==1,'pointer-events: none;','')}" rendered="{!IF(pageCountTechnology==0 || pageCountTechnology==1,false,true)}" onclick="showStatusForAll('TechnologiesdivProcess');previoustech();return false;" />
+                            </td>
+                            <td style="text-align: center;">
+                                <apex:outputLabel value="{!IF(pageNoTechnology==0,1,pageNoTechnology)} /" rendered="{!IF(pageCountTechnology==0,false,true)}" />
+                                <apex:outputLabel value="{!IF(pageCountTechnology==0,1,pageCountTechnology)}" rendered="{!IF(pageCountTechnology==0,false,true)}" />
+                            </td>
+                            <td style="text-align: center;">
+                                <apex:outputLabel styleClass="slds-button slds-button--neutral" value=">>" style="padding-left:10px;cursor:pointer;display: inline;line-height: 0;{!IF(pageNoTechnology==pageCountTechnology,'pointer-events: none;','')}" rendered="{!IF(pageCountTechnology==0 || pageCountTechnology==1,false,true)}" onclick="showStatusForAll('TechnologiesdivProcess');nexttech();return false;" />
+                            </td>
+                            <td style="text-align: center;">
+                                <apex:outputLabel styleClass="slds-button slds-button--neutral" value="Last" style="cursor:pointer; padding-left:10px;display: inline;line-height: 0;{!IF(pageNoTechnology==pageCountTechnology,'pointer-events: none;','')}" rendered="{!IF(pageCountTechnology==0 || pageCountTechnology==1,false,true)}" onclick="showStatusForAll('TechnologiesdivProcess');lasttech();return false;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                </apex:outputPanel>
+            </apex:outputPanel>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('TechnologyPopup', 'TechnologySubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Technology Popup End Here-->
+        
+        <!--Triggers Type Popup Start Here-->
+        <div id="TriggersTypePopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('TriggersTypePopup', 'TriggersTypeSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Type</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval TriggersTypeCount">0</span></div>
+            </div>
+
+            <div style="height: 300px;padding: 10px;padding-left:0px;">
+                <div id="TriggersTypeDiv">
+                    <font style="color: #666666;padding: 0px 0px 0px 13px;">Apply Search to:</font>
+                    
+                     
+                <div class="slds-col containerinner" id="SeniorityLevelDiv"  style="margin-left: 12px;height:267px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">  
+                   <apex:variable value="{!0}" var="cnt"/>
+                   <apex:repeat value="{!scoopTypeList}" var="scoopType">
+                         
+                        <apex:variable value="{!cnt + 1}" var="cnt"/>
+                        <br/>
+                        <apex:outputLabel styleClass="slds-checkbox" style="margin-left: 0px;">
+                            <input type="Checkbox" style="vertical-align:middle" id="{!ROUND(cnt, 0)}_type" onchange="checkUncheckAllType('{!ROUND(cnt, 0)}');"/>
+                            <span class="slds-checkbox--faux"></span>
+                            <span class="slds-form-element__label">{!scoopType.groupName}</span>
+                        </apex:outputLabel>
+                        <apex:repeat value="{!scoopType.typeList}" var="type">
+                            
+                            <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<apex:outputLabel styleClass="slds-checkbox typeCheckboxPanel"  style="margin-left: 0px;">
+                                <apex:inputCheckbox styleClass="{!ROUND(cnt, 0)}_innertype innertype {!type.value}_typeCheckbox" style="vertical-align:middle" value="{!scoopTypeCheckboxMap[type.value]}" onchange="checkUncheckType('{!ROUND(cnt, 0)}');"/>
+                                <span class="slds-checkbox--faux"  data-count="{!ROUND(cnt, 0)}"></span>
+                                <span class="slds-form-element__label" data-keyval="{!JSENCODE(type.value)}">{!type.label}</span>
+                            </apex:outputLabel>
+                        </apex:repeat>
+                   </apex:repeat>
+                 </div>  
+                </div>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('TriggersTypePopup', 'TriggersTypeSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Triggers Type Popup End Here-->
+        
+        <!--Triggers Department Popup Start Here-->
+        <div id="TriggersDepartmentPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('TriggersDepartmentPopup', 'TriggersDepartmentSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Department</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval TriggersDepartmentCount">0</span></div>
+            </div>
+
+            <div style="width:100%;">
+                <apex:commandButton value="Select All" styleClass="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#TriggersDepartmentDiv').find('input').prop('checked', true); TriggersDepartmentClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn" style="margin-left: 15px;margin-top: 10px;width: 135px;" onclick="$('#TriggersDepartmentDiv').find('input').prop('checked', false); TriggersDepartmentClicked(); return false;"/>
+            </div>
+            
+            <div style="height: 245px;padding: 10px;padding-left:0px;">
+                <apex:outputPanel layout="block" id="TriggersDepartmentlst">                    
+                    <div class="slds-col containerinner" id="TriggersDepartmentDiv"  style="margin-left: 12px;padding-top:10px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes id="TriggersdeptSelect" value="{!selectedTriggersDepartments}" layout="pageDirection" styleClass="convertToLSD ">
+                            <apex:selectOptions value="{!TriggersDepartmentsList}" />
+                        </apex:selectCheckboxes>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('TriggersDepartmentPopup', 'TriggersDepartmentSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Triggers Department Popup End Here-->
+        
+        <!--Triggers Date Range Popup Start Here-->
+        <div id="TriggersDateRangePopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('TriggersDateRangePopup', 'TriggersDateRangeSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Date Range</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval TriggersDateRangeCount">0</span></div>
+            </div>
+
+            <div style="height: 70px;padding: 10px;padding-top: 0px;padding-left: 0px;" >
+                <div id="TriggersDateRangeDiv" style="width: 100%;margin-left: 12px;margin-right: 13px;">
+                    <table style="margin-top: 10px;margin-bottom: 13px;">
+                        <tr>
+                            <td colspan="2"><div style="color: #666666;">Select Date Range:</div></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 45%;">
+                                <apex:inputText id="fromDateApex" value="{!fromDateIntel}" style="display:none;"/>
+                                <div class="slds-form-element"> 
+                                      <div class="slds-form-element__control">
+                                           <div class="slds-input-has-icon slds-input-has-icon--right" id="IconEvent">
+                                                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" >
+                                                    <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+                                                </svg> 
+                                                <input id="fromDateHtml" value="{!fromDateIntel}"  onkeypress = "return pressEnter(event);" class="slds-input triggersDateRangeInputs" type="text" name="date" style="width: 135px;" placeholder="From"/>
+                                           </div>
+                                      </div>
+                                </div>
+                            </td>
+                            <td>
+                                <apex:inputText id="toDateApex" value="{!toDateIntel}" style="display:none;"/>
+                                <div class="slds-form-element"> 
+                                      <div class="slds-form-element__control">
+                                           <div class="slds-input-has-icon slds-input-has-icon--right" id="IconEvent1">
+                                                <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default" style="right: 23px;" >
+                                                    <use xlink:href="{!URLFOR($Resource.SLDS080,'SLDS080/assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+                                                </svg> 
+                                                <input id="toDateHtml" value="{!toDateIntel}" class="slds-input triggersDateRangeInputs" type="text" style="width: 135px;margin-left: 15px;" placeholder="To"/>
+                                           </div>
+                                      </div>
+                                </div>
+                            </td>
+                            
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('TriggersDateRangePopup', 'TriggersDateRangeSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Triggers Date Range Popup End Here-->
+        
+        <!--Triggers Categories Popup Start Here-->
+        <div id="TriggersCategoriesPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('TriggersCategoriesPopup', 'TriggersCategoriesSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Topics</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval TriggersCategoriesCount">0</span></div>
+            </div>
+            
+            <div style="width:100%;"><!-- SFNA-2143 -->
+               <i class="fa fa-search leftPanelSearchIcon" style="font: normal normal normal 14px/1 FontAwesome !important;left: 20px;"></i>
+               <input class="PanelSearchBox" id="topicSearchInput" placeholder="e.g. Audit" style="width: 286px;margin-left: 8px;" type="text"/>
+            </div>
+            
+            <div style="width:100%;">
+                <apex:commandButton value="Select All" styleClass="blueBtn" style="margin-left: 12px;margin-top: 10px;width: 135px;" onclick="$('#TriggersCategoriesDiv').find('input').prop('checked', true); TriggersCategoriesClicked(); return false;"/>
+                <apex:commandButton value="Clear" styleClass="blueBtn greyBtn" style="margin-left: 15px;margin-top: 10px;width: 135px;" onclick="$('#TriggersCategoriesDiv').find('input').prop('checked', false); TriggersCategoriesClicked(); return false;"/>
+            </div>
+            
+            <div style="height: 300px;padding: 10px;padding-left:0px;">
+                <apex:outputPanel layout="block" id="TriggersCategorieslst">                    
+                    <div class="slds-col containerinner" id="TriggersCategoriesDiv"  style="margin-left:12px;height: 284px;padding-top:10px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:selectCheckboxes id="TriggersCategoriesSelect" value="{!selectedIntelCategories}" layout="pageDirection" styleClass="convertToLSD ">
+                            <apex:selectOptions value="{!IntelCategories}" />
+                        </apex:selectCheckboxes>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('TriggersCategoriesPopup', 'TriggersCategoriesSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Triggers Categories Popup End Here-->
+        
+        <!--Legacy Topics Popup Start Here SFNA-2296-->
+        
+        <div id="TriggersLegacyTopicsPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('TriggersLegacyTopicsPopup', 'TriggersLegacyTopicsSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Legacy Topics</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval TriggersLegacyTopicsCount">0</span></div>
+            </div>
+
+            
+            
+            <div style="height: 300px;padding: 10px;padding-left:0px;" id="TriggersLegacyTopicsPanel">
+                
+                <apex:outputPanel id="TriggersLegacyTopicsRerend" >                    
+                    <div class="slds-col containerinner" id="TriggersLegacyTopicsDiv"  style="margin-left:12px;height: 284px;padding-top:10px;width:96%;overflow:auto;margin-top:5px; padding-left: 0px;border-top: 1px solid #EEF0F4;">
+                        <apex:repeat value="{!selectedLegacyTopics}" var="legacyTopic">
+                            <div class="slds-badge" id="{!legacyTopic}" style="background-color: #6ebe49;color: #ffffff; margin-top: 0.5rem; margin-left: 0.5rem; width: fit-content;"> {!selectedLegacyTopicNames[legacyTopic]}</div>
+                        </apex:repeat>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('TriggersLegacyTopicsPopup', 'TriggersLegacyTopicsSubTag'); return false;"  styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Legacy Topics Popup Ends Here SFNA-2296-->
+        
+        <!--Keyword Popup Start Here-->
+        <div id="KeywordPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('KeywordPopup', 'KeywordSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Keyword</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval KeywordCount">0</span></div>
+            </div>
+
+            <div style="height: 185px;padding: 10px;" id="keywordClickedDiv">
+                <font style="color: #666666;">Apply search to:</font>
+                <apex:selectRadio value="{!selectedKeywordType}" styleClass="selectOptionCheck1 convertToLSD keyWordOptions" style="margin-left: 0px;margin-top: 10px;margin-bottom: 4px;">
+                    <apex:selectOption itemValue="PERSONS" itemLabel="Employees" />
+                    <apex:selectOption itemValue="COMPANIES" itemLabel="Companies" />
+                    <apex:selectOption itemValue="INTEL" itemLabel="Scoops" />
+                    <apex:selectOption itemValue="COMPANY_TECHNOLOGIES" itemLabel="Technologies" />
+                </apex:selectRadio>
+                    
+                <apex:inputText value="{!searchContactKeyword}" styleclass="PanelSearchBox keyWordSearchInput" html-placeholder="Enter keyword..." style="padding-left: 10px; width: 285px;margin-left: 2px;" />
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('KeywordPopup', 'KeywordSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Keyword Popup End Here-->
+        
+        <!--Location Postal Code Popup Start Here-->
+        <div id="LocationPostalCodePopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('LocationPostalCodePopup', 'LocationPostalCodeSubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Postal Code</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval LocationPostalCodeCount">0</span></div>
+            </div>
+
+            <div style="height: 195px;padding: 10px;" id="LocationPostalCodeDiv">
+                <div style="color: #666666;">Search by Specific Codes:</div>
+                <apex:inputTextArea value="{!postalCodes}" id="SpecificCodes" styleClass="slds-input LocationPostalCodeInputs" style="resize: none;"/>
+                
+                <div style="color: #666666;margin-top: 10px;">Search by Radius</div>
+                <table>
+                    <tr>
+                        <td>
+                            Miles From
+                            <br/>
+                            <apex:inputText id="milesFrom"  value="{!toZip}" styleClass="slds-input LocationPostalCodeInputs" html-placeholder="Mile radius" style="width: 98%;" />    
+                        </td>
+                        <td>
+                            Postal Code
+                            <br/>
+                            <apex:inputText id="postalCode" value="{!fromZip}" styleClass="slds-input LocationPostalCodeInputs" html-placeholder="Postal Code" style="width: 98%;margin-left:2%;" />    
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('LocationPostalCodePopup', 'LocationPostalCodeSubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Location Postal Code Popup End Here-->        
+        
+        <!--Location Geography Popup Start Here-->
+        <div id="LocationGeographyPopup" class="panelPopups">
+            <div class="panelPopupsHeader">
+                <div style="text-align: right;">
+                    <i onclick="closePopupPanel('LocationGeographyPopup', 'LocationGeographySubTag');" class="fa fa-times" aria-hidden="true"  style="color: #666666;vertical-align: top;cursor:pointer;"></i>
+                </div>
+                <font class="panelHeading">Geography</font><br/>
+                <span class="panelHeading searchResult" style="font-size: 14px;"></span><br/>
+                <div style="margin-top: 10px;"><font style="font-size: 14px;" class="panelHeading" >Filter(s) Selected</font> <span class="countOval LocationGeographyCount">0</span></div>
+                <div id="LocationGeographydivProcess" style="position: absolute;right: 22px;top: 58px;display:none;">
+                    <img id="img_processing" style="margin-bottom: 10px;height: 32px;" class="waitingImage" src="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" title="Please Wait..." />
+                </div>
+            </div>
+            
+            <div style="height: 265px;padding: 10px;" id="LocationGeographyDiv">
+                <apex:actionFunction name="fetchContries" action="{!fetchContries}" reRender="CountryLst,StateLst,MetroAreaLst,AreaCodesLst,PgeMsg" oncomplete="hideStatusForAll('LocationGeographydivProcess'); checkLocationIsPresent();jqyeryInitialization();" />
+                <apex:actionFunction name="fetchSAM" action="{!fetchSAM}" reRender="StateLst,MetroAreaLst,AreaCodesLst,PgeMsg" oncomplete="Jugad(); jqyeryInitialization(); " />                             
+                <apex:actionFunction name="Jugad" action="{!fetchSAM}" reRender="StateLst,MetroAreaLst,AreaCodesLst,PgeMsg" oncomplete="hideStatusForAll('LocationGeographydivProcess');checkLocationIsPresent();jqyeryInitialization(); " />                                
+                
+                <font style="color: #666666;">Apply search to:</font>
+                
+                <div style="height: 20px;border: solid 1px #1b5eac;border-radius: 4px;margin-bottom: 10px;margin-top: 4px;">
+                    <table style="width:100%;">
+                        <tr>
+                            
+                            
+                            <td class="GeoSearchType GeoSearchTypeActive" onclick="changeAddressType('HeadquartersAddress' , this);" style="border-radius: 4px 0px 0px 4px;">Headquarters</td>
+                            <td class="GeoSearchType" onclick="changeAddressType('PhysicalAddress' , this);" style="border-radius: 0px 4px 4px 0px;">Employee</td>
+                        </tr>
+                        <tr style="display:none;">
+                            <td>
+                                <apex:selectList value="{!selectedAddressOption}" multiselect="false" size="1" style="display:none;" id="headq" >
+                                    <apex:selectOptions value="{!AddressOptions}" />
+                                </apex:selectList>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                             
+                <!--Continent starts Here-->
+                <div class="locationGeoDiv locGeoConti" onclick="openGeoPopup(this, 'locationGeoContinent');" style="margin-bottom: 10px;">
+                    Continent
+                    <i class="fa fa-caret-down locationGeoCaret"></i>
+                </div>
+                
+                <div class="locationGeoDropDown locGeoConti" id="locationGeoContinent" style="height: 153px;">
+                    <apex:outputPanel layout="block" id="ContinentLst">
+                        <div style="height: 153px;overflow: auto;" id="ContinentDiv" class="containerinner">
+                            <apex:selectCheckboxes id="continents" onchange="showStatusForAll('LocationGeographydivProcess'); fetchContries();return false;" value="{!selectedContinents}" layout="pageDirection" style="margin-top:5px" styleClass="selectOptionCheck convertToLSD">
+                                <apex:selectOptions value="{!ContinentList}" />
+                            </apex:selectCheckboxes>
+                        </div>
+                    </apex:outputPanel>
+                </div>                
+                <!--Continent ends Here-->
+                
+                <!--Country starts Here-->
+                <div class="locationGeoDiv locGeoCountry" onclick="openGeoPopup(this, 'locationGeoCountry');" style="margin-bottom: 10px;">
+                    Country
+                    <i class="fa fa-caret-down locationGeoCaret"></i>
+                </div>
+                
+                <div class="locationGeoDropDown locGeoCountry" id="locationGeoCountry" style="height: 265px;">
+                    <input class="slds-input" id="CountrySearchInput" style="margin-bottom: 5px;" type="text" />
+                    <i class="fa fa-times" onclick="$('#CountrySearchInput').val('').keyup();" style="display:none;position: absolute;top: 17px;right: 14px;color: #cccccc; cursor: pointer; font-style: normal !important; font-variant: normal !important; font-weight: normal !important; font-stretch: normal !important; font-size: 14px !important; line-height: 1 !important; font-family: FontAwesome !important;"></i>
+                    <apex:outputPanel layout="block" id="CountryLst">
+                        <div style="height: 210px;overflow: auto;" id="CountryDiv" class="containerinner">                            
+                            <apex:selectCheckboxes onchange="showStatusForAll('LocationGeographydivProcess');fetchSAM();return false;" id="contries" value="{!selectedContries}" layout="pageDirection" styleClass="selectOptionCheck convertToLSD">
+                                <apex:selectOptions value="{!ContriesList}" />
+                            </apex:selectCheckboxes>
+                        </div>
+                    </apex:outputPanel>
+                </div>                
+                <!--Country ends Here-->
+                
+                <!--State starts Here-->
+                <div class="locationGeoDiv locGeoState" id="disableIt" onclick="openGeoPopup(this, 'locationGeoState');" style="margin-bottom: 10px;">
+                    State
+                    <i class="fa fa-caret-down locationGeoCaret"></i>
+                </div>
+                
+                <div class="locationGeoDropDown locGeoState" id="locationGeoState" style="height: 265px;">
+                    <input class="slds-input" id="StatesSearchInput" style="margin-bottom: 5px;" type="text" />
+                    <i class="fa fa-times" onclick="$('#StatesSearchInput').val('').keyup();" style="display:none;position: absolute;top: 17px;right: 14px;color: #cccccc; cursor: pointer; font-style: normal !important; font-variant: normal !important; font-weight: normal !important; font-stretch: normal !important; font-size: 14px !important; line-height: 1 !important; font-family: FontAwesome !important;"></i>
+                    <apex:outputPanel layout="block" id="StateLst">
+                        <div style="height: 210px;overflow: auto;" id="StateDiv" class="containerinner">                            
+                            <apex:selectCheckboxes id="states" value="{!selectedStates}" layout="pageDirection" styleClass="selectOptionCheck convertToLSD">
+                                <apex:selectOptions value="{!StatesList}" />
+                            </apex:selectCheckboxes>
+                            
+                        </div>
+                    </apex:outputPanel>
+                </div>                
+                <!--State ends Here-->
+                
+                <!--Metro Area starts Here-->
+                <div class="locationGeoDiv locaGeoMArea" onclick="openGeoPopup(this, 'locationGeoMetroArea');" style="margin-bottom: 10px;">
+                    Metro Area
+                    <i class="fa fa-caret-down locationGeoCaret"></i>
+                </div>
+                
+                <div class="locationGeoDropDown locaGeoMArea" id="locationGeoMetroArea" style="height: 265px;">
+                    <input class="slds-input" id="MetroAreasSearchInput" style="margin-bottom: 5px;" type="text" />
+                    <i class="fa fa-times" onclick="$('#MetroAreasSearchInput').val('').keyup();" style="display:none;position: absolute;top: 17px;right: 14px;color: #cccccc; cursor: pointer; font-style: normal !important; font-variant: normal !important; font-weight: normal !important; font-stretch: normal !important; font-size: 14px !important; line-height: 1 !important; font-family: FontAwesome !important;"></i>
+                    <apex:outputPanel layout="block" id="MetroAreaLst">
+                        <div style="height: 210px;overflow: auto;" id="MetroAreaDiv" class="containerinner">                            
+                            <apex:selectCheckboxes id="metroarea" value="{!selectedMetros}" layout="pageDirection" styleClass="selectOptionCheck convertToLSD">
+                                <apex:selectOptions value="{!MetroAreasList}" />
+                            </apex:selectCheckboxes>
+                        </div>
+                    </apex:outputPanel>
+                </div>                
+                <!--Metro Area ends Here-->
+                
+                <!--Area Codes starts Here-->
+                <div class="locationGeoDiv lcoaGeoACodes" onclick="openGeoPopup(this, 'locationGeoAreaCodes');" style="margin-bottom: 10px;">
+                    Area Codes
+                    <i class="fa fa-caret-down locationGeoCaret"></i>
+                </div>
+                
+                <div class="locationGeoDropDown lcoaGeoACodes" id="locationGeoAreaCodes" style="height: 265px;">
+                    <input class="slds-input" id="areaCodeSearchInput" style="margin-bottom: 5px;" type="text" />
+                    <i class="fa fa-times" onclick="$('#areaCodeSearchInput').val('').keyup();" style="display:none;position: absolute;top: 17px;right: 14px;color: #cccccc; cursor: pointer; font-style: normal !important; font-variant: normal !important; font-weight: normal !important; font-stretch: normal !important; font-size: 14px !important; line-height: 1 !important; font-family: FontAwesome !important;"></i>
+                    <apex:outputPanel layout="block" id="AreaCodesLst">
+                        <div style="height: 210px;overflow: auto;" id="AreaCodesDiv" class="containerinner">                            
+                            <apex:selectCheckboxes id="areacode" value="{!selectedAreacodes}" layout="pageDirection" styleClass="selectOptionCheck convertToLSD">
+                                <apex:selectOptions value="{!AreaCodesList}" />
+                            </apex:selectCheckboxes>
+                        </div>
+                    </apex:outputPanel>
+                </div>                
+                <!--Area Codes ends Here-->
+            </div>
+            
+            <div class="panelPopupsFooter">
+                <apex:commandButton value="Cancel" onclick="closePopupPanel('LocationGeographyPopup', 'LocationGeographySubTag'); return false;" styleClass="blueBtn greyBtn" style="margin-left: 12px;margin-top: 10px;width: 30%;"/>
+                <apex:commandButton value="Update Filters" onclick="filterUpdate(); return false;" styleClass="blueBtn greenBtn" style="margin-left: 2%;margin-top: 10px;width: 186px;"/>
+            </div>
+        </div>
+        <!--Location Geography Popup End Here-->
+        
+        <div style="" id="arrow"></div>
+        <!--Popups end Here-->
+        
+        <!-- Research Request Popup Start Here-->    
+        <div id="help-research-request" class="slds-hide">
+            <div aria-hidden="false" role="dialog"  id="help-research-request-modal" class="slds-modal slds-fade-in-open">
+                <c:ResearchRequest />
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+                    
+        <div id="research-modal" style="display:none;z-index: 10000;">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+        
+        <!--Search Criteria Not Selected Popup Start Here-->
+        <div style="display:none;" id="seaCriNotSelPopup">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                        <h2 class="slds-text-heading--medium">Selection Required</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-form--stacked">
+                            Please select search criteria or enter a valid search string to perform a search.
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close" onclick="hideseaCriNotSelPopup(); return false;" />
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+        <!--Search Criteria Not Selected Popup End Here-->
+        
+        <!-- Research Request Popup End Here-->
+        
+        <div id="slds-tooltip-right" class="slds-tooltip slds-nubbin--left slds-m-left--small address-info-tooltip" role="tooltip" style="display: none;position:absolute;left:484px;right:0px;">
+            <div class="slds-tooltip__content">
+                <div class="slds-tooltip__body"></div>
+            </div>
+        </div>
+        
+        <div id="slds-tooltip-left" class="slds-tooltip slds-nubbin--right slds-m-top--small address-info-tooltip" role="tooltip" style="display: none;position:absolute;z-index: 9010;">
+            <div class="slds-tooltip__content">
+                <div class="slds-tooltip__body"></div>
+            </div>
+        </div>
+        
+        <div id="slds-tooltip-top" class="slds-tooltip slds-nubbin--right slds-m-bottom--small address-info-tooltip" role="tooltip" style="display: none;position:absolute;z-index: 9010;">
+            <div class="slds-tooltip__content">
+                <div class="slds-tooltip__body"></div>
+            </div>
+        </div>
+    </apex:form>
+    <script>
+        function adjustIframe(){
+            var iFrameID = document.getElementById('searchResIfrm');
+            iFrameID.height = "";
+            if( 500 > parseInt( iFrameID.contentWindow.document.body.scrollHeight ) ){
+                iFrameID.height = "500px"; 
+                }else{
+                iFrameID.height = (iFrameID.contentWindow.document.body.scrollHeight+20) + "px";
+            }
+                
+         }
+   
+    </script>
+    <style>
+        body{
+            padding: 0px !important;
+            //overflow: hidden !important;
+        }
+    </style>
+    <script src="{!URLFOR($Resource.aljs,'public/lib/moment/moment.js')}" />
+    <script src="{!URLFOR($Resource.aljs,'public/src/jquery.aljs-init.js')}" />
+    <script src="{!URLFOR($Resource.aljs,'public/src/jquery.aljs-datepicker.js')}" />
+    <script> 
+        $.aljsInit({
+            assetsLocation: '{!URLFOR($Resource.SLDS080,'SLDS080')}',
+            scoped: true,
+        });
+    </script>
+    
+    <div id="footerCut"></div>
+</html>
+</apex:page>

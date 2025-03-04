@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Service Type --></label>
+        <name>zkfedex__ServiceType__c</name>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx 2Day</masterLabel>
+            <translation><!-- Domestic: FedEx 2Day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx 2Day A.M.</masterLabel>
+            <translation><!-- Domestic: FedEx 2Day A.M. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx Express Saver</masterLabel>
+            <translation><!-- Domestic: FedEx Express Saver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx First Overnight</masterLabel>
+            <translation><!-- Domestic: FedEx First Overnight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx Ground</masterLabel>
+            <translation><!-- Domestic: FedEx Ground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx Home Delivery</masterLabel>
+            <translation><!-- Domestic: FedEx Home Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx Priority Overnight</masterLabel>
+            <translation><!-- Domestic: FedEx Priority Overnight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx SmartPost</masterLabel>
+            <translation><!-- Domestic: FedEx SmartPost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic: FedEx Standard Overnight</masterLabel>
+            <translation><!-- Domestic: FedEx Standard Overnight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx Europe First</masterLabel>
+            <translation><!-- International: FedEx Europe First --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx International Economy</masterLabel>
+            <translation><!-- International: FedEx International Economy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx International Economy Freight</masterLabel>
+            <translation><!-- International: FedEx International Economy Freight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx International First</masterLabel>
+            <translation><!-- International: FedEx International First --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx International Ground</masterLabel>
+            <translation><!-- International: FedEx International Ground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx International Priority</masterLabel>
+            <translation><!-- International: FedEx International Priority --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International: FedEx International Priority Freight</masterLabel>
+            <translation><!-- International: FedEx International Priority Freight --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

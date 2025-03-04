@@ -1,0 +1,346 @@
+<apex:page standardController="Case" extensions="E2CP.AnswerCustomerCtrl" action="{!loadPrefs}" showHeader="false" sidebar="false" html-style="height: 100%">
+    
+    <apex:outputPanel rendered="{!$User.UIThemeDisplayed != 'Theme4t'}">
+        <link rel="stylesheet" href="{!URLFOR($Resource.jquery,'jquery-ui-themes/themes/ui-lightness/jquery-ui.min.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.jquery,'jquery-ui/jquery-ui.min.css')}" />
+        
+        <script src="{!URLFOR($Resource.jquery,'jquery.min.js')}"></script>
+        <script src="{!URLFOR($Resource.jquery,'jquery-ui/jquery-ui.min.js')}"></script>
+
+        <script src="/canvas/sdk/js/publisher.js"></script>
+        
+        <style>
+            ul.ui-autocomplete {
+                left: 108px !important;
+            }
+    
+            .ui-widget-content li.ui-state-focus {
+                font-weight: normal;
+            }
+
+            /* Must be zero or the lightning action will keep growing */
+            html>body {
+                padding-top: 0px !important;
+                padding-bottom: 0px !important;
+            }
+        </style>
+        <script>
+            //Track event listeners added to elements via element.addEventListener() in an element.listeners property
+            (function() {
+                var origAddEventListener = HTMLElement.prototype.addEventListener;
+                HTMLElement.prototype.addEventListener = function(event, callback, useCapture) {
+                    if(!('listeners' in this)) this.listeners = [];
+                    this.listeners.push({event: event, callback: callback, useCapture: useCapture});
+                    origAddEventListener.call(this, event, callback, useCapture);
+                }
+            })();
+            
+            var oldAlert = window.alert,
+                errAlert = false;
+            window.alert = function() {
+                oldAlert.apply(window,arguments);
+                errAlert = true;
+            };
+        </script>
+        <div id="loadErr" style="display:none;">
+            <apex:pageMessage strength="1" severity="error" title="Unable to Load Action" detail="Please check that email deliverability is set to All Emails and that the Enable Case Feed Actions and Feed Items setting under Support Settings is enabled."/>
+        </div>
+        <div id="errMsg" style="display:none;">
+            <apex:pageMessage strength="1" severity="error" title="Email Unsuccessful" detail="Please check that email deliverability is set to All Emails and that your organization's daily limit has not been exceeded."/>
+        </div>
+        <apex:emailPublisher id="eml-pub" entityId="{!JSENCODE(case.id)}"
+            fromAddresses="{!fromAddresses}"
+            toAddresses="{!toAddresses}"
+            showAdditionalFields="true"
+            showAttachments="true"
+            showTemplates="{!ENABLE_TEMPLATE_SELECT}"
+            showSendButton="true"
+            ccVisibility="editableWithLookup"
+            bccVisibility="{!IF(ENABLE_ANSWER_CUSTOMER_BCC,'editableWithLookup','hidden')}"
+            title="E2CP Publisher"
+            sendButtonName="{!CASE_FEED_BUTTON_LABEL}"
+            enableQuickText="true"
+            emailBodyHeight="10em"
+            emailBodyFormat="{!CASE_FEED_BODY_FORMAT}"
+            autoCollapseBody="false"
+            onSubmitFailure="checkForErrors();"
+            onSubmitSuccess="refreshFeed();"
+            verticalResize="{!ENABLE_AUTO_RESIZE_ANSWER_CUSTOMER && canResize}"
+        />
+        
+        <script>
+            var $j = jQuery.noConflict(),
+                optionHeight;
+            
+            function loadPub(){
+                //apply org wide display name
+                if(!document.getElementById('from_{!JSENCODE(CaseId)}')){
+                    document.getElementById('loadErr').style.display = 'block';
+                    return;
+                }
+                
+                document.getElementById('from_{!JSENCODE(CaseId)}').style.width = '391px';
+                var op = document.getElementById('from_{!JSENCODE(CaseId)}').options[0];
+                var eml = op.value.split(':')[0];
+                op.text = '"{!JSENCODE(IF(hybrid,$User.FirstName + ' ' + $User.LastName,OrgWideDisplayName))}" <' + eml + '>';
+                op.value = eml + ':{!JSENCODE(IF(hybrid,$User.FirstName + ' ' + $User.LastName,OrgWideDisplayName))}';
+                
+                //setup to, cc, and bcc
+                document.getElementById('to_{!JSENCODE(CaseId)}').style.height = 18 * 2 +'px';
+                document.getElementById('to_{!JSENCODE(CaseId)}_textarea').style.height = 18 * 2 +'px';
+                
+                document.getElementById('cc_{!JSENCODE(CaseId)}_textarea').value = '{!JSENCODE(CCAddresses)}';
+                document.getElementById('cc_{!JSENCODE(CaseId)}').style.height = 18 * 2 +'px';
+                document.getElementById('cc_{!JSENCODE(CaseId)}_textarea').style.height = 18 * 2 +'px';
+                document.getElementById('addCc_{!JSENCODE(CaseId)}').click();
+                
+                if ({!ENABLE_ANSWER_CUSTOMER_BCC}) {  // SRFP - Boolean
+                    document.getElementById('bcc_{!JSENCODE(CaseId)}_textarea').value = '{!JSENCODE(BCCAddresses)}';
+                    document.getElementById('bcc_{!JSENCODE(CaseId)}').style.height = 18 * 2 + 'px';
+                    document.getElementById('bcc_{!JSENCODE(CaseId)}_textarea').style.height = 18 * 2 + 'px';
+                    document.getElementById('addBcc_{!JSENCODE(CaseId)}').click();
+                }
+                
+                document.getElementById('switchOptionsId_{!JSENCODE(CaseId)}').click();
+    
+                //window.onload = function() {window.setInterval(resizeBody,500);}
+                //window.addEventListener('load', function() {window.setInterval(resizeBody,500);} );
+                
+                var bodyText = document.getElementById('emailPublisherText_{!JSENCODE(CaseId)}');
+                if (bodyText) {
+                    var textWrap = bodyText.parentNode;
+                    textWrap.style.height = '120px';
+                }
+                var bodyHtml = document.getElementById('cke_contents_emailPublisherRte_{!JSENCODE(CaseId)}');
+                if (bodyHtml) {
+                    bodyHtml.style.height = '120px';
+                }
+            }
+            
+            function resizeBody() {
+                var newOptionHeight = document.getElementById('publisher_{!JSENCODE(CaseId)}Email').offsetHeight;
+                var errBlock = document.getElementById('errMsg');
+                
+                optionHeight = document.documentElement.clientHeight - 40;
+                if (errBlock.style.display == 'block')
+                    optionHeight -= 78;
+                if (!newOptionHeight || newOptionHeight == 0 || !optionHeight || optionHeight <= 0) return;
+                
+                var bodyText = document.getElementById('emailPublisherText_{!JSENCODE(CaseId)}');
+                if (bodyText) {
+                    var textWrap = bodyText.parentNode;
+                    var textHeight = parseInt(textWrap.style.height.replace('px',''));
+                    textWrap.style.height = (textHeight + optionHeight - newOptionHeight) + 'px';
+                }
+                //var bodyHtml = document.getElementById('cke_contents_emailPublisherRte_{!JSENCODE(CaseId)}');
+                var bodyHtml = document.getElementById('cke_1_contents');
+                if (bodyHtml) {
+    
+                    var htmlHeight = parseInt(bodyHtml.style.height.replace('px',''));
+                    bodyHtml.style.height = (htmlHeight + optionHeight - newOptionHeight) + 'px';
+                }
+            }
+            
+            function checkForErrors() {
+                var errBlocks = document.getElementsByClassName('errorMsg'),
+                    errors = false;
+                for (var i = 0;i < errBlocks.length;i++) {
+                    if (errBlocks[i].style.display != "none")
+                        errors = true;
+                }
+                if (!errors && !errAlert) {
+                    document.getElementById('errMsg').style.display = "block";
+                }
+            }
+            
+            function refreshFeed() {
+                document.getElementById('errMsg').style.display = "none";
+                //Sfdc.canvas.publisher.publish({name : 'publisher.refresh', payload : {feed: true, objectFields: true, objectRelatedLists: {}}});
+                Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{refresh:"true"}});
+            }
+            
+    
+            function initAutocomplete() {
+                //Autocomplete for email addresses
+                ['textarea[id^="to_"]', 'textarea[id^="cc_"]', 'textarea[id^="bcc_"]'].forEach(function(selector) {
+                    $j(selector).on('keydown', function(e) {
+                        if(e.keyCode == 8 && e.target.value == '')
+                            e.preventDefault();
+                    });
+    
+                    $j(selector).autocomplete({
+                        source: function(request, response) {
+                            //Avoid error from known issue https://success.salesforce.com/issues_view?id=a1p300000008ZFcAAM
+                            //if('e2cp' in window) {
+                                GlobalUtil.searchEmails(request.term, function(objects) {
+                                    var results = [];
+                                    objects.forEach(function(obj) {
+                                        results.push({
+                                            label: unescapeXMLEntities(obj.Name) + ' <' + unescapeXMLEntities(obj.Email) + '>' + (obj.Id.indexOf('005') == 0 ? ' (User)' : ' (Contact)'),
+                                            value: unescapeXMLEntities(obj.Email)
+                                        });
+                                    });
+                                    response(results);
+                                });
+                           // }
+                        },
+                        select: function(event, ui) {
+                            //Commit the email address (turns email into a bubble and clears the email text input)
+                            invokeBlurListeners(event.target);
+                        }
+                    });
+                });
+            }
+    
+            function invokeBlurListeners(elm) {
+                setTimeout(function() {
+                    for(var i in elm.listeners)
+                        if(elm.listeners[i].event == 'blur')
+                            try{ elm.listeners[i].callback(null); } catch(e) {}
+                }, 10);
+            }
+    
+            function unescapeXMLEntities(text) {
+                return text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+            }
+            
+            var prevHeight;
+            function resizeAnswerCustomer() {
+                if ({!!canResize}) return;  // SRFP - Boolean
+                
+                var newHeight = Math.max({!ANSWER_CUSTOMER_HEIGHT},document.body.scrollHeight);  // SRFP - Integer
+                if (prevHeight != newHeight) {
+                    Sfdc.canvas.publisher.resize( { height : newHeight+"px" } );
+                    if (!prevHeight) window.setTimeout(resizeBody,100);
+                    prevHeight = newHeight;
+                }
+            }
+            
+            $j(document).ready(function() {
+                if ({!ENABLE_AUTO_RESIZE_ANSWER_CUSTOMER && canResize})  // SRFP - Boolean
+                    window.setTimeout(function(){window.setInterval(resizeAnswerCustomer,100);},1000);
+                else if ({!canResize})  // SRFP - Boolean
+                    window.setTimeout(function(){resizeAnswerCustomer();window.setInterval(resizeBody,100);},1000);
+                else
+                    window.setInterval(resizeBody,100);
+                loadPub();
+                initAutocomplete();
+            });
+        </script>
+    </apex:outputPanel>
+    
+    <!-- SF1 -->
+    <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4t'}">
+        <script src="/canvas/sdk/js/publisher.js"></script>
+        
+        <style>
+            html {
+                background-color: transparent;
+            }
+            body {
+                background-color: #F0F1F2;
+            }
+            label {
+                color: #696E71;
+                font-family: "ProximaNovaSoft-Regular", Calibri, 
+                    "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI", 
+                     Arial, sans-serif;
+                font-size: 13px;
+                line-height: 13px;
+            }
+            input:focus, select:focus, textarea:focus, button:focus, span:focus {
+                outline: none;
+            }
+            .label-container {
+                display: block;
+                width: 100%;
+                margin: 10px 0 5px 0;
+            }
+            .full-width-input {
+                border: 1px solid #999;
+                border-radius: 4px;
+                border-color: #ccc;
+                width: 100%;
+                max-width: 100%;
+                font-size: 15px;
+                line-height: 25px;
+                padding: 7px 14px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                overflow: auto;
+            }
+            .message-container {
+                display: none;
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(52,74,95,0.7);
+                z-index: 100;
+            }
+            .message-box {
+                position: relative;
+                top: 40%;
+                background-color: white;    /*#354452;*/
+                width: 63px;
+                height: 100px;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+                padding: 10px 20px;
+                margin: auto;
+                color: black;    /*white;*/
+                text-align: center;
+            }
+        </style>
+        
+        <div id="message" class="message-container">
+            <div class="message-box">
+                <img src="/img/spinner.gif"/>
+                <p>Sending...</p>
+            </div>
+        </div>
+        
+        <apex:form >
+            <apex:actionFunction name="sendEmail" action="{!sendEmail}"/>
+            <apex:pageMessages />
+
+            <apex:outputLabel style="margin-top:0;" styleClass="label-container" value="To Addresses"/>
+            <apex:inputText styleClass="full-width-input" value="{!toAddresses}"/>
+            <apex:outputLabel styleClass="label-container" value="CC Addresses"/>
+            <apex:inputText styleClass="full-width-input" value="{!ccAddresses}"/>
+            <apex:outputLabel styleClass="label-container" value="BCC Addresses"/>
+            <apex:inputText styleClass="full-width-input" value="{!bccAddresses}"/>
+            <apex:outputLabel styleClass="label-container" value="Subject"/>
+            <apex:inputText styleClass="full-width-input" value="{!emailSubject}"/>
+            <apex:outputLabel styleClass="label-container" value="Body"/>
+            <apex:inputTextArea styleClass="full-width-input" rows="6" value="{!emailBody}"/>
+            <!--<apex:inputField styleClass="full-width-input" value="{!cs.RichTextEmailBody__c}" rendered="{!CONTAINS(CASE_FEED_BODY_FORMAT,'HTML')}"/>
+            <apex:inputField styleClass="full-width-input" value="{!cs.PlainTextEmailBody__c}" rendered="{!!CONTAINS(CASE_FEED_BODY_FORMAT,'HTML')}"/>-->
+        </apex:form>
+        
+        <script>
+
+            if ({!success})  // SRFP - Boolean
+                Sfdc.canvas.publisher.publish({name: "publisher.close", payload:{refresh:"true"}});
+            
+            Sfdc.canvas.publisher.subscribe({ name: "publisher.post",
+                onData: function(e) {
+                    disableSave();
+                    sendEmail();     
+            }});
+              
+            function enableSave() {
+                Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"true"});
+            }
+            
+            function disableSave() {
+                document.getElementById('message').style.display = "block";
+                Sfdc.canvas.publisher.publish({name: "publisher.setValidForSubmit", payload:"false"}); 
+            }
+            
+            window.setTimeout(enableSave,1000);
+
+        </script>
+    </apex:outputPanel>
+</apex:page>

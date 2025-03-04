@@ -1,0 +1,567 @@
+/* Modified from Salesforce Lightning Enable UI
+ */
+
+
+.congaSetup {
+    background: rgb(244, 246, 249);
+    color: rgb(84, 105, 141);
+    padding: 1rem;
+    font-weight: 400
+}
+.congaSetup h2 {
+    display: block;
+    font-weight: 700;
+    font-size: 2.25rem;
+    margin: 0 0 .75rem
+}
+.congaSetup h3 {
+    color: rgb(84, 105, 141);
+    display: block;
+    font-weight: 400;
+    font-size: 1.5rem;
+    padding: 2rem 0 .75rem;
+    text-align: center
+}
+.congaSetup h4 {
+    color: rgb(84, 105, 141);
+    display: block;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25
+}
+.congaSetup .lightningLink {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: .25rem;
+    color: rgb(0, 112, 210);
+    display: inline-block;
+    font-size: .9375rem;
+    font-weight: 300;
+    margin: 1.5rem 0 0 0;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    -webkit-transition: All .1s ease;
+    transition: All .1s ease
+}
+.congaSetup .lightningLink:hover {
+    background: rgb(244, 246, 249)
+}
+.congaSetup p {
+    font-weight: 300;
+    font-size: .9375rem;
+    line-height: 1.2em;
+    margin: 0
+}
+.congaSetup p+p {
+    margin-top: 1rem
+}
+.congaSetup>.title {
+    background: rgb(22, 50, 92) url(/img/setup/sfx-hero-image.png) no-repeat center 140px;
+    border-radius: .25rem .25rem 0 0;
+    color: rgb(255, 255, 255);
+    height: 310px;
+    padding: 2rem 0 0;
+    position: relative;
+    text-align: center
+}
+.congaSetup .title p {
+    font-weight: 400;
+    font-size: .9375rem;
+    line-height: 1.5em;
+    margin: 0 auto;
+    width: 400px
+}
+.congaSetup .title .uiImage {
+    bottom: -38px;
+    left: calc(50% - 38px);
+    position: absolute
+}
+.congaSetup .title+.highlight h3 {
+    padding-top: calc(38px + 1.5rem)
+}
+.congaSetup .highlight {
+    padding-bottom: 1.5rem;
+    text-align: center
+}
+.congaSetup .title+.highlight {
+    background-color: rgb(238, 241, 246);
+    padding: 0 2rem 2rem 2rem;
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: 0 0 .5rem .5rem
+}
+.congaSetup .highlight p {
+    padding-top: 57px
+}
+.congaSetup ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+.congaSetup .outline {
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: .25rem;
+    display: table;
+    margin: 0;
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    width: calc(100% - 3.5rem)
+}
+.congaSetup .outline>span,
+.congaSetup .outline .toggle {
+    display: table-cell;
+    padding: 0 0 0 1rem;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 1px
+}
+.congaSetup ul .outline {
+    border-bottom: none;
+    border-radius: 0;
+    background-color: rgb(255, 255, 255)
+}
+.congaSetup li:first-child {
+    border-radius: .25rem .25rem 0 0
+}
+.congaSetup li:last-child {
+    border-bottom: 1px solid rgb(216, 221, 230);
+    border-radius: 0 0 .25rem .25rem
+}
+.congaSetup li>div:first-child {
+    padding: 0 1rem 0 0
+}
+.congaSetup .outline.last {
+    margin: 0 0 2rem
+}
+.congaSetup a {
+    color: rgb(0, 112, 210);
+    text-decoration: none;
+    white-space: nowrap
+}
+.congaSetup a:hover,
+.congaSetup a:focus {
+    color: rgb(0, 95, 178);
+    text-decoration: underline
+}
+.congaSetup a:active {
+    color: rgb(0, 57, 107);
+    text-decoration: underline
+}
+.congaSetup h4>span {
+    color: rgb(84, 105, 141);
+    display: inline-block;
+    font-weight: 300;
+    font-size: .875rem;
+    line-height: 1.5em;
+    margin: 0 .5rem;
+    opacity: .9
+}
+.congaSetup .uiTooltip {
+    font-size: .9rem
+}
+.congaSetup>.forceIcon {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1rem
+}
+.congaSetup .enableContainer {
+    font-weight: 300;
+    font-size: .875rem;
+    line-height: 1.5em;
+    text-align: right
+}
+.congaSetup .enableContainer a {
+    display: block
+}
+.congaSetup .toggle {
+    position: relative;
+    text-align: right
+}
+.congaSetup .toggle input {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    left: 1.75rem;
+    top: 1rem
+}
+.congaSetup .toggle .text {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    position: absolute
+}
+.congaSetup .toggle .switch {
+    background: rgb(22, 50, 92);
+    border: .25rem solid rgb(22, 50, 92);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    font-size: .875rem;
+    height: 2rem;
+    margin: 0 0 .75rem 0;
+    position: relative;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    width: 3.5rem
+}
+.congaSetup .switchbox {
+    height: 2rem;
+    width: 3.5rem;
+    padding: 2px
+}
+.congaSetup .toggle input:focus+label .switchbox {
+    border: 1px solid #00f;
+    padding: 1px
+}
+.congaSetup .toggle:checked~label .switch {
+    background: rgb(75, 202, 129);
+    border-color: rgb(75, 202, 129);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease
+}
+.congaSetup .toggle .switch:hover {
+    cursor: pointer
+}
+.congaSetup .toggle:not(:checked)~label {
+    color: rgb(22, 50, 92)
+}
+.congaSetup .toggle:checked~label {
+    color: rgb(75, 202, 129)
+}
+.congaSetup .toggle:not(:checked)~label .switch {
+    padding: 0 .5rem 0 0
+}
+.congaSetup .toggle:checked~label .switch {
+    padding: 0 0 0 .5rem
+}
+.congaSetup .toggle:not(:checked)~label .switch:after {
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: .75rem;
+    content: '';
+    display: inline-block;
+    height: 1.5rem;
+    left: 0;
+    position: absolute;
+    -webkit-transition: left .5s ease;
+    transition: left .5s ease;
+    width: 1.5rem
+}
+.congaSetup .toggle:checked~label .switch:after {
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: .75rem;
+    content: '';
+    display: inline-block;
+    height: 1.5rem;
+    left: 50%;
+    position: absolute;
+    -webkit-transition: left .5s ease;
+    transition: left .5s ease;
+    width: 1.5rem
+}
+.congaSetup .toggle .switchText {
+    font-family: 'SalesforceSans-Regular', Arial, sans-serif;
+    font-size: .875rem
+}
+.congaSetup .toggle:checked~.switchText.disabled {
+    display: none
+}
+.congaSetup .toggle:not(checked)~.switchText.disabled {
+    display: block
+}
+.congaSetup .toggle:checked~.switchText.enabled {
+    color: rgb(4, 132, 75);
+    display: block
+}
+.congaSetup .toggle:not(checked)~.switchText.enabled {
+    display: none
+}
+.congaSetup .toggle:disabled~label .switch:hover {
+    cursor: default
+}
+.congaSetup .closeIcon {
+    background-image: none
+}
+.congaSetup .uiModal--default .modal-header .title {
+    padding: 1rem 1rem
+}
+.congaSetup .slds-button {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-size: .875rem;
+    line-height: 1.875rem;
+    text-decoration: none;
+    color: rgb(0, 112, 210);
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: color .05s linear, background-color .05s linear;
+    transition: color .05s linear, background-color .05s linear
+}
+.congaSetup .slds-button:hover,
+.congaSetup .slds-button:focus,
+.congaSetup .slds-button:active,
+.congaSetup .slds-button:visited {
+    text-decoration: none
+}
+.congaSetup .slds-button:hover,
+.congaSetup .slds-button:focus {
+    color: rgb(0, 95, 178)
+}
+.congaSetup .slds-button:focus {
+    outline: 0;
+    box-shadow: 0 0 3px #0070d2
+}
+.congaSetup .slds-button:active {
+    color: rgb(0, 57, 107)
+}
+.congaSetup .slds-button[disabled] {
+    color: rgb(216, 221, 230)
+}
+.congaSetup .slds-button:hover .slds-button__icon,
+.congaSetup .slds-button:focus .slds-button__icon,
+.congaSetup .slds-button:active .slds-button__icon,
+.congaSetup .slds-button[disabled] .slds-button__icon {
+    fill: currentColor
+}
+.congaSetup .slds-button+.slds-button-group {
+    margin-left: .25rem
+}
+.congaSetup .slds-button+.slds-button {
+    margin-left: .25rem
+}
+.congaSetup .slds-button-space-left {
+    margin-left: .25rem
+}
+.congaSetup .slds-button--small {
+    line-height: 1.75rem;
+    min-height: 2rem
+}
+.congaSetup .slds-button--neutral {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid rgb(216, 221, 230);
+    background-color: rgb(255, 255, 255)
+}
+.congaSetup .slds-button--neutral:hover,
+.congaSetup .slds-button--neutral:focus {
+    background-color: rgb(244, 246, 249)
+}
+.congaSetup .slds-button--neutral:active {
+    background-color: rgb(238, 241, 246)
+}
+.congaSetup .slds-button--neutral[disabled] {
+    background-color: rgb(255, 255, 255);
+    cursor: default
+}
+.congaSetup .slds-button--hint {
+    color: rgb(159, 170, 181)
+}
+.congaSetup .slds-button--hint:hover,
+.congaSetup .slds-button--hint:focus,
+.congaSetup .slds-button--hint:active {
+    color: rgb(0, 112, 210)
+}
+.congaSetup .slds-hint-parent:hover .slds-button--hint,
+.congaSetup .slds-hint-parent:focus .slds-button--hint {
+    color: rgb(0, 112, 210)
+}
+.congaSetup .slds-button--brand {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgb(0, 112, 210);
+    border: 1px solid rgb(0, 112, 210);
+    color: rgb(255, 255, 255)
+}
+.congaSetup .slds-button--brand:link,
+.congaSetup .slds-button--brand:visited,
+.congaSetup .slds-button--brand:active {
+    color: rgb(255, 255, 255)
+}
+.congaSetup .slds-button--brand:hover,
+.congaSetup .slds-button--brand:focus {
+    background-color: rgb(0, 95, 178);
+    color: rgb(255, 255, 255)
+}
+.congaSetup .slds-button--brand:active {
+    background-color: rgb(0, 57, 107)
+}
+.congaSetup .slds-button--brand[disabled] {
+    background: #e0e5ee;
+    border-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255)
+}
+.congaSetup .slds-button--neutral.slds-is-selected {
+    border-color: transparent;
+    background-color: transparent
+}
+.congaSetup .slds-button--neutral.slds-is-selected:hover:not([disabled]),
+.congaSetup .slds-button--neutral.slds-is-selected:focus:not([disabled]) {
+    border: 1px solid rgb(216, 221, 230);
+    background-color: rgb(244, 246, 249)
+}
+.congaSetup .slds-button--neutral.slds-is-selected:active {
+    background-color: rgb(238, 241, 246)
+}
+.congaSetup .slds-button--icon,
+.congaSetup .slds-button--icon-container,
+.congaSetup .slds-button--icon-border,
+.congaSetup .slds-button--icon-border-filled,
+.congaSetup .slds-button--icon-more {
+    line-height: 1;
+    vertical-align: middle;
+    color: rgb(84, 105, 141)
+}
+.congaSetup .slds-button--icon-inverse {
+    color: rgb(255, 255, 255)
+}
+.congaSetup .slds-button--icon-inverse:hover,
+.congaSetup .slds-button--icon-inverse:focus {
+    color: rgba(255, 255, 255, 0.75)
+}
+.congaSetup .slds-button--icon-inverse:active {
+    color: rgba(255, 255, 255, 0.5)
+}
+.congaSetup .slds-button--icon-inverse[disabled] {
+    color: rgba(255, 255, 255, 0.15)
+}
+.congaSetup .slds-button__icon {
+    width: .875rem;
+    height: .875rem;
+    fill: currentColor
+}
+.congaSetup .slds-button__icon--large {
+    width: 1.5rem;
+    height: 1.5rem
+}
+.congaSetup .slds-modal__header,
+.congaSetup .slds-modal__content {
+    background: rgb(255, 255, 255)
+}
+.congaSetup .slds-modal__header,
+.congaSetup .slds-modal__footer {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+.congaSetup .slds-modal__header {
+    position: relative;
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+    border-bottom: 2px solid rgb(216, 221, 230);
+    padding: 1rem;
+    text-align: center
+}
+.congaSetup .slds-modal__header+.slds-modal__menu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0
+}
+.congaSetup .slds-modal__footer {
+    border-top: 2px solid rgb(216, 221, 230);
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    padding: .75rem 1rem;
+    background-color: rgb(244, 246, 249);
+    text-align: right;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16)
+}
+.congaSetup .slds-modal__close {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    top: -3rem;
+    right: -.5rem
+}
+.congaSetup .slds-text-heading--medium {
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.25
+}
+.congaSetup .slds-text-heading--label {
+    font-size: .875rem;
+    line-height: 1.25;
+    letter-spacing: .0625em;
+    color: rgb(84, 105, 141);
+    text-transform: uppercase
+}
+.congaSetup input[type=checkbox],
+.congaSetup input[type=radio] {
+    box-sizing: border-box;
+    padding: 0
+}
+.congaSetup .slds-checkbox {
+    display: inline-block
+}
+.congaSetup .slds-checkbox .slds-checkbox--faux {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    border: 1px solid rgb(216, 221, 230);
+    border-radius: .125rem;
+    background: rgb(255, 255, 255);
+    -webkit-transition: border .1s linear, background-color .1s linear;
+    transition: border .1s linear, background-color .1s linear
+}
+.congaSetup .slds-checkbox .slds-form-element__label {
+    display: inline;
+    vertical-align: middle;
+    font-size: .9375rem
+}
+.congaSetup .slds-checkbox [type=checkbox] {
+    width: 1px;
+    height: 1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute
+}
+.congaSetup .slds-checkbox [type=checkbox]:checked+.slds-checkbox--faux:after,
+.congaSetup .slds-checkbox [type=checkbox]:checked~.slds-checkbox--faux:after {
+    display: block;
+    content: '';
+    height: .25rem;
+    width: .5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    -ms-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    border-bottom: 2px solid #137cbd;
+    border-left: 2px solid #137cbd
+}
+.congaSetup .slds-checkbox [type=checkbox]:focus+.slds-checkbox--faux,
+.congaSetup .slds-checkbox [type=checkbox]:focus~.slds-checkbox--faux {
+    content: '';
+    border-color: rgb(21, 137, 238);
+    box-shadow: 0 0 3px #0070d2
+}
+.congaSetup .slds-checkbox [type=checkbox]:focus:checked>.slds-checkbox--faux,
+.congaSetup .slds-checkbox [type=checkbox]:focus:checked~.slds-checkbox--faux {
+    border-color: rgb(21, 137, 238);
+    background-color: rgb(255, 255, 255)
+}
+.congaSetup .slds-checkbox [type=checkbox][disabled]+.slds-checkbox--faux,
+.congaSetup .slds-checkbox [type=checkbox][disabled]~.slds-checkbox--faux {
+    background-color: rgb(224, 229, 238);
+    border-color: rgb(168, 183, 199)
+}
+.congaSetup .slds-checkbox [type=checkbox][disabled]+.slds-checkbox--faux:after,
+.congaSetup .slds-checkbox [type=checkbox][disabled]~.slds-checkbox--faux:after {
+    border-color: rgb(255, 255, 255)
+}

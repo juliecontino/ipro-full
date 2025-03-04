@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Payables List View Tax Settings Prompt</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;We have added an enhancement to give you the ability to configure Taxes at the Ledger level. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://support.accountingseed.com/hc/en-us/articles/8680222849683&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;&lt;u&gt;This article&lt;/u&gt;&lt;/a&gt; will explain how you can review the new Tax Settings record to ensure all values were migrated correctly, and how you can create new Tax Settings records (if needed) and associate them with each of your Ledgers.&lt;/p&gt;</body>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <header>Tax Settings on Ledgers</header>
+        <isPublished>true</isPublished>
+        <masterLabel>Payables List View Tax Settings Prompt</masterLabel>
+        <publishedDate>2022-11-06</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
+        <startDate>2022-09-15</startDate>
+        <targetPageKey1>AcctSeed__Account_Payable__c</targetPageKey1>
+        <targetPageKey2>list</targetPageKey2>
+        <targetPageType>standard__objectPage</targetPageType>
+        <timesToDisplay>1</timesToDisplay>
+        <title>Configure Tax on Ledgers</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

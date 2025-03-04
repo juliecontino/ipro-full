@@ -1,0 +1,217 @@
+<!--
+    12/05/2018  BE@IC   Fixed scripting issue where the redir function that updated the case owner would run twice. Preventing the user from updating the case on the case
+                        record page when they returned there in lightning console (00166067)
+-->
+<apex:page standardController="case" extensions="takeownership.TakeOwnershipPassThruCtrl" title="{!Case.CaseNumber}: Take Ownership" cache="false" sidebar="false">
+    <apex:includeScript value="/support/console/42.0/integration.js"/>
+    <apex:includeScript value="/canvas/sdk/js/39.0/publisher.js"/>
+    <apex:slds />
+    <style>
+        .datePicker {
+            display: none;
+        }
+        .message-container {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+        .message-box {
+            position: relative;
+            top: 40%;
+            background-color: #354452;
+            width: 100px;
+            min-height: 100px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: auto;
+            color: white;
+            text-align: center;
+            font-family: "ProximaNovaSoft-Regular", Calibri,
+                "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI",
+                 Arial, sans-serif;
+        }
+        @-moz-keyframes spin {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+            100% {
+                -moz-transform: rotate(359deg);
+            }
+        }
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(359deg);
+            }
+        }
+        @-o-keyframes spin {
+            0% {
+                -o-transform: rotate(0deg);
+            }
+            100% {
+                -o-transform: rotate(359deg);
+            }
+        }
+        @-ms-keyframes spin {
+            0% {
+                -ms-transform: rotate(0deg);
+            }
+            100% {
+                -ms-transform: rotate(359deg);
+            }
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+        .spinner {
+            -webkit-animation: spin 1.6s infinite linear;
+            -moz-animation: spin 1.6s infinite linear;
+            -o-animation: spin 1.6s infinite linear;
+            animation: spin 1.6s infinite linear;
+        }
+        .message{
+            background-color: #c00;
+        }
+        .messageText{
+            color:#fff;
+        }
+        h4{
+            color:white;
+        }
+    </style>
+    <div class="slds-scope">
+        <apex:form id="frm">
+            <apex:actionFunction action="{!redir}" name="redir" reRender="frm,consoleScriptWrapper" oncomplete="backToCase();"/>
+
+            <apex:pageMessages />
+            
+            <apex:commandButton styleClass="slds-button slds-button_neutral" style="margin-left:45%;" action="{!returnToCase}" value="Back" reRender="consoleScriptWrapper" oncomplete="backToCase();"/>
+            
+            <!--<apex:pageBlock rendered="{!complete && !consoleNavigate}">
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton action="{!cancel}" value="Back" oncomplete="backToCase();"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>-->
+
+             <apex:outputPanel rendered="{!!hasMessages}" >
+                <div class="slds-backdrop slds-backdrop_open" style="display:flex; background:#ffffff">
+                    <div class="slds-align_absolute-center">
+                        <div style="margin-left:-125px;" role="aAstatus" class="slds-spinner slds-spinner_large slds-spinner_brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                        <div><div class="slds-text-heading_large" style="font-weight:700;margin-left:100px">Taking Ownership</div></div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </apex:form>
+    </div>
+    
+    <apex:outputPanel id="consoleScriptWrapper">
+        <script language="javascript">
+            var ptId,stId,openSubtabFlag = 0,subtabIds = [],currentTab;
+            
+            function consoleNav() {
+                sforce.console.getEnclosingPrimaryTabId(handlePrimaryTabId);
+            }
+            
+            function handlePrimaryTabId(result) {
+                ptId = result.id;
+                sforce.console.getEnclosingTabId(handleSubtabId);
+            }
+            
+            function handleSubtabId(result) {
+                stId = result.id;
+                openSubtab();
+            }
+            
+            function openSubtab() {
+                // Sometimes openSubtab won't hit the callback the first time it's called so try a second time after a short delay if it hasn't already returned
+                if (openSubtabFlag == 0) {
+                    window.setTimeout(openSubtab,500);
+                    sforce.console.openSubtab(ptId,"{!consoleNavigateURL}",true,false,stId,handleOpenSubtab);
+                }
+            }
+            
+            function handleOpenSubtab(result) {
+                openSubtabFlag++;
+                // If case tab is primary tab with no subtabs, success here doesn't mean anything we need to open a primary tab
+                if (result.success)
+                    sforce.console.getSubtabIds(ptId,handleSubtabIds);
+                else
+                    sforce.console.getSubtabIds(ptId,findCaseTab);
+            }
+            
+            function handleSubtabIds(result) {
+                if (result.success && result.ids.length == 1)
+                    openPrimaryTab();
+            }
+            
+            function findCaseTab(result) {
+                if (result.success) {
+                    subtabIds = result.ids;
+                    processNextTab();
+                } else
+                    refreshAndNavigate();
+            }
+            
+            function processNextTab() {
+                currentTab = subtabIds.pop();
+                if (currentTab)
+                    sforce.console.getPageInfo(currentTab,checkForCaseTab);
+                else
+                    refreshAndNavigate();
+            }
+            
+            function checkForCaseTab(result) {
+                if (result.success) {
+                    if (JSON.parse(result.pageInfo).objectId == '{!Case.Id}')
+                        refreshAndNavigate(currentTab);
+                    else
+                        processNextTab();
+                } else
+                    refreshAndNavigate();
+            }
+            
+            function refreshAndNavigate(tabId) {
+                if (tabId)
+                    sforce.console.refreshSubtabById(tabId,true);
+                else
+                    sforce.console.refreshPrimaryTabById(ptId,false);
+                sforce.console.closeTab(stId);
+            }
+            
+            function openPrimaryTab() {
+                sforce.console.openPrimaryTab(ptId,"{!consoleNavigateURL}",true);
+            }
+            
+            function backToCase() {
+                if ({!hasMessages}) return;
+                
+                if (({!$User.uiThemeDisplayed == 'Theme4d'} || {!$User.uiThemeDisplayed == 'Theme4t'}) && {!$Network.Name == ''})
+                    sforce.one.back(true);    //window.open('{!lightningNavigateURL}','_top');
+                else if ({!$User.uiThemeDisplayed != 'Theme4u'} && sforce && sforce.one)
+                    sforce.one.navigateToSObject('{!Case.Id}');
+                else
+                    consoleNav();
+            }
+        </script>
+    </apex:outputPanel>
+
+    <script>
+        // [BE] - Only run redirect once
+        if ({!!complete}) {
+            redir();
+        }
+    </script>
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Cash disbursements will be classified in the 1099 Export File according to this Form 1099 Type and Box. Each year review your defaults, and check for any new 1099 Form options to reflect changes by the IRS. Change by selecting Update 1099 Info button. --></help>
+        <label><!-- Form 1099 Box --></label>
+        <name>AcctSeed__Form_1099_Box__c</name>
+    </CustomFieldTranslation>

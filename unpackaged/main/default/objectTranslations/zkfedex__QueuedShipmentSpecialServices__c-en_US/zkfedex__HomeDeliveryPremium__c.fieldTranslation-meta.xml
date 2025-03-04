@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Home Delivery Premium --></label>
+        <name>zkfedex__HomeDeliveryPremium__c</name>
+        <picklistValues>
+            <masterLabel>FedEx Appointment Home Delivery</masterLabel>
+            <translation><!-- FedEx Appointment Home Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Date Certain Home Delivery</masterLabel>
+            <translation><!-- FedEx Date Certain Home Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FedEx Evening Home Delivery</masterLabel>
+            <translation><!-- FedEx Evening Home Delivery --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

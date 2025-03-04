@@ -1,0 +1,312 @@
+/* 
+    Document   : day
+    Created on : 26 жов 2012, 11:43:22
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*.JQ_CA ._multi_select_block{
+    overflow: visible;
+}*/
+
+.JQ_CA ._multi_select_block._dragable{
+    border-bottom: 1px dashed #DDDDDD;
+    overflow: visible !important;
+}
+
+.JQ_CA     .multi_select{
+        position:absolute;
+        top:25px;
+        bottom:33px;
+        overflow-y: auto;
+        right:5px;
+        width:100%;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0px 0px 2px #aaa;
+        width:45%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding-bottom: 15px;
+    }
+    
+    .JQ_CA.ie   div.multi_select{
+        border:1px solid #ddd;
+    }
+    .JQ_CA   div.multi_select.draghover, 
+    .JQ_CA   div._dragable > div.multi_select:hover{
+        box-shadow: 0px 0px 3px #000;
+    }
+    .JQ_CA.ie   div.multi_select.draghover,
+    .JQ_CA.ie   div._dragable > div.multi_select:hover{
+        border:1px solid #333;
+    }
+    
+    .JQ_CA.mobile   div._dragable .dragbar{
+        cursor: pointer;
+        pointer-events:none;
+        -webkit-user-select:none;
+    }
+    
+    .JQ_CA  span.multi_select_title{
+        display:block;
+        position: absolute;
+        top:0px;
+        right:5px;
+        height:25px;
+        background-color:#ddd; 
+        border-radius:5px 5px 0 0;
+        width:45% !important;
+        line-height: 25px;
+        font-size: 120%;
+        font-weight: bolder;
+    }
+    
+    .JQ_CA  span.multi_select_title:first-of-type, 
+    .JQ_CA  span.multi_select_title:first-child {
+        left:5px;
+        right:auto;
+    }
+    
+    .JQ_CA   div.multi_select:first-of-type{
+        left:5px;
+        right:auto;
+    }
+        .JQ_CA  span.multi_select_title > input{
+            position: absolute;
+            left:4px;
+            top:2px;
+            bottom:2px;
+            width:30%;
+        }
+        
+/*    .JQ_CA  span.multi_select_title._with_search{
+        text-align: right;
+        padding-right: 5px;
+    }
+    */
+    
+    .JQ_CA   div.multi_select._err{
+        border-color: red;
+        box-shadow: 0 0 3px red inset;
+    }
+            
+        .JQ_CA   div.multi_select > div, .JQ_CA .dragbar{
+            display:block;
+            position:relative;
+            
+            border:1px solid #eee;
+            border-radius: 2px;
+            text-align: left;
+            padding:4px;
+            white-space: nowrap;
+            cursor:pointer;
+            margin:3px 4px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        
+/*        .JQ_CA.ie   div.multi_select > div, .JQ_CA.ie .dragbar{
+            margin-top:0;
+            margin-bottom: 6px;
+        }*/
+        
+        .JQ_CA.ie   div.multi_select > div._ie8{
+            border:0;
+            height:10px;
+            padding:0;
+        }
+        
+        .JQ_CA.ie   div.multi_select > div._ie8.drag-inserted-before,
+        .JQ_CA.ie   div.multi_select > div._ie8.drag-inserted-after{
+            background-color:#eeeeff;
+        }
+        
+/*        .JQ_CA.ie   div.multi_select > div:first-child, .JQ_CA.ie .dragbar:first-child{
+            margin-top:3px;
+        }*/
+        
+        .JQ_CA   div.multi_select._with_color > div, .JQ_CA .dragbar{
+            padding-left:25px;
+        }
+        
+        .JQ_CA   div.multi_select > div._small{
+            font-size: 80%;
+            font-style: italic;
+            padding-left: 20px;
+        }
+        
+        .JQ_CA   div.multi_select > div._small._off,
+        .JQ_CA   div.multi_select > div._off_search{
+            display: none;
+        }
+        
+        .JQ_CA   div.multi_select > div._plus {
+            background-color: #eee;
+        }
+/*            .JQ_CA   div.multi_select > div._plus > span{
+                position: absolute;
+                right:10px;
+                left:auto;
+                text-align: center;
+                top:2px;
+                bottom:2px;
+                display: inline-block;
+                border:0px;
+                line-height: 17px;
+                border-radius: 7px;
+                color:white;
+                background-color: #555;
+            }*/
+
+        .JQ_CA .dragbar{
+            position:absolute;
+            z-index:100;
+        }
+        
+        .JQ_CA   div.multi_select > div.drag-inserted-before{
+/*            border-color:red;*/
+            border-top:10px solid #eeeeff;
+/*            margin-top:10px;
+            box-shadow: 0 -10px 0px #eeeeff; */
+        }
+        .JQ_CA   div.multi_select > div.drag-inserted-after{
+            border-bottom:10px solid #eeeeff;
+        }
+
+            .JQ_CA   div.multi_select > div > span, .dragbar > span{
+                position:absolute;
+                left:0px;
+                top:0px;
+                bottom:0px;
+                width:20px;
+                border-radius: 2px 0px 0px 2px;
+            }
+            
+            .JQ_CA    div.multi_select.unvisible > div > span{
+                opacity: 0.5;
+            }
+
+        .JQ_CA div.multi_select > div.sel, .dragbar{
+            background-color: #0066cc;
+            color:white;
+        }
+        
+        .JQ_CA    div.multi_select > div:last-child{
+            margin-bottom:15px;
+        }
+        
+        .JQ_CA.mobile    div.multi_select > div:last-child{
+            margin-bottom:30px;
+        }
+        
+        .JQ_CA    div.multi_select > div._text{
+            display: none;
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            padding:10px;
+            color:#FF706C;
+            border:0;
+            white-space: normal;
+            font-size: 120%;
+        }
+        
+        .JQ_CA    div.multi_select > div._text._show{
+            display: block;
+        }
+        
+    .JQ_CA   div.multi_select{
+        user-select: none;
+        -khtml-user-select: none;
+        -o-user-select: none;
+        -moz-user-select: -moz-none;
+        -webkit-user-select: none;
+    }
+    
+    .JQ_CA   div.multi_select::selection { background: transparent;color:inherit; }
+    .JQ_CA   div.multi_select::-moz-selection { background: transparent;color:inherit; }
+    
+    .JQ_CA     div.simple_buttons{
+        width:auto;
+        vertical-align: middle;
+        width:5%;
+        position: relative;
+        display:inline-block;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+
+    }
+        .JQ_CA     div.simple_buttons > a{
+            display:inline-block;
+            width:90%;
+            padding:5px;
+            border:1px solid #ddd;
+            border-radius: 2px;
+            margin:5px 0px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 1px #333;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }        
+        .JQ_CA     div.simple_buttons > a[data-mode="sort_left"]{
+            display:block;
+            position:absolute;
+            left:-10px;
+            top:75px;
+            width:auto;
+        }
+        
+        .JQ_CA     div.simple_buttons > a[data-mode="sort_right"]{
+            display:block;
+            position:absolute;
+            right:-9px;
+            top:75px;
+            width:auto;
+        }
+        
+        .JQ_CA     div.simple_buttons > a[data-mode="open"]{
+            display:block;
+            position:absolute;
+            right:50%;
+            top:75px;
+            width:auto;
+            margin-right: -9px;
+        }
+        
+        .JQ_CA     div.simple_buttons > a[data-mode="search"]{
+            display:block;
+            position:absolute;
+            top:110px;
+            display:none;
+            width: auto;
+        }
+        
+        .JQ_CA    ._with_search div.simple_buttons > a[data-mode="search"]{
+            display: block;
+        }
+        
+            .JQ_CA    ._with_search ._search_popup{
+                position: absolute;
+                top:30px;
+                left:-100px;
+                width:250px;
+                height:30px;
+                border-radius: 5px;
+                box-shadow: 0 0 5px #333;
+                display:none;
+                border:0;
+                padding:3px;
+                background-color: white;
+                background-color: rgba(255, 255, 255, 0.5);
+                z-index: 99;
+            }
+
+            .JQ_CA    ._with_search ._search_popup._show{
+                display: block;
+            }

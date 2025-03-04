@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Next_Exchange_Rate__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Next Exchange Rate</label>
+    <referenceTo>AcctSeed__Exchange_Rate__c</referenceTo>
+    <relationshipLabel>Exchange Rates</relationshipLabel>
+    <relationshipName>Exchange_Rates</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

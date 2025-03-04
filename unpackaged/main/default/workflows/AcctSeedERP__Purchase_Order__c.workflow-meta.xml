@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Approval_Rejection_Alert_Notification</fullName>
+        <description>Approval Rejection Alert Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Group_Purchase_Order_Notification</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Purchase_Orders/PO_Approval_Request_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Purchase_Order_Approved_Alert</fullName>
+        <description>Purchase Order: Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Group_Purchase_Order_Notification</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Purchase_Orders/PO_Approval_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Purchase_Order_Approved_Notify_Vendor</fullName>
+        <ccEmails>wholesalecollections@mitel.com</ccEmails>
+        <ccEmails>shawn.drummond@mitel.com</ccEmails>
+        <ccEmails>mitelorders@ipromedia.us</ccEmails>
+        <description>Purchase Order: Approved Notify Mitel</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Group_Purchase_Order_Notification</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Purchase_Orders/PO_Approval_Request_Approved_Notify_Mitel</template>
+    </alerts>
+    <alerts>
+        <fullName>Purchase_Order_Submit_for_Approval_Alert</fullName>
+        <description>Purchase Order:Submit for Approval Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Group_Purchase_Order_Notification</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Purchase_Orders/New_PO_Approval_Request</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approval_Status_to_Open</fullName>
+        <field>AcctSeedERP__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Approval Status to Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Mark_Email_Sent_to_Mitel_Checkbox</fullName>
+        <field>PO_Release_Request_Emailed_to_Mitel__c</field>
+        <literalValue>1</literalValue>
+        <name>Mark Email Sent to Mitel Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PO_Update_Shipping_Country</fullName>
+        <field>AcctSeedERP__Shipping_Country__c</field>
+        <formula>AcctSeedERP__Shipping_Company__r.ShippingCountry</formula>
+        <name>PO_Update Shipping Country</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Purchase_Order_Status_to_Approved</fullName>
+        <field>AcctSeedERP__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Purchase Order Status to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Purchase_Order_set_Approval_To_False</fullName>
+        <field>Approved__c</field>
+        <literalValue>0</literalValue>
+        <name>Purchase Order set Approval To False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Purchase_Order_set_Approval_To_True</fullName>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Purchase Order set Approval To True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Approved_Flag_to_True</fullName>
+        <field>Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Approved Flag to True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_PO_Status_to_Pending_Approval</fullName>
+        <field>AcctSeedERP__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Set PO Status to Pending Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>PO Approved - Notify Mitel</fullName>
+        <actions>
+            <name>Purchase_Order_Approved_Notify_Vendor</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Mark_Email_Sent_to_Mitel_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2 and 3</booleanFilter>
+        <criteriaItems>
+            <field>AcctSeedERP__Purchase_Order__c.Vendor_PO_Email_Flag__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeedERP__Purchase_Order__c.PO_Release_Request_Emailed_to_Mitel__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeedERP__Purchase_Order__c.AcctSeedERP__Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

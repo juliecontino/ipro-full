@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__maxRowsPerPage__c</fullName>
+    <defaultValue>10</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Maximum displayed rows</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Maximum displayed rows</inlineHelpText>
+    <label>maxRowsPerPage</label>
+    <precision>10</precision>
+    <required>true</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,4 @@
+<apex:page >
+    <!-- This visualforce page is no used -->
+    <apex:pageMessage summary="This visualforce page is no used." severity="info" strength="3" />
+</apex:page>

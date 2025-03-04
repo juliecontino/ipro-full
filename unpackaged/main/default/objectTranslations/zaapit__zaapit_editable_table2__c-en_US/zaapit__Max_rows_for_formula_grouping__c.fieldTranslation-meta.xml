@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The maximum number of rows for calculating filter-groupings (large values may take more time to calculate). --></help>
+        <label><!-- Max rows for formula grouping --></label>
+        <name>zaapit__Max_rows_for_formula_grouping__c</name>
+    </CustomFieldTranslation>

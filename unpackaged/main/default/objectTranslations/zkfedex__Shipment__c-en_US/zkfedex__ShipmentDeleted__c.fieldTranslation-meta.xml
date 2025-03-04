@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Indicates whether this shipment was deleted from the shipping carrier, using the &apos;Modify/Cancel&apos; utility. --></help>
+        <label><!-- Shipment Deleted --></label>
+        <name>zkfedex__ShipmentDeleted__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Scoops Import Frequency --></label>
+        <name>DSCORGPKG__Scoops_Import_Frequency__c</name>
+    </CustomFieldTranslation>

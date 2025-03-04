@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Contact (Accounting) Layout</layout>
         <sections>
@@ -33,8 +24,28 @@
         <name>Log_Task</name>
     </quickActions>
     <webLinks>
+        <label><!-- Conga_Composer_OAuth --></label>
+        <name>APXTConga4__Conga_Composer_OAuth</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Conga_Mail_Merge --></label>
+        <name>APXTConga4__Conga_Mail_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_1099_Info --></label>
+        <name>AcctSeed__Update_1099_Info</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_1099_Info_Detail_Page --></label>
+        <name>AcctSeed__Update_1099_Info_Detail_Page</name>
+    </webLinks>
+    <webLinks>
         <label><!-- Copy_Account_Billing_Address --></label>
         <name>Copy_Account_Billing_Address</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ReportWrongInfotoDiscoverOrg --></label>
+        <name>DSCORGPKG__ReportWrongInfotoDiscoverOrg</name>
     </webLinks>
     <webLinks>
         <label><!-- GoogleMaps --></label>
@@ -60,4 +71,109 @@
         <label><!-- YahooWeather --></label>
         <name>YahooWeather</name>
     </webLinks>
+    <webLinks>
+        <label><!-- Add_to_Campaign --></label>
+        <name>zaapit__Add_to_Campaign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Auto_Mark --></label>
+        <name>zaapit__Auto_Mark</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Emails --></label>
+        <name>zaapit__Mass_Emails</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Emails2 --></label>
+        <name>zaapit__Mass_Emails2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Mass_Merge --></label>
+        <name>zaapit__Mass_Merge</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Contacts1 --></label>
+        <name>zaapit__Merge_Contacts1</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Contacts_L --></label>
+        <name>zaapit__Merge_Contacts_L</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- zp_actions --></label>
+        <name>zaapit__zp_actions</name>
+    </webLinks>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <workflowTasks>
+        <name>zaapit__Call_Contact</name>
+        <subject><!-- Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__Email_Contact</name>
+        <subject><!-- Email --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__Send_Letter_Contact</name>
+        <subject><!-- Send Letter --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>zaapit__Send_Quote_Contact</name>
+        <subject><!-- Send Quote --></subject>
+    </workflowTasks>
 </CustomObjectTranslation>

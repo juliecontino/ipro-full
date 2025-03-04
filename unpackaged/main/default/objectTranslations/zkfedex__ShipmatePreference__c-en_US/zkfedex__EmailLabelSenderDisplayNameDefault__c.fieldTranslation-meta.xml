@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- For completed Shipments, this will be the default sender display name when sending shipping labels via email --></help>
+        <label><!-- Email Label Sender Display Name Default --></label>
+        <name>zkfedex__EmailLabelSenderDisplayNameDefault__c</name>
+    </CustomFieldTranslation>

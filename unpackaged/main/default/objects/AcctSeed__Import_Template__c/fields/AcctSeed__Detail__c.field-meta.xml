@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Detail__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Select the object you would like to import data for. If your object is not listed here, simply add it as a Picklist Value Set under 'Import Objects'.</inlineHelpText>
+    <label>Detail Object</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>AcctSeed__Import_Objects</valueSetName>
+    </valueSet>
+</CustomField>

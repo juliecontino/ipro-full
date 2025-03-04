@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Scheduled Revenue Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Related Transactions --></label>
+            <section>Related Transactions</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- The amount must be positive. --></errorMessage>
+        <name>AcctSeed__Amount_Must_be_Positive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Project Task is required if a Project is selected. --></errorMessage>
+        <name>AcctSeed__Project_Task_Required_With_Project</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A scheduled revenue or expense must contain a value for the accounting period field. --></errorMessage>
+        <name>AcctSeed__Value_for_Accounting_Period</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A scheduled revenue or expense must contain a value for the credit gl account field. --></errorMessage>
+        <name>AcctSeed__Value_for_Credit_GL_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A scheduled revenue or expense must contain a value for the debit gl account field. --></errorMessage>
+        <name>AcctSeed__Value_for_Debit_GL_Account</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Delete --></label>
+        <name>AcctSeed__Delete</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post --></label>
+        <name>AcctSeed__Post</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post_Detail --></label>
+        <name>AcctSeed__Post_Detail</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost --></label>
+        <name>AcctSeed__Unpost</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost_Detail --></label>
+        <name>AcctSeed__Unpost_Detail</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Scoped_Objects</fullName>
+    <active>false</active>
+    <errorConditionFormula>TEXT( AcctSeed__Target_Object__c) != TEXT(AcctSeed__Import_Template__r.AcctSeed__Detail__c) &amp;&amp; TEXT( AcctSeed__Target_Object__c) != TEXT( AcctSeed__Import_Template__r.AcctSeed__Parent__c )</errorConditionFormula>
+    <errorDisplayField>AcctSeed__Target_Object__c</errorDisplayField>
+    <errorMessage>The mapped object must be either the parent or detail object specified on the Import Template</errorMessage>
+</ValidationRule>

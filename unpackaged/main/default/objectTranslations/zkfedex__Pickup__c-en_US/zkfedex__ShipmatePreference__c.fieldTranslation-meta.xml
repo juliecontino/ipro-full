@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- FedEx Shipmate Preference --></label>
+        <name>zkfedex__ShipmatePreference__c</name>
+        <relationshipLabel><!-- FedEx Pickups --></relationshipLabel>
+    </CustomFieldTranslation>

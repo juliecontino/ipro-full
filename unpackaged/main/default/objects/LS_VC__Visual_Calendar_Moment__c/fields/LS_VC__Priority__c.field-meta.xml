@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LS_VC__Priority__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Priority {DEPRECATED}</label>
+    <referenceTo>LS_VC__Visual_Calendar_Priority__c</referenceTo>
+    <relationshipLabel>Visual Calendar Moments {Deprecated}</relationshipLabel>
+    <relationshipName>Petcare_Quarterly_Calendar_Moments</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

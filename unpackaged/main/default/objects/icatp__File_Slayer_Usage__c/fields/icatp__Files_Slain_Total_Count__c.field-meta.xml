@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>icatp__Files_Slain_Total_Count__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>icatp__Files_Slain_via_Component_Count__c + icatp__Files_Slain_via_Hit_List_Count__c + icatp__Files_Slain_via_Hit_List_Manager_Count__c + icatp__Files_Slain_Retroactively_Count__c + icatp__Files_Slain_via_Slaybot_Count__c + icatp__Duplicate_Files_Deleted_Count__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Files Slain Total (Count)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

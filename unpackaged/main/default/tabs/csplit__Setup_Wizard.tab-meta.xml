@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <icon>csplit__Case_Split/csplit__Case_Split_Icon.png</icon>
+    <label>Case Split Setup Wizard</label>
+    <motif>Custom244: TV Widescreen</motif>
+    <page>csplit__SetupWizard</page>
+</CustomTab>

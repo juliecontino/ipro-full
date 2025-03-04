@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Denotes whether the employee should be reimbursed for the expense. --></help>
+        <label><!-- Employee Reimburse --></label>
+        <name>AcctSeed__Employee_Reimburse__c</name>
+    </CustomFieldTranslation>

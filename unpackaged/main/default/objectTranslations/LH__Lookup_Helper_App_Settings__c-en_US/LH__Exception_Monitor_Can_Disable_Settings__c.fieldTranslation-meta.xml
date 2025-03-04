@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Allows the Lookup Helper Exception Monitor to automatically disable settings that are causing an error. --></help>
+        <label><!-- Exception Monitor Can Disable Settings --></label>
+        <name>LH__Exception_Monitor_Can_Disable_Settings__c</name>
+    </CustomFieldTranslation>

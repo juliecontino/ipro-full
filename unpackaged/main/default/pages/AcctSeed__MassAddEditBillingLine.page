@@ -1,0 +1,21 @@
+<apex:page standardController="AcctSeed__Billing_Line__c"
+           extensions="AcctSeed.MassAddEditLineController"
+           recordSetVar="billLines"
+           title="Mass Add Edit | Accounting Seed"
+           lightningStylesheets="true"
+           sideBar="false">
+
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+
+    <apex:pageMessages />
+    <apex:form rendered="{!isError}">
+        <apex:commandLink action="{!cancel}" style="margin-left: 20px;">&nbsp;«&nbsp;Back</apex:commandLink>
+    </apex:form>
+
+    <c:MassAddEditLineComponent masterRecordAttr="{!masterRecord}"
+                                isRecordPostedAttr="{!isRecordPosted}"
+                                cancelAction="{!cancel}" rendered="{!!isError}"/>
+
+</apex:page>

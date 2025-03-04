@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__Tracking</fullName>
+    <columns>NAME</columns>
+    <columns>zkfedex__SsProcessReturnShipment__c</columns>
+    <columns>zkfedex__ShipDate__c</columns>
+    <columns>zkfedex__MasterTrackingId__c</columns>
+    <columns>zkfedex__LastTrackUpdateTime__c</columns>
+    <columns>zkfedex__ShipmentDeleted__c</columns>
+    <columns>zkfedex__Delivered__c</columns>
+    <columns>zkfedex__StatusDescription__c</columns>
+    <columns>zkfedex__ActualDeliveryDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Tracking</label>
+</ListView>

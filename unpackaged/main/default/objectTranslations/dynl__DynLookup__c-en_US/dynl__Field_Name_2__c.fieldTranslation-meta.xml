@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Second Field Name of the Object. If any aggregate function is selected it will be used on this field. --></help>
+        <label><!-- Field Name 2 --></label>
+        <name>dynl__Field_Name_2__c</name>
+    </CustomFieldTranslation>

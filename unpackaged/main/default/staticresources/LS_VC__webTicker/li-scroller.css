@@ -1,0 +1,76 @@
+/* liScroll styles */
+
+.tickerBG{
+	background: url("ticker_bg.png") repeat;
+	margin: 7px 3px 20px 3px;
+	padding: 6px;
+}
+.tickerCont{
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	border:0px;/* solid #1b7aaa;*/
+	padding:6px 10px 6px 10px;
+	background-color: white;
+}
+div.tickerCont p.latest{
+	float:left;
+	font-weight:bold;
+	font-size: 12px;
+	color:#3B7FAF;
+}
+
+.tickerControls{
+	position: absolute;
+	right: 17px;
+	top: 28px;
+}
+
+.tickercontainer { /* the outer div with the black border */
+/*border: 1px solid #000;*/
+background: #fff; 
+left: 5px;
+right: 35px;
+height: 18px;
+margin: 0;
+margin-right: 50px;
+padding: 0;
+overflow: hidden; 
+}
+.tickercontainer .mask { /* that serves as a mask. so you get a sort of padding both left and right */
+position: relative;
+left: 5px;
+top: 2px;
+right: 25px;
+overflow: hidden;
+}
+ul.newsticker { /* that's your list */
+position: relative;
+left: 1150px;
+font: bold 10px Verdana;
+list-style-type: none;
+margin: 0;
+padding: 0;
+
+}
+ul.newsticker li {
+float: left; /* important: display inline gives incorrect results when you check for elem's width */
+margin: 0;
+padding: 0;
+background: #fff;
+display: block;
+}
+ul.newsticker li a {
+white-space: nowrap;
+padding: 0;
+font: bold 10px Verdana;
+margin: 0px 10px 0px 10px;
+color: #3B7FAF;
+} 
+ul.newsticker li span {
+white-space: nowrap;
+padding: 0;
+font: bold 10px Verdana;
+margin: 0px 10px 0px 10px;
+color: #3B7FAF;
+}

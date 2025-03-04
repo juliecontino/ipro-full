@@ -1,0 +1,953 @@
+/* 
+    Document   : week
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@import url(week.ipad.css) screen and (max-device-width: 1024px) and (orientation: landscape);
+@import url(week.ipad.css) screen and (device-width: 768px) and (orientation: portrait);
+
+
+.JQ_CA > .CA_r > div.show._mode-week{
+    display:block !important;
+}
+
+.JQ_CA > .CA_r > div._mode-week > div.top{
+    position:absolute;top:0px;
+    height:30%;
+    right:24px;left:20px;
+}
+
+.JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-week > div.top{
+    height:15%;
+}
+.JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-week > div.top{
+    height:30%;
+}
+.JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-week > div.top{
+    height:50%;
+}
+.JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-week > div.top{
+    bottom:10px;
+    height:auto;
+}
+.JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-week > div.top{
+    height:30px;
+}
+
+
+        .JQ_CA > .CA_r > div._mode-week   div.data   div.events.new_events > div{
+            opacity:0.25 !important;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-week   div.data   div.events.new_events > div.new_event{
+            opacity:1 !important;
+        }
+        
+            .JQ_CA > .CA_r > div._mode-week    div.data > div.events.new_events > div.new_event > span{
+                background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+            }
+            .JQ_CA.ie > .CA_r > div._mode-week    div.data > div.events.new_events > div.new_event > span{
+                background-color:#8787D7;
+            }
+            
+
+
+    .JQ_CA > .CA_r > div._mode-week > div.top > div.data,
+    .JQ_CA > .CA_r > div._mode-week > div.top > div.events,
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.data,
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.events,
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid
+    {
+        position:absolute;
+        top:30px;bottom:0px;
+        left:0px;
+    }
+
+    .JQ_CA > .CA_r > div._mode-week > div.top > div.data,
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.data,
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid{
+        right:0px;
+        overflow-y:hidden;
+    }
+    .JQ_CA > .CA_r > div._mode-week > div.top > div.events,
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.events{
+        right:20px;
+    }
+    
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid{
+        overflow-x: hidden;
+    }
+    .JQ_CA > .CA_r > div._mode-week > div.agd > div.data{
+        overflow-y: scroll;
+        right:0;
+    }
+
+        .JQ_CA > .CA_r > div._mode-week > div.top > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-week > div.agd > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid > ul{
+            display:inline-block;
+            height:100%;
+/*            width:100%;*/
+    /*                        overflow: hidden;*/
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            position:absolute;
+            right:20px;
+            left:0px;
+        }
+        .JQ_CA > .CA_r > div._mode-week > div.agd > div.data > ul{
+            right: 0;
+        }
+
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid > ul > li{
+                border-bottom: 1px solid #ddd;
+                border-collapse: collapse;
+    /*                    float: left;*/
+                border-right: 1px solid #ddd;
+                border-top:0px;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+            }
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.data > ul > li{
+                height: auto;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.data > ul > li{
+                border-left-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+            }
+
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data > ul > li:first-child,
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.data > ul > li:first-child,
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid > ul > li:first-child{
+                text-decoration: underline;
+                text-align: center;
+                vertical-align: middle;
+                cursor: pointer;
+                border-left: 1px solid #ddd;
+                
+            }    
+            
+            .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > li.current{
+                background-color: rgba(120, 120, 120, 0.12);
+            }            
+            
+
+            .JQ_CA > .CA_r > div._mode-week > div.agd > div.grid > ul > li.current,
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data > ul > li.current,
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data > ul > li:hover
+            {
+                background: #eeeeee;
+                background: -moz-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -webkit-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -ms-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -o-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                
+            }
+            
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > ul > li.more > .detail_day:before{
+                    content:">";
+                    border:1px solid #ddd;
+                    display: inline-block;
+                    background-color: #ddd;
+                    color:black;
+                    margin-right:5px;
+                    box-shadow: 0 0 5px #ddd;;
+                    border-radius: 5px;
+                    padding:2px 3px;
+                }
+            
+            .JQ_CA > .CA_r > div._mode-week > div.top .new_event{
+/*                height:100%;*/
+/*                display:inline-block;*/
+/*                width:13%;*/
+/*                position:absolute;*/
+                background:rgba(0, 0, 128, 0.5);
+/*                margin-left:9%;*/
+                box-shadow: 0px 0px 3px rgba(0,0,0, 0.5);
+                border-radius: 10px;
+                    
+/*                height:20px;*/
+            }
+            
+
+                .JQ_CA > .CA_r > div._mode-week > div.top .new_event > span.title{
+                    border-image: url(../pic/border.gif) 1px repeat repeat ;
+                    border:1px solid transparent;
+                    -moz-border-image: url(../pic/border.gif) 1px repeat repeat ; 
+                    -webkit-border-image: url(../pic/border.gif) 1px repeat repeat ; 
+                    -o-border-image: url(../pic/border.gif) 1px repeat repeat ;
+                }
+                
+                .JQ_CA > .CA_r > div._mode-week .new_event span.close{
+                    position:absolute;
+                    top:0px;
+                    right:10px;
+                    border-radius: 6px;
+                    width:10px;
+                    height:10px;
+                    background-image: url(../pic/icons.png);
+                    background-position:-3px -135px;
+                    background-repeat: no-repeat;
+                    cursor:pointer;
+                    display:block;
+                    opacity:0.8;
+                    background-color: #fff;
+                    border:1px solid #ddd;
+                }
+                
+                .JQ_CA > .CA_r > div._mode-week > div.top .new_event span.close:hover{
+                    opacity:1;
+                }
+/*                .JQ_CA > .CA_r > div._mode-week > div.top .new_event span.add{
+                    
+                }*/
+            
+        .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events{
+            position:absolute;
+            top:2px;
+            left:0px;
+/*            height:0px;*/
+            right:0px;
+            overflow-y:scroll;
+            overflow-x: hidden;
+            bottom:10px;
+/*                        background-image:url(pic/event_week_bg.png) ;
+            background-repeat: repeat-x;
+            background-position: bottom center;*/
+/*                        opacity: 0.7;*/
+        }
+        
+        .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events.shadow,
+        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul.shadow{
+            opacity:0.3;
+        }
+
+        .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events:hover{
+/*                        opacity:1;*/
+        }
+
+
+        
+        
+        
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div,
+            .JQ_CA > .CA_r > div._mode-week div.hand_on{
+/*                opacity:0.7;*/
+                display:inline-block;
+                position:absolute;
+                margin-bottom:2px;
+                height:15px;
+
+/*                            border:1px solid #ddd;*/
+/*                            box-shadow: 0px 0px 1px #333;*/
+/*                                -moz-linear-gradient(top,  transparent 0%, rgba(255,255,255,0.2) 100%);*/
+/*                            overflow:hidden;*/
+                
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+                
+            }
+            
+            .JQ_CA.middle > .CA_r > div._mode-week > div.top > div.data > div.events > div,
+            .JQ_CA.middle > .CA_r > div._mode-week div.hand_on{
+                height:18px;
+            }
+                
+            .JQ_CA.large > .CA_r > div._mode-week > div.top > div.data > div.events > div,
+            .JQ_CA.large > .CA_r > div._mode-week div.hand_on{
+                height:21px;
+            }
+            
+/*            .JQ_CA > .CA_r > div._mode-week > div.top  div.events > div{
+                top:999px;
+            }*/
+            
+            .JQ_CA > .CA_r > div._mode-week > div.top div.hand_on{
+                margin-top: 15px ;
+                opacity: 1;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-week div.sub_events > div{
+/*                opacity:0.7;*/
+                display:block;
+                margin-bottom:2px;
+                height:15px;
+                position:relative;
+            }
+
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.on,
+            .JQ_CA > .CA_r > div._mode-week div.sub_events > div.on {
+                opacity:1;
+            }
+
+
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p0{width:13.8%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p1{width:27.6%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p2{width:41.4%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p3{width:55.2%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p4{width:69%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p5{width:82.8%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data  .p6{width:96.6%;}
+            
+            
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data  .p0{width:16.1%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data  .p1{width:32.2%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data  .p2{width:48.3%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data  .p3{width:64.4%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data  .p4{width:80.5%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data  .p5{width:96.6%;}
+            
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data  .p0{width:19.3%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data  .p1{width:38.6%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data  .p2{width:57.9%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data  .p3{width:77.2%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data  .p4{width:96.6%;}
+
+            
+            
+            
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d0{left:3.4%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d1{left:17.2%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d2{left:31%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d3{left:44.8%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d4{left:58.6%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d5{left:72.4%;}
+            .JQ_CA > .CA_r > div._mode-week > div.top > div.data   .d6{left:86.2%;}
+
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d0{left:3.4%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d1{left:19.5%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d2{left:35.6%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d3{left:51.7%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d4{left:67.8%;}
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d5{left:83.9%;}
+
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d0{left:3.4%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d1{left:22.7%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d2{left:42%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d3{left:61.3%;}
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d4{left:80.7%;}
+
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week > div.top > div.data   .d6,
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d5,
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week > div.top > div.data   .d6{
+                display:none;
+            }
+            
+            
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div > span,
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div > span > span,
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span, 
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span > span,
+                .JQ_CA > .CA_r > div._mode-week div.hand_on > span, 
+                .JQ_CA > .CA_r > div._mode-week div.hand_on > span > span
+                {
+                    position:absolute;
+                    top:0px;
+                    bottom:0px;
+                }
+
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div > span.title, 
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.hand_on > span.title
+                {
+                    overflow:hidden;
+                    border-radius:5px;
+                    z-index:1;
+                    left:5px;
+                    right:5px;
+                    padding-left:13px;
+/*                    background-image:url(../pic/event_bg.png) ;
+                    background-repeat: repeat-x;
+                    background-position: center center;*/
+                    font-size:11px;
+                    line-height:15px;
+                    color:white;
+                    text-align: left;
+                }
+                
+                .JQ_CA.ie > .CA_r > div._mode-week > div.top > div.data > div.events > div > span.title{
+                    background-image: none;
+                }
+                
+                .JQ_CA.middle > .CA_r > div._mode-week > div.top > div.data > div.events > div > span.title, 
+                .JQ_CA.middle > .CA_r > div._mode-week div.sub_events > div > span.title,
+                .JQ_CA.middle > .CA_r > div._mode-week div.hand_on > span.title {
+                    font-size:14px;
+                    line-height:18px;
+                }
+
+                .JQ_CA.large > .CA_r > div._mode-week > div.top > div.data > div.events > div > span.title, 
+                .JQ_CA.large > .CA_r > div._mode-week div.sub_events > div > span.title,
+                .JQ_CA.large > .CA_r > div._mode-week div.hand_on > span.title {
+                    font-size:17px;
+                    line-height:21px;
+                }
+
+                
+
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.on > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div.on > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.hand_on > span.title
+                {
+                    box-shadow: 0px 0px 3px #000;
+
+                }
+
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.full_l > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div.full_l > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.hand_on.full_l > span.title
+                {
+                    left:1px;padding-left: 17px;
+                    border-bottom-left-radius: 2px;
+                    border-top-left-radius: 2px;
+                }
+                .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.full_r > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div.full_r > span.title,
+                .JQ_CA > .CA_r > div._mode-week div.hand_on.full_r > span.title
+                {
+                    right:2px;
+                    border-bottom-right-radius: 2px;
+                    border-top-right-radius: 2px;
+                }
+
+                .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span.title {
+                    font-size:90%;
+                }
+
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div > span > span.title{
+
+                    }
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div > span > span.l{
+                        border-top-left-radius:5px;
+                        border-bottom-left-radius:5px;
+                        z-index:2;
+                        left:0px;width:10px;
+                        cursor:w-resize;
+/*                                opacity: 0.2;*/
+/*                                background-color:#000;*/
+                        background:url(../pic/event_week_l.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div > span > span.r{
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        z-index:2;
+                        right:0px;width:10px;
+                        cursor:e-resize;
+                        /*opacity: 0.2;8/
+                        /*background-color:#000;*/
+                        background:url(../pic/event_week_r.png) repeat-y top right;
+                    }
+                    
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.evt.non_e > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.evt.non_e > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.evt.non_r > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.evt.non_r > span > span.r{
+                        background-image:none !important;
+                        cursor: default;
+                    }
+
+
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.full_l > span > span.l,
+                    .JQ_CA > .CA_r > div._mode-week > div.top > div.data > div.events > div.full_r > span > span.r,
+                    .JQ_CA > .CA_r > div._mode-week div.sub_events > div.full_l > span.title > span.l, 
+                    .JQ_CA > .CA_r > div._mode-week div.sub_events > div.full_r > span.title > span.r {
+                        display:none;
+                    }
+                    .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span.title > span.r,
+                    .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span.title > span.l{
+                        display:block;
+                        cursor:auto;
+                        background-color:rgba(0,0,0,0.2);
+                        position:absolute;
+                        top:0px;bottom:0px;width:10px;
+                    }
+                    .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span.title > span.r{right:0px;}
+                    .JQ_CA > .CA_r > div._mode-week div.sub_events > div > span.title > span.l{left:0px;}
+        
+        
+            
+
+.JQ_CA > .CA_r > div._mode-week > div.bottom{
+    border-top:2px solid #ddd;
+    position:absolute;
+    top:30%;bottom:10px;
+    margin-top:2px;
+    right:24px;left:20px;
+}    
+
+.JQ_CA._day_area_mode-1_9 > .CA_r > div._mode-week > div.bottom{
+    top:15%;
+}
+.JQ_CA._day_area_mode-1_2 > .CA_r > div._mode-week > div.bottom{
+    top:30%;
+}
+.JQ_CA._day_area_mode-1_1 > .CA_r > div._mode-week > div.bottom{
+    top:50%;
+}
+.JQ_CA._day_area_mode-1_0 > .CA_r > div._mode-week > div.bottom{
+    display: none;
+}
+.JQ_CA._day_area_mode-0_1 > .CA_r > div._mode-week > div.bottom{
+    top:29px;
+}
+            
+    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data,
+    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.events
+    {
+        position:absolute;
+        top:0px;bottom:0px;
+        
+    }
+
+    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data{
+        overflow-y:scroll;
+        right:0px;
+        left:0px;
+    }
+    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.events{
+        right:20px;
+        left:9%;
+    }
+
+        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul {
+
+            display:inline-block;
+            width:100%;
+    /*                        overflow: hidden;*/
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            overflow-y:hidden;
+/*            height: 720px;*/
+            position:relative;
+/*            background-image: url(../pic/event_day_grid_30.png);*/
+        }
+        
+
+            .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > li{
+                border-bottom: 1px solid #ddd;
+                border-collapse: collapse;
+    /*                    float: left;*/
+                border-right: 1px solid #ddd;
+                border-top:0px;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+				/*white-space: nowrap;*/
+/*                height:100%;*/
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+                
+                position:relative;
+            }
+
+            .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > li.hours_title{
+                text-decoration: underline;
+                text-align: center;
+                border-left: 1px solid #ddd;
+                background-color:rgba(0,0,0,0.07);
+                overflow: hidden;
+            }    
+
+                .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > li.hours_title > span{
+                    display:inline-block;
+/*                    height:30px;*/
+                    width:100%;
+                    text-align: right;
+                    text-overflow:clip;
+                }
+                .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > li > div.events{
+                    position:absolute;
+                    top:0px;left:0px;right:0px;bottom:0px;
+                    overflow:hidden;
+                }
+                
+        
+        
+/*            .JQ_CA > .CA_r > div._mode-week    div.data > div.events.new_events > div.new_event > span{
+                background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+            }*/
+                
+                
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt{
+                        position:absolute;
+                    }
+                    
+                    
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span{
+/*                        border:1px solid white;*/
+                        border-radius:5px;
+                        position:absolute;
+                        top:1px;bottom:1px;left:1px;right:1px;
+                        text-align: left;
+/*                        background-image: url(../pic/event_bg_h.png);
+                        background-repeat: repeat-y;
+                        background-position: center center;
+                        background-size: contain;*/
+                        overflow:hidden;
+                    }
+                    
+                    .JQ_CA.ie > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span{
+                        background-image: none;
+                    }
+                    
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.title{
+/*                            -webkit-transform: rotate(-90deg);
+                            -moz-transform: rotate(-90deg);
+                            -o-transform: rotate(-90deg);*/
+/*                            color:white;*/
+                            display:inline-block;
+                            position:absolute;
+                            top:5px;bottom:5px;
+                            left:5px;
+                            right:5px;
+                            overflow:hidden;
+                            font-size:11px;
+/*                            background-color: red;
+                            
+                            white-space: nowrap;*/
+                            white-space: normal;
+                        }
+                        
+                        
+                        .JQ_CA.middle > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.title{
+                            font-size:14px;
+                        }
+                                                                                                                     
+                        .JQ_CA.large > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.title{
+                            font-size:17px;
+                        }
+                        
+                        .JQ_CA.small > .CA_r > div._mode-week > div.bottom > div.data   div.evt.i1 > span > span.title{
+                            top:2px;
+                            bottom:2px;
+                        }
+                        
+                        
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.t{
+                            position:absolute;top:0px;left:0px;right:0px;height:5px;
+                            cursor:n-resize;
+                            background: url(../pic/event_day_t.png) no-repeat center center;
+                            border-radius:5px;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.t:hover{
+                            background-image: url(../pic/event_day_t_on.png)
+                        }
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.b{
+                            position:absolute;bottom:0px;left:0px;right:0px;height:5px;
+                            cursor:s-resize;
+                            background: url(../pic/event_day_b.png) no-repeat center center;
+                            border-radius:5px;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt > span > span.b:hover{
+                            background-image: url(../pic/event_day_b_on.png)
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.non_ls > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.non_rs > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt.non_e > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt.non_e > span > span.b,
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt.non_r > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt.non_r > span > span.b{
+                            background-image:none !important;
+                            cursor: default;
+                        }
+
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.full_t > span > span.t,
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.full_b > span > span.b{
+                            display:none;
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt.new_event.create_event > span > span.title{
+                            color: #fff;
+                        }
+                    
+                    /*width of block*/
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data  div > div{
+                        width:5%;
+                    }
+                    
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data  div.new_events > div.new_event{
+                        width:90%;
+                    }
+                    /*left position*/
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.evt.e0{left:0%;}
+                    
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data  div.events.new_events > div.evt.new_event > span{
+                            background-image: url("../pic/event_chess2_bg.png");
+                            background-size: contain;
+                            background-repeat: repeat;
+/*                            background-color:#0066cc;*/
+                        }
+                        
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data  div.events.new_events > div.evt.new_event.create_event > span{
+                            background-color:#0066cc;
+                        }
+                    /* width for dragable*/
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > span > div{
+                        position:absolute;
+                        width:10%;
+                        opacity : 1;
+                    }
+                        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > span > div > span{
+                            position:absolute;top:2px;bottom:2px;left:0px;right:0px;
+                            border-radius: 3px;
+                            box-shadow: 0px 0px 3px #000;
+                            background-image: url("../pic/event_chess2_bg.png");
+                            background-position: center center;
+                            background-repeat: repeat;
+                            background-size: contain;
+                        }
+                            .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > span > div > span > span.title{
+                                color:white;
+                                font-size:100%;
+                                padding:3px;
+                                font-weight: bolder;
+                            }
+                    
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d0{left:10%;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d1{left:23%;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d2{left:36%;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d3{left:49%;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d4{left:62%;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d5{left:75%;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data   div.d6{left:88%;}                    
+                    
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > ._drag_pane{cursor: move;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > ._drag_pane.t{cursor:n-resize;}
+                    .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > ul > ._drag_pane.b{cursor:s-resize;}
+                    
+/*        .JQ_CA > .CA_r > div._mode-week > div.bottom > div.data > div.events{
+            position:absolute;top:0px;left:0px;right:0px;bottom:0px;
+        }*/
+
+
+/* AGENDA mode*/
+
+.JQ_CA > .CA_r > div._mode-week.agenda > div.top,
+.JQ_CA > .CA_r > div._mode-week.agenda > div.bottom{
+    display: none;
+}
+.JQ_CA > .CA_r > div._mode-week.agenda > div.agd{
+    display: block;
+}
+.JQ_CA > .CA_r > div._mode-week > div.agd{
+    /*border-top:2px solid #ddd;*/
+    position:absolute;
+    top:0;bottom:10px;
+    right:24px;left:20px;
+    display: none;
+}    
+
+.JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div{
+    overflow-x: hidden;
+}
+    .JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div > table{
+        padding:0;margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:0;
+        width: 100%;
+        border-top: 1px solid #ddd;
+        font-size: 11px;
+/*        margin-top: 30px;*/
+    }
+    
+    .JQ_CA.middle > .CA_r > div._mode-week > div.agd div.data li > div > table{
+        font-size: 14px;
+    }
+    
+    .JQ_CA.large > .CA_r > div._mode-week > div.agd div.data li > div > table{
+        font-size: 17px;
+    }
+    
+        .JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div > table td{
+            padding:2px 2px 2px 4px;
+            /*font-size: 120%;*/
+            border-bottom:1px solid #ddd;
+            text-align: left;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div > table td:first-child{
+            border-bottom-color:white;
+            text-align: center;
+            vertical-align: middle;
+            padding:1px;
+            border-radius: 5px;
+        }
+        
+        .JQ_CA.CA_gradient > .CA_r > div._mode-week > div.agd div.data li > div > table td:first-child{
+            background-image: url("../pic/event_bg.png");
+            background-position: center center;
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+        
+        
+            .JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div > table td .title{
+                font-weight: bolder;
+                /*font-size: 120%;*/
+            }
+            
+            .JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div > table td .details{
+                padding-top:3px;
+                display: block;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-week > div.agd div.data li > div > table td .details > b{
+                border-top: 1px solid #EEEEEE;
+                color: #888888;
+                display: inline-block;
+                font-size: 95%;
+                font-weight: bold;
+                margin-top: 2px;
+                min-width:25%;
+                padding-bottom:3px;
+            }
+            
+            
+
+    /* Top days panel*/    
+    .JQ_CA > .CA_r > div._mode-week > div > div.days{
+        position:absolute;
+        top:5px;left:0px;
+        height:25px;
+        overflow-y:hidden;
+        background: #eeeeee;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: -webkit-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: -o-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%) #ddd;
+
+    }
+
+    .JQ_CA > .CA_r > div._mode-week > div > div.days_right{
+        position:absolute;top:5px;right:0px;width:20px;height:25px;
+        background: #eeeeee;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -webkit-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -o-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%);
+        z-index:10;
+    }
+        .JQ_CA > .CA_r > div._mode-week > div > div.days > ul {
+            height:25px;
+            display:block;
+            display:inline-block;
+            overflow: hidden;
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            vertical-align: top;
+            width:100%;
+        }
+
+            .JQ_CA > .CA_r > div._mode-week > div > div.days > ul > li:first-child{
+                border-left:1px solid transparent;
+                height:25px;
+            }
+                .JQ_CA > .CA_r > div._mode-week > div > div.days > ul > li:first-child input{
+                    margin: 0;
+                    padding: 0;
+                }
+            .JQ_CA > .CA_r > div._mode-week > div > div.days > ul > li{
+                vertical-align: top;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+
+                padding:0px;
+                border-collapse: collapse;
+                display:inline-block;
+                text-align: center;
+                font-size:100%;
+                /*border:1px solid transparent;*/
+                border-right:1px dotted #ddd;
+                border-bottom:4px solid transparent;
+                line-height:19px;
+                position: relative;
+
+            }
+            .JQ_CA > .CA_r > div._mode-week > div > div.days > ul > li:last-child{
+                border-right:0px;
+            }
+                .JQ_CA > .CA_r > div._mode-week > div > div.days > ul > li > span{
+                    position: absolute;
+                    right:3px;
+                    top:2px;
+                    /*margin-top:-50%;*/
+                    font-size:11px;
+                    color: #999;
+                }
+            
+            
+            .JQ_CA._week-end-7 > .CA_r > div._mode-week   ul > li{
+                width:13.8%;
+            }
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week  ul > li {
+                width:16.1%;
+            }
+            
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week   ul > li{
+                width:19.3%;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-week   ul > li:first-child{
+                width:3.4%;
+            }
+
+            
+/*            .JQ_CA._week-end-7 > .CA_r > div._mode-week   ul > li:first-child{
+                width:3.4%;
+            }
+            
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week   ul > li:first-child{
+                width:3.4%;
+            }
+            
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week   ul > li:first-child{
+                width:3.4%;
+            }*/
+            
+            .JQ_CA._week-end-6 > .CA_r > div._mode-week   ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week   ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > div._mode-week   ul > li[data-day="6"] {
+                display:none !important;
+            }
+			

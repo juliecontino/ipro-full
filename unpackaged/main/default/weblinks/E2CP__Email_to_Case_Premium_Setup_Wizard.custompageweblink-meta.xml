@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Email to Case Premium Setup Wizard</masterLabel>
+    <openType>replace</openType>
+    <protected>true</protected>
+    <url>/lightning/n/E2CP__Email_to_Case_Premium_Setup</url>
+</CustomPageWebLink>

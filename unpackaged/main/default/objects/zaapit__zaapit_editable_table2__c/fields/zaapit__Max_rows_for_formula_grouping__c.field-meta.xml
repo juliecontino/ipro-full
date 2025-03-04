@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__Max_rows_for_formula_grouping__c</fullName>
+    <defaultValue>10000</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The maximum number of rows for calculating filter groupings (large values may take more time to calculate)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The maximum number of rows for calculating filter-groupings (large values may take more time to calculate).</inlineHelpText>
+    <label>Max rows for formula grouping</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

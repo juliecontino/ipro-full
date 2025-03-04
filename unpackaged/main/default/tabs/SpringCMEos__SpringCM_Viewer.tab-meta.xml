@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>View SpringCM directly form Salesforce within this tab.</description>
+    <label>SpringCM Files</label>
+    <motif>Custom38: Camera</motif>
+    <page>SpringCMEos__SpringCM_ViewerTab</page>
+</CustomTab>

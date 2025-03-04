@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to match the vendor account to a specific file import related transaction. This field is only used when importing financial files such as a bank statement via the Import Financial File tab. --></help>
+        <label><!-- File Import Match Name --></label>
+        <name>AcctSeed__File_Import_Match_Name__c</name>
+    </CustomFieldTranslation>

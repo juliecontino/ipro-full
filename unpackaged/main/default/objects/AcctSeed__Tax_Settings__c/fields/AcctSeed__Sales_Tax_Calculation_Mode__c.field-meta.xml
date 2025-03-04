@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Sales_Tax_Calculation_Mode__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Shipment uses AvaTax to determine the proper sourcing for tax calculations. Point of Sale forces tax calculation to be based on the Origin Address. Point of Destination forces tax calculation to be based on the Billing's Shipping address.</inlineHelpText>
+    <label>Sales Tax Calculation Mode</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shipment</fullName>
+                <default>true</default>
+                <label>Shipment</label>
+            </value>
+            <value>
+                <fullName>Point of Sale</fullName>
+                <default>false</default>
+                <label>Point of Sale</label>
+            </value>
+            <value>
+                <fullName>Point of Destination</fullName>
+                <default>false</default>
+                <label>Point of Destination</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

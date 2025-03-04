@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If this is checked, Lookup Helper will attempt to update converted leads when running lookups on the Lead object. --></help>
+        <label><!-- Update Converted Leads --></label>
+        <name>LH__Update_Converted_Leads__c</name>
+    </CustomFieldTranslation>

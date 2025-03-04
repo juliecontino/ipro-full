@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Use a descriptive title to help users identify the correct canned comment they want to use. --></help>
+        <label><!-- Title --></label>
+        <name>E2CP__Title__c</name>
+    </CustomFieldTranslation>

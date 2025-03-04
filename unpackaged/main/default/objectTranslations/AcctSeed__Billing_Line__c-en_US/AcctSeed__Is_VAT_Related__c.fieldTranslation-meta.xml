@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Populated via code. Checked if the related Tax Group is an Avalara VAT Reporting tax group. --></help>
+        <label><!-- Is VAT Related --></label>
+        <name>AcctSeed__Is_VAT_Related__c</name>
+    </CustomFieldTranslation>

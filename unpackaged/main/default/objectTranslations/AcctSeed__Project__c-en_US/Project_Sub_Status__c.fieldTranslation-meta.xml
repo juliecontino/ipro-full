@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Project Sub Status --></label>
+        <name>Project_Sub_Status__c</name>
+        <picklistValues>
+            <masterLabel>Waiting on Circuit</masterLabel>
+            <translation><!-- Waiting on Circuit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on Construction</masterLabel>
+            <translation><!-- Waiting on Construction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on Customer</masterLabel>
+            <translation><!-- Waiting on Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting on Parts</masterLabel>
+            <translation><!-- Waiting on Parts --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

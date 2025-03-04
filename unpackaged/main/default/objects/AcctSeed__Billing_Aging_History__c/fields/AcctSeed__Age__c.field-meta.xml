@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Age__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(AcctSeed__Days_Past_Due__c &lt;=0, "0-Current",
+IF(AND(AcctSeed__Days_Past_Due__c&gt;0,AcctSeed__Days_Past_Due__c&lt;=30),"1-30 Days",
+IF(AND(AcctSeed__Days_Past_Due__c&gt;30,AcctSeed__Days_Past_Due__c&lt;=60),"31-60 Days",
+IF(AND(AcctSeed__Days_Past_Due__c&gt;60,AcctSeed__Days_Past_Due__c&lt;=90),"61-90 Days",
+IF(AcctSeed__Days_Past_Due__c&gt;90,"Over 90 Days",
+"")))))</formula>
+    <inlineHelpText>Denotes the age of the billing for the given accounting period.</inlineHelpText>
+    <label>Age</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

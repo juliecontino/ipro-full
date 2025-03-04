@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Preference Number of the Shipmate Preference record that contains the FedEx Account Number that this user is registered to use. --></help>
+        <label><!-- FedEx Registered Preference --></label>
+        <name>zkfedex__FedExRegisteredPreference__c</name>
+    </CustomFieldTranslation>

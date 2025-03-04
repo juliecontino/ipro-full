@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prior_Period__c</fullName>
+    <externalId>false</externalId>
+    <formula>If( right(Name ,2)="01",text(year( AcctSeed__Start_Date__c )-1)+"-12",
+text(year(AcctSeed__Start_Date__c))+"-"+if((Month(AcctSeed__Start_Date__c)-1)&lt;10,"0"+text(Month(AcctSeed__Start_Date__c)-1),text(Month(AcctSeed__Start_Date__c)-1)
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Prior Period</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Formula field that lists either the vendor, contact or the employee as the Payee Id. --></help>
+        <label><!-- Payee Id --></label>
+        <name>AcctSeed__Payee_Id__c</name>
+    </CustomFieldTranslation>

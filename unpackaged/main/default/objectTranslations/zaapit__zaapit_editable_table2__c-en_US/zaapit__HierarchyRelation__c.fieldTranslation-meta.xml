@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Hierarchy Relation for {PID} parameter 
+Format: table~SON Field API FIELD NAME~Father Field API FIELD NAME
+Example: account~id~parentid --></help>
+        <label><!-- HierarchyRelation --></label>
+        <name>zaapit__HierarchyRelation__c</name>
+    </CustomFieldTranslation>

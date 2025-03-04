@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__Lookup_Helper_Setting__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <inlineHelpText>The setting from which this exception record was created from.</inlineHelpText>
+    <label>Lookup Helper Setting</label>
+    <referenceTo>LH__Lookup_Helper_Setting__c</referenceTo>
+    <relationshipLabel>Lookup Helper Exceptions</relationshipLabel>
+    <relationshipName>LH_Errors</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

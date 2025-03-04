@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>AP_Update_Access_Circuit_Account</fullName>
+        <field>AP_Access_Circuit_Account_Number__c</field>
+        <formula>AP_Access_Circuit__r.Primary_Carrier_Account_Number__c</formula>
+        <name>AP Update Access Circuit Account</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Posted_Date_is_Today</fullName>
+        <field>Posted_Date__c</field>
+        <formula>Today()</formula>
+        <name>Posted Date is Today</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>AP Update Access Circuit Account</fullName>
+        <actions>
+            <name>AP_Update_Access_Circuit_Account</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>And(
+not(isblank( AP_Access_Circuit__c )),
+or(
+isnew(),
+ischanged(AP_Access_Circuit__c ))
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Posted Date</fullName>
+        <actions>
+            <name>Posted_Date_is_Today</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Account_Payable__c.AcctSeed__Status__c</field>
+            <operation>equals</operation>
+            <value>Posted</value>
+        </criteriaItems>
+        <description>Updates the Posted Date when the AP Record is Posted</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,3 @@
+<apex:page > 
+   <c:zaapit_tables_v1 />
+</apex:page>

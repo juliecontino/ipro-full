@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- use {ID} in the url for the current parentid (usefull for related lists) --></help>
+        <label><!-- new record link --></label>
+        <name>zaapit__new_record_link__c</name>
+    </CustomFieldTranslation>

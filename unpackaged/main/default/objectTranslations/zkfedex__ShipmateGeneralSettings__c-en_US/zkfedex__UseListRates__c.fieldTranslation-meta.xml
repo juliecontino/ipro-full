@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Will use List rates for shipment pricing as opposed to the rates of your FedEx account. --></help>
+        <label><!-- Use List Rates --></label>
+        <name>zkfedex__UseListRates__c</name>
+    </CustomFieldTranslation>

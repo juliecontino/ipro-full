@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The text to be displayed on the button. --></help>
+        <label><!-- Label --></label>
+        <name>E2CP__Label__c</name>
+    </CustomFieldTranslation>

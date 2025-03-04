@@ -1,0 +1,15 @@
+Dear {!AcctSeedERP__Sales_Order__c.Delivery_Contact__c},
+
+We have shipped the requested replacement product(s)  under your IPro Media Support Agreement on Sales Order {!AcctSeedERP__Sales_Order__c.Name}. Please find attached an Advanced Replacement Invoice for the products shipped. Upon return of the defective products, a Credit Memo will be issued in the same amount.
+
+Your replacement product package will contain a FedEx pre-paid return shipping label. Please place the defective products in the same packaging as your replacement products and ship back via FedEx to:
+
+IPro Media, Inc.
+1577 South Waco Street
+Van Alstyne, Texas 75495
+
+If you have any questions, feel free to call 903-482-8126.
+
+Regards,
+Bobby Stephens
+Warehouse Manager

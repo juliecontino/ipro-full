@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This permission can be referenced when setting component visibility on your Lightning Page layouts, allowing the packaged components to display for users with this permission, while hiding components for users without it.</description>
+    <isLicensed>false</isLicensed>
+    <label>Assigned Case Merge Premium License</label>
+</CustomPermission>

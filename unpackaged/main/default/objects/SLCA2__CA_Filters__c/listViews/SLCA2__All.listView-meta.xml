@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__All</fullName>
+    <columns>SLCA2__calendarId__c</columns>
+    <columns>OBJECT_ID</columns>
+    <columns>NAME</columns>
+    <columns>SLCA2__fieldName__c</columns>
+    <columns>SLCA2__fieldType__c</columns>
+    <columns>SLCA2__operator__c</columns>
+    <columns>SLCA2__order__c</columns>
+    <columns>SLCA2__value__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

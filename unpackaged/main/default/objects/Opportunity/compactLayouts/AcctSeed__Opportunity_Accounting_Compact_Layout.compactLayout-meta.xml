@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Opportunity_Accounting_Compact_Layout</fullName>
+    <fields>ContractId</fields>
+    <fields>Name</fields>
+    <fields>AccountId</fields>
+    <fields>CloseDate</fields>
+    <fields>Amount</fields>
+    <fields>Recast_Adjustment__c</fields>
+    <fields>Net_Monthly_Amount__c</fields>
+    <fields>OwnerId</fields>
+    <label>Opportunity (Accounting) Compact Layout</label>
+</CompactLayout>

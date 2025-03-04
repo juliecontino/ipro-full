@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DSCORGPKG__CreateNewLeads__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>It works to create Leads on its check, when we will not allow to create conflict, synchronously with isPreventConflict.</description>
+    <label>CreateNewLeads</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

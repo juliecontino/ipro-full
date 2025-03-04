@@ -1,0 +1,702 @@
+<apex:page controller="DSCORGPKG.ImportDataController" showHeader="false" sidebar="false" id="pg">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <title>Import Data</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+        <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+        <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+        <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" /><!-- SFNA 2839-->
+            <script>
+            var isPause = false;
+        var isBatchDetailShow = false;
+        var FindError = '';
+        
+        function pauseImport() {
+            $("#pauseBtn").val('Pausing...');
+            $("#pauseBtn").attr("disabled", "disabled");
+            isPause = true;
+        }
+        
+        function resumeImport() {
+            $("#startBtn").hide();
+            $("#pauseBtn").show();
+            $("#pauseBtn").val('Pause');
+            $("#pauseBtn").removeAttr("disabled");
+            if(doImport != undefined)
+                doImport();
+        }
+        
+        $(document).ready(function() {
+            initOperation && initOperation();
+        });
+        
+        function startImport() {
+            var isFromOperationPage = '{!JSENCODE($CurrentPage.parameters.isOperation)}';
+            if ($.trim(isFromOperationPage) !== '') {
+                isPause = true;
+                resumeImport();
+            } else {
+                document.getElementById('startBtn').click();
+            }
+            showHideBatchDetails();
+        }
+        
+        function showHideBatchDetails() {
+            overrideBtnAndMsgStyle();
+            var temp  = $("#batchDetails").html();
+            if(temp.length >100){
+                var d = temp.substr(temp.indexOf('</h4></span>')+12);
+                var temp2 =  d.substr(0,d.lastIndexOf('<br></div>'));                
+                if(!FindError.includes(temp2)){
+                    FindError= temp2 + '<br>'+FindError;
+                }
+            }
+            if(FindError !== '')
+                $("#showError").html(FindError);
+            
+            if (isBatchDetailShow) {
+                $("#hiBD").show();                
+                $("#exBD").hide();
+                if($("#batchDetails").html().length > 100){
+                    $("#batchDetails").show();
+                }
+                else  {
+                    $("#finalError").show();
+                }
+            }  
+            else {
+                $("#hiBD").hide();
+                $("#batchDetails").hide();
+                $("#finalError").hide();
+                if($("#batchDetails").html().length > 100 || $("#finalError").html().length > 145 )
+                    $("#exBD").show();
+                else if($("#batchDetails").html().length < 100 && $("#finalError").html().length < 145)
+                    $("#exBD").hide();
+            }
+        }
+        
+        
+        function overrideBtnAndMsgStyle() {
+            var textureEffect = '';
+            //Uncomment below line for texture effect on page messages
+            //textureEffect = 'slds-theme--alert-texture';                         
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage ' + textureEffect);
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage ' + textureEffect);
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage ' + textureEffect);
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage ' + textureEffect);
+            $('.errorM3').removeClass('errorM3');
+            $('.confirmM3').removeClass('confirmM3');
+            $('.infoM3').removeClass('infoM3');
+            $('.warningM3').removeClass('warningM3');
+            $('#divProcessing').hide();
+            $('.btn').removeClass('btn');
+        }
+        </script>
+        <script>
+        var i = 0;
+        var windows = [];
+        window.name = 'parent';
+        
+        //handle child birth          
+        function announceWindow(win) {
+            //if there is already a window open, close it and save ref to new one
+            if (i == 1) {
+                windows[0].close();
+                delete windows[0];
+                i = 0;
+            }
+            //store a reference to the window
+            windows[i] = win;
+            i++;
+        }
+        </script>
+        <style>
+            
+            .slds-notify--alert {
+            padding: 0.5rem;
+            text-align: center;
+            margin: 0.5rem;
+            border-radius: 3px;
+            }
+            
+            .slds-theme--alert-texture {
+            width: 100%
+            }
+            
+            .msgIcon {
+            display: none!important
+            }
+            
+            .customMessage {
+            margin: 5px 0!important;
+            max-width: 1280px;
+            opacity: 1!important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+            }
+            
+            .message {
+            background: #fff
+            }
+            
+            .customMessage li {
+            font-weight: bold
+            }
+            
+            .messageTable li a {
+            font-weight: normal;
+            color: blue !important
+            }
+            
+            .countDiv {
+            height: 20px;
+            padding-top: 7px;
+            //width: 50px;
+            //border-radius: 3px;
+            text-align: center;
+            }
+            
+            * {
+            font-family: "Salesforce Sans", Arial, sans-serif!important
+            }
+            
+            .fa {
+            font: normal normal normal 17px/1 FontAwesome !important;
+            }
+        </style>
+        <apex:outputPanel id="frmContainer">
+            <apex:outputPanel rendered="{! NOT(hasImportPermissions) }">
+                <apex:pageMessages />
+            </apex:outputPanel>
+            <apex:form rendered="{! hasImportPermissions }">
+                <apex:actionFunction name="initOperation" action="{!initOperation}" oncomplete="initializeMappings()" reRender="frmContainer"/>
+                <apex:actionFunction name="initMappings" action="{!initMappings}" reRender="frmContainer" oncomplete="startImport()"/>
+                <apex:actionFunction name="initPlanRecords" action="{!processPlantRecords}" reRender="frm" oncomplete="showHideBatchDetails();plantRecordCallout();"/>
+                
+                <script>
+                function initializeMappings() {
+                    if (!{! initialized }) {
+                        initMappings();
+                    }
+                }
+                </script>
+                
+                <apex:outputPanel rendered="{! NOT(initialized) }">
+                    <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                        <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;" />
+                    </div>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{! AND(initialized, NOT(canImport)) }">
+                    <apex:pageMessages />
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="slds" id="frm" rendered="{! AND(initialized, canImport) }"><!-- rendered="{! AND(initialized, canImport) }"  -->
+                    <div id="Loadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+                        <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                            <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;" />
+                        </div>
+                    </div>
+                    <!--Main Table Start Here-->
+                    <div class="slds-container--fluid  slds-container--center">
+                        <script>
+                        function doImport() {
+                            if ({!totalPage} > {!currentPage} && !isPause) {
+                                isPause = false;
+                                startAndRunImport();
+                                document.getElementById('pnlLoadingtop').style.display = '';
+                                $("#importingMsg").html("Import in progress.");
+                            } else {
+                                $("#startBtn").show();
+                                $("#pauseBtn").hide();
+                                document.getElementById('pnlLoadingtop').style.display = 'none';
+                                $("#importingMsg").html("Import paused.");
+                                
+                                if( '{!JSENCODE($CurrentPage.parameters.singlerecordCompany)}' == '' ){
+                                    if( "{!JSENCODE($CurrentPage.parameters.singlerecord)}" != "true" ){
+                                        window.parent.importFinished2 && window.parent.importFinished2();
+                                    }
+                                }
+                            }
+                            if (({!totalPage} == {!currentPage}) || isPause) {
+                                document.getElementById('pnlLoadingtop').style.display = 'inline';
+                                if($("#batchDetails").html().length < 100)
+                                    initPlanRecords();
+                                else {
+                                    showHideBatchDetails();
+                                    plantRecordCallout();
+                                }
+                                
+                            }
+                        }
+                        
+                        function plantRecordCallout(){
+                            if( ({!totalPage} == {!currentPage}) ) {
+                                $("#importingMsg").html("Import finished.");
+                                $("#startBtn").attr("disabled", "disabled");
+                                document.getElementById('pnlLoadingtop').style.display = 'none';
+                                
+                                if( '{!JSENCODE($CurrentPage.parameters.singlerecordCompany)}' == '' ){
+                                    if( "{!JSENCODE($CurrentPage.parameters.singlerecord)}" == "true" ){
+                                        
+                                        window.parent.importFinished();
+                                    }
+                                    else{
+                                        window.parent.importFinished2 && window.parent.importFinished2();
+                                    }
+                                }
+                                
+                                if( '{!JSENCODE($CurrentPage.parameters.singlerecordCompany)}' == 'true' ){
+                                    window.parent.importFinishedCompany();
+                                }
+                            } else {
+                                $("#startBtn").show();
+                                document.getElementById('pnlLoadingtop').style.display = 'none';
+                                $("#importingMsg").html("Import paused.");
+                                
+                                if( '{!JSENCODE($CurrentPage.parameters.singlerecordCompany)}' == '' ){
+                                    if( "{!JSENCODE($CurrentPage.parameters.singlerecord)}" != "true" ){
+                                        window.parent.importFinished2 && window.parent.importFinished2();
+                                    }
+                                }
+                            }
+                            
+                            $("#pauseBtn").hide();
+                        }
+                        
+                        function showStatus() {
+                            document.getElementById('Loadingtop').style.display = 'block';
+                        }
+                        
+                        function hideStatus() {
+                            
+                            overrideBtnAndMsgStyle();
+                            document.getElementById('Loadingtop').style.display = 'none';
+                        }
+                        
+                        function callBackFunctionContact1() {
+                            showStatus();
+                            callBackFunctionContact2();
+                            
+                        }
+                        //TODO: FIX THIS SFNA-2562
+                        function callBackFunctionContact() {
+                            return;
+                        }
+                        function callBackFunctionContact2() {
+                            showStatus();
+                            callBackFunctionContact3();
+                        }
+                        </script>
+                        <apex:actionFunction name="startAndRunImport" action="{!startAndRunImport}" oncomplete="showHideBatchDetails();resumeImport();" reRender="frm" />
+                        
+                        <apex:actionFunction name="callBackFunctionContact3" reRender="rerenderdContactDuplicat" action="{!initOperation}" oncomplete="hideStatus();resumeImport();" />
+                        
+                        <div style="width:100%;" align="center">
+                            <apex:outputPanel rendered="{! showError  }">
+                                <p  style="color:red;">
+                                    {! errorMsg  }     
+                                </p>
+                            </apex:outputPanel>
+                            
+                            <table>
+                                <tr style="vertical-align: top;">
+                                    <td style="width: 100%;padding: 20px;">
+                                        <apex:outputPanel id="rerenderdContactDuplicat">
+                                            <script>
+                                            window.conDupCountId= '{!JSENCODE(totalContactDupsString)}';
+                                            window.AccDupId= '{!JSENCODE(totalAccountDupsString)}';
+                                            window.checkLeadContact= '{!JSENCODE(isLeadProceesString)}';
+                                            </script>
+                                            <table style="width: 100%;">
+                                                <tr>
+                                                    <td colspan="8" style="text-align: center;padding: 5px;font-size: 15px;">
+                                                        <div style="color: black;" align="center">
+                                                            <img id="pnlLoadingtop" src="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:30px;display: none;" />
+                                                            <font id="importingMsg">Import in progress.</font> <b style="color:#339933">
+                                                            <apex:outputPanel layout="none" rendered="{!totalPage == currentPage }">
+                                                                {!importOperation.DSCORGPKG__Total_Records__c}
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel layout="none" rendered="{!totalPage != currentPage }">
+                                                                {!(currentPage+1)* PAGESIZE}
+                                                            </apex:outputPanel>
+                                                            </b> of <b>{!importOperation.DSCORGPKG__Total_Records__c}</b> records completed.
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="8" style="text-align: center;padding: 15px;">
+                                                        <input style="font-size: 14px;" type="button" class="slds-button slds-button--neutral" id="startBtn" onclick="isPause=false;resumeImport();" value="{! if(currentPage+1 != 0 ,'Resume','Start') }" />
+                                                        <input style="font-size: 14px;" type="button" class="slds-button slds-button--neutral" id="pauseBtn" onclick="pauseImport();" value="Pause" />
+                                                    </td>
+                                                </tr>
+                                                <!--  for show expand batch on top -->
+                                                <apex:outputPanel layout="none" rendered="{!!isLeadProcees}">
+                                                    <apex:outputPanel layout="none" rendered="{!updateSettings.DSCORGPKG__disableContactObjectInsert__c == true || updateSettings.DSCORGPKG__disableContactObject__c == true ||  updateSettings.DSCORGPKG__disableAccountObjectInsert__c == true || updateSettings.DSCORGPKG__disableAccountObject__c == true}">
+                                                        <tr style="text-align: center;font-weight: 700;font-size: 13px;cursor: pointer;">
+                                                            <td colspan="8" id="exBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=true; showHideBatchDetails();">
+                                                                + Expand Batch Details
+                                                            </td>
+                                                            <td colspan="8" id="hiBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=false; showHideBatchDetails();">
+                                                                - Hide Batch Details
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td id="batchDetails" colspan="8" style="vertical-align: top;text-align: center;padding: 5px;display:none;">
+                                                                <apex:pageMessages escape="false"></apex:pageMessages>
+                                                            </td>
+                                                            <td id="finalError" colspan="8" style="vertical-align: top;text-align: center;padding: 5px;display:none;">  
+                                                                <b style="color:#cd073b;font-size: 1em;float: left;">Error:</b><br/>
+                                                                <div style="display: flex;text-align-last: left;" id="showError"></div>                                                            
+                                                            </td>
+                                                        </tr>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                                
+                                                <apex:outputPanel layout="none" rendered="{!isLeadProcees}">
+                                                    <apex:outputPanel layout="none" rendered="{!updateSettings.DSCORGPKG__disableLeadObjectInsert__c  == true || updateSettings.DSCORGPKG__disableLeadObject__c == true}">
+                                                        <tr style="text-align: center;font-weight: 700;font-size: 13px;cursor: pointer;">
+                                                            <td colspan="8" id="exBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=true; showHideBatchDetails();">
+                                                                + Expand Batch Details
+                                                            </td>
+                                                            <td colspan="8" id="hiBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=false; showHideBatchDetails();">
+                                                                - Hide Batch Details
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td id="batchDetails" colspan="8" style="vertical-align: top;text-align: center;padding: 5px;display:none;">
+                                                                <apex:pageMessages escape="false"></apex:pageMessages>
+                                                            </td>
+                                                            <td id="finalError" colspan="8" style="vertical-align: top;text-align: center;padding: 5px;display:none;">  
+                                                                <b style="color:#cd073b;font-size: 1em;float: left;">Error:</b><br/>
+                                                                <div style="display: flex;text-align-last: left;" id="showError"></div>                                                          
+                                                            </td>
+                                                        </tr>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                                <!-- end -->
+                                                <tr style="font-weight: 700;">
+                                                    <td style="padding: 5px;" colspan="8">
+                                                        <apex:outputPanel rendered="{!isLeadProcees}">
+                                                            Leads
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!!isLeadProcees}">
+                                                            Contacts
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                                <tr style="font-weight: 700;">
+                                                    <td colspan="8">
+                                                        <hr style="margin:0;" />
+                                                    </td>
+                                                </tr>
+                                                <tr style="font-weight: 700;">
+                                                    <td style="padding: 5px;" colspan="8">
+                                                        
+                                                    </td>
+                                                </tr>
+                                                <tr style="font-weight: 700;">
+                                                    <apex:outputPanel layout="none" rendered="{! importOperation.DSCORGPKG__Contact_Added_DO_ID__c == ''}">
+                                                        <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="New Contacts created in Salesforce">
+                                                            <div style="text-align: left;"><span>Added:</span>&nbsp;&nbsp;<span> {!importOperation.Contacts_Added__c}</span></div>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Contact_Added_DO_ID__c != ''}">
+                                                        <td style="padding: 5px;background: #93c47d;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" title="New Contacts created in Salesforce" onclick="window.open('/apex/ShowAddedUpdatedUnchanged?id={!importOperation.id}&type=Contact/Lead&mode=Added','_blank')">
+                                                            <div style="text-align: left;"><span style="text-decoration: underline;"> Added:</span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!importOperation.Contacts_Added__c}</span> </div>
+                                                            <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                    
+                                                    <td style="width: 1%;"></td>
+                                                    
+                                                    <apex:outputPanel layout="none" rendered="{! importOperation.DSCORGPKG__Contact_Updated_DO_ID__c == ''}">
+                                                        <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing matched Contacts updated in Salesforce">
+                                                            <div style="text-align: left;"><span>Updated:</span>&nbsp;&nbsp;<span>{!importOperation.Contacts_Updated__c}</span></div>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Contact_Updated_DO_ID__c != ''}">
+                                                        <td style="padding: 5px;background: #93c47d;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" title="Existing matched Contacts updated in Salesforce" onclick="window.open('/apex/ShowAddedUpdatedUnchanged?id={!importOperation.id}&type=Contact/Lead&mode=Updated','_blank')">
+                                                            <div style="text-align: left;"><span style="text-decoration: underline;">Updated:</span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!importOperation.Contacts_Updated__c}</span></div>
+                                                            <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                    
+                                                    <td style="width: 1%;"></td>
+                                                    
+                                                    <!-- unchanged -->
+                                                    <apex:outputPanel layout="none" rendered="{! importOperation.DSCORGPKG__Contact_Unchanged_DO_ID__c == ''}">
+                                                        <td style="padding: 5px;background:  #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing Contacts found in Salesforce with current data; no changes made">
+                                                            <div style="text-align: left;"><span>Unchanged:</span>&nbsp;&nbsp; <span>{!importOperation.DSCORGPKG__Contact_Unchanged__c}</span></div>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Contact_Unchanged_DO_ID__c != ''}">
+                                                        <td style="padding: 5px;background: #93c47d;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" title="Existing Contacts found in Salesforce with current data; no changes made" onclick="window.open('/apex/ShowAddedUpdatedUnchanged?id={!importOperation.id}&type=Contact/Lead&mode=Unchanged','_blank')">
+                                                            <div style="text-align: left;"> <span style="text-decoration: underline;">Unchanged:</span>&nbsp;&nbsp;<span style="text-decoration: underline;">  {!importOperation.DSCORGPKG__Contact_Unchanged__c}</span></div>
+                                                            
+                                                            <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                    
+                                                    
+                                                </tr>
+                                                
+                                                <tr style="font-weight: 700;">
+                                                    <td style="padding: 5px;" colspan="8">
+                                                        
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr style="font-weight: 700;">
+                                                    <apex:outputPanel layout="none" rendered="{!!isLeadProcees}">
+                                                        <apex:outputPanel layout="none" rendered="{! totalContactConflict != 0}">
+                                                            <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" title="Existing Contacts found with differing data; click to reconcile differences" onclick="window.open('/apex/DorgConflictResolver?type=Contact','_blank')">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Conflicts:</span>&nbsp;&nbsp;<span style="text-decoration: underline;"> {!totalContactConflict}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <apex:outputPanel layout="none" rendered="{! totalContactConflict == 0}">
+                                                            <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing Contacts found with differing data; click to reconcile differences">
+                                                                <div style="text-align: left;"><span>Conflicts:</span>&nbsp;&nbsp;<span>{!totalContactConflict}</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    
+                                                    <apex:outputPanel layout="none" rendered="{!isLeadProcees}">
+                                                        <apex:outputPanel layout="none" rendered="{! totalLeadConflict != 0}">
+                                                            <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" title="Existing Leads found with differing data; click to reconcile differences" onclick="window.open('/apex/DorgConflictResolver?type=Lead','_blank')">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Conflicts:</span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!totalLeadConflict}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <apex:outputPanel layout="none" rendered="{! totalLeadConflict == 0}">
+                                                            <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing Leads found with differing data; click to reconcile differences">
+                                                                <div style="text-align: left;"><span>Conflicts:</span>&nbsp;&nbsp;<span>{!totalLeadConflict}</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel>
+                                                    
+                                                    <td style="width: 1%;"></td>
+                                                    <apex:outputPanel layout="none" rendered="{! totalContactAccountDup != 0 }">
+                                                        <td style="background: #e69138;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" title="Two or more matching Accounts found for these Contacts; click to reconcile" onClick="window.open('/apex/MatchContactsPage?id={!importOperation.id}','_blank')">
+                                                            <div style="text-align: left;"><span style="text-decoration: underline;">Multiple Accounts:</span>&nbsp;&nbsp;<span style="text-decoration: underline;"> {!totalContactAccountDup}</span></div>
+                                                            <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                    <apex:outputPanel layout="none" rendered="{! totalContactAccountDup == 0 }">
+                                                        <td style="background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Two or more matching Accounts found for these Contacts; click to reconcile">
+                                                            <div style="text-align: left;"><span>Multiple Accounts:</span>&nbsp;&nbsp;<span>{!totalContactAccountDup}</span></div>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                    <td style="width: 1%;"></td>
+                                                    
+                                                    <apex:outputPanel layout="none" rendered="{! totalContactDups == 0 }">
+                                                        <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Two or more matching Contacts found; click to reconcile">
+                                                            <div style="text-align: left;"><span>Duplicates:</span>&nbsp;&nbsp;<span>{!totalContactDups}</span></div>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                    <apex:outputPanel layout="none" rendered="{! totalContactDups != 0 }">
+                                                        <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" onClick="window.open('/apex/DuplsImportManager?id={!importOperation.id}&type=Contact/Lead','_blank')" title="Two or more matching Contacts found; click to reconcile">
+                                                            <div style="text-align: left;"><span style="text-decoration: underline;">Duplicates: </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!totalContactDups}</span></div>
+                                                            <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                        </td>
+                                                    </apex:outputPanel>
+                                                    
+                                                </tr>
+                                                <tr style="font-weight: 700;">
+                                                    <td style="padding: 5px;" colspan="8">
+                                                        
+                                                    </td>
+                                                </tr>
+                                                <apex:outputPanel layout="none" rendered="{!!isLeadProcees}">
+                                                    <tr style="font-weight: 700;">
+                                                        <apex:outputPanel layout="none" rendered="{! totalLeadDupsonContact != 0 }">
+                                                            <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" onClick="window.open('/apex/LeadContactDupDetails?id={!importOperation.id}&type=Lead','_blank')" title="Two or more matching Contacts found; click to reconcile">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Lead Duplicates:</span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!totalLeadDupsonContact}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                    </tr>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel layout="none" rendered="{!isLeadProcees}">
+                                                    <tr style="font-weight: 700;">
+                                                        <apex:outputPanel layout="none" rendered="{! totalLeadDupsonContact != 0 }">
+                                                            <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor:pointer;" class="countDiv" onClick="window.open('/apex/LeadContactDupDetails?id={!importOperation.id}&type=Contact','_blank')" title="Two or more matching Contacts found; click to reconcile">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Contact Duplicates: </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!totalLeadDupsonContact}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                    </tr>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel layout="none" rendered="{!!isLeadProcees}">
+                                                    <tr style="font-weight: 700;">
+                                                        <td style="padding: 5px;" colspan="8">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="font-weight: 700;">
+                                                        <td style="padding: 5px;" colspan="8">
+                                                            Accounts
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="font-weight: 700;">
+                                                        <td colspan="8">
+                                                            <hr style="margin:0;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="font-weight: 700;">
+                                                        <td style="padding: 5px;" colspan="8">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr style="font-weight: 700;">
+                                                        <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Account_Added__c == 0 }">
+                                                            <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="New Companies created in Salesforce">
+                                                                <div style="text-align: left;"><span>Added:</span>&nbsp;&nbsp;<span>{!importOperation.DSCORGPKG__Account_Added__c}</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Account_Added__c != 0 }">
+                                                            <td style="padding: 5px;background: #93c47d;width:25%;color:white;padding: 7px;cursor: pointer;" class="countDiv" onClick="window.open('/apex/ShowAddedUpdatedUnchanged?id={!importOperation.id}&type=Account&mode=Added','_blank')" title="New Companies created in Salesforce">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Added: </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!importOperation.DSCORGPKG__Account_Added__c}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <td style="width: 1%;"></td>
+                                                        
+                                                        <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Account_Updated__c == 0 }">
+                                                            <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing matched Companies updated in Salesforce">
+                                                                <div style="text-align: left;"><span>Updated:</span>&nbsp;&nbsp;<span>{!importOperation.DSCORGPKG__Account_Updated__c }</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Account_Updated__c != 0 }">
+                                                            <td style="padding: 5px;background: #93c47d;width:25%;color:white;padding: 7px;cursor: pointer;" class="countDiv" onClick="window.open('/apex/ShowAddedUpdatedUnchanged?id={!importOperation.id}&type=Account&mode=Updated','_blank')" title="Existing matched Companies updated in Salesforce">
+                                                                
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Updated:  </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!importOperation.DSCORGPKG__Account_Updated__c}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <td style="width: 1%;"></td>
+                                                        <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Account_Unchanged__c == 0 }">
+                                                            <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing Companies found in Salesforce with current data; no changes made">
+                                                                <div style="text-align: left;"><span>Unchanged:</span>&nbsp;&nbsp;<span>{!importOperation.DSCORGPKG__Account_Unchanged__c}</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{!importOperation.DSCORGPKG__Account_Unchanged__c!= 0 }">
+                                                            <td style="padding: 5px;background: #93c47d;width:25%;color:white;padding: 7px;cursor: pointer;" class="countDiv" onClick="window.open('/apex/ShowAddedUpdatedUnchanged?id={!importOperation.id}&type=Account&mode=Unchanged','_blank')" title="Existing Companies found in Salesforce with current data; no changes made">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Unchanged: </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!importOperation.DSCORGPKG__Account_Unchanged__c}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                    </tr>
+                                                    
+                                                    <tr style="font-weight: 700;">
+                                                        <td style="padding: 5px;" colspan="8">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr style="font-weight: 700;">
+                                                        <apex:outputPanel layout="none" rendered="{! totalAccountConflict != 0 }">
+                                                            <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor: pointer;" class="countDiv" onClick="window.open('/apex/DorgConflictResolver?type=Account','_blank')" title="Existing Companies found with differing data; click to reconcile differences">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Conflicts: </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!totalAccountConflict}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <apex:outputPanel layout="none" rendered="{! totalAccountConflict == 0 }">
+                                                            <td style="padding: 5px;background:  #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Existing Companies found with differing data; click to reconcile differences">
+                                                                <div style="text-align: left;"><span>Conflicts:</span>&nbsp;&nbsp;<span> {!totalAccountConflict}</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <td style="width: 1%;"></td>
+                                                        
+                                                        
+                                                        
+                                                        <apex:outputPanel layout="none" rendered="{! totalAccountDups == 0 }">
+                                                            <td style="padding: 5px;background: #fff;width:25%;color:black;padding: 7px;" class="countDiv" title="Two or more matching Companies found; click to reconcile">
+                                                                <div style="text-align: left;"><span>Duplicates:</span>&nbsp;&nbsp;<span>{!totalAccountDups}</span></div>
+                                                            </td>
+                                                        </apex:outputPanel>
+                                                        
+                                                        <apex:outputPanel layout="none" rendered="{! totalAccountDups != 0 }">
+                                                            
+                                                            <td style="padding: 5px;background: #e69138;width:25%;color:white;padding: 7px;cursor: pointer;" class="countDiv" onClick="window.open('/apex/DuplsImportManager?id={!importOperation.id}&type=Account','_blank')" title="Two or more matching Companies found; click to reconcile">
+                                                                <div style="text-align: left;"><span style="text-decoration: underline;">Duplicates: </span>&nbsp;&nbsp;<span style="text-decoration: underline;">{!totalAccountDups}</span></div>
+                                                                <i class="fa fa-caret-right" style="margin-top: -18px;float: right;"></i>
+                                                            </td>
+                                                            
+                                                        </apex:outputPanel>
+                                                    </tr>
+                                                </apex:outputPanel>
+                                                
+                                            </table>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                                
+                                <apex:outputPanel layout="none" rendered="{!!isLeadProcees}">
+                                    <apex:outputPanel layout="none" rendered="{!(updateSettings.DSCORGPKG__disableContactObjectInsert__c == false && updateSettings.DSCORGPKG__disableContactObject__c == false) && (updateSettings.DSCORGPKG__disableAccountObjectInsert__c == false && updateSettings.DSCORGPKG__disableAccountObject__c == false)}">
+                                        <tr style="text-align: center;font-weight: 700;font-size: 13px;cursor: pointer;">
+                                            <td id="exBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=true; showHideBatchDetails();">
+                                                + Expand Batch Details
+                                            </td>
+                                            <td id="hiBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=false; showHideBatchDetails();">
+                                                - Hide Batch Details
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td id="batchDetails" style="vertical-align: top;text-align: center;padding: 5px;display:none;">
+                                                <apex:pageMessages escape="false"></apex:pageMessages>
+                                            </td>
+                                            <td id="finalError" colspan="8" style="vertical-align: top;text-align: center;padding: 5px;display:none;">  
+                                                <b style="color:#cd073b;font-size: 1em;float: left;">Error:</b><br/>
+                                                <div style="display: flex;text-align-last: left;" id="showError"></div>                                                     </td>
+                                        </tr>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel layout="none" rendered="{!isLeadProcees}">
+                                    <apex:outputPanel layout="none" rendered="{!updateSettings.DSCORGPKG__disableLeadObjectInsert__c == false && updateSettings.DSCORGPKG__disableLeadObject__c == false}">
+                                        <tr style="text-align: center;font-weight: 700;font-size: 13px;cursor: pointer;">
+                                            <td id="exBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=true; showHideBatchDetails();">
+                                                + Expand Batch Details
+                                            </td>
+                                            <td id="hiBD" style="color: blue;text-align: center;" onclick="isBatchDetailShow=false; showHideBatchDetails();">
+                                                - Hide Batch Details
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td id="batchDetails" style="vertical-align: top;text-align: center;padding: 5px;display:none;">
+                                                <apex:pageMessages escape="false"></apex:pageMessages>
+                                            </td>
+                                            <td id="finalError" colspan="8" style="vertical-align: top;text-align: center;padding: 5px;display:none;">  
+                                                <b style="color:#cd073b;font-size: 1em;float: left;">Error:</b><br/>
+                                                <div style="display: flex;text-align-last: left;" id="showError"></div>                                                          
+                                            </td>
+                                        </tr>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </table>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </apex:form>
+        </apex:outputPanel>
+    </html>
+</apex:page>

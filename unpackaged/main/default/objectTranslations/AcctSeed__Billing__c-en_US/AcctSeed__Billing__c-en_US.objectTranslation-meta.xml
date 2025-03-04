@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- CashReceiptApply --></label>
+        <name>AcctSeed__CashReceiptApply</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CreditMemoApply --></label>
+        <name>AcctSeed__CreditMemoApply</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MassAddEditRows --></label>
+        <name>AcctSeed__MassAddEditRows</name>
+    </fieldSets>
+    <layouts>
+        <layout>Community</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Billing (Financial Partner)Layout</layout>
+        <sections>
+            <label><!-- A/R Info --></label>
+            <section>A/R Info</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Cash Receipts --></label>
+            <section>Billing Cash Receipts</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Comments --></label>
+            <section>Billing Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Header --></label>
+            <section>Billing Header</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Lines --></label>
+            <section>Billing Lines</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Summary --></label>
+            <section>Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Information --></label>
+            <section>Customer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Date Information --></label>
+            <section>Date Information</section>
+        </sections>
+        <sections>
+            <label><!-- Funding Details --></label>
+            <section>Funding Details</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping Information --></label>
+            <section>Shipping Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Billing Layout</layout>
+        <sections>
+            <label><!-- A/R Info --></label>
+            <section>A/R Info</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Cash Receipts --></label>
+            <section>Billing Cash Receipts</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Comments --></label>
+            <section>Billing Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Header --></label>
+            <section>Billing Header</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Lines --></label>
+            <section>Billing Lines</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Summary --></label>
+            <section>Billing Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Information --></label>
+            <section>Customer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Date Information --></label>
+            <section>Date Information</section>
+        </sections>
+        <sections>
+            <label><!-- Funding Details --></label>
+            <section>Funding Details</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping Information --></label>
+            <section>Shipping Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Amortize Revenue --></label>
+        <name>AcctSeed__Amortize_Revenue</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Refund --></label>
+        <name>AcctSeed__Refund</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Validate Address --></label>
+        <name>AcctSeed__ValidateAddress</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Validate Address --></label>
+        <name>AcctSeed__Validate_Address_Lwc</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Accounting_Period_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The accounting period must be open to create a record --></errorMessage>
+        <name>AcctSeed__Accounting_Period_Open_New_Record</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Billing_Format_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Due_Date_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Override addresses cannot be changed after the Billing has been posted. --></errorMessage>
+        <name>AcctSeed__Lock_Override_Addresses_When_Posted</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The opportunity must be Closed/Won to create a billing. --></errorMessage>
+        <name>AcctSeed__Prevent_Create_Opportunity_Closed_Won</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Calc_Tax --></label>
+        <name>AS_Tax__Calc_Tax</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Apply_Credit_Memo --></label>
+        <name>AcctSeed__Apply_Credit_Memo</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Apply_Unapply_Credit_Memo --></label>
+        <name>AcctSeed__Apply_Unapply_Credit_Memo</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Calc_Tax --></label>
+        <name>AcctSeed__Calc_Tax</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Clone_Billing --></label>
+        <name>AcctSeed__Clone_Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Clone_With_Lines --></label>
+        <name>AcctSeed__Clone_With_Lines</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Billing_PDFs --></label>
+        <name>AcctSeed__Create_Billing_PDFs</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_PDF --></label>
+        <name>AcctSeed__Create_PDF</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Deep_Clone --></label>
+        <name>AcctSeed__Deep_Clone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Merge_Billings --></label>
+        <name>AcctSeed__Merge_Billings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post --></label>
+        <name>AcctSeed__Post</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post_Billings --></label>
+        <name>AcctSeed__Post_Billings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Receive_Payment --></label>
+        <name>AcctSeed__Receive_Payment</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Receive_Payment_Batch --></label>
+        <name>AcctSeed__Receive_Payment_Batch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Recognize_Revenue --></label>
+        <name>AcctSeed__Recognize_Revenue</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost --></label>
+        <name>AcctSeed__Unpost</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost_Batch_Test --></label>
+        <name>AcctSeed__Unpost_Batch_Test</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost_Billings --></label>
+        <name>AcctSeed__Unpost_Billings</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Validate_Address --></label>
+        <name>AcctSeed__Validate_Address</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Aged_Rec --></label>
+        <name>Aged_Rec</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Aged_Receivables --></label>
+        <name>Aged_Receivables</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Billing_Report_by_Product --></label>
+        <name>Billing_Report_by_Product</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Credit_Memo --></label>
+        <name>Create_Credit_Memo</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Email_Payment_Reminder --></label>
+        <name>Email_Payment_Reminder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Master_Billing_Details --></label>
+        <name>Master_Billing_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_E_Mail_Invoice --></label>
+        <name>Print_E_Mail_Invoice</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Recurring_Invoices --></label>
+        <name>Recurring_Invoices</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Recurring_Invoices_Combined_Funded_and_Unfunded_test --></label>
+        <name>Recurring_Invoices_Combined_Funded_and_Unfunded_test</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Test_Combined_Funded_and_Unfunded_Invoice --></label>
+        <name>Test_Combined_Funded_and_Unfunded_Invoice</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- zp_actions --></label>
+        <name>zp_actions</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__End_Date_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(ISPICKVAL(AcctSeed__Ends_On__c, 'End Date'), ISNULL(AcctSeed__End_Date__c)), true, false)</errorConditionFormula>
+    <errorMessage>Please select an end date.</errorMessage>
+</ValidationRule>

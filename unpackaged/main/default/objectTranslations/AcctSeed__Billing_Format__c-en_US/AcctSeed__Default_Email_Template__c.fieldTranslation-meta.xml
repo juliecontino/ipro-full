@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is the email template used when emailing Billing PDF Invoices. Use the Template Unique Name NOT the Template Name when populating this field. --></help>
+        <label><!-- Default Email Template --></label>
+        <name>AcctSeed__Default_Email_Template__c</name>
+    </CustomFieldTranslation>

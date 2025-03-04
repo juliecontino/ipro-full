@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Set this to the main revenue account associated with your billings. --></help>
+        <label><!-- Default Revenue GL Account --></label>
+        <name>AcctSeed__Revenue_GL_Account__c</name>
+        <relationshipLabel><!-- Accounting_Settings (Revenue GL Account) --></relationshipLabel>
+    </CustomFieldTranslation>

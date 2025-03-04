@@ -1,0 +1,5 @@
+<apex:page controller="zkfedex.PopupImageController" showHeader="false" showChat="false" sidebar="false" docType="html-5.0">
+    <apex:iframe src="{! URLFOR($Action.Attachment.Download, imageId) }" height="1024" rendered="{! AND(contentType == 'application/pdf', fileType == 'ATTACHMENT')}"/>
+    <apex:image url="{! URLFOR($Action.Attachment.Download, imageId) }" rendered="{! AND(contentType != 'application/pdf', fileType == 'ATTACHMENT')}"/>
+    <apex:image url="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={! contentVersionId }" rendered="{! fileType == 'DOCUMENT' }"/>
+</apex:page>

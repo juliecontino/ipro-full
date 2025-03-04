@@ -1,0 +1,275 @@
+<apex:page docType="html" standardController="Contact" showheader="false" sidebar="false" standardStylesheets="false" extensions="DSCORGPKG.MobilePagesController">
+    <!--<!DOCTYPE html>-->
+    <html>
+        <head>
+            
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="{!URLFOR($Resource.DiscoverOrgMobilePages_Resource, 'css/bootstrap.min.css')}"/>
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="{!URLFOR($Resource.DiscoverOrgMobilePages_Resource, 'css/bootstrap-theme.min.css')}"/>
+            
+            <script src="{!URLFOR($Resource.DiscoverOrgMobilePages_Resource, 'js/jquery.min.js')}"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="{!URLFOR($Resource.DiscoverOrgMobilePages_Resource, 'js/bootstrap.min.js')}"></script>
+            
+            <meta charset="utf-8" />
+            <title>Contact Information</title>
+            <meta name="description" content="" />
+            <meta name="viewport" content="width=device-width, initial-scale=1,  minimum-scale=1, maximum-scale=1" />
+            <script>
+                function OnSelect(apiName)
+                {                
+                    var inputElem = document.getElementsByTagName("input");
+                    for(var i=0; i<inputElem.length; i++) 
+                    {
+                        if (inputElem[i].className == apiName) {
+                            inputElem[i].checked = false;                                   
+                        }
+                    }    
+                    function refreshParentURL(){
+                        var isValidRecord = '{!JSENCODE(validRecord)}';
+                        alert(isValidRecord);
+                        if(isValidRecord == 'yes'){
+                           alert(isValidRecord);
+                        }else{
+                            alert(isValidRecord);
+                        }
+                    }                         
+                }
+                
+                function updateValue(){
+                    updatePageVal();
+                }
+            </script>
+            <style>
+                #img1{
+                    display: block;
+                    position: absolute;
+                    vertical-align: middle;
+                }
+                
+                .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                    padding-right: 0px;
+                    padding-left: 0px;
+                }
+                
+                .nav-tabs>li>a {
+                    border-radius : 0px
+                }
+                
+                .thumbnail, .img-thumbnail {
+                    box-shadow: 0 1px 0px rgba(0,0,0,0.05);
+                }
+                
+                .thumbnail {
+                    margin-top: 10px;
+                    border: none;
+                    border-radius: 0px;
+                }
+                
+                .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+                    color: white;
+                    cursor: default;
+                    background-color: #6DA239;
+                    border: none;
+                    border-bottom-color: transparent;
+                }
+                
+                
+                .nav-tabs>li>a {
+                    color: #666;
+                    border: 0px;
+                }
+                
+                .nav-tabs>li>a:hover {
+                    color: white;
+                    background-color: #6DA239;
+                    border: 0px;
+                }
+                
+                .tabbed-list-view-nav-arrow{
+                    border-color: rgb(45, 135, 195) transparent transparent;
+                    left: 16.5%;
+                    display: block;
+                    position: relative;
+                    bottom: 1px;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 7.5px 7.5px 0 7.5px;
+                    margin-left: -7.5px;
+                }
+                
+                .list-group-item p {
+                    margin:0;
+                }
+                
+                @media (max-width: 768px) { 
+                    .thumbnail > img{
+                        width:75%;
+                    }
+                    
+                    .nav-tabs>li>a {
+                        font-size: 12px;
+                        padding: 15px 0 15px 0;
+                    }
+                }
+                
+                .glyphicon-chevron-left:before {
+                    color: rgb(45, 135, 195);
+                }
+            </style>
+        </head>
+        
+        <body>
+            <!-- Loading Part -->
+            <div id="pnlLoadingtop"
+                style="background: none repeat scroll 0 0 #f2f2f2; height: 100%; width: 100%; opacity: 0.7; filter: alpha(opacity = 70); 
+                position: absolute; text-align: center; z-index: 200; padding-top: 50px; top:2px; left:0px; display:none; ">
+                <div style="position:absolute; width:100%;" >
+                    <apex:image id="img1" value="{!URLFOR($Resource.DSCORGPKG__loading)}"/> <!--  <font color="red"><b>Retrieving data from DiscoverOrg...</b></font>-->
+                </div>
+            </div>
+            <!-- Loading Part End -->
+            <apex:form >
+                <apex:actionFunction name="updatePageVal" status="pnlLoadingtop" action="{!updatePage}" oncomplete="propulateFieldsAgain();" />
+                <apex:actionFunction name="propulateFieldsAgain" status="pnlLoadingtop" action="{!populateData}" reRender="update-btn-panel, rep" oncomplete="document.getElementById('pnlLoadingtop').style.display='none';" />
+            
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 0px;">
+                    
+                    <div class="row thumbnail" style="margin-left:0px; margin-right:0px;">
+                        <div class="col-xs-2 col-md-1" style="width: 34px;">
+                            <span class="glyphicon glyphicon-chevron-left" onclick="javascript:sforce.one.navigateToSObject('{!JSENCODE($CurrentPage.parameters.id)}');" style="border: 1px solid #6DA239;padding: 8px 6px;border-radius: 2px;"></span>
+                        </div>
+                        <div class="col-xs-10 col-md-11">
+                            <a href="#">
+                                <img alt="DiscoverOrg.com" id="DOLogo" src="{!$Resource.FlatLogo}"/>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-18 col-md-12">
+                        <ul class="nav nav-tabs" role="tablist" style="background: #6DA239;"  id="myTab">
+                            <li class="active" style="margin-bottom: 0px;width: 33%;overflow: hidden;text-align: center;background: #6DA239;border-bottom:none;">
+                                <a href="#contact-pane" role="tab" data-toggle="tab">CONTACT</a>
+                            </li>
+                            <li style="width: 33%;text-align: center;margin-bottom: 0px;overflow: hidden;">
+                                <a href="#technologies-pane" role="tab" data-toggle="tab">TECHNOLOGIES</a>
+                            </li>
+                            <li style="text-align: center;width: 34%;margin-bottom: 0px;overflow: hidden;">
+                                <a href="#triggers-pane" role="tab" data-toggle="tab" style="margin-right:0px;">TRIGGERS</a>
+                            </li>
+                        </ul>
+                        <div class="tabbed-list-view-nav-arrow">&nbsp;</div>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="contact-pane">
+                                <ul class="list-group" style="margin-top: 20px;">
+                                    <li class="list-group-item" style="border: none;border-radius:none;text-align: center;">
+                                        
+                                        <apex:outputPanel id="update-btn-panel">
+                                            <apex:outputPanel rendered="{!NOT(showOK)}">
+                                                <section class="data-capture-buttons one-buttons">
+                                                    <div class="content" >
+                                                         <apex:outputLabel rendered="{!IF(fields==null || fields.size == 0, false, true)}" >
+                                                            <apex:commandButton value="Update to Salesforce" onclick="javascript:document.getElementById('pnlLoadingtop').style.display='block';updateValue();return false;"  styleClass="btn btn-success"/>
+                                                         </apex:outputLabel>   
+                                                    </div>
+                                                </section>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        <apex:outputLabel rendered="{!IF(fields!=null && fields.size > 0, false, true)}" >
+                                            We do not having matching data in discover Org.     
+                                        </apex:outputLabel>
+                                    </li>
+                                    
+                                    <apex:outputPanel id="rep">
+                                        <apex:repeat value="{!fields}" var="field"><!--  style="border-bottom: 1px dotted #ccc;" -->
+                                            <li class="list-group-item" style="border-left: none;border-right: none;border-radius:none;">
+                                                <div style="display: block;">
+                                                    <apex:inputCheckBox rendered="{!field.conflict}" value="{!field.conflict}" styleClass="{!field.apiName}sf" style="visibility : {!IF(field.name == 'DiscoverOrg Technologies', 'hidden', 'visible')}" onclick="OnSelect('{!field.apiName}db');"/>
+                                                    <div style="display: inline-table;"> 
+                                                        <h4 style="margin: 0px;display: inline-block;"><span style="color:{!IF(field.name=='DiscoverOrg Technologies', '#0455A3',IF(field.conflict,'red','#0455A3'))}; margin-bottom:10px;">{!field.name}:</span></h4>
+                                                        <p>
+                                                            <span class="{!HTMLENCODE(field.apiName)}id"></span>
+ 
+                                                            <script>
+                                                                var spanCls = '{!JSENCODE(field.apiName)}id';
+                                                                    
+                                                                if( '{!JSENCODE(field.name)}' != 'DiscoverOrg Technologies' ){
+                                                                    $("."+spanCls).html('{!JSENCODE(field.fieldDBStrValue)}');
+                                                                    
+                                                                    var fsStrValue = '{!JSENCODE(field.fieldSFStrValue)}';
+                                                                    $('.'+spanCls).attr('title', 'Current Value: '+( (!(typeof fsStrValue === 'undefined') && fsStrValue !='') ? fsStrValue : 'blank' ) );
+                                                                    
+                                                                    var fConflict = '{!JSENCODE(field.conflictStr)}';
+                                                                    
+                                                                    $('.'+spanCls).css('color', ( fConflict == 'yes' ? 'red' : 'black'));
+                                                                    $('.'+spanCls).css('font-size', '14px' );
+                                                                }else{
+                                                                    $("."+spanCls).remove();
+                                                                }
+                                                            </script>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </apex:repeat>
+                                    </apex:outputPanel>
+                                    
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="technologies-pane" style="padding: 15px 10px;">
+                                <span id="technologies_container"></span>
+                                    <script>
+                                        document.getElementById("technologies_container").innerHTML = '{!JSENCODE(Technologies)}';
+                                    </script> 
+                                </div>
+                            <div class="tab-pane fade" id="triggers-pane">
+                                
+                                <apex:outputPanel rendered="{!IF(titleList.size == 0,  true, false)}">                          
+                                    <p style="width:80%;margin-left:auto;margin-right:auto;text-align:center">No Real Time Triggers available for this record.</p>
+                                </apex:outputPanel>
+                                
+                                <ul class="list-group" id="trigger-list" style="margin-top: 20px;">
+                                </ul>
+                                
+                                <script>
+                                    <apex:repeat value="{!titleList}" var="trgr_text">
+                                        var triggers_html = '<li class="list-group-item" style="border-left: none;border-right: none;border-radius:none;"><p>{!JSENCODE(trgr_text)}</p></li>';
+                                        document.getElementById("trigger-list").innerHTML = document.getElementById("trigger-list").innerHTML + triggers_html;
+                                        triggers_html = '';
+                                    </apex:repeat>
+                                </script>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    if(parseInt('{!JSENCODE(text(titleList.size))}') > 0){
+                        $('#trig').hide();
+                    }
+                    if("{!JSENCODE(technologies)}" == ""){
+                    
+                        $("#trig").hide();
+                    }
+                    
+                    $('#myTab a').click(function (e) {
+                        e.preventDefault()
+                        if( $(this).attr("href") == "#contact-pane" )
+                            $(".tabbed-list-view-nav-arrow").animate({left:"16.5%"});
+                        if( $(this).attr("href") == "#technologies-pane" )
+                            $(".tabbed-list-view-nav-arrow").animate({left:"49.5%"});
+                        if( $(this).attr("href") == "#triggers-pane" )
+                            $(".tabbed-list-view-nav-arrow").animate({left:"83.5%"});
+                        
+                        $(this).tab('show');
+                    });
+                    $(".glyphicon-chevron-left").animate({top: (( $("#DOLogo").height() - $(".glyphicon-chevron-left").height() ) / 7 )+"px"});
+                </script>
+            </apex:form>
+        </body>
+    </html>
+</apex:page>

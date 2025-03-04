@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Sections Collapsed --></label>
+        <name>E2CP__Sections_Collapsed__c</name>
+        <picklistValues>
+            <masterLabel>attachments</masterLabel>
+            <translation><!-- attachments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>comment</masterLabel>
+            <translation><!-- comment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>fields</masterLabel>
+            <translation><!-- fields --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>recipients</masterLabel>
+            <translation><!-- recipients --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>template</masterLabel>
+            <translation><!-- template --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>timeline</masterLabel>
+            <translation><!-- timeline --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

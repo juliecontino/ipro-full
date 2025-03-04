@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If selected, indicates that the specified international documents will not be submitted electronically to FedEx --></help>
+        <label><!-- Override Paperless for Intl Documents --></label>
+        <name>zkfedex__OverridePaperlessForIntlDocuments__c</name>
+    </CustomFieldTranslation>

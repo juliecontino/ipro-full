@@ -1,0 +1,17 @@
+<apex:page standardController="AcctSeed__Financial_Report_Result__c" title="Delete Results | Accounting Seed" extensions="AcctSeed.FinancialReportResultDelete" recordSetVar="reportResults">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Financial_Report_Result__c.labelPlural}" subtitle="Delete" />
+        <apex:pageBlock title="Delete">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')"/>
+                <apex:commandButton action="{!deleteRecords}" value="Delete" status="saveStatus" rendered="{!isValidationPassed}" reRender="theForm"/>
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

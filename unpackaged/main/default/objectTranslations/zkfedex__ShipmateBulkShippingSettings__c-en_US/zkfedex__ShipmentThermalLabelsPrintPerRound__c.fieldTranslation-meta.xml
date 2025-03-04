@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is for the Bulk Shipping Platform&apos;s functionality for printing thermal labels. This indicates the number of Shipment labels to print per 5 second rounds. --></help>
+        <label><!-- Shipment Thermal Labels Print Per Round --></label>
+        <name>zkfedex__ShipmentThermalLabelsPrintPerRound__c</name>
+    </CustomFieldTranslation>

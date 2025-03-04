@@ -1,0 +1,1518 @@
+<apex:page title="Duplicate Matching" controller="DSCORGPKG.ContactsImportDetails" tabStyle="DiscoverOrgSearch__tab" action="{!pageInit}" sidebar="false" showHeader="true" >
+<link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" />
+<apex:includeScript value="{!URLFOR($Resource.DSCORGPKG__MultiSelectJquery,'/jquery-3.3.1.min.js')}"/>
+    
+    <style>
+        .searchBtnCss {
+            background: #6EBE49;
+            border: 1px solid #6EBE49;
+            color: white;      
+            font-size: 14px;
+        }
+        .searchBtnCss:Hover {    
+            background: #339933;
+            border: 1px solid #339933;
+            color: white;  
+            font-size: 14px;    
+        }
+        .slds-grid-main {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        *{
+            font-family: "Salesforce Sans", Arial, sans-serif !important;
+        }
+        .innerTable1 td{
+            border: 0px;
+            padding: 0px;
+        }
+        .innerTable1 tr td {
+            box-shadow: #d8dde6 0 0px 0 inset !important;
+        }
+        .slds{ min-height:500px}
+        .message{  opacity: 0.1; } 
+        .slds-notify--alert {   padding: 0.5rem;   text-align: center;  margin: 0.5rem;  border-radius: 3px; }
+        .customMessage * {  color: white !important; }
+        .slds-theme--alert-texture{ width:100%}
+        
+        .msgIcon {
+            display: none!important
+        }
+        .customMessage * {
+            color: #fff!important
+        }
+        .customMessage {
+            margin: 5px 0!important;
+            max-width: 1280px;
+            opacity: 1!important;
+            width: 100%;
+            font-size: 12px;
+            border: 0px;
+            padding-left: 10px;
+        }
+        .message {
+            opacity: .1
+        }
+        .paginationBtns {
+            padding: 9px 5px;
+            background: #fff;
+            border: 1px solid #D4D1D1;
+            margin: 1px;
+            cursor: pointer;
+            text-decoration: none!important;
+            font-size: 14px;
+            font-weight: 100;
+            border-radius: 3px;
+            color: #0070d2!important
+        }
+        .paginationBtns:Hover {
+            background: #eee
+        }
+        .messageTable, .messageText {
+            word-break: break-all
+        }
+
+        #returnsRdo, .serachFor .btn-group button {
+            display: none
+        }
+        #returnsRdo {
+            position: absolute;
+            z-index: 1000;
+            background: #fff;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 0 4px 1px #BBB;
+            border-radius: 3px
+        }
+        
+        .accountInfoTooltip, .contactInfoTooltip{
+            position: absolute;
+            background-color: #061C3F;
+            z-index: 10000;
+            padding: 10px;
+            display: none;
+            width: auto;
+            color: #fff;
+            margin-top: 9px;
+        }
+        
+        .accountInfoTooltipArr, .contactInfoTooltipArr{
+            position: absolute;
+            z-index: 10000;
+            height: 19px;
+            width: 20px;
+            background-color: #061C3F;
+            transform: rotate(45deg);
+            margin-top: 3px;
+            display: none;
+            color: #fff;
+            margin-left: 4px;
+        }
+        
+        .accountInfoTooltip table tr td{
+            background-color: #061C3F !important;
+            padding-left: 5px !important;
+            color:white;
+            border-bottom: 0px;
+        }
+        
+        .contactInfoTooltip table tr td{
+            background-color: #061C3F !important;
+            padding-left: 5px !important;
+            color:white;
+            border-bottom: 0px;
+        }
+        
+        .searchBtnCss {
+            background: #6EBE49;
+            border: 1px solid #6EBE49;
+            color: white;      
+            font-size: 14px;
+        }
+        .searchBtnCss:Hover {    
+            background: #339933;
+            border: 1px solid #339933;
+            color: white;  
+            font-size: 14px;    
+        }
+        .slds-grid-main {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        *{
+            font-family: "Salesforce Sans", Arial, sans-serif !important;
+        }
+        .innerTable1 td{
+            border: 0px;
+            padding: 0px;
+        }
+        .innerTable1 tr td {
+            box-shadow: #d8dde6 0 0px 0 inset !important;
+        }
+         .slds{ min-height:500px}
+         
+         .slds-section-title--divider{
+            font-size: 1rem;
+            line-height: 1.25;
+            text-transform: uppercase;
+            letter-spacing: .0625em;
+            color: #54698d;
+            margin: 10px 0px 10px 0px;
+            padding: 0.75rem 1rem;
+            background: #f4f6f9;
+        }
+        
+        .th1{
+            width:20%;
+        }
+        .th2{
+            width:3%;         
+        }
+        .th3{
+            width:22%;
+        }
+        .th4{
+            width:15%;
+        }
+        .th5{
+            width:10%;
+        }
+        .th6{
+            width:10%;
+        }
+        .th7{
+            width:20%;
+        }
+        
+        .ith1{
+            width:7%;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 6px 0px 2px 25px !important;
+            vertical-align: top;
+            text-align: left;
+        }
+        .ith2{
+            width:4%;
+            padding-left: 0px !important;
+            vertical-align: middle;
+            padding: 0px 0px 0px 0px !important;
+        }
+        .ith3{
+            width:28%;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith4{
+            width:20%;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith5{
+            width:13%;
+            padding-left: 7px !important;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith6{
+            width:13%;
+            padding-left: 3px !important;
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        .ith7{
+            width:22%;  
+            word-break: normal;
+            white-space: normal !important;
+            padding: 8px 0px 8px 0px !important;
+            vertical-align: top;
+        }
+        
+        *{
+            font-family: "Salesforce Sans", Arial, sans-serif!important
+        }
+        
+        tr.internalTr td {
+            border-bottom: 1px solid #D8DDE6;
+        }
+        
+        .innerTable1>tbody>tr:last-child>td{
+            border-bottom: 0px;
+        }
+        .slds-section-title--divider{ background:#1B5EAC; color: #fff  }
+    </style>
+    
+    <!--Not Renderable Javacript Start Here-->
+    <script>
+        var selectedFilter = 'All';
+        var startPage = 1;
+        
+        $(document).ready(function() {
+            resetBinding();
+            overrideBtnAndMsgStyle();
+        });                
+        
+        function resetBinding(){                        
+            $(".accountNameA").mouseover(function() {
+                $(this).parent().find(".accountInfoTooltip").show("fast");
+                $(this).parent().find(".accountInfoTooltipArr").show("fast");
+            });
+            
+            $(".accountNameA").mouseout(function(e) {
+                var container = $(this).parent().find(".accountInfoTooltip");                
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    $(this).parent().find(".accountInfoTooltip").hide("fast");
+                    $(this).parent().find(".accountInfoTooltipArr").hide("fast");                                        
+                }                
+            });
+            
+            $(".contactNameA").mouseover(function() {
+                $(this).parent().find(".contactInfoTooltip").show("fast");
+                $(this).parent().find(".contactInfoTooltipArr").show("fast");
+            });
+            
+            $(".contactNameA").mouseout(function(e) {
+                var container = $(this).parent().find(".contactInfoTooltip");                
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    $(this).parent().find(".contactInfoTooltip").hide("fast");
+                    $(this).parent().find(".contactInfoTooltipArr").hide("fast");                                        
+                }                
+            });
+        }
+        
+        function overrideBtnAndMsgStyle(){                
+            var textureEffect = '';
+            //Uncomment below line for texture effect on page messages
+            //textureEffect = 'slds-theme--alert-texture';                         
+            $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+            $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+            $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+            $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);                                 
+            $('.errorM3').removeClass('errorM3'); 
+            $('.confirmM3').removeClass('confirmM3'); 
+            $('.infoM3').removeClass('infoM3');   
+            $('.warningM3').removeClass('warningM3');  
+            $('#divProcessing').hide();
+            $('.btn').removeClass('btn');
+            $('.btnDisabled ').removeClass('btnDisabled ');                        
+            makeSelectOption();
+            resetBinding();
+        }                              
+        
+        function showStatus(){
+            document.getElementById('pnlLoadingtop').style.display = 'block';
+        }
+        function hideStatus(){
+            overrideBtnAndMsgStyle();
+            makeSelectOption();
+            document.getElementById('pnlLoadingtop').style.display = 'none'; 
+            
+            hideContactLeadUpdateList();               
+        } 
+        
+        function focusParentWindow(){
+            if (window.opener) {
+                //window.opener.location.reload();
+                window.opener.callBackFunctionContact1();
+                
+            }
+            
+            window.close();
+            window.open('','parent').focus();
+        }
+        function hideContactLeadUpdateList(){
+            
+            $('.message').find('li:eq(2)').filter(function(){return $(this).text().indexOf('Contacts Updated') >=0 }).remove();
+            
+            $('.message').find('li:eq(2)').filter(function(){return $(this).text().indexOf('Leads Updated') >=0 }).remove();
+            
+            $('.message').find('li:eq(2)').filter(function(){return $(this).text().indexOf('Accounts Updated') >=0 }).remove();
+        }
+    </script>
+    <!--Not Renderable Javacript End Here-->
+
+<apex:form >
+    <div class="slds" style="margin-bottom: 15%;">        
+        <!---Status / Process Section Start Here-->
+        <div id="divProcessing" class="slds-modal-backdrop slds-modal-backdrop--open" style="z-index:10000000;">
+            <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/> <b style="color:white;font-size: 14px;">Please Wait...</b>
+            </div>
+        </div>
+        
+        <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+          <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+             <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;"/>                     
+          </div>
+        </div>
+        <!---Status / Process Section End Here-->
+
+        <!--Page Header Start Here--> 
+        <apex:outputPanel id="frm1">
+            <apex:actionFunction name="goToPageFun" action="{!goToPageFun}" reRender="frm1,parentPanel" oncomplete="hideStatus();"/>      
+            <apex:inputHidden value="{!currentPage}" id="pageNoId"/>
+    
+            <div class="slds-page-header" role="banner">    
+                <script>
+                    var maximumPage = {!totalPage};
+                    var gotoPageNumnber = {!currentPage};                                        
+        
+                    function jumpToPage() { 
+                        var jumpToPGNo = $('#jumpTo').val();    
+                        if( jumpToPGNo != gotoPageNumnber ){
+                            if( jumpToPGNo >= 1 && jumpToPGNo <= maximumPage ){
+                                goToPageByNumber(jumpToPGNo);
+                            }else{
+                                alert('Please give input from 1 to '+ maximumPage);        
+                            }
+                        }
+                    }
+                    
+                    function makeSelectOption() {    
+                        try{
+                            var btnSeq = updatePageLinks(gotoPageNumnber,maximumPage);
+                            var btnStr = '';      
+                            for( var i=0;i<btnSeq.length;i++){
+                                if( gotoPageNumnber == btnSeq[i] ){
+                                    btnStr += '<a style="background:#D2D2D2;" class="paginationBtns dynaPageTag">'+btnSeq[i]+'</a>';
+                                }else{
+                                    btnStr += '<a onclick="goToPageByNumber('+btnSeq[i]+');" class="paginationBtns dynaPageTag">'+btnSeq[i]+'</a>';
+                                }
+                            }
+                            if( btnSeq.length > 0 ){
+                                $("#paginationsTags").find(".dynaPageTag").remove();
+                                $("#paginationsTags").children().next().next().first().after(btnStr);
+                            }
+                        }catch(e){}    
+                                                
+                        doFilter(selectedFilter);       
+                    }
+                    
+                    function updatePageLinks(current, allPages) {
+                        var btnSeq = new Array();
+                        if(allPages==0) return;
+                        if(current>2) {        
+                            if(current===allPages&&allPages>3)
+                                btnSeq.push(current-2);        
+                            btnSeq.push(current-1);
+                        }
+                        if(current!=1&&current!=allPages)
+                            btnSeq.push(current);
+                        if(current<allPages-1) {
+                            btnSeq.push(current+1);
+                            if(current==1&&allPages>3)
+                                btnSeq.push(current+2);        
+                        }
+                        return btnSeq; 
+                    }
+                    
+                    function goToPageByNumber(pageNumber) {    
+                        $('input[id*=pageNoId]').val(pageNumber);
+                        showStatus();
+                        goToPageFun();
+                    }
+                    
+                    function onclickOfSeaTypeDown() {
+                        var pos = $("#searchTypeDown").position();
+                        if ($("#returnsRdo").css("display") != 'block') {
+                            $("#returnsRdo").css({
+                                top: pos.top + $("#searchTypeDown").height() + 4,
+                                left: pos.left - 164,            
+                            });
+                            $("#returnsRdo").show("fast");
+                        } else {
+                            $("#returnsRdo").hide("fast");
+                        }
+                    }                                        
+                    
+                    //Show Only By Emails ( Website )
+                    function showOnlyByEmails(){
+                        hideByAll();                        
+                        $(".emailAddMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });                        
+                    }
+                    
+                    //Show only By Company Names
+                    function showOnlyByCompanyName(){
+                        hideByAll();                        
+                        $(".cmpnyNameMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });                                               
+                    }
+                    
+                    //Show only By DO Id
+                    function showOnlyByID(){
+                        hideByAll();
+                        $(".discIdMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });                        
+                    }
+                    
+                    //Hide All
+                    function hideByAll(){
+                        $(".discIdMO").each(function() {
+                            $(this).parent().parent().css("display","none");
+                        });
+                        
+                        $(".cmpnyNameMO").each(function() {
+                            $(this).parent().parent().css("display","none");
+                        });
+                        
+                        $(".emailAddMO").each(function() {
+                            $(this).parent().parent().css("display","none");
+                        });
+                    }
+                    
+                    //Show All                 
+                    function showByAll(){
+                        $(".discIdMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });
+                        
+                        $(".emailAddMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });
+                        
+                        $(".cmpnyNameMO").each(function() {
+                            $(this).parent().parent().css("display","");        
+                        });
+                    }
+               
+                    function seleDeselAll(){                        
+                        $(".externalTr").find(".innerCBox").prop("checked", $("#selectAllChk").prop("checked") );
+                    }
+                </script>
+                <div class="slds-grid slds-grid-main" style="padding-left:8px;">
+                    <div class="slds-col slds-size--3-of-12">
+                        <a href="http://www.discoverorg.com" target="_blank"><img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" style="width: 225px; margin-left: -15px;" /></a>
+                    </div>
+                    
+                    <div class="slds-col slds-size--2-of-12">
+                        <apex:outputPanel layout="none" rendered="{!isAccountManager}">
+                            <apex:commandButton onclick="return false;" disabled="{!!isAccountFound}" style="background: darkgray;color: white;" value="Account" styleClass="slds-button slds-button--neutral"/>
+                            <apex:commandButton onclick="showStatus();" disabled="{!!isContactLeadFound}" action="{!LoadContactImportPage}" value="{! if( isForLead,'Lead','Contact') }" reRender="frm1,parentPanel" oncomplete="hideStatus();" styleClass="slds-button slds-button--neutral"/>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!!isAccountManager}">
+                            <apex:commandButton onclick="showStatus();" disabled="{!!isAccountFound}" action="{!loadAccountManager}" value="Account" reRender="frm1,parentPanel" oncomplete="hideStatus();" styleClass="slds-button slds-button--neutral"/>
+                            <apex:commandButton onclick="return false;" disabled="{!!isContactLeadFound}" style="background: darkgray;color: white;" value="{! if( isForLead,'Lead','Contact') }" styleClass="slds-button slds-button--neutral"/>
+                        </apex:outputPanel>
+                    </div>
+                    
+                    <div class="slds-col slds-size--4-of-12">
+                        <!--Pagination Top Start Here-->
+                          <apex:outputPanel style="width:100%;" rendered="{!multiPage}" layout="block" >
+                            <div align="center" id="paginationsTags">
+                                <apex:commandLink value="<" styleClass="paginationBtns" onclick="showStatus();goToPageByNumber( {! currentPage-1} ); return false;" rendered="{! currentPage != 1 }"/>
+                                <apex:commandLink value="<" styleClass="paginationBtns" onclick="return false;" rendered="{! currentPage == 1 }"/>
+    
+                                <apex:commandLink value="1" styleClass="paginationBtns" style="background:{! if(currentPage==1,'#D2D2D2','') };" onclick="showStatus();goToPageByNumber( 1 ); return false;" rendered="{! currentPage != 1 }"/>
+                                <apex:commandLink value="1" styleClass="paginationBtns" onclick="return false;" style="background:{! if(currentPage ==1,'#D2D2D2','') };" rendered="{! currentPage == 1 }"/>                                                                  
+    
+                                <apex:commandLink value="{!totalPage}" styleClass="paginationBtns" style="background:{! if(currentPage == totalPage,'#D2D2D2','') };" onclick="showStatus();goToPageByNumber( {!totalPage} ); return false;" rendered="{! currentPage != totalPage}"/>
+                                <apex:commandLink value="{!totalPage}" styleClass="paginationBtns" onclick="return false;" style="background:{! if(currentPage ==totalPage,'#D2D2D2','') };" rendered="{! currentPage == totalPage}"/>
+    
+                                <apex:commandLink value=">" styleClass="paginationBtns" onclick="goToPageByNumber( {!currentPage+1} ); return false;" rendered="{! currentPage != totalPage }"/>
+                                <apex:commandLink value=">" styleClass="paginationBtns" onclick="return false;" rendered="{! currentPage == totalPage }"/>
+                                
+                                <input type="text" id="jumpTo" onkeydown="if(event.keyCode==13){jumpToPage();}" placeholder="Jump to..." style="width: 70px;padding: 3px;margin: 0px 0px 0px 0px;height: 36px;border: 1px solid #D4D1D1;font-size: 14px;border-radius: 2px;" />
+                                <a onclick="jumpToPage();" id="jumpToLink" class="paginationBtns">Go</a>
+                            </div>
+                          </apex:outputPanel>
+                        <!--Pagination Top End Here-->
+                    </div>
+                    
+                    <div class="slds-col slds-size--3-of-12" align="right">                        
+                    </div>
+                </div>   
+            </div>
+        </apex:outputPanel>
+        <!--Page Header End Here-->
+        
+        <!--Parent Panel Start Here-->
+        <apex:outputPanel id="parentPanel">
+            <!--Contact Manager Start Here-->
+            <apex:outputPanel id="frm2" rendered="{!!isAccountManager && !isForLead }">               
+                
+                <div class="slds-container--fluid  slds-container--center slds-grid-main" id="containerDiv">  
+                    <apex:pageMessages escape="false" />
+                    
+                    <div class="slds-section-title--divider">
+                        <h3>DUPLICATE MATCHING</h3><!--<h3>Contacts Import Details</h3> -->
+                        <apex:commandButton value="Close" styleClass="paginationBtns"  style="float: right;margin-top: -8px;" onclick="focusParentWindow(); return false;"/><!--  -->
+                    </div>
+                    
+                    <!--Contact Multi Dups Start Here-->
+                    <div class="slds-card contact-slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-text-heading--small slds-truncate">
+                                        <span>Multiple matches found for DiscoverOrg record(s). Choose one or more to update.</span><!-- <span>Please select matching Contact in Salesforce</span> -->
+                                    </h2>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="slds-form-element__label" style="color:#000;font-size: 14px;">Show Matches By:</label>
+                                
+                                <select class="slds-select" id="fltrOpt" onChange="pickOnChange();" style="width: 120px;height: 36px;margin-left: 10px;margin-right: 10px;"> 
+                                    <option value="All">All</option>
+                                    <option value="DiscoverOrg ID">DiscoverOrg ID</option>
+                                    <option value="Contact Email">Contact Email</option>
+                                </select>
+                            </div>
+                                    
+                            <div  id="buttons" role="group" >
+                                <!--Contact Header-->
+                                <apex:outputPanel layout="none" rendered="{!!isAccountManager && !isForLead }">
+                                    <apex:actionFunction name="goToPageFunContact" action="{!goToPageFun}" reRender="frm1,parentPanel" oncomplete="saveContactAll();overrideBtnAndMsgStyle();makeSelectOption();"/> 
+                                    <apex:actionFunction name="saveContactAll" action="{!SaveContactsAll}" reRender="frm1,parentPanel" oncomplete="saveAllContactNNext();overrideBtnAndMsgStyle();makeSelectOption();"/>          
+                                    <script>            
+                                        function saveAllContactNNext(){                                        
+                                            showStatus();
+                                            if( startPage <= {!totalpage} ){
+                                                $('input[id*=pageNoId]').val(startPage);
+                                                goToPageFunContact();
+                                                startPage++;
+                                            }else{
+                                                hideStatus();
+                                            }                                       
+                                        }
+                                        
+                                        function doFilter(filterSelVal){            
+                                            if( filterSelVal == 'DiscoverOrg ID' ){
+                                                showOnlyByID();
+                                            }
+                                            else if( filterSelVal == 'Contact Email' ){
+                                                showOnlyByEmails();
+                                            }
+                                            else{
+                                                showByAll();
+                                            }
+                                            selectedFilter = filterSelVal;
+                                        }
+                                        
+                                        function pickOnChange(){
+                                            doFilter( $("#fltrOpt").val() );
+                                        }
+                                    </script>                                                                        
+                                    
+                                    <apex:commandButton action="{!SaveContacts}"  oncomplete="hideStatus();" onclick="showStatus()" styleClass="slds-button slds-button--brand" reRender="parentPanel,frm1" value="Update Selected" style="font-size: 14px;min-width: 140px;font-weight: 500;" disabled="{!If(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'false','true')}"/>
+                                    <apex:commandButton onclick="saveAllContactNNext();return false;" styleClass="slds-button slds-button--brand" value="Update All" style="font-size: 14px;min-width: 140px;font-weight: 500;" reRender="frm1,parentPanel" disabled="{!If(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'false','true')}"/>                                                                                                      
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                        <div class="slds-card__body" style="padding-bottom: 0px;">
+                            <table class="slds-table slds-table--bordered contact-conflict-table">
+                                <thead>
+                                    <tr class="slds-text-heading--label">
+                                        <th scope="col" style="width:7%;">
+                                            <span class="slds-truncate" style="color:#16325c;">DiscoverOrg Contact</span>
+                                        </th>
+                                        <th style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                            <table style="width:100%;">  
+                                                <tr>                                                                                  
+                                                    <th scope="col" style="width: 5%;padding: .5rem;border-top: 0px;text-align: right;">
+                                                        <label class="slds-checkbox">
+                                                            <input name="checkbox" id="selectAllChk" type="checkbox" onclick="seleDeselAll();" />
+                                                            <span class="slds-checkbox--faux"></span>
+                                                            <span class="slds-form-element__label slds-assistive-text">select all</span>
+                                                        </label>
+                                                    </th>
+                                                    <th scope="col" style="width: 20%;border-top: 0px;padding-left: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Salesforce Contact</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 20%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Salesforce Account</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 20%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Owner</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 15%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Matching On</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 20%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Match Value</span>
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--For Contact-->
+                                    <apex:repeat value="{!result.multiDups}" var="dup">
+                                        <tr class="externalTr">
+                                            <td style="vertical-align: top;padding-top: 15px;font-weight: 600;width:7%;color: #16325c;"> 
+                                                 {!dup.contact.FirstName} {!dup.contact.LastName}
+                                            </td>
+                                            <td style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                                <table class="innerTable1" style="width:100%;">
+                                                    <apex:repeat value="{!dup.ValMap2}" var="conMap">
+                                                        <apex:repeat value="{!dup.ValMap2[conMap]}" var="con">
+                                                            <tr class="internalTr">
+                                                                <td style="width: 5%;padding: .5rem;text-align: right;border-bottom: 0px;">
+                                                                    <apex:outputLabel for="inchk" styleClass="slds-checkbox"> 
+                                                                        <apex:inputCheckbox styleClass="innerCBox" id="inchk" value="{!con.isCheck}"/>
+                                                                        <span class="slds-checkbox--faux"></span>
+                                                                        <span class="slds-form-element__label"></span>
+                                                                    </apex:outputLabel>
+                                                                </td>
+                                                                <td style="width: 20%;padding: .5rem;padding-left: 0px;">
+                                                                    <a class="contactNameA" href="/{!con.sObj['id']}" target="_blank"> {!con.sObj['name']} </a>
+                                                                    <div class="contactInfoTooltipArr"></div>
+                                                                    <div class="contactInfoTooltip">
+                                                                        <table>
+                                                                            <tr>
+                                                                                <td>Contact Name</td>
+                                                                                <td>{!con.sObj['name']}</td>
+                                                                            </tr>                                                                            
+                                                                            <tr>
+                                                                                <td>Contact Owner</td>
+                                                                                <td>{!con.sObj['owner.name']}</td>
+                                                                            </tr>                                                                           
+                                                                            <tr>
+                                                                                <td>Email</td>
+                                                                                <td>{!con.sObj['email']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Created Date</td>
+                                                                                <td>{!con.sObj['CreatedDate']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Created By</td>
+                                                                                <td>{!con.sObj['CreatedBy.name']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last Modified Date</td>
+                                                                                <td>{!con.sObj['LastModifiedDate']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last Modified By</td>
+                                                                                <td>{!con.sObj['LastModifiedBy.name']}</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="width: 20%;padding: .5rem;">
+                                                                    <a class="accountNameA" href="/{!con.sObj['accountid']}" target="_blank"> {!con.sObj['account.name']} </a>
+                                                                    <div class="accountInfoTooltipArr"></div>
+                                                                    <div class="accountInfoTooltip">
+                                                                        <table>
+                                                                            <tr>
+                                                                                <td>Account Name</td>
+                                                                                <td>{!con.sObj['account.name']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Account Type</td>
+                                                                                <td>{!con.sObj['account.Type']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Account Owner</td>
+                                                                                <td>{!con.sObj['owner.name']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Industry</td>
+                                                                                <td>{!con.sObj['account.Industry']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>SIC Code</td>
+                                                                                <td>{!con.sObj['account.Sic']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Billing Address</td>
+                                                                                <td>{!con.sObj['account.BillingStreet']} {!con.sObj['account.BillingCity']} 
+                                                                                {!con.sObj['account.BillingState']} {!con.sObj['account.BillingPostalCode']}  
+                                                                                {!con.sObj['account.BillingCountry']}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Website</td>
+                                                                                <td>{!con.sObj['account.Website']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Created Date</td>
+                                                                                <td>{!con.sObj['account.CreatedDate']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Created By</td>
+                                                                                <td>{!con.sObj['account.CreatedBy.name']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last Modified Date</td>
+                                                                                <td>{!con.sObj['account.LastModifiedDate']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last Modified By</td>
+                                                                                <td>{!con.sObj['account.LastModifiedBy.name']}</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="width: 20%;padding: .5rem;"><a href="/{!con.sObj['ownerId']}" target="_blank"> {!con.sObj['owner.name']} </a></td>                                                                                                                                                
+                                                                <td style="width: 15%;padding: .5rem;color: #16325c;">
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <span class="discIdMO">DiscoverOrg ID</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <span class="emailAddMO">Email</span>
+                                                                    </apex:outputPanel>
+                                                                </td>
+                                                                <td style="width: 20%;padding: .5rem;color: #16325c;">
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <span class="discIdMV">{!con.sObj['DSCORGPKG__DiscoverOrg_ID__c']}</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.contact.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <span class="emailAddMV">{!con.sObj['email']}</span>
+                                                                    </apex:outputPanel>                                                                                                                                        
+                                                                </td>
+                                                            </tr>
+                                                        </apex:repeat>
+                                                    </apex:repeat>                                                                                                                                                         
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--Contact Multi Dups End Here-->
+                                         
+                    <!--Contact Duplicates Start Here-->
+                    <div style="margin-top: 20px;display:{!if(AND(NOT(ISNULL(result.duplicates)),result.duplicates.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Following records will be merged to existing Contacts (total {!result.duplicates.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">DiscoverOrg Contact</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Salesforce Contact</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.duplicates}" var="dup">
+                                            <tr>
+                                                <td>                                             
+                                                    <apex:outputText >{!dup.contact.FirstName} {!dup.contact.LastName} </apex:outputText>
+                                                </td>
+                                                <td> 
+                                                    <apex:outputLink value="/{!dup.value}"> {!dup.contact.FirstName} {!dup.contact.LastName} </apex:outputLink> 
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>                        
+                    <!--Contact Duplicates End Here-->
+
+                    <!--Contact Successful End Here-->
+                    <div style="margin-top: 20px;display:{!if(AND(NOT(ISNULL(result.successful)),result.successful.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Will be added (total {!result.successful.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">Name</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Account Name</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Phone</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.successful}" var="dup">
+                                            <tr>
+                                                <td>
+                                                    <apex:outputText >{!dup.contact.FirstName} {!dup.contact.LastName} </apex:outputText>
+                                                </td>
+                                                <td>
+                                                    <apex:outputText >{!dup.contact.Account.Name}</apex:outputText> 
+                                                </td>
+                                                <td>
+                                                    <apex:outputText >{!dup.contact.Phone}</apex:outputText> 
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                        
+                    </div> 
+                    <!--Contact Successful End Here-->
+                    <div class="slds-section-title--divider">
+                         <h3>&nbsp;</h3><!--<h3>Contacts Import Details</h3> -->
+                        <apex:commandButton value="Close" styleClass="paginationBtns"  style="float: right;margin-top: -8px;" onclick="focusParentWindow(); return false;"/><!--  -->
+                    </div>
+                </div>      
+            </apex:outputPanel>
+            <!--Contact Manager End Here-->
+            
+            <!--Lead Manager Start Here-->
+            <apex:outputPanel id="frm4" rendered="{!isForLead}">               
+                <div class="slds-container--fluid  slds-container--center slds-grid-main" id="containerDiv">  
+                    <apex:pageMessages escape="false" />
+                    
+                    <div class="slds-section-title--divider">
+                        <h3>DUPLICATE MATCHING</h3><!-- <h3>Lead Import Details</h3> -->
+                        <apex:commandButton value="Close" styleClass="paginationBtns"  style="float: right;margin-top: -8px;" onclick="focusParentWindow(); return false;"/>
+                    </div>
+                    
+                    <!--Contact Multi Dups Start Here-->
+                    <div class="slds-card contact-slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-text-heading--small slds-truncate">
+                                        <span>Multiple matches found for DiscoverOrg record(s). Choose one or more to update.</span><!-- <span>Please select matching Lead in Salesforce</span> -->
+                                    </h2>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="slds-form-element__label" style="color:#000;font-size: 14px;">Show Matches By:</label>
+                                
+                                <select class="slds-select" id="fltrOpt" onChange="pickOnChange();" style="width: 120px;height: 36px;margin-left: 10px;margin-right: 10px;"> 
+                                    <option value="All">All</option>
+                                    <option value="DiscoverOrg ID">DiscoverOrg ID</option>
+                                    <option value="Contact Email">Contact Email</option>
+                                </select>
+                            </div>
+                            
+                             <div id="buttons" role="group" >
+                                <!--Lead Header-->
+                                <apex:outputPanel layout="none" rendered="{!isForLead }">
+                                    <apex:actionFunction name="goToPageFunContact" action="{!goToPageFun}" reRender="frm1,parentPanel" oncomplete="saveContactAll();overrideBtnAndMsgStyle();makeSelectOption();"/> 
+                                    <apex:actionFunction name="saveContactAll" action="{!SaveLeadsAll}" reRender="frm1,parentPanel" oncomplete="saveAllLeadNNext();overrideBtnAndMsgStyle();makeSelectOption();"/> 
+                                                                       
+                                    <script>            
+                                        function saveAllLeadNNext(){                                        
+                                            showStatus();
+                                            if( startPage <= {!totalpage} ){
+                                                $('input[id*=pageNoId]').val(startPage);
+                                                goToPageFunContact();
+                                                startPage++;
+                                            }else{
+                                                hideStatus();
+                                            }                                       
+                                        }
+                                        
+                                        function doFilter(filterSelVal){            
+                                            if( filterSelVal == 'DiscoverOrg ID' ){
+                                                showOnlyByID();
+                                            }
+                                            else if( filterSelVal == 'Contact Email' ){
+                                                showOnlyByEmails();
+                                            }
+                                            else{
+                                                showByAll();
+                                            }
+                                            selectedFilter = filterSelVal;
+                                        }
+                                        
+                                        function pickOnChange(){
+                                            doFilter( $("#fltrOpt").val() );
+                                        }
+                                    </script>
+  
+                                    <apex:commandButton action="{!SaveLeads}"  oncomplete="hideStatus();" onclick="showStatus()" styleClass="slds-button slds-button--brand" reRender="parentPanel,frm1" value="Update Selected" style="font-size: 14px;min-width: 140px;font-weight: 500;" disabled="{!If(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'false','true')}"/>
+                                    <apex:commandButton onclick="saveAllLeadNNext();return false;" styleClass="slds-button slds-button--brand" value="Update All" style="font-size: 14px;min-width: 140px;font-weight: 500;" disabled="{!If(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'false','true')}"/>                                                                   
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                        <div class="slds-card__body" style="padding-bottom: 0px;">
+                            <table class="slds-table slds-table--bordered contact-conflict-table">
+                                <thead>
+                                    <tr class="slds-text-heading--label">
+                                        <th scope="col" style="width:7%;">
+                                            <span class="slds-truncate" style="color:#16325c;">DiscoverOrg Lead</span>
+                                        </th>
+                                        <th style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                            <table style="width:100%;">  
+                                                <tr>                                                                                  
+                                                    <th scope="col" style="width: 5%;padding: .5rem;border-top: 0px;text-align: right;">
+                                                        <label class="slds-checkbox">
+                                                            <input name="checkbox" id="selectAllChk" type="checkbox" onclick="seleDeselAll();" />
+                                                            <span class="slds-checkbox--faux"></span>
+                                                            <span class="slds-form-element__label slds-assistive-text">select all</span>
+                                                        </label>
+                                                    </th>
+                                                    <th scope="col" style="width: 25%;border-top: 0px;padding-left: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Salesforce Lead</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 25%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Owner</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 20%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Matching On</span>
+                                                    </th>
+                                                    <th scope="col" style="width: 25%;border-top: 0px;">
+                                                        <span class="slds-truncate" style="color:#16325c;">Match Value</span>
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                    </tr>                                    
+                                </thead>
+                                <tbody>                                   
+                                    <apex:repeat value="{!result.multiDups}" var="dup">
+                                        <tr class="externalTr">
+                                            <td style="vertical-align: top;padding-top: 15px;font-weight: 600;width:7%;color: #16325c;"> 
+                                                 {!dup.lead.FirstName} {!dup.lead.LastName}
+                                            </td>
+                                            <td style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                                <table class="innerTable1" style="width:100%;">
+                                                    <apex:repeat value="{!dup.ValMap2}" var="conMap">
+                                                        <apex:repeat value="{!dup.ValMap2[conMap]}" var="con">
+                                                            <tr class="internalTr">
+                                                                <td style="width: 5%;padding: .5rem;text-align: right;border-bottom: 0px;">
+                                                                    <apex:outputLabel for="inchk" styleClass="slds-checkbox"> 
+                                                                        <apex:inputCheckbox styleClass="innerCBox" id="inchk" value="{!con.isCheck}"/>
+                                                                        <span class="slds-checkbox--faux"></span>
+                                                                        <span class="slds-form-element__label"></span>
+                                                                    </apex:outputLabel>
+                                                                </td>
+                                                                <td style="width: 25%;padding: .5rem;padding-left: 0px;">
+                                                                    <a class="contactNameA" href="/{!con.sObj['id']}" target="_blank"> {!con.sObj['name']} </a>
+                                                                    <div class="contactInfoTooltipArr"></div>
+                                                                    <div class="contactInfoTooltip">
+                                                                        <table>
+                                                                            <tr>
+                                                                                <td>Lead Name</td>
+                                                                                <td>{!con.sObj['name']}</td>
+                                                                            </tr>                                                                            
+                                                                            <tr>
+                                                                                <td>Lead Owner</td>
+                                                                                <td>{!con.sObj['owner.name']}</td>
+                                                                            </tr>                                                                           
+                                                                            <tr>
+                                                                                <td>Email</td>
+                                                                                <td>{!con.sObj['email']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Created Date</td>
+                                                                                <td>{!con.sObj['CreatedDate']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Created By</td>
+                                                                                <td>{!con.sObj['CreatedBy.name']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last Modified Date</td>
+                                                                                <td>{!con.sObj['LastModifiedDate']}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Last Modified By</td>
+                                                                                <td>{!con.sObj['LastModifiedBy.name']}</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>                                                                
+                                                                <td style="width: 25%;padding: .5rem;"><a href="/{!con.sObj['ownerId']}" target="_blank"> {!con.sObj['owner.name']} </a></td>  
+                                                                <td style="width: 20%;padding: .5rem;color: #16325c;">
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <span class="discIdMO">DiscoverOrg ID</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <apex:outputPanel layout="none" rendered="{! dup.lead.email == con.sObj['email'] }">
+                                                                            <span class="emailAddMO">Email</span>
+                                                                        </apex:outputPanel>
+                                                                    </apex:outputPanel>
+                                                                </td>
+                                                                <td style="width: 25%;padding: .5rem;color: #16325c;">
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <span class="discIdMV">{!con.sObj['DSCORGPKG__DiscoverOrg_ID__c']}</span>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel layout="none" rendered="{! dup.lead.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                        <apex:outputPanel layout="none" rendered="{! dup.lead.email == con.sObj['email'] }">
+                                                                            <span class="emailAddMV">{!con.sObj['email']}</span>
+                                                                        </apex:outputPanel>
+                                                                    </apex:outputPanel>                                                                                                                                        
+                                                                </td>
+                                                            </tr>
+                                                        </apex:repeat>
+                                                    </apex:repeat>                                                                                                                                                         
+                                                </table>
+                                            </td>
+                                        </tr>                                                                                
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--Lead Multi Dups End Here-->
+                                         
+                    <!--Lead Duplicates Start Here-->
+                    <div style="margin-top: 20px;display:{!if(AND(NOT(ISNULL(result.duplicates)),result.duplicates.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Following records will be merged to existing Leads (total {!result.duplicates.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">DiscoverOrg Lead</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Salesforce Lead</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.duplicates}" var="dup">
+                                            <tr>
+                                                <td>                                             
+                                                    <apex:outputText >{!dup.lead.FirstName} {!dup.lead.LastName} </apex:outputText>
+                                                </td>
+                                                <td> 
+                                                    <apex:outputLink value="/{!dup.value}"> {!dup.lead.FirstName} {!dup.lead.LastName} </apex:outputLink> 
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>                        
+                    <!--Lead Duplicates End Here-->
+
+                    <!--Lead Successful End Here-->
+                    <div style="margin-top: 20px;display:{!if(AND(NOT(ISNULL(result.successful)),result.successful.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Will be added (total {!result.successful.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">Name</span>
+                                            </th>     
+                                            <th scope="col">
+                                                <span class="slds-truncate">Phone</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.successful}" var="dup">
+                                            <tr>
+                                                <td>
+                                                    <apex:outputText >{!dup.lead.FirstName} {!dup.lead.LastName} </apex:outputText>
+                                                </td>
+                                                <td>
+                                                    <apex:outputText >{!dup.lead.Phone}</apex:outputText> 
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                        
+                    </div> 
+                    <!--Lead Successful End Here-->
+                    <div class="slds-section-title--divider">
+                        <h3>&nbsp;</h3><!-- <h3>Lead Import Details</h3> -->
+                        <apex:commandButton value="Close" styleClass="paginationBtns"  style="float: right;margin-top: -8px;" onclick="focusParentWindow(); return false;"/>
+                    </div>
+                </div>      
+            </apex:outputPanel>
+            <!--Lead Manager End Here-->
+
+            <!--Account Manager Start Here-->
+            <apex:outputPanel id="frm3" rendered="{!isAccountManager && !isForLead }">
+                <script>
+                    $( document ).ready(function() {
+                        if($(".inputRadio:checked").length > 1){//SFNA-2538: this is to 
+                            $(".inputRadio:checked").each(function(index){
+                                if(index > 0)
+                                    $(this).prop( "checked",false);        
+                            });
+                        }
+                        $(".inputRadio").click(function() {
+                            $(this).parent().parent().parent().parent().find(".inputRadio").each(function() {
+                                $(this).prop( "checked",false);
+                            });
+                            $(this).prop( "checked",true);
+                        });
+                        $('[id$=selectedAccount]').val($(".inputRadio:checked").attr('id'));//SFNA-2538
+                    });
+                    
+                    
+                    var newWin=null;
+                    function openLookupPopup(name, id, ddField)
+                    {
+                        var url="/apex/DiscoverOrgSearchAccountPopup?namefield=" + name + "&idfield=" + id + "&selectField=" + ddField;
+                        newWin=window.open(url, 'Popup','height=500,width=1050,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+                        if (window.focus) 
+                        {
+                            newWin.focus();
+                        }            
+                        return false;
+                    }
+                                  
+                    function closeLookupPopup()
+                    {
+                       if (null!=newWin)
+                       {
+                          newWin.close();
+                       }  
+                    }
+                    
+                    function openCompany(objId) {
+                        var obj = document.getElementById(objId);
+                        var recId = obj.options[obj.selectedIndex].value;
+                        window.open('/'+recId, '_new');
+                        
+                    }
+                    
+                    function copyvalue(objId1, objId2) {        
+                        var obj = document.getElementById(objId1);
+                        var recId = obj.options[obj.selectedIndex].value;
+                        
+                        var obj2 = document.getElementById(objId2);
+                        obj2.value = recId;        
+                    }
+                                                                 
+                    function makeAccount(){
+                        var person = prompt("Enter Account Name","");
+                        if (person != null) {
+                            myfun(person);        
+                        }
+                    }
+                </script>
+                
+                <div class="slds-container--fluid  slds-container--center slds-grid-main" id="containerDiv">            
+                    <apex:pageMessages escape="false"/>
+                    
+                    <div class="slds-section-title--divider">
+                        <h3>DUPLICATE MATCHING</h3> <!--<h3>Account Selection</h3>-->
+                        <apex:commandButton value="Close" styleClass="paginationBtns"  style="float: right;margin-top: -8px;" onclick="focusParentWindow(); return false;"/>
+                    </div>  
+                    
+                    <!--Account Multi Dups Start Here-->
+                    <div style="display:{!if(AND(NOT(ISNULL(result.multiDups)),result.multiDups.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Multiple matches found for DiscoverOrg record(s). Choose one or more to update.</span><!--<span style="font-size:14px;">Multiple Accounts matches found for selected DiscoverOrg companies. Choose to update existing or create new.</span>-->
+                                        </h2>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="slds-form-element__label" style="color:#000;font-size: 14px;">Show Matches By:</label>
+                                    
+                                    <select class="slds-select" id="fltrOpt" onChange="pickOnChange();" style="width: 120px;height: 36px;margin-left: 10px;margin-right: 10px;"> 
+                                        <option value="All">All</option>
+                                        <option value="DiscoverOrg ID">DiscoverOrg ID</option>
+                                        <option value="Website">Website</option>
+                                        <option value="Company Name">Company Name</option>                                                                                
+                                    </select>
+                                </div>
+
+                                <div id="buttons" role="group" >
+                                    <!--Account Header-->
+                                    <apex:outputPanel layout="none" rendered="{!isAccountManager && !isForLead}">                                
+                                        <script>            
+                                            function doFilter(filterSelVal){                    
+                                                if( filterSelVal == 'DiscoverOrg ID' ){
+                                                    showOnlyByID();
+                                                }
+                                                else if( filterSelVal == 'Website' ){
+                                                    showOnlyByEmails();//Here it is for website
+                                                }
+                                                else if( filterSelVal == 'Company Name' ){
+                                                    showOnlyByCompanyName();
+                                                }
+                                                else{
+                                                    showByAll();
+                                                }
+                                                selectedFilter = filterSelVal;
+                                            }
+                                            
+                                            function pickOnChange(){
+                                                doFilter( $("#fltrOpt").val() );
+                                            }
+                                        </script>
+                                                                       
+                                        <apex:commandButton action="{!SaveAccounts}" onclick="showStatus();" oncomplete="hideStatus();" styleClass="slds-button slds-button--brand" reRender="parentPanel,frm1" value="Update" style="font-size: 14px;min-width: 140px;font-weight: 500;"/>                                                                       
+                                    </apex:outputPanel>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col" style="width:7%;">
+                                                <span class="slds-truncate" style="color:#16325c;">DiscoverOrg Company</span>
+                                            </th>
+                                            <th style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                                <table style="width:100%;">  
+                                                    <tr>                                                                                  
+                                                        <th scope="col" style="width: 5%;padding: .5rem;border-top: 0px;text-align: right;">                                                            
+                                                        </th>
+                                                        <th scope="col" style="width: 20%;border-top: 0px;padding-left: 0px;">
+                                                            <span class="slds-truncate" style="color:#16325c;">Salesforce Account</span>
+                                                        </th>
+                                                        <th scope="col" style="width: 20%;border-top: 0px;">
+                                                            <span class="slds-truncate" style="color:#16325c;">Type</span>
+                                                        </th>
+                                                        <th scope="col" style="width: 20%;border-top: 0px;">
+                                                            <span class="slds-truncate" style="color:#16325c;">Owner</span>
+                                                        </th>
+                                                        <th scope="col" style="width: 15%;border-top: 0px;">
+                                                            <span class="slds-truncate" style="color:#16325c;">Matching On</span>
+                                                        </th>
+                                                        <th scope="col" style="width: 20%;border-top: 0px;">
+                                                            <span class="slds-truncate" style="color:#16325c;">Match Value</span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+                                            </th>
+                                        </tr>                                       
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.multiDups}" var="dup">
+                                            <tr class="externalTr">
+                                                <td style="vertical-align: top;padding-top: 15px;font-weight: 600;width:7%;color: #16325c;"> 
+                                                     {!dup.account.name}
+                                                </td>
+                                                <td style="width: 93%;padding: 2px 0px 0px 8px;"> 
+                                                    <table class="innerTable1" style="width:100%;">
+                                                        <apex:repeat value="{!dup.ValMap2}" var="conMap">
+                                                            <apex:repeat value="{!dup.ValMap2[conMap]}" var="con">
+                                                                <tr class="internalTr">
+                                                                    <td style="width: 5%;padding: .5rem;text-align: right;border-bottom: 0px;">
+                                                                        <label class="slds-radio">
+                                                                          <apex:outputPanel layout="none" rendered="{! dup.account.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }" > <!-- changed from rendered="{! dup.value == con.sObj }" SFNA-2538-->
+                                                                              <input class="inputRadio {!dup.account.DSCORGPKG__DiscoverOrg_ID__c}" checked="checked" type="radio" onclick="copyvalue2(this,'{!$Component.selectedAccount}');" name="" value="{!con.sObj}" />
+                                                                          </apex:outputPanel>
+                                                                          <apex:outputPanel layout="none" rendered="{! dup.account.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }" >
+                                                                              <input class="inputRadio {!dup.account.DSCORGPKG__DiscoverOrg_ID__c}"  type="radio" onclick="copyvalue2(this,'{!$Component.selectedAccount}');" name="" value="{!con.sObj}" />
+                                                                          </apex:outputPanel>
+                                                                          <span class="slds-radio--faux"></span>
+                                                                          <span class="slds-form-element__label"></span>
+                                                                        </label> 
+                                                                    </td>
+                                                                    <td style="width: 20%;padding: .5rem;padding-left: 0px;">
+                                                                        <a href="/{!con.sObj['id']}" target="_blank"> {!con.sObj['name']} </a>
+                                                                    </td>
+                                                                    <td style="width: 20%;padding: .5rem;color: #16325c;">
+                                                                        {!con.sObj['Type']}
+                                                                    </td>
+                                                                    <td style="width: 20%;padding: .5rem;">
+                                                                       <!--// SFNA-2401 : sagar Sadhnani -->
+                                                                        <a href="/{!con.sObj['ownerId']}" target="_blank"> {!con.ownerName} </a> 
+                                                                    </td>                                                                                                                                                
+                                                                    <td style="width: 15%;padding: .5rem;color: #16325c;">
+                                                                        <apex:outputPanel layout="none" rendered="{! dup.account.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <span class="discIdMO">DiscoverOrg ID</span>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel layout="none" rendered="{! dup.account.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <apex:outputPanel layout="none" rendered="{! dup.account.website == con.sObj['website'] }">
+                                                                                <span class="emailAddMO">Website</span>
+                                                                            </apex:outputPanel>
+                                                                            <apex:outputPanel layout="none" rendered="{! dup.account.website != con.sObj['website'] }">                                                                               
+                                                                                <span class="cmpnyNameMO">Company Name</span>
+                                                                            </apex:outputPanel>
+                                                                        </apex:outputPanel>
+                                                                    </td>
+                                                                    <td style="width: 20%;padding: .5rem;color: #16325c;">
+                                                                        <apex:outputPanel layout="none" rendered="{! dup.account.DSCORGPKG__DiscoverOrg_ID__c == con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            <span class="discIdMV">{!con.sObj['DSCORGPKG__DiscoverOrg_ID__c']}</span>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel layout="none" rendered="{! dup.account.DSCORGPKG__DiscoverOrg_ID__c != con.sObj['DSCORGPKG__DiscoverOrg_ID__c'] }">
+                                                                            
+                                                                            <!--<script>
+                                                                                var CWeb = '{!con.sObj['website'] }';
+                                                                                CWeb = CWeb.replace(/^(https?|http):\/\//,"");
+                                                                                alert(CWeb);
+                                                                            </script> -->
+                                                                            <apex:outputPanel layout="none" rendered="{! dup.account.website == con.sObj['website'] }">
+                                                                                <span class="emailAddMV">{!con.sObj['website']}</span>
+                                                                            </apex:outputPanel>
+                                                                            <apex:outputPanel layout="none" rendered="{! dup.account.website != con.sObj['website'] }">                                                                               
+                                                                                <span class="cmpnyNameMV">{!con.sObj['name']}</span>
+                                                                            </apex:outputPanel>
+                                                                        </apex:outputPanel>                                                                                                                                         
+                                                                    </td>
+                                                                </tr>
+                                                            </apex:repeat>                                                            
+                                                        </apex:repeat>    
+                                                            <tr>
+                                                                <td style="padding: .5rem;"></td>
+                                                                <td style="padding: .5rem;">
+                                                                    <apex:outputPanel id="searchAccount" layout="block">
+                                                                        <a href="#" onclick="openLookupPopup('{!JSENCODE($Component.selectedAccountName)}', '{!JSENCODE($Component.selectedAccount)}', '{!JSENCODE(dup.account.DSCORGPKG__DiscoverOrg_ID__c)}'); return false">Create New Account</a>
+                                                                    </apex:outputPanel>       
+                                                                </td>
+                                                                <td colspan="4" style="padding:10px 0px 8px 0px !important;vertical-align: top;">
+                                                                    <apex:inputText id="selectedAccountName" style="border: 0px;background: transparent;width: 100%;" disabled="true"> </apex:inputText>
+                                                                    <apex:inputText id="selectedAccount" value="{!dup.value}" style="display:none;width:100%;"> </apex:inputText>
+                                                                    <!--Need to work Here Not using anywhere but need for stop javscript error-->
+                                                                    <apex:selectList id="selectCompany" size="1" styleClass="slds-select" style="display:none;">
+                                                                        <apex:selectOptions value="{!dup.options}"/>
+                                                                    </apex:selectList>
+                                                                    <apex:outputText value="{!dup.WarningMessage}" style="color:red;"> </apex:outputText>
+                                                                </td>
+                                                            </tr>                                                                                                                                                     
+                                                    </table>
+                                                </td>
+                                            </tr>                                                                                        
+                                        </apex:repeat>
+                                    </tbody>                                                                                               
+                                </table>
+                            </div>
+                        </div>   
+                        <script>
+                            function copyvalue2(obj1This, objId2) {                                                              
+                                var obj2 = document.getElementById(objId2);                                
+                                obj2.value = obj1This.value;                                   
+                            }
+                        </script>
+                    </div>
+                    <!--Account Multi Dups End Here-->      
+                    
+                    <!--Account Duplicates Start Here-->
+                    <div style="margin-top:20px;display:{!if(AND(NOT(ISNULL(result.duplicates)),result.duplicates.size>0),'block','none')}"> 
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Following records will be merged to existing accounts (total {!result.duplicates.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">DiscoverOrg Account</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Salesforce Account</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.duplicates}" var="dup">
+                                            <tr>
+                                                <td> <apex:outputText > {!dup.account.name} </apex:outputText></td>
+                                                <td> <apex:outputLink value="/{!dup.value}">{!dup.account.Name}</apex:outputLink></td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                                    
+                    </div>    
+                    <!--Account Duplicates End Here-->
+                    
+                    <!--Account Successful Start Here-->
+                    <div style="margin-top:20px;display:{!if(AND(NOT(ISNULL(result.successful)),result.successful.size>0),'block','none')}">
+                        <div class="slds-card contact-slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">
+                                            <span>Following records will be added (total {!result.successful.size})</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-card__body" style="padding-bottom: 0px;">
+                                <table class="slds-table slds-table--bordered contact-conflict-table">
+                                    <thead>
+                                        <tr class="slds-text-heading--label">
+                                            <th scope="col">
+                                                <span class="slds-truncate">Name</span>
+                                            </th>
+                                            <th scope="col">
+                                                <span class="slds-truncate">Phone</span>
+                                            </th>  
+                                            <th scope="col">
+                                                <span class="slds-truncate">Billing City</span>
+                                            </th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!result.successful}" var="dup">
+                                            <tr>
+                                                <td> <apex:outputText >{!dup.Account.Name}</apex:outputText></td>
+                                                <td> <apex:outputText >{!dup.Account.Phone}</apex:outputText></td>
+                                                <td>  <apex:outputText >{!dup.Account.BillingCity}</apex:outputText></td>                            
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Account Successful End Here-->
+                    
+                </div>
+            </apex:outputPanel>
+            <!--Account Manager End Here-->
+        </apex:outputPanel>
+        <!--Parent Panel End Here-->
+    </div>
+
+</apex:form>
+</apex:page>

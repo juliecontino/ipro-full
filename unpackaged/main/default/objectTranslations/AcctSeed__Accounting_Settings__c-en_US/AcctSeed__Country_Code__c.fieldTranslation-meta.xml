@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- 2 character ISO abbreviation for Country Code --></help>
+        <label><!-- Country Code --></label>
+        <name>AcctSeed__Country_Code__c</name>
+    </CustomFieldTranslation>

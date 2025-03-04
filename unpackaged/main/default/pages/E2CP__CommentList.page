@@ -1,0 +1,9 @@
+<apex:page standardController="Case" title="{!Case.CaseNumber}: Comment List" applyHtmlTag="{!$CurrentPage.parameters.showFullList == 'true'}" showHeader="{!$CurrentPage.parameters.showFullList == 'true'}" docType="HTML-5.0">
+    <html>
+        <body>
+            <apex:form >
+                <c:CommentList />
+            </apex:form>
+        </body>
+    </html>
+</apex:page>

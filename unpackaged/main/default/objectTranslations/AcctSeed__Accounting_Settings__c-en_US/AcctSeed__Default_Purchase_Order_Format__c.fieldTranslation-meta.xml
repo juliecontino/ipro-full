@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Select your primary purchase order format here. When you create a  purchase order and leave this field blank, the default  purchase order format will be selected after you press save. --></help>
+        <label><!-- Default Purchase Order Format --></label>
+        <lookupFilter>
+            <errorMessage><!-- The type on the PDF Format must be Purchase Order --></errorMessage>
+            <informationalMessage><!-- The type on the PDF Format must be Purchase Order --></informationalMessage>
+        </lookupFilter>
+        <name>AcctSeed__Default_Purchase_Order_Format__c</name>
+        <relationshipLabel><!-- Accounting Settings (Default Purchase Order Format) --></relationshipLabel>
+    </CustomFieldTranslation>

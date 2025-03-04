@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csmrgp__Perform_Automerge_Detection__c</fullName>
+    <deprecated>false</deprecated>
+    <description>When should automerge be performed?
+Valid values are:
+     On Case Creation
+     Case Updates in Selected Statuses - Whenever a Case is inserted or updated with statuses defined in the Automerge Detection Statuses fields.</description>
+    <externalId>false</externalId>
+    <label>Perform Automerge Detection</label>
+    <length>33</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

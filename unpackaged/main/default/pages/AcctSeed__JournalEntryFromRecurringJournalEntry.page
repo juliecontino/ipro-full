@@ -1,0 +1,43 @@
+<apex:page id="JournalEntryFromRecurringJournalEntry" title="Create Journal Entry | Accounting Seed" standardController="AcctSeed__Recurring_Journal_Entry__c" extensions="AcctSeed.JournalEntryFromRecurringJournalEntry,AcctSeed.EnvironmentUtils" sideBar="false" lightningStylesheets="true" >
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/common.css')}" />
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+        function setFocusOnLoad() {}
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/je-from-recurring-je.js')}" loadOnReady="true"/>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Recurring_Journal_Entry__c.label}" subtitle="{!AcctSeed__Recurring_Journal_Entry__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Create {!$ObjectType.AcctSeed__Journal_Entry__c.label}">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onstop="AcctSeed.ASModule.pageLoad()"/>
+                <apex:commandButton id="saveButton"
+                                    action="{!createJE}"
+                                    value="Create"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!!isError}"/>
+                <apex:commandButton id="savePostButton"
+                                    action="{!createJEAndPost}"
+                                    value="Create & Post"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!!isError}" />
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection rendered="{!!isError}" columns="2">
+                <apex:inputField value="{!jEList[0].obj['Name']}"/>
+                <apex:outputText id="totalDebit" value="{!jEList[0].rObj['Total_Debits__c']}" html-data-currency="{!currencyIsoCode}"/>
+                <apex:inputField value="{!jEList[0].obj['Journal_Date__c']}"/>
+                <apex:outputText id="totalCredit" value="{!jEList[0].rObj['Total_Credits__c']}" html-data-currency="{!currencyIsoCode}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Payment Type --></label>
+        <name>zkfedex__PaymentType__c</name>
+        <picklistValues>
+            <masterLabel>Collect</masterLabel>
+            <translation><!-- Collect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recipient</masterLabel>
+            <translation><!-- Recipient --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sender</masterLabel>
+            <translation><!-- Sender --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Third Party</masterLabel>
+            <translation><!-- Third Party --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Number of cash disbursements posted in the cash disbursement batch. --></help>
+        <label><!-- Posted Cash Disbursements --></label>
+        <name>AcctSeed__Posted_Cash_Disbursements__c</name>
+    </CustomFieldTranslation>

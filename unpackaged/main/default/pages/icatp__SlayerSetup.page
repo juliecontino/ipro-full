@@ -1,0 +1,4 @@
+<apex:page title="File Slayer Setup" sidebar="false">
+    <meta http-equiv="refresh" content="0;url=/lightning/n/icatp__Signature_Slayer_Setup_LEX" />
+    <apex:pageMessage severity="error" strength="3" summary="This setup experience has been deprecated, please use the File Slayer Setup tab to configure the application." escape="false" />
+</apex:page>

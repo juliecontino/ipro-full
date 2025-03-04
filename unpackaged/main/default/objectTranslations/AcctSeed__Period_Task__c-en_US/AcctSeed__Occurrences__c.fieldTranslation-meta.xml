@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used for determining when to stop creating tasks. --></help>
+        <label><!-- Occurrences --></label>
+        <name>AcctSeed__Occurrences__c</name>
+    </CustomFieldTranslation>

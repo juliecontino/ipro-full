@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Defines which primary case fields the user can modify on the Case Merge Premium merge page.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Case Merge Field Editability Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

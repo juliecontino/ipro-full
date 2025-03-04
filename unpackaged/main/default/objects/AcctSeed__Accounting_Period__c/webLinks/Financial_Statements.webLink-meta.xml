@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financial_Statements</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Financial Statements</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://composer.congamerge.com
+?sessionId={!API.Session_ID}
+&amp;serverUrl={!API.Partner_Server_URL_290}
+&amp;id={!AcctSeed__Accounting_Period__c.Id}
+&amp;reportID=[Trial]00O40000004TWIA?pv0={!AcctSeed__Accounting_Period__c.Name},[ProfitLoss]00O40000004TWIF?pv0={!AcctSeed__Accounting_Period__c.Name}~pv1={!AcctSeed__Accounting_Period__c.Starting_Period_Conga__c},[Balance]00O40000004TUUY?pv0={!AcctSeed__Accounting_Period__c.Name},[BalSum]00O40000004TY1G?pv0={!AcctSeed__Accounting_Period__c.Name},[AssetType]00O40000004TY4y?pv0="Assets"&amp;reportid=[PLSum]00O40000004TYPm?pv0={!AcctSeed__Accounting_Period__c.Name}~pv1={!AcctSeed__Accounting_Period__c.Starting_Period_Conga__c}
+&amp;reportid=[BalPrior]00O40000004Lp9a?pv2={!AcctSeed__Accounting_Period__c.Prior_Period__c},[BalSumPrior]00O40000004Lp9f?pv0={!AcctSeed__Accounting_Period__c.Prior_Period__c}
+&amp;reportid=[NetRev]00O40000004TdTo?pv0={!AcctSeed__Accounting_Period__c.Name}~pv1={!AcctSeed__Accounting_Period__c.Starting_Period_Conga__c}
+&amp;QueryID=[Assets]a3240000001KeXF,[Liabilities]a3240000001KeXK,[Equity]a3240000001KeXP,[Expense]a3240000001Kffi,[OtherIncome]a3240000001Kfpj,[Sales]a3240000001Kf88,[Cogs]a3240000001Kfpe,[Revenue]a3240000001KffY,[AllGL]a3240000001Kfg2,[AssetsSub]a3240000001KgAz,[LiabilitiesSub]a3240000001KgB4,[EquitySub]a3240000001KgB9,[OtherIncomeSum]a3240000001KghL,[CogsSum]a3240000001KghB,[ExpenseSum]a3240000001KghG,[SalesSum]a3240000001Kgh6&amp;TemplateGroup=Finance
+&amp;OFN={Template.Label}+-+{!AcctSeed__Accounting_Period__c.Name}
+&amp;defaultpdf=1
+&amp;SelectTemplates=1</url>
+</WebLink>

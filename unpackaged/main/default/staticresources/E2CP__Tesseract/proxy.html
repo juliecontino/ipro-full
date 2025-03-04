@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="tesseract.min.js"></script>
+        <script>
+            const path = location.pathname.split('/').slice(0, -1).join('/');
+            const params = (new URL(document.location)).searchParams;
+            const POST_MESSAGE_ORIGIN = params.get('origin');
+            const POST_MESSAGE_KEY = params.get('key');
+            post('OCR_ORIGIN', location.origin);
+
+            window.addEventListener('message', (event) => {
+                try {
+                    //If not a JSON object string with the type and key parameters we expect, then ignore.
+                    //For example, the Grammarly browser extension passes the object {"__grammarly":{"kind":"frameId.request","requestId":"<UUID>"}} which is not a 
+                    //JSON string resulting in a `SyntaxError: "[object Object]" is not valid JSON` console error
+                    if (typeof event.data !== 'string' || !event.data.startsWith('{') || !event.data.includes('"type"') || !event.data.includes('"key"')) {
+                        return;
+                    }
+                    let data = JSON.parse(event.data);
+    
+                    if(data.key == POST_MESSAGE_KEY) {
+                        switch(data.type) {
+                            case 'RECOGNISE_TEXT':
+                                handleRecognizeText(data.value);
+                                break;
+                            default:
+                                alert(JSON.stringify(data, null, 4));
+                                break;
+                        }
+                    }
+                } catch(e) {
+                    console.error(e);
+                }
+            }, false);
+
+            async function handleRecognizeText({id, image, rectangle}) {
+                const worker = await Tesseract.createWorker('eng', Tesseract.OEM.LSTM_ONLY, {corePath: path, langPath: `${path}DataEng`, workerPath: `${path}/worker.min.js`});
+                let {data} = await (rectangle ? worker.recognize(image, {rectangle}) : worker.recognize(image));
+
+                //data has redundancy and circular references so we build a new simplified object with circular references removed
+                let result = {
+                    text: data.text,
+                    confidence: data.confidence,
+                    lines: data.lines.map(line => ({
+                        text: line.text,
+                        confidence: line.confidence,
+                        baseline: line.baseline,
+                        bbox: line.bbox,
+                        words: line.words
+                    }))
+                };
+
+                post('OCR_RESULT', {id, result});
+                await worker.terminate();
+            }
+
+            function post(type, value) {
+                try {
+                    parent.postMessage(JSON.stringify({
+                        type: type,
+                        key: POST_MESSAGE_KEY,
+                        value: value
+                    }), POST_MESSAGE_ORIGIN);
+                } catch(e) {}
+            }
+
+            post('OCR_READY', true);
+        </script>
+    </body>
+</html>

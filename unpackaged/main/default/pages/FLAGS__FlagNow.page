@@ -1,0 +1,188 @@
+<apex:page standardController="case" extensions="FLAGS.CaseFlags" title="{!Case.CaseNumber}: Set Flag" cache="false" sidebar="false">
+    <style>
+        .datePicker {
+            display: none;
+        }
+        .message-container {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+        .message-box {
+            position: relative;
+            top: 40%;
+            background-color: #354452;
+            width: 100px;
+            min-height: 100px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: auto;
+            color: white;
+            text-align: center;
+            font-family: "ProximaNovaSoft-Regular", Calibri, 
+                "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI", 
+                 Arial, sans-serif;
+        }
+        @-moz-keyframes spin {
+            0% {
+                -moz-transform: rotate(0deg);
+            }
+            100% {
+                -moz-transform: rotate(359deg);
+            }
+        }
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(359deg);
+            }
+        }
+        @-o-keyframes spin {
+            0% {
+                -o-transform: rotate(0deg);
+            }
+            100% {
+                -o-transform: rotate(359deg);
+            }
+        }
+        @-ms-keyframes spin {
+            0% {
+                -ms-transform: rotate(0deg);
+            }
+            100% {
+                -ms-transform: rotate(359deg);
+            }
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+        .spinner {
+            -webkit-animation: spin 1.6s infinite linear;
+            -moz-animation: spin 1.6s infinite linear;
+            -o-animation: spin 1.6s infinite linear;
+            animation: spin 1.6s infinite linear;
+        }
+        /** Spinner Color **/
+        .slds-spinner::before, .slds-spinner::after, .slds-spinner__dot-a::before, .slds-spinner__dot-a::after, .slds-spinner__dot-b::before, .slds-spinner__dot-b::after{
+            background-color: #8D31F7 !important;
+        }
+        .slds-backdrop{
+            background: #ffffff !important;
+        }
+        .message{
+            background-color: #c00;
+        }
+        .messageText{
+            color:#fff;
+        }
+        h4{
+            color:#fff !IMPORTANT;
+        }
+        img{
+            display:none;
+        }
+    </style>
+    <apex:slds />
+    <div class="slds-scope">
+        <apex:form id="frm">
+            <apex:actionFunction name="setFlag" action="{!nowFlag}" reRender="frm,consoleScriptWrapper"/>
+
+            <div style="display:{IF(!complete && !consoleNavigate,'block','none')}">
+                <apex:pageMessages />
+                <apex:commandButton styleClass="slds-button slds-button_neutral" style="margin-left:45%;" action="{!returnToCase}" value="Back" reRender="consoleScriptWrapper"/>
+            </div>
+            
+            <apex:outputPanel rendered="{!!complete}">
+                <div class="slds-backdrop slds-backdrop_open" style="display:flex; background:#ffffff">
+                    <div class="slds-align_absolute-center">
+                        <div style="margin-left:-100px;" role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                        <div><div class="slds-text-heading_large" style="font-weight:700;margin-left:50px">Setting Flag</div></div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </apex:form>
+    </div>
+    
+    <apex:includeScript value="/soap/ajax/22.0/connection.js"/>
+    <apex:includeScript value="/support/console/42.0/integration.js"/>
+    <apex:includeScript value="/canvas/sdk/js/29.0/publisher.js"/>
+    
+    <apex:outputPanel id="consoleScriptWrapper">
+        <script language="javascript">
+            function goBackToCase() {
+                sforce.console.getEnclosingTabId(handlingEnclosingTabId);
+            }
+            
+            var primaryTabId,
+                subtabId;
+            function handlingEnclosingTabId(result) {
+                if (result.id.indexOf('-st-') >= 0 || result.id.indexOf('_') >= 0) {
+                    subtabId = result.id;
+                    sforce.console.getEnclosingPrimaryTabId(handlePrimaryTabId);
+                } else {
+                    primaryTabId = result.id;
+                    sforce.console.openPrimaryTab(primaryTabId,'{!JSENCODE(consoleNavigateURL)}',true,false,handleOpenPrimaryTab);
+                }
+            }
+            
+            function handlePrimaryTabId(result) {
+                primaryTabId = result.id;
+                sforce.console.getSubtabIds(primaryTabId,handleSubtabIds);
+            }
+            
+            function handleSubtabIds(result) {
+                if (result.success && result.ids.length == 1) {
+                    sforce.console.openPrimaryTab(primaryTabId,'{!JSENCODE(consoleNavigateURL)}',true,false,handleOpenPrimaryTab);
+                } else {
+                    sforce.console.openSubtab(primaryTabId,'{!JSENCODE(consoleNavigateURL)}',true,false,subtabId,handleOpenSubtab);
+                }
+            }
+            
+            function handleOpenSubtab(result) {
+                if (!result.success) {
+                    sforce.console.openPrimaryTab(null,'{!JSENCODE(consoleNavigateURL)}',true,false,handleOpenPrimaryTab);
+                } else {
+                    sforce.console.refreshPrimaryTabById(primaryTabId,false);
+                }
+            }
+            
+            function handleOpenPrimaryTab(result) {
+                if (!result.suceess) {
+                    sforce.console.openPrimaryTab(null,'{!JSENCODE(consoleNavigateURL)}',true,false,handleSecondAttempt);
+                }
+            }
+            
+            function handleSecondAttempt(result) {
+                if (!result.success) {
+                    sforce.console.refreshPrimaryTabById(primaryTabId,false);
+                    sforce.console.closeTab(subtabId);
+                }
+            }
+            
+            if ({!consoleNavigate}) {
+                if ({!JSENCODE(uiTheme) != 'Theme4u'} && sforce && sforce.one) {
+                    sforce.one.back(true);
+                } else {
+                    goBackToCase();
+                }
+            }
+            
+            if ({!!complete}) {
+                setFlag();
+            }
+        </script>
+    </apex:outputPanel>
+</apex:page>

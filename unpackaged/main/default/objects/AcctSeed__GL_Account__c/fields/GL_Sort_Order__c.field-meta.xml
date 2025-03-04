@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GL_Sort_Order__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Used to sort AP lines by GL Codes..requested by Kim 06-28-16</description>
+    <externalId>false</externalId>
+    <label>GL Sort Order</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

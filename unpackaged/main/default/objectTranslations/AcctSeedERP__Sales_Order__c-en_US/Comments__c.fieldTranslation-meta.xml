@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Add any relevant comments pertaining to this Sales Order that will assist in processing. --></help>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </CustomFieldTranslation>

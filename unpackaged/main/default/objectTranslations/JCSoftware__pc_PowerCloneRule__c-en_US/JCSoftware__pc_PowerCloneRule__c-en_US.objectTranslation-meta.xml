@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>PowerClone Rule Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Default behavior value must be &quot;true&quot; or &quot;false&quot; when selecting the &quot;Default_Value_Checkbox&quot; behavior. --></errorMessage>
+        <name>JCSoftware__Behavior_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The default value for the &quot;Integer_Suffix&quot; behavior must be an integer. --></errorMessage>
+        <name>JCSoftware__Integer_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Format Error.  Behavior Format should be TEXT_INTEGER --></errorMessage>
+        <name>JCSoftware__Text_Integer_Format</name>
+    </validationRules>
+</CustomObjectTranslation>

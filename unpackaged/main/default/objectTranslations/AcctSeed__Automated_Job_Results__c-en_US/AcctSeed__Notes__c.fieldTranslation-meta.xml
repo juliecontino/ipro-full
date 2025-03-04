@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field will show exception information from the jobs. --></help>
+        <label><!-- Notes --></label>
+        <name>AcctSeed__Notes__c</name>
+    </CustomFieldTranslation>

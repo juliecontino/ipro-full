@@ -1,0 +1,934 @@
+<apex:page controller="LH.LH_All_Settings_Controller" action="{!runAllSettingsPageOnLoadLogic}" title="Lookup Helper" sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }" />
+    <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/customMessage.css') }" />
+    <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/font-awesome/css/font-awesome.min.css') }" /> 
+    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    </head>
+    
+    <style>
+        .message .messageText a{
+        margin: 0;
+        font-size: 100%
+        }    
+
+        .datePicker {
+            z-index: 999999;
+        }
+
+        .checkboxSettingContainer {
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+
+        .checkboxSettingLabel {
+          padding-left: 15px;
+        }
+
+        .checkboxSetting {
+          width: 18px;
+          height: 18px;
+          padding: 0;
+          margin:0;
+          vertical-align: bottom;
+          position: relative;
+          top: -4px;
+          *overflow: hidden;
+        }
+    </style>
+ 
+    <script>
+        var lh = lh || {};
+        lh.j$ = jQuery.noConflict();
+        sessionStorage.setItem('rootPage','settings');
+
+        lh.j$(window).resize(function(){
+            fixWidth();
+        });
+        
+        function fixWidth(){
+            var full_width = lh.j$("#lookupTable").width();
+            var clone_table = lh.j$("#clone");
+            if(clone_table != null){
+                clone_table.css({width: full_width});
+            }
+        }
+    
+		function confirmActive(Disabled, fieldName, hitFreeLimits)  
+		{  
+			if(Disabled == "false")
+			{
+				return confirm("Are you sure you would like to disable automatic population for the " + fieldName + " field?");
+			}
+			else if (!hitFreeLimits) 
+			{
+				return confirm("Are you sure you would like to activate automatic population for the " + fieldName + " field?");
+			}
+			else 
+			{
+				return confirm("Please Note: You are only allowed to have two active settings concurrently, and are allowed to activate up to three different settings in a month. Given these limits you may be unable to activate this setting.");
+			}
+		}
+
+        function confirmAllActive(Disabled)
+        {
+            if(Disabled == "true")
+            {
+                var settingValue = 'disable';
+            }
+            else
+            {
+                var settingValue= 'enable';
+            }
+            return confirm("Are you sure you would like to " + settingValue + " all lookup settings?");
+        }    
+    
+		var prevValue;
+		function showOrHideDropdown(dropDownId){
+			var dropdownClassList = document.getElementById(dropDownId).classList;
+			
+			if(dropdownClassList.contains('slds-is-open')){
+				dropdownClassList.remove('slds-is-open');
+			}
+			
+			else{
+				if (prevValue != null) {
+					var prevClassList = document.getElementById(prevValue).classList;
+					prevClassList.remove('slds-is-open');
+				}
+				
+				dropdownClassList.add('slds-is-open');
+				
+				if(dropDownId != prevValue)
+					prevValue = dropDownId;
+			}
+		}
+		
+		function closeCouponCodeModal(emailError, consentError){
+			if(!emailError && !consentError){
+				document.getElementById('nfpDiscount').style.display = 'none';
+			}
+		}
+
+        function createNewAgent(){
+            newAgent();
+        }
+
+		function openCouponCodeModal(){
+			document.getElementById('nfpDiscount').style.display = 'block';
+		}
+
+		window.onload = function() {
+
+            checkLicenseStatusOnLoad(); 
+		}
+
+        function clearScheduledBoxes(){
+            document.querySelector('[id$="ScheduledNextRun"]').value = '';
+            document.querySelector('[id$="ScheduledRunInterval"]').value = '';
+        }
+
+        function populateSettingModalOptions() {
+            lh.j$( '[id$=recordScopeInput]' ).val({!lhSettings.recordScope});
+            lh.j$( '[id$=emailToSendExceptionsInput]' ).val('{!JSENCODE(lhSettings.emailToSendExceptions)}');
+            if (lh.j$( '[id$=enableSingleCategoryRecordProcessingInput]' ).is(':checked') !== {!lhSettings.enableSingleCategoryRecordProcessing}) {
+                lh.j$( '[id$=enableSingleCategoryRecordProcessingInput]' ).click()
+            }
+            if (lh.j$( '[id$=disableRecordLockRetryInput]' ).is(':checked') !== {!lhSettings.disableRecordLockRetry}) {
+                lh.j$( '[id$=disableRecordLockRetryInput]' ).click()
+            }
+            if (lh.j$( '[id$=enableRecordLockRetryInput]' ).is(':checked') !== {!lhSettings.enableRecordLockRetry}) {
+                lh.j$( '[id$=enableRecordLockRetryInput]' ).click()
+            }
+            if (lh.j$( '[id$=exceptionMonitorCanDisableSettingsInput]' ).is(':checked') !== {!lhSettings.exceptionMonitorCanDisableSettings}) {
+                lh.j$( '[id$=exceptionMonitorCanDisableSettingsInput]' ).click()
+            }
+            if (lh.j$( '[id$=preventSettingDeactivationInput]' ).is(':checked') !== {!lhSettings.preventSettingDeactivation}) {
+                lh.j$( '[id$=preventSettingDeactivationInput]' ).click()
+            }
+            if (lh.j$( '[id$=triggerDeploymentsRunTestsInput]' ).is(':checked') !== {!lhSettings.triggerDeploymentsRunTests}) {
+                lh.j$( '[id$=triggerDeploymentsRunTestsInput]' ).click()
+            }
+            if (lh.j$( '[id$=suppressWarningLevelErrorsInput]' ).is(':checked') !== {!lhSettings.suppressWarningLevelErrors}) {
+                lh.j$( '[id$=suppressWarningLevelErrorsInput]' ).click()
+            }
+            if (lh.j$( '[id$=updateConvertedLeadsInput]' ).is(':checked') !== {!lhSettings.updateConvertedLeads}) {
+                lh.j$( '[id$=updateConvertedLeadsInput]' ).click()
+            }
+            if (lh.j$( '[id$=defaultBlankOverwriteInput]' ).is(':checked') !== {!lhSettings.defaultBlankOverwrite}) {
+                lh.j$( '[id$=defaultBlankOverwriteInput]' ).click()
+            }
+            if (lh.j$( '[id$=onlySendHighPriorityDailyInput]' ).is(':checked') !== {!lhSettings.onlySendHighPriorityDaily}) {
+                lh.j$( '[id$=onlySendHighPriorityDailyInput]' ).click()
+            }
+            if (lh.j$( '[id$=defaultOverwriteInput]' ).is(':checked') !== {!lhSettings.defaultOverwrite}) {
+                lh.j$( '[id$=defaultOverwriteInput]' ).click()
+            }
+            lh.j$( '[id$=usageOfQueryRowLimitsInput]' ).val({!lhSettings.usageOfQueryRowLimits});
+            lh.j$( '[id$=usageOfQueryLimitsInput]' ).val({!lhSettings.usageOfQueryLimits});
+            lh.j$( '[id$=usageOfDMLRowLimitsInput]' ).val({!lhSettings.usageOfDMLRowLimits});
+            lh.j$( '[id$=rerenderErrorButton]' ).click();
+        }
+    </script>
+    
+ 
+    <div class="slds-scope" role="main" style="min-width:100vh; margin-left:10vh; margin-right:10vh;">			
+    <br/>
+    <c:LH_Setting_Warning LH_Setting_Tracking_Attribute="{!allSettingsLhSettingTracking}" />        
+	<c:LH_Nav_Bar />
+ 
+	<apex:form id="theForm">
+	<apex:slds />
+        
+	<apex:actionFunction name="checkLicenseStatusOnLoad" action="{!checkLicenseStatusOnLoad}" rerender="false" />
+    <apex:actionFunction action="{!newAgent}" name="newAgent"/>
+	<apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+	<apex:outputPanel rendered="{!settingCount != 0}"> 
+		<div class="slds-card">
+			<header class="slds-card__header slds-grid">
+    			<div class="slds-media slds-media_center slds-has-flexi-truncate">
+     				<div class="slds-media__body">
+            			<h3 class="slds-text-heading_medium slds-truncate" style="padding-right: 6px;">Lookup Helper Settings</h3>           
+            		</div>
+            	</div>
+            	
+            	<div class="slds-no-flex">
+                    <apex:outputPanel rendered="{!pgBehavior.showUseCaseBackButton}">
+                        <apex:outputLink value="{!useCasePageReference}" style="margin-left: .25rem; margin-right: .25rem;" styleClass="slds-button slds-button_outline-brand">Back to Use Case Deployment</apex:outputLink>
+                    </apex:outputPanel>      
+                    <apex:outputPanel rendered="{!OR(usageTracking.LH__Package_Namespace__c == 'LH', usageTracking.LH__Package_Namespace__c == null)}">
+                		<a onclick="navigateToURL('{!URLFOR($Page.LH_NewSetting_ChildObject)}');" class="slds-button slds-button_brand slds-button_small">
+                            Create Lookup Helper Setting
+                        </a>
+                    </apex:outputPanel>&nbsp;&nbsp;
+                    
+                    <apex:commandLink value="Set {!$User.FirstName + ' ' + $User.LastName} As Running User" styleClass="slds-button slds-button_neutral slds-button_small" onclick="createNewAgent();" rendered="{!NOT(isRunningUserCurrentUser)}" /> 
+                    
+                    <a onclick="navigateToURL('{!URLFOR($Page.LH_ExportData)}');" class="slds-button slds-button_neutral slds-button_small">
+                        Export Lookup Helper Settings
+                    </a>
+
+                    <apex:outputPanel rendered="{!AND(nfpController.isNonprofit, pgBehavior.hasSettingLimit)}">
+                        <button type="button" class="slds-button slds-button_neutral slds-button_small slds-m-bottom_x-small" onclick="openCouponCodeModal();">
+                          Get Nonprofit Coupon Code 
+                        </button>
+                    </apex:outputPanel>
+                    <apex:outputPanel >
+                        <a class="slds-button slds-button_icon-border-filled slds-button_small" style="margin-bottom: 0.19rem;" onClick="showSettingsModal();">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_medium">
+                                <use xlink:href="{! URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#settings')}"></use>
+                            </svg>
+                        <span class="slds-assistive-text">Settings</span>
+                        </a>
+                    </apex:outputPanel>
+            	</div>		 
+       			
+        		
+        	</header> 
+            <apex:outputPanel rendered="{!hasHitFreeUserLimits}">
+                <center>
+                <div class="slds-notify slds-notify_toast slds-theme_warning" style="max-width:700px;">
+                    <b>
+                    You have activated three different Lookup Helper settings this month. In order to activate more than three Lookup Helper settings in a month the premium edition of Lookup Helper is required.
+                    <br/>
+                    <center>
+                    <apex:outputLink onclick="window.open('http://www.passagetechnology.com/lookup-helper-order')">Click here</apex:outputLink> to upgrade to the premium edition.
+                    </center>
+                    </b>
+                </div><br/>
+                </center>
+            </apex:outputPanel>
+
+			<apex:outputPanel rendered="{!AND(thirdLookupActiveFreeEdition, pgBehavior.hasSettingLimit)}">
+                <center>
+                <div class="slds-notify slds-notify_toast slds-theme_error" style="max-width:700px;">
+                    <b>
+                    You have attempted to activate a third Lookup Helper Setting. In order to activate more than three Lookup Helper settings at once, the premium edition of Lookup Helper is required.
+                    <br/>
+                    <center>
+                    <apex:outputLink onclick="window.open('http://www.passagetechnology.com/lookup-helper-order')">Click here</apex:outputLink> to upgrade to the premium edition.
+                    </center>
+                    </b>
+                </div><br/>
+                </center>
+            </apex:outputPanel>
+
+            <apex:pageMessages escape="false"/>
+            
+            <apex:outputPanel id="lookupTable">
+        	<div id="settingtable" class="slds-card__body slds-grid">
+ 
+				<table class="slds-table slds-table_bordered"> 
+                    
+                    <thead>
+                    	<tr style="width:100%;">
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:20%;">
+                                <span style="width:10%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Setting Name" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Name" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Name', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                            <th class="slds-text-heading_label slds-cell-wrap slds-text-align_center" style="width:5%;">Run Mode</th>
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:7.5%;">
+                                <span style="width:6%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Parent Object" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Parent_Object__c" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Parent_Object__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:7.5%;">
+                                <span style="width:6%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Parent Filter" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Parent_Filter__c" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Parent_Filter__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:7.5%;">
+                                <span style="width:6%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Child Object" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Child_Object__c" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Child_Object__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:7.5%;">
+                                <span style="width:6%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Child Filter" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Child_Filter__c" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Child_Filter__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:20%;">
+                                <span style="width:10%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Lookup Field Being Updated" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Lookup_Field__c" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Lookup_Field__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                    		<th class="slds-text-heading_label slds-cell-wrap" style="width:15%;">
+                                <span style="width:10%; word-wrap:break-word; white-space:normal !important;"> <apex:commandLink value="Lookup Source" action="{! doSettingSort }" rerender="lookupTable" status="loading"> 
+                                    <apex:param name="sortField" value="Lookup_Source__c" assignTo="{!sortVars.sortField}"/> 
+                                    <apex:outputText value="{!IF(sortVars.sortField=='Lookup_Source__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+                                </apex:commandLink> </span>
+                            </th>
+                    		<th class="slds-text-heading_label slds-text-align_center" style="width:5%;">Active
+                                <apex:outputPanel rendered="{!NOT(pgBehavior.hasSettingLimit)}">
+                                    <apex:commandLink onClick="if(!confirmAllActive('{!pgBehavior.IsAllActive}')) return false;" action="{!disableEnableAll}" style="text-decoration:none;">
+                                    <label class="slds-checkbox">
+                                        <apex:inputCheckBox styleclass="slds-input" value="{!pgBehavior.IsAllActive}" id="allActiveCheckBox"/>
+                                        <span class="slds-checkbox_faux"></span>
+                                    </label>
+                                </apex:commandLink>
+                                </apex:outputPanel>
+                            </th>
+                            <th class="slds-text-heading_label slds-cell-wrap slds-text-align_center" style="width:5%;">Action</th>
+                    	</tr> 
+                    </thead>
+                    	<apex:repeat value="{!AllSettings}" var="item" >
+                    		<tr>
+                    			<td style="width:20%; word-break: break-all;" class="slds-cell-wrap">{!item.Name}</td>
+                                <td style="width:5%; word-break: break-all;" class="slds-text-align_center">
+                    				<apex:repeat value="{!realtimeInfo}" var="realtime">
+                    					<apex:outputText rendered="{!AND(IF(realtime.settingId == item.Id, true, false),item.LH__Active__c)}">
+                                            <apex:outputPanel rendered="{!AND(realTime.deployed, realtime.enabled, NOT(realtime.forceAsync))}"> 
+                                                <span title="This Setting runs in real-time.">
+                                                    <i class="fa fa-bolt"></i>
+                                                </span>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!AND(realTime.deployed, realtime.enabled, realTime.forceAsync)}"> 
+                                                <span title="This Setting runs in asynchronous real-time.">
+                                                    <i class="fa fa-bolt"></i><i class="fa fa-exclamation"></i>
+                                                </span>
+                                            </apex:outputPanel>
+                                                
+                                            <apex:outputPanel rendered="{!AND(realTime.deployed, NOT(realtime.enabled))}"> 
+                                                <span class="slds-icon_container slds-icon-utility-check" title="Realtime Trigger is Deployed and Disabled">
+                                                    <i class="fa fa-times"></i>
+                                                 </span>  
+                                            </apex:outputPanel>
+
+                                            <apex:outputPanel rendered="{!realTime.isScheduled}">
+                                                <span class="slds-icon_container slds-icon-event" title="This Setting is Scheduled to Run">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </apex:outputPanel>
+                    					</apex:outputText>
+                                        <apex:outputPanel rendered="{!AND(IF(realtime.settingId == item.id, true, false), realTime.criteriaMode)}">
+                                                <span title="This Setting is Running in Criteria Matching Mode.">
+                                                    <i class="fa fa-filter"></i>
+                                                </span>
+                                            </apex:outputPanel>
+                    				</apex:repeat>
+                    			</td>
+                                <td style="width:7.5%; word-break: break-all;" class="slds-cell-wrap"> {!item.Parent_Object__c} </td>
+                                <td style="width:7.5%; word-break: break-all;"> 
+                                    <apex:commandLink action="{!openFilterInfoModal}">
+                                        <apex:param name="filter" value="{!item.LH__Parent_Filter__c}"/> 
+                                        <apex:param name="isParentFil" value="true"/>
+                                        {!item.Parent_Filter__r.LH__Condition__c} 
+                                    </apex:commandLink>
+                                </td>
+                                <td style="width:7.5%; word-break: break-all;" class="slds-cell-wrap"> {!item.Child_Object__c} </td>
+                                <td style="width:7.5%; word-break: break-all;"> 
+                                    <apex:commandLink action="{!openFilterInfoModal}"> 
+                                        <apex:param name="filter" value="{!item.LH__Child_Filter__c}"/>
+                                        <apex:param name="isParentFil" value="false"/>
+                                        {!item.Child_Filter__r.LH__Condition__c} 
+                                    </apex:commandLink>
+                                </td>
+                    			<td style="width:20%; word-break: break-all;" class="slds-cell-wrap"> {!item.Lookup_Field__c} </td>
+                    			<td style="width:15%; word-break: break-all;" class="slds-cell-wrap"> {!item.Lookup_Source__c} </td>
+                    			<td style="width:5%;" class="slds-text-align_center"> 
+                    				<apex:commandLink onClick="if (!confirmActive('{!!item.LH__Active__c}', '{!item.LH__Lookup_Field__c}', {!AND(HasHitFreeUserLimits, pgBehavior.hasSettingLimit)})) return false;" action="{!setActive}"> 		
+                                        
+                                        <label class="slds-checkbox">
+                                            <apex:inputCheckBox styleclass="slds-input" value="{!item.LH__Active__c}" id="activeCheckBox"/>
+                                            <span class="slds-checkbox_faux"></span>
+                                        </label>
+                                        
+                    					<apex:param name="LookupId" value="{!item.ID}"/> 
+                    				</apex:commandLink>
+                    			</td>
+                    			<td style="width:5%;" class="slds-text-align_center">
+                    			<div class="slds-dropdown-trigger slds-dropdown-trigger_click" id="{!item}">
+                                    
+                    				<button class="slds-button slds-button_icon-border-filled hideDropdown" type="button" onClick="showOrHideDropdown('{!JSENCODE(item.id)}');">
+                                        <i class="fa fa-caret-down"></i>
+                    				</button>
+                                    
+                    				<div class="slds-dropdown slds-dropdown_left slds-dropdown_actions slds-dropdown_menu hideDropdown">
+                    					<ul id="menu" class="slds-dropdown__list hideDropdown" role="menu">
+                    				
+                    						<apex:outputPanel rendered="{!item.LH__Active__c}">
+                    							<li class="slds-dropdown__item">
+                    								<apex:commandLink reRender="" action="{!prepareRun}">
+                    								<apex:param name="setting" value="{!item.Id}"/>
+                    								Run
+                    								</apex:commandLink>
+                    							</li>
+                    						</apex:outputPanel>
+                    			
+                                            <li class="slds-dropdown__item">
+												<apex:commandLink action="{!prepareSchedule}">
+												<apex:param name="setting" value="{!item.Id}"/>
+                    								Schedule
+                    							</apex:commandLink>
+                    						</li>
+                                            
+                    						<li class="slds-dropdown__item">
+                                                <apex:outputLink value="{!URLFOR($Page.LH__LH_NewSetting_SettingType, null, [s=item.id])}">Edit</apex:outputLink>
+                    						</li>
+                    				
+                    						<li class="slds-dropdown__item">
+                    							<apex:commandLink value="Delete" reRender="deleteLookupWarningModal" action="{!populateDeleteLookupModal}" styleClass="slds-truncate" status="loading">
+                                                    <apex:param name="lookupNameForDelete" value="{! item.Name }"/>
+                    							</apex:commandLink>
+                    						</li>
+                    					</ul>
+                    				</div>    
+                    			</div>
+                    			</td>
+                      
+                                      
+                    		</tr>
+                    	</apex:repeat>
+          	 </table>
+            </div>	 
+            
+            <footer class="slds-card__footer">                 
+                <apex:outputText id="running_user" value="Running As {!runningUser}." rendered="{!isBatchActive}" style="float:left;" />          
+                <br/>
+            </footer>
+        </apex:outputPanel>
+	     </div>       	 
+	 </apex:outputPanel> 	 
+						
+	 <apex:outputPanel rendered="{!AND(settingCount == 0, OR(usageTracking.LH__Package_Namespace__c == 'LH', usageTracking.LH__Package_Namespace__c == null))}">
+	 	<div class="slds-card slds-card_empty">
+	 		<header class="slds-card__header">
+	 			<h3 class="slds-text-heading_small">Lookup Helper Settings</h3>
+	 		</header>
+	 		<section class="slds-card__body slds-card__body_inner">
+		        <center>
+		                 <apex:outputPanel rendered="{!hasHitFreeUserLimits}">
+                    
+		                    <div class="slds-notify slds-notify_toast slds-theme_warning" style="max-width:700px;">
+		                        <b>
+		                        You have activated three different Lookup Helper settings this month. In order to activate more than three Lookup Helper settings in a month the premium edition of Lookup Helper is required.
+		                        <br/>
+		                        <center>
+		                        <apex:outputLink onclick="window.open('http://www.passagetechnology.com/lookup-helper-order')">Click here</apex:outputLink> to upgrade to the premium edition.
+		                        </center>
+		                        </b>
+		                    </div><br/>
+                    
+		                </apex:outputPanel>
+
+	 			<apex:outputText value="No settings currently exist. Please click the button below to create one."/> <br/><br/>
+	 			<apex:commandButton styleclass="slds-button slds-button_brand" value="Create Lookup Helper Setting" action="{!createNewSetting}"/>
+                </center>
+	 		</section>      
+	 	</div>								
+	</apex:outputPanel>
+								
+							
+						
+	<br/>
+	<c:LH_additionalInformation />
+		
+    <apex:outputPanel id="confirmRunModal">
+        <apex:outputPanel rendered="{!pgBehavior.showConfirmRunModal}" >
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h1 class="slds-text-heading_small">Run the setting {!settingName}?</h1> 
+                        <apex:commandLink rerender="confirmRunModal" action="{!closeConfirmRunModal}" styleClass="slds-button slds-button_icon-inverse slds-modal__close">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                            </svg>
+                        </apex:commandLink>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">	
+                        <div class="slds-grid slds-grid_align-center">
+                            <span class="slds-col"> Running this lookup will take an estimated:</span>&nbsp;
+                        </div>
+                        <apex:outputPanel id="runEstimate" styleClass="slds-grid slds-grid_align-center">
+                            <span style="color:red;">{!lookupRunTime} to complete.</span>&nbsp;
+                            <a onmouseover="setShowTooltipFormatting('help-estimate'); setPositionOfTooltip('help-estimate', 'tooltipEmailRollover');  " onmouseout="document.getElementById('help-estimate').style.display = 'none';"  id="tooltipEmailRollover">
+                            <img class="slds-icon slds-icon_x-small" src="/apexpages/slds/latest/assets/icons/utility/info_60.png"></img>
+                            </a>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" id="help-estimate" style="position:fixed; z-index:99; display:none !important;">
+                                <div class="slds-popover__body">
+                                    Any run time information displayed here is an estimate.  Actual run time may vary based on several factors, including Salesforce server load. Due to system limitations on @readOnly queries, scope higher than 1.5 million records cannot be automatically calculated.  This may mean that multiple runs of this lookup may be required to calculate the lookup value for all records if more than 1.5 million child records exist in your environment.
+                                </div>
+                            </div>
+                            <br/><br/>
+                        </apex:outputPanel>
+                        <center>
+                            <p>
+                                By running this lookup setting, any existing information on the <b>"{!lookupFieldToUpdate}"</b> lookup field <b>{!willOverwrite}</b> be overwritten 
+                                <apex:outputText value="{! IF(willClear == willOverwrite, ' and', ' but')}"/>
+                                <b>{!willClear}</b> be cleared out 
+                                <apex:outputText rendered="{! IF(willClear == 'will', true, false)}"  value=" if necessary"/>.
+                            </p>
+                            <br/> 
+                            <p> To run the "<b>{!settingName}</b>" setting, press "Run".</p>                                                                               
+                            <p> To cancel without making any changes, press "Cancel".</p>                                        
+                        </center>
+                    </div>  
+                    <div class="slds-modal__footer">
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!closeConfirmRunModal}"  rerender="confirmRunModal" value="Cancel"/>
+                        <apex:commandButton styleClass="slds-button slds-button_brand" action="{!runSetting}" rerender="confirmRunModal" value="Run" status="loading"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:outputPanel>	
+    </apex:outputPanel>
+    <apex:outputPanel id="deleteLookupWarningModal">
+        <apex:outputPanel rendered="{!pgBehavior.showDeleteLookupModal}" >
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header slds-modal__header_empty">
+                        <apex:actionFunction action="{!closeDeleteLookupModal}" name="closeDeleteLookupModal" rerender="deleteLookupWarningModal" status="loading"/>
+                        <button type="button" onclick='closeDeleteLookupModal();' class="slds-button slds-button_icon-inverse slds-modal__close">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                <use href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                            </svg>
+                        </button>                            
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">	
+                        <center>
+                            Are you sure you want to delete this lookup '{!pgBehavior.selectedLookupName}'?
+                        </center>
+                    </div> 
+                    <div class="slds-modal__footer">
+                        <apex:commandButton styleClass="slds-button slds-button_brand" action="{!delLookupSetting}" status="loading" value="Yes" reRender="theForm"/>
+                        <button type="button" class="slds-button slds-button_neutral" onclick="closeDeleteLookupModal();">No</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    <apex:outputPanel id="runAllModal">
+        <apex:outputPanel rendered="{!pgBehavior.showRunAllModal}" >
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header" >
+                        <h1 class="slds-text-heading_small">Are you sure you want to run all active settings?</h1> 
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium">	
+                        <center>
+                            <p>
+                                By running this lookup setting, any existing information on all active Lookup Helper Settings' lookup fields may be overwritten/cleared out.
+                            </p>
+                            <br/> 
+                            <p> To run all active Lookup Helper Settings, press "Run".</p>                                                                               
+                            <p> To cancel without making any changes, press "Cancel".</p>                                        
+                        </center>
+                    </div>  
+                    <div class="slds-modal__footer">
+                        <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!closeRunAllModal}"  rerender="runAllModal" value="Cancel"/>
+                        <apex:commandButton styleClass="slds-button slds-button_brand" action="{!runAllSettings}" rerender="" value="Run"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:outputPanel>	
+    </apex:outputPanel>
+    <apex:outputPanel id="filterInfoModal">
+        <apex:outputPanel rendered="{!pgBehavior.showFilterInfoModal}">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header" style="background:#1172cf;">
+                        <h1 class="slds-text-heading_small" style="color: white;">{!currentFilter.filterName} Information</h1>
+                        <apex:commandLink rerender="filterInfoModal, settingTable" action="{!closeFilterInfoModal}" styleClass="slds-button slds-button_icon-inverse slds-modal__close">
+                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                            </svg>
+                        </apex:commandLink>
+                    </div>
+                    <div class="slds-modal__content">
+                        <apex:outputPanel rendered="{!pgBehavior.displayingParentFilter}">
+                            <apex:outputPanel style="padding-left:15px;">
+                                <center><strong>Skips {!filterOffset} records.</strong></center>
+                                <br/>
+                            </apex:outputPanel>
+                            <h1 class="slds-text-heading_small" style="padding-left:15px;"><strong>Sorts</strong></h1>
+                            <table id="sortTable" class="slds-table slds-table_bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="slds-text-heading_label slds-cell-wrap">Order</th>
+                                        <th class="slds-text-heading_label slds-cell-wrap">Field</th>
+                                        <th class="slds-text-heading_label slds-cell-wrap">Sort</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!selectedSortInfo}" var="item">
+                                        <tr>
+                                            <td>{!item.sortOption.itemNumber + 1}</td>
+                                            <td>{!item.fieldLabel}</td>
+                                            <td>{!item.sortOption.logic}</td>
+                                        </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                        <br/>
+                        <h1 class="slds-text-heading_small" style="padding-left:15px;"><strong>Criteria</strong></h1>
+                        <table class="slds-table slds-table_bordered">
+                            <thead>
+                                <tr>
+                                    <th class="slds-text-heading_label slds-cell-wrap">Id</th>
+                                    <th class="slds-text-heading_label slds-cell-wrap">Filtered Field</th>
+                                    <th class="slds-text-heading_label slds-cell-wrap">Operator</th>
+                                    <th class="slds-text-heading_label slds-cell-wrap">Criteria</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <apex:repeat value="{!SelectedFilterInfo}" var="c">
+                                    <tr>
+                                        <td>{!c.Id + 1}</td>
+                                        <td>{!c.filter.field}</td>
+                                        <td>{!c.filter.logic}</td>
+                                        <td>{!c.filter.condition}</td>
+                                    </tr>
+                                </apex:repeat>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <p style="text-align: center;">
+                            <b>Boolean Logic: </b>{!currentFilter.boolLogic}
+                        </p>
+                        <br/>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <apex:commandButton styleClass="slds-button slds-button_brand" action="{!closeFilterInfoModal}" rerender="filterInfoModal, settingTable" value="Close"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:outputPanel>
+    </apex:outputPanel>
+
+
+    <div id="nfpDiscount" style="display:none">
+        <c:NFPDiscountForm pageController="{!nfpController}"/>
+    </div>
+        
+        <apex:outputPanel id="scheduleModal">
+            <apex:outputPanel rendered="{!pgBehavior.showScheduleModal}" >
+                <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                            <h1 class="slds-text-heading_medium">Schedule the Setting to Run: {!settingName} </h1> 
+                            <apex:commandLink rerender="scheduleModal" action="{!closeShowScheduleModal}" styleClass="slds-button slds-button_icon-inverse slds-modal__close">
+                                <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                </svg>
+                            </apex:commandLink>
+                        </div>
+                        <div class="slds-modal__content slds-p-around_medium">	
+      
+                            <br/>
+ 
+                            <div class="slds-grid">
+                                <div class="slds-col_padded slds-text-align_right slds-size_2-of-12">
+                                    Run Every
+                                </div>
+ 
+                                <div class="slds-col slds-size_3-of-12 " id="runTime">
+                                    <apex:inputField id="ScheduledRunInterval" value="{!selectedSetting.LH__Schedule_Increment__c}" style="width:95%;"/>                    			                  
+                                </div>
+                                <div class="slds-col slds-size_1-of-12">
+                                    <apex:inputField value="{!selectedSetting.LH__Schedule_Unit__c}"/> 
+                                </div>         
+                                <div class="slds-col slds-size_9-of-12"></div>
+                                
+                            </div>
+ 
+                            <br/>
+ 
+                            <div class="slds-grid">          		
+                                <div class="slds-col_padded slds-size_2-of-12 slds-text-align_right" >
+                                    <span>Last Run</span>
+                                </div>
+                                <div class="slds-col slds-grow slds-size_4-of-12"> 
+                                    <apex:outputField rendered="{!IF(selectedSetting.LH__Schedule_PreviousFireTime__c = '', false, true)}" value="{!selectedSetting.LH__Schedule_PreviousFireTime__c}"/>
+                                    <apex:outputText rendered="{!IF(selectedSetting.LH__Schedule_PreviousFireTime__c = '', true, false)}"  value="Never"/>
+                                </div>
+                                <div class="slds-col slds-size_5-of-12"></div> 
+                            </div>
+                            
+                            <br/>
+ 
+                            
+                            <div class="slds-grid">
+                                
+                                <div class="slds-col_padded slds-size_2-of-12 slds-text-align_right" >
+                                    Next Run
+                                </div>
+
+                                <div class="slds-col" >
+                                    <apex:inputField id="ScheduledNextRun" value="{!selectedSetting.LH__Schedule_NextFireTime__c}"  />
+                                </div>
+                                
+                                <div class="slds-col slds-size_6-of-12"></div>
+                            </div>
+                            
+                            <br/>
+  
+                        </div>  
+                        <div class="slds-modal__footer">
+                            <apex:commandButton styleClass="slds-button slds-button_neutral" action="{!closeShowScheduleModal}"  rerender="scheduleModal" value="Cancel"/>
+                            <apex:commandButton styleClass="slds-button slds-button_brand" onclick="clearScheduledBoxes();" action="{!clearSchedule}" rerender="scheduleModal, settingtable" value="Clear Schedule"/>
+                            <apex:commandButton styleClass="slds-button slds-button_brand" action="{!saveSchedule}" rerender="scheduleModal, settingtable" value="Save Schedule" status="loading"/>
+                        </div>
+                    </div>
+                </div>
+                            <div class="slds-backdrop slds-backdrop_open"></div> 
+            </apex:outputPanel>	
+        </apex:outputPanel>
+
+        <div id='settingsModal' style="display:none">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container" style="width:760px !important;">
+                    <div class="slds-modal__header">
+                        <span>
+                            <h2 class="slds-text-heading_medium">Configure Lookup Helper Settings</h2>
+                            <button type="button" onclick="showModal(false, 'settingsModal');" class="slds-button slds-button_icon-inverse slds-modal__close">
+                                <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                    <use xlink:href="{! URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                                </svg>
+                            </button>
+                        </span>
+                    </div>
+    
+                    <div class="slds-modal__content" style="padding-left:28px; padding-right:28px;">
+                        <apex:outputPanel id="settingsModalErrorMessage">
+                            <apex:outputPanel rendered="{!IF(lhSettings.isValidSetting, false, true)}">
+                                <div class="slds-box slds-box_x-small slds-theme_error">
+                                    <ul>
+                                        <apex:repeat value="{!lhSettings.errorMessages}" var="err">
+                                            <li>{!err}</li>
+                                        </apex:repeat>
+                                    </ul>
+                                </div>
+                            </apex:outputPanel>
+                            <br/><br/>
+                        </apex:outputPanel>
+    
+                                                   
+                        
+                        <div class="slds-grid"> 
+                            <div class="slds-col" style="padding-right:15px;">
+                                <div class="slds-form-element" title="{!lhSettings.helpText['recordScope']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Record Scope" for="recordScopeInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="recordScopeInput" value="{!lhSettings.recordScope}" styleClass="slds-input" maxlength="4" onkeypress="return limitNumberInput(event)" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element" title="{!lhSettings.helpText['emailToSendExceptions']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Email To Send Exceptions" for="emailToSendExceptionsInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="emailToSendExceptionsInput" value="{!lhSettings.emailToSendExceptions}" styleClass="slds-input" maxlength="255" />
+                                    </div>
+                                </div>                                
+                                <div class="slds-form-element" title="{!lhSettings.helpText['usageOfQueryRowLimits']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Dynamic Package Query Row Usage Limits" for="usageOfQueryRowLimitsInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="usageOfQueryRowLimitsInput" value="{!lhSettings.usageOfQueryRowLimits}" styleClass="slds-input" maxlength="3" onkeypress="return limitNumberInput(event)" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element" title="{!lhSettings.helpText['usageOfQueryLimits']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Dynamic Package Query Usage Limits" for="usageOfQueryLimitsInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="usageOfQueryLimitsInput" value="{!lhSettings.usageOfQueryLimits}" styleClass="slds-input" maxlength="3" onkeypress="return limitNumberInput(event)" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element" title="{!lhSettings.helpText['usageOfDMLRowLimits']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Dynamic Package DML Row Usage Limits" for="usageOfDMLRowLimitsInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:inputText id="usageOfDMLRowLimitsInput" value="{!lhSettings.usageOfDMLRowLimits}" styleClass="slds-input" maxlength="3" onkeypress="return limitNumberInput(event)" />
+                                    </div>
+                                </div>
+                                <div class="slds-form-element" title="{!lhSettings.helpText['sortDirection']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Sort Direction" for="sortDirectionInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:selectList id="sortDirectionInput" value="{!lhSettings.sortDirection}" styleclass="slds-select" multiselect="false" size="1">
+                                            <apex:selectOption itemValue="ASC" itemLabel="ASC" />   
+                                            <apex:selectOption itemValue="DESC" itemLabel="DESC" />  
+                                        </apex:selectList>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element" title="{!lhSettings.helpText['sortField']}">
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="Sort Field" for="sortFieldInput"/>
+                                    <div class="slds-form-element__control">
+                                        <apex:selectList id="sortFieldInput" value="{!lhSettings.sortField}" styleclass="slds-select" multiselect="false" size="1">
+                                            <apex:selectOptions value="{!lookupHelperSettingFields}"/>
+                                        </apex:selectList>
+                                    </div>
+                                </div>                                
+                                <div class="slds-form-element" title="{!lhSettings.helpText['onlySendHighPriorityDaily']}">                                                                            
+                                    <apex:outputLabel styleClass="slds-form-element__label" value="High Priority Email Notification Frequency" for="onlySendHighPriorityDailyInput"/>
+                                    <div class="slds-form-element__control">
+                                        <span>    
+                                            <apex:selectList id="onlySendHighPriorityDailyInput" value="{!lhSettings.onlySendHighPriorityDaily}" styleclass="slds-select" multiselect="false" size="1">
+                                                <apex:selectOptions value="{!highPriorityFrequency}"/>
+                                            </apex:selectList>
+                                        </span>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="slds-col">
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['enableSingleCategoryRecordProcessing']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="enableSingleCategoryRecordProcessingInput" value="{!lhSettings.enableSingleCategoryRecordProcessing}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Enable Single Category Record Processing" for="enableSingleCategoryRecordProcessingInput"/>
+                                        </span>
+                                    </div>
+                                </div>           
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['disableRecordLockRetry']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="disableRecordLockRetryInput" value="{!lhSettings.disableRecordLockRetry}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Disable Record Lock Retry" for="disableRecordLockRetryInput"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['enableRecordLockRetry']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="enableRecordLockRetryInput" value="{!lhSettings.enableRecordLockRetry}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Allow Record Lock Retry" for="enableRecordLockRetryInput"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['exceptionMonitorCanDisableSettings']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="exceptionMonitorCanDisableSettingsInput" value="{!lhSettings.exceptionMonitorCanDisableSettings}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Exception Monitor Can Disable Settings" for="exceptionMonitorCanDisableSettingsInput"/>
+                                        </span>
+                                    </div>
+                                </div>       
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['preventSettingDeactivation']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="preventSettingDeactivationInput" value="{!lhSettings.preventSettingDeactivation}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Prevent Setting Deactivation" for="preventSettingDeactivationInput"/>
+                                        </span>
+                                    </div>
+                                </div> 
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['triggerDeploymentsRunTests']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="triggerDeploymentsRunTestsInput" value="{!lhSettings.triggerDeploymentsRunTests}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Trigger Deployments Run Tests" for="triggerDeploymentsRunTestsInput"/>
+                                        </span>
+                                    </div>
+                                </div> 
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['suppressWarningLevelErrors']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="suppressWarningLevelErrorsInput" value="{!lhSettings.suppressWarningLevelErrors}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Suppress Warning Level Exceptions" for="suppressWarningLevelErrorsInput"/>
+                                        </span>
+                                    </div>
+                                </div> 
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['updateConvertedLeads']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="updateConvertedLeadsInput" value="{!lhSettings.updateConvertedLeads}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Update Converted Leads" for="updateConvertedLeadsInput"/>
+                                        </span>
+                                    </div>
+                                </div>  
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['defaultBlankOverwrite']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="defaultBlankOverwriteInput" value="{!lhSettings.defaultBlankOverwrite}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Default Blank Overwrite Value to True" for="defaultBlankOverwriteInput"/>
+                                        </span>
+                                    </div>
+                                </div> 
+                                <div class="slds-form-element checkboxSettingContainer" title="{!lhSettings.helpText['defaultOverwrite']}">
+                                    <div class="slds-form-element__control">
+                                        <span>
+                                            <apex:inputCheckbox id="defaultOverwriteInput" value="{!lhSettings.defaultOverwrite}" styleClass="checkboxSetting" />
+                                            <apex:outputLabel styleClass="slds-form-element__label checkboxSettingLabel" value="Default Overwrite Value to True" for="defaultOverwriteInput"/>
+                                        </span>
+                                    </div>
+                                </div> 
+                            </div>                            
+                        </div>
+    
+                        
+                    </div>
+    
+                    <div class="slds-modal__footer">
+                        <div class="slds-x-small-buttons_horizontal">
+                            <apex:commandLink style="float: left;" onclick="closeSettingsModal();" styleClass="slds-button slds-button_neutral slds-button_small slds-m-bottom_x-small" action="{!openRunAllModal}" status="loading" reRender="runAllModal">
+                                Run All Active Lookup Helper Settings
+                            </apex:commandLink>
+                            <apex:commandButton action="{! saveSettings }" reRender="settingsModalErrorMessage, redFlagContainer" value="Save" styleClass="slds-button slds-button_neutral slds-button_small slds-m-bottom_x-small" />
+                            <apex:commandButton action="{! closeSettings }" reRender="none" onclick="closeSettingsModal();" styleClass="slds-button slds-button_neutral slds-button_small slds-m-bottom_x-small" value="Close" />
+                            <apex:actionFunction name="rerenderSettingsModal" reRender="settingsModal" />
+                            <!-- Hidden button used for javascript -->
+                            <apex:commandButton id="rerenderErrorButton" reRender="settingsModalErrorMessage" style="display: none;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <c:Loading_Spinner opacity="1"/>
+</apex:form>
+</div>
+    
+  <script>
+    overridePageMessages();
+  </script>
+    
+</html>
+
+</apex:page>

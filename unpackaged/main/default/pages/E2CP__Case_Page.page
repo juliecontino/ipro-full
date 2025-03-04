@@ -1,0 +1,6 @@
+<apex:page standardController="Case" title="Case: {!Case.CaseNumber}">
+    <div style="background-color:red;color:white;padding:10px;font-weight:bold;">
+        This page has been deprecated. Please refer to <a style="color:white;" target="_blank" href="https://kb.vicasso.com/?kb=000001038">this article</a> for instructions on overriding the standard new comment button.
+    </div>
+    <apex:detail relatedList="true" showChatter="true" inlineEdit="true"/>
+</apex:page>

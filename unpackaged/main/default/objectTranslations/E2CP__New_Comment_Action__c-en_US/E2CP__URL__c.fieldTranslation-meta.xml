@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The URL which the user will be navigated to after the comment is saved. --></help>
+        <label><!-- Classic URL --></label>
+        <name>E2CP__URL__c</name>
+    </CustomFieldTranslation>

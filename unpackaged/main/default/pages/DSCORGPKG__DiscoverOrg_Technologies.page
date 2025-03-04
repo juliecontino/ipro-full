@@ -1,0 +1,3 @@
+<apex:page standardController="Account" extensions="DSCORGPKG.DiscoverOrg_Technologieshelper">
+    <apex:outputField value="{!acct.DSCORGPKG__DiscoverOrg_Technologies__c}"/>    
+</apex:page>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Rate_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Identifier for the kind of exchange rate imported from a bank or entered manually, in other words, is the rate a Current Rate, Monthly Average Rate, Historical Rate, etc.</description>
+    <inlineHelpText>Identifier for the kind of exchange rate imported from a bank or entered manually, in other words, is the rate a Current Rate, Monthly Average Rate, Historical Rate, etc.</inlineHelpText>
+    <label>Rate Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>AcctSeed__Rate_Type</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- SpringCM Attribute Group --></label>
+        <name>SpringCMEos__SpringCM_Attribute_Group__c</name>
+        <relationshipLabel><!-- SpringCM Attribute Fields --></relationshipLabel>
+    </CustomFieldTranslation>

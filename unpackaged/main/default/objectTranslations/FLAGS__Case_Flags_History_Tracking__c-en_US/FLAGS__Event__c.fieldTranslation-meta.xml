@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Event --></label>
+        <name>FLAGS__Event__c</name>
+        <picklistValues>
+            <masterLabel>Case Owner Changed</masterLabel>
+            <translation><!-- Case Owner Changed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Case Status Changed</masterLabel>
+            <translation><!-- Case Status Changed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flag Cleared</masterLabel>
+            <translation><!-- Flag Cleared --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flag Set</masterLabel>
+            <translation><!-- Flag Set --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

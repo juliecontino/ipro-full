@@ -1,0 +1,10 @@
+<apex:page id="OpportunitySalesAvaTax" title="Sales Tax | Accounting Seed" standardController="Opportunity" lightningStylesheets="true">
+
+    <apex:pageMessage summary="This feature has been updated. Please see this Knowledge Base article for more information: "
+            severity="info"
+            strength="3">
+
+        <a href="https://support.accountingseed.com/hc/en-us" target="_blank">Accounting Seed Knowledge Base</a>
+    </apex:pageMessage>
+
+</apex:page>

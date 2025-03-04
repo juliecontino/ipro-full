@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Set by an automated process. Modifying this field can cause errors to occur when processing bank transactions. --></help>
+        <label><!-- Inactive --></label>
+        <name>AcctSeed__Inactive__c</name>
+    </CustomFieldTranslation>

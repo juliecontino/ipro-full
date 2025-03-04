@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Cash Disbursement Batch Layout</layout>
+        <sections>
+            <label><!-- Batch Financial Information --></label>
+            <section>Batch Financial Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Batch_Post --></label>
+        <name>AcctSeed__Batch_Post</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Batch_Unpost --></label>
+        <name>AcctSeed__Batch_Unpost</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Checks --></label>
+        <name>AcctSeed__Print_Checks</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Full_Remittance --></label>
+        <name>AcctSeed__Print_Full_Remittance</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Renumber --></label>
+        <name>AcctSeed__Renumber</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Reference --></label>
+        <name>AcctSeed__Update_Reference</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Checks --></label>
+        <name>Print_Checks</name>
+    </webLinks>
+</CustomObjectTranslation>

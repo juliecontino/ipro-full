@@ -1,0 +1,42 @@
+<apex:page standardController="AcctSeedERP__Shipment__c" title="PDF | Accounting Seed" extensions="AcctSeedERP.ShipmentPDFManager" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'javascript/common-pdf-manager.js')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Shipment" subtitle="{!AcctSeedERP__Shipment__c.Name}" />
+        <apex:pageBlock >
+            <apex:pageMessages id="thePageMessages" escape="false"/>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" />
+                <apex:commandButton id="saveAttachButton"
+                                    action="{!saveAttach}"
+                                    value="Save PDF"
+                                    status="saveStatus"
+                                    disabled="{!!showSavePdf}"
+                                    reRender="theForm" />
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Shipment Information" columns="2" collapsible="false" rendered="{!showPage}">
+                <apex:outputField id="name" value="{!AcctSeedERP__Shipment__c.Name}" />
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Carrier" for="carrier_name" />
+                    <apex:outputText id="carrier_name" value="{!AcctSeedERP__Shipment__c.Carrier__r.Name}" />
+                </apex:pageBlockSectionItem>
+                <apex:outputField id="total" value="{!AcctSeedERP__Shipment__c.AcctSeedERP__Sales_Order__c}" />
+                <apex:outputField id="shipment_date" value="{!AcctSeedERP__Shipment__c.AcctSeedERP__Shipment_Date__c}" />
+                <apex:outputField id="postingStatus" value="{!AcctSeedERP__Shipment__c.AcctSeedERP__Status__c}" />
+                <apex:outputField value="{!AcctSeedERP__Shipment__c.AcctSeedERP__Shipping_Reference__c}"/>
+                <apex:outputField value="{!AcctSeedERP__Shipment__c.AcctSeedERP__Packing_Slip_Format__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:pageBlock title="Shipment PDF Preview" rendered="{!showPage}">
+        <div id="loader1" style="font-weight:bold">
+            <img src="/img/loading.gif" style="text-align:center" width="16" height="16" alt="loading gif" />&nbsp;&nbsp;Creating Shipment PDF...
+        </div>
+        <apex:iframe id="iframe1" src="{!pdfName}?id={!AcctSeedERP__Shipment__c.Id}{!SortField}" />
+    </apex:pageBlock>
+</apex:page>

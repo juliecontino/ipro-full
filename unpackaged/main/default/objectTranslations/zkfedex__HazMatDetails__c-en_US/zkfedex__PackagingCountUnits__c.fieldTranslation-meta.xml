@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Units in which the hazardous commodity is packaged --></help>
+        <label><!-- Packaging Count Units --></label>
+        <name>zkfedex__PackagingCountUnits__c</name>
+    </CustomFieldTranslation>

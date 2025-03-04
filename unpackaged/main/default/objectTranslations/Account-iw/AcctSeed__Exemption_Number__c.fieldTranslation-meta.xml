@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- To exempt an Account from Avalara tax calculation, this field&apos;s value should match the Exemption Number entered for this Account&apos;s exemption in Avalara. Use in conjunction with the Entity Use Code field. --></help>
+        <label><!-- Exemption Number --></label>
+        <name>AcctSeed__Exemption_Number__c</name>
+    </CustomFieldTranslation>

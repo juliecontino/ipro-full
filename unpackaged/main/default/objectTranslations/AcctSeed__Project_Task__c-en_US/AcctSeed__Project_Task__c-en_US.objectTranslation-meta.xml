@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Project Task Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Planning Information --></label>
+            <section>Planning Information</section>
+        </sections>
+        <sections>
+            <label><!-- Template Fields --></label>
+            <section>Template Fields</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- A project task must contain a value for the labor gl account field. --></errorMessage>
+        <name>AcctSeed__Value_for_Labor_GL_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A project task must contain a value for the project field. --></errorMessage>
+        <name>AcctSeed__Value_for_Project</name>
+    </validationRules>
+</CustomObjectTranslation>

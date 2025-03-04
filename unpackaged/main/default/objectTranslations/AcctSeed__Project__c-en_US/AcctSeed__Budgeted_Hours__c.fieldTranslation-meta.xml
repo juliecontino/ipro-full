@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Summary of hours budgeted at the Project Task Level. Typically used for Labor. --></help>
+        <label><!-- Budgeted Hours --></label>
+        <name>AcctSeed__Budgeted_Hours__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DSCORGPKG__DiscoverOrg_Operation__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>DiscoverOrg Operation</label>
+    <referenceTo>DSCORGPKG__DiscoverOrg_Operation__c</referenceTo>
+    <relationshipLabel>DiscoverOrg Conflicts</relationshipLabel>
+    <relationshipName>DiscoverOrg_Conflicts</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

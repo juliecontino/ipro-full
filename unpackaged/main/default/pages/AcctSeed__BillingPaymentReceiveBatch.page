@@ -1,0 +1,151 @@
+<apex:page standardController="AcctSeed__Billing__c" title="Receive Payments | Accounting Seed" extensions="AcctSeed.BillingPaymentReceive,AcctSeed.EnvironmentUtils" sideBar="false" recordSetVar="billings">
+
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/common.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+        function setFocusOnLoad() {}
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/billing-payment-batch.js')}" loadOnReady="true"/>
+
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Billing__c.label}" subtitle="Receive Payment" />
+        <apex:pageBlock id="thePageBlock" title="Receive Payment">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onstop="AcctSeed.ASModule.pageLoad()"/>
+                <apex:commandButton id="saveButton"
+                                    action="{!createItems}"
+                                    value="Receive Payment"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!!isSuccess && !isDataAvailableError}" />
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="Payment Information" id="thePageBlockSection" collapsible="false" rendered="{!!isDataAvailableError}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Receipt Type" />
+                    <apex:outputText value="{!selectedTransactionType}"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection columns="1"
+                                   collapsible="false"
+                                   title="Cash Receipts"
+                                   rendered="{!!isDataAvailableError}">
+
+                <apex:pageBlockTable id="paymentTable" value="{!wrappedBillings}" var="wb">
+
+                    <apex:column headerValue="Status">
+                        <div class="tableCell noneCell mid-width">
+                            <apex:outputText value="{!wb.Message}" escape="false"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Customer">
+                        <div class="tableCell mid-width">
+                            <apex:outputText value="{!wb.customerName}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Ledger">
+                        <div class="tableCell mid-width">
+                            <apex:outputField value="{!wb.bills[0].Ledger__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Bank Account">
+                        <div class="tableCell mid-width requiredInput">
+                            <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                            <apex:selectList value="{!wb.cashReceipt.AcctSeed__Bank_Account__c}" label="Bank Account" size="1">
+                                <apex:selectOptions value="{!BankAccounts}"/>
+                            </apex:selectList>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Total Amount">
+                        <div class="tableCell mid-width align-right">
+                            <apex:outputText id="totalAmount" value="{!wb.totalAmount}" html-data-currency="{!wb.currencyIsoCode}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Received Amount">
+                        <div class="tableCell mid-width align-right">
+                            <apex:outputText id="receivedAmount" value="{!wb.totalReceivedAmount}" html-data-currency="{!wb.currencyIsoCode}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Balance">
+                        <div class="tableCell mid-width align-right">
+                            <apex:outputField value="{!wb.cashReceipt.AcctSeed__Amount__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="Payment Method">
+                        <apex:outputPanel styleClass="requiredInput tableCell" layout="block">
+                            <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                            <apex:selectList value="{!wb.pmProvider.selectedSourceId}"
+                                             label="Payment Method"
+                                             size="1"
+                                             rendered="{!!wb.pmProvider.noActiveSources}" >
+                                <apex:selectOptions value="{!wb.pmProvider.sourceIdsSelectOptions}"/>
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_1__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__GL_Account_Variable_1__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_2__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__GL_Account_Variable_2__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_3__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__GL_Account_Variable_3__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_4__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__GL_Account_Variable_4__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__Product__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__Product__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__Project__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__Project__c}"/>
+                        </div>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__Project_Task__c.Label}">
+                        <div class="tableCell mid-width">
+                            <apex:inputField value="{!wb.cashReceipt.AcctSeed__Project_Task__c}"/>
+                        </div>
+                    </apex:column>
+
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

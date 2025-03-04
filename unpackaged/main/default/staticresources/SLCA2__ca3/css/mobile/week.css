@@ -1,0 +1,257 @@
+/* 
+    Document   : week
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*@import url(week.ipad.css) screen and (max-device-width: 1024px) and (orientation: landscape);
+@import url(week.ipad.css) screen and (device-width: 768px) and (orientation: portrait);*/
+
+
+.JQ_CA > .CA_r > div.show._mode-mobile-week{
+    display:block !important;
+}
+
+
+
+
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data,
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.events,
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.grid
+    {
+        position:absolute;
+        top:30px;bottom:0px;
+        left:0px;
+    }
+
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data,
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.grid{
+        right:0px;
+        overflow-y:hidden;
+    }
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.events{
+        right:20px;
+    }
+    
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.grid{
+        overflow-x: hidden;
+    }
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data{
+        overflow-y: scroll;
+        right:0;
+    }
+
+        .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data > ul,
+        .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.grid > ul{
+            display:inline-block;
+            height:100%;
+/*            width:100%;*/
+    /*                        overflow: hidden;*/
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            position:absolute;
+            right:20px;
+            left:0px;
+        }
+        .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data > ul{
+            right: 0;
+        }
+
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data > ul > li,
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.grid > ul > li{
+                border-bottom: 1px solid #ddd;
+                border-collapse: collapse;
+    /*                    float: left;*/
+                border-right: 1px solid #ddd;
+                border-top:0px;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+            }
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data > ul > li{
+                height: auto;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data > ul > li{
+                border-left-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+            }
+
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.data > ul > li:first-child,
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd > div.grid > ul > li:first-child{
+                border-left: 1px solid #ddd;
+            }    
+
+/* AGENDA mode*/
+
+.JQ_CA > .CA_r > div._mode-mobile-week > div.agd{
+    /*border-top:2px solid #ddd;*/
+    position:absolute;
+    top:0;bottom:0;
+    right:0;left:0;
+    display: block;
+}    
+
+.JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div{
+    overflow-x: hidden;
+}
+    .JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table{
+        padding:0;margin:5px 0 0 0;
+        border-collapse:collapse;
+        border:0;
+        width: 100%;
+        border-top: 1px solid #ddd;
+/*        margin-top: 30px;*/
+    }
+    
+    .JQ_CA.middle > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table{
+        font-size: 110%;
+    }
+    
+    .JQ_CA.large > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table{
+        font-size: 130%;
+    }
+    
+        .JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table td{
+            padding:2px 2px 2px 4px;
+            font-size: 120%;
+            border-bottom:1px solid #ddd;
+            text-align: left;
+        }
+        
+        .JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table td:first-child{
+            border-bottom-color:white;
+            text-align: center;
+            vertical-align: middle;
+            padding:1px;
+            border-radius: 5px;
+        }
+        
+        .JQ_CA.CA_gradient > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table td:first-child{
+            background-image: url("../../pic/event_bg.png");
+            background-position: center center;
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+        
+        
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table td .title{
+                font-weight: bolder;
+                font-size: 120%;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table td .details{
+                padding-top:3px;
+                display: block;
+            }
+            
+            .JQ_CA > .CA_r > div._mode-mobile-week > div.agd div.data li > div > table td .details > b{
+                border-top: 1px solid #EEEEEE;
+                color: #888888;
+                display: inline-block;
+                font-size: 95%;
+                font-weight: bold;
+                margin-top: 2px;
+                min-width:25%;
+                padding-bottom:3px;
+            }
+            
+
+        
+    /* Top days panel*/    
+    .JQ_CA > .CA_r > div._mode-mobile-week > div > div.days{
+        position:absolute;
+        top:5px;left:0px;
+        height:25px;
+        overflow-y:hidden;
+        background: #eeeeee;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: -webkit-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: -o-linear-gradient(top,  #ffffff 0%, #eeeeee 75%) #ddd;
+        background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%) #ddd;
+
+    }
+
+    .JQ_CA > .CA_r > div._mode-mobile-week > div > div.days_right{
+        position:absolute;top:5px;right:0px;width:20px;height:25px;
+        background: #eeeeee;
+        background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -webkit-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: -o-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+        background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%);
+        z-index:10;
+    }
+        .JQ_CA > .CA_r > div._mode-mobile-week > div > div.days > ul {
+            height:25px;
+            display:block;
+            display:inline-block;
+            overflow: hidden;
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            vertical-align: top;
+            width:100%;
+        }
+
+            .JQ_CA > .CA_r > div._mode-mobile-week > div > div.days > ul > li:first-child{
+                border-left:1px solid transparent;
+                height:25px;
+            }
+                
+            .JQ_CA > .CA_r > div._mode-mobile-week > div > div.days > ul > li{
+                vertical-align: top;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+
+                padding:0px;
+                border-collapse: collapse;
+                display:inline-block;
+                text-align: center;
+                font-size:100%;
+                /*border:1px solid transparent;*/
+                border-right:1px dotted #ddd;
+                border-bottom:4px solid transparent;
+                line-height:19px;
+
+            }
+            .JQ_CA > .CA_r > div._mode-mobile-week > div > div.days > ul > li:last-child{
+                border-right:0px;
+            }
+            
+            
+            
+            .JQ_CA._week-end-7 > .CA_r > div._mode-mobile-week   ul > li{
+                width:14.28%;
+            }
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-week  ul > li {
+                width:16.6%;
+            }
+            
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-week   ul > li{
+                width:20%;
+            }
+            
+            
+
+            .JQ_CA._week-end-6 > .CA_r > div._mode-mobile-week   ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-week   ul > li[data-day="0"],
+            .JQ_CA._week-end-5 > .CA_r > div._mode-mobile-week   ul > li[data-day="6"] {
+                display:none !important;
+            }

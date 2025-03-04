@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- It contains a query without order by and group by and with where clause. It is used in the component side and again this query is built with the order by and group by. --></help>
+        <label><!-- QueryToUse --></label>
+        <name>dynl__QueryToUse__c</name>
+    </CustomFieldTranslation>

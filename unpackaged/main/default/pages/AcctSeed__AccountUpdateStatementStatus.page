@@ -1,0 +1,18 @@
+<apex:page standardController="Account" title="Update | Accounting Seed" extensions="AcctSeed.AccountUpdateStatementStatusCntrlExt" recordSetVar="accounts">
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.Account.labelPlural}" subtitle="Update Statement Status"/>
+        <apex:pageBlock title="Batch Update">
+            <apex:pageMessage summary="The Update Statement Status utility will update the Statement Needed picklist to Yes for all Customers (Accounts) with posted billings that have a balance greater than 0. An email will be sent to you once the process has completed."
+                              severity="info"
+                              strength="3"
+                              rendered="{!!isSuccess}"/>
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!runAction}"
+                                    value="Run"
+                                    rendered="{!!isSuccess}"/>
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

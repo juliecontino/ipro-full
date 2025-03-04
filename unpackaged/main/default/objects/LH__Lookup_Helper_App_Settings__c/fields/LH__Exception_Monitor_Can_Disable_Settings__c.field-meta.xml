@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__Exception_Monitor_Can_Disable_Settings__c</fullName>
+    <defaultValue>true</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Allows the Lookup Helper Exception Monitor to automatically disable settings that are causing an exception.</description>
+    <inlineHelpText>Allows the Lookup Helper Exception Monitor to automatically disable settings that are causing an error.</inlineHelpText>
+    <label>Exception Monitor Can Disable Settings</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

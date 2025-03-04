@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Specify your own first row headers - leave empty to use the default, a must: number of fields=number of field headers. format: salesforce_field~new header#salesforce_field~new header#.... --></help>
+        <label><!-- fieldsHeaders --></label>
+        <name>zaapit__fieldsHeaders__c</name>
+    </CustomFieldTranslation>

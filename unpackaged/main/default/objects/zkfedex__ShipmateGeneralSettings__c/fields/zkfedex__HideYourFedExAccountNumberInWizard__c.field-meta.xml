@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__HideYourFedExAccountNumberInWizard__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Will prevent your FedEx Account Number entered in the Shipmate Preference from being displayed in the shipping wizard.</description>
+    <inlineHelpText>Will prevent your FedEx Account Number entered in the Shipmate Preference from being displayed in the shipping wizard.</inlineHelpText>
+    <label>Hide Your FedEx Account Number in Wizard</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

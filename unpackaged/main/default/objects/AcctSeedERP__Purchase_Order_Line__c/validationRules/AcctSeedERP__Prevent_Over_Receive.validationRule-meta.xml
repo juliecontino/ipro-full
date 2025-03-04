@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeedERP__Prevent_Over_Receive</fullName>
+    <active>true</active>
+    <description>Prevent over receive Purchase Order</description>
+    <errorConditionFormula>AcctSeedERP__Quantity__c &lt; AcctSeedERP__Quantity_Received__c</errorConditionFormula>
+    <errorDisplayField>AcctSeedERP__Purchase_Order__c</errorDisplayField>
+    <errorMessage>You cannot over-receive a Purchase Order.</errorMessage>
+</ValidationRule>

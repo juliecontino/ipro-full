@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Created By ID --></label>
+        <name>LH__Test_Lookup__c</name>
+        <relationshipLabel><!-- Test Children --></relationshipLabel>
+    </CustomFieldTranslation>

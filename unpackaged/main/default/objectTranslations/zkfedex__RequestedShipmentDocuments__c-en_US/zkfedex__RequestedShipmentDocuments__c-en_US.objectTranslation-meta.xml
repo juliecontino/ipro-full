@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Requested Shipment Documents Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Override Electronic Submission --></label>
+            <section>Override Electronic Submission</section>
+        </sections>
+        <sections>
+            <label><!-- Requested International Shipping Documents --></label>
+            <section>Requested International Shipping Documents</section>
+        </sections>
+        <sections>
+            <label><!-- Signature and LetterHead --></label>
+            <section>Signature and LetterHead</section>
+        </sections>
+        <sections>
+            <label><!-- Sold-To / Importer of Records --></label>
+            <section>Sold-To / Importer of Records</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

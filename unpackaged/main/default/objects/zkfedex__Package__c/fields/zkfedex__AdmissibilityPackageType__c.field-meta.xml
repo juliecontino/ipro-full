@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__AdmissibilityPackageType__c</fullName>
+    <deprecated>false</deprecated>
+    <description>BAG Bag
+BBL Barrel
+BSK Basket or hamper
+BOX Box
+BXT Bucket
+BDL Bundle
+CAG Cage
+CTN Carton
+CAS Case
+CHS Chest
+CNT Container
+CRT Crate
+CYL Cylinder
+DRM Drum
+ENV Envelope
+PKG Package
+PAL Pail
+PLT Pallet
+PCL Parcel
+PCS Pieces
+REL Reel
+ROL Roll
+SAK Sack
+SHW Shrink Wrapped
+SKD Skid
+TNK Tank
+TBN Tote Bin
+TBE Tube
+UNT Unit
+BOX Other Packaging</description>
+    <externalId>false</externalId>
+    <label>Admissibility Package Type</label>
+    <length>3</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

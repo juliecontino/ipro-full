@@ -1,0 +1,20 @@
+<apex:page standardController="AcctSeedERP__Sales_Order_Line__c"
+           extensions="AcctSeedERP.MassAddEditLineController"
+           recordSetVar="soLines"
+           lightningStylesheets="true"
+           sideBar="false"
+           title="Add/Edit Sales Order Lines" tabStyle="AcctSeedERP__Sales_Order__c">
+
+    <apex:variable var="customLEX" value="customLEXOn"
+                   rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+
+    <apex:pageMessages escape="false"/>
+    <apex:outputLink rendered="{!isError}" onClick="javascript: history.back();" style="margin-left: 20px;">&nbsp;«&nbsp;Back</apex:outputLink>
+
+    <AcctSeed:MassAddEditLineComponent masterRecordAttr="{!masterRecord}"
+                                       isRecordPostedAttr="{!isRecordPosted}"
+                                       cancelAction="{!cancel}" rendered="{!!isError}"/>
+
+</apex:page>

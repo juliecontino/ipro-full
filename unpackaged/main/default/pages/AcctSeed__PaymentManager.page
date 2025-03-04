@@ -1,0 +1,132 @@
+<apex:page standardController="Account" title="Manage | Accounting Seed" extensions="AcctSeed.PaymentManager">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/stripe-common.js')}"/>
+
+    <apex:pageMessage severity="info"
+                      strength="3"
+                      summary="You need to either create or connect to a Stripe account in order to create payments in Stripe. Please go to the Accounting Settings tab and under the Stripe Settings tab click the Connect to Stripe button."
+                      rendered="{!noStripeConnectedId}"/>
+
+    <apex:form id="theForm" rendered="{!!noStripeConnectedId}">
+        <apex:sectionHeader title="{!$ObjectType.Account.Label}" subtitle="Create Payment"/>
+        <apex:pageBlock id="thePageBlock" mode="edit">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...');"/>
+                <apex:actionStatus id="updateStatus"
+                                   onstart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onStop="AcctSeed.ASModule.enableButtons()" />
+                <apex:commandButton id="submitPayment"
+                                    action="{!submitPayment}"
+                                    status="saveStatus"
+                                    value="Create Payment"
+                                    reRender="theForm,pageMessages"
+                                    rendered="{!!isErrorMode && !isSuccess}"/>
+                <apex:commandButton id="cancelButton" action="{!cancel}" value="Back" status="saveStatus"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageMessages id="pageMessages" escape="false"/>
+            <apex:pageBlockSection title="Payment Information" id="firstBlockSection" collapsible="false" columns="2" rendered="{!!isErrorMode}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Payment_Method__c.Label}" />
+                    <apex:outputPanel id="cardPanel" styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock"/>
+                        <apex:selectList value="{!pmProvider.selectedSourceId}" size="1">
+                            <apex:selectOptions value="{!pmProvider.sourceIdsSelectOptions}" />
+                            <apex:actionSupport event="onchange"
+                                                action="{!checkPMType}"
+                                                rerender="pmType"
+                                                status="updateStatus"/>
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isSourceNotSelected}">
+                            <strong>Error:</strong> <apex:outputText value="You must enter a value"/>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Ledger"/>
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" />
+                        <apex:selectList required="true"
+                                         value="{!amountObject.AcctSeed__Ledger__c}"
+                                         multiselect="false"
+                                         size="1">
+                            <apex:selectOptions value="{!allLedgers}" />
+                            <apex:actionSupport event="onchange"
+                                                action="{!changeLedger}"
+                                                rerender="bankAccount, selectedCurrency"
+                                                status="updateStatus"/>
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Payment_Method__c.fields.AcctSeed__Payment_Method_Type__c.Label}" />
+                    <apex:outputText id="pmType" value="{!pmProvider.SelectedSourceTypeAsLabel}" style="font-weight: bold;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isMultiCurrencyEnabled}">
+                    <apex:outputLabel value="Currency"/>
+                    <apex:selectList id="selectedCurrency" value="{!selectedCurrency}" size="1">
+                        <apex:selectOptions value="{!CurrencySelectOptions}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value="" rendered="{!NOT(isMultiCurrencyEnabled)}"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Amount" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" />
+                        <apex:inputField value="{!amountObject.AcctSeed__Amount__c}" required="false"/>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isAmountError}">
+                            <strong>Error:</strong><apex:outputText value="{!amountError}"/>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Bank Account" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList id="bankAccount" value="{!amountObject.AcctSeed__Bank_Account__c}" size="1">
+                            <apex:selectOptions value="{!GLAccounts}" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Description" />
+                    <apex:inputText value="{!description}" maxlength="255"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Accounting Information" id="secondBlockSection" collapsible="false" columns="2" rendered="{!!isErrorMode}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_1__c.Label}" />
+                    <apex:inputField value="{!amountObject.AcctSeed__GL_Account_Variable_1__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__Project__c.Label}" />
+                    <apex:inputField value="{!amountObject.AcctSeed__Project__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_2__c.Label}" />
+                    <apex:inputField value="{!amountObject.AcctSeed__GL_Account_Variable_2__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__Project_Task__c.Label}" />
+                    <apex:inputField value="{!amountObject.AcctSeed__Project_Task__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_3__c.Label}" />
+                    <apex:inputField value="{!amountObject.AcctSeed__GL_Account_Variable_3__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value=""/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeed__Cash_Receipt__c.fields.AcctSeed__GL_Account_Variable_4__c.Label}" />
+                    <apex:inputField value="{!amountObject.AcctSeed__GL_Account_Variable_4__c}"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Merge field on Page to avoid using StandardController.addFields()-->
+            <apex:outputField value="{!account.AcctSeed__Stripe_Customer_Id__c}" rendered="false"/>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

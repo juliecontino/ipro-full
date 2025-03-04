@@ -1,0 +1,198 @@
+html {
+    background-color: rgba(176, 196, 223, 1.0);
+    background-image: url(/_slds/images/themes/lightning_blue/lightning_blue_background.png),linear-gradient(to top, rgba(160, 180, 206, 0.0) 0, rgba(160, 180, 206, 1.0));
+    background-repeat: repeat-x;
+}
+body {
+    border-radius: 6px;
+    margin: 1rem;
+}
+.conga-hidden {
+    display: none;
+}
+.conga-display__block {
+    display: block;
+}
+#congaSpinner {
+    fill: #a0a0a0 !important;
+    left: 48%;
+    position: absolute;
+    top: 40%;
+    height: 4rem;
+    width: 4rem;
+}
+svg.slds-icon {
+    vertical-align: top !important;
+    border-radius: 5px
+}
+svg.conga-button__delete {
+    fill: rgb(107, 109, 112) !important;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+svg#congaBtnClosePill {
+    fill: #000 !important;
+}
+.slds-scope .slds-pill a {
+    min-height: 25px;
+}
+.conga-svg-icon-contact {
+    background: #a094ed !important;
+}
+.conga-svg-icon-user {
+    background: #34becd !important;
+}
+.conga-svg-icon-lead {
+    background: #f88962 !important;
+}
+.conga-svg-icon-email {
+    background: #95aec5 !important;
+}
+span#pillEmailTo {
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    right: 4px;
+    bottom: 1px;
+}
+.conga-form-element__section {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+}
+.conga-svg-icon-error {
+    fill: #fff !important;
+    height: 2rem;
+    margin-right: 15px;
+    width: 2rem;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+}
+svg#congaBtnCloseModal {
+    cursor: pointer;
+    height: 1.5rem;
+    width: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    fill: #fff !important;
+}
+svg.congaBtnDeleteAttachments {
+    cursor: pointer;
+    width: 1rem !important;
+    fill: #000 !important;
+    height: 2.2rem !important;
+}
+.congaBtnAddAttachment {
+    cursor: pointer;
+}
+.slds-notify__content {
+    text-align: center;
+    width: 100%;
+    margin-left: 2rem;
+}
+.slds-text-heading_small {
+    display: inline;
+    font-size: 18px;
+    font-weight: 500;
+}
+.slds-col {
+    border-bottom: 1px solid #dddbda;
+}
+.conga-spinner_container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9050;
+    background-color: rgba(214, 214, 214, 0.75);
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease, visibility 0s;
+    transition: opacity 0.2s ease, visibility 0s;
+    -webkit-transition-delay: 0s, 0.3s;
+    transition-delay: 0s, 0.3s;
+}
+.conga__header {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.conga__subheader {
+    font-weight: 700;
+}
+.conga-col__header {
+    background: #fafaf9;
+    border-top: 1px solid #dddbda;
+    text-transform: uppercase;
+}
+
+div.conga-file__row:nth-of-type(even) {
+    background-color: #fafaf9;
+}
+.slds-lookup__result-text {
+    padding: .5rem 1rem .5rem 1rem;
+}
+.slds-theme_error, .slds-theme--error {
+    color: white;
+    background-color: #c23934;
+}
+.slds-notify_toast, .slds-notify--toast {
+    color: white;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-weight: 300;
+    border-radius: 0.25rem;
+    margin: 0.5rem;
+    padding: 0.75rem 3rem 0.75rem 1.5rem;
+    min-width: 30rem;
+    text-align: left;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    min-height: 1.5rem;
+}
+ul#inputEmailToContainer {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 219, 218);
+    border-radius: .25rem;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, .07);
+    z-index: 7000;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 100%;
+    padding: .5rem 0;
+}
+div#errorMessageContainer {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+span.breadcrumbDetail {
+    color: rgb(8, 7, 7);
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    bottom: -7px;
+    position: relative;
+}
+.conga-border__less {
+    border: 0;
+}
+::placeholder {
+    color: #a9a9a9 !important;
+    opacity: 1; /* Firefox */
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #a9a9a9 !important;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: #a9a9a9 !important;
+}

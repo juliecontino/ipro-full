@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to display custom footer content on the Billing PDF. --></help>
+        <label><!-- Footer --></label>
+        <name>AcctSeed__Custom_Footer_Content__c</name>
+    </CustomFieldTranslation>

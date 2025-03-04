@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Ignore the Salesforce max number of scheduled jobs when attempting to schedule shipment tracking using &quot;Schedule Tracking&quot;. Note, the scheduling of the &quot;Schedule Tracking&quot; feature may fail if your org/edition is not setup to allow jobs past the max limit. --></help>
+        <label><!-- Ignore Max Job Limit for Scheduled Track --></label>
+        <name>zkfedex__IgnoreMaxJobLimitForScheduledTrack__c</name>
+    </CustomFieldTranslation>

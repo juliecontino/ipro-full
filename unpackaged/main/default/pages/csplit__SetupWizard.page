@@ -1,0 +1,4 @@
+<apex:page >
+    <meta http-equiv="refresh" content="0;url=/lightning/n/csplit__Case_Split_Setup" />
+    <apex:pageMessage severity="error" strength="3" summary="This setup experience has been deprecated, please use the Case Split Setup tab to configure the application." escape="false" />
+</apex:page>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Independent_Partner__c</fullName>
+    <label>Independent Partner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Canoa Systems, Inc.</fullName>
+                <default>false</default>
+                <label>Canoa Systems, Inc.</label>
+            </value>
+            <value>
+                <fullName>Coastal Bend Technology Solutions</fullName>
+                <default>false</default>
+                <label>Coastal Bend Technology Solutions</label>
+            </value>
+            <value>
+                <fullName>FCS Communications, Inc.</fullName>
+                <default>false</default>
+                <label>FCS Communications, Inc.</label>
+            </value>
+            <value>
+                <fullName>Infinity Wire Solutions</fullName>
+                <default>false</default>
+                <label>Infinity Wire Solutions</label>
+            </value>
+            <value>
+                <fullName>Jeff Hicks Computer Consulting</fullName>
+                <default>false</default>
+                <label>Jeff Hicks Computer Consulting</label>
+            </value>
+            <value>
+                <fullName>Ligas Enterprises</fullName>
+                <default>false</default>
+                <label>Ligas Enterprises</label>
+            </value>
+            <value>
+                <fullName>RIT Group</fullName>
+                <default>false</default>
+                <label>RIT Group</label>
+            </value>
+            <value>
+                <fullName>SCI Alarms</fullName>
+                <default>false</default>
+                <label>SCI Alarms</label>
+            </value>
+            <value>
+                <fullName>Scott Enriquez</fullName>
+                <default>false</default>
+                <label>Scott Enriquez</label>
+            </value>
+            <value>
+                <fullName>TechSys Consulting</fullName>
+                <default>false</default>
+                <label>TechSys Consulting</label>
+            </value>
+            <value>
+                <fullName>Terry Wolfe</fullName>
+                <default>false</default>
+                <label>Terry Wolfe</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

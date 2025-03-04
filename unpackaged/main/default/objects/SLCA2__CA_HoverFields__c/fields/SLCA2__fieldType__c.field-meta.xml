@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__fieldType__c</fullName>
+    <deprecated>false</deprecated>
+    <label>fieldType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>hover</fullName>
+                <default>true</default>
+                <label>hover</label>
+            </value>
+            <value>
+                <fullName>relatedList</fullName>
+                <default>false</default>
+                <label>relatedList</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

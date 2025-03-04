@@ -1,0 +1,3 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Sales_Order__c" title="Create Sales Order | Accounting Seed" recordSetVar="so" extensions="AcctSeedERP.PurchaseOrderFromSalesOrder" sidebar="false" lightningStylesheets="true">
+    <c:PurchaseOrderFromSalesOrderComponent enableAggregateByProduct="true" aggregateByProductDefault="true" theSalesOrders="{!salesOrders}" cancelAction="{!cancel}" />
+</apex:page>

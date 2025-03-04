@@ -1,0 +1,1 @@
+AcctSeed.ASModule=function(t,e,c){"use strict";var o=c.currencyFormatterProxy;return c.pageLoad=function(){e('[id$="totalDebit"], [id$="totalCredit"]').each(function(){e(this).text(o(e(this).text(),2,!1,e(this).attr("data-currency")))})},e(t).ready(function(t){c.pageLoad()}),c}((window,document),$j,AcctSeed.ASModule);

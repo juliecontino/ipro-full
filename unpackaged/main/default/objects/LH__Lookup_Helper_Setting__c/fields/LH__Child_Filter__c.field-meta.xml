@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__Child_Filter__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Child Filter</label>
+    <referenceTo>LH__HS_Filter__c</referenceTo>
+    <relationshipLabel>Lookup Helper Child Filters</relationshipLabel>
+    <relationshipName>LookupHelperChildFilters</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

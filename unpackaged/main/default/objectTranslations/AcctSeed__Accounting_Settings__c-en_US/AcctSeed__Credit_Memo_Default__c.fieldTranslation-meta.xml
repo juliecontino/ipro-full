@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This setting relates to the ‘Clone w/Lines’ interim screen’s ‘Clone as Credit Memo’ checkbox. --></help>
+        <label><!-- Credit Memo Default --></label>
+        <name>AcctSeed__Credit_Memo_Default__c</name>
+        <picklistValues>
+            <masterLabel>Amount</masterLabel>
+            <translation><!-- Amount --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quantity</masterLabel>
+            <translation><!-- Quantity --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

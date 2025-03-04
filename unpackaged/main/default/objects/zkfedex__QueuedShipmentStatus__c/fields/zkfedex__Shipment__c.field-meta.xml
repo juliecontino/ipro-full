@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__Shipment__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Shipment</label>
+    <referenceTo>zkfedex__Shipment__c</referenceTo>
+    <relationshipLabel>FedEx Queued Shipment Status</relationshipLabel>
+    <relationshipName>FedEx_Queued_Shipment_Status</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

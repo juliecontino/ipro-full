@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Shipment Layout</layout>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Currency --></label>
+            <section>Currency</section>
+        </sections>
+        <sections>
+            <label><!-- EMail Recipients --></label>
+            <section>EMail Recipients</section>
+        </sections>
+        <sections>
+            <label><!-- Estimated Charges --></label>
+            <section>Estimated Charges</section>
+        </sections>
+        <sections>
+            <label><!-- Estimated Delivery Details --></label>
+            <section>Estimated Delivery Details</section>
+        </sections>
+        <sections>
+            <label><!-- Freight Details --></label>
+            <section>Freight Details</section>
+        </sections>
+        <sections>
+            <label><!-- General Shipment Details --></label>
+            <section>General Shipment Details</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- International Details --></label>
+            <section>International Details</section>
+        </sections>
+        <sections>
+            <label><!-- Pickup Details --></label>
+            <section>Pickup Details</section>
+        </sections>
+        <sections>
+            <label><!-- Recipient (Sender for Return Shipments) --></label>
+            <section>Recipient (Sender for Return Shipments)</section>
+        </sections>
+        <sections>
+            <label><!-- Referenced Standard Objects --></label>
+            <section>Referenced Standard Objects</section>
+        </sections>
+        <sections>
+            <label><!-- Return Shipment --></label>
+            <section>Return Shipment</section>
+        </sections>
+        <sections>
+            <label><!-- Save Recipient --></label>
+            <section>Save Recipient</section>
+        </sections>
+        <sections>
+            <label><!-- Sender (Recipient for Return Shipments) --></label>
+            <section>Sender (Recipient for Return Shipments)</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment Notes --></label>
+            <section>Shipment Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment State --></label>
+            <section>Shipment State</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Bulk_Print --></label>
+        <name>zkfedex__Bulk_Print</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- EmailLabel --></label>
+        <name>zkfedex__EmailLabel</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ManagePrinters --></label>
+        <name>zkfedex__ManagePrinters</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ModifyShipment --></label>
+        <name>zkfedex__ModifyShipment</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PrintLabels --></label>
+        <name>zkfedex__PrintLabels</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PrintLabelsV2 --></label>
+        <name>zkfedex__PrintLabelsV2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PrintableSummary --></label>
+        <name>zkfedex__PrintableSummary</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SaveAsAccount --></label>
+        <name>zkfedex__SaveAsAccount</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SaveAsContact --></label>
+        <name>zkfedex__SaveAsContact</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SaveAsLead --></label>
+        <name>zkfedex__SaveAsLead</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ScheduleTracking --></label>
+        <name>zkfedex__ScheduleTracking</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- TrackShipment --></label>
+        <name>zkfedex__TrackShipment</name>
+    </webLinks>
+</CustomObjectTranslation>

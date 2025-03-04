@@ -1,0 +1,379 @@
+<apex:page standardController="AcctSeed__Expense_Report__c" title="{!AcctSeed__Expense_Report__c.Name & ' | Accounting Seed'}" id="thePage" extensions="AcctSeed.ExpenseReportControllerExt,AcctSeed.EnvironmentUtils" sidebar="false">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}"/> 
+    <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/expense-report.css')}" />  
+    <apex:form id="theForm">
+        <script type="text/javascript">
+            AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+            AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+            AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, 'true', 'false'))}";
+            AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        </script>
+        <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true"/> 
+        <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/expense-report.js')}" loadOnReady="true"/> 
+        <apex:sectionHeader title="Expense Report" subtitle="{!AcctSeed__Expense_Report__c.Name}" />
+        <apex:pageBlock id="thePageBlockHeader" mode="maindetail" title="Expense Report Edit">
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons location="top">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Saving...')" onstop="AcctSeed.ASModule.updateExpenseAmount();AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()"/>
+                <apex:commandButton status="saveStatus" value="Save & Refresh" reRender="theForm" action="{!saveAndRefresh}" rendered="{!!isError}"/>
+                <apex:commandButton status="saveStatus" value="Save & Complete" reRender="theForm" action="{!saveAndClose}" rendered="{!!isError}"/>
+                <apex:commandButton value="Cancel" immediate="true" action="{!cancel}" />
+                <apex:actionFunction name="saveAndClose" action="{!saveAndClose}" status="saveStatus" reRender="theForm" />
+                <script type="text/javascript">
+                    AcctSeed.ASModule.saveAndClose = saveAndClose;
+                </script>               
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="reportData" columns="2" rendered="{!!isError}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Name" />
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <apex:outputPanel styleClass="requiredBlock" />
+                        <apex:inputField value="{!expReport.Name}" required="false" />
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isNameError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Employee" />
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <apex:outputPanel styleClass="requiredBlock" rendered="{!$ObjectType.AcctSeed__Expense_Report__c.Fields.AcctSeed__Status__c.Updateable}" />
+                        <apex:inputField value="{!expReport.AcctSeed__Employee__c}" />
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isEmployeeError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Ledger" />
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <apex:outputPanel styleClass="requiredBlock"/>
+                    <apex:selectList required="true"
+                                     value="{!expReport.AcctSeed__Ledger__c}"
+                                     multiselect="false"
+                                     size="1">
+                        <apex:selectOptions value="{!allLedgers}" />
+                    </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Status" />
+                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                        <apex:outputPanel styleClass="requiredBlock" rendered="{!$ObjectType.AcctSeed__Expense_Report__c.Fields.AcctSeed__Status__c.Updateable}" />
+                        <apex:inputField value="{!expReport.AcctSeed__Status__c}" />
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isStatusError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                </apex:pageBlockSectionItem>
+                <apex:inputField value="{!expReport['CurrencyIsoCode']}" rendered="{!isMultiCurrencyEnabled && ISBLANK(expReport.Id)}">
+                    <apex:actionSupport event="onchange"
+                                        onComplete="AcctSeed.ASModule.currencyIsoCode = '{!JSENCODE(expReport['CurrencyIsoCode'])}'; AcctSeed.ASModule.updateExpenseAmount(); AcctSeed.ASModule.updateMileageTotal(); AcctSeed.ASModule.updateMileageAmount();"
+                                        reRender="expenseTotalAmount"/>
+                </apex:inputField>
+                <apex:outputText rendered="{!isMultiCurrencyEnabled && ISBLANK(expReport.Id)}"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Total Expenses" />
+                    <apex:outputText id="expenseTotalAmount"/>
+                </apex:pageBlockSectionItem>
+                <br/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock id="thePageBlock" title="Expense Report Edit" >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton status="saveStatus" value="Save & Refresh" reRender="theForm" action="{!saveAndRefresh}" oncomplete="AcctSeed.ASModule.updateExpenseAmount();AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()" rendered="{!!isError}"/>
+                <apex:commandButton status="saveStatus" value="Save & Complete" reRender="theForm" action="{!saveAndClose}" oncomplete="AcctSeed.ASModule.updateExpenseAmount();AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()" rendered="{!!isError}"/>
+                <apex:commandButton value="Cancel" immediate="true" action="{!cancel}" />
+            </apex:pageBlockButtons>
+            <!-- Create Tab panel -->
+            <apex:tabPanel switchType="client" selectedTab="tab1" id="ExpenseTabPanel" styleClass="theTabPanel" tabClass="theTabPanel" contentClass="tabContent" activeTabClass="activeTab" inactiveTabClass="inactiveTab" rendered="{!!isError}">
+                <apex:tab label="Expenses" name="tab1" id="tabOne" styleClass="">
+                    <apex:outputPanel id="tableSection1">
+                        <apex:pageBlockTable value="{!expensesList}" var="item" id="billableExpenses" footerClass="footer-row">
+                            <apex:column headerClass="action-col">
+                                <apex:actionStatus id="mydeleteStatus1">
+                                    <apex:facet name="stop">
+                                        <apex:actionRegion >
+                                            <apex:commandLink action="{!deleteExpenseLine}" title="Remove line" status="mydeleteStatus1" oncomplete="AcctSeed.ASModule.updateExpenseAmount();AcctSeed.ASModule.updateMileageAmount()" rerender="tableSection1">
+                                                <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/red-x.png')}" alt="Remove line" />
+                                                <apex:param id="rowCount1" name="rowCount1" assignTo="{!selectedExpenseRow}" value="{!item.intRowNum}" />
+                                            </apex:commandLink>
+                                        </apex:actionRegion>
+                                    </apex:facet>
+                                    <apex:facet name="start">
+                                        <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/red-x.png')}" />
+                                    </apex:facet>
+                                </apex:actionStatus>
+                                <apex:facet name="footer">
+                                    <apex:commandlink rerender="tableSection1" title="Add line" action="{!addExpenseLine}" oncomplete="AcctSeed.ASModule.updateExpenseAmount();AcctSeed.ASModule.updateMileageAmount()">
+                                        <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/green-cross.png')}" alt="Add line" /><span style="position:absolute;margin-left:1px;margin-top:2px;text-decoration:underline">Line</span>
+                                    </apex:commandlink>
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Project__c.Label}"
+                                         headerClass="project-col">
+                                <apex:actionRegion >
+                                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                                        <apex:outputPanel styleClass="requiredBlock" />
+                                        <apex:inputField value="{!item.expenseLine.AcctSeed__Project__c}">
+                                            <apex:actionSupport event="onchange" rerender="projTaskId" status="reloadStatus">
+                                                <apex:param id="selectedRow1" name="selectedRow1" assignTo="{!selectedExpenseRow}" value="{!item.intRowNum}" />
+                                            </apex:actionSupport>
+                                        </apex:inputField>
+                                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isProjectError}">
+                                            <strong>Error:</strong> You must enter a value
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </apex:actionRegion>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Project_Task__c.Label}"
+                                         headerClass="project-task-col">
+                                <apex:actionStatus id="reloadStatus">
+                                    <apex:facet name="start">
+                                        <apex:image value="/img/loading.gif" title="Processing..." />
+                                    </apex:facet>
+                                    <apex:facet name="stop">
+                                        <apex:outputPanel id="projTaskId" style="white-space: nowrap" layout="block" styleClass="requiredInput">
+                                            <apex:outputPanel styleClass="requiredBlock" />
+                                            <apex:selectList value="{!item.expenseLine.AcctSeed__Project_Task__c}" size="1" title="Project Tasks">
+                                                <apex:selectOptions value="{!item.ProjectTasks}" id="tasks" />
+                                            </apex:selectList>&nbsp;
+	                                        <apex:commandButton styleClass="refreshButton" rerender="projTaskId" status="reloadStatus" title="Refresh Project Task">
+	                                            <apex:param id="selectedRow1" name="selectedRow1" assignTo="{!selectedExpenseRow}" value="{!item.intRowNum}" />
+	                                        </apex:commandButton>   
+                                            <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isProjectTaskError}">
+                                                <strong>Error:</strong> You must enter a value
+                                            </apex:outputPanel>                                                                                       
+                                        </apex:outputPanel>                                      
+                                    </apex:facet>
+                                </apex:actionStatus>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Billable__c.Label}" headerClass="bill-reim-col" rendered="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Billable__c.Accessible}">
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Billable__c}" />
+                            </apex:column>
+                            <apex:column headerClass="bill-reim-col" rendered="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Employee_Reimburse__c.Accessible}">
+                                <apex:facet name="header">
+                                    <apex:outputText >Employee
+                                        <br/>Reimburse</apex:outputText>
+                                </apex:facet>
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Employee_Reimburse__c}" />
+                            </apex:column>
+                            <apex:column headerValue="Credit Card Vendor" headerClass="project-task-col" rendered="{!IF(ccVendorList.size>1,'','none')}">
+                                <apex:selectList value="{!item.ccVendorId}" size="1" style="width:100px">
+                                    <apex:selectOptions value="{!ccVendorList}" />
+                                </apex:selectList>
+                                <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isReimburseAndCCVendorError}">
+                                    <strong>Error:</strong> The employee reimburse field and the credit card vendor field cannot both be populated. You can only select one.
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="Date" headerClass="date-col">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:inputField value="{!item.expenseLine.AcctSeed__Date__c}" required="false" />
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isDateError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="Expense Type" headerClass="project-task-col">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:selectList value="{!item.strExpenseTypeId}" size="1" title="Type">
+                                        <apex:selectOptions value="{!expenseTypesList}" />
+                                    </apex:selectList>
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isExpenseTypeError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Amount__c.Label}" headerClass="amt-col" footerClass="align-right">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                        <!-- Amount field has JS listener -->
+                                        <apex:inputField id="expenseAmount"
+                                                         value="{!item.expenseLine.AcctSeed__Amount__c}"
+                                                         onchange="AcctSeed.ASModule.updateExpenseAmount()"
+                                                         onkeyup="AcctSeed.ASModule.updateExpenseAmount()"
+                                                         style="width:80px;text-align:right"/>
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isAmountError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:facet name="footer">
+                                    <apex:outputText id="expenseFooterAmount"/>
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Internal_Comment__c.Label}" headerClass="com-col">
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Internal_Comment__c}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Invoice_Comment__c.Label}">
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Invoice_Comment__c}" />
+                            </apex:column>
+                            <apex:repeat value="{!expenseReportEditFieldSet}" var="fs">
+                                <apex:column headerValue="{!fs.Label}">
+                                    <apex:inputField value="{!item.expenseLine[fs]}" />
+                                </apex:column>
+                            </apex:repeat>
+                        </apex:pageBlockTable>
+                    </apex:outputPanel>
+                </apex:tab>
+                <apex:tab label="Mileage" id="tabTwo">
+                    <apex:outputPanel id="tableSection2">
+                        <apex:pageBlockTable value="{!mileageList}" var="item" id="mileageExpenses" width="100%" styleClass="column">
+                            <apex:column headerClass="action-col">
+                                <apex:actionStatus id="mydeleteStatus2">
+                                    <apex:facet name="stop">
+                                        <apex:actionRegion >
+                                            <apex:commandLink action="{!deleteMileageLine}" title="Remove line" status="mydeleteStatus2" rerender="tableSection2" immediate="true" oncomplete="AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()">
+                                                <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/red-x.png')}" alt="Remove line" />
+                                                <apex:param id="rowCount2" name="rowCount2" assignTo="{!selectedMileageRow}" value="{!item.intRowNum}" />
+                                            </apex:commandLink>
+                                        </apex:actionRegion>
+                                    </apex:facet>
+                                    <apex:facet name="start">
+                                        <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/red-x.png')}" />
+                                    </apex:facet>
+                                </apex:actionStatus>
+                                <apex:facet name="footer">
+                                    <apex:commandlink rerender="tableSection2" title="Add line" action="{!addMileageLine}" oncomplete="AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()">
+                                        <apex:image url="{!URLFOR($Resource.AcctSeed__accounting_resources, 'images/green-cross.png')}" alt="Add line" /><span style="position:absolute;margin-left:1px;margin-top:2px;text-decoration:underline">Line</span>
+                                    </apex:commandlink>
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Project__c.Label}" headerClass="project-col">
+                                <apex:actionRegion >
+                                    <apex:outputPanel layout="block" styleClass="requiredInput">
+                                        <apex:outputPanel styleClass="requiredBlock" />
+                                        <apex:inputField value="{!item.expenseLine.AcctSeed__Project__c}" style="width:120px">
+                                            <apex:actionSupport event="onchange" rerender="projTaskId" status="reloadStatus">
+                                                <apex:param id="selectedRow2" name="selectedRow2" assignTo="{!selectedMileageRow}" value="{!item.intRowNum}" />
+                                            </apex:actionSupport>
+                                        </apex:inputField>
+                                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isProjectError}">
+                                            <strong>Error:</strong> You must enter a value
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </apex:actionRegion>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Project_Task__c.Label}" headerClass="project-task-col">
+                                <apex:actionStatus id="reloadStatus">
+                                    <apex:facet name="start">
+                                        <apex:image value="/img/loading.gif" title="Processing..." />
+                                    </apex:facet>
+                                    <apex:facet name="stop">
+                                        <apex:outputPanel id="projTaskId" style="white-space: nowrap" layout="block" styleClass="requiredInput">
+                                            <apex:outputPanel styleClass="requiredBlock" />
+                                            <apex:selectList value="{!item.expenseLine.AcctSeed__Project_Task__c}" size="1" title="task">
+                                                <apex:selectOptions value="{!item.ProjectTasks}" id="tasks" />
+                                            </apex:selectList>&nbsp;
+	                                        <apex:commandButton styleClass="refreshButton" rerender="projTaskId" status="reloadStatus" title="Refresh Project Task">
+	                                            <apex:param id="selectedRow2" name="selectedRow2" assignTo="{!selectedMileageRow}" value="{!item.intRowNum}" />
+	                                        </apex:commandButton> 
+                                            <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isProjectTaskError}">
+                                                <strong>Error:</strong> You must enter a value
+                                            </apex:outputPanel>                                                                                       
+                                        </apex:outputPanel>                                       
+                                    </apex:facet>
+                                </apex:actionStatus>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Billable__c.Label}" rendered="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Billable__c.Accessible}" headerClass="bill-reim-col">
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Billable__c}" />
+                            </apex:column>
+                            <apex:column rendered="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Employee_Reimburse__c.Accessible}" headerClass="bill-reim-col">
+                                <apex:facet name="header">
+                                    <apex:outputText >Employee
+                                        <br/>Reimburse</apex:outputText>
+                                </apex:facet>
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Employee_Reimburse__c}" />
+                            </apex:column>
+                            <apex:column headerValue="Date" headerClass="date-col">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:inputField value="{!item.expenseLine.AcctSeed__Date__c}" required="false" />
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isDateError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="Expense Type" headerClass="project-task-col">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:actionRegion >
+                                        <apex:selectList value="{!item.strExpenseTypeId}" size="1" title="Type">
+                                            <apex:selectOptions value="{!mileageTypesList}" />
+                                            <apex:actionSupport event="onchange" oncomplete="AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()" rerender="mileageAmount" />
+                                        </apex:selectList>
+                                    </apex:actionRegion>
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isExpenseTypeError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Mileage_Origin__c.Label}" headerClass="mileage-col">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:inputField value="{!item.expenseLine.AcctSeed__Mileage_Origin__c}" />
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isOriginError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Mileage_Destination__c.Label}" headerClass="mileage-col">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:inputField value="{!item.expenseLine.AcctSeed__Mileage_Destination__c}" />
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isDestinationError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Miles__c.Label}" headerClass="miles-col" footerClass="align-right">
+                                <apex:outputPanel layout="block" styleClass="requiredInput">
+                                    <apex:outputPanel styleClass="requiredBlock" />
+                                    <apex:actionRegion >
+                                        <apex:inputField id="mileage" value="{!item.expenseLine.AcctSeed__Miles__c}" style="width:50px;text-align:right">
+                                            <apex:actionSupport event="onkeyup" oncomplete="AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()" rerender="mileageAmount" />
+                                            <apex:actionSupport event="onchange" oncomplete="AcctSeed.ASModule.updateMileageTotal();AcctSeed.ASModule.updateMileageAmount()" rerender="mileageAmount" />
+                                        </apex:inputField>
+                                    </apex:actionRegion>
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isMilesError}">
+                                        <strong>Error:</strong> You must enter a value
+                                    </apex:outputPanel>
+                                    <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!item.isMilesNegativeError}">
+                                        <strong>Error:</strong> Cannot be a negative number
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:facet name="footer">
+                                    <apex:outputText id="mileageTotal" rendered="{!mileageList.size>0}" />                                   
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Amount__c.Label}" styleClass="align-right" headerClass="amt-col" footerClass="align-right">
+                                <apex:outputText id="mileageAmount" value="{!item.amount}"/>
+                                <apex:facet name="footer">
+                                    <apex:outputText id="mileageTotalAmount" rendered="{!mileageList.size>0}"/>
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Internal_Comment__c.Label}" headerClass="com-col">
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Internal_Comment__c}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.AcctSeed__Expense_Line__c.fields.AcctSeed__Invoice_Comment__c.Label}">
+                                <apex:inputField value="{!item.expenseLine.AcctSeed__Invoice_Comment__c}" />
+                            </apex:column>
+                            <apex:repeat value="{!expenseReportEditFieldSet}" var="fs">
+                                <apex:column headerValue="{!fs.Label}">
+                                    <apex:inputField value="{!item.expenseLine[fs]}" />
+                                </apex:column>
+                            </apex:repeat>
+                        </apex:pageBlockTable>
+                    </apex:outputPanel>
+                </apex:tab>
+            </apex:tabPanel>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ChangeCaseOwner__Case_Owner2__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>HYPERLINK( 
+IF(BEGINS(OwnerId, '00G'), 
+'p/own/Queue/d?id='&amp;OwnerId, 
+OwnerId 
+), 
+IF(BEGINS(OwnerId, '00G'), 
+Owner:Queue.Name, 
+Owner:User.FirstName &amp; ' ' &amp; Owner:User.LastName 
+) 
+) &amp; ' ' &amp; HYPERLINK( 
+'/apex/ChangeCaseOwner__Case_Owner_Change?cid='&amp;Id,
+'[Change]', 
+'_self' 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Case Owner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__ShippingStreet__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Can enter up to 2 separate lines.
+Each line can be 35 characters at most.</description>
+    <inlineHelpText>Can enter up to 2 separate lines.
+Each line can be 35 characters at most.</inlineHelpText>
+    <label>Shipping Street</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

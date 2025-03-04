@@ -1,0 +1,25 @@
+<apex:page id="ArchiveTransactions" title="Archive | Accounting Seed" standardController="AcctSeed__Accounting_Period__c" extensions="AcctSeed.ArchiveTransactionsController">
+
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" loadOnReady="true"/>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/archive-transactions.js')}" loadOnReady="true" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'javascript/vex.combined.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'css/vex.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'css/vex-theme-default.css')}" />
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.AcctSeed__Accounting_Period__c.label}" subtitle="{!AcctSeed__Accounting_Period__c.Name}" />
+        <apex:pageBlock title="Archive Transactions">
+            <apex:pageMessage severity="info" strength="3" summary="The Accounting Seed Financial Suite archive process migrates records from the Salesforce record data store to the Big Object data store. This effectively reduces the amount of data storage used by the Accounting Seed Financial Suite application. In order to archive data associated with an accounting period, the accounting period must be older than 15 months (default setting) from the accounting period bounded by today’s date. Archiving is a NON REVERSIBLE process. <br/> Once record data has been archived: <br/> &#8226 Any source document records associated with the accounting period cannot be posted or unposted. <br/> &#8226 Any ledger hierarchies, on which the consolidation routine was run for the accounting period being archived, can no longer be modified. <br/>  Archived data is accessible for reporting purposes via the financial reporter." escape="false"/>
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons >
+                <apex:actionFunction name="doArchive" action="{!doArchiving}"/>
+                <apex:actionStatus id="processingStatus"
+                                   onStart="AcctSeed.ASModule.disableButtons('Processing...')"
+                                   onStop="AcctSeed.ASModule.hideSpinner();"/>
+                <apex:commandButton value="Archive" status="processingStatus" rendered="{!!isError}" reRender="theForm" onclick="AcctSeed.ASModule.doArchiveConfirm()"/>
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

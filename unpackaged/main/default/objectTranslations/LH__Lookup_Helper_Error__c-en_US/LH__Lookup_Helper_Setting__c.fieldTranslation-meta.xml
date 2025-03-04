@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The setting from which this error was created from. --></help>
+        <label><!-- Lookup Helper Setting --></label>
+        <name>LH__Lookup_Helper_Setting__c</name>
+        <relationshipLabel><!-- Lookup Helper Exceptions --></relationshipLabel>
+    </CustomFieldTranslation>

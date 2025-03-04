@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used in the calculation of payment terms. The number of days due from the issue date if the customer is to receive a payment discount. --></help>
+        <label><!-- Discount Due Date --></label>
+        <name>AcctSeed__Discount_Due_Date__c</name>
+    </CustomFieldTranslation>

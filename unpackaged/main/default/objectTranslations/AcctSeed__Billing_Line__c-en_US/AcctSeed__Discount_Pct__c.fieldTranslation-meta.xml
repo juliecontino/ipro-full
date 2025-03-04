@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to represent a sales discount % from the list price of a product. This field is a formula that divides the discount amount by the list price of a product. --></help>
+        <label><!-- Discount % --></label>
+        <name>AcctSeed__Discount_Pct__c</name>
+    </CustomFieldTranslation>

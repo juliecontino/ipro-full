@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Billing_Aging_History__c.AcctSeed__Amount__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing__c.AcctSeed__Ledger__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing__c.AcctSeed__Date__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing_Aging_History__c.AcctSeed__Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Billing_Aging_History__c.AcctSeed__Days_Past_Due__c</field>
+    </columns>
+    <description>Shows Historical AR by Period</description>
+    <filter>
+        <criteriaItems>
+            <column>AcctSeed__Billing_Aging_History__c.AcctSeed__Amount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Billing__c.AcctSeed__Customer__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Historical AR Dashboard</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$AcctSeed__Billing__c$AcctSeed__Billing_Aging_History__c@AcctSeed__Billing_Aging_History__c.AcctSeed__Accounting_Period__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

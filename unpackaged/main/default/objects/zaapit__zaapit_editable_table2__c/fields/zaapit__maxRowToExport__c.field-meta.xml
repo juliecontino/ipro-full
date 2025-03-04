@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__maxRowToExport__c</fullName>
+    <defaultValue>2000</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The maximum amount of rows to export</description>
+    <externalId>false</externalId>
+    <label>maxRowToExport</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

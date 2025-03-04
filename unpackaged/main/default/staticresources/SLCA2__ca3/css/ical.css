@@ -1,0 +1,75 @@
+/* 
+    Document   : ical
+    Created on : 13 вер 2012, 10:09:00
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+.ca_ical{
+    min-width:400px;
+    max-width:600px;
+    height: auto;
+}
+
+    .ca_ical > .title{
+        font-size:140%;
+        font-weight: bolder;
+    }
+    
+    
+    .ca_ical > .blocks{
+        margin:10px 0 0 0 ;
+    }
+    
+        .ca_ical > div > span.title{
+            font-weight: bolder;
+        }
+    
+        .ca_ical > .blocks > span{
+            display:inline-block;
+            width:35%;
+            margin:0;
+            padding:0;
+            vertical-align: top;
+        }
+        
+        .ca_ical > .blocks > span:first-child{
+            margin-right:5px;
+            width:60%;
+            
+        }
+        
+        
+            .ca_ical > div > span > input, 
+            .ca_ical > div > span > select{
+                background-color: #eeeeee;
+                border: 1px solid #ccc;
+                border-radius: 2px 2px 2px 2px;
+                font-size: 100%;
+                padding: 4px;
+                width: 100%;
+                margin:0;
+                padding:2px;
+            }
+            
+            .ca_ical > .blocks > span > input._error, 
+            .ca_ical > .blocks > span > select._error{
+                border-color:red;
+            }
+            
+    .ca_ical .hidden{
+        display:none;
+    }
+    
+    .ca_ical .simple_button {
+        text-align: center;
+    }
+    
+    .ca_ical ._grey{
+        color:#cbcbcb;
+    }
+    .ca_ical > .buttons{
+        text-align: center;
+    }

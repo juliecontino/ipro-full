@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Billing_Line_Contract_Number_Update</fullName>
+        <field>Opportunity_Contract_Number__c</field>
+        <formula>AcctSeed__Recurring_Billing_Line__r.Opportunity_Contract_Number__c</formula>
+        <name>Billing Line Contract Number Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Billing_Line_Update_Quantity</fullName>
+        <description>Updates the Quantity for Partial Month</description>
+        <field>AcctSeed__Hours_Units__c</field>
+        <formula>((AcctSeed__Billing__r.Partial_Recurring_Billing_End_Date__c -  AcctSeed__Billing__r.Partial_Recurring_Billing_Start_Date__c )/30)* AcctSeed__Rate__c</formula>
+        <name>Billing Line-Update Quantity</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_Funded_Rate</fullName>
+        <field>Funded_Rate__c</field>
+        <formula>AcctSeed__Recurring_Billing_Line__r.Funded_Rate__c</formula>
+        <name>Copy Funded Rate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Opportunity_Contract_Number</fullName>
+        <field>Opportunity_Contract_Number__c</field>
+        <formula>AcctSeed__Billing__r.AcctSeed__Recurring_Billing__r.AcctSeed__Opportunity__r.Contract_Number__c</formula>
+        <name>Opportunity Contract Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Populate_RB_Billing_Line_when_Missing</fullName>
+        <field>RB_Invoice_Line_Description__c</field>
+        <formula>if(isblank( RB_Invoice_Line_Description__c ), AcctSeed__Recurring_Billing_Line__r.RB_Invoice_Line_Description__c,RB_Invoice_Line_Description__c)</formula>
+        <name>Populate RB Billing Line when Missing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Product_Billing_Category</fullName>
+        <field>Product_Billing_Category__c</field>
+        <formula>Text( AcctSeed__Product__r.GA_Billing_Group__c )</formula>
+        <name>Product Billing Category</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Tax_Type_is_Product_Tax_Type</fullName>
+        <field>Tax_Type__c</field>
+        <formula>Text( AcctSeed__Product__r.AcctSeed__Accounting_Type__c )</formula>
+        <name>Tax Type is Product Tax Type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Billing Line Contract Number Update</fullName>
+        <actions>
+            <name>Billing_Line_Contract_Number_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Billing_Line__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <description>Copy the Opportunity Contract Number from the Recurring Billing Line to the Billing Line.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Billing Line-Update Amount for Partial Month</fullName>
+        <actions>
+            <name>Billing_Line_Update_Quantity</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AcctSeed__Billing__c.Partial_Recurring_Bill__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy Recurring Billing Line Details</fullName>
+        <actions>
+            <name>Copy_Funded_Rate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Populate_RB_Billing_Line_when_Missing</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>not(isblank( AcctSeed__Recurring_Billing_Line__c ))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Legacy RBL Invoice Line Desc</fullName>
+        <active>true</active>
+        <description>If the corresponding Recurring Billing Line was created from a Legacy Recurring Billing Line Item then the RB_Invoice_Line_Description will be populated from the Legacy RBL Invoice_Product_Desc</description>
+        <formula>NOT(ISBLANK( AcctSeed__Recurring_Billing_Line__r.Legacy_RBL__c ))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Legacy RBL Item Contract Number</fullName>
+        <active>true</active>
+        <formula>ISBLANK( AcctSeed__Billing__r.AcctSeed__Recurring_Billing__r.AcctSeed__Opportunity__c ) &amp;&amp; NOT(ISBLANK( AcctSeed__Recurring_Billing_Line__r.Legacy_RBL__c ))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Product Contract %23 to Billing Lines</fullName>
+        <actions>
+            <name>Opportunity_Contract_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>NOT(ISBLANK(AcctSeed__Billing__r.AcctSeed__Recurring_Billing__r.AcctSeed__Opportunity__c))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate Product Billing Category</fullName>
+        <actions>
+            <name>Product_Billing_Category</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Not(isblank( Billing_Category__c ))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate Tax Type</fullName>
+        <actions>
+            <name>Tax_Type_is_Product_Tax_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Not(isblank( AcctSeed__Product__c ))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Shipmate user selected &quot;Allow Edit&quot; when creating this shipment. This allowed the user to change the recipient address data from the recipient address data obtained from the associated address source objects (Account, Contact, Lead, or Opportunity). --></help>
+        <label><!-- User Allowed Edit of Recipient Info --></label>
+        <name>zkfedex__UserAllowedEditOfRecipientInfo__c</name>
+    </CustomFieldTranslation>

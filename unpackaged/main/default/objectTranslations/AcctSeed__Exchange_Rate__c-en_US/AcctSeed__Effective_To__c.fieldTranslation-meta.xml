@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This rate is effective to this date. --></help>
+        <label><!-- Effective To --></label>
+        <name>AcctSeed__Effective_To__c</name>
+    </CustomFieldTranslation>

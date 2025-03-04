@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Ends_On__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>How long the task will continue to be scheduled.</inlineHelpText>
+    <label>Ends On</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Never</fullName>
+                <default>true</default>
+                <label>Never</label>
+            </value>
+            <value>
+                <fullName>Number of Occurrences</fullName>
+                <default>false</default>
+                <label>Number of Occurrences</label>
+            </value>
+            <value>
+                <fullName>End Date</fullName>
+                <default>false</default>
+                <label>End Date</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

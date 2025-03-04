@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Suppress Opening Balance and Period --></label>
+        <name>AcctSeed__Suppress_Opening_Balance_and_Period__c</name>
+    </CustomFieldTranslation>

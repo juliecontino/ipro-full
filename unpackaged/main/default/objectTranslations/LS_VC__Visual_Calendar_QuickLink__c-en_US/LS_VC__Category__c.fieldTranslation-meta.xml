@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Category --></label>
+        <name>LS_VC__Category__c</name>
+        <picklistValues>
+            <masterLabel>Calendar Link</masterLabel>
+            <translation><!-- Calendar Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metrics Link</masterLabel>
+            <translation><!-- Metrics Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quick Link</masterLabel>
+            <translation><!-- Quick Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ticker Link</masterLabel>
+            <translation><!-- Ticker Link --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

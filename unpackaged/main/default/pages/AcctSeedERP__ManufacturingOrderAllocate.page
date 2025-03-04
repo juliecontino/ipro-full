@@ -1,0 +1,96 @@
+<apex:page id="thePage" standardController="AcctSeed__Project__c" title="Allocate | Accounting Seed" extensions="AcctSeedERP.ManufacturingOrderAllocate" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />  
+    <apex:stylesheet value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/css/erp.common.css')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+    </script>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Project - Manufacturing Order" subtitle="{!AcctSeed__Project__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Allocate Manufacturing Order">
+           <apex:pageBlockButtons id="buttonsTop">
+               <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Saving...')"/>
+               <apex:commandButton id="recalcButton"
+                                   value="Save & Refresh"
+                                   action="{!saveRefresh}"
+                                   status="saveStatus"
+                                   reRender="theForm"
+                                   rendered="{!!isErrorMessage}"/>
+               <apex:commandButton id="saveButton"
+                                   value="Save & Complete"
+                                   action="{!saveComplete}"
+                                   status="saveStatus"
+                                   reRender="theForm"
+                                   rendered="{!!isErrorMessage}"/>
+               <apex:commandButton id="cancelButton" value="Back" action="/{!project.Id}" immediate="true"/>
+           </apex:pageBlockButtons>
+           <apex:pageMessages rendered="{!showMessage}" escape="false"/>
+            <apex:pageBlockSection columns="2" rendered="{!!isErrorMessage}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Purchase_Order__c.Fields.AcctSeedERP__Ledger__c.Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList required="true"
+                                         value="{!po.AcctSeedERP__Ledger__c}"
+                                         multiselect="false"
+                                         size="1">
+                            <apex:selectOptions value="{!allLedgers}" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:inputField value="{!po.AcctSeedERP__Order_Date__c}"/>
+                <apex:outputField value="{!AcctSeed__Project__c.AcctSeed__Account__c}"/>
+                <apex:outputText />
+
+            </apex:pageBlockSection>
+            <br/>
+            <apex:repeat value="{!materials}" var="sOrders">
+                <apex:pageBlockTable value="{!sOrders}" var="orderLine">
+                    <apex:column value="{!orderLine.material.Name}" style="width:30px;vertical-align:top"/>
+                    <apex:column value="{!orderLine.material.Product__r.Name}" style="width:30px;vertical-align:top"/>
+                    <apex:column value="{!orderLine.material.Product__r.ProductCode}" style="width:30px;vertical-align:top"/>
+                    <apex:column value="{!orderLine.material.Product__r.Description}" style="width:30px;vertical-align:top"/>
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.material.AcctSeedERP__Quantity_Required__c}" style="width:30px;vertical-align:top"/>
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.material.AcctSeedERP__Quantity_Allocated__c}" style="width:30px;vertical-align:top"/>
+                    <apex:column styleClass="align-right" headerClass="align-right" value="{!orderLine.material.AcctSeedERP__Quantity_Needed__c}" style="width:30px;vertical-align:top"/>                    
+                </apex:pageBlockTable>
+                <br/><br/>
+                <apex:outputPanel rendered="{!sOrders.invAllocationList.size=0}" style="margin-left:50px;font-weight:bold">No inventory available to allocate<br/></apex:outputPanel>
+                <apex:pageBlockTable value="{!sOrders.invAllocationList}" var="inv" headerClass="invHeader" rendered="{!sOrders.invAllocationList.size>0}" style="width:90%;margin-bottom:25px" align="right" cellpadding="4" cellspacing="0">
+                    <apex:facet name="header">Inventory</apex:facet>
+                    <apex:column style="width:100px" value="{!inv.invBalance.Warehouse__r.Name}">
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Warehouse"/>
+                        </apex:facet>
+                   </apex:column>
+                   <apex:column style="width:100px" value="{!inv.invBalance.Location__r.Name}">
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Location"/>
+                        </apex:facet>
+                   </apex:column>                                      
+                   <apex:column styleClass="align-right" headerClass="align-right" style="width:100px" value="{!inv.invBalance.AcctSeedERP__Available_Quantity__c}">
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Available"/>
+                        </apex:facet>                  
+                   </apex:column>
+                   <apex:column styleClass="align-right" headerClass="align-right" style="width:100px"> 
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Committed"/>
+                        </apex:facet>
+                        <apex:outputField value="{!inv.committedInvMovement.AcctSeedERP__Quantity__c}"/>
+                   </apex:column>
+                   <apex:column styleClass="align-right" headerClass="align-right" style="width:80px"> 
+                        <apex:facet name="header">
+                            <apex:outputLabel value="Allocate"/>
+                        </apex:facet>
+                        <apex:inputField value="{!inv.tempInvMovement.AcctSeedERP__Quantity__c}" style="width:60px;text-align:right" required="false"/>
+                   </apex:column>               
+                </apex:pageBlockTable>
+                <br/><br/>
+            </apex:repeat>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

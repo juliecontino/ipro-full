@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The API name of the field used to sort the billing lines. --></help>
+        <label><!-- Sort Field --></label>
+        <name>AcctSeed__Sort_Field__c</name>
+    </CustomFieldTranslation>

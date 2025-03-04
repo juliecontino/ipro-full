@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LS_VC__View_Larger__c</fullName>
+    <defaultValue>true</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checkbox to allow Metrics images to display "View Larger" images link.</description>
+    <inlineHelpText>Check this if you wish to display "View Larger" link on Metrics section of the page.</inlineHelpText>
+    <label>View Larger</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

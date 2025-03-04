@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Optional Date used to override the date on the Accounts Payable parent object when posting to the transaction object. Most useful in the Time &amp; Material Billing process to provide date information for the related billing line. --></help>
+        <label><!-- Date --></label>
+        <name>AcctSeed__Date__c</name>
+    </CustomFieldTranslation>

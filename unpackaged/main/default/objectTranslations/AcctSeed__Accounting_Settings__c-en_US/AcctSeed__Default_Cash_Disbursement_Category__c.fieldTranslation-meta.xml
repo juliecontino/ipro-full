@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to categorize Cash Disbursements on the Cash Flow statement. --></help>
+        <label><!-- Default Cash Disbursement Category --></label>
+        <name>AcctSeed__Default_Cash_Disbursement_Category__c</name>
+        <relationshipLabel><!-- Accounting Settings (Default Cash Disburs. Cash Flow Category) --></relationshipLabel>
+    </CustomFieldTranslation>

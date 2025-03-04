@@ -1,0 +1,551 @@
+.CA_calendar_edit{
+    
+}
+
+
+.CA_calendar_edit._mode_edit > .CA_calendar_list, 
+.CA_calendar_edit._mode_list > .edit_form_title,
+.CA_calendar_edit._mode_list > .edit_form_fields,
+.CA_calendar_edit._mode_list > .calendar_edit_name,
+.CA_calendar_edit._mode_edit > .form_buttons > span[data-action="add_calendar"],
+.CA_calendar_edit._mode_list > .form_buttons > span[data-action="save_calendar"],
+.CA_calendar_edit._mode_edit > .form_buttons > select,
+.CA_calendar_edit._mode_edit > .form_buttons > input,
+.CA_calendar_edit > .form_buttons > span[data-action="prev"],
+.CA_calendar_edit > .form_buttons > span[data-action="next"]
+{
+    display: none;
+}
+
+/*.CA_calendar_edit._mode_list > .CA_calendar_list,
+.CA_calendar_edit._mode_edit  > .edit_form_title,
+.CA_calendar_edit._mode_edit  > .edit_form_fields,
+.CA_calendar_edit._mode_edit  > .calendar_edit_name,*/
+.CA_calendar_edit._mode_edit  > .ca_reference_selector.show
+/*.CA_calendar_edit._mode_list > .form_buttons > select,*/
+{
+    display: block;
+}
+
+.CA_calendar_edit._mode_list._more_prev > .form_buttons > span[data-action="prev"],
+.CA_calendar_edit._mode_list._more_next > .form_buttons > span[data-action="next"]
+{
+    display: inline-block;
+}
+
+.CA_calendar_edit._mode_list > .form_buttons{
+    position: relative;
+}
+    .CA_calendar_edit._mode_list > .form_buttons > select{
+        position: absolute;
+        top:10px;
+        left:10px;
+        height: 20px;
+        background-color: transparent;
+        border: 1px solid #ddd;
+        font-size: 120%;
+    }
+    
+    .CA_calendar_edit._mode_list > .form_buttons > input{
+        position: absolute;
+        right:10px;
+        top:10px;
+        width:100px;
+    }
+    .CA_calendar_edit._mode_list > .form_buttons > span[data-action="prev"]{
+        position: absolute;
+        right:150px;
+        top:5px;
+    }
+    
+    .CA_calendar_edit._mode_list > .form_buttons > span[data-action="next"]{
+        position: absolute;
+        right:120px;
+        top:5px;
+    }
+
+div.CA_calendar_edit > .edit_form_title{
+    font-size: 140%;
+    font-weight: bold;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    position: relative;
+}
+    
+    div.CA_calendar_edit > .edit_form_title > div{
+        position: absolute;
+        top:-5px;
+        right:0;
+    }
+        div.CA_calendar_edit > .edit_form_title > div > a{
+            font-weight: normal;
+            margin-top: 0;
+            font-size: 70%;
+            /*line-height: 150%;*/
+            padding:1px 3px;
+            border-radius: 3px;
+        }
+        div.CA_calendar_edit > .edit_form_title > div > *{
+            margin-left:10px;
+        }
+        
+div.CA_calendar_edit > .calendar_edit_name{
+    font-weight: normal;
+    margin:2px;
+    font-size: 120%;
+}
+
+div.CA_calendar_edit > .edit_form_fields{}
+
+    div.CA_calendar_edit > .edit_form_fields > div{
+        display:none;
+    }
+
+    div.CA_calendar_edit > .edit_form_fields > div.on{
+        display:block;
+    }
+
+        div.CA_calendar_edit > .edit_form_fields > div > div{
+            border:1px solid #eee;
+            border-radius: 5px;
+            margin:3px 0px;
+/*            min-width: 700px;*/
+            min-height: 300px;
+            display:none;
+            position: relative;
+        }
+        
+        div.JQ_CA._compact_height div.CA_calendar_edit > .edit_form_fields > div > div{
+            min-height: 200px;
+            /*max-height: 260px;*/
+            max-height: 260px;
+            overflow-y: auto;
+        }
+        
+        div.JQ_CA._compact_height.ie div.CA_calendar_edit > .edit_form_fields > div > div{
+            min-height: 170px;
+        }
+        
+        div.CA_calendar_edit > .edit_form_fields > div > div.on{
+            display:block;
+            
+        }
+        
+            div.CA_calendar_edit > .edit_form_fields > div > div > div._title{
+                font-weight: bold;
+                background: #eeeeee;
+                background: -moz-linear-gradient(top,  #ffffff 0%, #dddddd 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dddddd));
+                background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                background: -ms-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                background: linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+                padding:5px;
+                border-radius: 5px;
+                cursor: pointer;
+                opacity:0.7;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._title{
+                opacity:1;
+                display: none;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div > div._fields{
+                display:none;
+                padding:5px;
+            }
+            div.CA_calendar_edit > .edit_form_fields > div > div > div._help{
+                display: none;
+                display:inline-block;
+                padding:5px 4px;
+                border-top: 1px dotted #ddd;
+                background-color: #fff;
+                overflow: hidden;
+                height:12px;
+                color: white;
+                /*transition-delay: 1s;*/
+                /*transition-property: height;*/
+                transition: all 0.2s ;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._help:hover{
+                color: inherit;
+                height: auto;
+                display: block;
+                box-shadow: 0 -2px 2px #333;
+                width: auto;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div > div._help._abs{
+                right:0;
+                position: absolute;
+                bottom: 0;
+                left:0;
+            }
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._help > span{
+                    height:16px;
+                    width:16px;
+                    background-image:url(../pic/icons.png);
+                    background-repeat:no-repeat;
+                    background-position: 0 -16px;
+                    display: inline-block;
+                    margin:0 4px 0 0;
+                    vertical-align: middle;
+                }
+
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields{
+                position: relative;
+                max-height: 400px;
+                display:block;
+                overflow-y: auto;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._help{
+                display: block;
+                width: 20px;
+            }
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields.off > div{
+                    display: none;
+                }
+                
+                div.CA_calendar_edit > .edit_form_fields > div > div > div._fields._cells_2 > div{
+                    display: inline-block;
+                    width: 50%;
+                    box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    vertical-align: top;
+                }
+                div.CA_calendar_edit > .edit_form_fields > div > div > div._fields._cells_2 > div._cols_2{
+                    width: 100%;
+                }
+                
+                    div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span{
+                        display: block;
+                        font-size: 100%;
+                        margin:3px 3px;
+                    }
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > span{
+                            width: 35%;
+                            display: inline-block;
+                            vertical-align: middle;
+                            padding-right:3px;
+                            text-align: left;
+                        }
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div._cols_2 > span > span{
+                            width: 17%;
+                        }
+                        
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div._cols_2 > span > span.as_field{
+                            width: 80%;
+                        }
+                        
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > input,
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > select,
+                        div.CA_calendar_edit  input._element{
+                            width:60%;
+                            background-color: #EEEEEE;
+                            border:1px solid #ddd; 
+                            border-radius: 0;
+                            padding:3px;
+                            margin:0;
+                        }
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div._cols_2 > span > input,
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div._cols_2 > span > select{
+                            width: 80%;
+                        }
+                        
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > input[type="checkbox"],
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > input[type="radio"]{
+                            width: auto;
+                        }
+
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > span._color_selector, 
+                        div.CA_calendar_edit > .edit_form_fields  span._color_selector{
+                            width:24px;
+                            height:24px;
+                            border:1px solid #ddd;
+                            border-radius: 5px;
+                            vertical-align: middle;
+                            display: inline-block;
+                        }
+                            div.CA_calendar_edit > .edit_form_fields  [data-field="color"] select{
+                                width: auto !important;
+                                padding-left: 10px;
+                            }
+                            
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields > div > span > select > option._shadow{
+                            color:#999;
+                            background-color:#eee;
+                        }
+                        
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields  select > option._sub_ref{
+                            font-size: 90%;
+                            padding-left: 25px;
+                        }
+                        
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields  select > option._ref{
+                            font-style: italic;
+                        }
+                        
+                        div.CA_calendar_edit > .edit_form_fields > div > div > div._fields  select > option._out_selected{
+                            color:#999;
+                        }
+                        
+                    
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._multi_select_block{
+                position: absolute;
+                top:5px;
+                left:0;right:0;bottom:0px;
+            }
+            div.CA_calendar_edit.ie > .edit_form_fields > div > div.on > div._fields._multi_select_block{                        
+                top:0;
+            }
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields[data-block] {
+                min-height:200px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                text-align:center;
+                vertical-align: middle;
+                margin-top:5px;
+            }
+            
+            .JQ_CA._compact_height div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields[data-block] {
+                min-height:150px;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields[data-block="filter"] {
+                max-height: none;
+                overflow-y: visible;
+            }
+
+            
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._specialcolors > span{
+                display:block;
+            }
+            
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._specialcolors > span[data-mode="list"] > div:first-child > .simple_buttons > span:first-child,
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._specialcolors > span[data-mode="list"] > div:last-child > .simple_buttons > span:nth-child(2){
+                    color: #aaa;
+                    cursor: default;
+                }
+            
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._specialcolors > span > div > span{ 
+                margin:5px;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._specialcolors > span > div > span._field_name{
+                font-weight: bolder;
+                width: 200px;
+                text-overflow:ellipsis;
+                overflow:hidden;
+                white-space: nowrap ;
+                
+            }
+            
+                .JQ_CA.ie  div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields   .multi_select[data-list="_off"],
+                .JQ_CA.ie  div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields   .multi_select_title:first-child{
+                    left:5px;
+                    right:auto;
+                }
+                
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div{
+                display: none;
+                position: absolute;
+                top:0;left:0;right:0;bottom:0;
+            }
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div > ._top_panel{
+                    position: absolute;
+                    top:0;left:0;right:0;height:50px;
+                    text-align: left;
+                }
+                    div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div > ._top_panel > *{
+                        margin-left:10px;
+                    }
+                
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div > ._bottom_panel{
+                    position: absolute;
+                    bottom:0;left:0;right:0;top:50px;
+                }
+            
+                div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div > p{
+                    text-align: left;
+                }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div:first-child{
+                display: block;
+            }
+            
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields._child > div > p{
+                display: block;
+                padding: 0;
+                margin: 0;
+            }
+            
+            
+    div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields[data-block="calendars"] > div.multi_select > div {
+        padding-left:25px;
+    }
+        div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields > div.multi_select[data-list="_off"] > div  > span{
+            opacity: 0.5;
+        }
+            div.CA_calendar_edit > .edit_form_fields > div > div.on > div._fields > div.multi_select[data-list="_off"] > div  > input{
+                visibility: hidden;
+            }
+    
+    
+    div.CA_calendar_edit > .CA_calendar_list > div{
+        display:none;
+    }
+    
+    div.CA_calendar_edit > .CA_calendar_list > div.on{
+        display:block;
+        max-height: 350px;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }            
+    
+        div.CA_calendar_edit > .CA_calendar_list > div > table{
+            width: 100%;
+            border-collapse: collapse;
+            border:0px;
+        }
+        
+            div.CA_calendar_edit > .CA_calendar_list > div > table > thead{
+                background : #225A73;
+                background: -moz-linear-gradient(top,  #225A73 0%, #487AA3 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#225A73), color-stop(100%,#487AA3));
+                background: -webkit-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                background: -o-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                background: -ms-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                background: linear-gradient(top,  #225A73 0%,#487AA3 100%);
+                height:30px;
+            }
+            
+                div.CA_calendar_edit > .CA_calendar_list > div > table > thead  th{
+                    color:white;
+                    line-height:30px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    padding-right:10px;
+                }
+                
+            div.CA_calendar_edit > .CA_calendar_list > div > table > tbody{
+                /*max-height:35px;*/
+                /*overflow-x:hidden;*/
+/*                overflow-y: auto;*/
+                border-bottom: 1px solid #ddd;
+            }
+            
+                div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr{
+/*                    border-top:1px solid #ddd;*/
+                    
+                }
+                
+                div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr:nth-child(odd){
+                    background-color: #eee;
+                }
+                
+                div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr:hover{
+                    background-color: #ddd;
+                }
+                
+                
+                    div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr > td{
+                        border-right: 1px solid #ddd;
+                        max-width: 250px;
+                        overflow-x:hidden;
+                        vertical-align: middle;
+                        padding:2px 4px;
+                        font-size: 100%;
+                    }
+                    
+                    div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr > td:first-child{
+                        border-left: 1px solid #ddd;
+                        white-space: nowrap;
+                        width: 70px;
+                    }
+                    
+                        div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr > td > a{
+                            display:inline-block;
+                            width:16px;
+                            height:16px;
+                            margin:0 3px;
+                            background-image: url("../pic/create_edit_icons.png");
+                            background-repeat: no-repeat;
+                            cursor: pointer;
+                            opacity: 0.3;
+                        }
+                        
+                        div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr > td > a._off{
+                            background-image: none;
+                            cursor: default;
+                            visibility: hidden;
+                        }
+                        
+                        a._ico_edit{
+                            background-position: 0 -96px;
+                        }
+                        a._ico_clone{
+                            background-position: 0 -64px;
+                        }
+                        a._ico_del{
+                            background-position: 0 -80px;
+                        }
+                        
+                        
+                        div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr:hover > td > a{
+                            opacity: 1;
+                        }
+                        
+                        div.CA_calendar_edit > .CA_calendar_list > div > table > tbody > tr > td > ._color {
+                            display: block;
+                            width:20px;
+                            height:16px;
+                            border-radius: 2px;
+                            margin: 0 auto;
+                        }
+div.CA_calendar_edit > .edit_form_fields  ._color_selector{
+    background-repeat: repeat;
+    background-position: left top;
+}                        
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_0{background-image: none}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_1{background-image: url(../pic/tpl/tpl1.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_2{background-image: url(../pic/tpl/tpl2.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_3{background-image: url(../pic/tpl/tpl3.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_4{background-image: url(../pic/tpl/tpl4.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_5{background-image: url(../pic/tpl/tpl5.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_6{background-image: url(../pic/tpl/tpl6.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_7{background-image: url(../pic/tpl/tpl7.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_8{background-image: url(../pic/tpl/tpl8.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_9{background-image: url(../pic/tpl/tpl9.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_10{background-image: url(../pic/tpl/tpl10.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_11{background-image: url(../pic/tpl/tpl11.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_12{background-image: url(../pic/tpl/tpl12.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_13{background-image: url(../pic/tpl/tpl13.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_14{background-image: url(../pic/tpl/tpl14.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_15{background-image: url(../pic/tpl/tpl15.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_16{background-image: url(../pic/tpl/tpl16.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_17{background-image: url(../pic/tpl/tpl17.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_18{background-image: url(../pic/tpl/tpl18.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_19{background-image: url(../pic/tpl/tpl19.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_20{background-image: url(../pic/tpl/tpl20.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_21{background-image: url(../pic/tpl/tpl21.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_22{background-image: url(../pic/tpl/tpl22.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_23{background-image: url(../pic/tpl/tpl23.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_24{background-image: url(../pic/tpl/tpl24.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_25{background-image: url(../pic/tpl/tpl25.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_26{background-image: url(../pic/tpl/tpl26.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_27{background-image: url(../pic/tpl/tpl27.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_28{background-image: url(../pic/tpl/tpl28.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_29{background-image: url(../pic/tpl/tpl29.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_30{background-image: url(../pic/tpl/tpl30.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_31{background-image: url(../pic/tpl/tpl31.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_32{background-image: url(../pic/tpl/tpl32.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_33{background-image: url(../pic/tpl/tpl33.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_34{background-image: url(../pic/tpl/tpl34.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_35{background-image: url(../pic/tpl/tpl35.png)}
+div.CA_calendar_edit > .edit_form_fields  ._color_selector.evt_tpl_36{background-image: url(../pic/tpl/tpl36.png)}

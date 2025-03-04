@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">  
+  <meta name="author" content="Bolik" />
+  <meta content="Copyright 2006-2008 Bolik" name="copyright" />
+  <meta name="description" content="WorkItem Tracking System" />
+  <meta name="keywords" content="wit, WorkItem, WorkItemTracking, Ajax, Web2.0, MVC" />
+  <%--<meta http-equiv="Pragma" content="no-cache" />--%>
+  <meta name="robots" content="none" />
+  <link charset="utf-8" rel="stylesheet" type="text/css" href="Common.css" />
+  <link  charset="utf-8" rel="stylesheet" type="text/css" href="jquery.popup.css"/>
+  <link charset="utf-8" rel="stylesheet" type="text/css" href="jquery.treeview.css" />
+  <script type="text/javascript" charset="utf-8" src="jquery.js"></script> 
+  <script type="text/javascript" charset="utf-8" src="jquery.treeview.js"></script>
+  <script type="text/javascript" charset="utf-8" src="jquery.cookie.js"></script>
+  <script type="text/javascript" charset="utf-8" src="jquery.dimensions.js"></script>
+  <script type="text/javascript" charset="utf-8" src="jquery.popup.js"></script> 
+</head>
+<body>
+  <div>
+    <input id="popupDemo1" type="text" class="popup" />
+    <input id="popupDemo2" type="text" class="popup" />
+    <input id="TreeViewPopup" type="text" />
+    <script type="text/javascript">
+      jQuery(function($){
+		    $("input.popup").popup('<a href="#" id="demo1">demo1Text</a><br /><a href="#" id="demo2">demo2Text</a>');
+		    $("input#TreeViewPopup").popup(' <ul class="treeview-popup"><li><a href="#" id="node_100">Europe</a><ul><li><a href="#" id="node_101">Norway</a><ul><li><a href="#" id="node_102">Rogaland</a><ul><li class="tree_sheet.gif"><a href="#" id="node_103">Stavanger</a></li><li class="tree_sheet.gif"><a href="#" id="node_104">Haugesund</a></li></ul></li><li class="tree_sheet.gif"><a href="#" id="node_105">Hordaland</a></li>            <li class="tree_sheet.gif"><a href="#" id="node_106">Oslo</a></li>          </ul>        </li>        <li><a href="#" id="node_107">United Kingdom</a>          <ul>            <li><a href="#" id="node_108">London</a></li>            <li><a href="#" id="node_109">Manchester</a></li>            <li><a href="#" id="node_110">Oxford</a></li>          </ul>        </li>        <li><a href="#" id="node_111">Sweden</a></li>        <li><a href="#" id="node_112">Denmark</a></li>        <li><a href="#" id="node_113">Germany</a></li>      </ul>    </li>    <li><a href="#" id="node_114">Asia</a></li>    <li><a href="#" id="node_115">Africa</a><ul><li><a href="#" id="node_116">Tanzania</a></li><li><a href="#" id="node_117">Kenya</a></li></ul></li><li><a href="#" id="node_118">America</a><ul><li class="tree_sheet.gif"><a href="#" id="node_119">Canada</a></li><li><a href="#" id="node_120">United States</a></li><li class="tree_sheet.gif"><a href="#" id="node_121">Mexico</a></li><li><a href="#" id="node_122">Argentina</a></li></ul></li></ul>');
+		    $(".treeview-popup").treeview({	         
+	        persist: "cookie",
+	        cookieId: "treeview-popup"
+        });
+	    });
+    </script>
+  </div>
+</body>
+</html>

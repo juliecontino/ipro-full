@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>DiscoverOrg</label>
+    <logo>DSCORGPKG__DiscoverOrg/DSCORGPKG__DorgLogo.png</logo>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Campaign</tabs>
+    <tabs>DSCORGPKG__DiscoverOrgSearch</tabs>
+    <tabs>DSCORGPKG__Autoupdateable_settings</tabs>
+    <tabs>DSCORGPKG__DiscoverOrg_Custom_Mappings</tabs>
+    <tabs>DSCORGPKG__DiscoverOrg_Conflict_Manager</tabs>
+    <tabs>DSCORGPKG__DiscoverOrg_Operations_Page</tabs>
+    <tabs>DSCORGPKG__DiscoverOrg_Update_History__c</tabs>
+    <tabs>Project_Notes__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

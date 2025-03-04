@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__DropoffType__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Dropoff Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Service Center</fullName>
+                <default>false</default>
+                <label>Business Service Center</label>
+            </value>
+            <value>
+                <fullName>Drop Box</fullName>
+                <default>false</default>
+                <label>Drop Box</label>
+            </value>
+            <value>
+                <fullName>Regular Pickup</fullName>
+                <default>false</default>
+                <label>Regular Pickup</label>
+            </value>
+            <value>
+                <fullName>Request Courier</fullName>
+                <default>false</default>
+                <label>Request Courier</label>
+            </value>
+            <value>
+                <fullName>Station</fullName>
+                <default>false</default>
+                <label>Station</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

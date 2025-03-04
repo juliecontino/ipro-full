@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Search_Amount_Range</fullName>
+    <columns>AcctSeed__Total__c</columns>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Accounting_Period__c</columns>
+    <columns>AcctSeed__Customer__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Total__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>225</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Total__c</field>
+        <operation>lessOrEqual</operation>
+        <value>228</value>
+    </filters>
+    <label>Search Amount Range</label>
+    <language>en_US</language>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

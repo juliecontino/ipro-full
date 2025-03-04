@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- For completed Shipments, this will be the default email body when sending shipping labels via email --></help>
+        <label><!-- Email Label Text Body Default --></label>
+        <name>zkfedex__EmailLabelTextBodyDefault__c</name>
+    </CustomFieldTranslation>

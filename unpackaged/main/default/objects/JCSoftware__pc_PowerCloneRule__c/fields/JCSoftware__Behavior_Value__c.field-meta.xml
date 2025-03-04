@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JCSoftware__Behavior_Value__c</fullName>
+    <defaultValue>"Default Value"</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Default value of the behavior</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Default Value of the Behavior.  Use #BLANK to have an empty default value when the object is cloned.</inlineHelpText>
+    <label>Behavior Value</label>
+    <length>200</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

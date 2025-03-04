@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Παραλήπτης Conga Sign</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Παραλήπτες Conga Sign</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Παραλήπτης Conga Sign --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Παραλήπτες Conga Sign --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Παραλήπτης Conga Sign --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Παραλήπτες Conga Sign --></value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Recipient Layout</layout>
+        <sections>
+            <label>Προσαρμοσμένες Συνδέσεις</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Ενότητα Αιτιολογίας</label>
+            <section>Reason Section</section>
+        </sections>
+        <sections>
+            <label>Στοιχεία Παραλήπτη</label>
+            <section>Recipient Details</section>
+        </sections>
+        <sections>
+            <label>Απάντηση Παραλήπτη</label>
+            <section>Recipient Response</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Όνομα Παραλήπτη</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You cannot Reparent this record. --></errorMessage>
+        <name>APXT_CongaSign__Prevent_Reparent</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Reassign --></label>
+        <name>APXT_CongaSign__Reassign</name>
+    </webLinks>
+</CustomObjectTranslation>

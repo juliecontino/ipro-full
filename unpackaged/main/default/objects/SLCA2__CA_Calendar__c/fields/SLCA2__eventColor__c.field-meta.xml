@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__eventColor__c</fullName>
+    <defaultValue>"rgb(50, 146, 98)"</defaultValue>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>eventColor</label>
+    <length>25</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

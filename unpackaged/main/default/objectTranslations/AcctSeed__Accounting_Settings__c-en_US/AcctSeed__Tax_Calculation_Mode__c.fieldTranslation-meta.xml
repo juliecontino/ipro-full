@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Point of Sale considers taxability for Origin Address. Point of Destination considers taxability for Shipping Address. Shipment considers taxability for both addresses. --></help>
+        <label><!-- Sales Tax Calculation Mode --></label>
+        <name>AcctSeed__Tax_Calculation_Mode__c</name>
+        <picklistValues>
+            <masterLabel>Point of Destination</masterLabel>
+            <translation><!-- Point of Destination --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point of Sale</masterLabel>
+            <translation><!-- Point of Sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipment</masterLabel>
+            <translation><!-- Shipment --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

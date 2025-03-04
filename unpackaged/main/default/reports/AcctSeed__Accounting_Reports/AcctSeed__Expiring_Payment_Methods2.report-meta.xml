@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Status__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Card_Holder_Name__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Type__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Last_Four_Digits__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Default__c</field>
+    </columns>
+    <description>Shows Payment Methods Grouped by Expiration Date</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Expiration_Year__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Expiration_Month__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Expiring Payment Methods</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$AcctSeed__Payment_Method__c@AcctSeed__Payment_Method__c.AcctSeed__Customer__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

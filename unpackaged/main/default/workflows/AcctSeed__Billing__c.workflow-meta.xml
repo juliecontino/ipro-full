@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>CCE_Application_Number</fullName>
+        <field>CCE_Application_Number_Text__c</field>
+        <formula>AcctSeed__Recurring_Billing__r.CCE_Application_Number__c</formula>
+        <name>CCE Application Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_CCE</fullName>
+        <field>CCEText__c</field>
+        <formula>Text( AcctSeed__Recurring_Billing__r.CCE__c )</formula>
+        <name>Copy CCE</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_CCE_Portfolio</fullName>
+        <field>CCE_Portfolio_Text__c</field>
+        <formula>Text( AcctSeed__Recurring_Billing__r.CCE_Portfolio__c )</formula>
+        <name>Copy CCE Portfolio</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Advanced_Replacement_Comments</fullName>
+        <field>AcctSeed__Billing_Comment__c</field>
+        <formula>'This is an Advanced Replacement Invoice:'</formula>
+        <name>Update Advanced Replacement Comments</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Billing_End_Date</fullName>
+        <field>AcctSeed__Billing_Cycle_End_Date__c</field>
+        <formula>IF( Partial_Recurring_Bill__c = False,  AcctSeed__Accounting_Period__r.AcctSeed__End_Date__c , Null)</formula>
+        <name>Update Billing End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Billing_Start_Date</fullName>
+        <field>AcctSeed__Billing_Cycle_Start_Date__c</field>
+        <formula>IF( Partial_Recurring_Bill__c = False,  AcctSeed__Accounting_Period__r.AcctSeed__Start_Date__c,  AcctSeed__Accounting_Period__r.AcctSeed__Start_Date__c )</formula>
+        <name>Update Billing Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Billing Cycle Start-End Date</fullName>
+        <actions>
+            <name>Update_Billing_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Billing_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Billing__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <description>Populate the Billing start date and end date if the partial billing flag is set to false.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Billing-Update Tracking Number</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>AcctSeed__Billing__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy CCE Data from Recurring Billing</fullName>
+        <actions>
+            <name>CCE_Application_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Copy_CCE</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Copy_CCE_Portfolio</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Not(isblank( AcctSeed__Recurring_Billing__c ))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

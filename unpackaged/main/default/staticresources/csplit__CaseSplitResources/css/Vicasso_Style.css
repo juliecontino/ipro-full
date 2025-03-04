@@ -1,0 +1,233 @@
+/** General **/
+@import url('/resource/csplit__CaseSplitResources/fonts/roboto/roboto.css');
+
+.bold {
+    font-weight: bold;   
+}
+
+.italic {
+    font-style: italic;
+}
+
+/** Classic **/
+.primaryPalette {
+	background-color: #228EFF !important;
+}
+
+.brdPalette, .secondaryPalette {
+	border-top-color: #228EFF !important;
+}
+
+.slds-scope {
+	padding: 0 !important;
+}
+
+.slds-scope * {
+	padding: 0;
+    font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+/** Page Header **/
+.slds-scope .slds-page-header {
+    background-color: #000 !important;
+	color: #FFF !important;
+	border: none !important;
+}
+
+.slds-page-header .header-icon {
+	background: linear-gradient(135deg, #228EFF, #8D31F7);
+}
+
+/** Vicasso Container **/
+.vicasso-container {
+	background-repeat: no-repeat;
+	background-position: right -12px bottom -12px;
+	background-size: 160px;
+	background-image: url('/resource/csplit__CaseSplitResources/images/logos/VicassoLight.svg') !important;
+}
+
+/** Links **/
+.slds-scope a {
+    color: #8D31F7 !important;
+}
+
+.slds-scope a:hover, .slds-scope a:focus {
+    color: #6F1CD8 !important;
+}
+
+/** Full Screen Overlay **/
+.slds-backdrop.slds-backdrop_white {
+	background: rgba(255,255,255,.8) !important;
+}
+
+.slds-backdrop .slds-spinner {
+    position: static !important;
+}
+
+/** Spinners - Updates brand colors & spinners start without delay. **/
+.slds-scope .slds-spinner::before {
+	animation-delay: -600ms !important;
+	-webkit-animation-delay: -600ms !important;
+	-moz-animation-delay: -600ms !important;
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner::after {
+	animation-delay: -183.3ms !important;
+	-moz-animation-delay: -183.3ms !important;
+	-webkit-animation-delay: -183.3ms !important;
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-a::before {
+	animation-delay: -516ms !important;
+	-moz-animation-delay: -516ms !important;
+	-webkit-animation-delay: -516ms !important;
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-a::after {
+	animation-delay:-16.6ms !important;
+	-moz-animation-delay:-16.6ms !important;
+	-webkit-delay:-16.6ms !important;
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-b::before {
+	animation-delay:-350ms !important;
+	-moz-animation-delay:-350ms !important;
+	-webkit-animation-delay:-350ms !important;
+	background-color: #8D31F7 !important;
+}
+
+.slds-scope .slds-spinner__dot-b::after {
+	animation-delay:150ms !important;
+	-moz-animation-delay:150ms !important;
+	-webkit-animation-delay:150ms !important;
+	background-color: #8D31F7 !important;
+}
+
+/** SLDS Buttons **/
+.slds-scope .slds-button {
+    color: #8D31F7;
+}
+
+/** Neutral Buttons **/
+.slds-scope .slds-button_neutral {
+    color: #8D31F7 !important;
+    border-color: #DDDBDA !important;
+}
+
+.slds-scope .uiButton--default .label {
+	color: #8D31F7 !important;
+}
+
+.slds-scope .slds-button_neutral:hover,
+.slds-scope .uiButton--default:hover .label {
+    color: #6F1CD8 !important;
+}
+
+/** Branded Buttons **/
+.slds-button_brand {
+	border: 1px solid #8D31F7 !important;
+	background-color: #8D31F7 !important;
+	color: #FFF !important;
+}
+
+.slds-button_brand:hover, .slds-button--brand:hover {
+	background-color: #6F1CD8 !important;
+	border-color: #6F1CD8 !important;
+}
+
+/** Tables **/
+.slds-scope .slds-table {
+    background-color: transparent;
+}
+
+/** Select **/
+/* Firefox Exclusive */
+@-moz-document url-prefix() {
+    .slds-select {height: calc(1.875rem + (1px * 2)) !important;}
+}
+
+.slds-select_container::before {
+    content: none !important;
+}
+
+.slds-select_container::after {
+    border-top-width: 6px !important;
+    border-left-width: 4px !important;
+    border-right-width: 4px !important;
+    bottom: 0.80rem !important;
+    pointer-events:none;
+}
+
+.slds-select[disabled] {
+	background-color: #F5F5F5 !important;
+}
+
+/** Tabs **/
+.slds-scope .slds-tabs_default__link,
+.slds-tabs_default__item.slds-is-active, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link:hover, 
+.slds-tabs_default__item .slds-tabs_default__link:hover, .slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+	color: #000 !important;
+    text-decoration: none !important;
+}
+
+.slds-tabs_default__item.slds-is-active .slds-tabs_default__link {
+    text-shadow: -0.25px 0px 0px #000, 0px -0.25px 0px #000;
+}
+
+.slds-tabs_default__item.slds-is-active:after, .slds-tabs_default__item.slds-has-focus:after, .slds-scope .slds-tabs_default__item:hover:after {
+	background-color: #6F1CD8 !important;
+}
+
+ul.slds-tabs_default__nav {
+	padding: 0 2rem !important;
+}
+
+ul.slds-tabs_default__nav > li.slds-tabs_default__item {
+	cursor: pointer !important;
+}
+
+/** Section **/
+.slds-scope .slds-section__title {
+    color: #FFF !important;
+}
+
+.slds-scope .slds-section__title {
+	background-color: #8D31F7 !important;
+	border-top: 0 !important;
+}
+
+.slds-section__title-action, .slds-section__title-action:hover, .slds-section__title-action:focus{
+	background-color: #8D31F7 !important;
+}
+
+/** Checkbox **/
+.slds-checkbox .slds-checkbox_faux:after {
+	border-color: #8D31F7 !important;
+}
+
+.slds-checkbox [type=checkbox][disabled] + .slds-checkbox__label .slds-checkbox_faux {
+	background-color: #F5F5F5 !important;
+	border-color: #DDDBDA !important;
+}
+
+.slds-checkbox [type=checkbox][disabled] + .slds-checkbox__label .slds-checkbox_faux:after {
+	border-color: #9A9A9A !important;
+}
+
+/** Radio **/
+.slds-radio .slds-radio_faux:after {
+	background: #8D31F7 !important;
+}
+
+.slds-radio [type=radio][disabled] + .slds-radio__label .slds-radio_faux {
+	background-color: #F5F5F5;
+	border-color: #DDDBDA;
+}
+
+.slds-checkbox [type=checkbox][disabled] + .slds-radio__label .slds-radio_faux:after {
+	border-color: #9A9A9A !important;
+}

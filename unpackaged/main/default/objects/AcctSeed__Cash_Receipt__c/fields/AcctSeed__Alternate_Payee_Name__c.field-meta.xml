@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Alternate_Payee_Name__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Inherits the value set on the Alternate Account Name field on the Account and can be overridden. If the Alternate Payee Name is populated, this value is set on the check's Payee field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Inherits the value set on the Alternate Account Name field on the Account and can be overridden. If the Alternate Payee Name is populated, this value is set on the check's Payee field.</inlineHelpText>
+    <label>Alternate Payee Name</label>
+    <length>80</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,798 @@
+@import url(gantt.ipad.css) screen and (max-device-width: 1024px) and (orientation: landscape);
+@import url(gantt.ipad.css) screen and (device-width: 768px) and (orientation: portrait);
+
+
+.JQ_CA > .CA_r > .show._mode-gantt{
+    display:block !important;
+}
+
+.JQ_CA > .CA_r > .show._mode-gantt > div,
+.JQ_CA  .gantt_blocks > ._gantt_block > div{
+    position:absolute;
+    padding:0px;
+}
+
+.JQ_CA > .CA_r > .show._mode-gantt > .gantt_form{
+    top:0px;
+    left:20px;
+    width:200px;
+    height:40px;
+    background-color:#eee;
+    text-align: center;
+}
+
+    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_form > div{
+        display:inline-block;
+        vertical-align: middle;
+        line-height: 34px;
+        height:34px;
+    }
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_form > div > input{
+            margin:0px;
+            padding:0px;
+        }   
+        
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_form > div > select{
+            height:20px;
+            font-size: 100%;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_form > div._wide_event_names{
+            position: absolute;
+            right:0;
+            top:10px;
+            background-image:url(../pic/type_calendars.png);
+            width:12px;
+            height:16px;
+            background-position: -3px -48px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.1)
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt._wide > .gantt_form > div._wide_event_names{
+            background-position: -3px -159px;
+        }
+
+.JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars{
+    top:40px;
+    left:20px;
+    right:20px;
+    bottom:10px;
+    z-index:2;
+/*    overflow-y:hidden;*/
+}
+
+    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title,
+    .JQ_CA  .gantt_blocks > ._gantt_block > .title{
+        overflow:hidden;
+        width:200px;
+        position:absolute;
+        left:0px;
+        top:0px;
+        cursor: pointer;
+        bottom:20px;
+    }
+    
+    .JQ_CA  .gantt_blocks > ._gantt_block > .title{
+        position:relative;
+        bottom:0;
+        padding-top:44px;
+    }
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .title > div{
+            position:relative;
+            border-bottom:1px solid #ddd;
+        }
+        
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > .title,
+            .JQ_CA  .gantt_blocks > ._gantt_block > .title > div > .title{
+                height:25px;
+                font-weight: bold;
+                padding-left:5px;
+                line-height:25px;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > .title._has_sum{
+                padding-right: 20px;
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+            }
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > .title > b._sum{
+                    background-color: transparent !important;
+                    top: 3px;
+                }
+                
+    
+            
+            
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div,
+            .JQ_CA  .gantt_blocks > ._gantt_block > .title >  div > div{
+                height:20px;
+                border-bottom:1px solid #eee;
+                padding-left:15px;
+                text-align: left;
+                white-space: nowrap;                
+                line-height:20px;
+                vertical-align: bottom;
+/*                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;*/
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div._collapse{
+                display: none;
+            }
+            
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div._groups_1 > div._level_0._collapse,
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div._groups_2 > div._level_0._collapse,
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div._groups_2 > div._level_1._collapse{
+                display: block;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div._level_0.group_title._has_sum_0{
+                padding-right:25px;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div._level_0.group_title._has_sum_1{
+                padding-right:50px;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div._level_0.group_title._has_sum_2{
+                padding-right:70px;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div._level_0.group_title._has_sum_3{
+                padding-right:90px;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div._level_0.group_title._has_sum_4{
+                padding-right:110px;
+            }
+            
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > *,
+                .JQ_CA  .gantt_blocks > ._gantt_block > .title >  div > * {
+                    vertical-align: middle;
+                }
+            
+            /*.JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group,*/
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group_title,
+            .JQ_CA  .gantt_blocks > ._gantt_block > .title >  div > div.group_title
+            {
+/*                border-bottom:1px solid #ccc;*/
+                background-color: #eee;
+                background-color: rgba(0,0,0,0.1);
+                position: relative;
+                text-overflow: ellipsis;
+                overflow:hidden;
+                font-weight: bolder;
+                padding: 0px 5px;
+                text-align: right;  
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group_title._collapse{
+                opacity: 0.5;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group_title._level_1,
+            .JQ_CA  .gantt_blocks > ._gantt_block > .title >  div > div.group_title._level_1,
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group_title_sub,
+            .JQ_CA  .gantt_blocks > ._gantt_block > .title >  div > div.group_title_sub
+            {
+/*                border-bottom:1px solid #ccc;*/
+                background-color: #eee;
+                background-color: rgba(0,0,0,0.035);
+                position: relative;
+                text-overflow: ellipsis;
+                overflow:hidden;
+                font-weight: bolder;
+                padding: 0px 5px;
+                text-align: left;  
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.evt{
+                position: relative;
+            }
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group_title > b._sum,
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div > b._sum{
+                    border-radius: 5px;
+                    background: #efefef;
+                    border: 1px solid white;
+                    display: inline-block;
+                    /*margin-left: 4px;*/
+                    vertical-align: initial;
+                    line-height: 11px;
+                    padding: 2px 4px;
+                    font-weight: normal;
+                    /*float: right;*/
+                    position: absolute;
+                    right:2px;
+                }
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.evt > b._sum{
+                    /*margin-right: 5px;*/
+                    font-size: 80%;
+                }
+            
+/*            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title > div > div.group > span{
+                position: absolute;
+                right: 0px;
+                padding: 0px 5px;
+                display:inline-block;
+                font-weight: bolder;
+                max-width: 50%;
+                text-overflow: ellipsis;
+                overflow:hidden;
+                background-color: #ddd;
+            }*/
+    
+    
+    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events{
+        border-left:1px solid #ddd;
+        overflow:scroll;
+        position:absolute;
+        left:200px;
+        right:0px;
+        bottom:0px;
+        top:0px;
+    }
+    
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > span._drag_pane_bg{
+            background-color:transparent !important;
+        }
+    
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div{
+            position:relative;
+            border-bottom:1px solid #ddd;
+/*            padding-top:26px;*/
+/*            background-image: url(../pic/event_day_grid_20.png);
+            background-position: 0 26px;*/
+        }
+            
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.grouping{
+                height:25px;
+                background-color: rgb(255, 255, 255);      
+                background-color: rgba(255, 255, 255, 0.5);
+                white-space: nowrap;
+            }
+            
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.grouping > select{
+                    height:20px;
+                    line-height: 20px;
+                    padding:0px;
+                    margin:2px 3px;
+                    max-width: 150px;
+                    background: white;
+                    border: 1px solid #eee;
+                    font-size: 120%;
+                    border-radius: 2px;
+                }
+                
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.grouping > select ._ref{
+                        font-style: italic;
+                    }
+                    
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.grouping > select ._sub_ref{
+                        font-size: 90%;
+                        padding-left: 25px;
+                    }
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.grouping > select ._out_selected{
+                        color:#999;
+                    }
+                    
+
+                
+                
+                
+            
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div{
+                position:relative;
+                border-bottom:1px solid #eee;
+                height:20px;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line{
+                background-color: #eee;
+                background-color: rgba(0,0,0,0.1);
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line._level_1{
+                background-color: #eee;
+                background-color: rgba(0,0,0,0.035);
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line._collapse{
+                opacity: 0.7;
+            }
+            
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line > span._group_evt{
+                    display: none;
+                }
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line._collapse > span._group_evt{
+                    height: 14px;
+                    display: inline-block;
+                    border-radius: 2px;
+                    line-height: 10px;
+                    font-size: 0;
+                    margin-top:5px;
+                    min-width: 3px;
+                    vertical-align: top;
+                }
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line._collapse > span._group_evt._rainbow > i{
+                        display: flex;
+                        height:14px;
+                        border-radius: 2px;
+                        margin-top: 0px;
+                        flex-direction: column;
+                        /*padding:0 3px;*/
+                    }
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div.group_empty_line._collapse > span._group_evt._rainbow > i > b{
+                             flex: 1;
+                             display: block;
+                             height: auto;
+                        }
+            
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div._collapse{
+                display: none;
+            }
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div._groups_1 > div._level_0._collapse,
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div._groups_2 > div._level_0._collapse,
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div._groups_2 > div._level_1._collapse{
+                display: block;
+            }
+            
+            
+            .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div._highlight{
+                background-color: rgb(200, 255, 0);                
+                background-color: rgba(200, 255, 0, 0.3);
+            }
+            
+            
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt,
+                .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt{
+                    position:absolute;
+                    top:0px;
+                    bottom:0px;
+                    height:20px;
+                    display:inline-block;
+                    min-width: 7px;
+                }
+                .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.new_event{
+                    opacity:1 !important;
+                }
+                
+                    
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span,
+                    .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt > span{
+/*                        position:absolute;*/
+                        display:block;
+/*                        left:0px;right:0px;*/
+                        margin-top:1px;
+                        height:18px;
+/*                        top:1px;bottom:1px;*/
+/*                        background-image: url("../pic/event_bg.png");
+                        background-position: center center;
+                        background-repeat: repeat-x;*/
+                        border-radius: 5px 5px 5px 5px;
+/*                        overflow:hidden;*/
+                    }
+                    
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.new_event > span{
+                        background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                        border-radius: 10px 10px 10px 10px;
+                        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                    }
+
+                    
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.full_l > span,
+                    .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.full_l > span{
+                        border-bottom-left-radius: 2px;
+                        border-top-left-radius: 2px;
+                    }
+                    
+                    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.full_r > span,
+                    .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.full_r > span{
+                        border-bottom-right-radius: 2px;
+                        border-top-right-radius: 2px;
+                    }
+                    
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span > span,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt > span > span{
+/*                            position:absolute;top:0px;bottom:0px;*/
+                              height:18px;
+                              display:inline-block;
+                        }
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span > span.l,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt > span > span.l{
+                            background: url("../pic/event_week_l.png") repeat-y scroll right top transparent;
+                            border-bottom-left-radius: 5px;
+                            border-top-left-radius: 5px;
+                            cursor: w-resize;
+/*                            float:left;*/
+                            left: 0;
+                            width: 10px;
+                            z-index: 2;
+                            position: absolute;
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span > span.r,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt > span > span.r{
+                            background: url("../pic/event_week_r.png") repeat-y scroll right top transparent;
+                            position: absolute;
+                            border-bottom-right-radius: 5px;
+                            border-top-right-radius: 5px;
+                            cursor: e-resize;
+                            right: 0;
+/*                            float:right;*/
+                            width: 10px;
+                            z-index: 2;
+                            
+                        }
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span:hover > span.l{
+                            left:-5px;
+                            background-color: rgba(0, 0, 0, 0.2);
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span:hover > span.r{
+                            margin-right:-5px;
+                            background-color: rgba(0, 0, 0, 0.2);
+                        }
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.non_e > span > span.l,
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.non_e > span > span.r,
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.non_r > span > span.l,
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.non_r > span > span.r,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.non_e > span > span.l,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.non_r > span > span.r,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.non_e > span > span.l,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.non_r > spane > span.r{
+                            background-color: transparent;
+                            background-image:none;
+                            cursor: default;
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.full_r > span > span.r,
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.full_l > span > span.l,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.full_r > span > span.l,
+                        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div > .evt.full_l > span > span.l{
+                            display:none;
+                        }                        
+                        
+                        
+                        
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt > span > span.resize_date{
+                            position: absolute;
+                            top:-22px;
+                            left:10px;
+                            display:nlock;
+                            padding:2px;
+                            border-radius: 2px;
+                            background-color: #ddd;
+                            border:1px solid #aaa;
+                            color:#555;
+                            display:none;
+                            white-space: nowrap;
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt.new_event > span > span.resize_date{
+                            display:block;
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .events > div > div > .evt._to_right > span > span.resize_date{
+                            left: auto;
+                            right:10px;
+                        }
+                        
+
+
+.JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates,
+.JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates{
+    top:0px;
+    left:220px;
+    right:20px;
+/*    height:40px;*/
+    bottom:20px;
+/*    background-color:#eee;*/
+    border-left:1px solid #ddd;
+    overflow-x:hidden;
+    z-index:1;
+    overflow-y: hidden;
+}
+
+    .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table,
+    .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table{
+        border-collapse: collapse;
+        border:0px;
+/*        width:100%;*/
+        padding:0px;
+        margin:0px;
+        cursor:pointer;
+        height:100%;
+/*        background-color: #eee;*/
+    }
+    
+
+  
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > thead > tr > th,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > thead > tr > th{
+            BORDER-TOP: #D9D9D9 1px solid; 
+            FONT-SIZE: 12px; 
+            BORDER-LEFT: #D9D9D9 1px solid; 
+            HEIGHT: 20px;
+            white-space: nowrap;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            BORDER-TOP: #D9D9D9 1px solid; 
+            BORDER-LEFT: #D9D9D9 1px solid; 
+            HEIGHT: 20px;
+            white-space: nowrap;
+            text-align: center;
+            font-weight: normal;
+            font-size:11px;
+        }
+        
+        .JQ_CA.ie > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA.ie  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            vertical-align: top;
+            padding-top:3px;
+            height:auto;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr:last-child > td,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr:last-child > td{
+            height:auto;
+            vertical-align: top;
+            padding-top:3px;
+        }
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td:last-child,
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > thead > tr > th:last-child,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td:last-child,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > thead > tr > th:last-child{
+            border-right:1px solid #ddd;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt.format_week > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA  .gantt_blocks.format_week > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            width:30px;
+            min-width: 30px;
+        }
+        .JQ_CA > .CA_r > .show._mode-gantt.format_day > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA  .gantt_blocks.format_day > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            width:17px;
+            min-width: 17px;
+        }
+        .JQ_CA > .CA_r > .show._mode-gantt.format_month > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA  .gantt_blocks.format_month > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            width:60px;
+            min-width: 60px;
+        }
+        .JQ_CA > .CA_r > .show._mode-gantt.format_quarter > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA  .gantt_blocks.format_quarter > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            width:100px;
+            min-width: 100px;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt.format_hour > .gantt_dates > table > tbody > tr > td,
+        .JQ_CA  .gantt_blocks.format_hour > ._gantt_block > .gantt_dates > table > tbody > tr > td{
+            width:17px;
+            min-width: 17px;
+        }
+/*        .JQ_CA > .CA_r > .show._mode-gantt.format_day > .gantt_dates > table > tbody > tr > td.scroll_width{
+            min-width: 0 !important;
+        }*/
+        
+        .JQ_CA > .CA_r > .show._mode-gantt.format_day > .gantt_dates > table > tbody > tr > td.holiday,
+        .JQ_CA  .gantt_blocks.format_day > ._gantt_block > .gantt_dates > table > tbody > tr > td.holiday{
+            background-color: rgba(127,127,127, 0.07);
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt.format_hour > .gantt_dates > table > tbody > tr > td.nonworking,
+        .JQ_CA  .gantt_blocks.format_hour > ._gantt_block > .gantt_dates > table > tbody > tr > td.nonworking{
+            background-color: rgba(234, 240, 248, 0.7);
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td.current,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td.current,
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td.current.grey,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td.current.grey{
+            background-color: rgba(208, 139, 131, 0.3) !important;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td.grey,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td.grey{
+            background-color: rgba(150, 150, 150, 0.2) ;
+        }
+        .JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates > table > tbody > tr > td.grey.holiday,
+        .JQ_CA  .gantt_blocks > ._gantt_block > .gantt_dates > table > tbody > tr > td.grey.holiday,
+        .JQ_CA > .CA_r > .show._mode-gantt.format_hour > .gantt_dates > table > tbody > tr > td.nonworking.grey,
+        .JQ_CA  .gantt_blocks.format_hour > ._gantt_block > .gantt_dates > table > tbody > tr > td.nonworking.grey{
+            background-color: rgba(150, 150, 150, 0.25) ;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-gantt.format_day > .gantt_dates > table > tbody > tr > td._highlight,
+        .JQ_CA > .CA_r > .show._mode-gantt.format_hour > .gantt_dates > table > tbody > tr > td._highlight,
+        .JQ_CA  .gantt_blocks.format_day > ._gantt_block > .gantt_dates > table > tbody > tr > td._highlight,
+        .JQ_CA  .gantt_blocks.format_hour > ._gantt_block > .gantt_dates > table > tbody > tr > td._highlight{
+            background-color: rgb(200, 255, 0) !important;                
+            background-color: rgba(200, 255, 0, 0.2) !important;
+        }
+        .JQ_CA > .CA_r > .show._mode-gantt.format_day > .gantt_dates > table > tbody > tr > td._baselight,
+        .JQ_CA > .CA_r > .show._mode-gantt.format_hour > .gantt_dates > table > tbody > tr > td._baselight,
+        .JQ_CA  .gantt_blocks.format_day > ._gantt_block > .gantt_dates > table > tbody > tr > td._baselight,
+        .JQ_CA  .gantt_blocks.format_hour > ._gantt_block > .gantt_dates > table > tbody > tr > td._baselight{
+            background-color: rgb(40, 255, 0) !important;                
+            background-color: rgba(40, 255, 0, 0.2) !important;
+        }
+        
+
+        
+.JQ_CA > .CA_r > .show._mode-gantt > .gantt_dates_bg{
+    position:absolute;
+    z-index:0;
+    top:0px;
+    left:220px;
+    right:20px;
+    height:40px;
+    background: #EEE;
+    background: -moz-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: -webkit-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: -o-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: -ms-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: linear-gradient(top, #DDD 0%,white 50%, #DDD 100%) #EEE;
+    border-bottom:1px solid #ddd;
+    box-sizing: border-box;
+}
+                
+
+.SL_selectbox{
+    font-size:11px;
+    padding-left:10px;
+    line-height: 11px;
+    font-weight: bold;
+}        
+
+.SL_selectbox input{
+    margin-left:20px;
+    margin-right:5px;
+    
+}
+
+
+.JQ_CA > .CA_r > .show._mode-gantt._wide > .gantt_form,
+.JQ_CA > .CA_r > .show._mode-gantt._wide > .gantt_calendars > .title{
+    width:400px;
+}
+
+.JQ_CA > .CA_r > .show._mode-gantt._wide > .gantt_calendars > .events{
+    left:400px;
+}
+
+
+.JQ_CA > .CA_r > .show._mode-gantt._wide > .gantt_dates,
+.JQ_CA > .CA_r > .show._mode-gantt._wide > .gantt_dates_bg{
+    left:420px;
+}
+
+
+.JQ_CA > .CA_r > .show._mode-gantt > .gantt_calendars > .title  .evt._spec_reccuring{ 
+    background-image:url(/img/recurring_activity.gif);
+    background-repeat: no-repeat;
+    background-position: left center; 
+    padding-left:20px; 
+}
+
+/* PRINT */
+
+.JQ_CA  .gantt_blocks > ._gantt_block{
+    display: block;
+    position: relative;
+    margin-bottom:10px;
+    /*page-break-after: always;*/
+}
+    
+    .JQ_CA  .gantt_blocks > ._gantt_block > .title{
+        padding-top:30px;
+    }
+    
+    .JQ_CA  .gantt_blocks > ._gantt_block:first-child > .title{
+        padding-top:0px;
+    }
+        .JQ_CA  .gantt_blocks > ._gantt_block > .title > div > .title{
+            padding-top:0;
+            /*margin-bottom:20px;*/
+            height: 24px;
+            /*padding-top:74px;*/
+        }
+        .JQ_CA  .gantt_blocks > ._gantt_block > .title > div._printed{
+            height: 44px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            /*font-weight: bolder;*/
+            line-height: 20px;
+            padding-left:5px;
+            border-top:1px solid #ddd;
+            border-left:1px solid #ddd;
+            background: #eee;
+            font-size: 90%;
+        }
+        
+      
+
+    .JQ_CA .gantt_blocks > ._gantt_block > .gantt_dates{
+        left:200px;
+        bottom:0;
+        z-index:0;
+        top:30px;
+    }
+    
+    .JQ_CA .gantt_blocks > ._gantt_block:first-child > .gantt_dates{
+        top:0;
+    }
+        .JQ_CA .gantt_blocks > ._gantt_block > .gantt_dates .scroll_width{
+            display: none !important;
+        }
+        
+    .JQ_CA .gantt_blocks > ._gantt_block > div.events{
+        position: absolute;
+        top:74px;
+        left:200px;
+        z-index:1;
+        right:0;
+    }
+    .JQ_CA .gantt_blocks > ._gantt_block:first-child > div.events{
+        top:44px;
+    }
+    
+    .JQ_CA .gantt_blocks > ._gantt_block > div.events > div{
+        min-height: 26px;
+    }
+    
+        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div{
+            display: block;
+            position: relative;
+            border-bottom: 1px solid #eee;
+            height: 20px;
+        }
+        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div.grouping{
+            min-height: 25px;
+            vertical-align: middle;
+            line-height: 25px;
+            border-top: 1px solid #ddd;
+            box-sizing: border-box;
+            padding-left: 5px;
+            font-weight: bolder;
+        }
+/*        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div.grouping{
+            position: absolute;
+            left:-200px;
+            top:-19px;
+            width:200px;
+            border-bottom: 1px solid #ddd;
+            padding-right: 5px;
+            box-sizing: border-box;
+            font-style: italic;
+            text-align: right;
+            
+        }*/
+/*        .JQ_CA .gantt_blocks > ._gantt_block > div.events > div >  div.grouping + div{
+            border-top: 1px solid #ddd;
+        }*/
+        
+    .JQ_CA .gantt_blocks.format_day > ._gantt_block > .gantt_dates{
+        /*left:120px;*/
+/*        margin-right: 0px;
+        padding-right: 20px;*/
+        right:0 !important;
+    }
+    .JQ_CA .gantt_blocks.format_day > ._gantt_block > div.events{
+        /*left:120px;*/
+    }
+    .JQ_CA  .gantt_blocks > ._gantt_block > .title{
+        /*width: 120px;*/
+    }
+   
+    
+        
+
+@media print {
+    .JQ_CA .gantt_blocks.format_day{
+        /*transform: scale(.7);*/
+    }
+    .JQ_CA  .gantt_blocks > ._gantt_block:first-child{
+        page-break-before:  auto;
+    }
+    .JQ_CA  .gantt_blocks > ._gantt_block{
+        page-break-before: always;
+/*        margin-top:20px;
+        padding-top:20px;*/
+    }
+}

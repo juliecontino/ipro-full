@@ -1,0 +1,40 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Shipment_Line__c" title="{!AcctSeedERP__Shipment_Line__c.Name & ' | Accounting Seed'}" extensions="AcctSeedERP.ShippingLineSerialNumberUpdate" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />  
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/serial-number-update.js')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Shipment Line " subtitle="{!AcctSeedERP__Shipment_Line__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Update Serial Numbers">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" />
+                <apex:commandButton id="recalcButton" status="saveStatus" value="Save & Refresh" onclick="this.focus()" action="{!saveNumbers}" rendered="{!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.AcctSeedERP__Serialized__c && invMovements.size>0}" rerender="theForm"/>
+                <apex:commandButton id="saveButton" status="saveStatus" value="Save & Complete" action="{!saveComplete}" onclick="this.focus()" rendered="{!!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.AcctSeedERP__Serialized__c || (AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.AcctSeedERP__Serialized__c && invMovements.size>0)}" rerender="theForm"/>
+                <apex:commandButton id="cancelButton" value="Back" action="/{!Shipment_Line__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages rendered="{!showMessage}" escape="false"/>
+            <apex:pageMessage summary="No inventory movements exist. Use the Pack button on the shipment to create the inventory movements" severity="warning" strength="3" rendered="{!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.AcctSeedERP__Serialized__c && invMovements.size=0}" />
+            <apex:outputField value="{!AcctSeedERP__Shipment_Line__c.AcctSeedERP__Sales_Order_Line__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.AcctSeedERP__Product__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.Name}" rendered="false" />
+            <apex:pageBlockSection columns="1">
+                <apex:outputField value="{!AcctSeedERP__Shipment_Line__c.AcctSeedERP__Product__c}" />
+                <apex:outputField value="{!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.ProductCode}" />
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Product Code Entry" />
+                    <apex:inputField id="productField" value="{!product.AcctSeedERP__Serial_Number__c}" onkeydown="return AcctSeed.ASModule.keyPressEventHandler(event,this)" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockTable id="thePageBlockTable" value="{!invMovements}" var="inv" rendered="{!AcctSeedERP__Shipment_Line__c.Sales_Order_Line__r.Product__r.AcctSeedERP__Serialized__c && invMovements.size>0}">
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:outputLabel value="Serial Number" />
+                    </apex:facet>
+                    <apex:inputField id="serialNumber" value="{!inv.AcctSeedERP__Serial_Number__c}" onkeydown="return AcctSeed.ASModule.keyPressEventHandler(event,this)" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

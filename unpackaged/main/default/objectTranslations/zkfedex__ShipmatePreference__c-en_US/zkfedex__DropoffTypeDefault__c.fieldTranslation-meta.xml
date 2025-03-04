@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Identifies the method by which the package is to be tendered to FedEx. This element does not dispatch a courier for package pickup if &quot;schedule a pickup&quot; is selected. --></help>
+        <label><!-- Dropoff Type Default --></label>
+        <name>zkfedex__DropoffTypeDefault__c</name>
+    </CustomFieldTranslation>

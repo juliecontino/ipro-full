@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- CashDisbursementApply --></label>
+        <name>AcctSeed__CashDisbursementApply</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- CreditMemoApply --></label>
+        <name>AcctSeed__CreditMemoApply</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MassAddEditRows --></label>
+        <name>AcctSeed__MassAddEditRows</name>
+    </fieldSets>
+    <layouts>
+        <layout>Account Payable Layout</layout>
+        <sections>
+            <label><!-- Account Payable Lines --></label>
+            <section>Account Payable Lines</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Payee Information --></label>
+            <section>Payee Information</section>
+        </sections>
+        <sections>
+            <label><!-- Terms Information --></label>
+            <section>Terms Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Amortize Expense --></label>
+        <name>AcctSeed__Amortize_Expense</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- The accounting period must be open to create a record --></errorMessage>
+        <name>AcctSeed__Accounting_Period_Open_New_Record</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The due date can not be earlier then the issue date --></errorMessage>
+        <name>AcctSeed__Due_Date_Before_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The discount amount cannot be greater than the total. --></errorMessage>
+        <name>AcctSeed__Net_Amount_Less_Than_Zero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only select one of the following as a payee: vendor, contact, or employee --></errorMessage>
+        <name>AcctSeed__Only_One_Selected_Vendor_Contact_Or_Empl</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Required_Accounting_Period</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeed__Required_Due_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must specify a contact, vendor or employee as the payee --></errorMessage>
+        <name>AcctSeed__Required_Vendor_Contact_Or_Employee</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Calc_Tax --></label>
+        <name>AS_Tax__Calc_Tax</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Apply_Credit_Memo --></label>
+        <name>AcctSeed__Apply_Credit_Memo</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Apply_Unapply_Credit_Memo --></label>
+        <name>AcctSeed__Apply_Unapply_Credit_Memo</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Calc_Tax --></label>
+        <name>AcctSeed__Calc_Tax</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Clone_Account_Payable --></label>
+        <name>AcctSeed__Clone_Account_Payable</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Clone_With_Lines --></label>
+        <name>AcctSeed__Clone_With_Lines</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Pay --></label>
+        <name>AcctSeed__Pay</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Pay_Batch --></label>
+        <name>AcctSeed__Pay_Batch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post --></label>
+        <name>AcctSeed__Post</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Post_Account_Payables --></label>
+        <name>AcctSeed__Post_Account_Payables</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- RecognizeExpense --></label>
+        <name>AcctSeed__RecognizeExpense</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost --></label>
+        <name>AcctSeed__Unpost</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Unpost_Account_Payables --></label>
+        <name>AcctSeed__Unpost_Account_Payables</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Lookup_Account_Number --></label>
+        <name>Lookup_Account_Number</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Telephone_Bill --></label>
+        <name>New_Telephone_Bill</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- zp_actions --></label>
+        <name>zp_actions</name>
+    </webLinks>
+</CustomObjectTranslation>

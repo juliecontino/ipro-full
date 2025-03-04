@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csplit__Split_Lightning</fullName>
+    <availability>online</availability>
+    <description>Navigate to the Case Split page from the current Case.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Split</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/lightning/cmp/csplit__CaseSplitWrapper?csplit__caseId={!Case.Id}&amp;csplit__fieldSet=csplit__Case_Splitter_Fields&amp;csplit__mode=n</url>
+</WebLink>

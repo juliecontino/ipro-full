@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Overrides the Billing&apos;s default destination address. --></help>
+        <label><!-- Destination Address Override --></label>
+        <name>AcctSeed__Destination_Address_Override__c</name>
+        <relationshipLabel><!-- Destination Billings --></relationshipLabel>
+    </CustomFieldTranslation>

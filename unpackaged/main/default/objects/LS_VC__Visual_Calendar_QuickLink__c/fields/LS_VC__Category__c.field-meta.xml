@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LS_VC__Category__c</fullName>
+    <deprecated>false</deprecated>
+    <label>Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Quick Link</fullName>
+                <default>true</default>
+                <label>Quick Link</label>
+            </value>
+            <value>
+                <fullName>Calendar Link</fullName>
+                <default>false</default>
+                <label>Calendar Link</label>
+            </value>
+            <value>
+                <fullName>Metrics Link</fullName>
+                <default>false</default>
+                <label>Metrics Link</label>
+            </value>
+            <value>
+                <fullName>Ticker Link</fullName>
+                <default>false</default>
+                <label>Ticker Link</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

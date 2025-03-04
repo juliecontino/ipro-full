@@ -1,0 +1,76 @@
+/* 
+    Document   : day
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA > .CA_r > div.show._mode-mobile-year{
+    display:block !important;
+}
+
+.JQ_CA > .CA_r > div.show._mode-mobile-year > ._scroll{
+    text-align: justify;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
+.JQ_CA > .CA_r > div.show._mode-mobile-year > ._scroll > ._year{
+    height:100%;
+}
+
+    .JQ_CA > .CA_r > div.show._mode-mobile-year > ._scroll > ._year > ._month{
+        vertical-align: top;
+        border-radius: 2px;
+        background-color: #f7f7f7;
+        margin:5px 1%;
+        font-size: 11px;
+        line-height: 11px;
+    }
+
+    .JQ_CA._orient_horizontal > .CA_r > div.show._mode-mobile-year > ._scroll > ._year > ._month{
+        width: 23%;
+        display: inline-block;
+        height:30%;
+
+    }
+
+    .JQ_CA._orient_vertical > .CA_r > div.show._mode-mobile-year > ._scroll > ._year > ._month{
+        width: 30%;
+        display: inline-block;
+        height:23%;
+    }
+
+
+
+        .JQ_CA > .CA_r > div.show._mode-mobile-year > ._scroll > ._year > ._month > b{
+            display: inline-block;
+            width:14%;
+            height:14%;
+            vertical-align: middle;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .JQ_CA > .CA_r > div.show._mode-mobile-year > ._scroll > ._year > ._month > b._cur{
+            color:#F7B15E;
+            font-weight: bolder;
+        }
+
+        .JQ_CA > .CA_r > div.show._mode-mobile-year > ._scroll > ._year > ._month > span{
+            border-radius: 5px 5px 0 0;
+            background-color: #eee;
+            text-align: center;
+            display: block;
+            vertical-align: middle;
+            height:10%;
+            font-weight: bolder;
+            margin-bottom: 2%;
+        }

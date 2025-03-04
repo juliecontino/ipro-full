@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Timcare Card Line Detail Row Count --></label>
+        <name>Timcare_Card_Line_Detail_Row_Count__c</name>
+    </CustomFieldTranslation>

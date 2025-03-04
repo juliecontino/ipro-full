@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Last day of the Time Card Period. This field is automatically calculated to be 6 days after the start date entered for the Time Card Period.. A value entered directly into this field will be overwritten. --></help>
+        <label><!-- End Date --></label>
+        <name>AcctSeed__End_Date__c</name>
+    </CustomFieldTranslation>

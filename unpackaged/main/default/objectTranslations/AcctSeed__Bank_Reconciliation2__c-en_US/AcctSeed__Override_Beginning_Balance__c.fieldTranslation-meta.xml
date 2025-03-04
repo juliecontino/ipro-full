@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Cleared balance from prior completed bank reconciliation will not be carried forward to this bank reconciliation if this override selected and a manual beginning balance entered. --></help>
+        <label><!-- Override Beginning Balance --></label>
+        <name>AcctSeed__Override_Beginning_Balance__c</name>
+    </CustomFieldTranslation>

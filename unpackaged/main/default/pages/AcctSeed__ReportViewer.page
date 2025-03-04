@@ -1,0 +1,35 @@
+<apex:page tabStyle="AcctSeed__Financial_Report_Result__c" title="View | Accounting Seed" standardController="AcctSeed__Financial_Report_Result__c" extensions="AcctSeed.ReportViewerController" sidebar="false" renderAs="html" readOnly="true">
+
+    <apex:sectionHeader title="Financial Report Viewer" subtitle="{!report.Name}" />
+
+    <apex:pageMessages escape="false"/>
+
+    <apex:form rendered="{!showPage}">
+        <table cellpadding="6" cellspacing="6">
+            <tr>
+                <td>
+                    <apex:outputPanel rendered="{!IF(frw.viewModeInPDF = 'Landscape', true, false)}">
+                        <a href="{!$Page.AcctSeed__ReportViewerPDF}?id={!report.Id}&layout=landscape&output=pdf" target="_blank">
+                            Print Screen
+                        </a>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(frw.viewModeInPDF = 'Portrait', true, false)}">
+                        <a href="{!$Page.ReportViewerPDF}?id={!report.Id}&layout=portrait&output=pdf"  target="_blank">
+                            Print Screen
+                        </a>
+                    </apex:outputPanel>
+                </td>
+                <td>
+                    <a href="{!$Page.AcctSeed__ReportViewerPDF}?id={!report.Id}&output=xls" target="_blank">
+                        Export Excel
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <c:ReportTableComponent financialReportWrapper="{!frw}"
+                                    reportName="{!frw.reportDefinition.Name}"
+                                    acctPeriodName="{!report.Accounting_Period__r.Name}" isPDFFormat="false" isXLSFormat="false" />
+        </div>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Conga Sign գործարքի ավարտի ամսաթիվը - Conga Sign գործարքի ստեղծման ամսաթիվը: Վերադարձնում է 1 օրվա նվազագույն արժեքը և ամբողջ արժեքը:</help>
+        <label><!-- Duration Days --></label>
+        <name>APXT_CongaSign__Duration__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__title__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The table title</description>
+    <inlineHelpText>The table title</inlineHelpText>
+    <label>title</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

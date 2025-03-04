@@ -1,0 +1,214 @@
+/* 
+    Document   : week.ipad
+    Created on : 31 трав 2012, 18:46:34
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA.CA_Print > .CA_h > div.title,
+.JQ_CA.CA_Print > .CA_h > div.manage,
+.JQ_CA.CA_Print > .CA_h > div.nav > span[data-nav="l"],
+.JQ_CA.CA_Print > .CA_h > div.nav > span[data-nav="r"],
+.JQ_CA.CA_Print > .CA_h > div.mode,
+.JQ_CA.CA_Print > .CA_l > div > div.title 
+{
+    display:none;
+}
+.JQ_CA.CA_Print > .CA_l > div > div.list > div:not(.sel) {
+    display:none;
+}
+
+
+
+.JQ_CA.CA_Print > .CA_h > div.nav {
+    left:50%;
+    margin-left:-100px;
+    
+    
+}
+.JQ_CA.CA_Print > .CA_h > div.nav > span[data-nav="day"] {
+    font-size: 150%;
+    font-weight: bolder;
+}
+
+.JQ_CA.CA_Print > .CA_h > div.ca_print_logo{
+    position: absolute;
+    top:2px;
+    left:10px;
+    padding-left: 45px;
+    background: url("../pic/logo_30.png") no-repeat center left;
+    font-size: 100%;
+    color:#999;
+    height:30px;
+    line-height: 30px;
+}
+
+._no_printing{
+    display: none !important;
+}
+
+
+
+#CA_Print{
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    z-index:999;
+    background-color: #fff;
+    
+}
+
+    #CA_Print > div._printing_bg{
+        position: fixed;
+        top:0;bottom:0;left:0;right:0;
+        z-index:-1;
+        background-color: #fff;
+    }
+    
+    #CA_Print.ie > div._printing_bg {
+        /*visibility: hidden;*/
+        background-color: transparent;
+        z-index:998;
+    }
+    
+    #CA_Print > div._printing_panel{
+        position:absolute;
+        z-index:999;
+        top:0;
+        left:0;
+        right:0;
+        height:40px;
+        background-color:#0066cc;
+        /*opacity:0.7;*/
+    }
+    
+        #CA_Print > div._printing_panel > a{
+            margin-top:3px;
+            background-color:#fff;
+            border:1px solid #ddd;
+            border-radius: 5px;
+            color:black;
+            padding:3px;
+            display:inline-block;
+            text-decoration:none;
+            cursor:pointer;
+            margin-left:20px;
+            opacity: 1;
+        }
+    
+        #CA_Print  > div._printing_panel > a:hover{
+            background-color:#0066cc;
+            color:white;
+        }
+        
+@media print  {
+    body{margin:0;padding:0;}
+        
+        body._special_ie_print{
+            background: transparent !important;
+            /*transform: scale(.5);*/
+        }
+    
+        body > *,
+        body._special_ie_print #AppBodyHeader,
+        body._special_ie_print .bPageFooter {
+            display:none;
+        }
+        
+            body._special_ie_print .Custom32Tab .brdPalette,
+            body._special_ie_print .bodyDiv {
+                border-top-color: #fff;
+                border-bottom-color: #fff;
+                border-bottom-width: 0;
+                border-top-width: 0;
+            }
+            
+        
+        body._special_ie_print  #contentWrapper, 
+        body._special_ie_print  .JQ_CA.ie{
+            display: block;
+            
+        }
+        
+        body._special_ie_print > #contentWrapper .JQ_CA.ie{
+            z-index:1000;
+            background-color: #fff;
+        }
+        
+        body > #CA_Print{
+            display:none;
+            position:static;
+            height:3200px;
+            background-color: #eee;
+            z-index:-5;
+        }
+        
+            body >  #CA_Print > div._printing_bg{
+                display: none !important; 
+            }
+        
+        body._special_ie_print > #CA_Print{
+            display: block;
+            position: fixed;
+            top:0;
+            bottom:0;
+            right:0;
+            left:0;
+            background-color: #fff;
+        }
+        
+        body > img#ca_printable{
+            display:block;
+        }
+            
+            body > #CA_Print > ._printing_panel{
+                display:none;
+            }
+            
+        body .JQ_CA.ie.CA_Print_maximize{
+            display:block;
+            right:auto;
+            width:280mm;
+        }
+        
+        body ._maximize.JQ_CA {
+           z-index: 999 !important;
+           height: auto;
+        }
+        
+        
+            
+    @page { 
+        /*size : landscape ;*/
+        margin:0;
+        padding:0;
+        size: 297mm 210mm;
+    }
+}
+
+@media screen {
+    body > img#ca_printable{                
+        display:none;
+    }    
+}
+
+
+@media print and (orientation:landscape) {
+/*    #CA_Print img{
+        width:260mm;
+        height:850mm;
+    }*/
+}
+
+@media print and (orientation:portrait) {
+/*    #CA_Print img{
+        width:180mm;
+        height:550mm;
+    }*/
+}
+
+
+

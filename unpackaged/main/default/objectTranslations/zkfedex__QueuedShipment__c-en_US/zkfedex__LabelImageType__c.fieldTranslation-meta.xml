@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Label Image Type --></label>
+        <name>zkfedex__LabelImageType__c</name>
+        <picklistValues>
+            <masterLabel>PDF</masterLabel>
+            <translation><!-- PDF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PNG</masterLabel>
+            <translation><!-- PNG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thermal 4x6 - Eltron</masterLabel>
+            <translation><!-- Thermal 4x6 - Eltron --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thermal 4x6 - Zebra</masterLabel>
+            <translation><!-- Thermal 4x6 - Zebra --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thermal 4x6.75 - Eltron</masterLabel>
+            <translation><!-- Thermal 4x6.75 - Eltron --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thermal 4x6.75 - Zebra</masterLabel>
+            <translation><!-- Thermal 4x6.75 - Zebra --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

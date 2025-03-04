@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SpringCMEos__SpringCM_Users</fullName>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>SpringCMEos__SpringCM_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>SpringCM Users</label>
+</ListView>

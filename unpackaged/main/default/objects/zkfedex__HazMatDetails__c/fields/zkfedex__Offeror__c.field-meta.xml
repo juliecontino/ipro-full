@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__Offeror__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Offeror's name or contract number, per DOT regulation</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Offeror's name or contract number, per DOT regulation</inlineHelpText>
+    <label>Offeror</label>
+    <length>100</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- An identifying mark or number used on the packaging of a shipment to help customers identify a particular shipment --></help>
+        <label><!-- CI Marks and Numbers --></label>
+        <name>zkfedex__CiMarksAndNumbers__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__TrackingId__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The tracking number for the package this commodity is within</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The tracking number for the package this commodity is within</inlineHelpText>
+    <label>Package Tracking Number</label>
+    <length>30</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

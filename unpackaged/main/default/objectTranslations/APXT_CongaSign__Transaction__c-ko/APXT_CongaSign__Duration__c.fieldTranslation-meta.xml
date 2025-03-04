@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Conga Sign 거래 완료 날짜 - Conga Sign 거래 생성 날짜. 최소값 1일과 정수 값을 반환합니다.</help>
+        <label><!-- Duration Days --></label>
+        <name>APXT_CongaSign__Duration__c</name>
+    </CustomFieldTranslation>

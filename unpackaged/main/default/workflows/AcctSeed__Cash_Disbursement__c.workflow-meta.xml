@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Copy_Check_Number</fullName>
+        <field>Check_Number_Text__c</field>
+        <formula>Text( AcctSeed__Check_Number__c )</formula>
+        <name>Copy Check Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Copy Check Number</fullName>
+        <actions>
+            <name>Copy_Check_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Or(
+And(
+isnew(),
+not(isblank( AcctSeed__Check_Number__c ))
+),
+ischanged(AcctSeed__Check_Number__c)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

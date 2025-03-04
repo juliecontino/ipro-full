@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__Custom_CSS__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Custom CSS  to control view or edit mode fields columns etc.</description>
+    <inlineHelpText>Custom CSS  to control view / edit mode fields columns etc.</inlineHelpText>
+    <label>Custom CSS</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

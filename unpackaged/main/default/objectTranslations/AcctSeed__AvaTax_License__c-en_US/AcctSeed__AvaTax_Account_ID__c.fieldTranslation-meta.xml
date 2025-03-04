@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- AvaTax Only: Account ID on your AvaTax Account’s Settings --></help>
+        <label><!-- AvaTax Account ID --></label>
+        <name>AcctSeed__AvaTax_Account_ID__c</name>
+    </CustomFieldTranslation>

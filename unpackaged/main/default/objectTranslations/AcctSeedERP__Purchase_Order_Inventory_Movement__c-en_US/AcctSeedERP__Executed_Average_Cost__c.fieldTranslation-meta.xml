@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The average cost of this product for this ledger including this transaction. --></help>
+        <label><!-- Executed Average Cost --></label>
+        <name>AcctSeedERP__Executed_Average_Cost__c</name>
+    </CustomFieldTranslation>

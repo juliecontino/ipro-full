@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The retention days sets how long Automated Job Result records are kept in the system before being deleted if the Retention Period is enabled. Pre-defined default is set to 30 days. The maximum is 365 days. --></help>
+        <label><!-- Automated Job Results Retention Days --></label>
+        <name>AcctSeed__Automated_Job_Results_Retention_Days__c</name>
+    </CustomFieldTranslation>

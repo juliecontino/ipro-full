@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The rate used in a calculation will be the one with the most recent effective date. Pre-dated or Post dated rates are not supported. --></help>
+        <label><!-- Effective Date --></label>
+        <name>AcctSeed__Effective_Date__c</name>
+    </CustomFieldTranslation>

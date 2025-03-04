@@ -1,0 +1,282 @@
+/* 
+    Document   : jq-calendar-anything.ipad
+    Created on : 31 трав 2012, 19:02:24
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.JQ_CA > .CA_h > div.buttons{
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;       
+}
+
+    .JQ_CA.mobile > .CA_h > div.buttons > span{
+        
+        background-image:none;
+    /*    background-image: linear-gradient(0);
+        background: -webkit-linear-gradient(none);*/
+    }
+    
+    @media screen and (max-width: 768px){
+        .JQ_CA.mobile > .CA_h > div.buttons > span{
+            padding:0 7px;
+        }
+        
+        .JQ_CA.mobile > .CA_h > div.nav.buttons{
+/*            left:50%;
+            margin-left:-110px;*/
+        }
+        
+        .JQ_CA.mobile > .CA_h > div.manage.buttons{
+            left:190px;
+        }
+        
+        .JQ_CA.mobile > .CA_h > div.title{
+            left:5px;
+        }
+        
+        .JQ_CA.mobile > .CA_h > div.mode{
+            right:5px;
+        }
+    }
+
+
+    .JQ_CA.mobile > .CA_h > div.buttons > span.sel{
+        background-color: #ddd;
+    }
+
+    .JQ_CA.mobile > .CA_h > div.buttons > span:active,
+    .JQ_CA.mobile > .CA_h > div.buttons > span:focus{
+        background-color: #ddd;
+    }
+    
+.JQ_CA > .CA_h > div.buttons:active, 
+.JQ_CA > .CA_h > div.buttons:hover, 
+.JQ_CA > .CA_h > div.buttons:focus{
+    background:none;
+/*    background: red;*/
+}
+
+
+    .JQ_CA.mobile._noleft > .CA_l >  div{
+        width:32px;
+        height:32px;
+        border-radius: 5px;
+        border:1px solid #ddd;
+        left:2px;
+    }   
+        .JQ_CA.mobile._noleft > .CA_l >  div > div.title{
+            padding-left:42px;
+            background-image: none;
+            height:32px;
+            width:32px;
+            overflow: hidden;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        
+        .JQ_CA.mobile._noleft > .CA_l >  div[data-type="sf"]{top:10px;}
+        .JQ_CA.mobile._noleft > .CA_l >  div[data-type="group"]{top:50px;}
+        .JQ_CA.mobile._noleft > .CA_l >  div[data-type="web"]{top:90px;}
+        
+            .JQ_CA.mobile._noleft > .CA_l >  div > div.title > span{
+                display:inline-block;
+                position: absolute;
+                width:24px;
+                height:16px;
+                top:8px;
+                left:3px;
+                line-height: 16px;
+                margin-right:0;
+                margin-top:0;
+                
+            }
+            .JQ_CA.mobile._noleft > .CA_l >  div[data-type="sf"] > div.title > span{
+                background-position: 0 0;
+            }
+            
+            .JQ_CA.mobile._noleft > .CA_l >  div[data-type="group"] > div.title > span{
+                background-position: 0px -16px;
+            }
+            .JQ_CA.mobile._noleft > .CA_l >  div[data-type="web"] > div.title > span{
+                background-position: 0px -32px;
+            }
+            
+        .JQ_CA._noleft.mobile > .CA_l > div:hover > div.list{
+            display: none !important;
+        }
+        .JQ_CA._noleft.mobile > .CA_l > div._on:hover > div.list {
+            display: block !important;
+        }
+
+            
+/*            .JQ_CA.mobile._noleft > .CA_l >  div:hover > div.list, 
+            .JQ_CA.mobile._noleft > .CA_l >  div:focus > div.list, 
+            .JQ_CA.mobile._noleft > .CA_l >  div:active > div.list{
+                display:block;
+                opacity:1;
+                left:20px;
+                z-index:100;
+            }*/
+
+    .JQ_CA.mobile > .CA_l >  div > div.list > div{
+        line-height:20px;
+        vertical-align: middle;
+    }
+    .JQ_CA.mobile > .CA_l >  div > div.list > div:hover{
+        background-color: transparent;
+        border-color:transparent;
+    }
+    .JQ_CA.mobile.middle > .CA_l >  div > div.list > div{
+        line-height:20px;
+        font-size:110%;
+    }
+    .JQ_CA.mobile.large > .CA_l >  div > div.list > div{
+        line-height:24px;
+        font-size:130%;
+    }
+    
+        .JQ_CA.mobile > .CA_l >  div > div.list > div > span{
+            width:16px;
+            height:16px;
+            border-radius: 4px;
+        }
+        .JQ_CA.mobile > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+            background-image: url(../pic/rainbow_pad_small.png);
+        }
+        
+        .JQ_CA.mobile.middle > .CA_l >  div > div.list > div > span{
+            width:19px;
+            height:19px;
+        }
+        .JQ_CA.mobile.middle > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+            background-image: url(../pic/rainbow_pad_middle.png);
+        }
+
+        .JQ_CA.mobile.large > .CA_l >  div > div.list > div > span{
+            width:22px;
+            height:22px;
+        }
+        .JQ_CA.mobile.large > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+            background-image: url(../pic/rainbow_pad_big.png);
+        }
+        
+        .JQ_CA.mobile > .CA_l >  div > div.list > div > span.name,
+        .JQ_CA.mobile.middle > .CA_l >  div > div.list > div > span.name, 
+        .JQ_CA.mobile.large > .CA_l >  div > div.list > div > span.name{
+
+            height:auto;
+            vertical-align: top;
+            margin-right:40px;
+            width:auto;
+            white-space: normal; 
+        }
+    .JQ_CA.mobile._noleft > .CA_l > div.close > div.list{
+        max-height:500px;
+    }
+        .JQ_CA.mobile > .CA_l >  div > div.list > div > span.str{
+            display:none;
+        }
+    
+
+.JQ_CA.mobile.middle > .CA_h > div.buttons > span,
+.JQ_CA.mobile.middle > .CA_h > div.title{
+    height:32px;
+    line-height: 32px
+}
+.JQ_CA.mobile.large > .CA_h > div.buttons > span,
+.JQ_CA.mobile.large > .CA_h > div.title{
+    height:34px;
+    line-height: 34px
+}
+
+.JQ_CA.mobile > .CA_h > div.nav{
+/*    left:45%;*/
+}
+
+.JQ_CA.mobile.middle._orient_vertical > .CA_h > div.title{
+    width:95px;
+}
+.JQ_CA.mobile.middle._orient_vertical > .CA_h > div.manage{
+    left:157px; 
+}
+
+
+
+.JQ_CA.CA_ipad.mobile.middle._orient_vertical._small > .CA_h > div.nav,
+.CA_LIGHTNING.JQ_CA.CA_ipad.mobile.middle._orient_vertical._small > .CA_h > div.nav{
+    left:237px !important;
+}
+
+.JQ_CA.CA_ipad.mobile.middle._orient_horizontal > .CA_h > div.nav,
+.CA_LIGHTNING.JQ_CA.CA_ipad.mobile.middle._orient_horizontal > .CA_h > div.nav{
+    left:278px !important;
+}
+
+.JQ_CA.mobile.middle > .CA_h > div.title,
+.JQ_CA.mobile.middle > .CA_h > div.manage,
+.JQ_CA.mobile.middle > .CA_h > div.nav,
+.JQ_CA.mobile.middle > .CA_h > div.mode{
+    top:3px;
+    height: 32px;
+}
+.JQ_CA.mobile.large > .CA_h > div.title,
+.JQ_CA.mobile.large > .CA_h > div.manage,
+.JQ_CA.mobile.large > .CA_h > div.nav,
+.JQ_CA.mobile.large > .CA_h > div.mode{
+    top:2px;
+    height: 34px;
+/*    font-size: 110%;*/
+    
+}
+
+    .JQ_CA.mobile.middle > .CA_h > div.title > span{
+        top:2px;
+    }
+    .JQ_CA.mobile.large > .CA_h > div.title > span{
+        top:3px;
+    }
+
+/*.JQ_CA.mobile div.evt > span{
+    border-radius: 0px !important;
+}*/
+
+.JQ_CA.mobile > .CA_popup._center{
+    top:15%;
+    left:15%;
+    right:15%;
+}
+
+@media screen and (device-width: 768px) and (orientation: portrait){
+    .JQ_CA.mobile > .CA_h > div.nav{
+        left:37%;
+    }
+    
+    .JQ_CA.mobile{
+        min-width:768px;
+        left:0px;
+/*        top:0px;
+        bottom:0px;*/
+        right:0px;
+    }
+    
+    .JQ_CA.mobile > .CA_h > div.manage{
+        left:210px;
+    }
+    
+    .JQ_CA.mobile > .CA_popup._center{
+        top:25%;
+        left:5%;
+        right:5%;
+    }
+}
+
+
+
+
+
+.JQ_CA > .CA_r > div._mode-day._grouping > div > div.days > ul > li > select[name="grouping"]{
+    max-width: 100px;
+}

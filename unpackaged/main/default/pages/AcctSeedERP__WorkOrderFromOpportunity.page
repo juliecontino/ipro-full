@@ -1,0 +1,68 @@
+<apex:page standardController="Opportunity" extensions="AcctSeedERP.WorkOrderFromOpportunity,AcctSeedERP.EnvironmentUtils" >
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" /> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/javascript/Intl.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__internationalization_resources, '/locale-data/jsonp/' & DefaultLocale & '.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <script type="text/javascript">
+        AcctSeed.ASModule.defaultLocale = "{!JSENCODE(DefaultLocale)}";
+        AcctSeed.ASModule.defaultCurrency = "{!JSENCODE(DefaultCurrency)}";
+        AcctSeed.ASModule.currencyIsoCode = "{!JSENCODE(currencyIsoCode)}";
+        AcctSeed.ASModule.isMultiCurrencyEnabled = "{!JSENCODE(IF(isMultiCurrencyEnabled, "true", "false"))}";
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-currency.js')}" loadOnReady="true" /> 
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/work-order-from-opp.js')}" loadOnReady="true" /> 
+    <apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.Opportunity.label}" subtitle="{!Opportunity.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Select Template Work Order">
+            <apex:pageMessage summary="A work order already exists for this opportunity" severity="warning" strength="3" rendered="{!!isTemplateError && checkProjectExists}"/>
+            <apex:pageMessages escape="false" />
+            <apex:pageBlockButtons >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" onstop="AcctSeed.ASModule.formatCurrency()"/>
+                <apex:commandButton action="{!createProject}"
+                                    value="Create Work Order"
+                                    status="saveStatus"
+                                    reRender="theForm"
+                                    rendered="{!!isTemplateError}" />
+                <apex:commandButton action="{!cancel}" value="Back" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem rendered="{!!isTemplateError}">
+                    <apex:outputLabel value="Project Template" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList value="{!selectedTemplateProject}" size="1">
+                            <apex:selectOptions value="{!projOptions}" />
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isSelectedProjectError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Materials" collapsible="false" columns="1" rendered="{!!isTemplateError && oppProductWrapperList.size > 0}">
+                <apex:pageBlockTable value="{!oppProductWrapperList}" var="item" align="center" width="100%">
+                    <apex:column headerValue="Selected">
+                        <apex:inputCheckbox value="{!item.isSelected}"/>
+                    </apex:column>
+                    <apex:column headerValue="Product Name">
+                        <apex:outputField value="{!item.oppProd.PricebookEntry.Product2.Name}"/>
+                    </apex:column>   
+                    <apex:column headerValue="{!$ObjectType.OpportunityLineItem.fields.Description.label}">
+                        <apex:outputField value="{!item.oppProd.Description}"/>
+                    </apex:column>                       
+                    <apex:column headerValue="Quantity">
+                        <apex:outputField value="{!item.oppProd.Quantity}"/>
+                    </apex:column>   
+                    <apex:column headerValue="Unit Price">
+                        <!--apex:outputField value="{!item.oppProd.UnitPrice}"/-->
+                        <apex:outputText id="unitPrice" value="{!item.oppProd.UnitPrice}"/>
+                    </apex:column>                                                         
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>            
+        </apex:pageBlock>
+        <apex:outputField value="{!Opportunity.Name}" rendered="false" />
+        <apex:outputField value="{!Opportunity.Account.Name}" rendered="false" />
+        <apex:outputField value="{!Opportunity.AccountId}" rendered="false" />
+    </apex:form>    
+</apex:page>

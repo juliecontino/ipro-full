@@ -1,0 +1,1135 @@
+<apex:page sidebar="false" title="Find Duplicates" controller="csmrgp.CsMrgFindCtrl" tabStyle="Case_Merge_Premium__tab">
+    <apex:includeScript value="/support/console/43.0/integration.js"/>
+    <!-- SLDS Version 2.3.1 -->
+    <apex:stylesheet value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/style/slds/assets/styles/salesforce-lightning-design-system-vf.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/style/csmrgp-style.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/script/action-overlays.js')}"/>    
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/script/navigation-tabs.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/script/remove-console-padding.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/script/icon-util.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/script/xml-entities.js')}"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/pageAlert/pageAlert.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/pageAlert/pageAlert.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/pageAlert/pageAlertNotification.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.csmrgp__CaseMergePremiumAssets,'case-merge-premium-assets/pageAlert/pageAlertModal.js')}"/>
+
+    <script type="text/javascript">
+        if(sforce.console.isInConsole()) {
+            removeConsolePadding();
+        }
+    </script>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="initial-scale=1"/>
+
+    <!-- Prevents "Search by Text" drop-down from being cut off in Lightning -->
+    <apex:outputPanel rendered="{!CONTAINS($User.UIThemeDisplayed, 'Theme4')}">
+        <style type="text/css">
+            html {
+                overflow: initial !important;
+            }
+        </style>
+    </apex:outputPanel>
+
+    <style type="text/css">
+        html{
+            height:100vh;
+        }
+        
+        #input-value-tooltip {
+            position: absolute !important;
+            white-space: normal;
+            text-align: center;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            width: max-content;
+        }
+
+        #bodyTable {    /* Allows the table to scroll horizontally in classic */
+            table-layout: fixed;
+        }
+
+        #resultsTable td, #resultsTable th {    /* results table cell sizes*/
+            min-width: 100px;
+            max-width: 400px;
+        }
+
+        #tableScrollArea {
+            max-height: 520px;
+        }
+
+        .lookupHoverDetail { /* hides the pop ups that appear when hovering over reference fields */
+            display: none !important;
+        }
+
+        .selectedStringMaximum,.selectedStringWarning{
+            font-weight:bold;
+        }
+        /* Keeps criteria autocomplete from being hidden under page buttons */
+        #tab-criteria {    
+            z-index: 1;
+        }
+
+        /* Criteria "Value" Input */
+        [id$='criteriaValueContainer'] input {
+            padding:0 1rem 0 0.75rem !important;
+            outline:0 !important;
+            border:0 !important;
+            border-color:transparent !important;
+            box-shadow: none !important;
+            background-color: transparent !important;
+        }
+
+        [id$='criteriaValueContainer'] {
+            padding:0 !important;
+            display:flex !important;
+            flex-wrap: wrap;
+            overflow: none;
+        }
+
+        [id$='criteriaValueContainer'] input.sldsc-input-with-pill {
+            padding-left: 0.25rem !important;
+            flex: 0 0 auto;
+            border-top: 1px solid #d8dde6 !important;
+            border-radius:0 !important;
+            background-color:white !important;
+            border-radius: 0 0 0.25rem 0.25rem !important;
+        }
+
+        [id$='criteriaValueContainer'].containerHasPills {
+            background-color:#f0f0f0;
+        }
+
+        .sldsc-pill-container-disabled {
+            background-color: #ecebea;
+            border-color: #c9c7c5;
+            cursor: not-allowed;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /** Assistance Search Results Table **/
+        [id$='{!$Component.pgForm.assistanceSearchResultsTable}'] {
+            -webkit-transition: max-height 0.5s, height 0.5s;
+            -moz-transition: max-height 0.5s, height 0.5s;
+            -ms-transition: max-height 0.5s, height 0.5s;
+            -o-transition: max-height 0.5s, height 0.5s;
+            transition: max-height 0.5s, height 0.5s;
+            overflow-y: hidden;
+            max-height: 0px;
+            height: 0px;
+        }
+
+        .assistanceSearchResultsTableExpanded {
+            max-height:217px;
+            height: 217px;
+        }
+
+        /** Removes Gray background from listbox options that are not focused or being hovered over**/
+        .slds-listbox__option:hover:not(.slds-has-focus),.slds-listbox__option:focus:not(.slds-has-focus) {
+            background-color:#fff !important;
+        }
+
+        .slds-listbox__option.slds-has-focus.autocomplete {
+            background-color:blue !important;
+            color:white !important;
+        }
+
+        /** Backdrops/Overlays **/
+        .findBackdrop, .criteriaBackdrop {
+            background-color: rgba(255,255,255,0.8);
+            z-index: 9000;
+            position: absolute;
+        }
+
+        .findBackdrop {
+            height:576px;
+            width:100%;
+        }
+
+        .criteriaBackdrop {
+            /** 50% of page - 2rem of padding + 4px of border **/
+            width: calc(50% - 2rem + 4px);
+        }
+
+        /** Results Table **/
+        .manualRow {
+            background-color: #E3CABE;
+        }
+
+        /** Creates the 'X' with gray background whenever a checkmark is hovered over **/
+        .slds-checkbox_add-button:hover input[type=checkbox]:checked~.slds-checkbox_faux {
+            background-color:#b5b5b5;
+        }
+
+        .slds-checkbox_add-button:hover input[type=checkbox]:checked~.slds-checkbox_faux:before {
+            transform: rotate(45deg);
+        }
+
+        .slds-checkbox_add-button:hover input[type=checkbox]:checked~.slds-checkbox_faux:after {
+            transform: rotate(-45deg);
+        }
+
+        .slds-checkbox_add-button:hover input[type=checkbox]:checked~.slds-checkbox_faux:before, .slds-checkbox_add-button:hover input[type=checkbox]:checked~.slds-checkbox_faux:after {
+            height: 1.25rem;
+            top: 0;
+            left: 0;
+            width: 0.125rem;
+        }
+
+        .ic-outline-brand-button{
+            border: 1px solid #ec7039 !important;
+            color: #ec7039 !important;
+            background-color: #fff !important;
+        }
+
+        .ic-outline-brand-button:disabled {
+            color: #d9dbdd !important;
+            border: 1px solid rgb(217, 219, 221) !important;
+        }
+
+        .slds-tabs_scoped__content:focus,.slds-tabs_scoped__item:focus {
+            outline: none !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            #input-value-tooltip {
+                margin: 0;
+            }           
+        }
+
+        /** Prevent the criteria components' dropdowns' appearance from changing **/
+        c-record-type-criterion lightning-combobox button {
+            background-image: none !important;
+        }
+
+        .blurred-text {
+            filter: blur(.25rem);
+            cursor: default;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .blurred-text.blurred-link {
+            color: #005a9e;
+        }
+    </style>
+    <!-- <apex:outputPanel rendered="{!$User.UIThemeDisplayed == 'Theme4u'}">
+        <style type="text/css">
+            html body.sfdcBody {
+                overflow: hidden !important;
+            }
+        </style>
+    </apex:outputPanel> -->
+    <apex:form id="pgForm" styleClass="bg-white">
+        <apex:outputPanel id="debug" layout="block" rendered="{!debug}">
+            <c:DebugLogging />
+        </apex:outputPanel>
+        <!-- Case Id Field for Manually Added Cases -->
+        <apex:inputHidden id="h_dummy_parent_id" value="{!dummyCase.parentId}"/>
+        <div class="slds-scope">
+            <apex:outputPanel id="actionFunctions">
+                <apex:actionFunction name="runInitialSearch" action="{!initialSearch}" reRender="opResults,resultsButtons, debug, apex2js"/>
+                <apex:actionFunction name="mergeCases" action="{!mergeCases}" reRender="apex2js" oncomplete="handleMergeCasesOnComplete()"/>
+                <apex:actionFunction name="generateMergeCasesUrl" action="{!generateMergeCasesUrl}" reRender="mergeAlert,pageAlertShowJS,apex2js" oncomplete="mergeCasesConsoleFromNavigationTab()"/>
+                <apex:actionFunction name="addCaseToResults" action="{!addCaseToResults}" reRender="opResults,recentCasesComp, searchByTextList, apex2js" oncomplete="completedAddCaseToResults();">
+                    <apex:param name="caseId" value="" assignTo="{!dummyCase.parentId}"/>
+                </apex:actionFunction>
+                <apex:actionFunction name="apexSearchByText" action="{!searchByText}" reRender="searchByTextList, apex2js" status="textSearchingStatus" oncomplete="handleApexSearchByTextOnComplete()"/>
+                 <!-- id 'recentCasesComp' is in RecentlyViewedCases -->
+                 <apex:actionFunction name="apexSelectCase" action="{!selectCase}" reRender="selectedString, recentCasesComp, clearSelected, apex2js, searchByTextList" oncomplete="handleApexSelectCaseOnComplete()"/>
+            </apex:outputPanel>
+
+            <div id="spinner" class="slds-spinner_container slds-hide" style="position: fixed; top:0; bottom:0">
+                <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+
+            <c:CsMrgPageHeader title="Find Cases" iconName="lightbulb" showContactUsButton="false"/>
+
+            <!-- Tabs to pull cases from -->
+            <div id="search-tabs" class="slds-tabs_default">
+                <apex:outputPanel layout="none">
+                    <ul class="slds-tabs_default__nav">
+                        <apex:repeat value="{!tabNames}" var="tab">
+                            <li class="slds-tabs_default__item" onclick="switchNavigationTab(this)" data-navigation-id="search-tabs" data-tab-name="{!LOWER(tab)}">
+                                <a id="tab-{!SUBSTITUTE(LOWER(tab), ' ', '_')}__item" class="slds-tabs_default__link" href="javascript:void(0);" tabindex="0">{!tab}</a>
+                            </li>
+                        </apex:repeat>
+                    </ul>
+                    <c:PageAlert id="pageAlert"/>
+                </apex:outputPanel>
+
+                <!-- 
+                    The content wrappers of each tab. Right now they are empty divs that will be appeneded to via javascript.
+                -->
+                <apex:repeat value="{!tabNames}" var="tab">
+                    <div id="tab-{!SUBSTITUTE(LOWER(tab), ' ', '_')}" class="slds-tabs_default__content slds-hide tab_content_wrapper slds-p-horizontal_small" data-tab-name="{!LOWER(tab)}" data-navigation-id="search-tabs">
+                    </div>
+                </apex:repeat>
+
+                <!-- Search by Criteria -->
+                <div class="tab_content" data-tab-name="search by criteria">
+                    <apex:actionFunction name="findCasesByCriteria" action="{!findCasesByCriteria}" rerender="opResults, resultsButtons, debug, apex2js" oncomplete="hideSpinner()">   <!-- -->    
+                        <apex:param id="foundWrapper" name="foundWrapper" value="" />
+                    </apex:actionFunction>
+                    <apex:includeLightning /> 
+                    <div id="FindCriteriaManagerContainer"></div> 
+                    <script>
+                        var PAGE_ALERT = PageAlert.newInstance("{!$Component.pgForm.pageAlert}");
+
+                        document.addEventListener("alertclassic", (event)=>{
+                            PAGE_ALERT.notification.hide();
+                            if("{!inLightning}" == "true"){
+                                sforce.one.showToast({
+                                    "title": event.detail.title,
+                                    "message": event.detail.message,
+                                    "type": event.detail.type
+                                });
+                            }
+                            else {
+                                var config = {
+                                    theme: PageAlert.THEME.ERROR,
+                                    message: event.detail.message,
+                                    notification: {
+                                        animated: true
+                                    },
+                                    modal: {
+                                        title: event.detail.title
+                                    }
+                                };
+                                PAGE_ALERT.update(config);
+                                PAGE_ALERT.notification.show();
+                            }
+                        });
+
+                        document.addEventListener("find", (event)=>{
+                            PAGE_ALERT.notification.hide();
+                            showSpinner();
+                            findCasesByCriteria(event.detail.wrapper);
+                        });
+
+                        $Lightning.use("csmrgp:CriteriaManagerAppContainer", function() { 
+                            $Lightning.createComponent("csmrgp:findCriteriaManager",{},"FindCriteriaManagerContainer",function(cmp) {
+                                // The component fires a custom load event once all it's asynchronous calls are complete.
+                                document.querySelector("csmrgp-find-criteria-manager").addEventListener("load", () => {
+                                    cmp.setRecordTypeDetailWrapper('{!JSENCODE(recordTypeDetailWrapperString)}', '{!IF(focusedCase != null, true, false)}');
+                                });
+                            }); 
+                        }); 
+
+                        function showSpinner(){
+                            document.getElementById("spinner").classList.remove("slds-hide");
+                        }
+
+                        function hideSpinner(){
+                            document.getElementById("spinner").classList.add("slds-hide");
+                        }
+                    </script>                   
+                </div>
+
+                <div class="tab_content" data-tab-name="search by text">
+                    <div class="slds-grid">
+                        <div id="case-lookup" class="slds-form-element slds-size_1-of-2">
+                            <apex:outputLabel value="Text Search" styleClass="slds-form-element__label" for="caseLookupInput" style="margin-right: 0 !important;"/>
+                            <div class="tooltip">
+                                <button class="slds-button slds-button_icon tooltip-button" type="button" style="background:url('{!URLFOR($Resource.CaseMergePremiumAssets, 'case-merge-premium-assets/img/custom-icons/icons/utility/tooltip_60.png')}');"/>
+                                <span class="tooltiptext tooltip_top">
+                                    <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip">
+                                        <div class="slds-popover__body">Text search will match Case Number, Case Subject, Account Name, and Contact Name. This search requires a minimum of 2 characters.</div>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="slds-form-element__control">
+                                <div class="slds-combobox_container slds-has-inline-listbox">
+                                    <div class="slds-combobox slds-combobox-lookup" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+                                            <apex:inputText id="caseLookupInput" styleClass="slds-input slds-combobox__input slds-dropdown-trigger slds-dropdown-trigger_click" value="{!textSearchTerm}" html-autocomplete="off" html-aria-controls="searchByTerm-list" html-oninput="handleSearchByTextOnInput(event,this);" 
+                                            onfocus="handleSearchByTextOnFocus(event,this);" 
+                                            onblur="handleSearchByTextOnBlur(event,this);"
+                                            onkeydown="handleSearchByTextOnKeyDown(event,this);" 
+                                            html-placeholder="Enter your text here"/>
+                                            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right" title="Cases">
+                                                <apex:actionStatus id="textSearchingStatus" layout="none">
+                                                    <apex:facet name="start">
+                                                        <apex:outputPanel layout="none">
+                                                            <div role="status" class="slds-spinner slds-spinner_x-small slds-spinner_brand">
+                                                                <span class="slds-assistive-text">Loading</span>
+                                                                <div class="slds-spinner__dot-a"></div>
+                                                                <div class="slds-spinner__dot-b"></div>
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                    </apex:facet>
+                                                    <apex:facet name="stop">
+                                                        <img src="{!URLFOR($Resource.CaseMergePremiumAssets,'case-merge-premium-assets/style/slds/assets/icons/utility/search_60.png')}" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" style="right:0 !important;"/>
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </span>
+                                        </div>
+                                        <apex:outputPanel layout="block" id="searchByTextList">
+                                            <div id="searchByTerm-list">
+                                                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-scrollable_y" role="presentation" onmouseover="IN_SBT_DROPDOWN = true;" onmouseout="IN_SBT_DROPDOWN = false;" style="margin-top:0px !important;  border-radius: 0 0 .25rem .25rem !important; max-height:318px; display:none;">
+                                                    <apex:outputPanel layout="none" rendered="{!!sbtResults.empty}">
+                                                        <apex:repeat value="{!sbtResults}" var="result">
+                                                            <li role="presentation" class="slds-listbox__item" onclick="handleSearchByTextResultItemOnClick(event, '{!JSENCODE(result.caseId)}');" data-case-id="{!result.caseId}"> <!-- SRFP - Value is JSENCODE'd to prevent XSS -->
+                                                                <span role="option" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" onmouseover="this.classList.add('slds-has-focus');" onmouseleave="this.classList.remove('slds-has-focus');">
+                                                                    <span class="slds-media__figure">
+                                                                        <span class="slds-icon_container slds-icon-standard-case" title="Case {!result.caseNumber}">
+                                                                            <img class="slds-icon slds-icon_small" src="{!URLFOR($Resource.CaseMergePremiumAssets,'case-merge-premium-assets/style/slds/assets/icons/standard/case_60.png')}"/>
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="slds-media__body">
+                                                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">{!result.caseNumber}</span>
+                                                                        <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{!result.descriptorString}</span>
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                        </apex:repeat>
+                                                    </apex:outputPanel> 
+                                                    <apex:outputPanel layout="none" rendered="{!sbtResults.empty}">
+                                                        <li class="slds-listbox__item">
+                                                            <span class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta no-options">
+                                                                <span class="slds-media__body">
+                                                                    No matches
+                                                                </span>
+                                                            </span>
+                                                        </li>
+                                                    </apex:outputPanel>                                                    
+                                                </ul>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+
+                <!-- Recent Cases -->
+                <div class="tab_content" data-tab-name="recent cases">
+                    <c:RecentlyViewedCases parentCtrl="{!ctrl}" callerName="CsMrgFind"/>
+                </div>
+
+                <!-- 
+                    Add content to corresponding content wrappers.
+                -->
+                <script type="application/javascript">
+                    var searchNavigationContentWrappers = document.querySelectorAll('#search-tabs .tab_content_wrapper');
+                    var searchNavigationContent = document.querySelectorAll('#search-tabs .tab_content');
+                    for(var i = 0; i < searchNavigationContent.length; i++) {
+                        var snc = searchNavigationContent[i];
+                        var sncTabName = snc.getAttribute(NAVIGATION_TABS.TAB_NAME_ATTR);
+                        for(var j = 0; j < searchNavigationContentWrappers.length; j++) {
+                            var sncw = searchNavigationContentWrappers[j];
+                            if(sncw.getAttribute(NAVIGATION_TABS.TAB_NAME_ATTR) === sncTabName) {
+                                sncw.appendChild(snc);
+                                break;
+                            }
+                        }
+                    }
+
+                    // First Tab depends
+                    var tabNum = 0;                         
+                    switch('{!JSENCODE(defaultSearchTab)}') {
+                        case 'criteria':
+                            tabNum = 0;
+                            break;
+                        case 'text':
+                            tabNum = 1;
+                            break;
+                        case 'recent':
+                            tabNum = 2;
+                            break;
+                        default:
+                            tabNum = 0;
+                    }
+                    NAVIGATION_TABS.showTabContent(searchNavigationContentWrappers[tabNum]);
+                    document.querySelectorAll('#search-tabs .' + NAVIGATION_TABS.TAB_ITEM_CLASS)[tabNum].classList.add(NAVIGATION_TABS.ACTIVE_TAB_CLASS); 
+                </script>
+            </div>
+
+            <!-- Results -->
+            <apex:outputPanel layout="block" id="opResults">
+                <apex:outputPanel rendered="{!showResults}">
+                    <!-- Results Table Options -->
+                    <apex:outputPanel >
+                        <div class="slds-grid slds-wrap slds-text-align_center slds-p-vertical--xx-small slds-m-top_x-large slds-border_top" style="background-color: #fafaf9;">
+                            <div class="slds-size_1-of-8" style="line-height: 2.0rem;">
+                                <apex:outputText value="{!Displaying}" style="{!displayingCSS}" />
+                            </div>
+
+                            <div class="slds-size_1-of-8">
+                                <apex:outputLabel value="Results Per Page "/>
+                                <div class="slds-select_container slds-select_container-inline">
+                                    <apex:selectList styleClass="slds-select" value="{!recordLimit}" size="1">
+                                        <apex:actionSupport event="onchange" action="{!changePageSize}" reRender="opResults, debug, resultsButtons, apex2js"/>
+                                        <apex:selectOption itemLabel="10" itemValue="10"/>
+                                        <apex:selectOption itemLabel="25" itemValue="25"/>
+                                        <apex:selectOption itemLabel="50" itemValue="50"/>
+                                        <apex:selectOption itemLabel="100" itemValue="100"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-8"></div>
+                            <div class="slds-size_2-of-8">
+                                <apex:commandButton styleClass="slds-button slds-button_neutral ic-outline-brand-button" id="firstPage" value=" << " action="{!setPageFirst}" reRender="opResults,resultsButtons, debug, apex2js" disabled="{!currentPage == 1}" onclick="showSpinner()" oncomplete="hideSpinner()"/>
+                                <apex:commandButton styleClass="slds-button slds-button_neutral ic-outline-brand-button" id="prevPage" value=" < " action="{!setPagePrev}" reRender="opResults,resultsButtons, debug" disabled="{!currentPage == 1}" onclick="showSpinner()" oncomplete="hideSpinner()"/>
+                                <apex:outputLabel styleClass="slds-m-horizontal_small" value="{!PageInfo}"/>
+                                <apex:commandButton styleClass="slds-button slds-button_neutral ic-outline-brand-button" id="nextPage" value=" > " action="{!setPageNext}" reRender="opResults,resultsButtons, debug" disabled="{!(currentPage * recordLimit) >= totalRecords || (currentPage * recordLimit) >= (2000 - recordLimit)}" onclick="showSpinner()" oncomplete="hideSpinner()"/>
+                                <apex:commandButton styleClass="slds-button slds-button_neutral ic-outline-brand-button" id="lastPage" value=" >> " action="{!setPageLast}" reRender="opResults, resultsButtons,debug, apex2js" disabled="{!!(currentPage < MaxPage)}" onclick="showSpinner()" oncomplete="hideSpinner()"/>
+                            </div>
+
+                            <div class="slds-size_1-of-8" style="margin: auto;">
+                                <div id="cases-selected-tooltip" class="tooltip slds-hide">
+                                    <button class="slds-button slds-button_icon tooltip-button" type="button" style="background:url('{!URLFOR($Resource.CaseMergePremiumAssets, 'case-merge-premium-assets/img/custom-icons/icons/utility/tooltip_60.png')}');"/>
+                                    <span class="tooltiptext tooltip_top">
+                                        <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip">
+                                            <div class="slds-popover__body">{!casesSelectedTooltipMessage}</div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="slds-m-left_xx-small" style="display: inline-block;">
+                                    <apex:outputLabel id="selectedString" value="{!SelectedString}" styleClass="slds-m-right_small slds-m-right_xx-small {!selectedStringCSSClass}" />
+                                </div>
+                            </div>
+                            <div class="slds-size_2-of-8">
+                                <apex:commandButton styleClass="slds-button slds-button_neutral ic-outline-brand-button" value="Back to Case" rendered="{!CASE_ID_FOUND}" action="{!cancelMerge}"/>
+                                <apex:commandButton id="clearSelected" value="Clear" action="{!clearSelected}" reRender="opResults, debug, apex2js" onclick="showSpinner()" oncomplete="hideSpinner()" styleClass="slds-button slds-button_neutral ic-outline-brand-button" disabled="{!numSelected == 0}"/>
+                                <button id="merge-button" onclick="handleMergeButtonOnClick(event)" type="button" class="slds-button slds-button_brand">Merge</button>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    <div id="tableScrollArea" class="slds-scrollable">
+                        <table id="resultsTable" class="slds-table slds-table_bordered slds-table_cell-buffer slds-no-row-hover">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th class="slds-align_absolute-center">
+                                        <div class="slds-truncate">Select</div>
+                                    </th>
+                                    <apex:repeat value="{!$ObjectType.Case.FieldSets.csmrgp__Case_Merge_Find}" var="f">
+                                        <th scope="col">
+                                            <div class="slds-truncate">
+                                                <apex:outputText value="{!IF(CONTAINS(f.fieldPath, '.'), f.fieldPath, IF(f.type == 'reference' && LEN(f.label) > 3 && RIGHT(f.label,3) == ' ID', LEFT(f.label, LEN(f.label) - 3), f.label))}"/>
+                                            </div>
+                                        </th>
+                                    </apex:repeat>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <apex:outputPanel layout="none" rendered="{!currentPageResults.empty}">
+                                    <tr>
+                                        <th colspan="{!$ObjectType.Case.FieldSets.Case_Merge_Find.size + 1}" class="slds-text-align_center" style="font-style: italic;">
+                                            No cases matching your criteria were found.
+                                        </th>
+                                    </tr>
+                                </apex:outputPanel>
+                                <apex:outputPanel layout="none" rendered="{!!currentPageResults.empty}">
+                                    <apex:repeat value="{!currentPageResults}" var="r">
+                                        <tr class="{!IF(r.isManual,'manualRow','')}">
+                                            <th scope="row" data-label="Add Cases">
+                                                <div class="slds-align_absolute-center">
+                                                    <div class="slds-checkbox_add-button" title="{!IF(r.canMerge, 'Select Case', 'Case owned by an unlicensed user, ' + r.cs.Owner.Name + ', and cannot be merged.')}">
+                                                        <apex:inputCheckbox id="caseSelectCheck" disabled="{!NOT(r.canMerge)}" styleClass="slds-assistive-text" value="{!r.selected}" onchange="handleCaseCheckboxOnChange(event)" html-data-case-id="{!r.cs.id}" html-data-add-case-src="checkbox"/>
+                                                        <apex:outputLabel for="caseSelectCheck" styleClass="slds-checkbox_faux"/>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                            <apex:repeat value="{!$ObjectType.Case.FieldSets.csmrgp__Case_Merge_Find}" var="f">
+                                                <td data-label="{!IF(CONTAINS(f,'.'),f,$ObjectType['Case'].Fields[f].label)}">
+                                                    <div class="slds-truncate">
+                                                        <apex:variable value="{!RIGHT(LOWER(f.fieldPath), 3) == '.id'}" var="IsDotIdField"/>
+                                                        <apex:variable value="{!RIGHT(LOWER(f.fieldPath), 6) == '__r.id'}" var="IsDotIdCustomField"/>
+                                                        <apex:variable value="{!IF(IsDotIdCustomField, LEFT(f.fieldPath, LEN(f.fieldPath) - 6) + '__c', IF(IsDotIdField, LEFT(f.fieldPath, LEN(f.fieldPath) - 3) + 'Id', f))}" var="theField"/>
+                                                        <apex:outputPanel layout="none" rendered="{!f != 'CaseNumber'}">
+                                                            <apex:outputField rendered="{!r.canMerge}" value="{!r.cs[theField]}"/>
+                                                            <apex:outputText rendered="{!NOT(r.canMerge)}" styleClass="blurred-text" value="{!theField + 'Lorem ipsum dolor sit amet'}"/>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="none" rendered="{!f == 'CaseNumber'}">
+                                                            <apex:outputPanel rendered="{!r.canMerge}">
+                                                                <a onclick="handleRowCaseNumberLinkOnClick(event)" data-case-id="{!r.cs.Id}">{!r.cs.CaseNumber}</a>
+                                                            </apex:outputPanel>
+                                                            <apex:outputText rendered="{!NOT(r.canMerge)}" styleClass="blurred-text blurred-link" value="00000000"/>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                </td>
+                                            </apex:repeat>
+                                        </tr>
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </tbody>
+                        </table>
+                    </div>
+                </apex:outputPanel>
+            </apex:outputPanel>
+
+            <apex:inputHidden id="h__allowLimitBypass" value="{!allowLimitBypass}"/>
+            <section id="modal" role="dialog" tabindex="-1" class="slds-modal" aria-labelledby="modal-heading" aria-modal="true" aria-describedby="modal-content">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button onclick="handleModalCloseBtnOnClick(event)" type="button" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                            <img src="{!URLFOR($Resource.CaseMergePremiumAssets, 'case-merge-premium-assets/img/custom-icons/icons/utility/close_white_60.png')}" alt="close" class="slds-button__icon slds-button__icon_large"/>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading" class="slds-text-heading_medium slds-hyphenate">
+                            <span modal-variant="limit">Want to Add More Cases?</span>
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content">
+                        <div modal-variant="limit">
+                            <p class="slds-p-bottom_small">Select more than {!caseMergeLimit} cases by using the Clean Merge option.</p>
+                            <p class="slds-p-bottom_small">Clean Merge closes each child case as a duplicate, without cloning any child record objects. No data will be transfered to the Primary Case, but your duplicates will be resolved.</p>
+                            <p class="">Proceed with clean merge?</p>
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <div modal-variant="limit">
+                            <button onclick="handleLimitExceededModalYesBtnOnClick(event)" type="button" class="slds-button slds-button_brand">Yes</button>
+                            <button onclick="handleLimitExceededModalNoBtnOnClick(event)" type="button" class="slds-button slds-button_neutral ic-outline-brand-button">No</button>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+            <div id="modal-backdrop" class="slds-backdrop"></div>
+        </div>
+    </apex:form>
+
+    <apex:outputPanel id="apex2js">
+        <script type="application/javascript">
+            var APEX = {
+                pageAlertJSON: "{!JSENCODE(pageAlertJSON)}",
+                latestPageMessage : '{!JSENCODE(latestPageMessage)}',
+                latestPageMessageType : '{!JSENCODE(latestPageMessageType)}',
+                maxMergeCases : {!caseMergeLimit},
+                numSelectedCases : {!numSelected},
+                cleanMergeEnabled : {!CLEAN_MERGE_ENABLED},
+                exceedMergeLimitEnabled : {!EXCEED_MERGE_LIMIT_ENABLED},
+                mergeCasesUrl : "{!JSENCODE(mergeCasesUrl)}"
+            };
+        </script>
+    </apex:outputPanel>
+
+    <script type="application/javascript">
+        function SalesforceUX() {   // Keeps track of which experience you are in, without using UIThemeDisplayed
+            var themeIsLightningBased = typeof(sforce) !== 'undefined' && typeof(sforce.one) !== 'undefined';
+
+            this.IN_CONSOLE = sforce && sforce.console && sforce.console.isInConsole();
+            this.IN_CLASSIC_CONSOLE = this.IN_CONSOLE && !themeIsLightningBased;
+            this.IN_LIGHTNING_CONSOLE = this.IN_CONSOLE && themeIsLightningBased;
+            this.IN_LIGHTNING_EXPERIENCE = !this.IN_LIGHTNING_CONSOLE && themeIsLightningBased;
+            this.IN_CLASSIC = !this.IN_CONSOLE && !this.IN_LIGHTNING_EXPERIENCE;
+        }
+
+
+        var SF_UX = new SalesforceUX();
+
+        NAVIGATION_TABS.IN_LIGHTNING_CONSOLE = SF_UX.IN_LIGHTNING_CONSOLE;
+
+        function showLimitExceededModal() {
+            showModalVariant(MODAL_VARIANTS.LIMIT_EXCEEDED);
+        }
+
+        // Key Codes
+        var keyCodes = {
+            backspace : 8,
+            arrowup : 38,
+            arrowdown : 40,
+            enter : 13,
+            esc : 27,
+            semicolon : 186,    // Unused
+            tab : 9     // Unused in this file
+        }
+        var onInputTimeout;
+        var clickedSaveAndReturn = false;
+
+        window.addEventListener("resize", function(e) {
+            if(document.activeElement.id.indexOf('criteriaValue') !== -1) {
+                adjustCriteriaValueTooltipPosition(document.activeElement, document.getElementById('input-value-tooltip'));
+            }
+        });
+
+        function switchNavigationTab(newActiveNavigationTab) {
+            NAVIGATION_TABS.switchNavigationTab(newActiveNavigationTab);
+        }
+
+        // Ignore Tabs and Arrow Keys to change navigation tabs.
+        function disableBackgroundListeners() {
+            ACTION_OVERLAYS.setEnableTabsForPage(false);
+            NAVIGATION_TABS.disableArrowMovement();
+        }
+
+        function enableBackgroundListeners() {
+            ACTION_OVERLAYS.setEnableTabsForPage(true);
+            NAVIGATION_TABS.enableArrowMovement();
+        }
+
+        function toggleSection(sectionToggleButton) {
+            var sectionContent = document.getElementById(sectionToggleButton.getAttribute('aria-controls'));
+            var buttonParent = sectionToggleButton.parentNode;
+            while(!buttonParent.classList.contains('slds-section') && buttonParent !== null) {
+                buttonParent = buttonParent.parentNode;
+            }
+
+            var section = buttonParent;
+            section.classList.toggle('slds-is-open');
+            var expanded = section.classList.contains('slds-is-open');
+            sectionToggleButton.setAttribute('aria-expanded',''+ expanded);
+            sectionContent.setAttribute('aria-hidden',''+!expanded);
+        }
+
+        function setFocusOnLoad() {}
+
+        function unescapeXMLEntities(obj) {
+            if(typeof obj == 'string') {
+                return obj.replace(/(&quot\;)|(&#34\;)/g, '"').replace(/(&amp\;)|(&#38\;)/g, '&').replace(/(&apos\;)|(&#39\;)/g, "'").replace(/(&lt\;)|(&#60\;)/g, '<').replace(/(&gt\;)|(&#62\;)/g, '>');
+            }
+            else if(typeof obj == 'object') {
+                for(var field in obj){
+                    obj[field] = unescapeXMLEntities(obj[field]);
+                }
+                return obj;             
+            }
+        }
+
+        function selectText(element) {
+            if (document.selection){
+                var range = document.body.createTextRange();
+                range.moveToElementText(element);
+                range.select();
+            } else if (window.getSelection) {
+                var range = document.createRange();
+                range.selectNode(element);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+            }
+        }
+
+        /** Apex Status Handlers **/
+
+        function handleMergeButtonOnClick(event) {
+            PAGE_ALERT.notification.hide();
+            document.querySelector("[id$='h__allowLimitBypass']").value = ALLOW_EXCEED_LIMIT;
+            showSpinner();
+            if(SF_UX.IN_CONSOLE) {
+                sforce.console.getEnclosingTabId(function(enclosingTabResult) {
+                    if(!enclosingTabResult.success) {   // Navigation Tab
+                        generateMergeCasesUrl();
+                    }
+                    else {
+                        mergeCases();
+                    }
+                });
+            }
+            else {
+                mergeCases();
+            }
+        }
+
+        function mergeCasesConsoleFromNavigationTab() {
+            hideSpinner();
+
+            if(sforce.console.isInConsole && APEX.mergeCasesUrl !== null && APEX.mergeCasesUrl.length > 0) {
+                sforce.console.openPrimaryTab(null, APEX.mergeCasesUrl, true, undefined, function(openPrimaryTabResult) {
+                    if(openPrimaryTabResult.success) {
+                        sforce.console.refreshNavigationTab();
+                    }
+                    // Scenario where you try to open the merge page with the same cases twice in classic console.
+                    // You cannot open a duplicate tab, so we need to override the one that is currently using
+                    // the merge url. It MUST be a primary tab.
+                    else {
+                        if(SF_UX.IN_CLASSIC_CONSOLE) {
+                            sforce.console.getPrimaryTabIds(function(primaryTabIdsResult) {
+                                if(primaryTabIdsResult.success) {
+                                    var idList = primaryTabIdsResult.ids;
+                                    for(var i = 0; i < idList.length; i++) {
+                                        (function(tabId) {
+                                            sforce.console.getPageInfo(tabId, function(pageInfoResult) {
+                                                var pageInfo = JSON.parse(pageInfoResult.pageInfo);
+                                                if(pageInfo.url === APEX.mergeCasesUrl) {
+                                                    sforce.console.openPrimaryTab(tabId, APEX.mergeCasesUrl, true, undefined, function(openPrimaryTabResult2) {
+                                                        sforce.console.refreshNavigationTab();
+                                                    });
+                                                }
+                                            });
+                                        })(idList[i]); 
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+            else {
+                handleAlertAfterApex();
+            }
+        }
+
+        function handleRowCaseNumberLinkOnClick(e) {
+            let caseId = e.currentTarget.getAttribute('data-case-id');
+            if(SF_UX.IN_CONSOLE) {
+                if(SF_UX.IN_LIGHTNING_CONSOLE) {
+                    sforce.one.navigateToSObject(caseId);
+                }
+                else {
+                    srcUp(`/${caseId}`);
+                }
+            }
+            else {
+                window.open(`/${caseId}`, '_blank');
+            }
+        }
+
+        sforce.console.setTabTitle('Find Duplicates - Case Merge Premium');
+    </script>
+
+    <!-- Javascript for criteria autocomplete -->
+    <script type="application/javascript">
+
+        HTMLInputElement.prototype.getAttributeLowerCase = function(attrName) {
+            var attrValue = this.getAttribute(attrName);
+            if(attrValue) {
+                return attrValue.toLowerCase();
+            }
+            return attrValue;
+        }
+    </script>
+
+    <!-- Javascript for search by text -->
+    <script type="application/javascript">
+        /** Search by Text **/
+        function handleSearchByTextOnFocus(event,inputElement) {
+            if(!SBT_SEARCHING && inputElement && inputElement.value != null && inputElement.value.length >= 2) {
+                showSBTResults();
+            }
+        }
+
+        var IN_SBT_DROPDOWN = false;
+        function handleSearchByTextOnBlur(event,inputElement) {
+            if(!IN_SBT_DROPDOWN) {
+                hideSBTResults();
+            }
+        }
+
+        function handleSearchByTextOnInput(event,inputElement) {
+            if(inputElement.value.length > 0) {
+                clearTimeout(onInputTimeout);
+                onInputTimeout = setTimeout(function() {
+                    searchByText(inputElement, true);
+                }, 1000);
+            }
+            else {
+                hideSBTResults();
+            }        
+        }
+
+        var SHOW_SBT_RESULTS_AFTER_SEARCH = false;  // If true, show the list of results after searching.
+        var SBT_SEARCHING = false;
+        function searchByText(sbtInput, showResultsAfterSearch) {
+            if(sbtInput && sbtInput.value !== null && sbtInput.value.length >= 2) {
+                hideSBTResults();
+                SHOW_SBT_RESULTS_AFTER_SEARCH = showResultsAfterSearch;
+                SBT_SEARCHING = true;
+                apexSearchByText();
+            }
+        }
+
+        function handleApexSearchByTextOnComplete() {
+            // If a silent search is performed we do not show the list upon compleition unless the focus is on the search by text input.
+            if(SHOW_SBT_RESULTS_AFTER_SEARCH || document.activeElement.id.endsWith('caseLookupInput')) {
+                SHOW_SBT_RESULTS_AFTER_SEARCH = false;
+                showSBTResults();
+            }
+            SBT_SEARCHING = false;
+        }
+
+        function handleApexSelectCaseOnComplete() {
+            hideSpinner();
+            searchByText(document.getElementById('{!$Component.pgForm.caseLookupInput}'), false);
+        }
+
+        function hideSBTResults() {
+            let sbtResults = getSBTResultsDOM();
+            if(sbtResults) {
+                sbtResults.style.display = 'none';
+            }
+        }
+
+        function showSBTResults() {
+            let sbtResults = getSBTResultsDOM();
+            if(sbtResults) {
+                sbtResults.style.display = 'block';
+            }
+        }
+
+        function getSBTResultsDOM() {
+            return document.querySelector('#searchByTerm-list ul');
+        }
+
+        // Arrow Keys can traverse autocomplete list
+        // Esc Key hides autocomplete
+        // Enter Key selects the highlighted option
+        function handleSearchByTextOnKeyDown(event, inputElement) {
+            var listbox = document.getElementById('searchByTerm-list').querySelector('.slds-listbox');
+            if(event.keyCode === keyCodes.arrowup || event.keyCode === keyCodes.arrowdown || event.keyCode === keyCodes.enter) {
+                var focusedOption = listbox.querySelector('.slds-has-focus:not(.no-options)');
+                if(event.keyCode === keyCodes.arrowup || event.keyCode === keyCodes.arrowdown) {
+                    var nextOption;
+                    if(focusedOption) {
+                        nextOption = event.keyCode === keyCodes.arrowup ? focusedOption.parentElement.previousElementSibling : focusedOption.parentElement.nextElementSibling;
+                        focusedOption.classList.remove('slds-has-focus');
+                    }
+                    if(nextOption && focusedOption) {
+                        var offsetDifference = focusedOption.offsetTop - nextOption.offsetTop;
+                        var upMoveOffset = 4;
+                        var listPadding = 10;
+                        var downMoveOffset = 6;
+
+                        if(nextOption.offsetTop < listbox.scrollTop) { // moved up
+                            listbox.scrollTop = nextOption.offsetTop - upMoveOffset;
+                        }
+                        else if(offsetDifference < 0 && nextOption.offsetTop  + nextOption.getBoundingClientRect().height - listbox.scrollTop >= listbox.getBoundingClientRect().height - listPadding) {
+                            listbox.scrollTop = (nextOption.offsetTop - (listbox.getBoundingClientRect().height - downMoveOffset) + nextOption.getBoundingClientRect().height);
+                        }
+                    }
+                    else {
+                        nextOption = event.keyCode === keyCodes.arrowup ? listbox.lastElementChild : listbox.firstElementChild;
+                        listbox.scrollTop = event.keyCode === keyCodes.arrowup ? listbox.scrollHeight : 0;
+                    }
+                    nextOption.querySelector('.slds-listbox__option').classList.add('slds-has-focus');
+                }
+                else {
+                    // Enter
+                    if(focusedOption) {
+                        handleCaseSelected('search', focusedOption.parentElement.getAttribute('data-case-id')); 
+                    }
+                    else {
+                        if(inputElement.value.length > 0) {
+                            clearTimeout(onInputTimeout);
+                            searchByText(inputElement, true);
+                        }
+                        event.preventDefault();
+                    }
+                }
+            }
+            else if(event.keyCode === keyCodes.esc) {
+                hideSBTResults();
+            }
+        }
+
+        function handleSearchByTextResultItemOnClick(event, caseId) {
+            handleCaseSelected('search', caseId); 
+        }
+
+        function completedAddCaseToResults() {
+            handleAlertAfterApex();
+            var caseLookupInputElement = document.getElementById('{!$Component.pgForm.caseLookupInput}');
+            caseLookupInputElement.removeAttribute('disabled');
+            document.getElementById(caseLookupInputElement.getAttribute('aria-controls')).querySelector('ul').style.display="none";
+            searchByText(caseLookupInputElement, false);
+            hideSpinner();
+        }
+
+        var MODAL_VARIANTS = {
+            LIMIT_EXCEEDED : "limit",
+        };
+        var CURRENT_MODAL_VARIANT;
+
+        function showModalVariant(variant) {
+            var modal = document.getElementById("modal");
+            var modalBackdrop = document.getElementById("modal-backdrop");
+            var modalVariantElements = document.querySelectorAll("[modal-variant]");
+
+            CURRENT_MODAL_VARIANT = variant;
+
+            modal.classList.add("slds-fade-in-open");
+            modalBackdrop.classList.add("slds-backdrop_open");
+
+            for(var i = 0; i < modalVariantElements.length; i++) {
+                var el = modalVariantElements[i];
+                if(el.getAttribute("modal-variant") === variant) {
+                    el.classList.remove("slds-hide");
+                }
+                else {
+                    el.classList.add("slds-hide");
+                }
+            }
+        }
+
+        function hideModal() {
+            var modal = document.getElementById("modal");
+            var modalBackdrop = document.getElementById("modal-backdrop");
+            var modalVariantElements = document.querySelectorAll("[modal-variant]");
+
+            modal.classList.remove("slds-fade-in-open");
+            modalBackdrop.classList.remove("slds-backdrop_open");
+
+            for(var i = 0; i < modalVariantElements.length; i++) {
+                modalVariantElements[i].classList.add("slds-hide");
+            }
+        }
+
+        function handleModalCloseBtnOnClick(e) {
+            hideModal();
+            if(CURRENT_MODAL_VARIANT === MODAL_VARIANTS.LIMIT_EXCEEDED) {
+                ALLOW_EXCEED_LIMIT = false;
+            }
+        }
+
+        var ALLOW_EXCEED_LIMIT = false;
+        function handleLimitExceededModalYesBtnOnClick(e) {
+            ALLOW_EXCEED_LIMIT = true;
+            if(ADD_CASE_DETAILS.src === 'search' || ADD_CASE_DETAILS.src === 'recent') {
+                addCaseFromSearchByText(ADD_CASE_DETAILS.caseId);
+            }
+            else if(ADD_CASE_DETAILS.src === 'checkbox') {
+                showSpinner();
+                apexSelectCase();
+            }
+            ADD_CASE_DETAILS = null;
+            hideModal();
+        }
+
+        function handleLimitExceededModalNoBtnOnClick(e) {
+            ALLOW_EXCEED_LIMIT = false;
+            if(ADD_CASE_DETAILS.src === 'checkbox') {
+                var checkbox = document.querySelector("[id$='caseSelectCheck'][data-case-id='" + ADD_CASE_DETAILS.caseId + "']");
+                if(checkbox) {
+                    checkbox.checked = false;
+                }
+            }
+            ADD_CASE_DETAILS = null;
+            hideModal();
+        }
+
+        // Alert Handler
+        function handleAlertAfterApex() {
+            var pageAlertInfo;
+            try {
+                pageAlertInfo = JSON.parse(APEX.pageAlertJSON);
+            }
+            catch(err) {}
+
+            if(pageAlertInfo) {
+                pageAlertInfo.show = true;
+                pageAlertInfo.notification = {
+                    animated: true
+                };
+                pageAlertInfo.modal = {
+                    title: (pageAlertInfo.theme === PageAlert.THEME.ERROR) ? "Error Details" : "",
+                }
+                PAGE_ALERT.update(pageAlertInfo);
+                PAGE_ALERT.notification.show();
+            }            
+        }
+    </script>
+
+    <script type="application/javascript">
+        function handlePageOnLoad(e) {
+            runInitialSearch();
+        }
+
+        window.addEventListener('load', handlePageOnLoad);
+
+        var ADD_CASE_DETAILS = null;
+        function handleCaseCheckboxOnChange(e) {
+            if(e.currentTarget.checked) {
+                handleCaseSelected(e.currentTarget.getAttribute("data-add-case-src"), e.currentTarget.getAttribute("data-case-id"));
+            }
+            else {
+                handleCaseCheckboxUnselected();
+            }
+        }
+
+        function handleCaseSelected(src, caseId) {
+            if(APEX.exceedMergeLimitEnabled && !ALLOW_EXCEED_LIMIT && APEX.numSelectedCases === APEX.maxMergeCases) {
+                ADD_CASE_DETAILS = {
+                    caseId : caseId,
+                    src : src
+                };
+                showLimitExceededModal();
+            }
+            else {
+                // Add as normal
+                if(src === 'checkbox') {
+                    LAST_SELECTED_CASES_VALUE = APEX.numSelectedCases;
+                    showSpinner();
+                    apexSelectCase();
+                }
+                else if(src === 'search' || src === 'recent') {
+                    addCaseFromSearchByText(caseId);
+                }
+            }
+        }
+
+        if(typeof(handleRecentCasesSelectBtnAction) === 'function') {
+            handleRecentCasesSelectBtnAction = function(e) {
+                handleCaseSelected('recent', e.currentTarget.parentElement.querySelector(".slds-select").value);
+            }
+        }
+
+        function handleCaseCheckboxUnselected() {
+            LAST_SELECTED_CASES_VALUE = APEX.numSelectedCases;
+            showSpinner();
+            apexSelectCase();
+        }
+
+        function addCaseFromSearchByText(caseId) {
+            LAST_SELECTED_CASES_VALUE = APEX.numSelectedCases;
+            var caseLookupInputElement = document.getElementById('{!$Component.pgForm.caseLookupInput}');
+            caseLookupInputElement.setAttribute('disabled', 'disabled');
+            document.getElementById(caseLookupInputElement.getAttribute('aria-controls')).querySelector('ul').style.display="none";
+            showSpinner();
+            addCaseToResults(caseId);
+        }
+
+        function updateMergeButton() {
+            if(APEX.numSelectedCases <= APEX.maxMergeCases) {
+                ALLOW_EXCEED_LIMIT = false;
+            }
+            var mergeButton = document.getElementById("merge-button");
+            mergeButton.disabled = (APEX.numSelectedCases > APEX.maxMergeCases && !ALLOW_EXCEED_LIMIT);
+            mergeButton.innerText = (ALLOW_EXCEED_LIMIT) ? 'Clean Merge' : 'Merge';
+        }
+
+        var LAST_SELECTED_CASES_VALUE = APEX.numSelectedCases;
+        function updateCasesSelectedTooltip() {
+            var tooltip = document.getElementById("cases-selected-tooltip");
+            if(APEX.exceedMergeLimitEnabled) {
+                if(APEX.numSelectedCases >= APEX.maxMergeCases) {
+                    tooltip.classList.remove("slds-hide");
+                }
+                else {
+                    tooltip.classList.add("slds-hide");
+                }
+
+                if(APEX.numSelectedCases === APEX.maxMergeCases) {
+                    tooltip.querySelector("button").focus();
+                }
+            }
+            else {
+                if(APEX.numSelectedCases > APEX.maxMergeCases) {
+                    tooltip.classList.remove("slds-hide");
+                }
+                else {
+                    tooltip.classList.add("slds-hide");
+                }
+
+                if(APEX.numSelectedCases === APEX.maxMergeCases + 1 && LAST_SELECTED_CASES_VALUE === APEX.maxMergeCases) {
+                    tooltip.querySelector("button").focus();
+                }
+            }
+            handleAlertAfterApex();
+        }
+
+        function handleMergeCasesOnComplete() {
+            hideSpinner();
+            handleAlertAfterApex()
+        }
+    </script>
+</apex:page>

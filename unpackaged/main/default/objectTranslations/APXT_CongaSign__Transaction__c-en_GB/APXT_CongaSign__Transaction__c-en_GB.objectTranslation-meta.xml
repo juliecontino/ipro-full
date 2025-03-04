@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Conga Sign transaction</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Conga Sign transactions</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Transaction Layout</layout>
+        <sections>
+            <label>Custom links</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Details --></label>
+            <section>Document Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Transaction name</nameFieldLabel>
+    <quickActions>
+        <label><!-- Cancel Transaction --></label>
+        <name>APXT_CongaSign__lightningCancel</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Re-send Transaction --></label>
+        <name>APXT_CongaSign__lightningResend</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Cancel --></label>
+        <name>APXT_CongaSign__Cancel</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Download_FinalVersion --></label>
+        <name>APXT_CongaSign__Download_FinalVersion</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Download_OriginalVersion --></label>
+        <name>APXT_CongaSign__Download_OriginalVersion</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Edit_Draft --></label>
+        <name>APXT_CongaSign__Edit_Draft</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Resend --></label>
+        <name>APXT_CongaSign__Resend</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Audit_btn --></label>
+        <name>APXT_CongaSign__View_Audit_btn</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_ContentDocument --></label>
+        <name>APXT_CongaSign__View_ContentDocument</name>
+    </webLinks>
+</CustomObjectTranslation>

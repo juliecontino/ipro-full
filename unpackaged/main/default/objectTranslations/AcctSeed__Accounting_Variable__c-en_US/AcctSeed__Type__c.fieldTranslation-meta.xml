@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to determine GL Account Variables 1-4 and Time Card Variables 1-2. --></help>
+        <label><!-- Type --></label>
+        <name>AcctSeed__Type__c</name>
+        <picklistValues>
+            <masterLabel>GL Account Variable 1</masterLabel>
+            <translation><!-- GL Account Variable 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL Account Variable 2</masterLabel>
+            <translation><!-- GL Account Variable 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL Account Variable 3</masterLabel>
+            <translation><!-- GL Account Variable 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL Account Variable 4</masterLabel>
+            <translation><!-- GL Account Variable 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Time Card Variable 1</masterLabel>
+            <translation><!-- Time Card Variable 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Time Card Variable 2</masterLabel>
+            <translation><!-- Time Card Variable 2 --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,52 @@
+﻿/* $Id: Common.css 36 2008-01-14 10:35:01Z Bolik@xjgc.com $ */
+*
+{
+  padding: 0;
+  margin: 0;
+}
+
+html
+{
+  padding: 0;
+  margin: 0;
+}
+
+body
+{
+  font-family: Consolas, Verdana, 新宋体;
+  position: relative;
+  margin: 0em;
+  padding: 0em;
+  background-color: #e4deae; /*font-size: 62.5%;*/
+}
+
+ul
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ul{	
+	color: #000000;
+	font: 14px/16px Arial, Tahoma, Helvetica, sans-serif;
+}
+
+li a:link, li a:active{
+  	font: bold 13px/18px Arial, Tahoma, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+li a:visited{
+  	font: bold 13px/18px Arial, Tahoma, Helvetica, sans-serif;
+	text-decoration: none;
+	color: #2d88a2;
+}
+
+li a:hover{
+  	font: bold 13px/18px Arial, Tahoma, Helvetica, sans-serif;
+	text-decoration: none;
+	color: #8a8a8a;
+}
+*/

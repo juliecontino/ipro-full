@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Commercial Invoice --></label>
+        <name>zkfedex__CommercialInvoice__c</name>
+        <relationshipLabel><!-- Queued Shipment Documents --></relationshipLabel>
+    </CustomFieldTranslation>

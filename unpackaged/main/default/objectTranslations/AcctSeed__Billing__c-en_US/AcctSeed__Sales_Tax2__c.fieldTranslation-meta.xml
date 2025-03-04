@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Total Sales Tax amount --></help>
+        <label><!-- Sales Tax --></label>
+        <name>AcctSeed__Sales_Tax2__c</name>
+    </CustomFieldTranslation>

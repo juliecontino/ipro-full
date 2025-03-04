@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Id of a Content Workspace to which the output from a QMode=1 operation should be attached.  (Blank means to attach to the running-user&apos;s Personal Workspace.)
+
+This setting does not affect the Content settings that apply to an individual merge event. --></help>
+        <label><!-- Content Workspace ID --></label>
+        <name>APXT_BPM__Content_Workspace_Id__c</name>
+    </CustomFieldTranslation>

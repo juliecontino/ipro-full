@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__Open_TextArea_in_a_dialog__c</fullName>
+    <defaultValue>true</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Open Text Area in a dialog</description>
+    <label>Open TextArea in a dialog</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

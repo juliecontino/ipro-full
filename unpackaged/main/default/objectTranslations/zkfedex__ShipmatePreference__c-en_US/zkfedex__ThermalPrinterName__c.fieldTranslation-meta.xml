@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Specify if using a Thermal printer. The name given to the printer when installed. In Windows, this is the name listed for your thermal printer under &quot;Printers and Faxes&quot;. --></help>
+        <label><!-- Thermal Printer Name --></label>
+        <name>zkfedex__ThermalPrinterName__c</name>
+    </CustomFieldTranslation>

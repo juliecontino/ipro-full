@@ -1,0 +1,66 @@
+<apex:page label="Rollup Helper Health Check" title="Rollup Helper Health Check" standardStylesheets="false" sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <head> 
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/modernizr-1.7.min.js') }"/>
+        <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+        <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/grayBackground.css') }" /> 
+        <apex:includeLightning />
+    </head>
+    <style>        
+
+        .slds-button_neutral {
+            border: 1px solid rgb(201, 201, 201) !important;
+        }
+
+        .slds-button_icon-border {
+            border: 1px solid rgb(201, 201, 201) !important;
+        }
+
+        lightning-breadcrumb.slds-breadcrumb__item::marker {
+            color: transparent !important;
+        }
+    </style>
+    <script>
+        var namespace;
+        var rh = rh || {}
+        rh.j$ = jQuery.noConflict();
+
+        document.addEventListener('lightning__showtoast', event => {
+            sforce.one.showToast(event.toastAttributes);
+        });
+        
+        rh.j$(document).ready(function(){
+            namespace = "{!JSENCODE(IF(CONTAINS($CurrentPage.Name, "__"),LEFT($CurrentPage.Name,FIND("__", $CurrentPage.Name)-1),"c"))}";
+            var rootPage = sessionStorage.getItem('rootPage') || 'home';
+
+            createHealthCheckComponent();
+        });
+
+        function createHealthCheckComponent(){
+            let rootPage = sessionStorage.getItem('rootPage') || 'home';
+            let isNavigatedFromAllSettingsPage = rootPage === 'settings';
+
+            $Lightning.use(namespace + ":PS_Health_Check", function() {
+                $Lightning.createComponent(
+                    namespace + ":ps_healthCheck",
+                    {
+                        allRollupsBreadCrumb: isNavigatedFromAllSettingsPage,
+                    },
+                    "healthCheckLwc",
+                    function(cmp) {
+                        adjustHelpTextStyling();
+                    });
+            });
+        }
+
+        function adjustHelpTextStyling(){
+            const popupText = document.querySelector("lightning-primitive-bubble");
+            if(popupText){
+                popupText.classList.add("slds-scope");
+            }
+        }
+    </script>
+    <div id="healthCheckLwc"></div>
+    </html>
+</apex:page>

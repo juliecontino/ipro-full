@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Specifies additional description about customs return type. This is a required field when the customs return type is &quot;OTHER&quot; --></help>
+        <label><!-- Intl Return Customs Return Description --></label>
+        <name>zkfedex__IntlReturnCustomsReturnDescription__c</name>
+    </CustomFieldTranslation>

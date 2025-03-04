@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is a type of financial account. Possible values: Bank or Credit Card. --></help>
+        <label><!-- Container --></label>
+        <name>AcctSeed__Container__c</name>
+    </CustomFieldTranslation>

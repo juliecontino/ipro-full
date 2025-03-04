@@ -1,0 +1,5 @@
+<apex:page id="thePage" standardController="AcctSeed__Cash_Receipt__c" title="{!AcctSeed__Cash_Receipt__c.Name & ' | Accounting Seed'}">
+
+    <apex:pageMessage summary="This feature has been deprecated." severity="info" strength="3"></apex:pageMessage>
+
+</apex:page>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounting_Variable_2_Type_must_be_same</fullName>
+    <active>true</active>
+    <errorConditionFormula>not(isblank(AcctSeed__GL_Account_Variable_2__c))&amp;&amp;text(AcctSeed__GL_Account_Variable_2__r.AcctSeed__Type__c)!="GL Account Variable 2"</errorConditionFormula>
+    <errorDisplayField>AcctSeed__GL_Account_Variable_2__c</errorDisplayField>
+    <errorMessage>Accounting Variable 2 Type must be an Accounting Variable 2</errorMessage>
+</ValidationRule>

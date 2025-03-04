@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The date this bank deposit was cleared in the associated bank reconciliation. --></help>
+        <label><!-- Bank Transaction Date --></label>
+        <name>AcctSeed__Cleared_Date__c</name>
+    </CustomFieldTranslation>

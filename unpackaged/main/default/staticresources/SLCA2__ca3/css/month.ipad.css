@@ -1,0 +1,71 @@
+/* 
+    Document   : month.ipad
+    Created on : 31 трав 2012, 18:46:34
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div.new_events > div.events > div{
+    opacity:1 !important;
+    display:none !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div.new_events > div.events > div.new_event{
+    display:block !important;
+}
+
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll   div.evt{
+    opacity:1 !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.sub_events > div{
+    opacity:1 !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div.new_events > div.events > div.new_event > span{
+    box-shadow: 0px 0px 0px 0px transparent !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div > ul > li > span.daymore{
+    box-shadow: 0px 0px 0px 0px transparent !important;
+}
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div > div.events > div.on > span.title,
+.JQ_CA.mobile > .CA_r > div._mode-month   div.sub_events > div.on > span.title,
+.JQ_CA.mobile > .CA_r > div._mode-month   div.hand_on > span.title {
+    box-shadow: 0px 0px 0px 0px transparent !important;
+}
+
+
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div > div.events > div > span > span.l,
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div > div.events > div > span > span.r{
+    width:12px;
+    background-size: cover;
+}
+
+
+
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div:hover > ul > li:hover > span.more.on,
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div > ul > li.full_day > span.more.on,
+.JQ_CA.mobile > .CA_r > div._mode-month   div.month_scroll > div > ul > li > span.more.on{
+    top:-1px;
+    left:0px;
+    height:15px;
+    border-radius: 1px;
+    background-color:  #f0f0f0;
+    width:auto;
+    color:inherit;
+    padding:0px 5px;
+    line-height: 20px;
+    font-size: 100%;
+}
+
+
+
+@media screen and (max-width: 500px){
+    
+}

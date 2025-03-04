@@ -1,0 +1,38 @@
+<apex:page id="TrialData" controller="AcctSeed.TrialDataController">
+  <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/pmamain.js')}" loadOnReady="true" />
+  <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'javascript/vex.combined.min.js')}" />
+  <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+  <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'css/vex.css')}" />
+  <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, 'css/vex-theme-default.css')}" />
+  <apex:form >
+    <apex:actionFunction name="createTrialData" action="{!createTrialData}" />
+    <apex:pageBlock id="thePageBlock" title="Trial Data">
+      <apex:pageMessage severity="warning" strength="3" summary="{!PermissionWarningMessage}" rendered="{!NOT(isAdminAccess)}"
+      />
+      <apex:pageMessages escape="false" />
+      <apex:actionStatus id="processedStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" />
+      <apex:pageBlockButtons id="buttonsTop">
+      </apex:pageBlockButtons>
+      <br/>
+      <apex:pageBlockSection title="Create Trial Data" collapsible="false" columns="2" rendered="{!!main.AcctSeed__Disable_Trial_Data__c && isAdminAccess}">
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="" />
+          <apex:commandButton value="Create Trial Data" status="processedStatus" onClick="AcctSeed.ASModule.createTrialDataConfirm()"
+                              onComplete="return null;" />
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Disable Trial Data" collapsible="false" columns="2" rendered="{!isAdminAccess}">
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="Disable Trial Data" />
+          <apex:outputField value="{!main.AcctSeed__Disable_Trial_Data__c}" />
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem rendered="{!!main.AcctSeed__Disable_Trial_Data__c}">
+          <apex:outputLabel value="" />
+          <apex:commandButton value="Disable Trial Data" status="processedStatus" action="{!disableTrialData}" />
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

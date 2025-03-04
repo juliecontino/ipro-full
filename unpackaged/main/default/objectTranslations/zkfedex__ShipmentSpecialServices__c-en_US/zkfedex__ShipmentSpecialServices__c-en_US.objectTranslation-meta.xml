@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Shipment Special Services Layout</layout>
+        <sections>
+            <label><!-- Alcohol --></label>
+            <section>Alcohol</section>
+        </sections>
+        <sections>
+            <label><!-- Broker Select --></label>
+            <section>Broker Select</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dangerous Goods/Hazardous Materials --></label>
+            <section>Dangerous Goods/Hazardous Materials</section>
+        </sections>
+        <sections>
+            <label><!-- Dry Ice --></label>
+            <section>Dry Ice</section>
+        </sections>
+        <sections>
+            <label><!-- FedEx® Collect on Delivery (C.O.D.) --></label>
+            <section>FedEx® Collect on Delivery (C.O.D.)</section>
+        </sections>
+        <sections>
+            <label><!-- FedEx® Delivery Signature Options --></label>
+            <section>FedEx® Delivery Signature Options</section>
+        </sections>
+        <sections>
+            <label><!-- Freight Special Services --></label>
+            <section>Freight Special Services</section>
+        </sections>
+        <sections>
+            <label><!-- Hold at FedEx Authorized ShipCenter® Location --></label>
+            <section>Hold at FedEx Authorized ShipCenter® Location</section>
+        </sections>
+        <sections>
+            <label><!-- Home Delivery Premium --></label>
+            <section>Home Delivery Premium</section>
+        </sections>
+        <sections>
+            <label><!-- International Returns --></label>
+            <section>International Returns</section>
+        </sections>
+        <sections>
+            <label><!-- One Rate --></label>
+            <section>One Rate</section>
+        </sections>
+        <sections>
+            <label><!-- Pharmacy Delivery --></label>
+            <section>Pharmacy Delivery</section>
+        </sections>
+        <sections>
+            <label><!-- Priority Alert --></label>
+            <section>Priority Alert</section>
+        </sections>
+        <sections>
+            <label><!-- Saturday Services --></label>
+            <section>Saturday Services</section>
+        </sections>
+        <sections>
+            <label><!-- Shipment --></label>
+            <section>Shipment</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

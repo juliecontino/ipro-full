@@ -1,0 +1,214 @@
+<apex:page controller="rh2.PS_Convert_Rollups_Controller" label="Convert_Rollups" title="Convert Rollups" standardStylesheets="false" sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <head> 
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+        <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/modernizr-1.7.min.js') }"/>
+        <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }"/>	 
+        <apex:includeScript value="{!$Resource.rh2__svg4everybody}"/>
+
+        <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+	    <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />
+        <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/grayBackground.css') }"  />
+    </head>
+
+    <script>
+        $(document).ready(function(){
+            var rootPage = sessionStorage.getItem('rootPage') || 'home';
+            selectBreadcrumb_HS();
+        });
+    </script>
+
+    <style>
+        .checkmark2 {
+            background-image: url({!URLFOR($Resource.rh2__PT_Resources_v1, 'images/checkmark.png')});
+            margin-left: 6px;
+            width: 12px;
+            height: 12px;
+        }
+
+        .input {
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            margin:0;
+            vertical-align: bottom;
+            position: relative;
+            top: -1px;
+            overflow: hidden;
+        }
+    </style>
+
+    <apex:form >
+        <apex:slds />
+        <apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+        <apex:actionFunction action="{!doSettingSearch}" name="searchAllSettings" rerender="tablecontainer" status="loading">
+            <apex:param name="settingSearch" value=""/>
+        </apex:actionFunction>
+        <div class="slds-scope" role="main">
+            <div class="slds-card grayBackground">
+                <header class="slds-card__header">
+                    <nav role="navigation">
+                        <ol class="slds-breadcrumb slds-list_horizontal">
+                            <li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!URLFOR($Page.rh2__PS_landingPage)}">{!$Label.rh2__Home}</a></li>
+                            <li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.rh2__PS_AllSettings)}">{!$Label.rh2__AllRollupSetting}</a></li>
+                        </ol>
+                    </nav>
+                </header>
+            </div>
+            <c:Loading_Spinner opacity="1"/>
+            <div class="slds-card grayBackground">
+                <header class="slds-card__header slds-theme_alt-inverse">
+                    <h3 class="slds-text-heading_medium">Convert Rollups</h3>
+                </header>
+                <apex:outputPanel rendered="{!numRollupsToConvert == 0}">
+                    <center>
+                        <b>There are no existing DLRS settings.</b>
+                    </center> 
+                    <br/>
+                </apex:outputPanel>
+                <apex:outputPanel rendered = "{!numRollupsToConvert > 0}">
+                    <div class="slds-box slds-box--x-small slds-theme--alt-inverse" style="width:90%; margin-left:auto; margin-right:auto;">
+                        <center>
+                            <b> Please Note: </b> Relationship criteria will <b> not </b> be automatically populated when selecting a setting to convert. Settings that use relationship criteria, field sorting, and limits will need to be configured manually by pressing "Create New Filter" after selecting a setting to convert. 
+                            First, Last, Concatenate, and Concatenate Distinct settings that sort using a field that is not the source field will also need to be set manually by creating a filter.
+                        </center>
+                    </div>
+                    <br/>
+                    <div class="slds-form-element" style="display:flex;margin-left:10px;">    
+                        &nbsp;&nbsp;
+                        <input style="width:25%" class="slds-input" placeHolder="Type to search for settings" type="text" id="settingSearch" />		
+                        <script>
+                            searchFromInput("settingSearch", searchAllSettings);
+                        </script>
+                        <center style="margin-left:80px;margin-top:5px;color:red;">
+                            <b>Please disable DLRS setting and verify the existence and visibility of all objects and fields before selecting a setting to convert.</b>
+                        </center>
+                    </div>
+                    <br/>
+                    <section class="slds-card__body">
+                        <apex:outputPanel id="tablecontainer" style=" height:600px;">
+                            <apex:pageMessages /> 
+                            <table class="slds-table slds-table_bordered" >
+                            <c:Paginate pageController="{! convertRollupPaginateController }" renderedComponent="tablecontainer" /> 
+                                <thead>
+                                    <tr style="width:100%;">
+                                        <th class="slds-text-heading_label" style="width:16.66%;" scope="col">{!$Label.Action}</th>
+                                        <th class="slds-text-heading_label slds-is-sortable hidecol" style="width:16.66%;" scope="col">
+                                            <apex:commandLink value="Name" action="{!doSettingSort }" rerender="tablecontainer">
+                                                <apex:param name="sortField" value="Name" assignTo="{!sortVars.sortField}"/>
+                                                <apex:outputText value="{!IF(sortVars.sortField=='Name', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+                                            </apex:commandLink>
+                                        </th>
+                                        <th class="slds-text-heading_label slds-is-sortable" style="width:16.66%;" scope="col">
+                                            <apex:commandLink value="Rollup Type" action="{!doSettingSort}" rerender="tablecontainer">
+                                                <apex:param name="sortField" value="RollupType" assignTo="{!sortVars.sortField}"/>
+                                                <apex:outputText value="{!IF(sortVars.sortField=='RollupType', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+                                            </apex:commandLink>
+                                        </th>
+                                        <th class="slds-text-heading_label slds-is-sortable" style="width:16.66%;" scope="col">
+                                            <apex:commandLink value="Target Field" action="{!doSettingSort}" rerender="tablecontainer">
+                                                <apex:param name="sortField" value="AdjustedTarget" assignTo="{!sortVars.sortField}"/>
+                                                <apex:outputText value="{!IF(sortVars.sortField=='AdjustedTarget', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+                                            </apex:commandLink>
+                                        </th>
+                                        <th class="slds-text-heading_label slds-is-sortable" style="width:16.66%;" scope="col">
+                                            <apex:commandLink value="Source Field" action="{!doSettingSort}" rerender="tablecontainer">
+                                                <apex:param name="sortField" value="AdjustedSource" assignTo="{!sortVars.sortField}"/>
+                                                <apex:outputText value="{!IF(sortVars.sortField=='AdjustedSource', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+                                            </apex:commandLink>
+                                        </th>
+                                        <th class="slds-text-heading_label slds-is-sortable" style="width:16.66%" scope="col">
+                                            <apex:commandLink value="isActive" action="{!doSettingSort}" rerender="tablecontainer">
+                                                <apex:param name="isDLRSActive" value="isActive" assignTo="{!sortVars.sortField}"/>
+                                                <apex:outputText value="{!IF(sortVars.sortField=='isActive', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+                                            </apex:commandLink>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div style="height:500px; overflow-y:scroll; margin-left:auto; margin-right:auto;">
+                                <table class="slds-table slds-table_bordered" >
+                                    <tbody>
+                                    <apex:repeat value="{!PaginatedListOfRollupsToConvert}" var="item" id="repeat">
+                                        <tr>
+                                            <td style="width:16.66%;"> 
+                                                <apex:commandLink value="{!$Label.rh2__Select}" onclick="showModal(true, 'deactivateDLRSValidation')" reRender="validationTextContainer" rendered="{!item.isActive}">
+                                                    <apex:param name="targetObj" value="{!item.targetObject}" assignTo="{!selectedRollup.targetObject}"/>
+                                                    <apex:param name="targetFld" value="{!item.targetField}" assignTo="{!selectedRollup.targetField}"/>
+                                                    <apex:param name="relField" value="{!item.relationshipField}" assignTo="{!selectedRollup.relationshipField}"/>
+                                                    <apex:param name="sourceObj" value="{!item.sourceObject}" assignTo="{!selectedRollup.sourceObject}"/>
+                                                    <apex:param name="rollupType" value="{!item.rollupType}" assignTo="{!selectedRollup.rollupType}"/>
+                                                    <apex:param name="delim" value="{!item.delimiter}" assignTo="{!selectedRollup.delimiter}"/>
+                                                    <apex:param name="sourceFld" value="{!item.sourceField}" assignTo="{!selectedRollup.sourceField}"/>
+                                                    <apex:param name="isActive" value="{!item.isActive}" assignTo="{!selectedRollup.isActive}"/>
+                                                    <apex:param name="id" value="{!item.id}" assignTo="{!selectedRollup.id}" />
+                                                    <apex:param name="isMetadata" value="{!item.isMetadata}" assignTo="{!selectedRollup.isMetadata}" />
+                                                </apex:commandLink>
+                                                <apex:commandLink value="{!$Label.rh2__Select}" action="{! convertSelectedRollup }" rendered="{!NOT(item.isActive)}">
+                                                    <apex:param name="targetObj" value="{!item.targetObject}" assignTo="{!selectedRollup.targetObject}"/>
+                                                    <apex:param name="targetFld" value="{!item.targetField}" assignTo="{!selectedRollup.targetField}"/>
+                                                    <apex:param name="relField" value="{!item.relationshipField}" assignTo="{!selectedRollup.relationshipField}"/>
+                                                    <apex:param name="sourceObj" value="{!item.sourceObject}" assignTo="{!selectedRollup.sourceObject}"/>
+                                                    <apex:param name="rollupType" value="{!item.rollupType}" assignTo="{!selectedRollup.rollupType}"/>
+                                                    <apex:param name="delim" value="{!item.delimiter}" assignTo="{!selectedRollup.delimiter}"/>
+                                                    <apex:param name="sourceFld" value="{!item.sourceField}" assignTo="{!selectedRollup.sourceField}"/>
+                                                    <apex:param name="isActive" value="{!item.isActive}" assignTo="{!selectedRollup.isActive}"/>
+                                                    <apex:param name="id" value="{!item.id}" assignTo="{!selectedRollup.id}" />
+                                                    <apex:param name="isMetadata" value="{!item.isMetadata}" assignTo="{!selectedRollup.isMetadata}" />
+                                                </apex:commandLink>
+                                            </td>                   
+                                            <td style="width:16.66%;" >
+                                            {! item.Name }
+                                            </td>
+                                            <td style="width:16.66%;" >
+                                                {! item.rollupType }
+                                            </td>
+                                            <td style="width:16.66%;" >
+                                                {! item.targetObject } > {! item.targetField }
+                                            </td>
+                                            <td style="width:16.66%;" >
+                                                {! item.sourceObject } > {! item.sourceField }
+                                            </td>
+                                            <td style="width:16.66%" >
+                                                <apex:image value="{!URLFOR($Resource.rh2__PT_Resources_v1, 'images/s.gif')}" rendered="{!item.isActive}" styleClass="checkmark2" id="checkmark2"/>
+                                            </td>
+                                        </tr>                        
+                                    </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </apex:outputPanel>
+                        <div id='deactivateDLRSValidation' style="display:none">
+                            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container">
+                                    <div class="slds-modal__header">
+                                        <h2 class="slds-text-heading_medium">Convert Active DLRS Setting</h2>
+                                        <button type="button" onclick='showModal(false, "deactivateDLRSValidation");' class="slds-button slds-button_icon-inverse slds-modal__close">
+                                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+                                                <use xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"></use>
+                                            </svg>
+                                        </button>       
+                                    </div>
+                                    <apex:outputPanel id="validationTextContainer">
+                                        <div class="slds-modal__content slds-p-around_medium">
+                                            <apex:outputText >This is an active DLRS Setting. Converting this to a Rollup Helper setting will deactivate the DLRS setting upon save.</apex:outputText>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <div class="slds-modal__footer">
+                                        <apex:commandButton value="Convert" action="{! convertSelectedRollup }" styleClass="slds-button slds-button_brand"></apex:commandButton>
+                                        <apex:commandButton value="{!$Label.rh2__Close}" onclick="showModal(false, 'deactivateDLRSValidation')" styleClass="slds-button slds-button_neutral"></apex:commandButton>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </div>
+                    </section>
+                    <footer class="slds-card__footer"/>
+                </apex:outputPanel>
+            </div>
+        </div> 
+        <br/>
+        <c:PS_additionalInformation ></c:PS_additionalInformation>
+    </apex:form>
+    </html>
+</apex:page>

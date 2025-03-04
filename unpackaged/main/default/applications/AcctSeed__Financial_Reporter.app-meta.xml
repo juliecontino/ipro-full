@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Financial Suite app for booking transactions, reconciling and reporting on the general ledger.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>General Ledger</label>
+    <logo>SharedDocuments/IPro_Logo_Salesforce_Header_Image.png</logo>
+    <tabs>AcctSeed__Accounting_Period__c</tabs>
+    <tabs>AcctSeed__Journal_Entry__c</tabs>
+    <tabs>AcctSeed__Scheduled_Revenue_Expense__c</tabs>
+    <tabs>AcctSeed__Run_Financial_Report</tabs>
+    <tabs>AcctSeed__Financial_Report_Definition__c</tabs>
+    <tabs>AcctSeed__Bank_Deposit__c</tabs>
+    <tabs>AcctSeed__Bank_Reconciliation2__c</tabs>
+    <tabs>AcctSeed__Accounting_Help</tabs>
+    <tabs>Recurring_Billing_Line_Items__c</tabs>
+    <tabs>Billing_Master__c</tabs>
+    <tabs>Help</tabs>
+    <tabs>Quick_Account</tabs>
+    <tabs>Quick_Product</tabs>
+    <tabs>Project_task</tabs>
+    <tabs>Approval</tabs>
+    <tabs>AcctSeed__Recurring_Billing_Line__c</tabs>
+    <tabs>Project_Calendar__c</tabs>
+    <tabs>Project_Notes__c</tabs>
+    <tabs>Purchase_Orders</tabs>
+</CustomApplication>

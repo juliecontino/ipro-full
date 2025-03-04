@@ -1,0 +1,45 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Purchase_Order_Line__c" title="Update Purchase Order| Accounting Seed" extensions="AcctSeedERP.PurchaseOrderLineSerialNumberUpdate" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeedERP__accounting_erp_resources, '/javascript/serial-number-update.js')}"/>
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Purchase Order Line" subtitle="{!AcctSeedERP__Purchase_Order_Line__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Update Serial Numbers">
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')" />
+                <apex:commandButton id="recalcButton" status="saveStatus" value="Save & Refresh" action="{!saveNumbers}" rendered="{!AcctSeedERP__Purchase_Order_Line__c.Product__r.AcctSeedERP__Serialized__c && invMovements.size>0}" rerender="theForm"/>
+                <apex:commandButton id="saveButton" status="saveStatus" value="Save & Complete" action="{!saveComplete}" rendered="{!!AcctSeedERP__Purchase_Order_Line__c.Product__r.AcctSeedERP__Serialized__c || (AcctSeedERP__Purchase_Order_Line__c.Product__r.AcctSeedERP__Serialized__c && invMovements.size>0)}" rerender="theForm"/>
+                <apex:commandButton id="cancelButton" value="Back" action="/{!Purchase_Order_Line__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageMessages rendered="{!showMessage}" escape="false"/>
+            <apex:pageMessage summary="No inventory movements exist. Use the Receive button on the purchase order to create the inventory movements" severity="warning" strength="3" rendered="{!AcctSeedERP__Purchase_Order_Line__c.Product__r.AcctSeedERP__Serialized__c && invMovements.size=0}" />
+            <apex:outputField value="{!AcctSeedERP__Purchase_Order_Line__c.Name}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Purchase_Order_Line__c.AcctSeedERP__Product__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Purchase_Order_Line__c.Product__r.Name}" rendered="false" />
+            <apex:pageBlockSection columns="1">
+                <apex:outputField value="{!AcctSeedERP__Purchase_Order_Line__c.AcctSeedERP__Product__c}" />
+                <apex:outputField value="{!AcctSeedERP__Purchase_Order_Line__c.Product__r.ProductCode}" />
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Product Code Entry" />
+                    <apex:inputText id="productField" value="{!productCodeEntry}"
+                                    onkeydown="return AcctSeedERP.ASModule.keyPressEventHandler(event,this)" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isProductCodeDoesNotMatchError}">
+                    <apex:outputLabel value="Error:" styleClass="errorMsg"/>
+                    <apex:outputText value="Product code does not match." styleClass="errorMsg"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockTable id="thePageBlockTable" value="{!invMovements}" var="inv" rendered="{!AcctSeedERP__Purchase_Order_Line__c.Product__r.AcctSeedERP__Serialized__c && invMovements.size>0}">
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:outputLabel value="Serial Number" />
+                    </apex:facet>
+                    <apex:inputField id="serialNumber" value="{!inv.AcctSeedERP__Serial_Number__c}" onkeydown="return AcctSeedERP.ASModule.keyPressEventHandler(event,this)" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

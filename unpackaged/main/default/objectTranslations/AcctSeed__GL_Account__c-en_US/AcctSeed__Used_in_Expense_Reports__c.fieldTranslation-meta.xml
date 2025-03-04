@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The filtered look up on the Expense object uses a value of True to be available for selection in submitting an expense. --></help>
+        <label><!-- Used in Expense Reports --></label>
+        <name>AcctSeed__Used_in_Expense_Reports__c</name>
+    </CustomFieldTranslation>

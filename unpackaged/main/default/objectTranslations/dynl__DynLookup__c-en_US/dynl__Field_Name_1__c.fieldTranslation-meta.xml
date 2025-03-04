@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- First Field Name of the Object. This field will have the selection link during run time. --></help>
+        <label><!-- Field Name 1 --></label>
+        <name>dynl__Field_Name_1__c</name>
+    </CustomFieldTranslation>

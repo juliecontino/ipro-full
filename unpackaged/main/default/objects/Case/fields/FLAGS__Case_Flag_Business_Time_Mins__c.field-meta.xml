@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FLAGS__Case_Flag_Business_Time_Mins__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Renders the minute portion of the Case Flag in business hours as "Z Minutes".</description>
+    <externalId>false</externalId>
+    <formula>TEXT(ROUND(MOD(FLAGS__Case_Flag_Business_Age__c,1) * 60,0)) + ' Minutes'</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Case Flag Business Time Mins</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

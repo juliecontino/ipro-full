@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__One_Parent_Key</fullName>
+    <active>false</active>
+    <errorConditionFormula>AcctSeed__Import_Template__r.AcctSeed__Total_Key_Fields__c &gt; 1</errorConditionFormula>
+    <errorMessage>There can only be one field specified as the Parent Key Field</errorMessage>
+</ValidationRule>

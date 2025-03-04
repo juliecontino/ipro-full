@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>IF(AcctSeed__Transaction__c.AcctSeed__Report_Amount__c:SUM &gt;0,FK_AcctSeed__Project__c.AcctSeed__Budgeted_Revenue__c:SUM, FK_AcctSeed__Project__c.AcctSeed__Budgeted_Amount__c:SUM*-1)</calculatedFormula>
+        <datatype>currency</datatype>
+        <description>Budget</description>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>AcctSeed__Transaction__c.AcctSeed__GL_Account__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Budget</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Transaction__c.AcctSeed__Report_Amount__c</field>
+    </columns>
+    <description>Compares project actual revenue vs budgeted revenue</description>
+    <filter>
+        <criteriaItems>
+            <column>AcctSeed__Transaction__c.AcctSeed__GL_Account_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>revenue,expense</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Transaction__c.AcctSeed__GL_Account__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Project Revenue vs Budget</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$AcctSeed__Transaction__c@AcctSeed__Transaction__c.AcctSeed__Project__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Transaction__c.AcctSeed__Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

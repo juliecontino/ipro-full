@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_All_Project_TFP</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Status_Ops__c</columns>
+    <columns>Opportunity_Stage__c</columns>
+    <columns>Opportunity_Ops_Category__c</columns>
+    <columns>AcctSeed__Account__c</columns>
+    <columns>Account_Alias__c</columns>
+    <columns>AcctSeed__Opportunity__c</columns>
+    <columns>Project_Start_Date__c</columns>
+    <columns>Estimated_Cut_over_Date__c</columns>
+    <columns>Project_Manager_OPS__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Template_Project__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Account__c</field>
+        <operation>contains</operation>
+        <value>The Family Place</value>
+    </filters>
+    <label>Active - The Family Place</label>
+    <language>en_US</language>
+</ListView>

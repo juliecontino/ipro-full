@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__HierarchyRelation__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Hierarchy Relation for {PID parameter 
+Format: table tilda SON Field API FIELD NAME tilda Father Field API FIELD NAME
+Example: account tilda  id tilda parentid</description>
+    <inlineHelpText>Hierarchy Relation for {PID} parameter 
+Format: table~SON Field API FIELD NAME~Father Field API FIELD NAME
+Example: account~id~parentid</inlineHelpText>
+    <label>HierarchyRelation</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

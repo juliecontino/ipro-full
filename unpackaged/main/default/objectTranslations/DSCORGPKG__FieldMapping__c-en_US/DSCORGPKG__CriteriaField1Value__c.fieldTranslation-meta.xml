@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The value you wish to match on the object record for the first matching criteria. --></help>
+        <label><!-- Criteria Field 1 Value --></label>
+        <name>DSCORGPKG__CriteriaField1Value__c</name>
+    </CustomFieldTranslation>

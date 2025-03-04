@@ -1,0 +1,889 @@
+/*@import url(jq-calendar-anything.small.css) 
+    screen and (max-device-height: 767px) and (orientation : portrait),
+    screen and (min-device-height: 769px) and (max-device-height: 1023px) and (orientation : portrait),
+    screen and (min-device-height: 1025px) and (max-device-height: 1280px) and (orientation : portrait),
+    screen and (max-device-height: 599px) and (orientation : landscape),
+    screen and (max-height: 800px) and (max-width:600px),
+    screen and (max-height: 600px) and (max-width:800px);*/
+    /*screen and (max-height: 2000px) and (max-width:2000px),  for all device testing*/
+    /*screen and (max-height: 768px) and (max-width:1024px)  ipad for testing*/
+    /*;*/
+/*@import url(css/jq-calendar-anything.small.css) screen ;*/
+
+html, body { overflow: hidden; height: 100% }
+body { margin:0; padding:0; }
+
+
+
+.JQ_CA{
+    min-width:320px;
+    /*background-color: red;*/
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:100;
+    box-shadow:0px 0px 0px;
+    border-radius: 0;
+    border-width: 0;    
+    
+    
+    -ms-touch-action: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    overflow:hidden;
+    position:absolute;
+    background-color: #fff;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size:12px;
+    color: #555555;
+}
+
+div > .JQ_CA{
+	top:0;left:0;right:0;bottom:0;
+        border:0;
+        box-shadow:0 0 0;
+        border-radius: 0 0 5px 5px;
+}
+
+    .JQ_CA > .CA_h{
+        bottom:auto;
+        top:0;
+        border-bottom: 1px solid #F7AC54;
+        position:absolute;
+        height:40px;
+        width:100%;
+        left:0px;
+        z-index:53;
+    }
+    
+    
+    
+    .JQ_CA._closehead > .CA_h,
+    .JQ_CA._show_menu > .CA_h,
+    .JQ_CA._closehead > .CA_f,
+    .JQ_CA._show_menu > .CA_f{
+        display:none;
+    }
+    
+        .JQ_CA > .CA_h > div.plus{
+            position:absolute;
+            right:10px;
+            top:0;
+            height:30px;
+            overflow:hidden;
+        }
+        
+        .JQ_CA > .CA_h > div.nav{
+            position:absolute;
+            left:0;
+            top:0;
+            height:30px;
+        }
+        
+        
+        
+        .JQ_CA > .CA_h > div.notify{
+            position: absolute;
+            
+            left:50%;
+/*            display: none;*/
+            margin-left: -150px;
+            width:300px;
+            max-height:100px;
+            overflow-y:auto; 
+            overflow-x: hidden;
+            top:-400px;
+/*            border-radius: 5px;*/
+/*            box-shadow: 0 0 3px #ddd;*/
+            background-color: white;
+            transition: 0.2s opacity, 0.2s top;
+            opacity:0;
+            z-index: 999;
+        }
+        
+        .JQ_CA > .CA_h > div.notify.show,
+        .JQ_CA > .CA_h > div.notify:hover{
+            display:block;
+            opacity:1;
+            top:5px;
+            
+        }
+        
+        .JQ_CA > .CA_h > div.notify:hover {
+            max-height: 250px;
+        }
+        
+            .JQ_CA > .CA_h > div.notify > div, 
+            .JQ_CA > .CA_h > div.notify > div._old:hover{
+                margin-top: 3px;
+/*                border-bottom:1px dotted #333;*/
+                padding:5px;
+                position: relative;
+                background-color: #73BE95;
+                border-radius: 5px;
+                opacity:1;
+            }
+            
+            .JQ_CA > .CA_h > div.notify > div._error{
+                background-color: #AF6150 !important;
+                color:white !important;
+            }
+            .JQ_CA > .CA_h > div.notify > div._old{
+                opacity: 0.4;
+            }
+            
+                .JQ_CA > .CA_h > div.notify > div > ._d{
+                    display:inline-block;
+                    padding-right:5px;
+                    font-weight: bolder;
+                }
+                .JQ_CA > .CA_h > div.notify > div > ._close{
+                    display:none;
+                    z-index:2;
+                    position: absolute;
+                    width:16px;height:16px;
+                    top:2px;right:5px;
+                    border:1px solid #487AA3;;
+                    color: #487AA3;
+                    background-color: white;
+                    cursor: pointer;
+                    line-height: 15px;
+                    text-align: center;
+/*                    display: inline-block;*/
+                    vertical-align: middle;
+                    border-radius: 8px;
+                    font-size: 12px;
+                }
+                .JQ_CA > .CA_h > div.notify > div:hover > ._close{
+                    display: inline-block;
+                }
+        
+        .JQ_CA > .CA_h > div.buttons,
+        .JQ_CA > .CA_f > div.buttons{
+            /*border-radius:3px;*/
+            /*border:1px solid #ddd;*/
+/*            box-shadow: 0px 0px 2px #aaa;*/
+            color: #B94E41;
+            font-size: 20px;
+            cursor:pointer;
+            background: #ffffff;
+            height:30px;
+            line-height:30px;
+            padding:0px 5px;
+            text-shadow: 1px 1px 5px #B94E41;
+        }
+        
+
+    .JQ_CA > .CA_l{
+        top:0;
+        bottom:0;
+        position:absolute;
+        left:0px;
+        right:0;
+        overflow-y:auto;
+        display: none;
+    }
+    .JQ_CA._show_menu > .CA_l{
+        width: 100%;
+        overflow-y: scroll;
+        z-index:2;
+        display: block;
+    }
+    
+        .JQ_CA > .CA_l >  div{
+            outline:0;
+            margin:5px 0px;
+            padding-left:15px;
+        }
+        
+        .JQ_CA > .CA_l >  div.calendars_empty._off{
+            display: none;
+        }
+        
+            .JQ_CA > .CA_l >  div > div.title{
+                font-weight: bolder;
+                font-size: 110%;
+                background-repeat: no-repeat;
+                background-image:url(../../pic/type_calendars.png);
+                cursor:context-menu;
+            }
+            
+            .JQ_CA > .CA_l >  div[data-type="sf"] > div.title{
+                background-position: 10px 0px;
+            }
+            .JQ_CA > .CA_l >  div[data-type="group"] > div.title{
+                background-position: 10px -16px;
+            }
+            .JQ_CA > .CA_l >  div[data-type="web"] > div.title{
+                background-position: 10px -32px;
+            }
+
+            .JQ_CA > .CA_l >  div > div.list{
+                margin-top:5px;
+                margin-bottom:5px;
+            }
+                .JQ_CA > .CA_l >  div > div.title > span{
+                    display: inline-block;
+                    width:6px;height:6px;
+                    line-height:12px;
+                    
+                    margin-right:28px;
+                    background-image:url(../../pic/type_calendars.png);
+                    background-repeat: no-repeat;
+                    background-position: -7px -69px;
+                }
+                
+                .JQ_CA > .CA_l >  div.close > div.title > span{
+                    background-position: -8px -52px;
+                }
+                
+                .JQ_CA > .CA_l >  div > div.list{
+/*                    -moz-transition: 1s all;
+                    transition: 1s all;*/
+                    padding:0px 0px 0px 10px;
+                    height:auto;
+                }
+                .JQ_CA > .CA_l >  div.close > div.list{
+                    /*display:none;*/
+                    overflow:hidden;
+                    height:0px;
+                }
+                
+                    .JQ_CA > .CA_l >  div > div.list > div{
+                        margin:2px 0px;
+                        cursor:pointer;
+                        padding:3px 2px;
+                        overflow:hidden;
+                        border:1px solid transparent;
+                        border-radius: 5px;
+                        white-space: nowrap; 
+                        position: relative;
+                    }
+                    
+                    .JQ_CA > .CA_l >  div > div.list > div:hover{
+                        background-color: #f0f0f0;
+                        border-color:#ccc;
+                    }
+                    .JQ_CA > .CA_l >  div > div.list > div.hide{
+                        display:none;
+                    }
+                    .JQ_CA > .CA_l >  div > div.list > div.calendar_empty{
+                        display:none;
+                        overflow: visible;
+                        white-space: pre-wrap;
+                    }
+                    
+                    .JQ_CA > .CA_l >  div > div.list > div.filter.sel{
+                        box-shadow:inset 0 0 3px #F6AF5C;
+                        /*background-color:;*/
+                    }
+                    
+                    .JQ_CA.ie > .CA_l >  div > div.list > div.filter.sel{
+                        border-color:#F6AF5C;
+                    }
+                    
+                    .JQ_CA > .CA_l >  div > div.list > div.calendar_empty a{
+                        text-decoration: underline;
+                    }
+                    .JQ_CA > .CA_l >  div.calendars_empty > div.list > div.calendar_empty{
+                        display:block;
+                    }
+                    
+                    
+/*                    .JQ_CA > .CA_l >  div.calendars_empty[data-type="sf"] > div.list > div.calendar_empty{
+                        display:block;
+                    }*/
+                    
+                    
+                        .JQ_CA > .CA_l >  div > div.list > div > span{
+                            display:inline-block;
+                            border-radius: 2px;
+                            width:11px;
+                            height:11px;
+                        }
+                        .JQ_CA > .CA_l >  div > div.list > div > span.checkbox{
+                            border:1px solid #dcdcdc;
+                            float:left;
+                            margin-right:5px;
+                        }
+/*                        .JQ_CA > .CA_l >  div > div.list > div.rainbow.sel > span.checkbox{
+                            background-image: url(pic/rainbow.png);
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            
+                        }*/
+                        
+                        .JQ_CA > .CA_l >  div > div.list > div.lock > span.checkbox{
+                            border:1px solid #dcdcdc;
+                            float:left;
+                            margin-right:5px;
+                            background-color: #ddd !important;
+                        }
+                        
+                        .JQ_CA > .CA_l >  div > div.list > div > span.str{
+/*                            float:right;*/
+                            border:1px solid #dcdcdc;
+                            visibility:hidden;
+                            background-image:url(../../pic/type_calendars.png);
+                            background-repeat:no-repeat;
+                            background-position:-4px -82px;
+                            position: absolute;
+                            top:3px;
+                            right:3px;
+                            z-index: 99;
+                        }
+                        
+                        .JQ_CA > .CA_l >  div > div.list > div:hover > span.str{
+                            visibility: visible;
+                            opacity: 0.5;
+                            background-color: #f0f0f0;
+                        }
+                        .JQ_CA > .CA_l >  div > div.list > div:hover > span.str:hover{
+                            opacity: 1;
+                            border-color: #aaa;
+                            
+                        }
+                        
+                        .JQ_CA > .CA_l >  div > div.list > div > span.name{
+/*                            width:130px;*/
+                            height:auto;
+                            vertical-align: top;
+                            margin-right:40px;
+                            width:auto;
+                            white-space: normal; 
+                        }
+                        
+                        .JQ_CA > .CA_l >  div > div.list > div > span._special_colors{
+                            display:none;
+                        }
+                        .JQ_CA > .CA_l >  div > div.list > div.sel > span._special_colors{
+                            display:block;
+                            padding-left: 8px;
+                            height: auto;
+                            width: auto;
+                        }
+                        
+                            .JQ_CA > .CA_l >  div > div.list > div.sel > span._special_colors > span{
+                                display: block;
+                                margin-top:2px;
+                                font-size: 80%;
+                                vertical-align: middle;
+                                white-space: pre-line;
+                            }
+                            
+                                .JQ_CA > .CA_l >  div > div.list > div.sel > span._special_colors > span > a{
+                                    vertical-align: middle;
+                                    display:inline-block;
+                                    border:1px solid #dcdcdc;
+                                    margin-right:5px;
+                                    width:8px;
+                                    height:8px;
+                                    margin-right:3px;
+                                }
+                        
+        .JQ_CA > .CA_l > ._buttonsPanel{
+            display: block;
+            position: fixed;
+            left:0;
+            right:0;
+            bottom:0;
+            height:30px;
+            background-color: #ffffff;
+            border: 1px solid #DDDDDD;
+            line-height: 30px;
+            margin: 0;
+            z-index:99;
+        }
+            
+            
+    .JQ_CA > .CA_r{
+        position:absolute;
+        left:0;right:0px;
+        overflow-y:hidden;
+        overflow-x: hidden;
+        outline: 0;
+        
+        
+        top:40px;
+        bottom:40px;
+    }
+    
+    
+    .JQ_CA._show_menu > .CA_r{
+        display: none;
+    }
+    .JQ_CA._noleft > .CA_r{
+        left:25px;
+    }
+    .JQ_CA._closeleft > .CA_r{
+        left:0;
+    }
+    
+    .JQ_CA._closehead > .CA_r{
+        top:0px;
+    }
+        .JQ_CA > .CA_r > div{
+            position:absolute;
+            top:0px;
+            left:0px;
+            bottom:0px;
+            right:0px;
+            display:none;
+        }
+    
+        .JQ_CA > .CA_r > div.show{
+            display:block;
+        }
+        
+        
+    .JQ_CA > .CA_f{    
+        position: absolute;
+        top:auto;
+        bottom:0;
+        height:40px;
+        left:0;
+        right:0;
+        border-top:1px solid #F7AC54;
+    }
+    
+        .JQ_CA > .CA_f > div.mode{
+            position:absolute;
+            right:5px;
+            height:30px;
+            overflow:hidden;
+            top:5px;
+        }
+        
+
+        .JQ_CA > .CA_f > div.manage{
+            position:absolute;
+            left:5px;
+            top:5px;
+            height:30px;
+            overflow:hidden;
+        }
+            
+        .JQ_CA > .CA_f > div.title{
+            position:absolute;
+            left:50%;
+            margin-left:-50px;
+            top:5px;
+            height:30px;
+        }
+            
+            
+    
+    .JQ_CA > .CA_popup{
+        display:none;
+        position:absolute;
+        /*box-shadow: 0px 0px 5px #888;*/
+        /*border-radius: 0px;*/
+        border:0px;
+        padding:10px;
+        opacity:0;
+        z-index:199;
+        background-color: #fff;
+        max-width: 90%;
+        max-height: 90%;
+        overflow:auto;
+        outline: 0;
+    }
+    
+    .JQ_CA > .CA_popup.show, 
+    .JQ_CA > .CA_popup_shadow.show,
+    .JQ_CA > .CA_any_shadow.show{
+        display:block;
+        opacity:1;
+        
+    }
+    .JQ_CA > .CA_popup.show._no_overflow{
+        overflow:visible;
+    }
+    
+    .JQ_CA > .CA_popup._center{
+        position: fixed;
+        top:15%;
+        left:20%;
+        right:20%;
+        bottom:auto;
+        z-index:199;
+/*        min-height: 300px;*/
+    }
+    
+    .JQ_CA._compact_width > .CA_popup._center{
+        left:5%;
+        right:5%;
+    }
+    
+    .JQ_CA._compact_height > .CA_popup._center{
+        top:5%;
+    }
+    
+    
+    
+    .JQ_CA > .CA_popup._full{
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        position: fixed;
+        border-radius: 0;
+        box-shadow:none;
+        max-width: 100%;
+        max-height: 100%;
+        padding:0;
+    }
+    
+    .JQ_CA > .CA_popup_shadow,
+    .JQ_CA > .CA_any_shadow{
+        position: fixed;
+        display:none;
+        top:0;left:0;right: 0;bottom:0;
+        z-index:198;
+        width: 100%;
+        height: 100%;
+        border:0;
+        box-shadow: none;
+    }
+    
+    .JQ_CA > .CA_popup_shadow{
+        background-color: rgba(0,0,0,0.2);
+    }
+    
+/*        .JQ_CA > .CA_r > div.show[data-mode="month"],
+        .JQ_CA > .CA_r > div.show[data-mode="week"],
+        .JQ_CA > .CA_r > div.show[data-mode="day"]{*/
+        .JQ_CA > .CA_r > div.show{
+            display:none;
+        }
+        
+        .JQ_CA > .CA_popup > .ca_menu,
+        .JQ_CA > .CA_popup > .area_submenu,
+        .JQ_CA > .CA_popup > .event_submenu,
+        .JQ_CA > .CA_popup > .event_calendarmenu,
+        .JQ_CA > .calendar-settings{
+            display: none;
+        }
+        
+    .JQ_CA.CA_msie > .CA_popup._center,
+    .JQ_CA.CA_msie > .CA_popup_shadow,
+    .JQ_CA.CA_msie > .CA_any_shadow{
+        position: absolute;
+    }
+/*._drag_pane_bg {
+    display:block;
+    position:absolute;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    z-index:998;
+    background-color:rgba(255,255,255,0.5);
+    height:auto;        
+}
+
+._drag_pane{
+    display:block;
+    position:absolute;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    z-index:999;
+    height:auto;
+}*/
+
+._drag_pane{
+    overflow-x: hidden;
+}
+
+.evt.sel > span{
+/*    box-shadow: 0px 0px 10px #000 !important;*/
+    opacity:0.7;
+    
+}
+
+.evt.tobackground{
+    opacity:0.3 !important;
+}
+
+
+.JQ_CA form{
+    padding:0px;
+    margin:0px;
+}
+
+.JQ_CA form > div.buttons, 
+.JQ_CA div.form_buttons{
+    text-align: center;
+}
+        
+    .JQ_CA  form > div.buttons > span,
+    .JQ_CA div.form_buttons > span,
+    .JQ_CA span.simple_button{
+        font-size: 120% !important;
+        font-weight: bolder;
+        margin:5px 10px !important;
+        width:auto;
+        min-width: none;
+        border-radius: 5px;
+        line-height:15px ;
+        padding:3px 5px !important;
+/*        background: -moz-linear-gradient(center top , #FFFFFF 0%, #DDDDDD 100%) repeat scroll 0 0 transparent;*/
+        
+    }
+    
+    .JQ_CA  form > div.buttons > span,
+    .JQ_CA div.form_buttons > span,
+    .JQ_CA span.simple_button,
+    .JQ_CA .small_button {
+        background: #eee;
+        background: -moz-linear-gradient( top , #FFFFFF 0%, #DDDDDD 100%) ;
+        background: -webkit-linear-gradient(top , #FFFFFF 0%, #DDDDDD 100%) ;
+        background: linear-gradient(top , #FFFFFF 0%, #DDDDDD 100%) ;
+        background: -o-linear-gradient(top , #FFFFFF 0%, #DDDDDD 100%) ;
+        border: 1px solid #DDDDDD;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .JQ_CA  form >  div.buttons > span:hover,
+    .JQ_CA div.form_buttons > span:hover,
+    .JQ_CA span.simple_button:hover,
+    .JQ_CA .small_button:hover {
+        background: #fff;
+        background: -moz-linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+        background: -webkit-linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+        background: linear-gradient(top , #dddddd 0%, #FFFFFF 100%) ;
+        background: -o-linear-gradient(top , #dddddd 0%, #FFFFFF 100%);    
+    }
+    
+    .JQ_CA li{padding:0px;margin:0px;}
+    
+.CA_ajax_loading{
+    background: url(../../pic/ajax-loader.gif)  center center no-repeat;
+    min-height: 100px;
+}
+
+.JQ_CA.CA_loading{
+    cursor:progress !important;
+}
+
+.JQ_CA.CA_loading  > .CA_h > div.title {
+    background-image: url(../../pic/ajax-loader-ipad.gif);
+    background-position: 150px center    ;
+    background-repeat: no-repeat;
+}
+
+.JQ_CA._hour-60   ul.hour_v_area {
+    background-image: url(../../pic/event_day_grid_60_big.png);
+}
+.JQ_CA._hour-30   ul.hour_v_area {
+    background-image: url(../../pic/event_day_grid_30_big.png);
+}
+.JQ_CA._hour-15   ul.hour_v_area {
+    background-image: url(../../pic/event_day_grid_15_big.png);
+}
+
+    .JQ_CA._hour-60   ul.hour_v_area  .hours_title > span{
+        height:30px;
+    }
+    .JQ_CA._hour-30   ul.hour_v_area  .hours_title > span{
+        height:60px;
+    }
+    .JQ_CA._hour-15   ul.hour_v_area  .hours_title > span{
+        height:120px;
+    }
+    .JQ_CA._hour-60   ul.hour_v_area  .hours_title {
+        background-image: url(../../pic/event_day_grid_title_60_big.png);
+    }
+    .JQ_CA._hour-30   ul.hour_v_area  .hours_title {
+        background-image: url(../../pic/event_day_grid_title_30_big.png);
+    }
+    
+    .JQ_CA._hour-15   ul.hour_v_area  .hours_title {
+        background-image: url(../../pic/event_day_grid_title_15_big.png);
+    }
+    
+/*
+
+        .JQ_CA > .CA_h > ._open_close_t{
+            position:absolute;
+            top:-10px;
+            height:10px;
+            width:150px;
+            left:50%;
+            margin-left:-75px;
+            background-color:#ccc;
+        }
+        
+            .JQ_CA > .CA_h > ._open_close_t > span{
+                background-image:url(pic/type_calendar.png);
+                background-position: center -96px;
+                background-repeat: no-repeat;            
+            }
+        
+            .JQ_CA._full_screen > .CA_h > ._open_close_t > span{
+                background-position: center -112px;
+            }
+        
+        .JQ_CA > .CA_h > ._open_close_l{
+            position:absolute;
+            top:50%;
+            width:10px;
+            height:150px;
+            left:-10px;
+            margin-top:-75px;
+            background-color:#ccc;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+            .JQ_CA > .CA_h > ._open_close_l > span{
+                display: inline-block;
+                background-image:url(pic/type_calendar.png);
+                background-position: center -128px;
+                background-repeat: no-repeat;
+                line-height: 10px;
+                width:10px;
+            }*/
+
+.JQ_CA > .CA_r   .detail_day{
+    cursor: pointer;
+}
+
+.JQ_CA .CA_calendar{
+    display:none;
+}
+    
+.CA_Log {
+    display:none;
+    position:absolute;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    top:20px;
+    background-color:white;
+    z-index:999;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px #333;
+}
+
+    .CA_Log > div{
+        padding:10px;
+        position:absolute;
+        top:20px;
+        left:0px;
+        right:0px;
+        bottom:0px;
+        overflow-y:scroll;
+        overflow-x:hidden;
+    }   
+        .CA_Log > div > div {
+            margin-bottom:1px;
+            margin-top:1px;
+            border-bottom:1px dotted #AAA;
+            padding:5px;
+        }
+        .CA_Log > div > div:nth-child(odd){
+            background-color:#eee;
+        }
+
+    .CA_Log > span.close{
+        position:absolute;
+        top:0px;
+        right:10px;
+        background-color:red;
+        color:white;
+        cursor:pointer;
+        opacity:0.3;
+        padding:4px;
+        display:inline-block;
+    }
+    
+    .CA_Log > span.close:hover{
+        opacity:1;
+    }
+    
+.evt > span.title > span.text{
+    background-color:inherit;
+    padding:0px 2px;
+    border-radius:2px;
+}
+
+.JQ_CA.CA_gradient  div.evt{
+    opacity:0.7;
+}
+
+.JQ_CA.CA_gradient  div.evt.on{
+    opacity:1;
+}
+.JQ_CA  div.evt.CA_cut > span{
+    box-shadow: inset 0 0 50px #000;
+/*    opacity:0.3;*/
+}
+
+
+.JQ_CA.CA_gradient   div.evt > span{
+    background-image: url(../../pic/event_bg.png);
+    background-repeat: repeat-x;
+    background-position: center center;
+}
+
+.JQ_CA.CA_gradient   div.bottom   div.evt > span,
+.JQ_CA.CA_gradient   div.hourly   div.evt > span {
+    background-image: url(../../pic/event_bg_h.png);
+    background-repeat: repeat-y;
+    background-size: contain;
+}
+   
+._hide{
+    display:none !important;
+}
+
+
+.JQ_CA.ie .evt > span._ie_print_bar{
+    position: absolute;
+    z-index:-1;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-style: solid;
+    /*background-color:red;*/
+}
+
+.JQ_CA.ie .CA_l .sel.calendar > .checkbox > ._ie_print_bar{
+    width:0;
+    height:0;
+    border-width: 6px;
+    border-style: solid;
+    line-height: 0;
+    font-size: 0;
+}
+/*.JQ_CA .ca_menu {
+    position:absolute;
+    display:none;
+    top:10px;
+    left:10px;
+    width:400px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px #888;
+    border-radius: 5px;
+    border:1px solid #ddd;
+    padding:10px;
+    z-index:200;
+}
+
+.JQ_CA .ca_menu:hover, .JQ_CA .ca_menu.on{
+    display: block;
+}*/
+
+
+.JQ_CA .CA_hide_menu{
+    display: none;
+}

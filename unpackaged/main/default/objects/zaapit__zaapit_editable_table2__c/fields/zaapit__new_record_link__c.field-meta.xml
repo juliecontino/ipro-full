@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zaapit__new_record_link__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>use {ID} in the url for the current parentid (usefull for related lists)</inlineHelpText>
+    <label>new record link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

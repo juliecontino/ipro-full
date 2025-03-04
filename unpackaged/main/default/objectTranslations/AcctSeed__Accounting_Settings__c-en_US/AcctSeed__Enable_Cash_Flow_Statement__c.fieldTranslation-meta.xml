@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Check this for the ability to run the Cash Flow Statement report. The default Cash Flow Categories chosen here will auto-populate on records created after the setting is enabled. --></help>
+        <label><!-- Enable Cash Flow Statement --></label>
+        <name>AcctSeed__Enable_Cash_Flow_Statement__c</name>
+    </CustomFieldTranslation>

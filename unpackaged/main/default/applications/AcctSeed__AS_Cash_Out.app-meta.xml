@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>AcctSeed__AcctSeed_App_Icon</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Accounts Payable and Cash Disbursements</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>AS: Cash Out</label>
+    <navType>Standard</navType>
+    <tabs>standard-Account</tabs>
+    <tabs>AcctSeed__Account_Payable__c</tabs>
+    <tabs>AcctSeed__Cash_Disbursement__c</tabs>
+    <tabs>AcctSeed__Cash_Disbursement_Batch__c</tabs>
+    <tabs>AcctSeed__Recurring_Account_Payable__c</tabs>
+    <tabs>standard-report</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Merged Case Status --></label>
+        <name>csmrgp__Merged_Case_Status__c</name>
+    </CustomFieldTranslation>

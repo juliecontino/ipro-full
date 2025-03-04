@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__calendarEmptyName</fullName>
+    <active>true</active>
+    <description>Name of Calendar are not be empty.</description>
+    <errorConditionFormula>LEN(Name) == 0</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Name of Calendar are not be empty.</errorMessage>
+</ValidationRule>

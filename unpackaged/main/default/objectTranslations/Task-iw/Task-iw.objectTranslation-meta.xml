@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
     <layouts>
         <layout>Task Layout</layout>
         <sections>
@@ -30,4 +28,24 @@
         <label><!-- Site Survey --></label>
         <name>Site_Survey</name>
     </recordTypes>
+    
+    
+    
+    
+    <webLinks>
+        <label><!-- Reassign --></label>
+        <name>AcctSeed__Reassign</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Follow_Up_Event --></label>
+        <name>zaapit__Create_Follow_Up_Event</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Follow_Up_Task --></label>
+        <name>zaapit__Create_Follow_Up_Task</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- zp_actions --></label>
+        <name>zaapit__zp_actions</name>
+    </webLinks>
 </CustomObjectTranslation>

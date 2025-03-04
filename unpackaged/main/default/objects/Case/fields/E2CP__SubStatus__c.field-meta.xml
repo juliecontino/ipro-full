@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>E2CP__SubStatus__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is deprecated. Do not use it.</description>
+    <label>SubStatus (Deprecated)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete</label>
+            </value>
+            <value>
+                <fullName>Unfinished</fullName>
+                <default>false</default>
+                <label>Unfinished</label>
+            </value>
+            <value>
+                <fullName>Important</fullName>
+                <default>false</default>
+                <label>Important</label>
+            </value>
+            <value>
+                <fullName>ASAP</fullName>
+                <default>false</default>
+                <label>ASAP</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Escalated</controllingFieldValue>
+            <valueName>Important</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Escalated</controllingFieldValue>
+            <valueName>ASAP</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

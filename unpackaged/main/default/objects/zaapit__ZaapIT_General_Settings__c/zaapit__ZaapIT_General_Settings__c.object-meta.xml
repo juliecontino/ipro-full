@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>ZaapIT General Settings - multi-purpose settings</description>
+    <enableFeeds>false</enableFeeds>
+    <label>ZaapIT General Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

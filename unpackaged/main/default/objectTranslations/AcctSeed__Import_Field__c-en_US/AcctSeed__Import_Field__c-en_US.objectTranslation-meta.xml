@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Import Field Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You must assign a Column Header --></errorMessage>
+        <name>AcctSeed__Header</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must assign a Column Index --></errorMessage>
+        <name>AcctSeed__Index</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- There can only be one field specified as the Parent Key Field --></errorMessage>
+        <name>AcctSeed__One_Parent_Key</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Parent Key Field must be on the Parent Object --></errorMessage>
+        <name>AcctSeed__Parent_Key</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The mapped object must be either the parent or detail object specified on the Import Template --></errorMessage>
+        <name>AcctSeed__Scoped_Objects</name>
+    </validationRules>
+</CustomObjectTranslation>

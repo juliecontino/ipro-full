@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used to number checks sequentially in the Cash Disbursement Batch. --></help>
+        <label><!-- Starting Check Number --></label>
+        <name>AcctSeed__Starting_Check_Number__c</name>
+    </CustomFieldTranslation>

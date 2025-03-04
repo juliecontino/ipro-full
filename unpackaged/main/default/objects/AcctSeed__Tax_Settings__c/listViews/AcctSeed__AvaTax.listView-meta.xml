@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__AvaTax</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Tax_Settings_Method__c</columns>
+    <columns>AcctSeed__AvaTax_License__c</columns>
+    <columns>AcctSeed__Sales_Tax_Calculation_Mode__c</columns>
+    <columns>AcctSeed__Origin_Address__c</columns>
+    <columns>AcctSeed__Sales_Tax_GL_Account__c</columns>
+    <columns>AcctSeed__Sales_Tax_Product__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Tax_Settings_Method__c</field>
+        <operation>equals</operation>
+        <value>AvaTax</value>
+    </filters>
+    <label>AvaTax</label>
+</ListView>

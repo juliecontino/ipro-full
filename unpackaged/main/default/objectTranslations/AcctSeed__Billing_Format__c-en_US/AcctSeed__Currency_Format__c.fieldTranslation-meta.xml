@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Allows for overriding the default currency format provided in VF page. --></help>
+        <label><!-- Currency Format --></label>
+        <name>AcctSeed__Currency_Format__c</name>
+    </CustomFieldTranslation>

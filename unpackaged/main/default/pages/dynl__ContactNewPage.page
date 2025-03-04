@@ -1,0 +1,70 @@
+<apex:page standardController="contact" extensions="dynl.contactcls" >
+        
+  <apex:sectionheader title="Contact Edit" subtitle="New Contacts"></apex:sectionheader>  
+  <apex:form >
+  <apex:pageBlock >
+      
+   <apex:pageBlockSection title="contact info" >
+         
+     <apex:inputField value="{!contact.firstname}"/>
+     <apex:inputField value="{!contact.lastname}"/> 
+     <apex:inputField value="{!contact.phone}"/>
+     <apex:pageBlockSectionItem id="pbsid1">
+         <apex:outputLabel >Account</apex:outputLabel>
+         <c:DynLookup id="comp_id1" ComponentIdentifier="CI1" fieldLabelName="" LovName="Accountlist" rendered="true" />
+     </apex:pageBlockSectionItem>
+     <apex:pageBlockSectionItem id="pbsid2">
+         <apex:outputLabel >Industry</apex:outputLabel>
+         <c:DynLookup id="comp_id2" ComponentIdentifier="CI2" fieldLabelName="" LovName="Accountindustry" rendered="true" />
+     </apex:pageBlockSectionItem>
+     
+     <apex:inputField value="{!contact.HomePhone}"/>
+     <apex:inputField value="{!contact.MobilePhone}"/>
+     <apex:inputField value="{!contact.OtherPhone}"/>              
+     
+     <apex:inputField value="{!contact.Birthdate}"/>
+     <apex:inputField value="{!contact.AssistantName}"/>
+     <apex:inputField value="{!contact.Fax}"/>
+     <apex:inputField value="{!contact.Email}"/>                                       
+     <apex:inputField value="{!contact.LeadSource}"/>
+     <apex:inputField value="{!contact.title}"/>
+     <apex:inputField value="{!contact.AssistantPhone}"/>
+     <script type="text/javascript">
+         function showComponentInputValue2() {
+             document.getElementById('{!$Component.ID1}').value = document.getElementById('{!$Component.pbsid1.comp_id1:DynComp:text}').value;
+             document.getElementById('{!$Component.ID2}').value = document.getElementById('{!$Component.pbsid1.comp_id1:DynComp:secondtext}').value;
+             document.getElementById('{!$Component.ID3}').value = document.getElementById('{!$Component.pbsid1.comp_id1:DynComp:textid}').value;
+              
+             document.getElementById('{!$Component.ID4}').value = document.getElementById('{!$Component.pbsid2.comp_id2:DynComp:text}').value;
+             document.getElementById('{!$Component.ID5}').value = document.getElementById('{!$Component.pbsid2.comp_id2:DynComp:secondtext}').value;           
+             }
+     </script> 
+  </apex:pageBlockSection>
+              
+  <apex:pageBlockSection title="Address Info">
+      <apex:inputField value="{!contact.MailingStreet}"/>
+      <apex:inputField value="{!contact.MailingCity}"/>
+      <apex:inputField value="{!contact.MailingState}"/>
+      <apex:inputField value="{!contact.MailingCountry}"/>
+      <apex:inputField value="{!contact.MailingPostalCode}"/>
+      <apex:inputField value="{!contact.OtherCity}"/>
+      <apex:inputField value="{!contact.OtherCountry}"/>              
+      <apex:inputField value="{!contact.OtherPostalCode}"/>  
+          <apex:inputField value="{!contact.OtherState}"/>                  
+    </apex:pageBlockSection>
+      <apex:pageBlockSection title="Description Information">
+          <apex:inputField value="{!contact.description}"/>
+      </apex:pageBlockSection>
+           
+           <apex:inputHidden id="ID1" value="{!textValue1}"/>
+           <apex:inputHidden id="ID2" value="{!textValue2}"/>
+           <apex:inputHidden id="ID3" value="{!textValue3}"/>
+           <apex:inputHidden id="ID4" value="{!textValue4}"/>
+           <apex:inputHidden id="ID5" value="{!textValue5}"/>
+           <apex:pageBlockButtons >
+           <apex:commandButton action="{!save}" value="save" onclick="return showComponentInputValue2()"/>
+           </apex:pageBlockButtons>
+         
+       </apex:pageBlock>
+   </apex:form>
+</apex:page>

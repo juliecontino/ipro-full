@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Conductor Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Master Object Source --></label>
+            <section>Master Object Source</section>
+        </sections>
+        <sections>
+            <label><!-- Schedule --></label>
+            <section>Schedule</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You must supply one of the following: a Report Id, a Query Id or a Record Id. --></errorMessage>
+        <name>APXT_BPM__Either_Report_or_Query_Id_must_be_suppli</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must supply *only one* of the following:  a Report Id, a Query Id or a Record Id. --></errorMessage>
+        <name>APXT_BPM__Not_Both_a_Report_Id_and_a_Query_Id</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Query Id must be a 15- or 18-character Salesforce ID from a Conga Query --></errorMessage>
+        <name>APXT_BPM__Query_Id_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Record Id must be a 15- or 18-character Salesforce ID --></errorMessage>
+        <name>APXT_BPM__Record_Id_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Report Id must be a 15- or 18-character Salesforce ID from a Report --></errorMessage>
+        <name>APXT_BPM__Report_Id_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must supply the API Name of the field that contains the Composer URL --></errorMessage>
+        <name>APXT_BPM__URL_Field_Name_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Workspace Id must be a 15- or 18-character Salesforce ID from a Content Worksapce. --></errorMessage>
+        <name>APXT_BPM__Workspace_Id_Length</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Formula_Builder --></label>
+        <name>APXT_BPM__Formula_Builder</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Launch --></label>
+        <name>APXT_BPM__Launch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Launch_C7 --></label>
+        <name>APXT_BPM__Launch_C7</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Launch_C8 --></label>
+        <name>APXT_BPM__Launch_C8</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Launch_Dev --></label>
+        <name>APXT_BPM__Launch_Dev</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Sample_List_View_Button --></label>
+        <name>APXT_BPM__Sample_List_View_Button</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Schedule --></label>
+        <name>APXT_BPM__Schedule</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Schedule_C7 --></label>
+        <name>APXT_BPM__Schedule_C7</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Schedule_C8 --></label>
+        <name>APXT_BPM__Schedule_C8</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Query --></label>
+        <name>APXT_BPM__View_Query</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Report --></label>
+        <name>APXT_BPM__View_Report</name>
+    </webLinks>
+</CustomObjectTranslation>

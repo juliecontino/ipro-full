@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Id of a Report that contains the list of master object ids. Optionally, the report may include other columns. --></help>
+        <label><!-- Report ID --></label>
+        <name>APXT_BPM__Report_Id__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field has been deprecated. --></help>
+        <label><!-- zDep-Description for Ext Total --></label>
+        <name>AcctSeed__Description_for_Ext_Total__c</name>
+    </CustomFieldTranslation>

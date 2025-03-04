@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Time frame to create next payable. --></help>
+        <label><!-- Next Payable Create --></label>
+        <name>AcctSeed__Next_Payable_Create__c</name>
+    </CustomFieldTranslation>

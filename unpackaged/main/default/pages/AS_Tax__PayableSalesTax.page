@@ -1,0 +1,10 @@
+<apex:page standardController="AcctSeed__Account_Payable__c" extensions="AS_Tax.PayableSalesTax" action="{!Save}">
+    <apex:form >
+        <apex:pageBlock title="Account Payable Sales Tax">
+        <apex:pageMessages />
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="/{!AcctSeed__Account_Payable__c.Id}" value="Back"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Select this if the A/P entry is a Client telephone bill. When selected, three AP lines will be created for MS-Access Services, Texas sales tax and other taxes and fees. A Client account must also be selected or the workflow will not trigger. --></help>
+        <label><!-- Client Telephone Bill ? --></label>
+        <name>Client_Telephone_Bill__c</name>
+    </CustomFieldTranslation>

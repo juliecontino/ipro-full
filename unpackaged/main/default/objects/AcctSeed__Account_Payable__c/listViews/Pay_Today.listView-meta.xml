@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pay_Today</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Vendor__c</columns>
+    <columns>AcctSeed__Payee__c</columns>
+    <columns>AcctSeed__Due_Date__c</columns>
+    <columns>AcctSeed__Total__c</columns>
+    <columns>AcctSeed__Payment_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Due_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>AcctSeed__Payment_Status__c</field>
+        <operation>equals</operation>
+        <value>Unpaid</value>
+    </filters>
+    <label>Pay Today</label>
+    <language>en_US</language>
+</ListView>

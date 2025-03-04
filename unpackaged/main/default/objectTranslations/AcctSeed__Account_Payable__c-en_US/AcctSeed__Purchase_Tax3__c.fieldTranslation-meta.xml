@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Summary of the Payable Lines&apos; Tax Amount fields --></help>
+        <label><!-- Purchase Tax --></label>
+        <name>AcctSeed__Purchase_Tax3__c</name>
+    </CustomFieldTranslation>

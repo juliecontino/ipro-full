@@ -1,0 +1,1027 @@
+.JQ_CA > .CA_r > .show._mode-swimlane{
+    display:block !important;
+}
+
+.JQ_CA > .CA_r > .show._mode-swimlane > div{
+    position:absolute;
+    padding:0px;
+}
+
+.JQ_CA > .CA_r > .show._mode-swimlane > .swim_form{
+    top:0px;
+    left:20px;
+    width:200px;
+    height:45px;
+    background-color:#eee;
+    text-align: center;
+}
+
+    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_form > div{
+        display:block;
+        vertical-align: middle;
+        line-height: 20px;
+        height:23px;
+    }
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_form > div > select{
+            height:18px;
+            font-size: 100%;
+            max-width: 200px;
+            background: transparent;
+            border: 0;
+            width: 100%;
+        }
+        .JQ_CA.CA_msie > .CA_r > .show._mode-swimlane > .swim_form > div > select{
+            width: 200px;
+            display:inline-block;
+        }
+        
+         
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_form > div > select  option._ref{
+                font-style: italic;
+            }
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_form > div > select  option._sub_ref{
+                font-size: 90%;
+                padding-left: 25px;
+            }
+            
+        
+        
+/*        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_form > div._wide_event_names{
+            position: absolute;
+            right:0;
+            top:10px;
+            background-image:url(../pic/type_calendars.png);
+            width:12px;
+            height:16px;
+            background-position: -3px -48px;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.1)
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane._wide > .swim_form > div._wide_event_names{
+            background-position: -3px -159px;
+        }*/
+
+.JQ_CA > .CA_r > .show._mode-swimlane > .swim_items{
+    top:45px;
+    left:20px;
+    right:20px;
+    bottom:10px;
+    z-index:2;
+/*    overflow-y:hidden;*/
+}
+
+    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title{
+        overflow:hidden;
+        width:200px;
+        position:absolute;
+        left:0px;
+        top:0px;
+        cursor: pointer;
+        bottom:20px;
+        
+    }
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div{
+            position:relative;
+            border-bottom:1px solid #ddd;
+            min-height: 20px;
+            
+        }
+        .JQ_CA._compactMobile > .CA_r > .show._mode-swimlane > .swim_items > .title > div{
+            padding-left:2px;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div.new_events{
+            min-height: 45px;
+        }
+        
+        .JQ_CA.middle > .CA_r > .show._mode-swimlane > .swim_items > .title > div.new_events{
+            min-height: 55px;
+        }
+        
+        .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .title > div.new_events{
+            min-height: 68px;
+        }
+        
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div > .title{
+                height:25px;
+                font-weight: bold;
+                padding-left:5px;
+                line-height:25px;
+            }
+            
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div > div{
+                height:20px;
+                border-bottom:1px solid #eee;
+                padding-left:15px;
+                text-align: left;
+                white-space: nowrap;                
+                line-height:20px;
+                vertical-align: bottom;
+/*                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;*/
+            }
+            
+            /*.JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div > div.group,*/
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div > div.group_title
+            {
+/*                border-bottom:1px solid #ccc;*/
+                background-color: #eee;
+                background-color: rgba(0,0,0,0.1);
+                position: relative;
+                text-overflow: ellipsis;
+                overflow:hidden;
+                font-weight: bolder;
+                padding: 0px 5px;
+                text-align: right;  
+            }
+            
+/*            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title > div > div.group > span{
+                position: absolute;
+                right: 0px;
+                padding: 0px 5px;
+                display:inline-block;
+                font-weight: bolder;
+                max-width: 50%;
+                text-overflow: ellipsis;
+                overflow:hidden;
+                background-color: #ddd;
+            }*/
+    
+    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .white_area{
+        bottom:0;
+        left:201px;
+        right:0;
+        background: #fff; /*rgba(255,255,255,0.7);*/
+        position: absolute;
+        z-index: 2;
+    }
+    
+    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events{
+        border-left:1px solid #ddd;
+        overflow:scroll;
+        position:absolute;
+        left:200px;
+        right:0px;
+        bottom:0px;
+        top:0px;
+        white-space: nowrap;
+    }
+    
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > span._drag_pane_bg{
+            background-color:transparent !important;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days{
+            position: relative;
+            display: inline-block;
+            min-height: 20px;
+            vertical-align: top;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > div._days.m28{
+            width:2800px;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > div._days.m29{
+            width:2900px;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > div._days.m30{
+            width:3000px;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > div._days.m31{
+            width:3100px;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_25 > .swim_items > .events > div._days.m28{width:700px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_25 > .swim_items > .events > div._days.m29{width:725px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_25 > .swim_items > .events > div._days.m30{width:750px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_25 > .swim_items > .events > div._days.m31{width:775px;}        
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_50 > .swim_items > .events > div._days.m28{width:1400px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_50 > .swim_items > .events > div._days.m29{width:1450px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_50 > .swim_items > .events > div._days.m30{width:1500px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_50 > .swim_items > .events > div._days.m31{width:1550px;}
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_200 > .swim_items > .events > div._days.m28{width:5600px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_200 > .swim_items > .events > div._days.m29{width:5800px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_200 > .swim_items > .events > div._days.m30{width:6000px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_200 > .swim_items > .events > div._days.m31{width:6200px;}
+
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_300 > .swim_items > .events > div._days.m28{width:8400px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_300 > .swim_items > .events > div._days.m29{width:8700px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_300 > .swim_items > .events > div._days.m30{width:9000px;}
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_300 > .swim_items > .events > div._days.m31{width:9300px;}
+
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days._current{
+            background-image:url(../pic/todayline_v.png);
+            background-repeat: repeat-y;
+            min-height: 100%;
+        }
+
+        
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div{
+                position:relative;
+                width:100%;
+                border-bottom:1px solid #ddd;
+                min-height: 20px;
+                overflow: hidden;
+    /*            padding-top:26px;*/
+    /*            background-image: url(../pic/event_day_grid_20.png);
+                background-position: 0 26px;*/
+            }
+            .JQ_CA > .CA_r > .show._mode-swimlane._multi_blocks > .swim_items > .events > ._days > div{
+/*                overflow-x: visible;
+                overflow-y: hidden;*/
+                overflow: initial;
+            }
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div._blank{
+                min-height: 0;
+            }
+
+            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events{
+                min-height: 45px;
+            }
+
+            .JQ_CA.middle > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events{
+                min-height: 55px;
+            }
+
+            .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events{
+                min-height: 68px;
+            }
+
+                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > div.grouping{
+                    height:25px;
+                    background-color: rgb(255, 255, 255);      
+                    background-color: rgba(255, 255, 255, 0.5);
+                }
+
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > div.grouping > select{
+                        height:20px;
+                        line-height: 20px;
+                        padding:0px;
+                        margin:0px 3px;
+                    }
+
+
+
+                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > div{
+                    position:relative;
+                    border-bottom:1px solid #eee;
+                    height:20px;
+                }
+                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > div.group_empty_line{
+                    background-color: #eee;
+                    background-color: rgba(0,0,0,0.1);
+                }
+
+                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > div._highlight{
+                    background-color: rgb(200, 255, 0);                
+                    background-color: rgba(200, 255, 0, 0.3);
+                }
+
+                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data{
+                    display: block;
+                    position:relative;
+                }
+
+
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt{
+                        position:absolute;
+/*                        top:0px;*/
+                        /*bottom:0px;*/
+                        /*height:20px;*/
+                        display:inline-block;
+                        width:0;
+                        z-index: 2;
+                        /*min-width: 7px;*/
+                    }
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.sel._hover{
+                        width:0;
+                    }
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt._hover{
+                        width:auto;
+                    }
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt:hover{
+                        z-index:99;
+                        /*min-width: 0;*/
+                    }
+                    .JQ_CA > .CA_r > .show._mode-swimlane._multi_blocks > .swim_items > .events > ._days > div > ._data > .evt._multi_prev._hover.full_r._real_multi_width{
+                        z-index: 100;
+                    }
+                    
+                    .JQ_CA > .CA_r > .show._mode-swimlane._multi_blocks > .swim_items > .events > ._days > div > ._data > .evt._multi_prev.full_r._real_multi_width{
+                        z-index:2;
+                    }
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt:hover > div,
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt._hover > div{
+                            /*box-shadow: 0 0 5px #333;*/
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_l:hover > div,
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_l._hover > div{
+                            /*box-shadow: 3px 0 5px #333;*/
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_r:hover > div,
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_r._hover > div{
+                            /*box-shadow: -3px 0 5px #333;*/
+                        }
+
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt{
+                        opacity:0.25 !important;
+                    }
+                    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event{
+                        opacity:1 !important;
+                        width: 0;
+                    }
+                    
+                    
+
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div{
+                            position:relative;
+                            display:block;
+    /*                        left:0px;right:0px;*/
+                            margin-top:1px;
+                            /*height:18px;*/
+    /*                        top:1px;bottom:1px;*/
+    /*                        background-image: url("../pic/event_bg.png");
+                            background-position: center center;
+                            background-repeat: repeat-x;*/
+                            /*border-radius: 2px 2px 2px 2px;*/
+                            border-radius: 5px;
+                            padding: 10px 1px 1px;
+                            overflow:hidden;
+                            height: calc(100% - 15px);
+                        }
+
+                        .JQ_CA.middle > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div{
+                            padding: 14px 1px 1px;
+                            height: calc(100% - 18px);
+                        }
+
+                        .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div{
+                            padding: 17px 1px 1px;
+                            height: calc(100% - 23px);
+                        }
+
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event > div{
+                            background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                            border-radius: 5px;
+                            box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+                            z-index:99;
+                        }
+
+
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_l > div,
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_l.new_event > div{
+                            border-left: 0;
+                            /*padding-left: 0;*/
+                            border-bottom-left-radius: 1px;
+                            border-top-left-radius: 1px;
+                        }
+
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_r > div,
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_r.new_event > div{
+                            border-bottom-right-radius: 1px;
+                            border-top-right-radius: 1px;
+                            /*padding-right: 0;*/
+                            border-right: 0;
+                            margin-right: -2px;
+                        }
+                        
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_l._multi_next > div{
+                            padding-left:0;
+                            /*margin-left:-2px;*/
+                        }
+
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_r._multi_prev > div,
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event.full_r > div{
+                            padding-right:0;
+                            margin-right:-2px;
+                        }
+
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > span{
+    /*                            position:absolute;top:0px;bottom:0px;*/
+                                  /*height:18px;*/
+                                  /*display:inline-block;*/
+                                  display:block;
+                                  line-height: 15px;
+                                  white-space: nowrap;
+                                  background-color: #fff;
+                            }
+                            .JQ_CA.middle > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > span{
+                                font-size: 14px;
+                                line-height: 18px;
+                            }
+
+                            .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > span{
+                                font-size: 17px;
+                                line-height: 23px;
+                            }
+                            
+                            .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt:hover > div > span,
+                            .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt._hover > div > span{
+                                background-color: #eee;
+                            }
+
+
+                            
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > .title{
+                                color:#555;
+                                font-weight: bolder;
+                                padding:0 5px;
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > ._spec_reccuring > .title,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > ._spec_inviting > .title,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > ._spec_inviting_child > .title{
+                                padding-left: 20px;
+                            }
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > ._spec_reccuring._spec_inviting > .title,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > ._spec_reccuring._spec_inviting_child > .title{
+                                padding-left: 40px;
+                            }
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > .details,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > .dates{
+                                color:#555555 !important;
+                                padding:0 5px;
+                            }
+
+                                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > .details > b{
+                                    color:#9A9797;
+                                    font-weight: normal;
+                                }
+                                .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > .details > i{
+                                    font-style: normal;
+                                }
+
+
+/*                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > div > b{
+                                position: absolute;
+                                top:0;
+                                left:0;
+                                right:0;
+                                bottom:0;
+                                background-color: #fff;
+                            }*/
+                            
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span.l,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span.r{
+                                z-index: 2;
+                                position: absolute;
+                                width: 10px;
+                                top:0px;
+                                bottom:1px;
+                                /*visibility: hidden;*/
+                                /*display: none;*/
+                                border-radius: 0;
+                                padding:0;
+                                overflow: auto;
+                                margin-top: 0;
+                                box-shadow: none !important;
+                                display: block;
+                                opacity: 0;
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt:hover > .l,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt:hover > .r,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > .l:hover,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > .l:hover{
+                                /*display: block;*/
+                                opacity: 1;
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span.l{
+                                background: url("../pic/event_week_l.png") repeat-y scroll right top transparent !important;
+                                border-bottom-left-radius: 5px;
+                                border-top-left-radius: 5px;
+                                cursor: w-resize;
+                                left: -3px;
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span.r{
+                                background: url("../pic/event_week_r.png") repeat-y scroll right top transparent !important;
+                                border-bottom-right-radius: 5px;
+                                border-top-right-radius: 5px;
+                                cursor: e-resize;
+                                right: -3px;
+                            }
+    /*                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span:hover > span.l{
+                                left:-5px;
+                                background-color: rgba(0, 0, 0, 0.2);
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span:hover > span.r{
+                                margin-right:-5px;
+                                background-color: rgba(0, 0, 0, 0.2);
+                            }*/
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.non_e > span.l,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.non_e > span.r,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.non_r > span.l,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.non_r > span.r{
+                                display:none;
+    /*                            background-color: transparent;
+                                background-image:none;*/
+                                /*cursor: default;*/
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_r > span.r,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt.full_l > span.l {
+                                display:none;
+                            }                        
+
+
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt > span > span.resize_date{
+                                position: absolute;
+                                top:-22px;
+                                left:10px;
+                                display:nlock;
+                                padding:2px;
+                                border-radius: 2px;
+                                background-color: #ddd;
+                                border:1px solid #aaa;
+                                color:#555;
+                                display:none;
+                                white-space: nowrap;
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event > span > span.resize_date{
+                                display:block;
+                            }
+
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div > ._data > .evt._to_right > span > span.resize_date{
+                                left: auto;
+                                right:10px;
+                            }
+                            
+                        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event._duplicate > div {
+                            border-radius: 0;
+                        }
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event._duplicate > div > span.title{
+                                position: absolute;
+                                top:10px;
+                                left:0;
+                                right:0;
+                                bottom:1px;
+                                color:white;
+                                
+                                
+                            }
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event:hover > div > span,
+                            .JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event._hover > div > span{
+                                background-color: #fff;
+                            }
+                            
+                            .JQ_CA.middle > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event._duplicate > div > span.title{
+                                top:15px;
+                            }
+                            .JQ_CA.large > .CA_r > .show._mode-swimlane > .swim_items > .events > ._days > div.new_events > ._data > .evt.new_event._duplicate > div > span.title{
+                                top:17px;
+                            }
+                            
+                            .JQ_CA ._mode-swimlane .swim_items .events .evt a{
+                                color:black !important;
+                            }
+                            
+                            
+.JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates{
+    top:0px;
+    left:220px;
+    right:20px;
+/*    height:40px;*/
+    bottom:0px;
+/*    background-color:#eee;*/
+    border-left:1px solid #ddd;
+    overflow-x:hidden;
+    z-index:1;
+    overflow-y: hidden;
+}
+
+
+.JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates.current > table{
+    background-image:url(../pic/todayline_v.png);
+    background-repeat: repeat-y;
+}
+
+
+    .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table{
+        border-collapse: collapse;
+        border:0px;
+/*        width:100%;*/
+        padding:0px;
+        margin:0px;
+        cursor:pointer;
+        height:100%;
+/*        background-color: #eee;*/
+    }
+    
+
+  
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > thead > tr > th{
+            background-color: #f7f7f7;
+            BORDER-TOP: #D9D9D9 1px solid; 
+            FONT-SIZE: 12px; 
+            BORDER-LEFT: #D9D9D9 1px solid; 
+            HEIGHT: 20px;
+            white-space: nowrap;
+            text-align: center;
+            font-weight: bold;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_hour.format_minute_30 > .swim_dates > table > thead > tr > th,
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_hour.format_minute_15 > .swim_dates > table > thead > tr > th{
+            text-align: left;
+        }
+        
+        .JQ_CA._nonworking-paint  > .CA_r > .show._mode-swimlane > .swim_dates > table > thead > tr > th.non_working,
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > tbody > tr > td.non_working{
+            background-color: #F0F6FA;
+            color:#999;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > tbody > tr > td.current{
+            background-color: rgba(208, 139, 131, 0.1) !important;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > thead > tr > th.current{
+            background: #eaeaea;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > thead > tr > th.current{
+            background: #efefef;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > tbody > tr > td{
+            BORDER-TOP: #D9D9D9 1px solid; 
+            BORDER-LEFT: #D9D9D9 1px solid; 
+            HEIGHT: 20px;
+            white-space: nowrap;
+            text-align: center;
+            font-weight: normal;
+            font-size:11px;
+            width:100px;
+            box-sizing: border-box;
+            min-width: 100px;
+            background: url(../pic/event_day_grid_horizontal.png) repeat left top;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table  ._first{
+            border-left-color: #aaa;
+            border-left-width: 2px;
+            box-sizing: border-box;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_25 > .swim_dates > table > tbody > tr > td{
+            min-width: 25px;
+            width:25px;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_50 > .swim_dates > table > tbody > tr > td{
+            min-width: 50px;
+            /*background: url(../pic/event_day_grid_horizontal.png) no-repeat right top;*/
+            width:50px;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_100 > .swim_dates > table > tbody > tr > td{
+            min-width: 100px;
+            /*background: url(../pic/event_day_grid_horizontal.png) repeat left top;*/
+            width:100px;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_200 > .swim_dates > table > tbody > tr > td{
+            min-width: 200px;
+            /*background: url(../pic/event_day_grid_horizontal.png) no-repeat right top;*/
+            width:200px;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day.cell_300 > .swim_dates > table > tbody > tr > td{
+            min-width: 300px;
+            /*background: url(../pic/event_day_grid_horizontal.png) no-repeat right top;*/
+            width:300px;
+        }
+
+        
+
+        .JQ_CA._hour-30 > .CA_r > .show._mode-swimlane.format_hour > .swim_dates > table > tbody > tr > td{
+            width: 200px;
+            min-width: 200px;
+        }
+        
+        .JQ_CA._hour-15 > .CA_r > .show._mode-swimlane.format_hour > .swim_dates > table > tbody > tr > td{
+            width: 400px;
+            min-width: 400px;
+        }
+        
+        
+        .JQ_CA.ie > .CA_r > .show._mode-swimlane > .swim_dates > table > tbody > tr > td{
+            vertical-align: top;
+            padding-top:3px;
+            height:auto;
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > tbody > tr:last-child > td {
+            height:auto;
+            vertical-align: top;
+            padding-top:3px;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > tbody > tr > td:last-child,
+        .JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates > table > thead > tr > th:last-child {
+            border-right:1px solid #ddd;
+        }
+        
+/*        .JQ_CA > .CA_r > .show._mode-swimlane.format_hour > .swim_dates > table > tbody > tr > td{
+            width:77px;
+            min-width: 100px;
+        }*/
+/*        .JQ_CA > .CA_r > .show._mode-swimlane.format_day > .swim_dates > table > tbody > tr > td.scroll_width{
+            min-width: 0 !important;
+        }*/
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day > .swim_dates > table > tbody > tr > td.holiday{
+/*            background-color: #eee;*/
+            background-color: rgba(127,127,127, 0.07);
+        }
+        
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day > .swim_dates > table > tbody > tr > td._highlight,
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_hour > .swim_dates > table > tbody > tr > td._highlight{
+            background-color: rgb(200, 255, 0) !important;                
+            background-color: rgba(200, 255, 0, 0.3) !important;
+        }
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_day > .swim_dates > table > tbody > tr > td._baselight,
+        .JQ_CA > .CA_r > .show._mode-swimlane.format_hour > .swim_dates > table > tbody > tr > td._baselight{
+            background-color: rgb(40, 255, 0) !important;                
+            background-color: rgba(40, 255, 0, 0.3) !important;
+        }
+        
+
+        
+.JQ_CA > .CA_r > .show._mode-swimlane > .swim_dates_bg{
+    position:absolute;
+    z-index:0;
+    top:0px;
+    left:220px;
+    right:20px;
+    height:40px;
+    background: #EEE;
+    background: -moz-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: -webkit-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: -o-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: -ms-linear-gradient(top, white 0%, #EEE 75%) #EEE;
+    background: linear-gradient(top, #DDD 0%,white 50%, #DDD 100%) #EEE;
+    border-bottom:1px solid #ddd;
+    box-sizing: border-box;
+}
+                
+
+.SL_selectbox{
+    font-size:11px;
+    padding-left:10px;
+    line-height: 11px;
+    font-weight: bold;
+}        
+
+.SL_selectbox input{
+    margin-left:20px;
+    margin-right:5px;
+    
+}
+
+
+.JQ_CA > .CA_r > .show._mode-swimlane._wide > .swim_form,
+.JQ_CA > .CA_r > .show._mode-swimlane._wide > .swim_items > .title{
+    width:400px;
+}
+
+.JQ_CA > .CA_r > .show._mode-swimlane._wide > .swim_items > .events{
+    left:400px;
+}
+
+
+.JQ_CA > .CA_r > .show._mode-swimlane._wide > .swim_dates,
+.JQ_CA > .CA_r > .show._mode-swimlane._wide > .swim_dates_bg{
+    left:420px;
+}
+
+
+.JQ_CA > .CA_r > .show._mode-swimlane > .swim_items > .title  .evt._spec_reccuring{ 
+    background-image:url(/img/recurring_activity.gif);
+    background-repeat: no-repeat;
+    background-position: left center; 
+    padding-left:20px; 
+}
+
+.JQ_CA  .Swimlane_Empty{
+    display: block;
+    max-height: 350px;
+    overflow-y: auto;
+    text-align: center;
+    
+}
+
+    .JQ_CA  .Swimlane_Empty > *{
+        display: block;
+    }
+
+    .JQ_CA  .Swimlane_Empty > b {
+        font-size: 120%;
+    }
+        .JQ_CA  .Swimlane_Empty > b ._ico{
+            display:inline-block;
+            width:16px;
+            height:16px;
+            margin:0 3px;
+            background-image: url("../pic/create_edit_icons.png");
+            background-repeat: no-repeat;        
+            background-position: 0 -113px;
+            vertical-align: middle;
+        }
+    
+
+
+    .JQ_CA  .Swimlane_Empty > a {
+        cursor: pointer;
+        margin-top: 4px;
+        font-size: 100%;
+    }
+    
+    .JQ_CA  .preset_manage._list_mode .preset_form,
+    .JQ_CA  .preset_manage._edit_mode .preset_list,
+    .JQ_CA  .preset_manage._edit_mode .preset_form > .settings_filter,
+    .JQ_CA  .preset_manage._edit_mode .preset_form > .settings_label,
+    
+    .JQ_CA  .preset_manage._setting_mode .preset_list,
+    .JQ_CA  .preset_manage._setting_mode .preset_form > .preset_edit,
+    .JQ_CA  .preset_manage._setting_mode .preset_form > .settings_new,
+    .JQ_CA  .preset_manage._setting_mode .preset_form > .settings_list,
+    .JQ_CA  .preset_manage._setting_mode .preset_form > .settings_label,
+    
+    .JQ_CA  .preset_manage._label_mode .preset_list,
+    .JQ_CA  .preset_manage._label_mode .preset_form > .preset_edit,
+    .JQ_CA  .preset_manage._label_mode .preset_form > .settings_new,
+    .JQ_CA  .preset_manage._label_mode .preset_form > .settings_list,
+    .JQ_CA  .preset_manage._label_mode .preset_form > .settings_filter,
+    
+    .JQ_CA  .preset_manage._list_mode .small_button[data-action="saveSetting"],
+    .JQ_CA  .preset_manage._edit_mode .small_button[data-action="saveSetting"],
+    /*.JQ_CA  .preset_manage._label_mode .small_button[data-action="saveSetting"],*/
+    
+    .JQ_CA  .preset_manage._list_mode .small_button[data-action="cancelSetting"],
+    .JQ_CA  .preset_manage._edit_mode .small_button[data-action="cancelSetting"],
+    /*.JQ_CA  .preset_manage._label_mode .small_button[data-action="cancelSetting"],*/
+    
+    .JQ_CA  .preset_manage._setting_mode .small_button[data-action="editPreset"],
+    .JQ_CA  .preset_manage._setting_mode .small_button[data-action="savePreset"],
+    .JQ_CA  .preset_manage._setting_mode .small_button[data-action="cancel"],
+    
+    .JQ_CA  .preset_manage._label_mode .small_button[data-action="editPreset"],
+    .JQ_CA  .preset_manage._label_mode .small_button[data-action="savePreset"],
+    .JQ_CA  .preset_manage._label_mode .small_button[data-action="cancel"],
+    
+    .JQ_CA  .preset_manage._list_mode .small_button[data-action="savePreset"],
+    .JQ_CA  .preset_manage._edit_mode .small_button[data-action="editPreset"]{
+        display: none;
+    }
+    
+.JQ_CA .preset_manage .preset_edit > label {
+    display: inline-block; 
+    width:150px;
+    font-size: 120%;
+}
+
+.JQ_CA .preset_manage .preset_edit > input[type="text"],
+.JQ_CA .preset_manage .settings_new > select{
+    width: 150px;
+    border:1px solid #ddd;
+    padding:1px;
+    height:19px;
+    line-height: 19px;
+    display: inline-block;
+}
+
+.JQ_CA .preset_manage .preset_list{
+    display: block;
+}
+
+    .JQ_CA .preset_manage .preset_list > table{
+        border: 0 none;
+        border-collapse: collapse;
+        width: 100%;        
+    }
+        .JQ_CA .preset_manage .preset_list > table > tbody{
+            border-bottom:1px solid #ddd;
+        }
+        
+        .JQ_CA .preset_manage .preset_list > table tr:nth-child(2n+1){
+            background-color: #eee;
+        }
+    
+            .JQ_CA .preset_manage .preset_list > table tr td{
+                border-right: 1px solid #ddd;
+                font-size: 100%;
+                max-width: 250px;
+                overflow-x: hidden;
+                padding: 2px 4px;
+                vertical-align: middle; 
+            }
+
+            .JQ_CA .preset_manage .preset_list > table tr td:first-child{
+                border-left: 1px solid #ddd;
+                white-space: nowrap;
+                width: 70px;
+            }
+                .JQ_CA .preset_manage .preset_list > table tr td:first-child > a{
+                    background-image: url("../pic/create_edit_icons.png");
+                    background-repeat: no-repeat;
+                    cursor: pointer;
+                    display: inline-block;
+                    height: 16px;
+                    margin: 0 3px;
+                    opacity: 0.3;
+                    width: 16px;
+                }
+                
+                .JQ_CA .preset_manage a._ico_edit{
+                    background-position: 0 -96px;
+                }
+                
+                .JQ_CA .preset_manage a._ico_clone{
+                    background-position: 0 -64px;;
+                }
+                
+                .JQ_CA .preset_manage a._ico_del{
+                    background-position: 0 -80px;
+                }
+                
+                
+    
+    .JQ_CA .preset_manage .preset_list > a:nth-child(even){
+        background-color: #eee;
+    }
+
+    
+    .JQ_CA .preset_manage .settings_label{
+        min-height: 300px;
+        position: relative;
+        text-align: center;
+    }
+    
+    .JQ_CA .preset_manage .settings_label{
+        
+    }
+    
+    
+    
+/* MOBILE**/
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_items,
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_form{
+    left:0;
+}
+
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_dates{
+    right: 0;
+}
+
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_items{
+    right:0;
+    bottom:0;
+}
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_items > .title{
+    bottom:0;
+}
+
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_items > .title,
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_form{
+    width:160px;
+}
+
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_dates,
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_items > .events,
+.JQ_CA.mobile > .CA_r > .show._mode-swimlane > .swim_items > .white_area{
+    left:160px;
+}
+
+
+.JQ_CA.mobile._compactMobile > .CA_r > .show._mode-swimlane > .swim_items > .title,
+.JQ_CA.mobile._compactMobile > .CA_r > .show._mode-swimlane > .swim_form{
+    width:120px;
+}
+
+.JQ_CA.mobile._compactMobile > .CA_r > .show._mode-swimlane > .swim_dates,
+.JQ_CA.mobile._compactMobile > .CA_r > .show._mode-swimlane > .swim_items > .events,
+.JQ_CA.mobile._compactMobile > .CA_r > .show._mode-swimlane > .swim_items > .white_area{
+    left:120px;
+}
+
+
+.JQ_CA > .CA_r > .show._mode-swimlane > .swimlane_grid_scroll{
+    right:20px;
+    top:1px;
+    height:44px;
+    position: absolute;
+    background-color: #f7f7f7;
+    border-top: 24px solid #eee;
+    box-sizing: border-box;
+}

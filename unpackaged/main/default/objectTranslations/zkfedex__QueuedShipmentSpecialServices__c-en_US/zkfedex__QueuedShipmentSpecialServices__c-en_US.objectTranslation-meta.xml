@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>FedEx Queued Shipment Special Services Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Home Delivery Premium --></label>
+            <section>Home Delivery Premium</section>
+        </sections>
+        <sections>
+            <label><!-- Saturday Services --></label>
+            <section>Saturday Services</section>
+        </sections>
+        <sections>
+            <label><!-- Signature Options --></label>
+            <section>Signature Options</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

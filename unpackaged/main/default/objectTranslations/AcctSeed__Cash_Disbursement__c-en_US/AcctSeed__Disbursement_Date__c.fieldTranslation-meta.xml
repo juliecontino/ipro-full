@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Date in which the Cash Disbursement was made. --></help>
+        <label><!-- Disbursement Date --></label>
+        <name>AcctSeed__Disbursement_Date__c</name>
+    </CustomFieldTranslation>

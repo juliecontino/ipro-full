@@ -1,0 +1,526 @@
+/* 
+    Document   : month
+    Created on : 28 лют 2012, 19:47:04
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+
+.JQ_CA > .CA_r > .show._mode-custom{
+    display:block !important;
+}
+
+/*.JQ_CA.width_week_1 > .CA_r > .show._mode-custom {right:1px;}
+.JQ_CA.width_week_2 > .CA_r > .show._mode-custom {right:2px;}
+.JQ_CA.width_week_3 > .CA_r > .show._mode-custom {right:3px;}
+.JQ_CA.width_week_4 > .CA_r > .show._mode-custom {right:4px;}
+.JQ_CA.width_week_5 > .CA_r > .show._mode-custom {right:5px;}
+.JQ_CA.width_week_6 > .CA_r > .show._mode-custom {right:6px;}*/
+
+/*.JQ_CA > .CA_r > ._mode-custom > .daily
+{
+    position:absolute;
+    top:30px;
+    bottom:10px;
+    left:20px;
+    right:20px;
+
+}*/
+
+.JQ_CA > .CA_r > ._mode-custom > .custom_day_selector{
+    overflow:hidden;
+    position:absolute;
+    top:30px;
+    left:0px;
+    width:30px;
+    bottom:0px;
+/*    background:#eee;*/
+    text-align: right;
+}
+
+.JQ_CA > .CA_r > ._mode-custom > .custom_scroll{
+    overflow-y:hidden;
+    overflow-x:hidden;
+    position:absolute;
+    top:30px;
+    left:30px;
+    right:20px;
+    bottom:0px;
+}
+/*.JQ_CA > .CA_r > ._mode-custom > .custom_scroll > .data{
+                min-height:300px;
+    position:relative;
+    overflow:hidden;
+    height:100%;width:100%;
+    padding:0px;margin:0px;
+    display:inline-block;
+    display:none;
+}*/
+
+/*    .JQ_CA > .CA_r > ._mode-custom > .daily > div{
+        position:absolute;
+        height:10px;
+        border-radius:2px;
+        border:1px solid #ddd;
+        background: -moz-linear-gradient(top,  green 0%, red 100%);
+        background: -webkit-linear-gradient(top,  green 0%, red 100%);
+        background: linear-gradient(top, green 0%, red 100%);
+        background: -o-linear-gradient(top, green 0%, red 100%);
+    }*/
+
+/*    .JQ_CA .custom_scroll > div{
+        height:0%;
+    }*/
+
+    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div{
+        position:relative;
+        text-align: right;
+        min-height:50px;
+/*        margin-bottom:10px;*/
+        border-top:10px solid #ddd;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        
+    }
+    
+    
+        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > ul {
+            display:inline-block;
+            height:100%;
+            width:100%;
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            text-align:left;
+            border-left: 1px solid #ded;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        
+/*            .JQ_CA .custom_scroll > div > ul > li{
+                width:0%;
+            }*/
+            
+            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > ul > li{
+
+                border-collapse: collapse;
+/*                    float: left;*/
+                border-right: 1px solid #ddd;
+                border-top:1px solid #ded;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+            }
+            
+            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > ul > li.current,
+            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > ul > li:hover
+            {
+                background: #eeeeee;
+                background: -moz-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -webkit-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -o-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -ms-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+            }
+            
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > ul > li.more > .day:before{
+                    content:">";
+                    border:1px solid #ddd;
+                    display: inline-block;
+                    background-color: #ddd;
+                    color:black;
+                    margin-right:5px;
+                    box-shadow: 0 0 5px #ddd;;
+                    border-radius: 5px;
+                    padding:2px 3px;
+                }
+
+
+                
+        .JQ_CA > .CA_r > ._mode-custom   .daily{
+            
+        }
+        
+        .JQ_CA > .CA_r > ._mode-custom    .events.new_events > div{
+            opacity:0.25 !important;
+        }
+        
+        .JQ_CA > .CA_r > ._mode-custom    .events.new_events > .new_event{
+            opacity:1 !important;
+        }
+        
+            .JQ_CA > .CA_r > ._mode-custom    .events.new_events > .new_event > span{
+                background: none repeat scroll 0 0 rgba(55, 55, 188, 0.6);
+                border-radius: 10px 10px 10px 10px;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+            }
+            .JQ_CA.ie > .CA_r > ._mode-custom    .events.new_events > .new_event > span{
+                background-color:#8787D7;
+            }
+            
+        
+        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily{
+            position:absolute;
+/*            top:15px;*/
+            left:0px;
+            right:0px;
+            overflow-x:hidden;
+            overflow-y:scroll;
+            padding-right:20px;
+            /*width: 100%;*/
+/*            bottom:70% !important;*/
+/*            box-shadow: 0px -3px 3px -3px #333 inset;*/
+        }
+        
+        JQ_CA.CA_mozilla > .CA_r > ._mode-custom   .custom_scroll > div > .daily{
+            width: 100%;
+        }
+        
+        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily:hover{
+/*                        opacity:1;*/
+        }
+        
+        
+
+            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll  > div > .daily > .evt{
+/*                opacity:0.7;*/
+                display:inline-block;
+                position:absolute;
+                margin-bottom:2px;
+                height:15px;
+/*                top:-50px;*/
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+            }
+            
+            .JQ_CA.middle > .CA_r > ._mode-custom   .custom_scroll > div > .daily  .evt{
+                height:18px;
+            }
+            .JQ_CA.large > .CA_r > ._mode-custom   .custom_scroll > div > .daily  .evt{
+                height:21px;
+            }
+
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .evt > span,
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .evt > span > span,
+                .JQ_CA > .CA_r > ._mode-custom .hand_on > span, 
+                .JQ_CA > .CA_r > ._mode-custom .hand_on > span > span
+                {
+                    position:absolute;
+                    top:0px;
+                    bottom:0px;
+                }
+
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .evt > .title, 
+                .JQ_CA > .CA_r > ._mode-custom   .hand_on > .title
+                {
+                    overflow:hidden;
+                    border-radius:5px;
+                    z-index:1;
+                    left:5px;
+                    right:5px;
+                    padding-left:13px;
+/*                    background-image:url(../pic/event_bg.png);*/
+                    background-repeat: repeat-x;
+                    background-position: center center;
+                    font-size:11px;
+                    line-height:15px;
+                    color:white;
+                    text-align: left;
+                    vertical-align: middle;
+                }
+                
+                .JQ_CA.middle > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .evt > .title, 
+                .JQ_CA.middle > .CA_r > ._mode-custom   .hand_on > .title{
+                    font-size:14px;
+                    line-height:18px;
+                }
+
+                .JQ_CA.large > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .evt > .title, 
+                .JQ_CA.large > .CA_r > ._mode-custom   .hand_on > .title{
+                    font-size:17px;
+                    line-height:21px;
+                }
+
+
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .on > .title,
+                .JQ_CA > .CA_r > ._mode-custom   .hand_on > .title
+                {
+                    box-shadow: 0px 0px 3px #000;
+
+                }
+
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .full_l > .title,
+                .JQ_CA > .CA_r > ._mode-custom   .hand_on.full_l > .title
+                {
+                    left:1px;
+                    padding-left: 17px;
+                    border-bottom-left-radius: 2px;
+                    border-top-left-radius: 2px;
+                }
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .full_r > .title,
+                .JQ_CA > .CA_r > ._mode-custom   .hand_on.full_r > .title
+                {
+                    right:2px;
+                    border-bottom-right-radius: 2px;
+                    border-top-right-radius: 2px;
+                }
+
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > div > span > .title{
+
+                    }
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > div > span > .l{
+                        border-top-left-radius:5px;
+                        border-bottom-left-radius:5px;
+                        z-index:2;
+                        left:0px;width:10px;
+                        cursor:w-resize;
+/*                                opacity: 0.2;*/
+/*                                background-color:#000;*/
+                        background:url(../pic/event_week_l.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > div > span > .r{
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        z-index:2;
+                        right:0px;width:10px;
+                        cursor:e-resize;
+                        /*opacity: 0.2;8/
+                        /*background-color:#000;*/
+                        background:url(../pic/event_week_r.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .non_e > span > .l,
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .non_e > span > .r,
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .non_r > span > .l,
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .non_r > span > .r {
+                        background-image: none !important;
+                        cursor: default;
+                    }
+
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .full_l > span > .l,
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .daily > .full_r > span > .r{
+                        display:none;
+                    }
+
+            .JQ_CA > .CA_r > ._mode-custom   .hand_on{
+                cursor: move;
+                margin-left:2%;
+                position:absolute;
+                height:12px;
+                width:14%;
+                display: inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+            }
+            
+            .JQ_CA > .CA_r > ._mode-custom   .hand_on.evt{margin-left:0%;}
+
+        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly{
+            border-top:1px dotted #ddd;
+            position:absolute;
+/*            top:30%;*/
+            left:0px;
+            right:0px;
+/*            padding-right:20px;*/
+            overflow-x:hidden;
+            overflow-y:scroll;
+            border-top:3px solid #ddd;
+/*            bottom:0 !important;*/
+/*            box-shadow: 0px 3px 3px -3px #333 inset;*/
+        }
+        
+            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul {
+                display:inline-block;
+                width:100%;
+                list-style: none;
+                border-collapse: collapse;
+                margin:0px;
+                padding:0px;
+                text-align:left;
+                border-left: 1px solid #ded;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                overflow: hidden;
+            }
+            
+                .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li{
+
+                    border-collapse: collapse;
+                    border-right: 1px solid #ddd;
+                    border-top:1px solid #ded;
+                    text-align: right;
+                    vertical-align: top;
+                    color:#999;
+                    display:inline-block;
+                    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                    box-sizing: border-box;  
+                    position:relative;
+                }
+                
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li > .hours_title{
+                        /*background-position: inherit, 0 -1px;*/
+                        position:absolute;
+                        top:-1px;
+                        right:0;
+                        bottom:0;
+                        padding:0;
+                        margin:0;
+                    }
+                        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li > .hours_title > span{
+                            display:block;
+                        }
+                        
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events {
+                        bottom: 0;
+                        left: 0;
+                        position: absolute;
+                        right: 0;
+                        top: 0;                        
+                    }
+                        
+                    .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events > .evt{
+						white-space: nowrap;
+                        position:absolute;
+                        width:95%;
+                    }
+                    
+                        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events.new_events > .evt.new_event.create_event{
+                            right:0px;
+                            left:5%;
+                            width:95% !important;
+                        }
+
+                        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events > .evt > span{
+    /*                        border:1px solid white;*/
+                            border-radius:5px;
+                            position:absolute;
+                            top:1px;bottom:1px;left:1px;right:1px;
+                            text-align: left;
+/*                            background-image: url(../pic/event_bg_h.png);
+                            background-repeat: repeat-y;
+                            background-position: center center;
+                            background-size: contain;*/
+                        }                    
+
+                        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events.new_events > .evt.new_event > span{
+                            background-image: url("../pic/event_chess2_bg.png");
+                            background-size: contain;
+                            background-repeat: repeat;
+/*                            background-color:#0066cc;*/
+                        }
+                        
+                        .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events.new_events > .evt.new_event.create_event > span{
+                            background-color:#0066cc;
+                        }
+
+                    
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .title{
+    /*                            -webkit-transform: rotate(-90deg);
+                                -moz-transform: rotate(-90deg);
+                                -o-transform: rotate(-90deg);*/
+                                font-size:11px;
+/*                                color:white;*/
+                                display:inline-block;
+                                position:absolute;
+                                top:5px;bottom:5px;
+                                left:5px;
+                                right:5px;
+                                overflow:hidden;
+    /*                            background-color: red;
+
+                                white-space: nowrap;*/
+                                white-space: normal;
+                            }
+                            .JQ_CA.middle > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .title{
+                                font-size:14px;
+                            }
+                            .JQ_CA.large > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .title{
+                                font-size:17px;
+                            }
+                            
+                            
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .t{
+                                position:absolute;top:0px;left:0px;right:0px;height:5px;
+                                cursor:n-resize;
+                                background: url(../pic/event_day_t.png) no-repeat center center;
+                                border-radius:5px;
+                            }
+
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .t:hover{
+                                background-image: url(../pic/event_day_t_on.png)
+                            }
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .b{
+                                position:absolute;bottom:0px;left:0px;right:0px;height:5px;
+                                cursor:s-resize;
+                                background: url(../pic/event_day_b.png) no-repeat center center;
+                                border-radius:5px;
+                            }
+
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt > span > .b:hover{
+                                background-image: url(../pic/event_day_b_on.png)
+                            }
+                            
+                            
+                            .JQ_CA > .CA_r > ._mode-custom > .custom_scroll > div > .hourly > ul > li .events   .non_ls > span > .t,
+                            .JQ_CA > .CA_r > ._mode-custom > .custom_scroll > div > .hourly > ul > li .events   .non_rs > span > .b,
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .non_e > span > .t,
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .non_e > span > .b,
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .non_r > span > .t,
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .non_r > span > .b{
+                                background-image:none !important;
+                                cursor: default;
+                            }
+
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .full_t > span > .t,
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .full_b > span > .b
+                            {
+                                display:none;
+                            }                        
+                            
+                            .JQ_CA > .CA_r > ._mode-custom   .custom_scroll > div > .hourly > ul > li .events   .evt.create_event.new_event > span > .title{
+                                color: #ffffff;
+                            }
+                                
+                        
+            
+
+.JQ_CA > .CA_r > ._mode-custom > .custom_day_selector > span{
+    display:inline-block;
+    text-align: right;
+    border:1px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    overflow: hidden;
+    width:0px;
+    height:15px;
+    padding-left:10px;
+    margin-left:20px;
+    cursor:pointer;
+}
+
+.JQ_CA > .CA_r > ._mode-custom > .custom_day_selector > .sel, 
+.JQ_CA > .CA_r > ._mode-custom > .custom_day_selector > span:hover{
+    margin-left:0px;
+    width:25px;
+    padding-left:0px;
+    line-height:15px;
+    background: #ddd;
+    text-align: left;
+    padding-left:3px;
+}
+                                                          

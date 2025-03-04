@@ -1,0 +1,1 @@
+AcctSeed.ASModule=function(t,e){"use strict";var c=e.currencyFormatterProxy;return e.formatCurrency=function(){t('[id$="unitPrice"]').each(function(){t(this).text(c(t(this).text()))})},t(function(){e.formatCurrency()}),e}((window,document,$j),AcctSeed.ASModule);

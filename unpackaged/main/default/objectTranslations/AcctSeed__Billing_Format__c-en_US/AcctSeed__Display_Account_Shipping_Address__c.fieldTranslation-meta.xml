@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field has been deprecated. --></help>
+        <label><!-- zDep-Display Account Shipping Address --></label>
+        <name>AcctSeed__Display_Account_Shipping_Address__c</name>
+    </CustomFieldTranslation>

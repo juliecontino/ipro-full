@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Indicates whether this record represents a Package Profile. Package Profiles are generic records that are used by Shipmate for Package &apos;Re-Use&apos; --></help>
+        <label><!-- Package Profile --></label>
+        <name>zkfedex__PackageProfile__c</name>
+    </CustomFieldTranslation>

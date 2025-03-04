@@ -1,0 +1,771 @@
+div.calendar-settings{
+    position: absolute;
+    top:20%;left:20%;right: 20%;bottom:20%;
+    border-radius: 5px;
+    border:1px solid #ddd;
+    box-shadow: 0px 0px 5px #333;
+    background: #fff;
+    z-index:1000;
+    display:none;
+}
+
+.JQ_CA._compact_width div.calendar-settings,
+.JQ_CA div.calendar-settings._adm{
+    left:5%;
+    right:5%;
+}
+.JQ_CA._compact_height div.calendar-settings{
+    top:2%;
+    bottom:2%;
+}
+
+.calendar-settings-shadow{
+    display:none;
+    position: absolute;
+    top:0;left:0;right: 0;bottom:0;
+    z-index:999;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.JQ_CA div.calendar-settings.on, .calendar-settings-shadow.on{
+    display:block;
+}
+
+    div.calendar-settings > div.title{
+        background : #225A73 ;
+        background: -moz-linear-gradient(top,  #225A73 0%, #487AA3 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#225A73), color-stop(100%,#487AA3));
+        background: -webkit-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+        background: -o-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+        background: -ms-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+        background: linear-gradient(top,  #225A73 0%,#487AA3 100%);
+        height:30px;
+        line-height:30px;
+        color:white;
+        padding:0px 20px;
+        font-size:120%;
+        font-weight:bold;
+        border-radius: 4px  4px 0px 0px;
+        position:relative;
+    }
+    
+        div.calendar-settings > div.title > span.close{
+            background: linear-gradient(top,  #eee 0%,#ddd 100%);
+            position: absolute;
+            background: #fff;
+            border-radius: 10px;
+            height:20px;
+            line-height: 15px;
+            width:20px;
+            text-align: center;
+            font-size:120%;
+            color:#487AA3;
+            display:inline-block;
+            top:5px;
+            right:10px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        
+/*        div.calendar-settings > div.title > span.error{
+            position: absolute;
+            top:20px;
+            left:50%;
+            margin-left:-25%;
+            width:50%;
+            padding:5px;
+            background: #AF6150;
+            color:#fff;
+            font-size: 12px;
+            box-shadow: 0 0 2px #333;
+            z-index: 5;
+            display: none;
+        }
+        
+        div.calendar-settings > div.title > span.error._on{
+            display: block;
+        }*/
+        
+        div.calendar-settings > div.title > div.tab{
+            position:relative;
+            display:inline-block;
+            height:25px;
+            cursor:pointer;
+            margin-left:20px;
+            vertical-align: bottom;
+            
+        }
+
+            div.calendar-settings > div.title > div.tab > span{
+                display:inline-block;
+                height:23px;
+                padding:0px 10px;
+                border-radius: 4px 4px 0px 0px;
+                color:white;
+                font-size:90%;
+                border:1px solid white;
+                margin-left:1px;
+                
+            }
+            
+            div.calendar-settings > div.title > div.tab > span.on{
+                background-color:white;
+                color:#555;
+            }
+
+    
+    div.calendar-settings > form > div.body {
+        position:absolute;
+        overflow-x:hidden;
+        overflow-y:auto;
+        top:35px;
+        bottom:35px;
+        left:5px;
+        right:5px;
+    }
+    
+    
+        div.calendar-settings > form > div.body > div{
+            display:none;
+            bottom: 0;
+            left: 0;
+            /*overflow-y: auto;*/
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        
+        div.calendar-settings > form > div.body > div.on{
+            display: block;
+        }
+        
+        div.calendar-settings > form > div.body > div[data-tab="display"]{
+            overflow-y: auto;
+        }
+    
+    div.calendar-settings > form > div.footer{
+        position:absolute;
+        bottom:10px;
+        left:0px;
+        right:0px;
+        height:25px;
+    }
+    
+    
+    div.calendar-settings  div.custom_settings_block{
+        display:block;
+        clear:both;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        margin-bottom: 3px;    
+        padding:2px;
+    }
+    
+        div.calendar-settings  div.custom_settings_block div.block_title{
+            padding:3px;
+            font-size:120%;
+            font-weight: bolder;
+            cursor: pointer;
+            background-image: url("../pic/icons.png");
+            background-position: 0 -288px;
+            background-repeat: no-repeat;
+            padding-left:16px;
+            color:#999;
+            background-color: #f7f7f7;
+        }
+
+        div.calendar-settings  div.custom_settings_block.on div.block_title{
+            background-position: 0 -272px;
+            color:#555;
+            background-color: #fff;
+        }
+
+        div.calendar-settings  div.custom_settings_block > div.block_fields{
+            display:none;
+        }
+
+        div.calendar-settings  div.custom_settings_block.on > div.block_fields{
+            display: block;
+        }
+    
+    div.calendar-settings  div.field{
+        margin-top:5px;
+        display:inline-block;
+/*        width:48%;*/
+        text-align: left;
+        border-top:1px dotted #ddd;
+        padding:5px;
+        /*border-radius: 3px;*/
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        margin-left:1%;
+        position: relative;
+        width: 49%;
+        vertical-align: top;
+    }
+    
+    
+/*    div.calendar-settings  div.field:nth-child(even){
+        
+    }*/
+    
+        div.calendar-settings  div.field > div.name{
+            font-size:120%;
+            text-align: left;
+            display:inline-block;
+            width:60%;
+            vertical-align: top;
+            padding-top: 2px;
+        }
+        
+            div.calendar-settings  div.field > div.name > span._info{
+                font-size: 80%;
+                padding-top:5px;
+                display: block;
+                color:#777;
+            }
+        
+        div.calendar-settings  div.field._disabled > span{
+            display:block;
+            position: absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            z-index:2;
+            opacity: 0.7;
+            background-color: #ddd;
+        }
+        
+        div.calendar-settings  div.field > span{
+            display: none;
+        }
+        
+        div.calendar-settings  div.field > div.element {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            display:inline-block;
+            margin-left:5%;
+            width:30%;
+        }
+        
+            div.calendar-settings  div.field > div.element input,
+            div.calendar-settings  div.field > div.element select,
+            div.calendar-settings  div.field > div.element textarea {
+                width:100%;
+                padding:2px;
+                background: transparent;
+                border:1px solid #eee;
+                font-size: 120%;
+                border-radius: 2px;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+            }
+            div.calendar-settings  div.field > div.element div._multiselect input{
+                width: 20%;
+                margin-right: 5px;
+            }
+            
+            div.calendar-settings  div.field > div.element ._err{
+                box-shadow: 0 0 2px red;
+            }
+            
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span{
+                display:inline-block;
+                width:20px;
+                height:20px;
+                margin-right:5px;
+                line-height:20px;
+                vertical-align: middle;
+                border:1px solid #ddd;
+                border-radius: 2px;
+                padding:0px;
+                position:relative;
+            }
+                div.calendar-settings  div.field[data-type="classRadio"] > div.element > span > input{
+                    opacity:0;
+                    padding:0px;
+                    margin:0px;
+                    position:absolute;
+                    z-index:2;
+                    top:0px;left:0px;bottom:0px;right:0px;
+                }
+                
+                div.calendar-settings  div.field[data-type="classRadio"] > div.element > span > label{
+                    opacity:0.7;
+                    background-color:#fff;
+                    position:absolute;
+                    top:0px;left:0px;bottom:0px;right:0px;
+                    z-index:1;
+                    border-radius: 2px;
+                }
+                
+                div.calendar-settings  div.field[data-type="classRadio"] > div.element > span > input:checked+label{
+                    opacity:0;
+                }
+            
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_none{
+                background-color:blue;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_gradient{
+                background:url(../pic/event_bg.png) repeat-x center center rgba(0, 0, 255, 0.7);
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_round{
+                background:url(../pic/tpl/tpl1.png) repeat-x center center blue;
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_line{
+                background:url(../pic/tpl/tpl5.png) repeat-x center center blue;
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_half{
+                background:url(../pic/tpl/tpl14.png) repeat-x center center blue;
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_bulb{
+                background:url(../pic/tpl/tpl12.png) repeat-x center center rgba(0, 0, 255, 0.7);
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_koso1{
+                background:url(../pic/tpl/tpl8.png) repeat-x center center blue;
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_koso2{
+                background:url(../pic/tpl/tpl18.png) repeat-x center center blue;
+                background-size: cover;
+            }
+            div.calendar-settings  div.field[data-type="classRadio"] > div.element > span._radio_koso3{
+                background:url(../pic/tpl/tpl17.png) repeat-x center center blue;
+                background-size: cover;
+            }
+            
+    div.calendar-settings > form > div._message {
+        position:fixed;
+        background: #af6150;
+        color:white;
+        border:1px solid #red;
+        box-shadow: 0 0 2px #333;
+        padding:3px;
+        font-size: 100%;
+        z-index:2;
+        cursor: pointer;
+        display: none;
+        margin-top:-22px;
+        border-radius: 2px;
+        opacity: 0;
+        /*overflow-x:hidden;*/
+        /*overflow-y:auto;*/
+/*        top:50%;
+        left:50%;*/
+    }
+    
+    div.calendar-settings > form > div._on{
+        opacity: 0.9;
+        transition: opacity 0.2s; 
+        display: block;
+    }
+            
+            
+.calendar-settings div[data-tab="visible"], 
+.calendar-settings div[data-tab="groups"],
+.calendar-settings div[data-tab="web"],
+.calendar-settings div[data-tab="grouping"] > div._gropingFields._on,
+.calendar-settings div > div._filteringFields{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align:center;
+    vertical-align: middle;
+}
+.calendar-settings div[data-tab="grouping"] > div._gropingFields._on,
+.calendar-settings div > div._filteringFields{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+    .calendar-settings div[data-tab="grouping"] > div._gropingFields > div,
+    .calendar-settings div > div._filteringFields > div, 
+    .calendar-settings div[data-tab="visible"] > div,
+    .calendar-settings div[data-tab="groups"] > div,
+    .calendar-settings div[data-tab="web"] > div{
+        display:inline-block;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+        
+    .calendar-settings div[data-tab="grouping"] > div._gropingFields > div.unvisible,
+    .calendar-settings div > div._filteringFields >  div.unvisible,
+    .JQ_CA.ie .calendar-settings div[data-tab="visible"] > div.unvisible,
+    .JQ_CA.ie .calendar-settings div[data-tab="groups"] > div.unvisible,
+    .JQ_CA.ie .calendar-settings div[data-tab="web"] > div.unvisible,
+    .JQ_CA.ie .calendar-settings div > span.multi_select_title:first-child {
+        left: 5px;
+        right: auto;
+    } 
+        .calendar-settings div > div._filteringFields >  div.unvisible > div > input{
+            visibility: hidden;
+        }
+        
+    
+    .JQ_CA div.simple_buttons > a[data-action="addFolder"] {
+        display: block;
+        position: absolute;
+        /*right: 50%;*/
+        top: 110px;
+        width: 100%;
+/*        margin-right: -20px;
+        padding: 5px 11px 1px;*/
+    }
+        .JQ_CA div.simple_buttons > a[data-action="addFolder"] > span{
+            background-image: url(../pic/icons.png);
+            background-position: 0 -422px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+        }
+    
+    
+    
+    .JQ_CA .calendar-settings div > .multi_select > ._folder{
+        font-weight: bolder;
+        /*background: #eee;*/
+    }
+    .JQ_CA .calendar-settings div > .multi_select > ._folder > span{
+        background-image: url(../pic/type_calendars.png);
+        background-position: -8px -52px;
+        height: 6px;
+        margin-top: 10px;
+        margin-left: 10px;
+        width:6px;
+    }
+    
+    .calendar-settings div[data-tab="grouping"] > div._gropingFields > .simple_buttons > span{
+        display: inline-block;
+        position: absolute;
+        right:50%;
+        margin-right: -30px !important;
+        width: 50px;
+        top:140px;
+    }
+    
+    .JQ_CA._compact_width .calendar-settings div[data-tab="grouping"] > div._gropingFields > .simple_buttons > span{
+        padding: 1px !important;
+        font-size: 91% !important;
+        width: 40px;
+        margin-right: -22px !important;
+    }
+    
+    
+    .calendar-settings div[data-tab="grouping"] > div._gropingFields > .simple_buttons > span:first-of-type{
+        top: 110px;
+    }
+    .calendar-settings div[data-tab="grouping"] > div._gropingObjects > ._list {
+        overflow-y: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 31px;
+        bottom: 0;
+    }
+    .calendar-settings div[data-tab="grouping"] > div._gropingObjects > ._list > div{
+        margin: 5px 0;
+    }
+    
+    .calendar-settings div > div._filteringFields >  select{
+        position: absolute;
+        bottom:0;
+        left:2px;
+        width:45%;
+    }
+        
+    
+        
+/*        .calendar-settings  div div.multi_select > div._multi_up, 
+        .calendar-settings  div div.multi_select > div._multi_down{
+            display:none;
+            margin:0;
+            padding:0;
+            border:0;
+            border-radius: 0;
+            z-index:2;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+        }
+        
+        .calendar-settings  div._dragable div.multi_select:hover > div._multi_up{
+            display:block;
+            top:0;left:0;right:0;height:20px;
+        }
+        
+        .calendar-settings  div._dragable div.multi_select:hover > div._multi_down{
+            display:block;
+            bottom:0;left:0;right:0;height:20px;
+        }
+        
+        .calendar-settings  div._dragable div.multi_select:hover > div._multi_up:hover,
+        .calendar-settings  div._dragable div.multi_select:hover > div._multi_down:hover{
+            background-color: rgba(0,0,255,0.3);
+        }*/
+        
+        
+    
+    .calendar-settings     div.help{
+        bottom:0px;
+        position: absolute;
+        left:10px;
+        line-height: 14px;
+    }
+    
+        .calendar-settings     div.help > span{
+            background-image: url("../pic/icons.png");
+            background-repeat: no-repeat;
+            height: 16px;
+            margin-top: 7px;
+            width: 16px;
+            display: inline-block;
+            margin-right:5px;
+            background-position: 0 -16px;
+        }
+    
+
+    
+    
+    .calendar-settings ._image_radio > span{
+        display:inline-block;
+        margin-right:5px;
+        height:64px;
+        width:64px;
+        border:1px solid transparent;
+        
+        background-repeat: no-repeat;
+        opacity:0.5;
+        overflow:hidden;
+        
+    }
+    
+    .calendar-settings ._image_radio > span.on, ._image_radio > span:hover{
+        opacity: 1;
+        border:1px solid #999;
+/*        box-shadow: 0px 0px 3px #000;*/
+        background-color: #eee;
+        border-radius: 3px;
+    }
+    
+        .calendar-settings ._image_radio > span > label{
+            cursor: pointer;
+            display:block;
+            height:64px;
+            background-image: url('../pic/settings.png');
+        }
+        .calendar-settings ._image_radio > span._imgr_0 > label{margin-left:0px;}
+        .calendar-settings ._image_radio > span._imgr_1 > label{margin-left:-64px;}
+        .calendar-settings ._image_radio > span._imgr_2 > label{margin-left:-128px;}
+        .calendar-settings ._image_radio > span._imgr_3 > label{margin-left:-192px;}
+        .calendar-settings ._image_radio > span._imgr_4 > label{margin-left:-256px;}
+        .calendar-settings ._image_radio > span._imgr_5 > label{margin-left:-320px;}
+        .calendar-settings ._image_radio > span._imgr_6 > label{margin-left:-384px;}
+        .calendar-settings ._image_radio > span._imgr_7 > label{margin-left:-448px;}
+        .calendar-settings ._image_radio > span._imgr_8 > label{margin-left:-512px;}
+    
+            .calendar-settings ._image_radio > span > label > input[type="radio"]{
+                visibility: hidden;
+            }
+    
+        .calendar-settings ._image_radio_size._image_radio > span > label{background-position:0px 0px; }
+        .calendar-settings ._image_radio_mode._image_radio > span > label{background-position:0px -64px; }
+        .calendar-settings ._image_radio_startWeekDay._image_radio > span > label{background-position:0px -128px;}
+        .calendar-settings ._image_radio_gradient._image_radio > span > label{background-position:0px -192px; }
+        .calendar-settings ._image_radio_showWeekEnds._image_radio > span > label{background-position:0px -256px; }
+        .calendar-settings ._image_radio_monthWeeks._image_radio > span > label{background-position:0px -320px; }
+        .calendar-settings ._image_radio_monthDayMoreWidth._image_radio > span > label{background-position:0px -384px; }
+        
+
+div.calendar-settings  div.field[data-type="imageRadio"]  {
+    
+}
+
+div.calendar-settings  div.field[data-type="imageRadio"] > div {
+    display:block;
+    width:100%;
+    margin-left:0px;
+}
+
+.calendar-settings div[data-tab="addons"] > div{
+}
+
+.calendar-settings div[data-tab="grouping"] > div._gropingObjects._off,
+.calendar-settings div[data-tab="grouping"] > div._gropingFields{
+    display: none;
+}
+.calendar-settings div[data-tab="grouping"] > div._gropingFields._on{
+    display: block;
+}
+
+    .JQ_CA  .calendar-settings .preset_manage._list_mode .preset_form,
+    .JQ_CA  .calendar-settings  .preset_manage._edit_mode .preset_list,
+    .JQ_CA  .calendar-settings  .preset_manage._edit_mode .preset_form > .settings_filter,
+    .JQ_CA  .calendar-settings  .preset_manage._edit_mode .preset_form > .settings_label,
+    
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .preset_list,
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .preset_form > .preset_edit,
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .preset_form > .settings_new,
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .preset_form > .settings_list,
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .preset_form > .settings_label,
+    
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .preset_list,
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .preset_form > .preset_edit,
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .preset_form > .settings_new,
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .preset_form > .settings_list,
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .preset_form > .settings_filter,
+    
+    .JQ_CA  .calendar-settings  .preset_manage._list_mode .small_button[data-action="saveSetting"],
+    .JQ_CA  .calendar-settings  .preset_manage._edit_mode .small_button[data-action="saveSetting"],
+    .JQ_CA  .calendar-settings  .preset_manage._list_mode .small_button[data-action="cancel"],
+    /*.JQ_CA  .calendar-settings  .preset_manage._label_mode .small_button[data-action="saveSetting"],*/
+    
+    .JQ_CA  .calendar-settings  .preset_manage._list_mode .small_button[data-action="cancelSetting"],
+    .JQ_CA  .calendar-settings  .preset_manage._edit_mode .small_button[data-action="cancelSetting"],
+    /*.JQ_CA  .calendar-settings  .preset_manage._label_mode .small_button[data-action="cancelSetting"],*/
+    
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .small_button[data-action="editPreset"],
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .small_button[data-action="savePreset"],
+    .JQ_CA  .calendar-settings  .preset_manage._setting_mode .small_button[data-action="cancel"],
+    
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .small_button[data-action="editPreset"],
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .small_button[data-action="savePreset"],
+    .JQ_CA  .calendar-settings  .preset_manage._label_mode .small_button[data-action="cancel"],
+    
+    .JQ_CA  .calendar-settings  .preset_manage._list_mode .small_button[data-action="savePreset"],
+    .JQ_CA  .calendar-settings  .preset_manage._edit_mode .small_button[data-action="editPreset"]{
+        display: none;
+    }
+    
+.JQ_CA  .calendar-settings .preset_manage .preset_edit > label {
+    display: inline-block; 
+    width:200px;
+    font-size: 120%;
+}
+
+.JQ_CA  .calendar-settings .preset_manage .preset_edit > input[type="text"],
+.JQ_CA  .calendar-settings .preset_manage .settings_new > select{
+    width: 230px;
+    border:1px solid #ddd;
+    padding:1px;
+    height:23px;
+    line-height: 23px;
+    display: inline-block;
+    margin-right:10px;
+}
+.JQ_CA  .calendar-settings .preset_manage .preset_edit > input[type="text"]._err,
+.JQ_CA  .calendar-settings .preset_manage .settings_new > select._err{
+    box-shadow: 0 0 8px red;
+}
+
+.JQ_CA  .calendar-settings .preset_manage .preset_list{
+    display: block;
+}
+
+    .JQ_CA  .calendar-settings .preset_manage .preset_list > table{
+        border: 0 none;
+        border-collapse: collapse;
+        width: 100%;        
+    }
+        .JQ_CA  .calendar-settings .preset_manage .preset_list > table > tbody{
+            border-bottom:1px solid #ddd;
+        }
+        
+        .JQ_CA  .calendar-settings .preset_manage .preset_list > table tr:nth-child(2n+1){
+            background-color: #eee;
+        }
+        .JQ_CA  .calendar-settings .preset_manage .preset_list > table tr:hover{
+            background-color: #ddd;
+        }
+    
+            .JQ_CA  .calendar-settings .preset_manage .preset_list > table tr td{
+                border-right: 1px solid #ddd;
+                font-size: 100%;
+                max-width: 250px;
+                overflow-x: hidden;
+                padding: 2px 4px;
+                vertical-align: middle; 
+            }
+
+            .JQ_CA  .calendar-settings .preset_manage .preset_list > table tr td:first-child{
+                border-left: 1px solid #ddd;
+                white-space: nowrap;
+                width: 70px;
+            }
+                .JQ_CA  .calendar-settings .preset_manage .preset_list > table tr td:first-child > a{
+                    background-image: url("../pic/create_edit_icons.png");
+                    background-repeat: no-repeat;
+                    cursor: pointer;
+                    display: inline-block;
+                    height: 16px;
+                    margin: 0 3px;
+                    opacity: 0.3;
+                    width: 16px;
+                }
+                .JQ_CA  .calendar-settings .preset_manage .preset_list > table tr:hover td:first-child > a{
+                    opacity: 1;
+                }
+                
+                
+                .JQ_CA  .calendar-settings .preset_manage a._ico_edit{
+                    background-position: 0 -96px;
+                }
+                
+                .JQ_CA  .calendar-settings .preset_manage a._ico_clone{
+                    background-position: 0 -64px;;
+                }
+                
+                .JQ_CA  .calendar-settings .preset_manage a._ico_del{
+                    background-position: 0 -80px;
+                }
+                
+                
+    
+    .JQ_CA  .calendar-settings .preset_manage .preset_list > a:nth-child(even){
+        background-color: #eee;
+    }
+
+    
+    .JQ_CA  .calendar-settings .preset_manage .settings_label{
+        min-height: 250px;
+        position: relative;
+        text-align: center;
+    }
+    
+    .JQ_CA  .calendar-settings .preset_manage .settings_label{
+        
+    }
+    
+    .JQ_CA  .calendar-settings .preset_manage .settings_list > div{
+        margin: 2px 0;
+        border-bottom: 1px dotted #eee;
+    }
+    .JQ_CA  .calendar-settings .preset_manage .settings_list > div:last-child{
+        border-bottom: none;
+    }
+    
+        .JQ_CA  .calendar-settings .preset_manage .settings_list ._preset_field_title{
+            min-width: 250px;
+            display: inline-block;
+            font-size: 120%;
+
+        }
+
+        .JQ_CA  .calendar-settings .preset_manage .settings_list .simple_buttons > span,
+        .JQ_CA  .calendar-settings .preset_manage .settings_list span.simple_button,
+        .JQ_CA  .calendar-settings .preset_manage .settings_new .simple_button{
+            font-size: 100% !important;
+            font-weight: normal;
+        }
+    
+    

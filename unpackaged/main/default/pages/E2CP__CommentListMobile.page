@@ -1,0 +1,109 @@
+<apex:page standardController="Case" extensions="E2CP.CommentList" action="{!loadComments}" doctype="html-5.0" applyHtmlTag="false" showHeader="false" sidebar="false" standardStylesheets="false" cache="false" title="{!Case.CaseNumber}: Comment List">
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+            <style>
+                html {
+                    background-color: transparent;
+                }
+                
+                html, body {
+                    width: 100%;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    background-color: #F0F1F2;
+                    -webkit-text-size-adjust: 100%;
+                    word-wrap: break-word !important;
+                }
+                
+                html, body, div, span {
+                    font-family: "ProximaNovaSoft-Regular", Calibri, 
+                                 "Gill Sans", "Gill Sans MT", Candara, Segoe, "Segoe UI", 
+                                 Arial, sans-serif !important;
+                }
+                
+                .title {
+                    height: 58px;
+                    color: #3C3D3E;
+                    font-size: 16px;
+                    background-color: #FFFFFF;
+                    line-height: 58px;
+                    vertical-align: baseline;
+                }
+                
+                .icon {
+                    margin: 14px;
+                    float: left;
+                    height: 30px;
+                    background-color: #4FAC9C;
+                    -webkit-border-radius: 2px;
+                    -moz-border-radius: 2px;
+                    border-radius: 2px;
+                }
+                
+                .comment-container {
+                    background-color: #FFFFFF;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    border-radius: 5px;
+                    border: 1px solid #CFD4D9;
+                }
+                
+                .author {
+                    color: #3C3D3E;
+                    font-size: 16px;
+                }
+                
+                .field-label {
+                    display: inline-block;
+                    width: 50%;
+                    font-size: 14px;
+                    color: #696E71;
+                }
+                
+                .comment {
+                    color: #3C3D3E;
+                    font-size: 14px;
+                    width: 100%;
+                    word-wrap: break-word !important;
+                    word-break: break-word !important;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="title">
+                <img class="icon" src="{!URLFOR($Resource.RelatedIcon)}"/>
+                <span style="display:inline-block;float:left;">Case Comments</span>
+            </div>
+            
+            <apex:outputPanel layout="block" style="width:100%;margin-top:20%;text-align:center;font-size:15px;color:#686C70;" rendered="{!comments.size == 0}">
+                There are no comments on this case.
+            </apex:outputPanel>
+            
+            <apex:repeat value="{!comments}" var="comment">
+                <div class="comment-container" style="margin: 14px;padding:7px;clear: both;">
+                    <div class="author">{!comment.CreatedBy.Name}</div>
+                    
+                    <span class="field-label">Public:</span>
+                    <apex:outputField value="{!comment.IsPublished}"/>
+                    
+                    <span class="field-label">Created Date:</span>
+                    <span style="font-size:14px;color:#3C3D3E;">
+                    <apex:outputField value="{!comment.CreatedDate}"/>
+                    </span>
+                    
+                    <p class="comment">
+                        <apex:outputField value="{!comment.CommentBody}"/>
+                    </p>
+                </div>
+            </apex:repeat>
+            <script>
+                if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
+                    var comments = document.getElementsByClassName('comment');
+                    for (var i = 0;i < comments.length;i++)
+                        comments[i].style.wordBreak = 'break-all';
+                }
+            </script>
+        </body>
+    </html>
+</apex:page>

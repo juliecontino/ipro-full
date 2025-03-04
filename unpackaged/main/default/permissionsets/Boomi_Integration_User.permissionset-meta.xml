@@ -8254,4 +8254,8 @@
         <recordType>Account.Vendor</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabSettings>
+        <tab>zaapit__Accounts</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

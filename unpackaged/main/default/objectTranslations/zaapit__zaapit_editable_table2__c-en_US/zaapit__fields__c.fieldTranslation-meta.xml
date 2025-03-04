@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The field to display in the editable table, use &apos;#&apos; as a field separator, use the original field API name --></help>
+        <label><!-- fields --></label>
+        <name>zaapit__fields__c</name>
+    </CustomFieldTranslation>

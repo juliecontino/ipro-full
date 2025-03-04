@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- EventName~classNameSpace~ClassName#EventName2~classNameSpace2~ClassName2
+The Class must Implement ZPTableHandler --></help>
+        <label><!-- LogicExtend --></label>
+        <name>zaapit__LogicExtend__c</name>
+    </CustomFieldTranslation>

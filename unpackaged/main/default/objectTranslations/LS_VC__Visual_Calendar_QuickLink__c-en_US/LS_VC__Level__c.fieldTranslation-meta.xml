@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The level in the menu tree. Starting in 0. --></help>
+        <label><!-- Level --></label>
+        <name>LS_VC__Level__c</name>
+    </CustomFieldTranslation>

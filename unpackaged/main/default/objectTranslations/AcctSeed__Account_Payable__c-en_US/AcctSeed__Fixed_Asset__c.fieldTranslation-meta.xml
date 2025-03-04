@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Populate Fixed Asset name to relate Payable. --></help>
+        <label><!-- Fixed Asset --></label>
+        <name>AcctSeed__Fixed_Asset__c</name>
+        <relationshipLabel><!-- Payables --></relationshipLabel>
+    </CustomFieldTranslation>

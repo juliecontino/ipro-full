@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Tax Group Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Clone w/ Tax Rates --></label>
+        <name>AcctSeed__Clone_w_Tax_Rates</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- The External ID field can only be set at the time of creation. It cannot be updated or modified. --></errorMessage>
+        <name>AcctSeed__ExternalIDNotEditable</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Reverse-Charge is not allowed to be checked if the External ID field is blank. --></errorMessage>
+        <name>AcctSeed__ReverseChargeNotAllowedIfExternalIDBlank</name>
+    </validationRules>
+</CustomObjectTranslation>

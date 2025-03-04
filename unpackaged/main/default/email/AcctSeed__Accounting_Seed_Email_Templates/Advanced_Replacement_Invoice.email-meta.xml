@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Template used to e-mail Advanced Replacement Invoice to product recipient</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Advanced Replacement Invoice</name>
+    <style>none</style>
+    <subject>IPro Media Advanced Replacement Invoice</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div><font face="arial" size="2">To the Attention of: {!Contact.Name}&nbsp;</font></div><div><font face="arial" size="2"><br></font></div><div><font face="arial" size="2">Attached is your billing #{!AcctSeed__Billing__c.Name} dated {!AcctSeed__Billing__c.AcctSeed__Date__c}. The current balance on this billing is {!AcctSeed__Billing__c.AcctSeed__Balance__c}&nbsp;</font></div><div><font face="arial" size="2"><br></font></div><div><font face="arial" size="2">Thank you for your business.</font></div><div><font face="arial" size="2"><br></font></div><div><font face="arial" size="2">IPro Accounting Department</font></div><div><font face="arial" size="2">accounting@ipromedia.us</font></div><div><font face="arial" size="2">(903) 482-4460</font></div>]]></td>
+</tr>
+</table>

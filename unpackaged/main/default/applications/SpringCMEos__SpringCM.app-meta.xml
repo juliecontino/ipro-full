@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>SpringCMEos__SpringCM_Setup</defaultLandingTab>
+    <description>Application Contains the SpringCM Content and SpringCM Admin Setup tab</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>SpringCM</label>
+    <logo>SpringCMEos__LogoFolder/SpringCMEos__SpringCMLogo.png</logo>
+    <tabs>SpringCMEos__SpringCM_Viewer</tabs>
+    <tabs>SpringCMEos__SpringCM_Setup</tabs>
+</CustomApplication>

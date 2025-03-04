@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The parent link in the menu hierarchy. --></help>
+        <label><!-- Parent --></label>
+        <name>LS_VC__Parent__c</name>
+        <relationshipLabel><!-- Visual Calendar QuickLinks --></relationshipLabel>
+    </CustomFieldTranslation>

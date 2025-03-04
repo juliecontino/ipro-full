@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__SameBankGLAccountAndCreditGLAccount</fullName>
+    <active>true</active>
+    <description>The Bank GL Account and the Credit GL Account cannot be set to the same GL Account. Disabling this validation rule can lead to balance discrepancies in your Bank Reconciliation. Accounting Seed recommends this validation rule is not disabled.</description>
+    <errorConditionFormula>AcctSeed__Bank_Account__c = AcctSeed__Credit_GL_Account__c</errorConditionFormula>
+    <errorMessage>You cannot set the Bank GL Account and the Credit GL Account fields to the same GL Account.</errorMessage>
+</ValidationRule>

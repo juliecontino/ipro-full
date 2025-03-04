@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help>Conga Sign Transaction Completed Date - Conga Sign Transaction Opprettingsdato. Returnerer minimumsverdi på 1 dag og heltallsverdi.</help>
+        <label><!-- Duration Days --></label>
+        <name>APXT_CongaSign__Duration__c</name>
+    </CustomFieldTranslation>

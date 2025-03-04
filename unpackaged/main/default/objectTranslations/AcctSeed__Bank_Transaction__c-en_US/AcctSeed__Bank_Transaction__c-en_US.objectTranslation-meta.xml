@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Bank Transaction Layout</layout>
+        <sections>
+            <label><!-- Accounting Seed Information --></label>
+            <section>Accounting Seed Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Oher Information --></label>
+            <section>Oher Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reference Information --></label>
+            <section>Reference Information</section>
+        </sections>
+        <sections>
+            <label><!-- Yodlee Category Information --></label>
+            <section>Yodlee Category Information</section>
+        </sections>
+        <sections>
+            <label><!-- Yodlee Merchant Infomation --></label>
+            <section>Yodlee Merchant Infomation</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

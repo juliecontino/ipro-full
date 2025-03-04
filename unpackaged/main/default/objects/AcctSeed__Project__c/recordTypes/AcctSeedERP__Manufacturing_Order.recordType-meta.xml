@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeedERP__Manufacturing_Order</fullName>
+    <active>true</active>
+    <description>This record type is used for creating work orders in the Accounting Cloud ERP package</description>
+    <label>Work Order</label>
+    <picklistValues>
+        <picklist>AcctSeedERP__Template_Type__c</picklist>
+        <values>
+            <fullName>Professional Services Project</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Work Order</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>AcctSeed__Revenue_Recognition_Method__c</picklist>
+        <values>
+            <fullName>Cost Only</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Fixed Price Percent Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Price Scheduled Revenue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fixed Price in Period Invoiced</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Time %26 Materials in Period Invoiced</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>AcctSeed__Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Sub_Status__c</picklist>
+        <values>
+            <fullName>Waiting on Circuit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Parts</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enable Sort coloring: use Sort_color1 &amp; Sort_color2 custom labels to change the colors --></help>
+        <label><!-- Enable Sort coloring --></label>
+        <name>zaapit__Enable_Sort_coloring__c</name>
+    </CustomFieldTranslation>

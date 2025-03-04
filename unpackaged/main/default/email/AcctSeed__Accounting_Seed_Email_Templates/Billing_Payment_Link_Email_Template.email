@@ -1,0 +1,7 @@
+{!Contact.Name},<br/><br/>
+
+Attached is your billing #{!AcctSeed__Billing__c.Name} dated {!AcctSeed__Billing__c.AcctSeed__Date__c}. The current balance on this billing is {!AcctSeed__Billing__c.AcctSeed__Balance__c}<br/><br/>
+
+Please <a href="{!AcctSeed__Billing__c.AcctSeed__Payment_Link__c}">click here</a> to pay this billing.<br/><br/>
+
+Thank you for your business.

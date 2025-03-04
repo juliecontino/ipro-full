@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The running balance in an account indicates the balance of the account after every transaction. --></help>
+        <label><!-- Running Balance --></label>
+        <name>AcctSeed__Running_Balance__c</name>
+    </CustomFieldTranslation>

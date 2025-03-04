@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Configures ZenKraft Shipmate to communicate to the FedEx test servers. A valid FedEx Account number that is compatible with the FedEx test servers must be used. --></help>
+        <label><!-- Run Demo Mode --></label>
+        <name>zkfedex__RunDemoMode__c</name>
+    </CustomFieldTranslation>

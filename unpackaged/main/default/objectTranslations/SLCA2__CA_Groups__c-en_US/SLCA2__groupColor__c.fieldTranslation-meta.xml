@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- groupColor --></label>
+        <name>SLCA2__groupColor__c</name>
+        <picklistValues>
+            <masterLabel>calendar</masterLabel>
+            <translation><!-- calendar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>group</masterLabel>
+            <translation><!-- group --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

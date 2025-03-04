@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Copy Product Price to Monthly Price --></label>
+        <name>Copy_Product_Price_to_Monthly_Price__c</name>
+    </CustomFieldTranslation>

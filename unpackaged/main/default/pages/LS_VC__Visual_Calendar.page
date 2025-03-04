@@ -1,0 +1,536 @@
+<apex:page controller="LS_VC.VisualCalendar_Controller" sidebar="false">
+<apex:Stylesheet value="{!URLFOR($Resource.LS_VC__Homepages,'style.css')}" />
+<apex:includeScript value="{!URLFOR($Resource.LS_VC__JQUERY_ZIP,'jquery/jquery-1.4.3.min.js')}" />
+<apex:includeScript value="{!URLFOR($Resource.LS_VC__webTicker, 'jquery.li-scroller.1.0.js')}"/>
+<apex:Stylesheet value="{!URLFOR($Resource.LS_VC__webTicker,'li-scroller.css')}" />
+
+<style type="text/css" >
+    .fields{
+        display:none;
+    }
+    .small-font
+    {
+        font-size: 11px;
+    }
+</style>    
+
+<script type="text/javascript">
+    var colorBool = true;
+    var isPaused = false;
+	var rightToLeft = true;
+    
+    $(document).ready(function(){
+        $(".switch-td").each(function(){
+            if(colorBool)
+                $(this).addClass('color-td');
+            else
+                $(this).addClass('white-td');
+            colorBool = !colorBool;
+        });
+        
+        if (screen.width < 1280)
+        {
+            $("#top-left-color-3").css('background-image','url({!URLFOR($Resource.Homepages,"images/petsq-top-left-color-3-alternative.gif")})');
+            $("#top-left-color-5").css('background-image','url({!URLFOR($Resource.Homepages,"images/top-left-color-5-alternative.gif")})');
+            $("#top-left-color-2").css('background-image','url({!URLFOR($Resource.Homepages,"images/petsq-top-left-color-2-alternative.gif")})');
+            $("#top-left-color-1").css('background-image','url({!URLFOR($Resource.Homepages,"images/petsq-top-left-color-1-alternative.gif")})');
+            $("#top-left-color-4").css('background-image','url({!URLFOR($Resource.Homepages,"images/top-left-color-4-alternative.gif")})');
+        }
+    
+        $("#switcher").children(".{!calendarNonDefault}").hide();
+        $("#{!calendarTitleString}").hide();
+        
+        $(this).find("a.switch_thumb_1").click(function(){
+            if ($("#switcher").children(".calendar-1").css('opacity') == 1)
+            {
+                $("#switcher").children(".calendar-1").fadeOut("fast",  function() {
+                    $("#switcher").children(".calendar-2").fadeIn("fast");
+                    $("#calendar-title-1").hide();
+                    $("#calendar-title-2").show();
+                });
+                $("#switch-2").removeClass("switch-view-select");
+                $("#switch-1").addClass("switch-view-select");
+            }
+        });
+        
+        $(this).find("a.switch_thumb_2").click(function(){
+            if ($("#switcher").children(".calendar-2").css('opacity') == 1)
+            {
+                $("#switcher").children(".calendar-2").fadeOut("fast",  function() {
+                    $("#switcher").children(".calendar-1").fadeIn("fast");
+                    $("#calendar-title-2").hide();
+                    $("#calendar-title-1").show();
+                });
+                $("#switch-1").removeClass("switch-view-select");
+                $("#switch-2").addClass("switch-view-select");
+            }
+        });
+    });
+    
+    function showHideAnswer(selfExpandIcon){
+        var parentDiv;
+        var collapsed;
+        var self;
+        
+        //Wraps the caller with jQuery
+        self = jQuery(selfExpandIcon).parent().parent();
+        
+        //Get the parent
+        parentDiv = self.parent();
+        
+        //If the question is collapsed, then collapsed is true;
+        collapsed = self.hasClass('collapsed');
+        
+        if(collapsed)
+        {
+            self.removeClass('collapsed');
+            self.addClass('expanded');
+            parentDiv.children(".fields").show();
+        }
+        else
+        {
+            self.removeClass('expanded');
+            self.addClass('collapsed');
+            parentDiv.children(".fields").hide();
+        }
+    }
+    
+    $(function(){
+    	$("ul#ticker01").css('width', 'auto');
+    	$("ul#ticker01").liScroll({travelocity: {!tickerSpeed}});
+    });
+    
+    function moveRight()
+    {
+    	if(!rightToLeft) return;
+    	$('#ticker01').stop();
+    	rightToLeft = false;
+    	$('#ticker01').mouseout();
+    }
+    
+    function moveLeft()
+    {
+    	if(rightToLeft) return;
+    	$('#ticker01').stop();
+    	rightToLeft = true;
+    	$('#ticker01').mouseout();
+    }
+    
+    function playPause()
+    {
+    	if(isPaused)
+    	{
+    		isPaused = false;
+    		$('#ticker01').mouseout();
+    		$("#tickerPlayPause").attr("src", "{!URLFOR($Resource.webTicker,'images/ticker_pause.png')}");
+    	}
+    	else
+    	{
+    		isPaused = true;
+    		$('#ticker01').stop();
+    		$("#tickerPlayPause").attr("src", "{!URLFOR($Resource.webTicker,'images/ticker_play.png')}");
+    	}
+    }
+</script>
+<apex:form >
+<apex:outputPanel layout="block" style="width: 95%; text-align: center;" rendered="{!isFirstRun}">
+    <apex:outputPanel layout="block" styleClass="genBox" style="width: 450px; margin: 10px auto 10px auto; padding: 15px;">
+        <apex:outputText style="font-size: 16px;">Welcome to <strong>Visual Calendar</strong>, please click on the install button to make the last changes needed to start using the application.</apex:outputText>
+        <br/>
+        <apex:commandButton value="Install" action="{!firstRunSetup}"/>
+    </apex:outputPanel>
+</apex:outputPanel>
+</apex:form>
+<div id="content">
+<apex:outputPanel layout="block" rendered="{!activeHomepage.LS_VC__Enable_Ticker__c}" styleClass="tickerBG">
+<div class="tickerCont">
+	<p class="latest">LATEST:</p>
+	<ul id="ticker01">
+		<apex:repeat value="{!tickerLinks}" var="tickerLink">
+			<li>
+				<apex:outputPanel ><apex:outputText rendered="{!tickerLink.LS_VC__Quick_Link__c == null}" value="{!tickerLink.Name}"/><apex:outputLink rendered="{!NOT(tickerLink.LS_VC__Quick_Link__c == null)}" value="{!tickerLink.LS_VC__Quick_Link__c}" target="_blank">{!tickerLink.Name}</apex:outputLink></apex:outputPanel>
+			</li>
+		</apex:repeat>
+	</ul>
+	<div class="tickerControls">
+		<a><img src="{!URLFOR($Resource.webTicker,'images/ticker_left.png')}" alt="" onclick="moveLeft();"/></a>
+		<a><img id="tickerPlayPause" src="{!URLFOR($Resource.webTicker,'images/ticker_pause.png')}" alt="" onclick="playPause();"/></a>
+		<a><img src="{!URLFOR($Resource.webTicker,'images/ticker_right.png')}" alt="" onclick="moveRight();"/></a>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+</apex:outputPanel>
+<div id="box-left">
+<apex:form >
+    <apex:outputPanel id="QuicklinksPanel" layout="block" styleClass="genBox quick-links" rendered="{!activeHomepage.LS_VC__Enable_Quicklinks_Panel__c}">
+        <div class="boxHead dark-blue">
+            Quick links
+        </div>
+        <div class="boxCont">
+            <apex:repeat value="{!orderedMenuLinks}" var="p">
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 0}">
+                       <ul>
+                           <li class="quick-links-level-1">
+                               <apex:panelGroup rendered="{!p.LS_VC__Enable_Link__c == true}">
+                                   <span class="content-link-icon-level-1"></span>
+                                   <a href="{!p.Quick_Link__c}">{!p.Name}</a>
+                               </apex:panelGroup>
+                               <apex:panelGroup rendered="{!p.LS_VC__Enable_Link__c != true}">
+                                   <span class="content-link-icon-level-1"></span>
+                                   {!p.Name}
+                               </apex:panelGroup>
+                           </li>
+                      </ul>
+                   </apex:panelGroup>
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 1}">
+                       <ul> 
+                           <li class="quick-links-level-2">
+                               <apex:panelGroup rendered="{!p.LS_VC__Enable_Link__c == true}">
+                                   <span class="content-link-icon-level-2"></span>
+                                   <a href="{!p.Quick_Link__c}">{!p.Name}</a>
+                               </apex:panelGroup>
+                               <apex:panelGroup rendered="{!p.LS_VC__Enable_Link__c != true}">
+                                   <span class="content-link-icon-level-2"></span>
+                                   {!p.Name}
+                               </apex:panelGroup>
+                           </li>
+                       </ul>
+                   </apex:panelGroup>
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 2}">
+                       <ul>
+                           <li class="quick-links-level-3">
+                               <apex:panelGroup rendered="{!p.LS_VC__Enable_Link__c == true}">
+                                   <span class="content-link-icon-level-3"></span>
+                                   <a href="{!p.Quick_Link__c}">{!p.Name}</a>
+                               </apex:panelGroup>
+                               <apex:panelGroup rendered="{!p.LS_VC__Enable_Link__c != true}">
+                                   <span class="content-link-icon-level-3"></span>
+                                   {!p.Name}
+                               </apex:panelGroup>
+                           </li>
+                      </ul>
+                   </apex:panelGroup>
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 10}">
+                   <!-- Level 0 Parent open -->
+                       <apex:outputText escape="false" value="{!openDivStep1Closed}"/>
+                       <ul>
+                           <li class="quick-links-level-1" onclick="showHideAnswer(this);">
+                                   <span class="content-link-icon-level-1"></span>
+                                   {!p.Name} (+) ({!p.Children__c})
+                           </li>
+                      </ul>
+                      <apex:outputText escape="false" value="{!openDivStep2}"/>
+                   </apex:panelGroup>
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 11}">
+                   <!-- Level 1 Parent open -->
+                       <apex:outputText escape="false" value="{!openDivStep1Closed}"/>
+                       <ul> 
+                           <li class="quick-links-level-2" onclick="showHideAnswer(this);">
+                                   <span class="content-link-icon-level-2"></span>
+                                   {!p.Name} (+) ({!p.Children__c})
+                           </li>
+                       </ul>
+                       <apex:outputText escape="false" value="{!openDivStep2}"/>
+                   </apex:panelGroup>
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 12}">
+                   <!-- Level 2 Parent open -->
+                       <apex:outputText escape="false" value="{!openDivStep1Closed}"/>
+                       <ul>
+                           <li class="quick-links-level-3" onclick="showHideAnswer(this);">
+                                   <span class="content-link-icon-level-3"></span>
+                                   {!p.Name} (+) ({!p.Children__c})
+                           </li>
+                      </ul>
+                      <apex:outputText escape="false" value="{!openDivStep2}"/>
+                   </apex:panelGroup>
+                   <apex:panelGroup rendered="{!p.LS_VC__Level__c == 20}">
+                       <!-- Parent close -->
+                       <apex:outputText escape="false" value="{!closeDiv}"/>
+                   </apex:panelGroup>
+              </apex:repeat>
+        </div>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="SidePanel1" layout="block" styleClass="genBox" rendered="{!activeHomepage.LS_VC__Enable_Side_Panel_1__c}">
+        <div class="boxHead dark-blue">{!activeHomepage.LS_VC__Side_Panel_1_Title__c}</div>
+        <div class="boxCont">
+            <apex:outputText escape="false" value="{!sidePanel1Content}"/>
+        </div>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="SidePanel2" layout="block" styleClass="genBox" rendered="{!activeHomepage.LS_VC__Enable_Side_Panel_2__c}">
+        <div class="boxHead dark-blue">{!activeHomepage.LS_VC__Side_Panel_2_Title__c}</div>
+        <div class="boxCont">
+            <apex:outputText escape="false" value="{!sidePanel2Content}"/>
+        </div>
+    </apex:outputPanel>
+
+</apex:form>
+</div>
+<apex:form >
+<div id="box-center">
+    <div id="switch-view">
+        <div class="switch-view">
+            <span style="color: white; margin: 3px;">Switch View:</span>
+            <apex:outputPanel rendered="{!calendar2IsDefault}">
+                <a href="#" class="switch_thumb_1" onfocus="this.blur()">
+                <span id="switch-1" class="switch-view-select">{!priority2.Calendar_Tag__c}</span></a>&nbsp;&nbsp;&nbsp;<a href="#" class="switch_thumb_2" onfocus="this.blur()"><span id="switch-2" class="">{!priority1.Calendar_Tag__c}</span></a>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!calendar1IsDefault}">
+                <a href="#" class="switch_thumb_1" onfocus="this.blur()"><span id="switch-1" class="">{!priority2.Calendar_Tag__c}</span></a>&nbsp;&nbsp;&nbsp;<a href="#" class="switch_thumb_2" onfocus="this.blur()"><span id="switch-2" class="switch-view-select">{!priority1.Calendar_Tag__c}</span></a>
+            </apex:outputPanel>
+        </div>
+    </div> 
+    <div id="switcher">
+        <div id="calendar-title-1" class="box-calendar-title">{!priority1.Title__c}<br/><br/></div>
+        <div id="calendar-title-2" class="box-calendar-title">{!priority2.Title__c}<br/><br/></div>
+    <!-- Start Calendar 1 -->
+    <div id="box-calendar" class="calendar-1 genBox">
+       <table width="100%" border="0" cellpadding="1" cellspacing="0">
+            <tr>
+              <td><table border="0" cellpadding="0" cellspacing="0" class="table-calendar">
+                <tr>
+                  <td class="white-td">&nbsp;</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 1</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 2</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 3</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 4</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td class="months color-td">Jan</td>
+                  <td class="months white-td">Feb</td>
+                  <td class="months color-td">Mar</td>
+                  <td class="months white-td">Apr</td>
+                  <td class="months color-td">May</td>
+                  <td class="months white-td">Jun</td>
+                  <td class="months color-td">Jul</td>
+                  <td class="months white-td">Aug</td>
+                  <td class="months color-td">Sep</td>
+                  <td class="months white-td">Oct</td>
+                  <td class="months color-td">Nov</td>
+                  <td class="months white-td">Dec</td>
+                </tr>
+                <apex:repeat value="{!visualCalendarMomentsPriority1}" var="category">
+                    <tr class="white-td">
+                      <td colspan="13" class="calendar-separator"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold-blue">
+                            <apex:outputText value="{!category.categoryName}" rendered="{!category.categoryImageID == null}"/>
+                            <apex:image value="/servlet/servlet.FileDownload?file={!category.categoryImageID}" styleClass="monthly-category-image" rendered="{!NOT(category.categoryImageID == null)}"/>
+                        </td>
+                        <apex:repeat value="{!category.moments}" var="moments">
+                            <td class="switch-td" style="padding: 10px 5px 10px 5px;">
+                            <apex:repeat value="{!moments}" var="p">
+                                <apex:panelGroup rendered="{!p.LS_VC__ImageID__c != null}">
+                                    <a href="{!p.URL__c}" target="_blank">
+                                        <img src="/servlet/servlet.FileDownload?file={!p.ImageID__c}" width="39" height="29" class="pet-calendar-product-image" />
+                                    </a>
+                                </apex:panelGroup>
+                                <p class="calendar-product-detail">{!p.Name}</p>
+                                <p class="calendar-product-detail">{!p.LS_VC__Month__c}</p>
+                            </apex:repeat>
+                            </td>
+                        </apex:repeat>
+                    </tr>
+                </apex:repeat>
+                <tr>
+                  <td colspan="13" class="calendar-separator"></td>
+                </tr>
+                <tr>
+                  <td colspan="1" class="td-vacio white-td"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                </tr>
+                
+                <apex:repeat value="{!quarterlyCategories}" var="category__">
+                    <tr>
+                      <td colspan="1" class="color-td q-category-title"><span class="small-font">{!category__.name}</span></td>
+                      <c:VisualCalendar_QuartersCalendarComponent category="{!category__.name}" rowNumber="{!category__.rowNumber}" priorityId="{!priority1.Id}"/>
+                    </tr>
+                    <tr>
+                      <td colspan="1" class="td-vacio white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                    </tr>
+                </apex:repeat>
+              </table>
+            </td>
+            </tr>
+          </table>
+       </div>
+<!-- End Calendar 1 -->
+
+<!-- Start Calendar 2 -->
+      <div id="box-calendar" class="calendar-2 genBox">
+       <table width="100%" border="0" cellpadding="1" cellspacing="0">
+            <tr>
+              <td>
+              <table border="0" cellpadding="0" cellspacing="0" class="table-calendar">
+                <tr>
+                  <td class="white-td">&nbsp;</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 1</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 2</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 3</td>
+                  <td colspan="3" class="Q1234-td Q-color">Quarter 4</td>
+                </tr>
+                <tr>
+                  <td class="white-td white-td">&nbsp;</td>
+                  <td class="months color-td">Jan</td>
+                  <td class="months white-td">Feb</td>
+                  <td class="months color-td">Mar</td>
+                  <td class="months white-td">Apr</td>
+                  <td class="months color-td">May</td>
+                  <td class="months white-td">Jun</td>
+                  <td class="months color-td">Jul</td>
+                  <td class="months white-td">Aug</td>
+                  <td class="months color-td">Sep</td>
+                  <td class="months white-td">Oct</td>
+                  <td class="months color-td">Nov</td>
+                  <td class="months white-td">Dec</td>
+                </tr>
+                <apex:repeat value="{!visualCalendarMomentsPriority2}" var="category">
+                    <tr class="white-td">
+                      <td colspan="13" class="calendar-separator"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold-blue">
+                            <apex:outputText value="{!category.categoryName}" rendered="{!category.categoryImageID == null}"/>
+                            <apex:image value="/servlet/servlet.FileDownload?file={!category.categoryImageID}" styleClass="monthly-category-image" rendered="{!NOT(category.categoryImageID == null)}"/>
+                        </td>
+                        <apex:repeat value="{!category.moments}" var="moments">
+                            <td class="switch-td" style="padding: 10px 5px 10px 5px;">
+                            <apex:repeat value="{!moments}" var="p">
+                                <apex:panelGroup rendered="{!p.LS_VC__ImageID__c != null}">
+                                    <a href="{!p.URL__c}" target="_blank">
+                                        <img src="/servlet/servlet.FileDownload?file={!p.ImageID__c}" width="39" height="29" class="pet-calendar-product-image" />
+                                    </a>
+                                </apex:panelGroup>
+                                <p class="calendar-product-detail">{!p.Name}</p>
+                                <p class="calendar-product-detail">{!p.LS_VC__Month__c}</p>
+                            </apex:repeat>
+                            </td>
+                        </apex:repeat>
+                    </tr>
+                </apex:repeat>
+                <tr>
+                  <td colspan="13" class="calendar-separator"></td>
+                  </tr>
+                <tr>
+                  <td class="td-vacio white-td"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                  <td class="months color-td"></td>
+                  <td class="months"></td>
+                </tr>
+                
+                <apex:repeat value="{!quarterlyCategories}" var="category_">
+                    <tr>
+                      <td colspan="1" class="color-td q-category-title"><span class="small-font">{!category_.name}</span></td>
+                     <c:VisualCalendar_QuartersCalendarComponent category="{!category_.Name}" rowNumber="{!category_.rowNumber}" priorityId="{!priority2.Id}"/> 
+                    </tr>
+                    <tr>
+                      <td colspan="1" class="td-vacio white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                      <td class="color-td"></td>
+                      <td class="white-td"></td>
+                    </tr>
+                </apex:repeat>
+              </table>
+              </td>
+              </tr>
+          </table>
+        </div>
+    <!-- End Calendar 2 -->
+    </div>
+    
+    <div id="bottom-links">
+        <ul>
+            <apex:repeat value="{!calendarLinks}" var="calendarLink">
+                <li><a href="{!calendarLink.LS_VC__Quick_Link__c}">{!calendarLink.Name}</a></li>
+            </apex:repeat>
+        </ul>
+    </div>
+    
+    <div style="clear:both;"></div>
+    
+    <apex:outputPanel id="CenterPanel1" layout="block" styleClass="genBox" rendered="{!activeHomepage.LS_VC__Enable_Center_Panel_1__c}">
+        <apex:image value="/servlet/servlet.FileDownload?file={!activeHomepage.LS_VC__Center_Panel_1_ImageID__c}" styleClass="cornerImg" rendered="{!NOT(activeHomepage.LS_VC__Center_Panel_1_ImageID__c == null)}"/>
+        <div class="boxHead blue">{!activeHomepage.LS_VC__Center_Panel_1_Title__c}</div>
+        <div class="boxCont">
+            <apex:repeat value="{!newsParagraphs}" var="paragraph">
+                <h2><a href="{!paragraph.LS_VC__Link__c}">{!paragraph.Name}</a></h2>
+                <p>
+	                <apex:outputText escape="false" value="{0}">
+	                	<apex:param name="paragraph" value="{!paragraph.LS_VC__Text__c}"/>
+	                </apex:outputText>
+                </p>
+                <br/>
+            </apex:repeat>
+        </div>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="CenterPanel2" layout="block" styleClass="genBox" rendered="{!activeHomepage.LS_VC__Enable_Center_Panel_2__c}">
+        <apex:image value="/servlet/servlet.FileDownload?file={!activeHomepage.LS_VC__Center_Panel_2_ImageID__c}" styleClass="cornerImg" rendered="{!NOT(activeHomepage.LS_VC__Center_Panel_2_ImageID__c == null)}"/>
+        <div class="boxHead blue">{!activeHomepage.LS_VC__Center_Panel_2_Title__c}</div>
+        <div class="boxCont" style="text-align: center;">
+            <apex:repeat value="{!metricsLinks}" var="metricLink">
+                <a href="{!metricLink.LS_VC__Quick_Link__c}">{!metricLink.Name}</a><apex:outputText value=" | "/>
+            </apex:repeat>
+            <apex:repeat value="{!metricsParagraphs}" var="metricImage">
+                <div class="img-metrics">
+                    <img src="/servlet/servlet.FileDownload?file={!metricImage.LS_VC__ImageID__c}"/>
+                <apex:outputPanel rendered="{!metricImage.LS_VC__View_Larger__c}" >
+                    <div class="view-larger"><a href="/servlet/servlet.FileDownload?file={!metricImage.LS_VC__ImageID__c}">View larger</a></div>
+                </apex:outputPanel> 
+                </div>
+            </apex:repeat>
+        </div>
+    </apex:outputPanel>
+</div>
+</apex:form>
+</div>
+<br/>
+<div class="footer" style="width: 100%; text-align: center; margin-top: 20px;">
+	<img style="margin-top: 20px;" src="{!URLFOR($Resource.Homepages,'images/lets_strategize_logo_small.png')}"/>
+	<span style="display: block;">Visual Calendar :: Publisher <a href="http://www.letsstrategize.com" target="_blank">www.letsstrategize.com</a></span>
+</div>
+</apex:page>

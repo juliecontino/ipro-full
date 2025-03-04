@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__Is_Cancelled</fullName>
+    <columns>NAME</columns>
+    <columns>zkfedex__ShipmentDeleted__c</columns>
+    <columns>zkfedex__Delivered__c</columns>
+    <columns>zkfedex__ShipDate__c</columns>
+    <columns>zkfedex__RecipientLead__c</columns>
+    <columns>zkfedex__RecipientContact__c</columns>
+    <columns>zkfedex__RecipientAccount__c</columns>
+    <columns>zkfedex__RecipientOpportunity__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Is Cancelled</label>
+</ListView>

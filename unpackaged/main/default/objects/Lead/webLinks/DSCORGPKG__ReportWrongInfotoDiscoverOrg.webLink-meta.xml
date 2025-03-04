@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DSCORGPKG__ReportWrongInfotoDiscoverOrg</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Report Wrong Info to DiscoverOrg</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/DSCORGPKG__ReportWrongInfo?id={!Lead.Id}&amp;name={!Lead.Name}&amp;discoverorgid={!Lead.DSCORGPKG__DiscoverOrg_ID__c}&amp;companyname={!Lead.Company}&amp;title={!Lead.Title}</url>
+</WebLink>

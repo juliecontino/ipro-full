@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- When toggled ‘On&apos; the Billing Date will be set to today’s date. When toggled &apos;Off&apos;, the Billing Date will default to the Opportunity’s &apos;Close Date&apos;. This setting applies to billings and recurring billings created from an Opportunity (detail page &amp; list view actions). --></help>
+        <label><!-- Set Billing Date to Current Date --></label>
+        <name>AcctSeed__Set_Billing_Date_To_Current_Date__c</name>
+    </CustomFieldTranslation>

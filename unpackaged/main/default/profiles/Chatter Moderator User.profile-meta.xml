@@ -3,12 +3,97 @@
     <custom>false</custom>
     <userLicense>Chatter Free</userLicense>
     <applicationVisibilities>
+        <application>APXTConga4__CongaMerge</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>APXT_BPM__Conga_Conductor</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>APXT_CMM__Conga_Mail_Merge</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>APXT_CongaSign__Conga_Sign_classic</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>APXT_CongaSign__Conga_Sign_lightning</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeedERP__AS_Order_Management</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeedERP__Order_Management</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__AS_Banking_Ledger</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__AS_Cash_In</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__AS_Cash_Out</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__AS_Projects</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__Accounting</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__Accounting_Master_Data</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__Accounting_Transactions</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__Financial_Reporter</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>AcctSeed__Project_Accounting</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>Bus_Dev</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>Case_Age_In_Business_Hours</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>ChangeCaseOwner__ChangeCaseOwnershipPlus</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
@@ -23,12 +108,37 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>DSCORGPKG__DiscoverOrg</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>Data_Management</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>Docusign_App_Launcher</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>E2CP__Email_to_Case_Premium</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>E2CP__Email_to_Case_Premium_LEX</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>FLAGS__Case_Flags</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>FLAGS__Case_Flags_LEX</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
@@ -53,12 +163,82 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>LEXMAGICMOVER__Attachments_and_Notes_migrator</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>LH__Lookup_Helper</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>LH__Lookup_Helper_Lightning</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>Recurring_Billing</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>SLCA2__CalendarAnything</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>SpringCMEos__SpringCM</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>Standard_Tables</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>csmrgp__Case_Merge_Premium</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>csmrgp__Case_Merge_Premium_LEX</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>csplit__Case_Split</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>csplit__Case_Splitter</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>dfsle__DocuSignForSalesforceCore</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>dynl__Dynamic_Lookup</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>icatp__Signature_Slayer</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>rh2__PS_Rollup_Helper</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>rh2__Rollup_Helper_Lightning</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
@@ -177,6 +357,91 @@
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
+    <applicationVisibilities>
+        <application>takeownership__Take_Ownership_for_Cases</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Dedup_Manager</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Dedup_Manager_Lightning</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Mass_Update</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Mass_Update_Lightning</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Smart_Activity_Manager</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Smart_Activity_Manager_Lightning</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zaapit__Zaapit_Console</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>zkfedex__ZenKraft_Shipmate</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Label_Template_Use_Detail_Data__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Master_Field_to_Set_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Master_Field_to_Set_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Master_Field_to_Set_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Template_Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>APXTConga4__Conga_Template__c.APXTConga4__Template_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Access_Circuits__c.Circuit_Down_Link_Speed__c</field>
@@ -370,6 +635,156 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>AccountContactRelation.StartDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__AP_Disbursement__c.AcctSeed__Accounting_Period__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Account_Payable_Line__c.AcctSeed__Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Accounting_Settings__c.AcctSeed__Billing_Activity_Statement_Format__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Accounting_Settings__c.AcctSeed__Billing_Outstanding_Statement_Format__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Accounting_Settings__c.AcctSeed__Default_Bank_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Accounting_Settings__c.AcctSeed__Default_Billing_Format__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Bank_Reconciliation2__c.AcctSeed__Beginning_Balance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Bank_Reconciliation2__c.AcctSeed__Cleared_Deposits__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Bank_Reconciliation2__c.AcctSeed__Cleared_Disbursements__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Bank_Reconciliation2__c.AcctSeed__Start_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Billing_Cash_Receipt__c.AcctSeed__Accounting_Period__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Cash_Disbursement__c.AcctSeed__Bank_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Expense_Line__c.AcctSeed__Expense_GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Financial_Cube__c.AcctSeed__Accounting_Period__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Financial_Cube__c.AcctSeed__GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Financial_Cube__c.AcctSeed__Ledger__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__GL_Account_Mapping__c.AcctSeed__Ledger__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Journal_Entry_Line__c.AcctSeed__GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Expiration_Month__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Payment_Method__c.AcctSeed__Expiration_Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Recurring_Account_Payable_Line__c.AcctSeed__Amount2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Recurring_Account_Payable_Line__c.AcctSeed__Expense_GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Recurring_Account_Payable__c.AcctSeed__Vendor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Recurring_Billing_Line__c.AcctSeed__Revenue_GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Recurring_Journal_Entry_Line__c.AcctSeed__GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Accounting_Period__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Credit_GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Debit_GL_Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Transaction__c.AcctSeed__Accounting_Period__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AcctSeed__Transaction__c.AcctSeed__GL_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2568,6 +2983,96 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>APXTConga4__Composer_Host_Override__c-APXTConga4__Composer Host Override Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Composer_QuickMerge__c-APXTConga4__Composer QuickMerge Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Composer_Refresh_Token__mdt-APXTConga4__Composer Refresh Token Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Composer_Setting__mdt-APXTConga4__Composer Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Collection_Solution__c-APXTConga4__Conga Collection Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Collection__c-APXTConga4__Conga Collection Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Email_Staging__c-APXTConga4__Conga Email Staging Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Email_Template__c-APXTConga4__Conga Email Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Merge_Query__c-APXTConga4__Conga Query Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Email_Template__c-APXTConga4__Conga Solution Email Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Export_Environment__mdt-APXTConga4__Conga Solution Export Environment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Export_Setting__mdt-APXTConga4__Conga Solution Export Setting</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Parameter__c-APXTConga4__Conga Solution Parameter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Query__c-APXTConga4__Conga Solution Query Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Report__c-APXTConga4__Conga Solution Report Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution_Template__c-APXTConga4__Conga Solution Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Solution__c-APXTConga4__Conga Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Conga_Template__c-APXTConga4__Conga Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Connected_App_Setting__mdt-APXTConga4__Connected App Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Document_History_Detail__c-APXTConga4__Document History Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Document_History__c-APXTConga4__Document History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__EventData__c-APXTConga4__EventData Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__Lightning_Connected_App_Setting__mdt-APXTConga4__Lightning Connected App Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXTConga4__VersionedData__c-APXTConga4__VersionedData Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXT_BPM__Conductor__c-APXT_BPM__Conductor Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXT_BPM__Scheduled_Conductor_History__c-APXT_BPM__Conga Conductor History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXT_CongaSign__Document__c-APXT_CongaSign__Document Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXT_CongaSign__Recipient__c-APXT_CongaSign__Recipient Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>APXT_CongaSign__Transaction__c-APXT_CongaSign__Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AS_Tax__Account_Tax__c-AS_Tax__Account Tax Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Access_Circuits__c-Access Circuit Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2613,6 +3118,323 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account_Vault__c-Password Vault Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__External_Settings__mdt-AcctSeedERP__External Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Inbound_Inventory_Movement__c-AcctSeedERP__Inbound Inventory Movement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Inventory_Balance_History__c-AcctSeedERP__Inventory Balance History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Inventory_Balance__c-AcctSeedERP__Inventory Balance Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Location__c-AcctSeedERP__Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Manufacturing_Inventory_Movement__c-AcctSeedERP__Manufacturing Inventory Movement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Material__c-AcctSeedERP__Material Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Outbound_Inventory_Movement__c-AcctSeedERP__Outbound Inventory Movement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Purchase_Order_Inventory_Movement__c-AcctSeedERP__Purchase Order Inventory Movement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Purchase_Order_Line__c-AcctSeedERP__Purchase Order Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Purchase_Order__c-AcctSeedERP__Purchase Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Purchase_Price__c-AcctSeedERP__Purchase Price Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Sales_Order_Inventory_Movement__c-AcctSeedERP__Sales Order Inventory Movement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Sales_Order_Line__c-AcctSeedERP__Sales Order Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Sales_Order__c-AcctSeedERP__Sales Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Shipment_Line__c-AcctSeedERP__Shipment Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Shipment__c-AcctSeedERP__Shipment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeedERP__Warehouse__c-AcctSeedERP__Warehouse Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__AP_Aging_History__c-AcctSeed__AP Aging History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__AP_Credit_Memo__c-AcctSeed__AP Credit Memo Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__AP_Disbursement__c-AcctSeed__AP Disbursement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Account_Payable_Line__c-AcctSeed__Project Payable Invoice Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Account_Payable__c-AcctSeed__Account Payable Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Account_Tax__c-AcctSeed__Account Tax Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Accounting_Period__c-AcctSeed__Accounting Period Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Accounting_Settings__c-AcctSeed__PMA Main Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Accounting_Variable__c-AcctSeed__Accounting Variable Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Address__c-AcctSeed__Sales Tax Address Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Automated_Job_Results__c-AcctSeed__Automated Job Result Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__AvaTax_License__c-AcctSeed__AvaTax License Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Adjustment__c-AcctSeed__Bank Adjustment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Deposit__c-AcctSeed__Bank Deposit Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Reconciliation2__c-AcctSeed__Bank Reconciliation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Reconciliation_Line2__c-AcctSeed__Bank Reconciliation Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Reconciliation_Line__c-AcctSeed__Bank Reconciliation Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Reconciliation__c-AcctSeed__Bank Reconciliation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Rule_Action__c-AcctSeed__Bank Rule Action Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Rule_Condition__c-AcctSeed__Bank Rule Condition Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Rule_GLAM__c-AcctSeed__Bank Rule GLAM Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Rule__c-AcctSeed__Bank Rule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Bank_Transaction__c-AcctSeed__Bank Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing_Aging_History__c-AcctSeed__Billing Aging History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing_Cash_Receipt__c-AcctSeed__AR Cash Receipt Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing_Credit_Memo__c-AcctSeed__Billing Credit Memo Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing_Format__c-AcctSeed__Project Billing Format Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing_Line__c-AcctSeed__Project Billing Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing_Rates__c-AcctSeed__Billing Rates Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Billing__c-AcctSeed__Project Billing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Binding__mdt-AcctSeed__Binding Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Cash_Disbursement_Batch__c-AcctSeed__Cash Disbursement Batch Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Cash_Disbursement__c-AcctSeed__Cash Disbursement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Cash_Receipt__c-AcctSeed__Cash Receipt Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Cost_Rates__c-AcctSeed__Cost Rates Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Exchange_Rate__c-AcctSeed__Exchange Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Expense_Line__c-AcctSeed__Expense Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Expense_Report__c-AcctSeed__Expense Report Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__External_Settings__mdt-AcctSeed__External Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Cube_Transaction__c-AcctSeed__Financial Cube Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Cube__c-AcctSeed__Financial Cube Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Report_Column__c-AcctSeed__Financial Report Column Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Report_Definition__c-AcctSeed__Financial Report Definition Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Report_Result_Value__c-AcctSeed__Financial Report Result Value Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Report_Result__c-AcctSeed__Financial Report Result Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Report_Row__c-AcctSeed__Financial Report Row Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Financial_Reporter_Settings__c-AcctSeed__Financial Reporter Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Fixed_Asset__c-AcctSeed__Fixed Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Form_Category__mdt-AcctSeed__Form Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Form_Type__mdt-AcctSeed__Form Type Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__GL_Account_Mapping__c-AcctSeed__GL Account Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__GL_Account_Reporting_Group_Line__c-AcctSeed__GL Account Reporting Group Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__GL_Account_Reporting_Group__c-AcctSeed__GL Account Reporting Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__GL_Account__c-AcctSeed__Project GL Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Import_Field__c-AcctSeed__Import Field Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Import_Template__c-AcctSeed__Import Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Integrity_Report_Entry__c-AcctSeed__Integrity Check Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Inventory_Cost__c-AcctSeed__Inventory Cost Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Journal_Entry_Line__c-AcctSeed__Journal Entry Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Journal_Entry__c-AcctSeed__Journal Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Ledger_Hierarchy__c-AcctSeed__Ledger Hierarchy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Ledger__c-AcctSeed__Ledger Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Payment_Activity__c-AcctSeed__Payment%C2%A0Activity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Payment_Method__c-AcctSeed__Payment%C2%A0Method Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Period_Task__c-AcctSeed__Period Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Product_Part__c-AcctSeed__Product Part Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Project_Task__c-AcctSeed__Project Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Project__c-AcctSeed__Project Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Project__c-AcctSeedERP__Manufacturing Order Layout</layout>
+        <recordType>AcctSeed__Project__c.AcctSeedERP__Manufacturing_Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Project__c-AcctSeed__Project Layout</layout>
+        <recordType>AcctSeed__Project__c.AcctSeedERP__Project</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Recurring_Account_Payable_Line__c-AcctSeed__Recurring Account Payable Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Recurring_Account_Payable__c-AcctSeed__Recurring Account Payable Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Recurring_Billing_Line__c-AcctSeed__Recurring Billing Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Recurring_Billing__c-AcctSeed__Recurring Billing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Recurring_Journal_Entry_Line__c-AcctSeed__Recurring Journal Entry Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Recurring_Journal_Entry__c-AcctSeed__Recurring Journal Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Scheduled_Revenue_Expense__c-AcctSeed__Scheduled Revenue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Tax_Group__c-AcctSeed__Tax Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Tax_Rate__c-AcctSeed__Tax Rate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Tax_Settings__c-AcctSeed__Tax Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Time_Card_Accounting_Period__c-AcctSeed__Time Card Project Period Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Time_Card_Day__c-AcctSeed__Time Card Day Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Time_Card_Line__c-AcctSeed__Time Card Line Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Time_Card_Period__c-AcctSeed__Time Card Period Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Time_Card__c-AcctSeed__Time Card Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Transaction__c-AcctSeed__Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AcctSeed__Uncleared_Bank_Reconciliation_Line__c-AcctSeed__Uncleared Bank Reconciliation Line Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Address-Address Layout</layout>
@@ -2729,6 +3551,60 @@
         <layout>Customer-Customer Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>DSCORGPKG__AutoUpdateSettings__c-DSCORGPKG__AutoUpdateSettings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__ConflictField__c-DSCORGPKG__ConflictField Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__Conflict__c-DSCORGPKG__DiscoverOrg Conflict Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrgResults__c-DSCORGPKG__DiscoverOrg Result Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_AutoUpdate_Log__c-DSCORGPKG__DiscoverOrg AutoUpdate Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_Custom_Mapping__c-DSCORGPKG__DiscoverOrg Custom Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_Metadata__c-DSCORGPKG__DiscoverOrg Debug Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_Operation__c-DSCORGPKG__DiscoverOrg Operation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_Search__c-DSCORGPKG__DiscoverOrg_Search Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_Technologies__c-DSCORGPKG__DiscoverOrg Technologies Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__DiscoverOrg_Update_History__c-DSCORGPKG__DiscoverOrg Update History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__FieldMapping__c-DSCORGPKG__DiscoverOrg Field Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__MaintainOperation__c-DSCORGPKG__MaintainOperation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__Maintain_Triggered_Append_Clean__c-DSCORGPKG__Maintain Triggered Append %26 Clean Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__Nightly_Debug__c-DSCORGPKG__Nightly Debug Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__OppAlert__c-DSCORGPKG__OppAlert Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__Trigger__c-DSCORGPKG__Trigger Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DSCORGPKG__Triggered_Append_Clean__c-DSCORGPKG__Match %26 Enrich Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>DataUsePurpose-Data Use Purpose Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2736,6 +3612,48 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Canned_Comment_Filter__c-E2CP__Canned Comment Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Canned_Comment__c-E2CP__Canned Comment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Canned_Response_Bookmark__c-E2CP__Canned Response Bookmark Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Canned_Response_Category_Relation__c-E2CP__Canned Response Category Relation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Canned_Response_Category__c-E2CP__Canned Response Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Case_Comment_Draft__c-E2CP__Case Comment Draft Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Configuration_Item__mdt-E2CP__Configuration Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Configuration_Section__mdt-E2CP__Configuration Section Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__New_Comment_Action__c-E2CP__New Comment Action Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Widespread_Issue_Communication__c-E2CP__Widespread Issue Communication Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Widespread_Issue_Report__c-E2CP__Widespread Issue Report Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Widespread_Issue_Solution_Vote__c-E2CP__Widespread Issue Solution Vote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Widespread_Issue_Solution__c-E2CP__Widespread Issue Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>E2CP__Widespread_Issue__c-E2CP__Widespread Issue Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>EmailMessage-Email Message Layout - Email-to-Case</layout>
@@ -2762,6 +3680,18 @@
         <layout>ExpressionSetVersion-Expression Set Version Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FLAGS__CaseFlagsBusinessHours__c-FLAGS__Case Flags Business Hours Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FLAGS__Case_Flags_History_Tracking__c-FLAGS__Case Flag History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FLAGS__Switchboard_Group__c-FLAGS__Switchboard Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FLAGS__Switchboard_View__c-FLAGS__Switchboard View Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FeedItem-Feed Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2786,6 +3716,12 @@
         <layout>Installs__c-Installs Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>JCSoftware__PowerClone_Exclude_Rule__c-JCSoftware__PowerClone Exclude Rule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>JCSoftware__pc_PowerCloneRule__c-JCSoftware__PowerClone Rule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Knowledge__kav-FAQ FAQ Layout</layout>
         <recordType>Knowledge__kav.FAQ</recordType>
     </layoutAssignments>
@@ -2803,6 +3739,72 @@
     <layoutAssignments>
         <layout>Knowledge__kav-Products %26 Services Info Products %26 Services Info Layout</layout>
         <recordType>Knowledge__kav.Products_Services_Info</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LEXMAGICMOVER__NAMAttachmentConversionStatus__c-LEXMAGICMOVER__NAMAttachmentConversionStatus Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LEXMAGICMOVER__NAMConfig__c-LEXMAGICMOVER__NAMConfig Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LEXMAGICMOVER__NAMNoteConversionStatus__c-LEXMAGICMOVER__NAMNoteConversionStatus Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LEXMAGICMOVER__NAMNoteConverted__c-LEXMAGICMOVER__NAMNoteConverted Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__HS_Filter__c-LH__Filter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__LH_Error__c-LH__Lookup Helper Error Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__LH_Export_Lookups__c-LH__Lookup Export Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__LH_Queue__c-LH__Lookup Queue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__LH_Use_Case_Library__mdt-LH__LH Use Case Library Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__Lookup_Helper_Error__c-LH__Lookup Helper Error Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__Lookup_Helper_Filter_Group__c-LH__Lookup Helper Filter Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__Lookup_Helper_Filter__c-LH__Lookup Helper Filter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__Lookup_Helper_Record_Creation__c-LH__Lookup Helper Record Creation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__Lookup_Helper_Setting_Filter_Association__c-LH__Lookup Helper Setting Filter Association Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LH__Lookup_Helper_Setting__c-LH__Lookup Helper Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_Category__c-LS_VC__category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_HomePage__c-LS_VC__HomePage Admin Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_Moment__c-LS_VC__Calendar Moment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_Paragraph__c-LS_VC__Paragraph Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_Priority__c-LS_VC__Priority Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_Q_Moment__c-LS_VC__Q Moment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LS_VC__Visual_Calendar_QuickLink__c-LS_VC__QuickLink Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
@@ -2833,6 +3835,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>MessagingEndUser-Messaging User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MitelSF__OIGTop5UserFavorite__c-MitelSF__OIGTop5UserFavorite Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MitelSF__OIGUserFavorite__c-MitelSF__OIGUserFavorite Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
@@ -2904,6 +3912,48 @@
         <layout>Recurring_Billing__c-Recurring Billing Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>SLCA2__CA_CalendarByUser__c-SLCA2__CA_CalendarByUser Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_CalendarToken__c-SLCA2__CA_CalendarToken Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_Calendar__c-SLCA2__CA_Calendar Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_CreatingField__c-SLCA2__CA_CreatingField Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_Filters__c-SLCA2__CA_Filters Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_GroupsMembers__c-SLCA2__CA_GroupsMembers Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_Groups__c-SLCA2__CA_Groups Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_HoverFields__c-SLCA2__CA_HoverFields Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_LM_LastPayment__c-SLCA2__CA_LM_LastPayment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_Sites__c-SLCA2__CA Sites Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_UserSettings__c-SLCA2__CA_UserSettings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_WebCalendar__c-SLCA2__CA_WebCalendar Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__CA_test__c-SLCA2__CA_test Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SLCA2__TestObject__c-SLCA2__TestObject Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Scope_of_Work__c-Scope of Work Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2931,6 +3981,33 @@
         <layout>Solution-Solution Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>SpringCMEos__DSWConfig__c-SpringCMEos__Dynamic Search Widget Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_API_Client__mdt-SpringCMEos__SpringCM API Client Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Attribute_Field__c-SpringCMEos__SpringCM Attribute Field Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Attribute_Group__c-SpringCMEos__SpringCM Attribute Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Auth_Provider__mdt-SpringCMEos__SpringCM Auth Provider Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Secure_API_Client__mdt-SpringCMEos__SpringCM Secure API Client Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Secure_Auth_Provider__mdt-SpringCMEos__SpringCM Auth Provider Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Secure_Nonunique_Auth_Provider__mdt-SpringCMEos__SpringCM Auth Provider Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SpringCMEos__SpringCM_Testing__c-SpringCMEos__SpringCM Testing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Stop_Status__c-Stop Status Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2954,6 +4031,78 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>access_cirucits_comm3__c-Access Circuits Comm3 Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>csmrgp__Duplicate_Case__c-csmrgp__Duplicate Case Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>csmrgp__Duplicate_Group__c-csmrgp__Duplicate Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>csmrgp__Potential_Duplicate__c-csmrgp__Potential Duplicate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__AgreementConfiguration__c-dfsle__Agreement Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__AuthProvider__mdt-dfsle__DocuSign Auth Provider Metadata Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__BulkList__c-dfsle__DocuSign Bulk Send List Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__BulkStatus__c-dfsle__DocuSign Bulk Send Status Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__CustomParameterMap__c-dfsle__DocuSign Custom Parameter Map Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__CustomRecipient__c-dfsle__DocuSign Custom Recipient Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Document__c-dfsle__DocuSign Envelope Document Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__EnvelopeConfigurationDocument__c-dfsle__DocuSign Envelope Configuration Document Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__EnvelopeConfigurationRecipient__c-dfsle__DocuSign Envelope Configuration Recipient Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__EnvelopeConfiguration__c-dfsle__DocuSign Envelope Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__EnvelopeLocalization__c-dfsle__DocuSign Localization Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__EnvelopeStatus__c-dfsle__DocuSign Envelope Status Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Envelope__c-dfsle__DocuSign Envelope Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Environment__mdt-dfsle__DocuSign Environment Metadata Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__GenTemplate__c-dfsle__DocuSign Gen Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Localization__mdt-dfsle__DocuSign Localization Metadata Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Log__c-dfsle__DocuSign Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Organization__mdt-dfsle__DocuSign Organization Metadata Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__RecipientStatus__c-dfsle__DocuSign Recipient Status Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dfsle__Recipient__c-dfsle__DocuSign Envelope Recipient Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>dynl__DynLookup__c-dynl__DynLookup Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ers_datatableConfig__c-ers_datatableConfig Layout</layout>
@@ -3006,6 +4155,156 @@
     <layoutAssignments>
         <layout>UserAlt-User Profile Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>icatp__File_Slayer_Usage__c-icatp__File Slayer Usage Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__Filter__c-rh2__Filter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__HS_Filter__c-rh2__Filter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Describe__c-rh2__Describe Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Exception__c-rh2__Rollup Helper Exception Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Export_Rollups__c-rh2__Rollup Export Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_OAuth_Configuration__mdt-rh2__Rollup Helper OAuth Configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Queue__c-rh2__Rollup Helper Queue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Rollup_Audit__c-rh2__Rollup Audit Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Rollup_Conditions__c-rh2__Rollup Condition Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Rollup_Dummy__c-rh2__Rollup Dummy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Rollup_Group__c-rh2__Rollup Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__PS_Use_Case_Library__mdt-rh2__PS Use Case Library Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>rh2__RH_Job__c-rh2__Rollup Job Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zaapit__View_Style__c-zaapit__View Style Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zaapit__ZaapIT_Table_user_configuration__c-zaapit__ZaapIT Table user configuration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zaapit__zaapit_editable_tb__c-zaapit__ZaapIT table Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__BulkShipmentStatus__c-zkfedex__FedEx Bulk Shipment Status Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__BulkShipment__c-zkfedex__FedEx Bulk Shipment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__Checkpoint__c-zkfedex__FedEx Checkpoint Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__CommercialInvoice__c-zkfedex__FedEx Commercial Invoice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__CustomAddressSourcePackage__c-zkfedex__FedEx Custom Address Source Package Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__CustomAddressSource__c-zkfedex__Custom Address Source Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__DangerousGoodsDetails__c-zkfedex__FedEx Dangerous Goods Details Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__ExportDetails__c-zkfedex__FedEx Export Details Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__FedExUserPrinter__c-zkfedex__FedEx User Printer Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__HazMatCommodity__c-zkfedex__FedEx HazMat Commodity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__HazMatContainer__c-zkfedex__FedEx HazMat Container Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__HazMatDetails__c-zkfedex__FedEx HazMat Details Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__InternationalCommodityData__c-zkfedex__FedEx International Commodity Data Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__InternationalCommodity__c-zkfedex__International Commodity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__NaftaCo__c-zkfedex__FedEx NAFTA CO Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__Package__c-zkfedex__Package Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__Pickup__c-zkfedex__FedEx Pickup Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__PrintHistory__c-zkfedex__FedEx Print History Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__ProFormaInvoice__c-zkfedex__FedEx Pro Forma Invoice Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedExportDetails__c-zkfedex__FedEx Queued Export Details Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedInternationalCommodity__c-zkfedex__FedEx Queued International Commodity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedPackageSpecialServices__c-zkfedex__FedEx Queued Package Special Services Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedPackage__c-zkfedex__FedEx Queued Package Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedShipmentDocuments__c-zkfedex__FedEx Queued Shipment Documents Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedShipmentSpecialServices__c-zkfedex__FedEx Queued Shipment Special Services Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedShipmentStatus__c-zkfedex__FedEx Queued Shipment Status Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__QueuedShipment__c-zkfedex__FedEx Queued Shipment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__RequestedShipmentDocuments__c-zkfedex__Requested Shipment Documents Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__ShipmatePreference__c-zkfedex__Shipmate Preferences Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__ShipmentPackage__c-zkfedex__Shipment Package Junction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__ShipmentSpecialServices__c-zkfedex__Shipment Special Services Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__Shipment__c-zkfedex__Shipment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>zkfedex__SmartPostDetails__c-zkfedex__FedEx SmartPost Details Layout</layout>
+    </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Competitor</recordType>
@@ -3029,6 +4328,16 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account_Profile__c.Standard</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>AcctSeed__Project__c.AcctSeedERP__Manufacturing_Order</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>AcctSeed__Project__c.AcctSeedERP__Project</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -3063,6 +4372,102 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>APXTConga4__About_Conga_Composer</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Composer_QuickMerge__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Composer_Test</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__CongaMerge</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Composer_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Email_Template__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Merge_Query__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Solution_Collection</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Solution__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Solutions_Setup_vf</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Conga_Template__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__CreateStep</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXTConga4__Document_History__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_BPM__About_Conga_Conductor</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_BPM__Conductor_Dashboard</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_BPM__Conductor_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_BPM__Conductor__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_CMM__About_Conga_Mail_Merge</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_CMM__Conga_Mail_Merge</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_CongaSign__Recipient__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_CongaSign__Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>APXT_CongaSign__Transaction__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AS_Tax__Account_Tax__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>AboutAutoComplete</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -3088,6 +4493,282 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>AccountsZ</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Inventory_Balance__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Purchase_Order__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Purchase_Price__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Sales_Order__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Serial_Number_Search</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Shipment__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeedERP__Warehouse__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Account_Payable__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Accounting_Help</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Accounting_Home1</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Accounting_Home2</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Accounting_Period__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Accounting_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Accounting_Variable__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Automated_Jobs</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Bank_Deposit__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Bank_Direct_Connect</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Bank_Direct_Connect2</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Bank_Reconciliation2__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Bank_Reconciliation__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Billing_Format__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Billing_Line__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Billing_Rates__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Billing__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Cash_Disbursement_Batch__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Cash_Disbursement__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Cash_Receipt__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Check_Print_Adjustments</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Cost_Rates__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Default_GL_Accounts</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Default_Ledger</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Enablements</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Exchange_Rate__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Expense_Report__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Financial_Cube__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Financial_Report_Definition__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Financial_Report_Result__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Financial_Reports</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Fixed_Asset__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__GL_Account_Reporting_Group__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__GL_Account__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Import_Financial_File</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Import_Template__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Integrity_Report_Entry__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Journal_Entry__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Ledger__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Multi_Ledger_Defaults</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Payment_Activity__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Payroll_File_Import</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Period_Task__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Post_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Project__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Purge_Data</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Recurring_Account_Payable__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Recurring_Billing_Line__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Recurring_Billing__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Recurring_Journal_Entry__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Run_Financial_Report</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Scheduled_Revenue_Expense__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Stripe_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Tax_Exception_Report</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Tax_Group__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Tax_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Tax_Settings__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Time_Card_Line__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Time_Card_Period__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Time_Card__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__Transaction__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>AcctSeed__VAT_Reporting_Settings</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -3127,11 +4808,95 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>ChangeCaseOwner__Change_Case_Ownership_Plus_Setup_Wizard</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Commissions__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Create_Case</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__Autoupdateable_settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__Conflict__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__DiscoverOrgSearch</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__DiscoverOrg_Conflict_Manager</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__DiscoverOrg_Custom_Mappings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__DiscoverOrg_Operations_Page</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__DiscoverOrg_Update_History__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DSCORGPKG__Nightly_Debug__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Canned_Comment_Filter__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Canned_Comment__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Comment_List</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Email_to_Case_Premium_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__New_Comment_Action__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Setup_Wizard</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>E2CP__Widespread_Issue__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FLAGS__CaseFlagsBusinessHours__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FLAGS__Case_Flags_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FLAGS__Case_Flags_Switchboard</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>FLAGS__Setup_Wizard</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -3147,7 +4912,67 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>JCSoftware__PowerClone_Exclude_Rule__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>JCSoftware__pc_PowerCloneRule__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Knowledge__kav</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LEXMAGICMOVER__Attachments</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LEXMAGICMOVER__Attachments_to_Files</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LEXMAGICMOVER__Configuration</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LEXMAGICMOVER__LatestFilesNotes</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LEXMAGICMOVER__NotesConversion</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LEXMAGICMOVER__UpdatePageLayouts</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LH__All_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LH__LH_Landing</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LH__LH_QueueManagement</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LH__LH_Schedule_Management</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LH__LH_Use_Case</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LS_VC__Visual_Calendar</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>LS_VC__Visual_Calendar_HomePage__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -3267,6 +5092,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>SLCA2__Calendar_Anything</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Sales_Order_Lines</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -3276,6 +5105,14 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Scope_of_Work__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>SpringCMEos__SpringCM_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>SpringCMEos__SpringCM_Viewer</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -3299,7 +5136,143 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>atplus__ActivitiesTabPlus</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csmrgp__Case_Merge_Premium</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csmrgp__Case_Merge_Premium_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csmrgp__Duplicate_Group__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csmrgp__Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csmrgp__Setup_Wizard</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csplit__Case_Split_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>csplit__Setup_Wizard</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dfsle__EnvelopeConfiguration__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dfsle__EnvelopeStatus__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dfsle__Envelope__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dfsle__GenTemplate__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dfsle__Log__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dfsle__Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dynl__DynLookup__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>dynl__Starter_Page</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ers_datatableConfig__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>icatp__Hit_List_Manager</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>icatp__Signature_Slayer_Setup</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>icatp__Signature_Slayer_Setup_LEX</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_All_Rollups</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Authentication</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Enable_Real_Time</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_FilterManagement</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Getting_Started</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Health_Check</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Import_Export</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Read_Only_Rollups</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Rollup_Helper</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Rollup_Queue</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_ScheduleManagement</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__PS_Use_Case</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__Rollup_Helper_Exceptions</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__Rollup_Helper_Help</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>rh2__Rollup_Helper_Home</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -3701,5 +5674,153 @@
     <tabVisibilities>
         <tab>standard-report</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>takeownership__Take_Ownership_for_Cases_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Accounts</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Accounts_Activities</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__All_Attachments</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__All_Events</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__All_Tasks</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Campaigns</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Contact_Working_List</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Custom_Objects</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Custom_Sub_Demo</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Dedup_Manager</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__EventsWL</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Events_Recent</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Files</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Grid_Manager</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Lead_Merge_Dups</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Leads</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Merge_Contacts</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Notes</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Opportunities</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Overview</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Pricebook_Entires</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Products</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Quotes</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Smart_Tables_MOB</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__TasksWL</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__Tasks_Recent</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zaapit__zaapit_editable_tb__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__BulkShipment__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__CustomAddressSource__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__FedExShippingForms</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__FedEx_DG_HazMat</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__InternationalCommodityData__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__Package_Profiles</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__Pickup__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__ShipmatePreference__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>zkfedex__Shipment__c</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
 </Profile>

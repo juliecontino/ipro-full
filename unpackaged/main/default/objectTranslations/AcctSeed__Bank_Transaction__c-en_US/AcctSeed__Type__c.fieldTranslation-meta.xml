@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Describes the nature of the intent behind the transaction, some examples being payments, purchases, charges &amp; fees, etc. --></help>
+        <label><!-- Type --></label>
+        <name>AcctSeed__Type__c</name>
+    </CustomFieldTranslation>

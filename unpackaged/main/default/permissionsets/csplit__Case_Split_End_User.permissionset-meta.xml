@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Provides access to all components required to interact with the Case Split application.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Case Split End User</label>
+    <classAccesses>
+        <apexClass>csplit__CaseSplitLWCController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>csplit__CaseSplitUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>csplit__CustomInteractionUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <pageAccesses>
+        <apexPage>csplit__CaseSplitter</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>csplit__Assigned_Case_Split_License</name>
+    </customPermissions>
+    <customSettingAccesses>
+        <enabled>true</enabled>
+        <name>csplit__CaseSplitIncludedChildren__c</name>
+    </customSettingAccesses>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.csplit__Splitter__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+</PermissionSet>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JCSoftware__Behavior_Rule__c</fullName>
+    <defaultValue>"Default_Value"</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Defines the behavior for this rule on the selected field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Defines the behavior for this rule on the selected field.</inlineHelpText>
+    <label>Behavior Rule</label>
+    <length>100</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

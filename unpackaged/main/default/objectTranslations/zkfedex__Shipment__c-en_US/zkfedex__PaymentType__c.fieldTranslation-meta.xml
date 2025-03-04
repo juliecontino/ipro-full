@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- SENDER is Your Account
+RECIPIENT is the other party involved in the shipment
+THIRD PARTY is a party not involved in the shipment --></help>
+        <label><!-- Payment Type --></label>
+        <name>zkfedex__PaymentType__c</name>
+    </CustomFieldTranslation>

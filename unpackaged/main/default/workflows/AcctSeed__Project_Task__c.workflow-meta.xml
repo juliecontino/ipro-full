@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Workflow_Project_Task_Delivery_Acceptance_Signed_Changed</fullName>
+        <ccEmails>Dylan.sloan@teamipro.com</ccEmails>
+        <ccEmails>cenglish@teamipro.com</ccEmails>
+        <description>Workflow: Project Task Delivery &amp; Acceptance Signed Changed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        
+        
+        
+        <recipients>
+            <field>AcctSeed__Responsibility__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>salesforceworkflowagent@ipromedia.us</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Project/Project_Task_Delivery_Acceptance_Signed_Percent_Changed</template>
+    </alerts>
+    <alerts>
+        <fullName>Workflow_Project_Task_Initiate_Billing_Changed_Comm3</fullName>
+        <description>Workflow: Project Task Initiate Billing Changed Comm3</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Group_Comm3</recipient>
+            <type>group</type>
+        </recipients>
+        
+        
+        
+        
+        <senderAddress>comm3salesforceworkflowagent@comm3.net</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Project/Project_Task_Initiate_Billing_Percent_Changed_Comm3</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Calculate_End_Date</fullName>
+        <field>AcctSeed__End_Date__c</field>
+        <formula>AcctSeed__Project__r.AcctSeed__Opportunity__r.Project_Start_Date__c + blankvalue(Start_Date_Padding__c,0)+blankvalue(Standard_Duration__c,0)</formula>
+        <name>Calculate End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Calculate_Start_Date</fullName>
+        <field>AcctSeed__Start_Date__c</field>
+        <formula>AcctSeed__Project__r.AcctSeed__Opportunity__r.Project_Start_Date__c + blankvalue( Start_Date_Padding__c ,0)</formula>
+        <name>Calculate Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Run_Calculated_Start_Date</fullName>
+        <field>Run_Calculated_Date__c</field>
+        <literalValue>0</literalValue>
+        <name>Clear Run Calculated Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Estimate_Cutover_Date</fullName>
+        <field>Project_Estimate_Cut_over_Date__c</field>
+        <formula>AcctSeed__End_Date__c</formula>
+        <name>Update Estimate Cutover Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>AcctSeed__Project__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Project_D_A_Date</fullName>
+        <field>Project_D_A_Date__c</field>
+        <formula>IF( Name ="Delivery &amp; Acceptance Signed",AcctSeed__End_Date__c ,DATE(1902,1,1))</formula>
+        <name>Update Project D&amp;A Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>AcctSeed__Project__c</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>Assign OPP PM to unasssigned responsibile</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.AcctSeed__Responsibility__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Get Dates</fullName>
+        <actions>
+            <name>Calculate_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Calculate_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Clear_Run_Calculated_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Run_Calculated_Date__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Estimate Cutover Date</fullName>
+        <actions>
+            <name>Update_Estimate_Cutover_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Name</field>
+            <operation>equals</operation>
+            <value>System Cutover (Operations)</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Project D%26A Date</fullName>
+        <actions>
+            <name>Update_Project_D_A_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.CreatedDate</field>
+            <operation>notEqual</operation>
+            <value>1/1/1901 12:36 AM</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workflow%3A Project Task D%26A</fullName>
+        <actions>
+            <name>Workflow_Project_Task_Delivery_Acceptance_Signed_Changed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 AND 2) or (1 AND 3)</booleanFilter>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Name</field>
+            <operation>equals</operation>
+            <value>Delivery &amp; Acceptance Signed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Percent_Complete__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.AcctSeed__Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workflow%3A Project Task Initiate Billing Changed</fullName>
+        <active>true</active>
+        <booleanFilter>1 AND (2 or 3)</booleanFilter>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Name</field>
+            <operation>equals</operation>
+            <value>Initiate Billing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.AcctSeed__Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Percent_Complete__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workflow%3A Project Task Initiate Billing Changed Comm3</fullName>
+        <actions>
+            <name>Workflow_Project_Task_Initiate_Billing_Changed_Comm3</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 AND 2) or (1 AND 3)</booleanFilter>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Name</field>
+            <operation>equals</operation>
+            <value>Notify Accounting to Begin Billing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.Percent_Complete__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>AcctSeed__Project_Task__c.AcctSeed__Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

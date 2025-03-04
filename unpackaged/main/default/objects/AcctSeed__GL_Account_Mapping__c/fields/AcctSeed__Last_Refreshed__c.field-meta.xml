@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Last_Refreshed__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The date when Yodlee’s database was last updated with information from the user’s connected bank account. Note: If this date is not updated, FIA credentials or Multi-factor Authentication may need to be refreshed by the user.</description>
+    <label>Last Refreshed Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

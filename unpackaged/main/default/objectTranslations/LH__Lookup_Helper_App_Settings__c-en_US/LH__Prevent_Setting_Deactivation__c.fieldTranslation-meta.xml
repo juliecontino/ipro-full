@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If this is checked Lookup Helper will not disable lookups when errors are encountered during both manual and realtime runs. --></help>
+        <label><!-- Prevent Automatic Setting Deactivation? --></label>
+        <name>LH__Prevent_Setting_Deactivation__c</name>
+    </CustomFieldTranslation>

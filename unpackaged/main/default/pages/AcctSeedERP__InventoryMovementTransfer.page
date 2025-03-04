@@ -1,0 +1,143 @@
+<apex:page id="thePage" standardController="AcctSeedERP__Inventory_Balance__c" extensions="AcctSeedERP.InventoryMovementTransfer" title="Transfer | Accounting Seed" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+    <script type="text/javascript">
+        function setFocusOnLoad() {}
+    </script>       
+    <apex:form id="theForm">
+        <apex:sectionHeader title="Inventory Quantity Available" subtitle="{!AcctSeedERP__Inventory_Balance__c.Name}" />
+        <apex:pageBlock id="thePageBlock" title="Inventory Transfer - {!AcctSeedERP__Inventory_Balance__c.Product__r.Name}">
+            <apex:pageMessages rendered="{!isError || isSuccess}" escape="false"/>
+            <apex:pageBlockButtons id="buttons">
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Transferring...')" />
+                <apex:commandButton id="saveButton" value="Transfer" status="saveStatus" action="{!transfer}" rendered="{!!isSuccess}" reRender="theForm" />
+                <apex:commandButton id="cancelButton" value="Back" action="/{!Inventory_Balance__c.Id}" immediate="true" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Transfer From" columns="2" collapsible="false" rendered="{!!isSuccess}">
+                <apex:outputText value="{!AcctSeedERP__Inventory_Balance__c.Product__r.Name}" />
+                <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.AcctSeedERP__Available_Quantity__c}" />
+                <apex:outputText value="{!AcctSeedERP__Inventory_Balance__c.Warehouse__r.Name}" />
+                <apex:outputText value="{!AcctSeedERP__Inventory_Balance__c.Location__r.Name}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Transfer To" columns="2" collapsible="false" rendered="{!!isSuccess}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Movement Date" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputField value="{!invOutBound.AcctSeedERP__Movement_Date__c}" required="false" />
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isDateError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Quantity" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:inputField value="{!invOutBound.AcctSeedERP__Quantity__c}" required="false">
+                            <apex:actionSupport event="onchange" rerender="theForm" />
+                        </apex:inputField>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isQuantityError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Warehouse Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:actionRegion >
+                            <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                            <apex:selectList value="{!selectedWarehouse}" size="1">
+                                <apex:selectOptions value="{!warehouses}" />
+                                <apex:actionSupport event="onchange" action="{!setLocations}" rerender="location" />
+                            </apex:selectList>
+                            <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isWarehouseError}">
+                                <strong>Error:</strong> You must enter a value
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Location Name" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList id="location" value="{!selectedLocation}" size="1">
+                            <apex:selectOptions value="{!locationsFirstList}"/>
+                            <apex:selectOptions value="{!locationsSecondList}"/>
+                        </apex:selectList>
+                        <apex:outputPanel styleClass="errorMsg" layout="block" rendered="{!isLocationError}">
+                            <strong>Error:</strong> You must enter a value
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!!isInventoryValuationAverageCost}">
+                    <apex:outputLabel value="{!$ObjectType.AcctSeedERP__Inbound_Inventory_Movement__c.Fields.AcctSeedERP__Ledger__c.Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block" >
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />
+                        <apex:selectList required="true"
+                                         value="{!invOutBound.AcctSeedERP__Ledger__c}"
+                                         multiselect="false"
+                                         size="1">
+                            <apex:selectOptions value="{!allLedgers}" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:outputField value="{!invOutBound.AcctSeedERP__Ledger__c}" rendered="{!isInventoryValuationAverageCost}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Accounting Information" columns="2" collapsible="false" rendered="{!!isSuccess}">
+                <apex:inputField value="{!invOutBound.AcctSeedERP__GL_Account_Variable_1__c}" required="false" />
+                <apex:inputField value="{!invOutBound.AcctSeedERP__Project__c}" required="false"/>
+                <apex:inputField value="{!invOutBound.AcctSeedERP__GL_Account_Variable_2__c}" required="false" />
+                <apex:inputField value="{!invOutBound.AcctSeedERP__Project_Task__c}" required="false" />
+                <apex:inputField value="{!invOutBound.AcctSeedERP__GL_Account_Variable_3__c}" required="false" />
+                <apex:outputText />
+                <apex:inputField value="{!invOutBound.AcctSeedERP__GL_Account_Variable_4__c}" required="false" />
+            </apex:pageBlockSection>
+            <apex:outputPanel id="serialNumberPanel">
+                <apex:pageBlockSection title="Serial Numbers" columns="1" collapsible="false" rendered="{!!ISBLANK(invOutBound.AcctSeedERP__Quantity__c) && invOutBound.AcctSeedERP__Quantity__c <= 100 && AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeedERP__Serialized__c && !isSuccess}">
+                    <apex:pageBlockTable id="serialNumberTable" rows="{!invOutBound.AcctSeedERP__Quantity__c}" value="{!outBoundMovements}" var="item">
+                        <apex:column headerValue="Serial Number">
+                            <apex:inputField value="{!item.AcctSeedERP__Serial_Number__c}" />
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlockSection>
+            </apex:outputPanel>
+            <apex:pageBlockSection title="Inbound Movement Information" columns="1" collapsible="false" rendered="{!isSuccess}">
+                <apex:pageBlockTable value="{!inboundInvList}" var="item">
+                    <apex:column headerValue="Name">
+                        <apex:outputLink value="/{!item.Id}">{!item.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!item.AcctSeedERP__Warehouse__c}" />
+                    <apex:column value="{!item.AcctSeedERP__Location__c}" />
+                    <apex:column value="{!item.AcctSeedERP__Serial_Number__c}" />
+                    <apex:column value="{!item.AcctSeedERP__Quantity__c}" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Outbound Movement Information" columns="1" collapsible="false" rendered="{!isSuccess}">
+                <apex:pageBlockTable value="{!outboundInvList}" var="item">
+                    <apex:column headerValue="Name">
+                        <apex:outputLink value="/{!item.Id}">{!item.Name}</apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!item.AcctSeedERP__Warehouse__c}" />
+                    <apex:column value="{!item.AcctSeedERP__Location__c}" />
+                    <apex:column value="{!item.AcctSeedERP__Serial_Number__c}" />
+                    <apex:column value="{!item.AcctSeedERP__Quantity__c}" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <!-- These hidden elements are there just to add all these fields into ApexPages.StandardController instance -->
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.AcctSeedERP__Inbound_Quantity__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.AcctSeedERP__Product__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeed__Unit_Cost__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeed__GL_Account_Variable_1__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeed__GL_Account_Variable_2__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeed__GL_Account_Variable_3__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeed__GL_Account_Variable_4__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.Product__r.AcctSeedERP__Serialized__c}" rendered="false" />
+            <apex:outputField value="{!AcctSeedERP__Inventory_Balance__c.AcctSeedERP__Ledger__c}" rendered="false" />
+            <!-- ================================================================================================= -->
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

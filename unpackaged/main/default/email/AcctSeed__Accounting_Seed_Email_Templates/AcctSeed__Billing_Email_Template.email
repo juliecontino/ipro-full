@@ -1,0 +1,5 @@
+To the Attention of: {!Contact.Name} 
+
+Attached is your billing #{!AcctSeed__Billing__c.Name} dated {!AcctSeed__Billing__c.AcctSeed__Date__c}. The current balance on this billing is {!AcctSeed__Billing__c.AcctSeed__Balance__c} 
+
+Thank you for your business.

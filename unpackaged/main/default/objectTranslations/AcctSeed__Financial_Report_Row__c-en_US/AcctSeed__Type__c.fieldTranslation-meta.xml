@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Type --></label>
+        <name>AcctSeed__Type__c</name>
+        <picklistValues>
+            <masterLabel>Blank</masterLabel>
+            <translation><!-- Blank --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Calculation Number</masterLabel>
+            <translation><!-- Calculation Number --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Calculation Percentage</masterLabel>
+            <translation><!-- Calculation Percentage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Description</masterLabel>
+            <translation><!-- Description --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GL Account</masterLabel>
+            <translation><!-- GL Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reporting Group</masterLabel>
+            <translation><!-- Reporting Group --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

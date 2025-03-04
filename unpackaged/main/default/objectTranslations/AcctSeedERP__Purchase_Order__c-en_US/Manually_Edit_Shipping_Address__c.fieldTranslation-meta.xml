@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Check this box to manually edit the &quot;Ship-To&quot; address. --></help>
+        <label><!-- Manually Edit Shipping Address --></label>
+        <name>Manually_Edit_Shipping_Address__c</name>
+    </CustomFieldTranslation>

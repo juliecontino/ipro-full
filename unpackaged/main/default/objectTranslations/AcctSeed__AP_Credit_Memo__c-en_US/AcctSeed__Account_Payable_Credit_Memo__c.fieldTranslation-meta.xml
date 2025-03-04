@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Payable Credit Memo --></label>
+        <lookupFilter>
+            <errorMessage><!-- The Type field of the payable must be &quot;Credit Memo&quot;. --></errorMessage>
+        </lookupFilter>
+        <name>AcctSeed__Account_Payable_Credit_Memo__c</name>
+        <relationshipLabel><!-- Applied Invoices to Credit Memo --></relationshipLabel>
+    </CustomFieldTranslation>

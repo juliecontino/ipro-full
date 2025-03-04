@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Clone Attachments in Future --></label>
+        <name>csmrgp__Clone_Attachments_in_Future__c</name>
+    </CustomFieldTranslation>

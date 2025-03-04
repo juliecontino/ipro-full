@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Solution related to the Vote --></help>
+        <label><!-- Widespread Issue Solution --></label>
+        <name>E2CP__Widespread_Issue_Solution__c</name>
+        <relationshipLabel><!-- Widespread Issue Solution Votes --></relationshipLabel>
+    </CustomFieldTranslation>

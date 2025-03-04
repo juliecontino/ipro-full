@@ -1,0 +1,1788 @@
+<apex:page controller="DSCORGPKG.bulkMatchController" sidebar="false" tabStyle="DiscoverOrgSearch__tab" standardStylesheets="false" id="pg">
+<apex:includeScript value="{!$Resource.DSCORGPKG__DiscoverOrgJSMin}" />
+<!-- DiscoverOrg_clsBrowse -->
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <apex:slds />
+    <link href="{!$Resource.LSDCustomCss}" type="text/css" rel="stylesheet" /> 
+    <link href="{!$Resource.MainPageSLDSCss}" type="text/css" rel="stylesheet" />
+    <link href="{!URLFOR($Resource.fontawesome,'css/font-awesome.min.css')}" type="text/css" rel="stylesheet" /><!-- SFNA 2839-->
+    <apex:stylesheet value="{!URLFOR($Resource.DSCORGPKG__DiscoverOrg_Misc_CSS, 'familyOpenSans.css')}"/><!-- SFNA 2839-->
+    <style type="text/css"> 
+        
+    .selectAllChk [type=checkbox]:checked~.slds-checkbox--faux:after {
+        border-bottom: 2px solid white !important;
+        border-left: 2px solid white !important;
+    }                   
+    .slds-scope textarea {
+        resize: none;
+    }          
+    .slds-show{     
+        min-height:300px;
+    }
+     .divarea{        
+     }               
+    .searchForConNCompInpBx {
+        border: 1px solid #cccccc;
+        margin-top: 2%;
+        width: 320px;
+        height: 35px;
+        border-radius: 2px;
+        background-color: #ffffff;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #cccccc;
+        padding-left: 7px;
+        padding-right: 25px;
+    }        
+    .slds-tabs--default__nav a:focus{
+        color:#0070d2;box-shadow:none;
+    }       
+    ul#menu li {
+        display:inline;
+    }                        
+    #holder {
+        width: 100%;
+        -webkit-border-radius: 8px 8px 8px 8px;
+
+        text-align: center;
+        height:300px;
+    }
+            
+    #holder span, #uploadCompleted span {
+        position: relative;
+        top: 41%;
+        transform: translateY(-50%);
+        font-size:1.5em;
+        color:#A3A3A3;
+    }
+    #holder.hover { }
+        
+    #uploadStatus 
+        margin-top:210px;
+    }
+        
+    #uploadStatus span{
+        text-shadow: 2px 2px 2px #525252;
+        font-size:1em;
+    }
+
+    #holder p { margin: 10px; font-size: 14px; }
+    progress { width: 100%;  height:2em;  }
+    .fail { background: #c00; padding: 2px; color: #fff; }                                     
+    .btn1,.btn1:hover{text-decoration:none}.upload-drop-zone{height:200px;border-width:2px;margin-bottom:20px;color:#ccc;border-style:dashed;border-color:#ccc;line-height:200px;text-align:center}body{background-color:#f3f5f6}.upload-drop-zone.drop{color:#222;border-color:#222}.tooltip-inner{text-align:center;-webkit-border-radius:0;-moz-border-radius:0;border-radius:4px;margin-bottom:6px;border:1px solid #ffd37f;background-color:#fffcdd;font-size:14px;color:#333;min-width:200px}.footer{left:0;bottom:0;width:100%;padding:2em;background-color:#f3f5f6;border-top:1px solid #fff;z-index:2;text-align:right;box-sizing:border-box;box-shadow:0 0 12px 0 rgba(0,0,0,.15);font-size:.9em}.btn1{background:#3498db;background-image:-webkit-linear-gradient(top,#3498db,#2980b9);background-image:-moz-linear-gradient(top,#3498db,#2980b9);background-image:-ms-linear-gradient(top,#3498db,#2980b9);background-image:-o-linear-gradient(top,#3498db,#2980b9);background-image:linear-gradient(to bottom,#3498db,#2980b9);-webkit-border-radius:4;-moz-border-radius:4;border-radius:4px;color:#fff;padding:10px 20px}.btn1:hover{background:#3cb0fd;background-image:-webkit-linear-gradient(top,#3cb0fd,#3498db);background-image:-moz-linear-gradient(top,#3cb0fd,#3498db);background-image:-ms-linear-gradient(top,#3cb0fd,#3498db);background-image:-o-linear-gradient(top,#3cb0fd,#3498db);background-image:linear-gradient(to bottom,#3cb0fd,#3498db)}
+    
+    body.sfdcBody {
+    }
+
+    .Quickly-match-a-list {
+        width: 944px;
+        height: 17px;
+        font-family: OpenSans;
+        font-size: 12px;
+        text-align: left;
+        color: #7f7f80;
+    }
+    .tablebhead{
+        font-family: OpenSans;
+        border-collapse: collapse;
+        width: 100%;
+    }
+        
+    .tablebhead th {
+        text-align: left;
+        font-family: OpenSans;
+        font-size: 14px;
+        color: #666666;
+        
+    }
+    .tablebhead td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-family: OpenSans;
+        font-size: 12px;
+        color: #666666;
+    }
+       
+    .slds-table .slds-truncate {
+        min-width: 3.25rem;
+        max-width: 8rem;
+    }
+    .tablebhead th {
+        height: 19px;
+        font-family: OpenSans;
+        font-size: 14px;
+        color: #666666;
+    }
+    .tablebhead  tr:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+    .slds-tabs--path__item:before{
+        border:4px solid white;
+    }
+        
+    .slds-tabs--path__item:before {
+        left: -14px;
+    }
+        
+    .slds-tabs--path .slds-is-current{
+        background-color: #1b5eac;
+    }                      
+    .slds-is-incomplete{
+        background-color: #f8f8f8;
+    }
+       
+    .slds-tabs--path .slds-is-current + .slds-is-incomplete:before{
+        background-color: #1b5eac;
+    }             
+    .slds-tabs--path .slds-is-complete{
+        background-color: #6ebe49;
+    }
+        
+    .slds-tabs--path .slds-is-current:before{
+        background-color: #6ebe49;
+    }
+    .slds-tabs--path__item + .slds-is-complete:before{
+        background-color: #6ebe49;
+    }       
+    pagination {
+            display: inline-block;
+    }
+            
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+    }
+            
+    .pagination a.active {
+        background-color: #7f7f80;
+        color: white;
+        border: 1px solid #7f7f80;
+    }
+            
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+    
+    .pagination a:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+            
+    .pagination a:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    #matchtable tr:nth-child(even){background-color: #f8f8f8}
+    #possibletable tr:nth-child(even){background-color: #f8f8f8}
+            
+    .thcolor{
+        color:#666666;    
+    }
+            
+    .tdcolor{
+        color:#666666;
+    }
+            
+    checked~.lol:after {
+        display: block;
+        content: '';
+        height: .25rem;
+        width: .5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate3d(-50%,-50%,0) rotate(-45deg);
+        transform: translate3d(-50%,-50%,0) rotate(-45deg);
+        border-bottom: 2px solid #ffffff; 
+        border-left: 2px solid #ffffff; 
+    }
+
+
+    .slds-scope .slds-tabs--path__item+.slds-is-complete:before, .slds-scope .slds-tabs--path__item+.slds-is-current:before, .slds-scope .slds-tabs_path__item+.slds-is-complete:before, .slds-scope .slds-tabs_path__item+.slds-is-current:before {
+        background-color: #6ebe49;
+    }
+    .slds-scope .slds-tabs--path .slds-is-complete{
+        background-color: #6ebe49;
+    }
+    </style>    
+    <!--new script code start-->
+     <script>
+        $(window).bind("load", function() {
+            afterLoadAddScript();            
+        });
+        
+        function afterLoadAddScript() {
+            var script = document.createElement('script');
+            script.setAttribute('src', '{!$Resource.MainPageSLDSJs}');
+            script.setAttribute('type', 'text/javascript');
+            document.getElementsByTagName('head')[0].appendChild(script);
+        } 
+        
+    </script>        
+    <!--new script code ends-->                       
+    <script>
+    function checkUncheck1(ele){
+        $(".checkUncheck").prop('checked', $(ele).prop("checked"));
+    }
+    function uncheckCheck(){
+        if ($(".checkUncheck").length == $(".checkUncheck:checked").length) {
+                $("#checkUncheck5").prop("checked", true);
+                
+            } else {
+                $("#checkUncheck5").prop("checked", false);
+                
+            }
+    }    
+    $(document).ready(function(){                   
+            if ($(".checkUncheck").length == $(".checkUncheck:checked").length) {
+                $("#checkUncheck5").prop("checked", true);                        
+            } else {
+                $("#checkUncheck5").prop("checked", false);
+                
+            }
+            
+            // HIDE TO WORK ON MATCHED PART
+            $("[id*='matchedCount']").hide();
+            $("[id*='reviewMatch']").hide();
+            $(".goBack").hide();
+            $(".matchedLink").hide();
+            $(".unMatchedLink").hide();
+            
+            $(".matchedLink").click(function(){
+                $("[id*='pasteGOMatchId']").hide();
+                $("[id*='matchedCount']").show();
+                $("[id*='reviewMatch']").hide();
+                $(".matchedLink").hide();
+                $(".unMatchedLink").show();
+            });
+            
+           <!-- $(":file").filestyle({buttonName: "btn-primary"});   -->
+
+            
+            $(".unMatchedLink").click(function(){
+                $("[id*='pasteGOMatchId']").hide();
+                $("[id*='matchedCount']").hide();
+                $("[id*='reviewMatch']").show();
+                $(".matchedLink").show();
+                $(".unMatchedLink").hide();
+            });
+            
+            $(".goBack").click(function(){
+                if( $('.unMatchedLink').is(':visible') ){ //matched Part is on
+                    
+                    $("[id*='pasteGOMatchId']").show();
+                    $("[id*='matchedCount']").hide();
+                    $("[id*='reviewMatch']").hide();
+                    $(".goBack").hide();
+                    $(".matchedLink").hide();
+                    $(".unMatchedLink").hide();
+                }else if( $('.matchedLink').is(':visible') ){ // Unmatched Part is on
+                    
+                    $("[id*='pasteGOMatchId']").hide();
+                    $("[id*='matchedCount']").show();
+                    $("[id*='reviewMatch']").hide();
+                    $(".goBack").show();
+                    $(".unMatchedLink").show();
+                    $(".matchedLink").hide();
+                }
+            });
+            
+            $('.slds-tabs--default__nav li a').click(function(e) {
+                $('.slds-tabs--default__nav li').removeClass('slds-active');
+                var $parent = $(this).parent();
+                
+                if (!$parent.hasClass('slds-active')) {
+                    $parent.addClass('slds-active');
+                    
+                }
+                
+                $("div.slds-tabs--default__content").each(function(){ 
+                    if( $(this).hasClass("slds-show") ){
+                        $(this).removeClass("slds-show");
+                        $(this).addClass("slds-hide");
+                    }
+                });
+                
+                var tabId = $(this).attr("aria-controls"); 
+                
+                $("#"+tabId ).removeClass("slds-hide").addClass("slds-show");
+                
+                e.preventDefault();
+            });
+        });
+        
+        function CallUploadButton(){
+             $('#filesInput').trigger( "click" );
+        }
+        function callPastenGo() {
+            var c = $("[id*='pasteSerches']").val();
+            $("[id*='pnlLoadingtop']").show();/*godivProcess*/
+            if( c ==3 || c== 11 ){
+
+                showStatusDiv();
+                AdvancedSearchContacts();        
+                $("[id*='activeSeaCriForSideBarId']").val($(".list").html());
+                return false;
+            }else{
+                PastenGo();
+            }
+        }
+        
+        function goOnchangeButtonStart(){
+            $("[id*='pnlLoadingtop']").show();
+           $("#secondtab").css('color','#ffffff');
+        }
+        
+        function goOnchangeButtonEnd(){
+            $("[id*='pnlLoadingtop']").hide();
+        }
+        
+        function limitText(limitf) {
+            if ($("[id*='pasteSerches']").val() == '9') {
+                if (limitf.value.length > 500) {
+                    var l = limitf.value.length;
+                    var s = limitf.value.substr(0, 500);
+                    limitf.value = s.substr(0, s.lastIndexOf('\n'));
+                    alert('Maximum limit exceeded by pasted characters: ' + l + '\nList truncated to fit');
+                }
+            } else {
+                if (limitf.value.length > 6000) {
+                    var l = limitf.value.length;
+                    var s = limitf.value.substr(0, 6000);
+                    limitf.value = s.substr(0, s.lastIndexOf('\n'));
+                    alert('Maximum limit exceeded by pasted characters: ' + l + '\nList truncated to fit');
+                }
+            }
+        }
+        
+        function goPasteAndGo(){
+                if ($("[id*='pasteSerches']").val() != '' && ($("[id*='pGoLimit']").val() != '' || $("[id*='fileNameID']").text().trim()!= '' )){
+                }
+                else{
+                   
+                   if( $("[id*='pasteSerches']").val() !='' ){
+                   
+                   }else{
+                    $("[id*='pageMsgForBulk']").text('Please select a search criteria option to proceed.');
+                    $('#seaCriNotSelPopup1').show();
+                    return;
+                   }
+                   
+                   if( $("[id*='pGoLimit']").val() != '' || $("[id*='fileNameID']").text().trim()!= '' ){
+                   
+                   }else{
+                    $("[id*='pageMsgForBulk']").text('Please enter text values or upload a CSV to proceed.');
+                    $('#seaCriNotSelPopup1').show();
+                    return;
+                   }
+                   
+                   if( $("[id*='pasteSerches']").val() != '' && ( $("[id*='pGoLimit']").val() != '' || $("[id*='fileNameID']").text().trim()!= '') ){
+                   
+                   }else{
+                    $("[id*='pageMsgForBulk']").text('Please select a search criteria option and either enter text values or upload a CSV to proceed.');
+                    $('#seaCriNotSelPopup1').show();
+                    return;
+                   }
+               }
+            
+            goOnchangeButtonStart();
+            PastenGo();
+            $("[id*='inpHidn']").val('');
+            
+        }
+        
+        function onCompleteGo(){
+
+                $("#bMStageId").removeClass("slds-is-current").addClass("slds-is-complete");
+                
+                $("#matchStageId").removeClass("slds-is-incomplete").addClass("slds-is-current");
+                $("[id*='pasteGOMatchId']").hide();
+                $("[id*='matchedCount']").show();
+                $(".goBack").show();
+                $(".unMatchedLink").show();
+                $(".matchedLink").hide();
+        }
+        function callstyleofMatched(){
+            alert(' i n');
+        }
+        function onclickReviewAll(){
+            $("#matchStageId").removeClass("slds-is-incomplete").removeClass("slds-is-current").addClass("slds-is-complete");
+             $("#unMatchStageId").removeClass("slds-is-incomplete").addClass("slds-is-current");
+        }
+        
+        function onSwitchToMatchRecords(){
+        
+        }
+        
+        function changeStage( presentStage, stageToSwitch ){
+            
+        }
+        
+        function saveSearchPopupCall() {
+            $('.saveSrchPopup').show();
+        }
+        function saveSearchPopupHideCall() {
+            $('.saveSrchPopup').hide();
+        }
+        
+        function limitText(limitf) {
+            if ($("[id*='pGoLimit']").val() == '9') {
+                if (limitf.value.length > 500) {
+                    var l = limitf.value.length;
+                    var s = limitf.value.substr(0, 500);
+                    limitf.value = s.substr(0, s.lastIndexOf('\n'));
+                    alert('Maximum limit exceeded by pasted characters: ' + l + '\nList truncated to fit');
+                }
+            } else {
+                if (limitf.value.length > 6000) {
+                    var l = limitf.value.length;
+                    var s = limitf.value.substr(0, 6000);
+                    limitf.value = s.substr(0, s.lastIndexOf('\n'));
+                    alert('Maximum limit exceeded by pasted characters: ' + l + '\nList truncated to fit');
+                }
+            }    
+    }                                     
+    </script>
+    <script>
+    
+     /* Help Pop Start*/
+     
+      $(function(){
+            $('.helpHoverBtn').mouseenter(function(){
+                $('.helpdetail').fadeIn();
+            });
+            
+            $('.slds-align-bottom').mouseleave(function(){
+                $('.helpdetail').fadeOut("slow");
+            });            
+        });
+     
+     
+      $(document).ready(function(){                                                                
+        $('button.help-link').mouseenter(function(){
+            $('.helpdetail').fadeIn();
+        });
+        $('.slds-dropdown-trigger').mouseleave(function(){
+            $('.helpdetail').fadeOut();
+        });
+        /* Help Pop Ends */
+        
+        /* Other Link Start*/
+        $('button.otherLink').mouseenter(function(){
+            $('.otherTabsLink').fadeIn();
+        });
+        $('.otherTabArea').mouseleave(function(){
+            $('.otherTabsLink').fadeOut();
+        });
+        /* Other Link Ends */
+        $(".otherTa").mouseover(function(){
+            $(".otherTabsLink").show();
+        });    
+    });
+    </script>
+     <script>
+    $(document).ready(function(){
+        $('#slds-tooltip-left').hide();
+        $('#slds-tooltip-left2').hide();        
+        $(".gotoDOrg").click(function() {  
+            if (isLightningExperienceOrSalesforce1()) {
+                var isFirefox = typeof InstallTrigger !== 'undefined';
+                if (isFirefox) {
+                    $(".dorgLink").removeAttr('target');
+                    var targetURL = 'https://go.discoverydb.com/';
+                    targetURL = targetURL.substring(targetURL.lastIndexOf("srcUp('") + 7, targetURL.lastIndexOf("');"));
+                    window.open(decodeURIComponent(targetURL));
+                    return false;
+                }
+            }
+            $(".dorgLink")[0].click();
+            return false;
+        });    
+        $(".myAccount").click(function() {
+            if (isLightningExperienceOrSalesforce1()) {
+                $(".myaccountLink").removeAttr('target');
+                
+            }
+            $(".myaccountLink")[0].click();
+            return false;
+        });    
+        /* Help Pop Start*/
+        $('button.help-link').mouseenter(function(){
+            $('.helpdetail').fadeIn();
+        });
+        $('.slds-dropdown-trigger').mouseleave(function(){
+            $('.helpdetail').fadeOut();
+        });
+        /* Help Pop Ends */        
+        /* Other Link Start*/
+        $('button.otherLink').mouseenter(function(){
+            $('.otherTabsLink').fadeIn();
+        });
+        $('.otherTabArea').mouseleave(function(){
+            $('.otherTabsLink').fadeOut();
+        });
+        /* Other Link Ends */
+        $(".otherTa").mouseover(function(){
+        $(".otherTabsLink").show();                   
+    });
+         
+         
+         
+         
+         });
+     </script>
+    <script src="{!URLFOR($Resource.SLDS080,'SLDS080/assets/script/jquery.min.js')}"></script>
+   <!--  <script src="{!URLFOR($Resource.autocomplete_resource,'/js/bootstrap.min.js')}"></script> -->
+    
+     
+    
+     <!--  Drag and Drop Style & Script -->    
+        
+    <apex:form style="background-color:white;" >
+    
+    <!--apex:inputHidden value="{!response}" id="inpHidnResp"></apex:inputHidden-->
+    <div id="slds-tooltip-left" class="slds-tooltip slds-nubbin--right slds-m-top--small address-info-tooltip" role="tooltip" style="position: absolute;z-index: 9010;display: block;left: 1047px;width: 100px;top: 2px;">
+                <div class="slds-tooltip__content">
+                    <div class="slds-tooltip__body">My Account</div>
+                </div>
+            </div>
+            
+     <div id="slds-tooltip-left2" class="slds-tooltip slds-nubbin--right slds-m-top--small address-info-tooltip" role="tooltip" style="position: absolute;z-index: 9010;display: block;left:990px;width: 200px;top: 2px;">
+                <div class="slds-tooltip__content">
+                    <div class="slds-tooltip__body">View on DiscoverOrg Site</div>
+                </div>
+            </div>       
+            
+    <apex:actionFunction name="saveSearchOkCall" action="{!saveFavSearch}" oncomplete="saveSearchPopupHideCall();" /><!--window.parent.fetchAllSavedSearchsFun();-->
+    <apex:actionFunction name="saveSearchOkCall" action="{!saveFavSearch}" reRender="showsuccessMsg" oncomplete="hideStatusDiv();saveSearchPopupHideCall();$('#searchSuccess').show();window.parent.fetchAllSavedSearchsFun();alert('complete');" />
+
+        <!--Page Header Start Here-->
+        <div class="slds-page-header" role="banner" style="padding:0px;">
+            <div class="slds-grid slds-grid-main" style="margin: 0px;width: 99%;max-width: 100%;height: 60px;">
+                <div class="slds-col slds-size--4-of-12">
+                    <apex:outputLink value="/apex/DSCORGPKG__MainPage?sfdc.tabName=01rE00000009F3L" target="_blank">
+                        <img src="{!URLFOR($Resource.DiscoverOrgUI,'images/logo-x.png')}" style="margin-left: 10px;width: 225px;margin-top: 3%;margin-left: 3%;" />
+                    </apex:outputLink>
+                </div>
+                <div class="slds-col slds-size--6-of-12 slds-tabs--default" align="right" style="margin-top: 13px;">
+                    <apex:inputText value="{!searchContactKeyword}" styleClass="searchForConNCompInpBx" html-placeholder="Search Companies or Employees" />
+                    <i class="fa fa-search filterSearchFaIcon" style="font: normal normal normal 14px/1 FontAwesome !important; " onclick="filterUpdate(); return false;"></i>
+                </div>
+                <div class="slds-button-group" role="group" style="float: right; padding-top:13px;margin-right: 10px;">
+                    <button onmouseover="$('#slds-tooltip-left').show(); return false;" onmouseout="$('#slds-tooltip-left').hide(); return false;" class="slds-button slds-button--icon-border slds-button--icon-background myAccount " data-tooltip="My Account" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                       <i class="fa fa-user" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                   </button>
+                   <apex:outputLink value="/apex/DiscoverOrgSetup?retUrl=MainPage" styleClass="myaccountLink" target="_blank"></apex:outputLink>
+                   
+                   <button onmouseover="$('#slds-tooltip-left2').show(); return false;" onmouseout="$('#slds-tooltip-left2').hide(); return false;" class="gotoDOrg slds-button slds-button--icon-border slds-button--icon-background gotoDOrg" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;">
+                       <i class="fa fa-globe" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+                   </button>
+                   <apex:outputLink value="https://go.discoverydb.com/" styleClass="dorgLink" target="_blank"></apex:outputLink>
+                   
+
+                    <div class="slds-dropdown-trigger" style="display:block;z-index:999; position:relative;">
+                        <button  class="slds-button slds-button--icon-border slds-button--icon-background help-link" aria-haspopup="true" style="height: 35px;margin:0;border-radius: 0 0.25rem 0.25rem 0; border-left: 0;background-color: #ffffff;width: 40px;">
+                           <i class="fa fa-question-circle-o" aria-hidden="true" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>   
+                           <i class="fa fa-sort-desc" aria-hidden="true" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;float: right; margin-top: -4px;margin-right: 4px;"></i>   
+                       </button>
+                        <c:doHelpMenu pname="showhidefixit" />
+                    </div>
+                </div>
+                <div class="otherTabArea">
+                <button class="slds-button slds-button--icon-border slds-button--icon-background otherLink" aria-haspopup="true" style="height: 35px;margin:0;background-color: #ffffff;margin-top: 13px;">
+                   <i class="fa fa-caret-down" style="font: normal normal normal 18px/1 FontAwesome !important;color: #666666;"></i>
+               </button>
+               
+               <!--Other Tab Drop Down Start Here-->
+               <div style="position: absolute; right:0px; top:46px;  z-index: 202; padding-top:5px; display:none;width: 228px;height: 197px;" class="otherTabsLink">
+                <div class="innerHelp" style=" background-color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);border: solid 1px #cccccc;border-radius: 4px;">
+                    <table style="font-size: 14px;color: #666666 !important;">
+                        <tbody>
+                            <tr>
+                                <td style="padding-left: 10px;padding-top: 10px; {!IF($Permission.DSCORGPKG__HasAdminPermissionSet, 'padding-bottom: 5px;', 'padding-bottom: 10px;')}"><a style="color: #666666;" target="_blank" href="/apex/DorgConflictResolver">DiscoverOrg Conflicts</a></td>
+                            </tr>
+                            <tr>
+                                <td style="{!IF($Permission.DSCORGPKG__HasAdminPermissionSet, 'display:block;', 'display:none;')}"><a style="color: #666666;" target="_blank" href="/apex/UpdatableFields">DiscoverOrgAdministration</a></td>
+                            </tr>  
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--Other Tab Drop Down End Here-->
+           </div>
+           
+             <!--Save Search Popup Start Here-->
+        <div style="display:none;" class="saveSrchPopup">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 class="slds-text-heading--medium">Save Search</h2>
+                        <button class="slds-button slds-modal__close" >
+                        <svg class="slds-button__icon slds-button__icon--large" aria-hidden="true">
+                          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-form--stacked">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="{!$component.TitleRedAlert}">Name</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputText value="{!saveSearchName}" styleClass="slds-input" html-placeholder="Enter a name for this search..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <apex:commandButton styleclass="slds-button slds-button--neutral" style="margin-top: 5px;" value="Cancel" onclick="saveSearchPopupHideCall();return false;"/>
+                        <apex:commandButton styleclass="slds-button slds-button--neutral  slds-button--brand" id="kId1" style="margin-top: 5px;" value="Save" onclick="showStatusDiv();saveSearchOkCall();return false;" />
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+      <!-- end -->
+            
+            <apex:outputPanel id="showsuccessMsg">
+        <div style="display:none;top:140px;" id="searchSuccess">
+        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+        <div Class="slds-notify-container" style="top: 187px;">
+                        <div Class="slds-notify slds-notify--toast" style="min-width: 32rem;">
+                            <button class="slds-button slds-notify__close toastClose">
+                            <i class="fa fa-close" style="font: normal normal normal 22px/1 FontAwesome !important;color:white;"></i>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <div class="notify__content">
+                            <h2 class="slds-text-heading--small">Search {!saveSearchName} has been saved.</h2>
+                        </div>
+                    </div>
+                     
+                </div>
+        </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+        </apex:outputPanel>
+            
+            
+            
+            
+            
+            
+            <script>
+            $(".btn").removeClass("btn");
+            </script>
+            
+            </div>
+            
+
+            
+            <div class="slds-grid slds-grid-main" style="margin: 0px;width: 100%;max-width: 100%;background-color: #1b5eac;height:40px;padding-left: 25px; font-family: Open Sans !important; font-size:14px; font-weight:bold;">
+                <div class="tabDiv">
+                    <a class="tabA" style="text-decoration:none;" href="/apex/DSCORGPKG__MainPage">Advanced Search</a>
+                    <!--  <div id="divPati"></div>
+                    <div style="height: 15px;width: 15px;background: #f8f8f8;position: absolute;-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);transform: rotate(45deg);margin-left: 44px;margin-top: 5px;"></div>-->
+                    
+                </div>
+                <div class="tabDiv" style="margin-left: 5px; ">
+                    <a class="tabA" href="/apex/DSCORGPKG__BulkMatch" style="text-decoration:none;">ListMatch</a>
+                    <div style="height: 10px;width: 10px;background: white;position: absolute;-ms-transform: rotate(45deg);-webkit-transform: rotate(45deg);transform: rotate(45deg);margin-left: 32px;margin-top: 4px;"></div>
+                </div>
+            </div>
+        </div>
+        <!--Page Header End Here-->
+        
+        <div id="pnlLoadingtop" class="slds-modal-backdrop slds-modal-backdrop--open" style="display: none;z-index:10000000;">
+               <div style="position:fixed; top: 50%; left: 50%; margin-top: -45px; margin-left: -45px;">
+                   <apex:image value="{!URLFOR($Resource.DSCORGPKG__SLDS080,'SLDS080/assets/images/spinners/slds_spinner_brand.gif')}" style="width:62px;" />
+               </div>
+           </div>
+           
+        <div id="help-research-request" class="slds-hide">
+            <div aria-hidden="false" role="dialog"  id="help-research-request-modal" class="slds-modal slds-fade-in-open">
+                
+                <c:ResearchRequest />
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+        <apex:outputPanel id="help-research-request-script">
+            <script>
+            function helpResearchRequestOnComplete(){
+                if( "{!sentResearchRequest}" == "true"){
+                    alert('A notification has been sent to DiscoverOrg for your Research Request. Thank You!!');
+                }else{
+                    alert('Unable to submit Research Request on DiscoverOrg for Salesforce.');
+                }
+                
+                $('.top-overlay, .overlay-div').hide();
+                $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+            }
+            
+            // Research request
+                $("#submit-research-request").click(function(){
+                    $("#help-research-request").removeClass("slds-hide").addClass("slds-fade-in-open");
+                    $("[id$='research-sel-option']").val("Select a Research Option");
+                    callOptionsDisplay("Select a Research Option");
+                    return false;
+                });
+                
+                $(".slds-button--Help-model-close").click(function(){
+                    $("#help-research-request").addClass("slds-hide").removeClass("slds-fade-in-open");
+                    $("[id$='help-research-textarea']").val("");
+                    return false;
+                });
+                
+            </script>
+        </apex:outputPanel>
+        <div class="slds">
+            <div class="slds-grid" Style="height: 82px;background-color: #f8f8f8;" >
+                
+                <div class="slds-col slds-size--8-of-12">
+                    <div class="slds-tabs--path" role="application" style="margin-right:30px; margin-top:20px;margin-left:40px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h2 class="slds-text-heading--small slds-truncate" style="font-size: 18px;margin-top: 25px; margin-left:0px; margin-bottom:10px;color:#666666; font-weight:bold;">ListMatch</h2>
+                                </td>
+                                
+                                <td  style="float:right;">
+                                    <div style="float:right;margin-top: 30px; margin-right:-40px;">
+                                        
+
+                                        <span style="text-decoration: underline; "  class="matchedLink">
+                                        
+                                        </span>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="font-size: 12px;text-align: left;color: #7f7f80;">
+                                    Quickly match a list of employee or company information against DiscoverOrgs database. Lists may be entered manually, copied, or uploaded from a .csv file.
+                                </td>
+                            
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
+
+                
+            </div>
+        <div style="border-radius:20px;padding:3px;height:43px;margin-top: 46px;width: 1248px; 34pxmargin-left:;margin-left: 48px;"><!-- 30px -->
+                 
+                    <div class="slds-grid">
+                              <div class="slds-tabs--path" role="application">
+                                <ul id="menu" class="slds-tabs--path__nav" role="tablist">
+                                  <li class="slds-tabs--path__item slds-is-current" id="bMStageId" role="presentation" style="margin-left:0em;"><!-- background-color:#6ebe49; -->
+                                    <a class="slds-tabs--path__link" id="tabs-path-96" Style="text-decoration: none; cursor:default;" aria-controls="content-path-1" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                      <span class="slds-tabs--path__stage">
+                                        
+                                        <i class="fa fa-check" style="color:#ffffff;margin-left: 116px;margin-top: 6px;font-size:12px;font: normal normal normal 12px/1 FontAwesome !important;"></i>
+                                        <span class="slds-assistive-text">Stage Complete</span>
+                                      </span>
+                                      <span id="firsttab" class="slds-tabs--path__title" style="transform:rotateX(0deg);font-size: 12px;font-weight: 600;color:#ffffff;">Enter Your List</span>
+                                    </a>
+                                  </li>
+
+                                  <li class="slds-tabs--path__item slds-is-incomplete" id="matchStageId" role="presentation" style="margin-left:0em;">
+                                    <a class="slds-tabs--path__link" id="tabs-path-98" aria-controls="content-path-1" Style="text-decoration: none; cursor:default;" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                      <span class="slds-tabs--path__stage">
+                                        <!--<svg class="slds-icon slds-icon--x-small" aria-hidden="true">
+                                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                                        </svg>-->
+                                        <i class="fa fa-check" style="color:#ffffff;margin-left: 122px;margin-top: 6px;font-size:12px;font: normal normal normal 12px/1 FontAwesome !important;"></i>
+                                      </span>
+                                      <span id="secondtab" class="slds-tabs--path__title" style="transform:rotateX(0deg);font-size: 12px;font-weight: 600;">Preview Results</span>
+                                    </a>
+                                  </li>
+                                  <li class="slds-tabs--path__item slds-is-incomplete" id="unMatchStageId" role="presentation" style="margin-left:0em;">
+                                    <a class="slds-tabs--path__link" id="tabs-path-99" aria-controls="content-path-1" Style="text-decoration: none; cursor:default;" aria-selected="false" tabindex="-1" role="tab" href="javascript:void(0);" aria-live="assertive">
+                                      <span class="slds-tabs--path__stage">
+                                     
+                                        <i class="fa fa-check" style="margin-left: 166px;margin-top: 6px;font-size:12px;font: normal normal normal 12px/1 FontAwesome !important;"></i>
+                                      </span>
+                                      <span class="slds-tabs--path__title" style="transform:rotateX(0deg);font-size: 12px;font-weight: 600;">Review &amp; Save Matches</span>
+                                    </a>
+                                  </li>
+
+                                </ul>
+                              </div>
+                            </div>
+           </div>
+            <apex:outputPanel id="pasteGOMatchId" >
+        <div class="slds-tabs--default" style="padding: 12px;margin-left: 40px;width: 1264px;">
+                    
+                    <ul class="slds-tabs--default__nav" role="tablist">
+                        <!-- Enter List -->
+                        <li class="slds-tabs--default__item slds-active" title="Enter List" role="presentation" style="margin-left: 0em;">
+                            <a class="slds-tabs--default__link MatchesTab" style="text-decoration: none;" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-5" id="tab-default-5__item" >
+                                <apex:outputPanel id="listtab">
+                                    Enter List
+                                </apex:outputPanel>
+                            </a>
+                            
+                        </li>
+                        <!-- Import List Tab -->
+                        <li class="slds-tabs--default__item" title="Import List" role="presentation">
+                            <a class="slds-tabs--default__link PossibleMatches" style="text-decoration: none;" role="tab" tabindex="1" aria-selected="false" aria-controls="tab-default-6" id="tab-default-6__item" >
+                                <apex:outputPanel id="importtab">
+                                    Import List
+                                </apex:outputPanel>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <div class="slds-grid" style="margin-top: 34px;">
+                    <div class="slds-col slds-size--3-of-8" style="height: 89px;float: left;border-radius: 4px;padding-top: 13px;background-color: #f4f6f9;">
+                        <h4 class="slds-text-heading--small" style="color: #54698d;font-size: 14px;margin-left: 14px;height: 19px;width: 250px;">Select Search Criteria<b><i> (Required)</i></b></h4><br/>
+                        <apex:selectList value="{!searchItem}" size="1" style="font-size: 14px;height:34px;margin-top:-12px;width:231px;margin-left: 14px;cursor: pointer;" styleClass="slds-select" id="pasteSerches" rendered="true">
+                            <apex:selectOptions value="{!Searches}" />
+                        </apex:selectList>
+                    </div>
+                   
+    </div>
+    
+    <div id="tab-default-5" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-5__item">
+    <div class="slds-grid" style="background-color:#ffffff;height: 485px;margin: 9px 20px 20px 0px;width: 600px;border-right: 1px solid #d7dde6;">
+        <div class="slds-col slds-size--5-of-12" Style="color: #666666;">
+             
+            <span class="slds-text-heading--small slds-truncate" style="margin-top: 4px;font-size: 14px; font-weight:bold; line-height:2.25;color:#54698d;">Enter List Below </span><span class="slds-text-heading--small slds-truncate" style="font-size: 12px;font-style: italic;color:#54698d;">  Type or Copy/Paste Maximum 6000 characters</span><br/>
+            <div class="slds-grid">
+                <div class="containerinner slds-col" Style="background-color:white; height: 308px; margin-top:10px; width:560px; border:2px  #A3A3A3; border-radius:10px;">
+                    <!-- slds-size--12-of-12 -->
+                    <apex:inputTextarea cols="100"  rows="20" id="pGoLimit" value="{!textValue}" style="line-height: 1.3 !important;width:93%;max-height: 400px;height:400px;color: #817C82;font-size: 14px;padding-top: 6px;" onKeyDown="limitText(this);" onKeyUp="limitText(this);" styleClass="slds-input" />
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div style="float:right;margin-top: 107px;margin-right: 40px;">
+                <!--<a href="#">Cancel</a> #6ebe49 rgba(110, 190, 73, 0.65)-->
+                <span style="margin-left:10px;height: 34px;width: 139px;color:white;padding:10px 30px 10px 30px;border-radius: 4px;background-color: #6ebe49; cursor:pointer" onClick="goPasteAndGo(); return false;">Run Search</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="tab-default-6" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-6__item">
+        <div class="slds-grid" style="background-color:#ffffff;height: 485px;margin: 9px 20px 20px 0px;width: 600px;border-right: 1px solid #d7dde6;">
+            <div class="slds-col slds-size--5-of-12" Style="color: #666666;">
+                <div style="margin-top: 4px;" >Select File to Upload <span class="slds-text-heading--small slds-truncate" style="font-size: 12px;font-style: italic;color:#54698d;"> Single-column .CSV with a maximum of 5000 entries. </span> </div>
+                <span class="slds-text-heading--small slds-truncate" style="font-size: 12px;font-style: italic;color:#54698d;"> Import file must not include header row. </span> 
+                <div style="background-color:white; height: 308px; margin-top:10px; width:560px; border:3px dashed #A3A3A3; border-radius:10px; ">
+                    <article class="dragDropComponentSize" id="dndContainer">
+                        <div id="holder">
+                            <span  id="holder_txt2" class="hidden"></span><br/><br/><br/><br/><br/><br/>
+                            <p id="upload" style="margin-left: 0;">
+                                <span id="holder_txt1" style="font-weight: 500;"> Drag &amp; Drop </span>
+                                or
+                                <input type="file" id="filesInput" onchange="ValidateSingleInput(this);" style="display:none;"/>
+                                <span style=" background-color:#1b5eac; height:30px; width:100px; color:white; padding:7px 27px 7px 25px;font-size: 14px;font-family: Open Sans !important; border-radius:4px;cursor: pointer;" onClick="CallUploadButton(); return false;">Browse</span>
+                            </p>
+                        </div>
+                        <p id="filereader"></p><!-- File API &amp; FileReader API not supported -->
+                        <p id="formdata"></p><!-- XHR2s FormData is not supported -->
+                        <p id="progress"></p><!-- XHR2s upload progress isnt supported -->
+                        
+                        
+                    </article>
+                </div>
+                <div Style="background-color: #f4f6f9;width: 560px;height: 76px;margin-top: 15px;padding-top:14px">
+                    <p id="uploadStatus" style="margin-top:1px; display:block;">
+                    <span style="margin-left: 15px;">Progress: </span> <span id="progressID" style="float: right;margin-right:15px;"></span>
+                    
+                     </p>
+                  <div id="uploadprogress2" class="slds-progress-bar slds-progress-bar_medium slds-progress-bar_circular" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" role="progressbar" style="background-color: white;border: 1px solid #ffffff;border-radius: 38px;height: 9px;margin-left: 11px;margin-right:20px;margin-top: 7px;">
+                          <span id="prospan" class="slds-progress-bar__value"  style="width: 0%;">
+                           <span id="prospan2" class="slds-assistive-text">Progress: 0%</span>
+                          </span>
+                    </div>
+                    
+                   <span id="fileNameID" style="margin-left: 15px;"></span>
+                 
+                </div>
+
+                <div style="float:right;margin-top: 23px;margin-right: 40px;">
+                          <!--  <a href="#">Cancel</a>-->
+                            <span style="margin-left:10px;height: 34px;width: 139px;color:white;padding:10px 30px 10px 30px;border-radius: 4px;background-color: #6ebe49; cursor:pointer;" onClick="goPasteAndGo(); return false;">Run Search</span><!-- background-color: rgba(110, 190, 73, 0.65); -->
+                 </div>
+                
+            </div>
+                    
+
+                </div>  
+                            
+                        </div>
+                    </div>
+                <apex:actionFunction name="PastenGo" action="{!go}" status="godivProcess" reRender="limitExeedPanelId, matchedCountPanel, matchedPanelTab, possibleMatchedPanelTab, unMatchedPanelTab,  totalsearchedTerm, viewAdv, inpHidnResp, inpHidn" onComplete="onLimitExeed(); goOnchangeButtonEnd();   return false;" />
+            </apex:outputPanel>
+                
+                <!--  Review Matched Records -->
+            
+            <apex:outputPanel id="matchedCount">
+              
+                <div class="slds-grid" >
+                    <div class="slds-col slds-size--12-of-12" style="height: 500px;">
+                        
+                        <div style="height: 397px;width: 834px;background-color: #ffffff;border-radius: 4px;margin-left: 48px;margin-top: 23px;margin-bottom: 29px;border: solid 1px #d7dde6;">
+                        <table Style="margin-top:40px"><tr>
+                        <td> <p style="margin-left: 32px;font-size: 20px;font-weight: 600;width: 167px;color:#16325c;">Search Results</p></td>
+                        <td> 
+                                               
+                        </td></tr>
+                        <tr><td><apex:outputPanel id="totalsearchedTerm">
+                            <p style="margin-left:32px;font-size: 14px;color: #54698d;">You searched for {!totalSearchCount} terms.</p>
+                        </apex:outputPanel></td>
+                        <td><apex:outputPanel id="viewAdv">
+                                <a href="{!linkforAdvancedSearch}" target="_blank"  class="slds-button slds-button_neutral" style="border:  solid 1px #d7dde6;padding: 0px 5px 0px 5px;float: right;width: 221px;height: 34px;text-align: center;color: #1589ee;font-size: 12px;margin-right: 48px;background-color: white;z-index:1000;">View Matches in Advanced Search</a>
+                                
+                            </apex:outputPanel></td></tr></table>
+
+                        
+
+                        <div class="slds-modal__container" style="margin-left:8px;width: 676px;height: 371px; margin-top: -49px;">
+                            <apex:outputPanel id="matchedCountPanel">
+                            <ul style="margin-top: 0px;list-style-type: none;width: 798px;">
+   
+                <li style="display:block;float:left;width: 238px;margin-right: 30px;">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header" style="text-align:center;padding:0px;border:0px;border-radius:6px 6px 0px 0px;width: 238px;">
+                            <div style="background-color: #f4f6f9;color: #54698d;border-radius:6px 6px 0px 0px;padding:13px;font-size: 14px;border: solid 1px #d7dde6;height: 64px;font-weight: 600;font-size: 20px;text-align:left;padding-top: 28px;">Matched</div>
+                        </div>
+                        <div class="slds-modal__content" style="margin-top: -2px;padding:0rem;border-radius:0px 0px 11px 11px;background-color: white;height: 176px;width: 238px;border: solid 1px #d7dde6;">
+                            <p style=" color: #54698d;font-size: 64px;font-weight: 800;text-align: center;height: 87px; " id="matchedID" >{!matched}</p>
+                            <p style=" color: #54698d;font-size: 18px;text-align: center; ">Results</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li style="display:block;float:left;width: 238px;margin-right: 30px;">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header" style="text-align:center;padding:0px;border:0px;border-radius:6px 6px 0px 0px;width: 238px;">
+                            <div style="background-color: #f4f6f9;color: #54698d;border-radius:6px 6px 0px 0px;padding:13px;font-size: 14px;border: solid 1px #d7dde6;height: 64px;font-weight: 600;font-size: 20px;text-align:left;padding-top: 28px;">Possible</div>
+                        </div>
+                        <div class="slds-modal__content" style="margin-top: -2px;padding:0rem;border-radius:0px 0px 11px 11px;background-color: white;height: 176px;width: 238px;border: solid 1px #d7dde6;">
+                            <p style=" color: #54698d;font-size: 64px;font-weight: 800;text-align: center;height: 87px; "  id="possibleID" >{!possible}</p>
+                            <p style=" color: #54698d;font-size: 18px;text-align: center; ">Results</p>
+                        </div>
+                    </div>
+                </li>
+            
+                <li style="display:block;float:left;width: 238px;">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header" style="text-align:center;padding:0px;border:0px;border-radius:6px 6px 0px 0px;width: 238px;">
+                            <div style="background-color: #f4f6f9;color: #54698d;border-radius:6px 6px 0px 0px;padding:13px;font-size: 14px;border: solid 1px #d7dde6;height: 64px;font-weight: 600;font-size: 20px;text-align:left;padding-top: 28px;">Unmatched</div>
+                        </div>
+                        <div class="slds-modal__content" style="margin-top: -2px;padding:0rem;border-radius:0px 0px 11px 11px;background-color: white;height: 176px;width: 238px;border: solid 1px #d7dde6;">
+                            <p style=" color: #54698d;font-size: 64px;font-weight: 800;text-align: center;height: 87px; " id="unmatchedID" >{!unmatched}</p>
+                            <p style=" color: #54698d;font-size: 18px;text-align: center; ">Terms</p>
+                        </div>
+                    </div>
+                </li> 
+            
+            </ul>
+                            
+                            </apex:outputPanel>
+                            
+                        </div>
+                        
+                        </div>
+                        <span class="unMatchedLink" style="cursor: pointer;margin-left: 564px; background-color:#6ebe49; height:30px; width:100px; color:white; padding:10px 30px 10px 30px; border-radius:6px;margin-left: 702px;" onclick="goOnchangeButtonStart(); callforReview(); onclickReviewAll(); return false; " >Review All Matches</span><!--callforMatched(); -->
+                    </div>
+                    <div class="slds-col slds-size--4-of-12">
+                        
+                    </div>
+                    <div class="slds-col slds-size--7-of-12" style="width:171px;">
+                    </div>
+                </div>
+                
+            </apex:outputPanel>
+            
+            <apex:actionFunction name="callforMatched" action="{!callforMatched}" status="godivProcess" reRender="matchedList,possibleMatchedList,unMatchedList" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction name="callforPossibleMatched" action="{!callforPossibleMatched}" status="godivProcess" reRender="matchedList,possibleMatchedList,pgRecord1,unMatchedList" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction name="callforUnMatched" action="{!callforUnMatched}" status="godivProcess" reRender="matchedList,possibleMatchedList,unMatchedList" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!ChangedPageSize}" name="chenaged" reRender="pgRecords,pppp" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!first}" name="First" reRender="pgRecords,pppp" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!previous}" name="Previoused" reRender="pgRecords,pppp" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!PNext}" name="PNext" reRender="pgRecords,pppp" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+             <apex:actionFunction action="{!last}" name="lastl" reRender="pgRecords,pppp" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" /> 
+            <apex:actionFunction action="{!ChangedPageSize}" name="chenaged1" reRender="pgRecord1,pgin1,pppp,pgRecords" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!first}" name="First1" reRender="pgRecord1,pgin1" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!previous}" name="Previoused1" reRender="pgRecord1,pgin1" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!PNext}" name="PNext1" reRender="pgRecord1,pgin1" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+             <apex:actionFunction action="{!last}" name="lastl1" reRender="pgRecord1,pgin1" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!ChangedPageSize}" name="chenaged2" reRender="pgRecord2,pgin2" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!first}" name="First2" reRender="pgRecord2,pgin2" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!previous}" name="Previoused2" reRender="pgRecord2,pgin2" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+            <apex:actionFunction action="{!PNext}" name="PNext2" reRender="pgRecord2,pgin2" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+             <apex:actionFunction action="{!last}" name="lastl2" reRender="pgRecord2 , pgin2" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+             <apex:actionFunction action="{!viewSearch}" name="search" reRender="pgRecord , pgin" status="godivProcess" onComplete="goOnchangeButtonEnd();return false;" />
+             
+             <apex:actionFunction name="refreshPanels" rerender="reviewMatch"/>
+             
+            <apex:outputPanel id="reviewMatch">
+            
+                    <div style="margin-left: 44px;margin-right: 26px;">
+                    <div class="slds-tabs--default" style="padding: 12px;">
+               <script>
+                   function changeTab(){
+                        var selectval=$(this).text();
+                        selectval=selectval.trim();
+                        alert('HERE');
+                        alert(selectval);
+                        
+                       
+                        
+                        $('.slds-tabs--default__nav li').removeClass('slds-active');
+                         var $parent = $(this).parent();
+                                if (!$parent.hasClass('slds-active')) {
+                                alert('HERE 1');
+                            $parent.addClass('slds-active');
+                            
+                            }
+                            
+                            if(selectval.match(/^M.*$/)){ 
+                            refreshPanels();
+                            goOnchangeButtonStart(); 
+                            callforMatched();
+ 
+                          alert('HERE 2');
+                            return false;
+                                     
+                        }
+                        
+                        else if(selectval.match(/^P.*$/)){ 
+                            refreshPanels();
+                            goOnchangeButtonStart(); 
+                            callforPossibleMatched();
+
+                              alert('HERE 3');
+                            return false;
+                                     
+                        }
+                        
+                        else{
+                            refreshPanels();
+                            goOnchangeButtonStart(); 
+                            callforUnMatched();
+
+                          alert('HERE 4');
+                            return false;
+                        
+                        }
+                   }
+
+                    </script>
+                   <ul class="slds-tabs--default__nav" role="tablist">
+                        <!-- Matched Tab -->
+                        <li id="firstli" class="slds-tabs--default__item" title="Matches" role="presentation" style="margin-left: 0em;">
+                            <a onclick="goOnchangeButtonStart(); callforMatched();return false; " class="slds-tabs--default__link MatchesTab" style="text-decoration: none;" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item" > <!-- onclick="goOnchangeButtonStart(); callforMatched();return false; "  -->
+                                <apex:outputPanel id="matchedPanelTab" >
+                                    Matches&nbsp;({!matched})
+                                </apex:outputPanel>
+                            </a>
+                        </li>
+                        <!-- PossibleMatched Tab -->
+                        <li id="secondli" class="slds-tabs--default__item" title="Possible Matches" role="presentation">
+                            <a onclick="goOnchangeButtonStart(); callforPossibleMatched();return false;" class="slds-tabs--default__link PossibleMatches" style="text-decoration: none;" role="tab" tabindex="1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item" > <!--onclick="goOnchangeButtonStart(); callforPossibleMatched();return false;"  -->
+                                <apex:outputPanel id="possibleMatchedPanelTab" >
+                                    Possible Matches&nbsp;({!possible})
+                                </apex:outputPanel>
+                            </a>
+                        </li>
+                        <!-- UnMatched Tab -->
+                        <li id="thirdli" class="slds-tabs--default__item" title="Unmatched" role="presentation">
+                            <a onclick="goOnchangeButtonStart(); callforUnMatched();return false;" class="slds-tabs--default__link Unmatched" style="text-decoration: none;" role="tab" tabindex="2" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item" > <!--  onclick="goOnchangeButtonStart(); callforUnMatched();return false;" -->
+                                <apex:outputPanel id="unMatchedPanelTab" >
+                                    Unmatched Terms&nbsp;({!UnMatched})
+                                </apex:outputPanel>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                        <div id="tab-default-1" class="slds-tabs--default__content" role="tabpanel" aria-labelledby="tab-default-1__item">
+                            <apex:outputPanel id="matchedList" >
+                                <div style="float:right; margin-bottom:5px;">
+                                    <apex:outputPanel rendered="{!if(MatchList!=null && MatchList.size > 0, isMatched12, false)}">
+                                    <div style="display:inline;">
+
+                                    </div>
+                                    <div style="display:inline;">
+
+                                    </div>
+                                    <div style="display:inline;">
+                                        <apex:outputLabel onclick="search();goOnchangeButtonStart();return false;"><span style="width: 177px; height: 34px; border-radius: 4px; padding:10px 18px; background-color: #6ebe49; color:white;cursor:pointer; " >View Results in Search</span></apex:outputLabel>
+                                    </div>
+                                    </apex:outputPanel>
+                                </div>
+                                <apex:outputPanel id="pgRecords" rendered="{!if(MatchList!=null && MatchList.size > 0, isMatched12, false)}">
+                                <div style="border:1px solid #D1D1D1;border-radius:5px;margin-top:45px;">
+                                 <table class="slds-table slds-table--resizable-cols" role="grid" id="matchtable">
+                                     <thead>
+                                         <tr style="background-color: #f8f8f8;height: 41px;border-bottom:1px solid #D1D1D1;">
+                                            <th class="slds-truncate thcolor" style="padding-top:19px;"> 
+                                            
+
+                                                <label class="slds-checkbox selectAllChk" for="checkUncheck5" style="margin-left: -6px;padding-right: 22px;">
+                                                        
+                                                        <input type="checkbox" onclick="checkUncheck1(this);" id="checkUncheck5" />
+                                                       <!-- <input name="checkbox" type="checkbox" value="{!var.isSelected}" id="checkUncheck" class="checkUncheck" /> -->
+                                                        <span class="slds-checkbox--faux lol" style="background:#666666;border: 1px solid #666666;border-radius: 3px;"></span>
+                                                        <span class="slds-form-element__label slds-assistive-text"></span>
+                                                            </label>
+                                                Company</th>
+                                            <th class="thcolor" style="padding-top:19px; padding-left: 10px;">Term Searched</th><!-- Matched Term -->
+                                            <th class="thcolor" style="padding-top:19px; padding-left: 10px;    padding-left: 10px;">Accuracy</th>
+                                          </tr>
+                                     </thead>
+                                     <tbody>
+                                        <apex:variable value="{!1}" var="c"/>
+                                            <apex:repeat value="{!MatchList}" var="var">
+                                                <tr>
+                                                    <td style="width:27%;"> 
+                                                        <label class="slds-checkbox" for="{!$Component.c}" style="margin-left: -6px;padding-right: 22px;">
+                                                        <apex:inputCheckbox styleClass="checkUncheck" id="c" onclick="uncheckCheck()"  value="{!var.isSelected}"/>
+                                                        <span class="slds-checkbox--faux"></span>
+                                                        <span class="slds-form-element__label slds-assistive-text"></span>
+                                                            </label>
+                                                        
+                                                        <span style="font-size:12px;color:#1b5eac"><a href="/apex/DorgAccountDetailPage?companyId={!JSENCODE(var.DicoverId)}">{!var.recName}</a></span>
+                                                    </td>
+                                                    <td style="width:27%;border-left:1px solid #d1d1d1;border-right:1px solid #d1d1d1;font-size:12px;color:#666666;">{!var.matchedTerm}</td>
+                                                    
+                                                    <td style="width:27%;font-size:12px;color:#666666;">
+                                                        <apex:outputPanel rendered="{!IF(var.accuracy == '1.0' || var.accuracy == '100.0', true, false)}">
+                                                            100%
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!IF(var.accuracy != '1.0' && var.accuracy != '100.0', true, false)}">
+                                                            {!var.accuracy}
+                                                        </apex:outputPanel>
+                                                        
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <apex:variable value="{!c+1}" var="c"/>
+                                            </apex:repeat>
+                                     </tbody>
+                                 </table>
+                                 <script>
+                                 if ($(".checkUncheck").length == $(".checkUncheck:checked").length) {
+                                            $("#checkUncheck5").prop("checked", true);
+                                            
+                                        } else {
+                                            $("#checkUncheck5").prop("checked", false);
+                                            
+                                        }
+                                 </script>
+                                 </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel id="pppp" rendered="{!if(MatchList!=null && MatchList.size > 0, isMatched12, false)}">
+                                    <div style="float:left;">
+                                        <div class="slds-form-element">
+                                          <div class="slds-form-element__control">
+                                            <div class="slds-select_container" style="display: inline-flex;margin-top: 8px;">
+                                            <label class="slds-form-element__label" for="selected00" style="margin-top: 5px;">Displaying:</label>
+                                                <apex:selectList id="selected00" value="{!SelectedPageSize}" onchange="goOnchangeButtonStart();chenaged();return false;" size="1" styleClass="slds-select">
+                                                    <apex:selectOptions value="{!pageSizeList}"></apex:selectOptions>
+                                                </apex:selectList>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-button-group" role="group" style="float: right;margin-top: 2px;margin-bottom: 20px;">
+                                      <div class="pagination">
+                                      <a style="text-decoration:none;background-color: white;cursor: default;color: black;">Showing Page &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!pageNumber} of {!totalPages} &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                      <a onclick="goOnchangeButtonStart(); First();uncheckCheck();return false;">
+                                          <apex:outputPanel >
+                                              First
+                                          </apex:outputPanel>
+                                      </a>
+                                       <a onclick="goOnchangeButtonStart();uncheckCheck(); Previoused();return false;">
+                                          <apex:outputPanel >
+                                              Previous
+                                          </apex:outputPanel>
+                                      </a>
+                                        
+                                        <apex:outputPanel rendered="{!IF(pageNumber <= 1, false, true)}">
+                                            <a style="border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;" onclick="goOnchangeButtonStart();uncheckCheck(); Previoused();return false;">
+                                            {!pageNumber - 1}
+                                            </a>
+                                        </apex:outputPanel>
+                                        
+                                        
+                                       <a class="active" href="#">{!pageNumber}</a>
+                                       <a onclick="goOnchangeButtonStart();PNext(); uncheckCheck();return false;">
+                                          <apex:outputPanel >
+                                              Next
+                                          </apex:outputPanel>
+                                      </a>
+                                           <a onclick="goOnchangeButtonStart();lastl();uncheckCheck(); return false;">
+                                          <apex:outputPanel >
+                                              Last
+                                          </apex:outputPanel>
+                                      </a>
+                                       
+                                    </div>
+                                </div>
+                            </apex:outputPanel> 
+                                </apex:outputPanel>
+                        </div>
+                        <div id="tab-default-2" class="slds-tabs--default__content" role="tabpanel" aria-labelledby="tab-default-2__item" >
+                            
+                            <apex:outputPanel id="possibleMatchedList" >
+                                <apex:outputPanel id="pgRecord1" rendered="{!if(PossibleList!=null && PossibleList.size > 0, isPossible12, false)}" >
+                                <div style="border: 1px solid #d1d1d1;border-radius: 5px;">
+                                <table class="slds-table slds-table--resizable-cols" role="grid" id="possibletable">
+                                     <thead>
+                                         <tr style="background-color: #f8f8f8;height: 41px;border-bottom: 1px solid #d1d1d1;">
+                                            <th class="slds-truncate thcolor" style="padding-top:19px;">                                                 Company</th>
+                                            <th class="thcolor" style="padding-top:19px; padding-left: 10px;">Term Searched</th><!-- Matched Term -->
+                                            <th class="thcolor" style="padding-top:19px; padding-left: 10px;">Accuracy</th>
+                                          </tr>
+                                     </thead>
+                                     <tbody>
+                                        <apex:repeat value="{!PossibleList}" var="var">
+                                            <tr>
+                                                <td style="width:27%;"> 
+
+                                                    <span style="font-size:12px;color:#1b5eac"><a href="/apex/DorgAccountDetailPage?companyId={!JSENCODE(var.DicoverId)}">{!var.recName}</a></span>
+                                                </td>
+                                                <td style="width:27%;border-left:1px solid #d1d1d1;border-right:1px solid #d1d1d1;font-size:12px;color:#666666">{!var.matchedTerm}</td>
+                                                <td style="width:27%;font-size:12px;color:#666666;font-size:12px;">{!var.accuracy}</td>
+                                            </tr>
+                                        </apex:repeat>    
+                                     </tbody>
+                                    </table>
+                                    </div>
+                                </apex:outputPanel>
+                                 <apex:outputPanel id="pgin1" rendered="{!if(PossibleList!=null && PossibleList.size > 0, isPossible12, false)}" >
+                                     <div style="float:left;">
+                                        <div class="slds-form-element">
+                                          <div class="slds-form-element__control">
+                                            <div class="slds-select_container" style="display: inline-flex;margin-top: 8px;">
+                                            <label class="slds-form-element__label" for="select-01" style="margin-top: 5px;">Displaying:</label>
+                                                <apex:selectList id="select-02" value="{!SelectedPageSize}" onchange="goOnchangeButtonStart();chenaged1();return false;" size="1" styleClass="slds-select">
+                                                    <apex:selectOptions value="{!pageSizeList}"></apex:selectOptions>
+                                                </apex:selectList>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-button-group" role="group" style="float: right;margin-top: 2px;margin-bottom: 20px;">
+                                      <div class="pagination">
+                                      <a style="text-decoration:none;background-color: white;cursor: default;color: black;">Showing Page &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!pageNumber} of {!totalPages} &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                      <a onclick="goOnchangeButtonStart(); First1();return false;">
+                                          <apex:outputPanel >
+                                              First
+                                          </apex:outputPanel>
+                                      </a>
+                                       <a  onclick="goOnchangeButtonStart(); Previoused1();return false;" >
+                                          <apex:outputPanel >
+                                              Previous
+                                          </apex:outputPanel>
+                                      </a>
+                                      <apex:outputPanel rendered="{!IF(pageNumber <= 1, false, true)}">
+                                            <a  onclick="goOnchangeButtonStart();uncheckCheck(); Previoused1();return false;" style="border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                                            {!pageNumber - 1}
+                                            </a>
+                                        </apex:outputPanel>
+                                       <a class="active" href="#">{!pageNumber}</a>
+                                       <a  onclick="goOnchangeButtonStart();PNext1(); return false;">
+                                          <apex:outputPanel >
+                                              Next
+                                          </apex:outputPanel>
+                                      </a>
+                                           <a  onclick="goOnchangeButtonStart();lastl1(); return false;">
+                                          <apex:outputPanel >
+                                              Last
+                                          </apex:outputPanel>
+                                      </a>
+                                       
+                                    </div>
+                                </div>
+                            </apex:outputPanel> 
+                            </apex:outputPanel>
+                        </div>
+                        
+                        
+                        <!-- Unmatched Grid -->
+                        <div id="tab-default-3" class="slds-tabs--default__content" role="tabpanel" aria-labelledby="tab-default-3__item" >
+                            <apex:outputPanel id="unMatchedList"  >
+                                <apex:outputPanel id="pgRecord2" rendered="{!if(UnmatchList!=null && UnmatchList.size > 0, isunmatch12, false)}">
+                                <!--<table class="slds-table slds-table--bordered slds-table--resizable-cols tablebhead" role="grid">-->
+                                <table class="slds-table slds-table--resizable-cols tablebhead" role="grid" id="unmatchtable">
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!UnmatchList}" var="var">
+                                        <tr>
+                                            <td> 
+
+                                            <span style="font-size:12px;color:#1b5eac; font-family: Salesforce Sans, Arial, sans-serif">{!var.recName}</span>
+                                                </td>
+  
+                                        </tr>
+                                        </apex:repeat>
+                                     </tbody>
+                                 </table>
+                                </apex:outputPanel>
+                                    <apex:outputPanel id="pgin2" rendered="{!if(UnmatchList!=null && UnmatchList.size > 0, isunmatch12, false)}" style="margin-top:10px;">
+                                     <div style="float:left;">
+                                        <div class="slds-form-element">
+                                          
+                                          <div class="slds-form-element__control">
+                                            <div class="slds-select_container" style="display: inline-flex;margin-top: 8px;">
+                                            <label class="slds-form-element__label" for="select-01" style="margin-top: 5px;">Displaying:</label>
+                                                <apex:selectList id="select-03" value="{!SelectedPageSize}" onchange="goOnchangeButtonStart();chenaged2();return false;" size="1" styleClass="slds-select">
+                                                    <apex:selectOptions value="{!pageSizeList}"></apex:selectOptions>
+                                                </apex:selectList>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-button-group" role="group" style="float: right;margin-top:2px;margin-bottom: 20px;"><!--  -13px -->
+                                      <div class="pagination">
+                                      <a style="text-decoration:none;background-color: white;cursor: default;color: black;">Showing Page &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {!pageNumber} of {!totalPages} &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                      <a onclick="goOnchangeButtonStart(); First2();return false;">
+                                          <apex:outputPanel >
+                                              First
+                                          </apex:outputPanel>
+                                      </a>
+                                       <a onclick="goOnchangeButtonStart(); Previoused2();return false;" >
+                                          <apex:outputPanel >
+                                              Previous
+                                          </apex:outputPanel>
+                                      </a>
+                                        <apex:outputPanel rendered="{!IF(pageNumber <= 1, false, true)}">
+                                            <a  onclick="goOnchangeButtonStart();uncheckCheck(); Previoused2();return false;" style="border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                                            {!pageNumber - 1}
+                                            </a>
+                                        </apex:outputPanel>
+                                       <a class="active" href="#">{!pageNumber}</a>
+                                       <a  onclick="goOnchangeButtonStart();PNext2(); return false;">
+                                          <apex:outputPanel >
+                                              Next
+                                          </apex:outputPanel>
+                                      </a>
+                                           <a  onclick="goOnchangeButtonStart();lastl2(); return false;">
+                                          <apex:outputPanel >
+                                              Last
+                                          </apex:outputPanel>
+                                      </a>
+                                       
+                                    </div>
+                                </div>
+                            </apex:outputPanel> 
+                            </apex:outputPanel>
+                        </div>
+                         
+                    </div>
+                    </div>
+                    <apex:inputHidden value="{!csvString}" id="inpHidn"></apex:inputHidden>
+
+                </apex:outputPanel>
+                    
+
+            </div>
+           
+           
+           <!--Search Criteria Not Selected Popup Start Here-->
+        <div style="display:none;" id="seaCriNotSelPopup">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                        <h2 class="slds-text-heading--medium">File Status</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-form--stacked">
+                            File is Uploaded.
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close" onclick="hideseaCriNotSelPopup(); return false;" />
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+        <!--Search Criteria Not Selected Popup End Here-->
+        
+        
+          <!--Search Criteria Not Selected Popup Start Here-->
+        <div style="display:none;" id="seaCriNotSelPopup1">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                        <h2 class="slds-text-heading--medium">Value Required</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-form--stacked" id="pageMsgForBulk">
+                          <!-- Select the Option And Type the Name Or Browse a .csv File. -->
+                          Please select a search criteria option and either enter text values or upload a CSV to proceed.
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close"  onclick="hideonclose('seaCriNotSelPopup1'); return false;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+        <!--Search Criteria Not Selected Popup End Here-->
+        
+        
+         <!--Search Criteria Not Selected Popup Start Here-->
+        <div style="display:none;" id="seaCriNotSelPopup2">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header" style="padding: 0.5rem 1rem;">
+                        <h2 class="slds-text-heading--medium">Attention</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-form--stacked">
+                          Please Upload a .csv File.
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <apex:commandLink styleclass="slds-button slds-button--neutral" value="Close"  onclick="hideonclose('seaCriNotSelPopup2'); return false;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+
+        
+    <script>
+        function hideonclose(value2) {
+            var x = document.getElementById(value2);
+                    x.style.display = 'none';
+        }
+           
+    
+        var _validFileExtensions = [".csv"]; 
+        var holder = document.getElementById('holder');
+        var uplodfiledata = document.getElementById('uploadfile');
+        var holder_txt1 = document.getElementById('holder_txt1');
+        var holder_txt2 = document.getElementById('holder_txt2');
+        var uploadStatus = document.getElementById('uploadStatus'); 
+    
+        var sfdcHostName = window.location.host.split('.')[1]; 
+        
+        function ValidateSingleInput(oInput) {
+          if (oInput.type == "file") {
+            var sFileName = oInput.value;
+             if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                if (!blnValid) {
+                    $('#seaCriNotSelPopup2').show();
+                    oInput.value = "";
+                    return false;
+                }else{
+                    
+                    uploadCSVFile();
+                }
+            }
+        }
+        return true;
+        }
+
+        
+        tests = {
+          filereader: typeof FileReader != 'undefined',
+          dnd: 'draggable' in document.createElement('span'),
+          formdata: !!window.FormData,
+          progress: "upload" in new XMLHttpRequest
+        },
+        support = {
+          filereader: document.getElementById('filereader'),
+          formdata: document.getElementById('formdata'),
+          progress: document.getElementById('progress')
+        },
+        progress = document.getElementById('uploadprogress'),
+        fileupload = document.getElementById('upload');
+    
+        "filereader formdata progress".split(' ').forEach(function (api) {
+          if (tests[api] === false) {
+            support[api].className = 'fail';
+          } else {
+            support[api].className = 'hidden';
+          }
+        });
+    
+            function textBeforeDrag(flag){
+                if(flag)
+                {
+                    holder_txt1.className = '';
+                    holder_txt2.className = '';
+                }else{
+                    holder_txt1.className = '';
+                    holder_txt2.className = '';
+                }
+            }
+            
+            function resetAll()
+            {
+                holder.className = holder_txt1.className = '';
+                holder_txt2.className = uploadStatus.className = 'hidden';
+            }
+            
+            function readfiles(files) { 
+            
+                var formData = tests.formdata ? new FormData() : null;
+            
+                  if(files.length > 1)
+                  {
+                      alert('Multi Upload is not supported, please try to upload single file');
+                      location.reload(); 
+                      return;
+                  }
+                var c = 0;
+                for (var i = 0; i < files.length; i++) {
+                    uploadStatus.className = '';
+                    holder.className = '';
+                    // now post a new XHR request
+                    if (tests.formdata) {
+                      var xhr = new XMLHttpRequest();
+                      var sfdcurl = 'https://'+sfdcHostName+'.salesforce.com/services/apexrest/DSCORGPKG/DragAndDrop/v1?FileName='+encodeURIComponent(files[i].name)+'&cType='+encodeURIComponent(files[i].type) ;
+                      xhr.open('POST','/services/proxy' );
+            
+                      xhr.setRequestHeader("Authorization","Bearer {!$Api.Session_ID}");
+                      xhr.setRequestHeader('SalesforceProxy-Endpoint', sfdcurl);
+                      xhr.setRequestHeader('X-User-Agent', 'DragAndDropAPI v1.0');
+                      
+                      xhr.onload = function() {
+                        progress.value = progress.innerHTML = 100;
+                      };
+            
+                      if (tests.progress) {
+                        xhr.upload.onprogress = function (event) {
+                          if (event.lengthComputable) {
+                            var complete = (event.loaded / event.total * 100 | 0);
+                            document.getElementById('progressID').innerHTML = complete+'%';
+                            document.getElementById('uploadprogress2').innerHTML ='';
+                           if(complete!=0){
+                               if(complete<100){
+                                   document.getElementById('uploadprogress2').style.width=complete+'%';
+                                   document.getElementById('uploadprogress2').style.background="#5ab8ce";
+                                }
+                                else if(complete==100){
+                                    document.getElementById('uploadprogress2').style.width=96+'%';
+                                   document.getElementById('uploadprogress2').style.background="#5ab8ce";
+                                }
+                              
+                           }
+
+                            
+                            progress.value = progress.innerHTML = complete;
+                            
+                          }
+                        }
+                      }
+                      
+                      xhr.onreadystatechange=function()
+                      {
+                            if (xhr.readyState==4 && xhr.status != 200)
+                            {   
+                                $('#seaCriNotSelPopup').hide();
+                                if( xhr.status == 500 ){
+                                    alert('There seems to be issue with file you have uploaded. Please review.');
+                                    $('#seaCriNotSelPopup').hide();
+                                    location.reload(); 
+                                    return ;
+                                }
+                                if(xhr.responseText)
+                                    alert(xhr.responseText);
+                                else
+                                    alert('Some error occurred while uploading file');
+            
+                                 
+                            }else{
+                                $("[id*='inpHidn']").val(xhr.responseText);
+                                c++;
+                                
+                                
+                                var str_array = (xhr.responseText).split(',');
+                                
+                                    
+                                    if( str_array.length > 5000){
+                                        $('#seaCriNotSelPopup').hide();
+                                        alert('ListMatch currently supports 5000 records. Please review the CSV file uploaded');
+                                        $("[id*='inpHidn']").val('');
+                                        
+                                        location.reload(); 
+                                        
+                                        return ;
+                                    }
+                                    if( xhr.responseText.length > 125000 ){
+                                        if( xhr.responseText.length > 125000 ){
+                                            //$('#seaCriNotSelPopup').show();
+                                            alert('String too long, error occurred while uploading file');
+                                            location.reload();
+                                        }
+                                    }
+                                if( c == 3 ){
+                                    if( str_array.length < 5000){
+                                        
+                                        $('#seaCriNotSelPopup').show();
+                                    }
+                                }
+                            }
+                        }
+                      xhr.send(files[i]);
+                    }
+                } 
+            
+            }
+            
+            if (tests.dnd) {
+              holder.ondragover = function () {
+                    this.className = 'hover';
+                    textBeforeDrag(false);
+                    return false;
+                  };
+              holder.ondragend = function () {
+                    this.className = '';
+                    textBeforeDrag(true);
+                    return false;
+                  };
+              holder.ondrop = function (e) {
+                    textBeforeDrag(true);
+                    this.className = '';
+            
+                    e.preventDefault();
+                    var f = e.dataTransfer.files;
+                    
+                    
+                    ValidateSingleInput2(e);
+
+              }
+              holder.onclick = function(e){
+              }
+            } else {
+                    fileupload.className = 'hidden';
+                    fileupload.querySelector('input').onchange = function () {
+                    readfiles(this.files);
+              };
+        }        
+        function uploadCSVFile(){
+             var filess = document.getElementById('filesInput').files;
+             document.getElementById('fileNameID').innerHTML = filess[0].name;
+             readfiles(filess);
+        }
+    </script>
+   <script>
+       function ValidateSingleInput2(e) {
+               textBeforeDrag(true);
+                    this.className = '';
+            
+                  
+             e.preventDefault();
+             var f = e.dataTransfer.files;
+
+            var sFileName = f[0].name ;
+             if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                if (!blnValid) {
+                    
+                    $('#seaCriNotSelPopup2').show();
+                    e.value = "";
+                    return false;
+                }else{
+                
+                   document.getElementById('fileNameID').innerHTML = f[0].name;
+                    readfiles(e.dataTransfer.files);
+                  return true;
+                }
+            }
+        
+        return true;
+        }
+
+        function callforReview(){
+            var myStrV = $("[id*='matchedID']").text();
+            
+            myStrV = myStrV.toString();
+            
+            if( myStrV.length > 1){
+                myStrV = myStrV.slice(0, -1);
+            }
+                                    
+            var matchInt = parseInt(myStrV);
+            
+            if( matchInt == NaN){
+            
+                matchInt = 0;
+            }
+            
+            if( matchInt > 0 ){
+                
+                $("[id*='firstli']").children().click();
+                $("#firstli").addClass("slds-active");
+                $("#tab-default-2").addClass("slds-hide");
+                $("#tab-default-3").addClass("slds-hide");
+                
+                return ;
+            }
+            
+            if( $("[id*='possibleID']").text() > 0){
+                
+                
+                $("[id*='secondli']").children().click();
+                $("#tab-default-1").addClass("slds-hide");
+                $("#tab-default-3").addClass("slds-hide");
+                $("#secondli").addClass("slds-active");
+                return ;
+            }
+            
+            if( $("[id*='unmatchedID']").text() > 0 ){
+                
+                
+
+                $("[id*='thirdli']").children().click();
+                $("#tab-default-1").addClass("slds-hide");
+                $("#tab-default-2").addClass("slds-hide");
+                $("#thirdli").addClass("slds-active");
+                return ;
+
+            }
+            
+            $("[id*='pnlLoadingtop']").hide();
+            return ;
+        }
+
+   </script>
+   <apex:outputPanel id="limitExeedPanelId">
+       <script>
+           function onLimitExeed(){               
+               if('{!isLimitExceed}' == 'true'){
+                   alert('Please reduce the size of the CSV file uploaded');
+                   location.reload();
+               }else{
+                   onCompleteGo();
+               }
+           }
+       </script>
+   </apex:outputPanel>
+     </apex:form>    
+    </html>
+</apex:page>

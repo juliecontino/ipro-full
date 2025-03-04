@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The sum of the uncleared incoming funds (bank) or payments (credit card) as of the statement ending date. This includes all uncleared cash receipts, bank deposits and debit journal entry lines. --></help>
+        <label><!-- UnCleared Deposits --></label>
+        <name>AcctSeed__UnCleared_Deposits__c</name>
+    </CustomFieldTranslation>

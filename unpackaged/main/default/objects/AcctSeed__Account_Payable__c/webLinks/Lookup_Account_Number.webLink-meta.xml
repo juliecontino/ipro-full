@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lookup_Account_Number</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Lookup Account Number</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/apex/LookupAccountNumber?apid={!AcctSeed__Account_Payable__c.Id}</url>
+</WebLink>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JCSoftware__Exclude_Related_Objects__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Comma separated list of objects (API name) that are children of the cloning object that should be hidden from the user on PowerClone page under the "Child Objects" section.</inlineHelpText>
+    <label>Exclude Related Objects</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

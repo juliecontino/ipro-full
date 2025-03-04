@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Destinataire Conga Sign</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Destinataires Conga Sign</value>
+    </caseValues>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Recipient Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label>Section Motifs</label>
+            <section>Reason Section</section>
+        </sections>
+        <sections>
+            <label>Détails du destinataire</label>
+            <section>Recipient Details</section>
+        </sections>
+        <sections>
+            <label>Réponse du destinataire</label>
+            <section>Recipient Response</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du destinataire</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You cannot Reparent this record. --></errorMessage>
+        <name>APXT_CongaSign__Prevent_Reparent</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Reassign --></label>
+        <name>APXT_CongaSign__Reassign</name>
+    </webLinks>
+</CustomObjectTranslation>

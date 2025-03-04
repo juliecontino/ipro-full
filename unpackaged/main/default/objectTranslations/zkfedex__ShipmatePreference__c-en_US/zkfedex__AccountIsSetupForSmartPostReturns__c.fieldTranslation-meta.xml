@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This indicates that your FedEx account is setup for SmartPost return shipping. Please contact FedEx if you are unsure if your FedEx account is setup for SmartPost return shipping. --></help>
+        <label><!-- Account is Setup for SmartPost Returns --></label>
+        <name>zkfedex__AccountIsSetupForSmartPostReturns__c</name>
+    </CustomFieldTranslation>

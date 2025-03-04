@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter the Client Contact name to be included on carrier documentation. --></help>
+        <label><!-- Delivery Contact --></label>
+        <name>Delivery_Contact__c</name>
+        <relationshipLabel><!-- Sales Order --></relationshipLabel>
+    </CustomFieldTranslation>

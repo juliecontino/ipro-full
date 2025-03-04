@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Specifies how the recipient is identified for customs purposes; the requirements on this information vary with destination country. Contains the actual ID value. --></help>
+        <label><!-- Recipient Customs ID --></label>
+        <name>zkfedex__RecipientCustomsId__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>700</frameHeight>
+    <hasSidebar>true</hasSidebar>
+    <label>Conga Conductor Setup</label>
+    <motif>Custom64: Compass</motif>
+    <url>https://conductor.congamerge.com
+?SessionId={!API.Session_ID}
+&amp;ServerUrl={!API.Partner_Server_URL_290}
+&amp;uiscreen=setup
+&amp;product=conductor</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

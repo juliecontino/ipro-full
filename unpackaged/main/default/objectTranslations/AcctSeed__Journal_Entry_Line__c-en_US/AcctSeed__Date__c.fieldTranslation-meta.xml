@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The date this specific entry occurred. Defaults to the Journal Date on the Journal Entry if not populated. --></help>
+        <label><!-- Date --></label>
+        <name>AcctSeed__Date__c</name>
+    </CustomFieldTranslation>

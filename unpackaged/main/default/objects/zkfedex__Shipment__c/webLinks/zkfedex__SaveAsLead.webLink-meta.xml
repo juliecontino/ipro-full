@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__SaveAsLead</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Save as Lead</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/{!$ObjectType.Lead}/e?retURL=/{!zkfedex__Shipment__c.Id}&amp;lea3={!zkfedex__Shipment__c.zkfedex__RecipientCompany__c}&amp;lea8={!zkfedex__Shipment__c.zkfedex__RecipientPhone__c}&amp;lea16street={!zkfedex__Shipment__c.zkfedex__RecipientStreet__c}&amp;lea16city={!zkfedex__Shipment__c.zkfedex__RecipientCity__c}&amp;lea16state={!zkfedex__Shipment__c.zkfedex__RecipientState__c}&amp;lea16zip={!zkfedex__Shipment__c.zkfedex__RecipientPostalCode__c}&amp;lea16country={!zkfedex__Shipment__c.zkfedex__RecipientCountry__c}&amp;lea17={!zkfedex__Shipment__c.zkfedex__ShipmentNotes__c}&amp;lea11={!zkfedex__Shipment__c.zkfedex__RecipientEMail__c}&amp;name_lastlea2={!zkfedex__Shipment__c.zkfedex__RecipientName__c}</url>
+</WebLink>

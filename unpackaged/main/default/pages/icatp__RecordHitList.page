@@ -1,0 +1,3 @@
+<apex:page id="pg" tabStyle="Hit_List_Manager__tab" title="File Slayer Hit List Manager" sidebar="false">
+    <c:HitList global="false"/>
+</apex:page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The category type of the category assigned to the transaction. --></help>
+        <label><!-- Category Type --></label>
+        <name>AcctSeed__Category_Type__c</name>
+        <picklistValues>
+            <masterLabel>expense</masterLabel>
+            <translation><!-- expense --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>income</masterLabel>
+            <translation><!-- income --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>transfer</masterLabel>
+            <translation><!-- transfer --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

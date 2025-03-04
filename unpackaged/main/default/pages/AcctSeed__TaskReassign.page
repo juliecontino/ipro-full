@@ -1,0 +1,15 @@
+<apex:page standardController="Task" title="Reassign | Accounting Seed" extensions="AcctSeed.TaskReassign">
+	<apex:form id="theForm">
+        <apex:sectionHeader title="{!$ObjectType.Task.label}" subtitle="Reassign {!$ObjectType.Task.label}" />  
+		<apex:pageblock id="thePageBlock" title="Reassign {!$ObjectType.Task.label}">
+		     <apex:pageMessages escape="false"/>
+		     <apex:pageBlockButtons >
+		          <apex:commandButton value="Save" action="{!reassign}"/>
+		          <apex:commandButton value="Back" action="{!cancel}" immediate="true"/>
+		     </apex:pageBlockButtons>
+             <apex:pageBlockSection >
+                <apex:inputField value="{!theTaskReassign.OwnerId}"/>
+             </apex:pageBlockSection>
+		</apex:pageblock>
+	</apex:form> 
+</apex:page>

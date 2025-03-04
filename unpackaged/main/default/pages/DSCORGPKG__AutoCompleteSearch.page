@@ -1,0 +1,13 @@
+<apex:page sidebar="false" showHeader="false" contentType="application/json" controller="DSCORGPKG.DiscoverOrg_Parser" standardStylesheets="false">
+[
+<apex:repeat value="{!listofSearchBarModel}" var="lc">
+<apex:outputPanel rendered="{! lc.index != listofSearchBarModel.size }" layout="none">
+    {"0":"{!lc.name}","value":"{!lc.name}","1":"{!lc.id}","id":"{!lc.id}"},
+</apex:outputPanel>
+<apex:outputPanel rendered="{! lc.index == listofSearchBarModel.size }" layout="none">
+    {"0":"{!lc.name}","value":"{!lc.name}","1":"{!lc.id}","id":"{!lc.id}"}
+</apex:outputPanel>
+</apex:repeat>
+
+]
+</apex:page>

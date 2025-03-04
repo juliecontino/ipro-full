@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- add custom javascript buttons --></help>
+        <label><!-- buttons2 --></label>
+        <name>zaapit__buttons2__c</name>
+    </CustomFieldTranslation>

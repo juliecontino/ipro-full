@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Type in the name of the Persona the user is to be assinged to. --></help>
+        <label><!-- SpringCM Persona --></label>
+        <name>SpringCMEos__SpringCM_Persona__c</name>
+    </CustomFieldTranslation>

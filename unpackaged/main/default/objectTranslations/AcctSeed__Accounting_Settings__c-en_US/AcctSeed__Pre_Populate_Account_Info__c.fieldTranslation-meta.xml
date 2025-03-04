@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- When checked, this pre-populates Account Name, GL Account and any GL Variables in the drawer or directly on the source document (if Automated Add is also enabled) with values from the Account name/File Import Match Name that matches the Description. --></help>
+        <label><!-- Pre-Populate Account Info --></label>
+        <name>AcctSeed__Pre_Populate_Account_Info__c</name>
+    </CustomFieldTranslation>

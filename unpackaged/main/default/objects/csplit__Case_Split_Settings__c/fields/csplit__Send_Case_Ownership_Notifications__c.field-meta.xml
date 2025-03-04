@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>csplit__Send_Case_Ownership_Notifications__c</fullName>
+    <defaultValue>"disabled"</defaultValue>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Send Case Ownership Notifications</label>
+    <length>60</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

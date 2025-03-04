@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The total number of hours which has been billed. --></help>
+        <label><!-- Billed Hours --></label>
+        <name>AcctSeed__Billed_Hours__c</name>
+    </CustomFieldTranslation>

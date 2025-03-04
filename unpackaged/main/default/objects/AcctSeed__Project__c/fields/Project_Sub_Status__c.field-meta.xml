@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Sub_Status__c</fullName>
+    <label>Project Sub Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Waiting on Customer</fullName>
+                <default>false</default>
+                <label>Waiting on Customer</label>
+            </value>
+            <value>
+                <fullName>Waiting on Circuit</fullName>
+                <default>false</default>
+                <label>Waiting on Circuit</label>
+            </value>
+            <value>
+                <fullName>Waiting on Parts</fullName>
+                <default>false</default>
+                <label>Waiting on Parts</label>
+            </value>
+            <value>
+                <fullName>Waiting on Construction</fullName>
+                <default>false</default>
+                <label>Waiting on Construction</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

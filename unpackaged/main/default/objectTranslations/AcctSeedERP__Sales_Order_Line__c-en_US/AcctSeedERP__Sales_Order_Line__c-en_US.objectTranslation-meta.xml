@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- MassAddEditRows --></label>
+        <name>AcctSeedERP__MassAddEditRows</name>
+    </fieldSets>
+    <layouts>
+        <layout>Sales Order Line Layout</layout>
+        <sections>
+            <label><!-- Accounting Information --></label>
+            <section>Accounting Information</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Manufacturing Order --></label>
+            <section>Manufacturing Order</section>
+        </sections>
+        <sections>
+            <label><!-- Purchase Order --></label>
+            <section>Purchase Order</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- The quantity shipped cannot be more than the quantity allocated --></errorMessage>
+        <name>AcctSeedERP__Allocated_Greater_Equal_Shipped</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A product can not be on back order as a manufactured item and a purchased item. --></errorMessage>
+        <name>AcctSeedERP__Both_Purchasing_And_Manufacturing</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The quantity ordered cannot be less than the quantity allocated --></errorMessage>
+        <name>AcctSeedERP__Ordered_Greater_Equal_Allocated</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Product_Is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Project Task is required if a Project is selected. --></errorMessage>
+        <name>AcctSeedERP__Project_Task_Required_With_Project</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- quantity must be greater than or equal to 0 --></errorMessage>
+        <name>AcctSeedERP__Quantity_Is_Positive</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Mass_Add_Edit_Rows --></label>
+        <name>AcctSeedERP__Mass_Add_Edit_Rows</name>
+    </webLinks>
+</CustomObjectTranslation>

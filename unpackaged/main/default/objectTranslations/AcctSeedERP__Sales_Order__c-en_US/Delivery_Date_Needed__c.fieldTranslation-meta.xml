@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter the date and time the product(s) need to arrive at the Client&apos;s premise. --></help>
+        <label><!-- Delivery Date Needed --></label>
+        <name>Delivery_Date_Needed__c</name>
+    </CustomFieldTranslation>

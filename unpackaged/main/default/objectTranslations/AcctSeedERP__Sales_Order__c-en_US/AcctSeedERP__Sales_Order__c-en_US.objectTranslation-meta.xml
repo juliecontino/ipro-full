@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- MassAddEditRows --></label>
+        <name>AcctSeedERP__MassAddEditRows</name>
+    </fieldSets>
+    <layouts>
+        <layout>Sales Order Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Delivery Info --></label>
+            <section>Delivery Info</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Order Lines --></label>
+            <section>Sales Order Lines</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Sales Order Layout - Customer Service</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Delivery Info --></label>
+            <section>Delivery Info</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Order Lines --></label>
+            <section>Sales Order Lines</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Sales Order Layout - Warehouse</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Delivery Info --></label>
+            <section>Delivery Info</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Order Lines --></label>
+            <section>Sales Order Lines</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- You must enter a value --></errorMessage>
+        <name>AcctSeedERP__Status_Is_Required</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Allocate --></label>
+        <name>AcctSeedERP__Allocate</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Billing --></label>
+        <name>AcctSeedERP__Create_Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Purchase_Order --></label>
+        <name>AcctSeedERP__Create_Purchase_Order</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Manufacturing_Order_Fullfill --></label>
+        <name>AcctSeedERP__Manufacturing_Order_Fullfill</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Purchase_Order_Fulfill --></label>
+        <name>AcctSeedERP__Purchase_Order_Fulfill</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Create_Contact --></label>
+        <name>Create_Contact</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Forms --></label>
+        <name>Forms</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- PowerClone --></label>
+        <name>PowerClone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Address --></label>
+        <name>Update_Address</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Upload_Lines --></label>
+        <name>Upload_Lines</name>
+    </webLinks>
+</CustomObjectTranslation>

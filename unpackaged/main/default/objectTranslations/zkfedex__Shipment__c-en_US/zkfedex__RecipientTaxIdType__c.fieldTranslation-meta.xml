@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Recipient Tax ID Type --></label>
+        <name>zkfedex__RecipientTaxIdType__c</name>
+        <picklistValues>
+            <masterLabel>Business National</masterLabel>
+            <translation><!-- Business National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business State</masterLabel>
+            <translation><!-- Business State --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Union</masterLabel>
+            <translation><!-- Business Union --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EIN</masterLabel>
+            <translation><!-- EIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal National</masterLabel>
+            <translation><!-- Personal National --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal State</masterLabel>
+            <translation><!-- Personal State --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

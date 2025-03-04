@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Used only in building kits. This is the total amount of kits ordered on the project * the quantity ordered on the material line. --></help>
+        <label><!-- Quantity for Build --></label>
+        <name>AcctSeedERP__Quantity_Required__c</name>
+    </CustomFieldTranslation>

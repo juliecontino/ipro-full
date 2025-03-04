@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- If specified, the sender name will be defaulted to this value for all users. Otherwise, the sender name will be the name of the user. --></help>
+        <label><!-- Sender Name Default --></label>
+        <name>zkfedex__SenderNameDefault__c</name>
+    </CustomFieldTranslation>

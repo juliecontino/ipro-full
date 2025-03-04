@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The ending balance of the bank reconciliation. This is usually retrieved from the bank statement. --></help>
+        <label><!-- Statement Ending Balance --></label>
+        <name>AcctSeed__Ending_Balance__c</name>
+    </CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The default value for &apos;Overwrite&apos; when creating a Lookup Helper Setting. --></help>
+        <label><!-- Default Overwrite Value --></label>
+        <name>LH__default_overwrite__c</name>
+    </CustomFieldTranslation>

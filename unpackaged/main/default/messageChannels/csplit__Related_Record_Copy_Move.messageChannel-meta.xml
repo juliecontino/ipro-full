@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Message Channel to notify Case Split Related components of copies and moves in other components</description>
+    <isExposed>false</isExposed>
+    <lightningMessageFields>
+        <description>The Id of the record that was affected</description>
+        <fieldName>recordId</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>The created date of the affected record</description>
+        <fieldName>createdDate</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>The action performed (move_copy or remove)</description>
+        <fieldName>action</fieldName>
+    </lightningMessageFields>
+    <masterLabel>RelatedRecordCopyMove</masterLabel>
+</LightningMessageChannel>

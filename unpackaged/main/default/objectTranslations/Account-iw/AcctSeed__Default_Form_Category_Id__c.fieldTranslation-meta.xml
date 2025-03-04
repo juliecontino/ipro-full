@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The DeveloperName to the default Form Category Id used for this account. This field should not be changed manually. --></help>
+        <label><!-- Default Form Category Id --></label>
+        <name>AcctSeed__Default_Form_Category_Id__c</name>
+    </CustomFieldTranslation>

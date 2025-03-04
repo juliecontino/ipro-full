@@ -1,0 +1,358 @@
+<apex:page Controller="rh2.PS_Queue_Controller" title="Rollup Helper Queue Monitoring" standardStylesheets="false"  sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+     <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	     <head> 
+	     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		 <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/modernizr-1.7.min.js') }"/>
+	     <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/UI_Utilities.js') }"/>	  
+         <apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/hs_breadcrumbs.js')}" />
+		 <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />   
+		 <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />
+		 <apex:stylesheet value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.css')}" />
+		 <apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/grayBackground.css') }" /> 
+	     </head>
+
+	    <style>
+	    	.dropdownFormatting{
+	    		margin-top:.125rem;
+	    		margin-bottom:.125rem;
+	    		border:1px solid #d8dde6;
+	    		border-radius:.25rem;
+	    		padding:.25rem 0;
+	    		font-size:.75rem;
+	    		background:#fdfdfd;
+	    		box-shadow:0 2px 3px 0 rgba(0,0,0,.16);
+	    	}
+
+			.popoverNubbinAlignment{
+				left: -1.26em; 
+				top: 0.8em;
+			}
+
+			.popoverDefaultAbsolute{
+				display:none;
+				max-height:0px; 
+				overflow:visible;   
+				overflow-y:visible; 
+				position:absolute; 
+				white-space:normal;
+				z-index:99;  
+			}
+
+			@media screen and (max-width: 1280px){
+				.hideFullColumn tr > .hidecol {
+					display:none;
+				}
+			}
+			
+			@media screen and (max-width:1024px){
+				.hideFullColumn tr > .hidecol {
+					display:none;
+				}
+				.hideFullColumn tr > .hidecol2 {
+					display:none;
+				}
+				
+			}
+	    </style> 
+		<script>
+			var rh = rh || {};
+			rh.j$ = jQuery.noConflict();
+			rh.j$(document).ready(function(){
+				selectBreadcrumb_HS();
+				rh.j$(function() {rh.j$("#queueHelp").accordion({collapsible:true, active:true, heightStyle:"content"});});
+			});
+		</script>
+
+	    <apex:slds />
+	    <apex:form id="rollupQueuePage">
+		<apex:actionStatus id="loading" onstart="loading(true)" onstop="loading(false)" />
+	   	<div class="slds-scope" role="main">
+			<div id="rollupQueueInfo" style="display: none;">
+				<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+					<div class="slds-modal__container">
+						<div class="slds-modal__header">
+							<h2 class="slds-text-heading--medium">{!$Label.RollupQueueInformation}</h2>
+							<button type="button" onclick="showModal(false, 'rollupQueueInfo'); return false;" class="slds-button slds-button_icon-inverse slds-modal__close">
+								<svg aria-hidden="true" class="slds-button__icon slds-button__icon_large">
+									<use href="{!URLFOR($Asset.SLDS, '/assets/icons/action-sprite/svg/symbols.svg#close')}"/>
+								</svg>
+							</button>
+						</div>
+						<div class="slds-modal__content slds-p-around_medium">
+							<div id="queueHelp">
+								<h3>When does a queue item become stale?</h3>
+								<div>
+									A queue item becomes stale when it has been marked as "Processing" and has a Last Modified Date of 1 day or more in the past. Stuck queue items can be deleted or retried.
+									<br/><br/>
+									Please visit our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/Rollup-Queue-Buildup-Caused-by-Stuck-Queue-Items-1578080052513">How to address Rollup Queue records</apex:outputLink>&nbsp;for additional information.
+								</div>
+								<h3>What is the order of priority for the queue items?</h3>
+								<div>
+									The priority refers to the Rollup run type that the queue item belongs to. When obtaining a list of queue items to process, the priority order goes as follows in descending order:
+									<ul class="slds-list_ordered">
+										<li><strong>Manual</strong> - Manually started from the Rollup Run page. </li>
+										<li><strong>Realtime</strong> - Realtime updates from triggers. </li>
+										<li><strong>Scheduled</strong> - Configured from the Define Rollup Schedule page.</li>
+									</ul>
+								</div>
+								<h3>How can I tell if a queue item completes processing?</h3>
+								<div>
+									Completion can be verified in a couple ways:
+									<ul class="slds-list_ordered">
+										<li>When scheduling a manual or scheduled run, an email address can be set which will send out an email upon completion.</li>
+										<li>Refreshing the page using the refresh button above the table will no longer show a queue item if it has completed processing. For scheduled and manual runs, the number of records remaining will decrease if the queue item processed.</li>
+									</ul>
+								</div>
+								<h3>Where can I check the status of a rollup job?</h3>
+								<div>
+									The job status of a rollup can be checked via the Apex Jobs page in Setup. If there are many different jobs in the org, a list view can be created for failed Rollup jobs by filtering on Status equals "Failed" and Apex Class starts with "PS". Specific failures caught by Rollup Helper can also be checked by using the View Exceptions page.
+									<br/><br/>
+									Please visit our knowledge article on&nbsp;<apex:outputLink target="_blank" value="https://passagetech.my.site.com/KnowledgeBase/s/article/How-do-I-know-my-Rollup-is-Running-Successfully">How to check Rollup Queue records</apex:outputLink>&nbsp;for additional information.
+								</div>
+								<h3>Where can I check how long it will take before the processing is finished?</h3>
+								<div>
+									Due to the unique amount of processing in different orgs, there isn't a way to track the time remaining for a rollup run. However, the percentage of completion can be monitored by hovering over the info icon in the Records Remaining column for a queue item. 
+								</div>
+							</div>
+						</div>
+						<div class="slds-modal__footer">
+							<apex:commandButton styleclass="slds-button slds-button--neutral slds-button--small slds-m-bottom--x-small" value="{!$Label.rh2__Close}" onclick="showModal(false, 'rollupQueueInfo'); return false;" />
+						</div>
+					</div>
+				</div>
+				<div class="slds-backdrop slds-backdrop--open"/>
+			</div>
+			<div style="display:none" id="rollupPopup">
+				<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+					<div class ="slds-modal__container" style="width:640px !important;"  >
+						<div class="slds-modal__header">
+							<h2 class="slds-text-heading--medium">{!$Label.WhichRollupsAreBeingRunInThisQueueItem}</h2>                  			
+						</div>							
+						<div class="slds-modal__content">
+							<apex:outputPanel id="rollupTable">
+							<table class="slds-table slds-table--striped" style="overflow:hidden;">
+								<thead> 
+									<th style="width:50%;" class="slds-text-heading--label"><strong>{!$Label.RollupName}</strong></th>               
+									</thead>
+								<tbody>
+									<apex:repeat value="{!rollupsInQueueNameSet}" var="item">
+										<tr>                                  
+											<td style="width:50%; word-wrap:break-word !important;" class="slds-cell-wrap">{!item}</td>
+										</tr>
+									</apex:repeat>
+								</tbody>
+							</table>
+							</apex:outputPanel>
+						</div>
+						<div class="slds-modal__footer">
+							<apex:commandButton styleclass="slds-button slds-button--neutral slds-button--small slds-m-bottom--x-small" value="{!$Label.rh2__Close}" onclick="showModal(false, 'rollupPopup'); return false;" />
+						</div>
+					</div>
+				</div>
+				<div class="slds-backdrop slds-backdrop--open"></div>
+			</div>
+			<div class="slds-card grayBackground">
+				<header class="slds-card__header">
+					<nav role="navigation">
+						<ol class="slds-breadcrumb slds-list_horizontal">
+							<li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!URLFOR($Page.PS_landingPage)}">{!$Label.Home}</a></li>
+                            <li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.PS_AllSettings)}">{!$Label.AllRollupSetting}</a></li>
+						</ol>
+					</nav>
+				</header>
+			</div>
+			<div class="slds-card grayBackground">
+	    		<header class="slds-card__header slds-grid">
+	        		<div class="slds-media slds-media_center slds-has-flexi-truncate">
+	             		<div class="slds-media__body">
+	                		<h4 class="slds-text-heading_medium slds-truncate">{!$Label.RollupHelperQueue}</h4>	                		
+	             		</div> 
+	        		</div>
+	    		</header>
+			    <section class="slds-card__body" id="the page">	
+	                <apex:outputPanel style="height:575px; width:95%;">
+	                	<div style="margin-left:auto; margin-right:auto;">
+							
+							<br/>
+							<div style="float:left;">	
+								<apex:outputPanel id="selectedObjectDropdown">		
+									<apex:selectList value="{!selectedObject}" size="1" styleClass="slds-m-left_large dropdownFormatting" disabled="{!IF(numberOfTargetObjects == 1, true, false)}">
+										<apex:actionSupport event="onchange" action="{! populateQueueItemList }" rerender="tableContainer" status="loading"/>
+										<apex:selectOptions value="{!targetObjectWithQueueItems}"/>
+									</apex:selectList>	&nbsp;
+								</apex:outputPanel>	
+				            </div>				               
+				            <div style="float:right; padding-right:25px;">
+								<apex:commandLink styleclass="slds-button slds-button_neutral slds-m-left_medium" value="{!$Label.rh2__About}" oncomplete="showModal(true, 'rollupQueueInfo');"/>
+				            <apex:commandButton styleclass="slds-button slds-button_neutral slds-m-left_medium"  value="{!$Label.rh2__Refresh}" action="{!populateQueueItemList}" rerender="tableContainer, selectedObjectDropdown" status="loading"/>
+							</div>
+						</div >
+		                
+						<br/>
+						<apex:outputPanel id="tableContainer">
+							<apex:outputPanel id="noQueueItems" rendered="{!IF(numberOfQueueItems == 0, true, false)}">
+								<br/><br/>
+								<center>
+									{!$Label.rh2__NoQueueItemsWereFound}
+								</center>
+							</apex:outputPanel>
+							<apex:outputPanel id="hasQueueItems" rendered="{!IF(numberOfQueueItems != 0, true, false)}">
+								<br/><br/>
+								<div style="float:right; padding-right:25px;">
+									<c:Paginate pageController="{! pgCon }" renderedComponent="hasQueueItems" />
+								</div>
+								<table class="slds-table slds-table_bordered hideFullColumn">
+									<thead>
+										<tr>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__ID}" action="{! doSettingSort}" rerender="tableContainer" status="loading">
+														<apex:param name="sortingField" value="ID" assignTo="{!sortVars.sortField}"/>
+														<apex:outputText value="{!IF(sortVars.sortField=='ID', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label hidecol" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__Priority}" action="{! doSettingSort}" rerender="tableContainer" status="loading">
+														<apex:param name="sortingField" value="Priority__c" assignTo="{!sortVars.sortField}"/>
+														<apex:outputText value="{!IF(sortVars.sortField=='Priority__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__TargetObject}" action="{! doSettingSort }" rerender="tableContainer" status="loading"> 
+														<apex:param name="sortingField" value="Source_Object__c" assignTo="{!sortVars.sortField}"/> 
+														<apex:outputText value="{!IF(sortVars.sortField=='Source_Object__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__Status}" action="{! doSettingSort}" rerender="tableContainer" status="loading"> 
+														<apex:param name="sortingField" value="Status__c" assignTo="{!sortVars.sortField}"/>
+														<apex:outputText value="{!IF(sortVars.sortField=='Status__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label hidecol" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__CreatedDate}" action="{! doSettingSort}" rerender="tableContainer" status="loading">
+														<apex:param name="sortingField" value="CreatedDate" assignTo="{!sortVars.sortField}"/>
+														<apex:outputText value="{!IF(sortVars.sortField=='CreatedDate', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>  
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label hidecol" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__LastModifiedDate}" action="{! doSettingSort}" rerender="tableContainer" status="loading">
+														<apex:param name="sortingField" value="LastModifiedDate" assignTo="{!sortVars.sortField}"/>
+														<apex:outputText value="{!IF(sortVars.sortField=='LastModifiedDate', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>  
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__RecordsRemaining}" action="{! doSettingSort }" rerender="tableContainer" status="loading"> 
+														<apex:param name="sortingField" value="Max_Record_Scope__c" assignTo="{!sortVars.sortField}"/> 
+														<apex:outputText value="{!IF(sortVars.sortField=='Max_Record_Scope__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/> 
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">
+													<apex:commandLink value="{!$Label.rh2__ParentFilter}" action="{! doSettingSort }" rerender="tableContainer" status="loading">
+														<apex:param name="sortingField" value="Filter__c" assignTo="{!sortVars.sortField}"/>
+														<apex:outputText value="{!IF(sortVars.sortField=='Filter__c', IF(sortVars.sortDirection=='asc', ' ▲', ' ▼'),'')}"/>
+													</apex:commandLink>
+												</span>
+											</th>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">{!$Label.RollupsInQueueItem}</span>
+											</th>
+											<th class="slds-text-heading_label" style="text-align:center;" scope="col">
+												<span style="word-wrap:break-word; white-space:normal !important;">{!$Label.Action}</span>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<apex:repeat value="{!modifiedQueue}" var="q">
+											<tr>
+												<td class="slds-cell-wrap" style="text-align: center;" > {!q.Id}</td>
+												<td class="slds-cell-wrap hidecol" style="width:9%; text-align: center;" > {!q.Batch_Class__c}</td>
+												<td class="slds-cell-wrap" style="text-align: center;" > {!q.Source_Object__c}</td>
+												<td class="slds-cell-wrap" style="text-align: center;" > 
+													{!q.status__c}
+													<apex:outputPanel rendered="{!AND(q.LastModifiedDate <= yesterdayDate, q.rh2__Status__c = 'Processing')}" style="float:right;">
+														<a onmouseover="rh.j$('#stuck-info-{!q.Id}').toggle();" onmouseout="rh.j$('#stuck-info-{!q.Id}').toggle();">
+															<i class="slds-icon fa fa-exclamation-circle" style="color:#ea001e;height:16px;width:16px;scale:1.2;"></i>
+														</a>
+
+														<div class="slds-col popoverDefaultAbsolute" id="stuck-info-{!q.Id}" style="width:300px; margin-top: 8px;">
+															<div class="slds-popover slds-popover_tooltip slds-nubbin_top-left popoverNubbinAlignment" role="dialog" >
+																<div class="slds-popover__body">
+																	{!$Label.ThisQueueItemHasBeenProcessing}
+																</div>
+															</div>
+														</div>
+													</apex:outputPanel>
+												</td>
+												<td class="slds-cell-wrap hidecol" style="text-align: center;" ><apex:outputText value=" {!q.CreatedDate}"/></td>
+												<td class="slds-cell-wrap hidecol" style="text-align: center;" ><apex:outputText value=" {!q.LastModifiedDate}"/></td>
+												<td class="slds-cell-wrap" style="text-align: center;" >
+													<div style="max-width:50%;margin:auto;">
+														{!q.Max_Record_Scope__c}
+														<apex:outputPanel rendered="{!q.rh2__Notification_Email__c != 'Unknown'}" style="float:right;">
+															<a onmouseover="rh.j$('#completion-info-{!q.Id}').toggle();" onmouseout="rh.j$('#completion-info-{!q.Id}').toggle();">
+																<img class="slds-icon slds-icon_x-small" src="/apexpages/slds/latest/assets/icons/utility/info_60.png"></img>
+															</a>
+
+															<div class="slds-col popoverDefaultAbsolute" id="completion-info-{!q.Id}" style="width:200px;padding-right:16px;margin-top: 8px;">
+																<div class="slds-popover slds-popover_tooltip slds-nubbin_top-left popoverNubbinAlignment" role="dialog" >
+																	<div class="slds-popover__body">
+																		{!q.Notification_Email__c}&nbsp;{!$Label.Of}&nbsp;{!q.Params__c}&nbsp;{!$Label.RecordsProcessed}<br/>
+																		{!q.Query__c}&nbsp;{!$Label.Of}&nbsp;{!$Label.RecordsProcessed}
+																	</div>
+																</div>
+															</div>
+														</apex:outputPanel>
+													</div>
+												</td>
+												<td class="slds-cell-wrap" style="text-align: center;" >
+													<apex:outputLink rendered="{!$User.UIThemeDisplayed != 'Theme3'}" value="{!lightningBaseLink}{!URLFOR($Page.rh2__PS_DefineFilter, null, [jobfilter=q.rh2__ParentFilter__c])}" target="_blank">
+														{!q.rh2__Filter__c}
+													</apex:outputLink>
+													<apex:outputLink rendered="{!$User.UIThemeDisplayed == 'Theme3'}" value="{!URLFOR($Page.rh2__PS_DefineFilter, null, [jobfilter=q.rh2__ParentFilter__c])}" target="_blank">
+														{!q.rh2__Filter__c}
+													</apex:outputLink>
+												</td>
+												<td class="slds-cell-wrap slds-truncate" style="text-align: center;" >
+													<apex:commandLink value="{!$Label.rh2__ShowRollups}"  rerender="rollupTable" action="{!showPopup}" oncomplete="showModal(true, 'rollupPopup');" status="loading">
+														<apex:param name="queueItemID" value="{!q.Id}" assignTo="{!queueItemID}"/>
+													</apex:commandLink>	
+												</td>
+												<td class="slds-cell-wrap" style="width:8%; text-align: center;">
+													<apex:commandLink value="{!$Label.rh2__Retry}" action="{!retryQueueItem}" reRender="tableContainer, rollupQueuePage" status="loading">
+														<apex:param name="queueItemID" value="{!q.Id}" assignTo="{!queueItemID}"/>
+													</apex:commandLink> &nbsp; | &nbsp;
+													<apex:commandLink value="{!$Label.rh2__Delete}" action="{!deleteQueueItem}" reRender="tableContainer, rollupQueuePage" status="loading">
+																<apex:param name="queueItemToDeleteID" value="{!q.Id}" assignTo="{!queueItemId}"/>
+															</apex:commandLink>	
+												</td>												  
+											</tr> 
+										</apex:repeat>
+									</tbody>
+								</table>
+			                </apex:outputPanel>
+		                </apex:outputPanel>		               
+				    </apex:outputPanel>					    				    
+				</section>
+			</div>
+			<c:Loading_Spinner opacity="1"/>
+		</div>
+		</apex:form>
+		<br/>
+		<c:PS_additionalInformation ></c:PS_additionalInformation>
+	</html>
+</apex:page>

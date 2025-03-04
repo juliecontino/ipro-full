@@ -1,0 +1,92 @@
+<apex:page label="Rollup_Helper_Getting_Started" title="Rollup Helper Getting Started" controller="rh2.PS_Additional_Information_Controller" standardStylesheets="false" sidebar="false" applyBodyTag="false" docType="html-5.0" showHeader="true">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">	 
+		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+      <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-3.6.0.min.js')}" />
+			<apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/hs_breadcrumbs.js')}" />
+			<apex:includeScript value="{! URLFOR($Resource.PT_Resources_v1, '/js/modernizr-1.7.min.js') }"/>
+			<apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />
+			<apex:stylesheet value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.css')}" />
+			<apex:stylesheet value="{! URLFOR($Resource.PT_Resources_v1, '/css/grayBackground.css') }"/>
+
+    	<style>
+    	</style>
+		</head>
+     
+		<script type="text/javascript">
+		 
+			$(document).ready(function(){
+				selectBreadcrumb_HS();
+			});
+
+   	</script>
+    
+    <body>
+    <apex:form >
+		<apex:slds />   	
+			<div class="slds-scope" role="main"> 	  
+				<div class="slds-card grayBackground">
+					<header class="slds-card__header">
+						<nav role="navigation">
+							<ol class="slds-breadcrumb slds-list_horizontal">
+								<li class="slds-list__item slds-text-heading_label home-crumb"><a href="{!URLFOR($Page.rh2__PS_landingPage)}">Home</a></li>
+								<li class="slds-list__item slds-text-heading_label setting-crumb"><a href="{!URLFOR($Page.rh2__PS_AllSettings)}">All Rollup Settings</a></li>
+							</ol>
+							</nav>
+					</header>
+				</div>
+				<div class="slds-card grayBackground">
+					<div class="slds-card__header slds-text-heading_small slds-theme_alt-inverse">
+						<h1 class="slds-text-heading_large">Welcome to Rollup Helper!</h1>
+					</div>
+					<div class="slds-card__header slds-grid">
+							<div class="slds-media slds-media_center slds-has-flexi-truncate">
+								<div class="slds-media__body">
+									<h3 class="slds-text-heading_small slds-truncate">Thank you for installing Rollup Helper! Follow these Next Steps to get started on creating your rollups! </h3>
+								</div>
+							</div>
+					</div>
+					<div class="slds-card__header slds-grid">
+						<ol class="slds-list_ordered">
+							<li>Deploy prebuilt use cases from the <apex:outputLink value="{!useCasePageReference}" target="_blank"> Use Case Deployment</apex:outputLink> page, and check out our&nbsp; <apex:outputLink target="_blank" value="http://www.passagetechnology.com/use-cases">Use Case Library</apex:outputLink> for examples of rollups by object, type, solution, and more! </li>
+							<li>To get started on creating your first rollup, visit the&nbsp; <apex:outputLink value="{!URLFOR($Page.rh2__PS_SelectMaster)}" target="_blank">Create Rollup</apex:outputLink> page.</li>
+							<li>Rollup Auditing allows the ability to track any changes to your Rollups! See the 'Rollup Auditing' section below for more information.</li>
+							<apex:outputPanel rendered="{! IsDLRSInstalled}"><li>Have existing DLRS settings you wish you convert to Rollup Helper settings? Try out the&nbsp; <apex:outputLink value="{!URLFOR($Page.rh2__PS_Convert_Rollups)}">Convert Rollups</apex:outputLink> page. </li> </apex:outputPanel>
+							<li>If you have any other questions about how to use Rollup Helper or want to learn more about the app, view the video and admin guide resources below. </li>
+						</ol>
+					</div>
+					<div style="padding-left:15px;">
+					<br/>
+						Want to give us feedback? Need assistance? Contact  &nbsp; <apex:outputLink value="mailto:support@passagetech.com">support@passagetech.com</apex:outputLink>.
+					</div>
+				</div>
+				<div class="slds-card grayBackground">
+					<div class="slds-card__header slds-text-heading_small slds-theme_alt-inverse">
+						<h1 class="slds-text-heading_large">Rollup Helper Video Playlist</h1>
+					</div>
+					<apex:actionRegion > 		                
+							<div style="padding-left:15px;">
+									<div id="videos" > 		               
+									<div>
+						<apex:iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLfryc3zXHX0rrITdFDrn-ONgswUCwzmTu&rel=0" frameborder="0" />
+									</div>
+								</div> 
+							</div>		             
+					</apex:actionRegion>
+					<h1 class="slds-text-heading_small" style="padding-left:15px;margin-top:5px;"><apex:outputLink target="_blank" value="http://rhdemo.passagetech.com">Rollup Helper Help Video Playlist</apex:outputLink></h1><br/>
+				</div>
+				<div class="slds-card grayBackground">
+						<div class="slds-card__header slds-text-heading_small slds-theme_alt-inverse">
+							<h1 class="slds-text-heading_large">View our Admin Guide: </h1>
+						</div>
+						<div id="tab-default-0" class="slds-tabs__content slds-show" role="tabpanel">
+							<c:PS_AdminGuide /> 
+						</div>
+				</div>
+			</div>
+			<br/>
+			<c:PS_additionalInformation ></c:PS_additionalInformation>  
+    </apex:form>
+    </body>
+</html>
+</apex:page>

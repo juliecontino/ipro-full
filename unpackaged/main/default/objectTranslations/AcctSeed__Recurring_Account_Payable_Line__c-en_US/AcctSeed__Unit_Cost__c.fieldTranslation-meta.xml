@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Product or Service Rate. Up to 6 decimal places.  However if the Total field is directly entered, then Unit Cost is calculated as Total / Quantity. Unit Cost required if Tax Group populated. --></help>
+        <label><!-- Unit Cost --></label>
+        <name>AcctSeed__Unit_Cost__c</name>
+    </CustomFieldTranslation>

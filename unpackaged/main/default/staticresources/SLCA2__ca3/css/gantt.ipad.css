@@ -1,0 +1,50 @@
+/* 
+    Document   : week.ipad
+    Created on : 31 трав 2012, 18:46:34
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA.mobile > .CA_r > div._mode-gantt   div.evt{
+    opacity:1 !important;
+    min-width:10px !important;
+}
+
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span > span.l,
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span > span.r{
+    width:20px !important;
+    background-size: cover !important;
+    background-color: rgba(0,0,0,0.1);
+    background-image: none !important;
+    
+}
+
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span > span.l{
+    left:-18px;
+    border-left: 1px solid rgba(0,0,0,0.5) !important;
+/*    left:-7px;*/
+}
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span > span.r{
+    right:-18px;
+    border-right: 1px solid rgba(0,0,0,0.5) !important;
+/*    right:-7px;*/
+}
+
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span:hover > span.l{
+    background-color: rgba(0,0,0,0.5);
+    left:-27px;
+    width:30px !important;
+}
+
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span:hover > span.r{
+    background-color: rgba(0,0,0,0.5);
+    right:-27px;
+    width:30px !important;
+}
+
+.JQ_CA.mobile > .CA_r > div.show._mode-gantt > div.gantt_calendars > div.events > div > div > div.evt > span{
+    /*background-image: none !important;*/
+    /*background-color: transparent !important;*/
+}

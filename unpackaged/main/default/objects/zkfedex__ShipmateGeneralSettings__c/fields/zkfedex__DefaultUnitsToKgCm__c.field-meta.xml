@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__DefaultUnitsToKgCm__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The shipping wizard defaults the units to LB/IN. If this checkbox is checked, the shipping wizard will default to KG/CM, even for domestic shipments. This is applicable to the entire org for all created shipmate preferences.</description>
+    <inlineHelpText>The shipping wizard defaults the units to LB/IN. If this checkbox is checked, the shipping wizard will default to KG/CM, even for domestic shipments. This is applicable to the entire org for all created shipmate preferences.</inlineHelpText>
+    <label>Default Units to KG/CM</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,6 @@
+/*Fix contenteditable on iOS*/
+.uiScroller > .scroller { -webkit-user-select: text; }
+
+/*Fix lightning-input-field for rich text showing label when variant is label-hidden */
+.edit-fields .slds-form-element__label { display: none !important; }
+.edit-fields lightning-helptext { display: none !important; }

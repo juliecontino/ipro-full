@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLCA2__sortDirection__c</fullName>
+    <deprecated>false</deprecated>
+    <label>sortDirection</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ASC</fullName>
+                <default>true</default>
+                <label>ASC</label>
+            </value>
+            <value>
+                <fullName>DESC</fullName>
+                <default>false</default>
+                <label>DESC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

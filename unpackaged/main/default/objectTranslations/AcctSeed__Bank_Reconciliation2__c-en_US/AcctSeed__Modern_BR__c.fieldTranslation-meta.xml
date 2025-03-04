@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Bank reconciliations with this flag set to unchecked are those that exist prior to the modern BR process and do not function with the modern BR process functionality. --></help>
+        <label><!-- Modern BR --></label>
+        <name>AcctSeed__Modern_BR__c</name>
+    </CustomFieldTranslation>

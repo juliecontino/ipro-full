@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The parentCategoryId of the category assigned to the transaction.
+Note: This field will be provided in the response if the transaction is assigned to a user-created category. --></help>
+        <label><!-- Parent Category Id --></label>
+        <name>AcctSeed__Parent_Category_Id__c</name>
+    </CustomFieldTranslation>

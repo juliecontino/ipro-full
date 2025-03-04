@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- show Check Boxes next to the actions --></help>
+        <label><!-- showCheckBoxes --></label>
+        <name>zaapit__showCheckBoxes__c</name>
+    </CustomFieldTranslation>

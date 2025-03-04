@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The difference between the calculated balance and the GL ending balance. Should be zero when status is completed. --></help>
+        <label><!-- GL Difference --></label>
+        <name>AcctSeed__GL_Difference__c</name>
+    </CustomFieldTranslation>

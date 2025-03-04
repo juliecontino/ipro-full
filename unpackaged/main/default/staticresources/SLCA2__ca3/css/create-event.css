@@ -1,0 +1,493 @@
+.CA_create_event {
+    padding:0px;
+    min-width:300px;
+    position: relative;
+}
+
+.CA_create_event > .title {
+    background : #DDDDDD;
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EEEEEE 75%) repeat scroll 0 0 #DDDDDD;
+    background: -linear-gradient(center top , #FFFFFF 0%, #EEEEEE 75%) repeat scroll 0 0 #DDDDDD;
+    background: linear-gradient(top,  #FFFFFF 0%,#EEEEEE 75%);
+    height:20px;
+    font-size: 140%;
+    font-weight: bolder;
+    padding:5px;
+}
+
+.CA_create_event._message > .title{
+    padding-bottom:0px;
+}
+
+.CA_create_event > .calendar_select{
+    border:1px solid #ddd;
+    padding:3px;
+    border-radius: 3px;
+    margin-top: 3px;
+}
+    .CA_create_event > .calendar_select > select{
+        width:100%;
+        height:20px;
+        border:1px solid transparent;
+        background-color: transparent;
+        font-size: 120%;
+        max-width:350px;
+    }
+
+.CA_create_event > .message{
+    margin-top: 3px;
+    display: none;
+    background-color: #fff;
+    padding:3px;
+    border-radius: 3px;
+    border:1px solid #ddd;
+}
+.CA_create_event._message > .message{
+    display: block;
+    background-color: #FC0;
+    transition: background-color 0.7s;
+    max-width: 300px;
+}
+
+.CA_create_event > .fields{
+    border:1px solid #ddd;
+    border-radius: 3px;
+    margin-top:5px;
+    max-height:550px;
+    overflow-y:auto;
+/*    margin-bottom:30px;*/
+    overflow-x: hidden;
+}
+.CA_create_event._disabled > .fields{
+    display: none;
+}
+
+    .CA_create_event > .fields > form {
+        margin:0px;
+        padding:0px;
+    } 
+    
+        .CA_create_event > .fields > form > div{
+            margin-top:2px;
+            border-top: 1px solid #ddd;
+            overflow:hidden;
+            vertical-align:text-top;
+            max-width:550px;
+            min-width: 350px;
+        }
+
+        .CA_create_event > .fields > form > div:first-child{
+            border-top:0px;
+        }
+        
+            .CA_create_event > .fields > form > div > span{
+                display:inline-block;
+                vertical-align:text-top;
+                border-left:1px solid #ddd;
+                font-size: 100%;
+                padding:1px;
+                min-width:200px;
+                box-sizing: border-box;
+                background-color:#eee; 
+            }
+
+            .CA_create_event > .fields > form > div > span:first-child{
+                margin-right:5px;
+                background-color:#fff; 
+                border-left:0px;
+                font-weight: bold;
+                width:100px;
+                padding:3px;
+                min-width:100px;
+                border-left:0px;
+            }
+            
+            .CA_create_event > .fields > form > div.two_column > span{
+                width: 90%;
+            }
+            
+            .CA_create_event > .fields > form > div.two_column > span[data-type="TEXTAREA"]{
+                display: block;
+            }
+            
+            
+            .CA_create_event > .fields > form > div.required > span {
+                border-left:3px solid red;
+            }
+            
+            .CA_create_event > .fields > form > div.required > span:first-child{
+                border-left: 0px;
+            }
+            
+            .CA_create_event > .fields > form > div span > input,
+            .CA_create_event > .fields > form > div span > select,
+            .CA_create_event > .fields > form > div span > textarea{
+                width:100%;
+                border-radius:2px;
+                padding:4px;
+                box-sizing: border-box;
+                border:0px ;
+                font-size: 100%;
+                background: transparent;
+            }
+            
+            .CA_create_event > .fields > form > div span > textarea{
+                height:50px;
+            }
+            
+        .CA_create_event > .fields > form > div._fire > span:first-child{
+            transition: background-color 0.7s;
+            background: #FFCBC4;
+        }
+            
+            .CA_create_event > .fields > form > div span.lookupInput > a,
+            .CA_create_event > .fields > form > div span.ca_datalist > a{
+                display:inline-block;
+                width:21px;
+                height:20px;
+                background:url(../pic/lookup20.gif) no-repeat 0 0;
+                cursor:pointer;
+                text-decoration: none;
+            }
+            
+            .CA_create_event > .fields > form > div span.lookupInput > a:hover,
+            .CA_create_event > .fields > form > div span.ca_datalist > a:hover{
+                background-position: -21px  0;
+            }
+            
+            
+            
+/*            .CA_create_event > .fields > form > div span.ca_datalist._selector > input{
+                display:none;
+            }
+            */
+            .CA_create_event > .fields > form > div span.ca_datalist{
+                position: relative;
+                height:24px;
+                display: block;
+            }
+            
+                .CA_create_event > .fields > form > div span.ca_datalist > input{
+                    position: absolute;
+                    left:0px;
+                    right:20px;
+                    z-index:1;
+                    width:auto;
+                    background-color: #EEEEEE;
+                }
+                .CA_create_event > .fields > form > div span.ca_datalist > select{
+                    position:absolute;
+                    z-index:0;
+                    right:0px;
+                }
+                .CA_create_event > .fields > form > div span.ca_datalist._selector > select{
+                    display:inline-block;
+                    z-index:2;
+                    background-color: #EEEEEE;
+                }
+                
+                .CA_create_event > .fields > form > div span.ca_datalist._selector > select > option{
+                    background-color: #EEEEEE;
+                }
+                
+                .CA_create_event > .fields > form > div span.ca_datalist._selector > select > option._empty{
+                    background-color: transparent;
+                }
+                .JQ_CA.mobile .CA_create_event > .fields > form > div span.ca_datalist > select{
+                    background-image: url("../pic/type_calendars.png");
+                    background-position: right -76px;
+                    background-repeat: no-repeat;
+                }
+                .CA_create_event > .fields > form > div > span > input.ca_filter_reference,
+                .CA_create_event > .fields > form > div > span > input.ca_filter_reference_sf{
+                    width:150px;
+                }
+                
+                .CA_create_event > .fields > form > div[data-multiple="true"]  span._reference {
+                    text-align: left;
+                    display:block;
+                    border-bottom: 1px dotted #ddd;
+                    margin:1px 0px 2px;
+                    cursor: pointer;
+                    background-image: url(../pic/icons.png);
+                    background-repeat: no-repeat;
+                    background-position: 0 -132px;
+                    padding-left:16px;
+                    max-width: 250px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                
+/*                .CA_create_event > .fields > form > div > span[data-type="REFERENCE"] > input[type="hidden"][value=""]
+                + input.ca_filter_reference{
+                    color:#999;
+                    border-bottom: 1px dotted #999;
+                }
+                .CA_create_event > .fields > form > div > span[data-type="REFERENCE"] > input[type="hidden"][value=""]
+                + input.ca_filter_reference[value=""]{
+                    border-bottom: 0;
+                }*/
+                
+            .CA_create_event > .fields > form > div._reminder > span._reminder_allday,
+            .CA_create_event > .fields > form > div._reminder._allday > span._reminder_time { 
+                display: none;
+            }
+            .CA_create_event > .fields > form > div._reminder._allday > span._reminder_allday{
+                display: inline-block
+            }
+                
+.CA_create_event > .buttons {
+/*    position: absolute;*/
+/*    left:10px;right:10px;*/
+/*    bottom:2px;*/
+    height:30px;
+    border:1px solid #ddd;
+    text-align: center;
+    line-height: 30px;
+}
+
+    .CA_create_event > .buttons > span{
+        font-weight: bold;
+         margin-right: 5px;
+         width:80px;
+    }
+    
+    .CA_create_event._disabled > .buttons > span[data-mode="ok"]    {
+        display: none;
+    }
+    
+.JQ_CA .CA_create_event .ca_reference_selector{
+        display:none;
+        position: absolute;
+/*        max-height:70px;*/
+/*        overflow-y: auto;*/
+        height:auto;
+        background-color: #fff;
+        box-shadow: 0 0 3px #000;
+        min-width:170px;
+        box-sizing: border-box;
+    }
+    
+    .JQ_CA .CA_create_event .ca_reference_selector.show{
+        display:block;
+        z-index:99;
+        padding-top:30px;
+    }
+    
+        .JQ_CA .CA_create_event .ca_reference_selector.show > .remote{
+            position: absolute;
+            top:0px;left:0px;
+            right:0px;
+            height:30px;
+            background : #225A73 ;
+            background: -moz-linear-gradient(top,  #225A73 0%, #487AA3 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#225A73), color-stop(100%,#487AA3));
+            background: -webkit-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+            background: -o-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+            background: -ms-linear-gradient(top,  #225A73 0%,#487AA3 100%);
+            background: linear-gradient(top,  #225A73 0%,#487AA3 100%);
+        }
+        
+            .JQ_CA .CA_create_event .ca_reference_selector.show > .remote > input{
+                background: transparent;
+                border: 0px;
+                padding: 3px;
+                height:24px;
+                width:100px;
+                box-sizing: border-box;
+                color:white;
+                margin:0 25px 0 0;
+            }
+        .JQ_CA .CA_create_event .ca_reference_selector.show  .simple_button{
+            margin:2px 1px !important;
+        }
+        
+        .JQ_CA .CA_create_event .ca_reference_selector.show  .simple_button._off{
+            visibility: hidden;
+/*            opacity:0.7;*/
+        }
+        .JQ_CA .CA_create_event .ca_reference_selector.show  .simple_button._search{
+            padding: 0 !important;
+            line-height: 21px;
+            
+        }
+            .JQ_CA .CA_create_event .ca_reference_selector.show  .simple_button._search > b{
+                background-image: url(../pic/type_calendars.png);
+                background-position: -3px -208px;
+                display: inline-block;
+                width:16px;
+                height:16px;
+                vertical-align: middle;
+                opacity: 0.7;
+            }
+        
+        
+        .JQ_CA .CA_create_event .ca_reference_selector.show  .relative_title{
+            position: absolute;
+            top:0;
+            left:5px;
+            color:white;
+            font-size: 100%;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+        
+        .JQ_CA .CA_create_event .ca_reference_selector.show > .close_selector{   
+            position: absolute;
+            top:5px;right:2px;
+            width:20px;
+            height:20px;
+            background: #fff;
+            border-radius: 10px;
+            line-height: 20px;
+            text-align: center;
+            font-size:120%;
+            color:#487AA3;
+            display:inline-block;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        
+        .JQ_CA .CA_create_event .ca_reference_selector.show  .type_selector{
+            display:none;
+            width:55px;
+            margin-left:2px;
+            background-color: white;
+            border:0px;
+            padding:2px 0px;
+            border-radius: 5px;
+        }
+        
+        .JQ_CA .CA_create_event .ca_reference_selector.show  .type_selector.on{
+            display: inline-block;
+        }
+    
+        .JQ_CA .CA_create_event .ca_reference_selector > .list{
+            max-height: 200px;
+            overflow-x: auto;
+            overflow-y: auto; 
+            min-height: 100px;
+            max-width: 600px;
+        }
+        
+        .JQ_CA .CA_create_event .ca_reference_selector._empty > .list{
+            height: 1px;
+        }
+            .JQ_CA .CA_create_event .ca_reference_selector > .list > a,
+            .JQ_CA .CA_create_event .ca_reference_selector > .list > p{
+                display:block;
+                cursor: pointer;
+                padding:0;
+                padding:5px;
+                text-overflow: ellipsis;
+                overflow-x: hidden;
+                box-sizing: border-box;
+                margin:0;
+            }
+
+            .JQ_CA .CA_create_event .ca_reference_selector > .list > p{
+                display: table-row;
+            }
+            .CA_create_event .ca_reference_selector > .list > a:hover, 
+            .CA_create_event .ca_reference_selector > .list > p:hover, 
+            .CA_create_event .ca_reference_selector > .list > a.sel{
+                background-color: #eee;
+            }    
+
+                .CA_create_event .ca_reference_selector > .list > p > a,
+                .CA_create_event .ca_reference_selector > .list > p > b,
+                .CA_create_event .ca_reference_selector > .list > p > span{
+                    display: table-cell;
+                    width:auto;
+                    padding:2px;
+                    box-sizing: border-box;
+                    vertical-align: top;
+
+                }
+                
+                .JQ_CA .CA_create_event .ca_reference_selector > .list > p > span,
+                .JQ_CA .CA_create_event .ca_reference_selector > .list > p > b:last-child{
+                    border-left: 1px dotted #aaa;
+                    
+                }
+/*                .JQ_CA .CA_create_event .ca_reference_selector > .list > p > span:last-child{
+                    padding-right:15px;
+                }*/
+                .JQ_CA .CA_create_event .ca_reference_selector > .list > p > b{
+                    background-color: #eee;
+                    display: table-cell;
+                }
+                .JQ_CA .CA_create_event .ca_reference_selector > .list > p > b._sel{
+                    text-decoration: underline;
+                    text-decoration-style: dotted;
+                    -webkit-text-decoration-style : dotted;
+                }
+                .JQ_CA .CA_create_event .ca_reference_selector > .list > p > b._sel_up{
+                    text-decoration: overline;
+                    text-decoration-style: dotted;
+                    -webkit-text-decoration-style : dotted;
+                }
+        .JQ_CA .CA_create_event .ca_reference_selector > .search{
+            max-height: 200px;
+            overflow-x: hidden;
+            overflow-y: auto; 
+            min-height: 1px;
+            display: none;
+            position: absolute;
+            left:0;
+            right:0;
+            bottom:0;
+            top:30px;
+        }
+        .JQ_CA .CA_create_event .ca_reference_selector > .list._off{
+            visibility: hidden;
+            z-index: -1;
+        }
+        .JQ_CA .CA_create_event .ca_reference_selector > .search._on{
+            display: block;
+            /*max-width: 300px;*/
+            margin: 0 auto;
+            /*min-height: 150px;*/
+        }
+        
+            .JQ_CA .CA_create_event .ca_reference_selector > .search > div._search_field{
+                display: block;
+                white-space: nowrap;
+                max-width: 300px;
+                margin: 5px auto;
+            }
+                .JQ_CA .CA_create_event .ca_reference_selector > .search > div._search_field > b{
+                    display: inline-block;
+                    width:100px;
+                    box-sizing: border-box;
+                    padding-left: 10px;
+                    white-space: normal;
+                    vertical-align: top;
+                }
+                .JQ_CA .CA_create_event .ca_reference_selector > .search > div._search_field > span{
+                    width: calc(100% - 100px);
+                    display: inline-block;
+                }
+        
+            
+            
+            
+.CA_create_event > .fields > form > div.two_column > span._reccurence > p{
+    display: none;
+}
+
+.CA_create_event > .fields > form > div.two_column > span._reccurence > p._on{
+    display: block;
+}
+
+.CA_create_event > .fields > form > div.two_column > span._reccurence p input[type="text"],
+.CA_create_event > .fields > form > div.two_column > span._reccurence p select{
+    background: #EEEEEE;
+    border: 0 none;
+    font-size: 100%;
+    padding: 4px;
+}
+
+.CA_create_event > .fields > form > div.two_column > span._reccurence p input[type="text"]{
+    border-left: 3px solid #FF0000;
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Denotes whether the expense has been billed --></help>
+        <label><!-- Billed --></label>
+        <name>AcctSeed__Billed__c</name>
+    </CustomFieldTranslation>

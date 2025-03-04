@@ -1,0 +1,776 @@
+<apex:page id="pg" title="{!myCase.CaseNumber}: Change Owner" standardController="Case" extensions="ChangeCaseOwner.Case_Owner_Change_Cntr" action="{!checkAutosave}" sidebar="false" showHeader="{!NOT(inLightning)}">
+    <link rel="stylesheet" href="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/style/jquery-ui.css')}" id="theme"/>
+    <!-- <apex:includeScript value="/support/api/28.0/interactio.js"/ > -->
+    <script type="text/javascript" src="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/js/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/js/jquery-ui.min.js')}"></script>
+    <script type="text/javascript">
+        ccop_$ = $.noConflict();
+    
+        var __sfdcSessionId = '{!GETSESSIONID()}';
+    </script>
+    <script src="/soap/ajax/29.0/connection.js"></script>
+    <script src="/canvas/sdk/js/publisher.js"/>
+    <script src="/support/console/43.0/integration.js"></script>
+
+    <script type="text/javascript">
+        var lightningURL = ''; // For Lightning Console, causes the page to refresh when this page closes.
+        
+        if(sforce.console.isInConsole()) {
+            sforce.console.setTabTitle('Change Case Owner');
+        }
+        function closeTabConsole() {
+            if({!inLightningConsole}) {
+                sforce.console.getEnclosingPrimaryTabId(function(result) {
+                    sforce.console.getEnclosingTabId(function(result) {
+                        hideChangeOverlay();
+                        sforce.console.closeTab(result.id);
+
+                        // [BE] - Changing this eventType requires you to change the same eventType in Case_Owner.page or else it will cause problems in Lightning Console
+                        var EVENT_UPDATED_CASE_OWNER = 'UPDATED_CASE_OWNER';
+                        sforce.console.fireEvent(EVENT_UPDATED_CASE_OWNER, '{!myCase.Id}');
+                    });
+                });
+            }
+            else { // Service Cloud Console
+                sforce.console.getEnclosingPrimaryTabId(function(result) {
+                    sforce.console.refreshPrimaryTabById(result.id, false, function(result) {
+                        sforce.console.getEnclosingTabId(function(result) {
+                            hideChangeOverlay();
+                            sforce.console.closeTab(result.id);
+                        });
+                    });
+                })
+            }
+        }
+        //Enable / disable case team checkboxes when it makes sense to do so
+        ccop_$(document).ready(function(){
+            ccop_$('.memberCkbx').click(function(){
+                if (ccop_$(this).attr('checked'))
+                    ccop_$('.theOptions').find('input').attr('disabled', false);
+                else
+                    ccop_$('.theOptions').find('input').attr('disabled', true);
+            });
+        });
+    
+        /*
+        * Creates a type-ahead search from a text input
+        * @param txtInputName jQuery wrapped text input element
+        * @param txtOutputId jQuery wrapped hidden field element to store selection Id
+        * @param lookupFunc function to lookup suggestions of the form: Void lookupFunc(String searchTerm, callback(sObject[]))
+        */
+        function setupAutocomplete(txtInputName, txtOutputId, lookupFunc) {
+            txtInputName.autocomplete({
+                minLength: 1,
+                delay: 250,
+                dataType: 'json',
+                source: function(request, response) {
+                            var term = request.term.trim();
+    
+                            lookupFunc(term, function(rows) {
+                                if(rows.length == 1) 
+                                    txtOutputId.val(rows[0].Id);
+    
+                                var items = [];
+                                for(var row in rows)
+                                    items.push( {label : rows[row].Name, value : rows[row].Id} );
+                                
+                                response(items);
+                            })
+                        },
+                select: function(event, ui) {
+                    txtInputName.val(ui.item.label);
+                    txtOutputId.val(ui.item.value);
+                    return false;
+                },
+                focus: function(event, ui) {
+                    return false;
+                }
+            });
+        }
+    
+        /*
+        * closure to create database lookup functions based on a given SOQL query
+        * soqlFunc should be of the form `String soqlFunc(searchTerm)` where search term is already escaped for you
+        * function returned is of the form `Void lookupFunc(String searchTerm, callback(sObject[]))`
+        */
+        function createLookup(soqlFunc) {
+            return function(term, callback) {
+                if(term != null) term = term.replace("'", "\\'")
+                var soql = soqlFunc(term);
+    
+                sforce.connection.query(soql, function(result, source) {
+                    callback(result.getArray('records'));
+                });
+            }
+        }
+    
+        //function lookupUser(nameSearchTerm, callback(User[]))
+        var lookupUser = createLookup(function(term) {
+            var userTypes = 'Standard';
+            if(document.getElementById('pg:frm:pb:selUserType') != null)
+                userTypes = document.getElementById('pg:frm:pb:selUserType').value.replace("'", "\\'").split(';').join("','");
+    
+            return "SELECT Id, Name " +
+                   "FROM User " +
+                   "WHERE UserType IN ('" + userTypes + "') AND IsActive = true AND Name LIKE '%" + term + "%' " +
+                   "ORDER BY Name " +
+                   "LIMIT 20";
+        });
+    
+        //function lookupQueue(nameSearchTerm, callback(Group[]))
+        var lookupQueue = createLookup(function(term) {
+            return "SELECT Id, Name "+
+                   "FROM Group " +
+                   "WHERE Type = 'Queue' AND Id IN (SELECT QueueId FROM QueueSobject WHERE SobjectType = 'Case') AND Name LIKE '%" + term + "%' " +
+                   "ORDER BY Name " +
+                   "LIMIT 20";
+        });
+        
+        //User and Queue autocomplete
+        function initTypeAhead() {
+            //Autocomplete for user field
+            var txtUserName = ccop_$('.user-name');
+            if(txtUserName.length > 0)
+                setupAutocomplete(ccop_$('.user-name'), ccop_$('.user-id'), lookupUser);
+    
+            //Autocomplete for queue field
+            var txtQueueName = ccop_$('.queue-name');
+            if(txtQueueName.length > 0)
+                setupAutocomplete(txtQueueName, ccop_$('.queue-id'), lookupQueue);
+        }
+        
+        //Init
+        ccop_$(document).ready(function() {
+            initTypeAhead();
+            
+            //Bring user name input field into focus if it is not already
+            setTimeout(function(){ccop_$('.user-name').focus();}, 1);
+        });
+        
+        //Refresh case details after changing ownership in case feeds
+        function refreshFeed() {
+            //sforce.interaction.entityFeed.refreshObject('{!case.id}', true, true, true);
+            Sfdc.canvas.publisher.publish({name: 'publisher.refresh', payload: {feed: true, objectRelatedLists: {}, objectFields: {}}});
+            
+            initTypeAhead();
+        }
+        
+        //When in case feeds the autocomplete fields need to be cleared after changing ownership
+        function clearFields() {
+            getUsersSearchInput().value = '';
+            getQueuesSearchInput().value = '';
+            initTypeAhead();
+        }
+    </script>
+
+    <apex:slds />
+    <apex:pageMessages />
+    <style type="text/css">
+        /* Override the default orange icon background */
+        .slds-header-icon > .slds-icon_container {
+            background-color: #f2cf5b !important;
+        }
+
+        .change-button-text {
+            vertical-align: middle !important;
+        }
+
+        .inCaseFeeds-caseTeamWrapper {
+            padding: 10px; 
+            border: 1px solid #d4dadc; 
+            border-top: 0px;
+        }
+    </style>
+    <apex:outputPanel rendered="{!inCaseFeedsClassic}">
+        <style type="text/css">
+        /*
+            In Salesforce Classic, the case feed version will never load SLDS. Here are some needed class definitions. NOTE: While some are pulled directly from SLDS, others
+            have custom values specific to the feed layout.
+        */
+        .slds-grid {
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .slds-size_1-of-2 {
+            width: 50%;
+        }
+
+        .slds-size_1-of-4 {
+            width: 25%;
+        }
+
+        .slds-m-left_xx-large {
+            margin-left: 3.125rem;
+        }
+
+        .slds-border_top {
+            border-top: 1px solid #999;
+        }
+
+        .slds-border_right {
+           border-right: 1px solid #999; 
+        }
+
+        .slds-m-vertical_small, .slds-m-vertical_large {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slds-radio {
+            padding: 0.125rem;
+        }
+
+        .slds-button_brand {
+            border-top-color: rgb(181, 181, 181) !important;
+            border-right-color: rgb(181, 181, 181) !important;
+            border-bottom-color: #7f7f7f !important;
+            border-left-color: rgb(181, 181, 181) !important;
+        }
+
+        .classic-inCaseFeeds-verticalRadio {
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .classic-inCaseFeeds-defaultRoleCheckbox {
+            padding-left: 0.125rem;
+            padding-bottom: 0.375rem;
+        }
+
+        .classic-inCaseFeeds-emailNotificationCheckboxWrapper {
+            margin-left: 0.8125rem;
+            margin-bottom: 1rem;
+        }
+
+        .ui-autocomplete {
+            max-height: 100px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+            /* add padding to account for vertical scrollbar */
+            padding-right: 20px;
+        } 
+
+        .slds-backdrop  {
+            transition-duration: 0.4s;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(43, 40, 38, 0.6);
+            z-index: 9000;
+        }
+        .slds-backdrop_open  {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.4s linear;
+        }
+
+        .slds-align_absolute-center {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        
+        .slds-text-heading_large {
+            font-weight: 300;
+            font-size: 1.75rem;
+            line-height: 1.25;
+        }
+
+        .classic-inCaseFeeds-spinnerTitle {
+            margin-left: 1rem;
+        }
+
+        .classic-inCaseFeeds-queuesWrapper {
+            margin-left: 1rem;
+        }
+        </style>
+    </apex:outputPanel>
+    <!-- IE compatibility -->
+    <!--[if lte IE 7]> 
+        <style type="text/css">
+        .inline-block {
+            display: inline;
+            zoom: 1; /* trigger hasLayout */
+        }
+        </style>
+    <![endif]-->
+
+    <apex:stylesheet value="{!URLFOR($Resource.ChangeCaseOwner__Change_Case_Owner_Assets, 'change-case-owner-assets/style/style.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ChangeCaseOwner__Change_Case_Owner_Assets, 'change-case-owner-assets/js/action-overlays.js')}"/>
+    <div class="slds-scope">
+        <!-- [BE] Fixes issue where if the page was displayed in Lightning but the user is in classic there would be spacing around the top of the page.-->
+        <script type="text/javascript">
+            if(window.self !== window.top) { // Check if page is in iframe.
+                document.body.classList.remove('sfdcBody','hasMotif');
+            }
+        </script>
+        <apex:form id="frm">
+            <!-- Page Header and Alert -->
+            <apex:outputPanel rendered="{!NOT(inCaseFeeds)}">
+                <c:PageHeader appTitle="Change Case Ownership Plus" pageTitle="Change Case Owner ({!myCase.CaseNumber})" hideButtons="true" iconURL="{!URLFOR($Asset.SLDS,'/assets/icons/standard/case_60.png')}"/>
+
+                <!-- Alert -->
+                <div id="pageAlert" class="slds-notify slds-notify_alert slds-theme_alert-texture sldsc-alert-is-closed" role="alert">
+                    <span class="slds-icon_container slds-icon-utility-ban slds-m-right_x-small">
+
+                        <img class="slds-icon slds-icon_x-small" src="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/img/custom-icons/ban_white_60.png')}"/>
+                    </span>
+                    <h2>[MESSAGE HERE]</h2>
+                    <button class="slds-button slds-button_icon slds-notify__close slds-button_icon-inverse" title="Hide Alert" onclick="hideAlert(); return false;">
+                        <img class="slds-button__icon" src="{!URLFOR($Resource.Change_Case_Owner_Assets, 'change-case-owner-assets/img/custom-icons/close_white_60.png')}"/>
+                    </button>
+                </div>
+            </apex:outputPanel>
+
+            <apex:actionFunction name="changeCaseOwnerFromUI" action="{!changeCaseOwner}" rerender="{!IF(inCaseFeeds,'userName,queueName,','')} checkErrorsScript" oncomplete="{!IF(inCaseFeeds,'refreshFeed();','postChange();')}">
+                <apex:param name="userId" assignTo="{!dummyCase.OwnerId}" value=""/>
+                <apex:param name="queueId" assignTo="{!queueId}" value=""/>
+                <apex:param name="ownerIsUser" assignTo="{!caseOwnerIsUser}" value=""/>
+                <apex:param name="savedFromUI" assignTo="{!savedFromUI}" value=""/>
+            </apex:actionFunction>
+
+            <!-- OVERLAY -->
+            <div id="changeOverlay" style="display:none;">
+                <div class="slds-backdrop slds-backdrop_open slds-backdrop_white" style="display:flex;">
+                    <div class="slds-align_absolute-center">
+                        <apex:outputPanel layout="none" rendered="{!inCaseFeedsClassic}">
+                            <img src="/img/loading.gif" width="32"/>
+                        </apex:outputPanel>
+                        <apex:outputPanel layout="none" rendered="{!NOT(inCaseFeedsClassic)}">
+                            <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand overlay-spinner">
+                                <span class="slds-assistive-text">Changing Case Owner</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="classic-inCaseFeeds-spinnerTitle">
+                            <div class="slds-text-heading_large" style="font-weight:700;">Changing Case Owner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMAILS MODAL -->
+            <div id="email-limit-modal">
+                <section role="dialog" tabindex="-1" class="slds-modal">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 class="slds-text-heading_medium slds-hyphenate">Heads Up</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <p>It looks like you've exceeded the maximum number of emails for today. The Case Owner will <b>still be changed</b>, but <b>no notification email will be sent out</b>. Click 'OK' to go to the Case.</p>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <apex:actionFunction name="modalConsoleCancel" action="{!modalConsoleCancel}" reRender="checkErrorsScript" oncomplete="postChange();"/>
+                            <apex:actionFunction name="modalCancel" action="{!cancel}" reRender=""/>
+                            <!-- Modal Button for Console -->
+                            <button id="modalOkBtn" class="slds-button slds-button_brand">OK</button>
+                            <script type="text/javascript">
+                                var btn = document.getElementById('modalOkBtn');
+                                btn.addEventListener('click',function(event) {
+                                    sforce.console.isInConsole() ? modalConsoleCancel() : modalCancel();
+                                });
+                            </script>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop"></div>
+            </div>
+
+            <!-- HEADER (inCaseFeeds = true) -->
+            <apex:outputPanel layout="block" style="padding:10px; background-color: #f5f5f6; border: 1px solid #d4dadc;" rendered="{!inCaseFeeds}">
+                <strong>Change Case Owner</strong>
+            </apex:outputPanel>
+
+            <!-- WRAPPER -->
+            <div class="{!IF(inCaseFeeds,'inCaseFeeds-caseTeamWrapper','slds-p-horizontal_large')}">
+                <div class="slds-box slds-m-top_medium">
+                    <!-- DESCRIPTION -->
+                    <apex:outputPanel layout="block" rendered="{!NOT(inCaseFeeds)}" styleClass="slds-border_bottom slds-p-bottom_small slds-m-bottom_small">
+                        <p>Change Case Ownership Plus allows you to transfer cases from one user or queue to another. When you transfer ownership, the new owner will own all open activities (tasks and events) for this case that are assigned to the current owner.</p>
+
+                        <p>Note that completed activities will not be transferred. Open activities will not be transferred when assigning this case to a queue.</p>
+                    </apex:outputPanel>
+
+                    <!-- CASE TEAM MEMBER SECTION -->
+                    <apex:outputPanel layout="none" rendered="{!AND(caseTeamSupport,NOT(disableTeams))}">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <span class="slds-checkbox">
+                                    <apex:inputCheckbox id="addAsMember" styleClass="memberCkbx" value="{!addAsMember}"/>
+                                    <label class="slds-checkbox__label {!IF(inCaseFeeds,'','bold')}" for="{!$Component.addAsMember}">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">Add {!myUser.FirstName} {!myUser.LastName} as a Case Team Member:</span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="slds-m-left_xx-large">
+                            <div class="slds-form-element">
+                                <div class="slds-form-element__control classic-inCaseFeeds-verticalRadio">
+                                    <apex:repeat value="{!roleOptions}" var="role">
+                                        <span class="slds-radio">
+                                            <input data-case-team-role="{!role.value}" type="radio" id="radio-select-{!role.value}-role" name="case-team-role-option" onclick="updateSelectedRole(this)"/>
+                                            <label class="slds-radio__label" for="radio-select-{!role.value}-role">
+                                                <span class="slds-radio_faux"></span>
+                                                <span class="slds-form-element__label">{!role.label}</span>
+                                            </label>
+                                        </span>
+                                    </apex:repeat>
+                                    <apex:inputHidden id="h__selectedRole" value="{!selectedRole}"/>
+                                    <script type="application/javascript">
+                                        function updateSelectedRole(inputRadio) {
+                                            document.getElementById('{!$Component.frm.h__selectedRole}').value = inputRadio.getAttribute('data-case-team-role');
+                                        }
+
+                                        function initialRadioCheck() {
+                                            var selectedRole = document.getElementById('{!$Component.frm.h__selectedRole}').value;
+                                            var roleOptions = document.querySelectorAll("input[type='radio'][name='case-team-role-option']");
+                                            var checkedAnOption = false;
+                                            for(var i = 0; i < roleOptions.length; i++) {
+                                                roleOptions[i].checked = false;
+                                                if(roleOptions[i].getAttribute("data-case-team-role") === selectedRole) {
+                                                    roleOptions[i].checked = true;
+                                                    checkedAnOption = true;
+                                                }
+                                            }
+                                            if(!checkedAnOption && roleOptions.length > 0) {
+                                                roleOptions[0].checked = true;
+                                            }
+                                        }
+
+                                        initialRadioCheck();
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="slds-m-vertical_small slds-border_top" style="width:215px;"></div>
+                            <div class="slds-form-element classic-inCaseFeeds-defaultRoleCheckbox">
+                                <div class="slds-form-element__control">
+                                    <span class="slds-checkbox">
+                                        <apex:inputCheckbox id="defaultRoleCheckbox" value="{!setDefaultTeamRole}"/>
+                                        <label class="slds-checkbox__label {!IF(inCaseFeeds,'','bold')}" for="{!$Component.defaultRoleCheckbox}">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">Make This Role Your Default</span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-border_top slds-m-vertical_large"></div>
+                    </apex:outputPanel>
+                    <!-- END CASE TEAM MEMBER SECTION -->
+
+                    <!-- USERS AND QUEUES -->
+                    <div class="slds-grid">
+                        <!-- USERS -->
+                        <div class="slds-size_1-of-2 slds-p-horizontal_small">
+                            <!-- Email Settings and Search -->
+                            <div class="slds-grid">
+                                <div class="{!IF(NOT(inCaseFeedsClassic),'slds-size_1-of-2','')}">
+                                    <span class="bold">User:</span>
+                                    <!-- Email option -->
+                                    <div class="slds-form-element inline-block slds-m-left_small classic-inCaseFeeds-emailNotificationCheckboxWrapper">
+                                        <div class="slds-form-element__control">
+                                            <span class="slds-checkbox">
+                                                <apex:inputCheckbox id="emailNoteUser" value="{!emailNoteUser}" selected="{!emailNoteUser}"/> 
+                                                <label class="slds-checkbox__label {!IF(inCaseFeeds,'','bold')}" for="{!$Component.emailNoteUser}">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">Send Notification Email</span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-size_1-of-4 slds-m-right_xx-small">
+                                    <apex:outputPanel styleClass="slds-select_container" rendered="{!havePartners}" layout="block">
+                                        <apex:selectList id="selUserType" value="{!userTypes}" size="1" styleClass="slds-select">
+                                            <apex:selectOption itemValue="Standard" itemLabel="Internal"/>
+                                            <apex:selectOption itemValue="PowerPartner" itemLabel="Partner"/>
+                                            <apex:actionSupport event="onchange" action="{!queryUsers}" reRender="results" oncomplete="initTypeAhead();"/>
+                                        </apex:selectList>
+                                    </apex:outputPanel>
+                                </div>
+                                <apex:outputPanel layout="block" rendered="{!NOT(inCaseFeeds)}" styleClass="slds-size_1-of-4 slds-m-left_xx-small">
+                                    <apex:outputPanel layout="none" rendered="{!AND(filterFieldName != null, filterFieldName != '')}">
+                                        <apex:actionFunction name="updateFilter" action="{!queryUsers}" reRender="results" oncomplete="initTypeAhead();">
+                                            <apex:param name="filter" value="" assignTo="{!filter}"/>
+                                        </apex:actionFunction>
+                                        <apex:inputText id="fltr" styleClass="slds-input" value="{!filter}" html-placeholder="{!filterFieldLabel}" onkeyup="updateFilter(this.value);"/>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </div>
+                            <!-- Buttons and Search -->
+                            <apex:outputPanel id="results" layout="block" styleClass="slds-m-left_xx-large">
+                                <!-- Buttons -->
+                                <apex:outputPanel layout="none" rendered="{!displayButtonUsers}">
+                                    <div class="slds-grid slds-wrap slds-m-top_medium ">
+                                        <apex:repeat id="users" value="{!userRows}" var="row">
+                                            <div class="slds-size_1-of-2 slds-m-bottom_xx-small">
+                                                <button class="slds-button slds-button_brand sldsc-button_small slds-m-right_xx-small" onclick="performChange(true, '{!row.u1.u.Id}'); return false;">Change</button>
+                                                <apex:outputText value="{!row.u1.u.Name}" styleClass="change-button-text"/><apex:outputText style="color:#3e3e3c;" value=" ({!row.u1.awayMessage})" rendered="{!row.u1.awayMessage != null}"/>
+                                            </div>
+                                            <div class="slds-size_1-of-2 slds-m-bottom_xx-small">
+                                                <button class="slds-button slds-button_brand sldsc-button_small slds-m-right_xx-small" style="{!IF(row.u2 = '', 'display: none !important; ', '')}" onclick="performChange(true, '{!row.u2.u.Id}'); return false;">Change</button>
+                                                <apex:outputText value="{!row.u2.u.Name}" styleClass="change-button-text"/><apex:outputText style="color:#3e3e3c;" value=" ({!row.u2.awayMessage})" rendered="{!row.u2.awayMessage != null}"/>
+                                            </div>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:outputPanel>
+
+                                <!-- Type ahead -->
+                                <apex:outputPanel rendered="{!NOT(displayButtonUsers)}" layout="block" styleClass="slds-m-top_small">
+                                    <apex:inputText id="userName" styleClass="user-name slds-input slds-size_1-of-2" value="{!userName}"/>
+                                    <apex:inputText id="userId" style="display:none;" styleClass="user-id inline-block" value="{!dummyCase.OwnerId}"/>
+                                    <button class="slds-button slds-button_brand slds-m-left_xx-small {!IF(inCaseFeedsClassic, 'btn','')}" style="margin-top:-3px" onclick="performChange(true); return false;">Change</button>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="slds-border_left slds-border_right"></div>
+                        <!-- QUEUES -->
+                        <div class="slds-size_1-of-2 slds-p-horizontal_small slds-m-left_medium classic-inCaseFeeds-queuesWrapper">
+                            <!-- Email Settings -->
+                            <div>
+                                <span class="bold">Queue:</span>
+                                <!-- Email option -->
+                                <div class="slds-form-element inline-block slds-m-left_small classic-inCaseFeeds-emailNotificationCheckboxWrapper">
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <apex:inputCheckbox id="emailNoteGroup" value="{!emailNoteGroup}" selected="{!emailNoteGroup}"/> 
+                                            <label class="slds-checkbox__label {!IF(inCaseFeeds,'','bold')}" for="{!$Component.emailNoteGroup}">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">Send Notification Email</span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sldsc-m-left_xxx-large">
+                                <!-- Buttons and Search -->
+                                <apex:outputPanel layout="block" rendered="{!displayButtonQueues}" styleClass="sldsc-m-top_large-medium">
+                                    <apex:repeat id="queues" value="{!queues}" var="queue">
+                                        <div class="slds-m-bottom_xx-small">
+                                            <button class="slds-button slds-button_brand slds-m-right_xx-small sldsc-button_small" onclick="performChange(false, '{!queue.Id}'); return false;">Change</button>
+                                            <apex:outputText styleClass="change-button-text" style="white-space:nowrap;" value="{!queue.Name}"/>
+                                        </div>
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                                <!-- Type ahead -->
+                                <apex:outputPanel rendered="{!NOT(displayButtonQueues)}" layout="block" styleClass="slds-m-top_small">
+                                    <apex:inputText id="queueName" styleClass="queue-name slds-input slds-size_1-of-2" value="{!queueName}"/>
+                                    <apex:inputText id="queueId" style="display:none;" styleClass="queue-id" value="{!queueId}"/>
+                                    <button class="slds-button slds-button_brand slds-m-left_xx-small {!IF(inCaseFeedsClassic, 'btn','')}" style="margin-top:-3px" onclick="performChange(false); return false;">Change</button>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-text-align_center slds-m-top_medium">
+                        <apex:commandButton rendered="{!NOT(inCaseFeeds)}" value="Cancel" action="{!cancel}" oncomplete="closeTabConsole()" immediate="true" rerender="{!IF(inCaseFeeds,'userName,queueName','')}" styleClass="slds-button slds-button_neutral" />
+                    </div>
+                </div>
+            </div>
+            <!-- END WRAPPER -->
+
+            <apex:outputPanel id="checkErrorsScript">
+                <script type="application/javascript">
+                    // Checks if there was an apex page error message and uses the first one on the error alert.
+                    // Updates the message based on field.
+                    function checkForErrors() {
+                        var errorMessage = '{!JSENCODE(errorMessageFromPageMessages)}';
+                        if(errorMessage === '' || errorMessage === null || typeof(errorMessage) === 'undefined') {
+                            if(sforce.console.isInConsole() && {!consoleCloseTab}) {
+                                // Lightning Console
+                                if({!inLightningConsole}) {
+                                    sforce.console.getFocusedPrimaryTabObjectId(function(result) {
+                                        // If primary tab is not an sObject , open a new primary tab for the case.
+                                        var objId = (result.id !== null) ? result.id : '{!myCase.Id}';
+                                        lightningURL = '/one/one.app?source=aloha#/sObject/' + objId + '/view';
+                                        closeTabConsole();
+                                    });
+                                }
+                                else { // Service Cloud Console
+                                    closeTabConsole();
+                                }
+                            }
+                            return true;
+                        }
+                        else {
+                            if(errorMessage.indexOf('User field is') !== -1) {
+                                showErrorForSLDSInput(getUsersSearchInput());
+                            }
+
+                            if(errorMessage.indexOf('Queue field is') !== -1) {
+                                showErrorForSLDSInput(getQueuesSearchInput());
+                            }
+
+                            if(errorMessage.indexOf('SINGLE_EMAIL_LIMIT_EXCEEDED') !== -1) {
+                                showEmailsModal();
+                                return;
+                            }
+                            showErrorAlert(errorMessage);
+                        }
+                        hideChangeOverlay();
+                        return false;
+                    }
+                </script>
+            </apex:outputPanel>
+
+            <!-- There is a chance for there to be an error caused by the constructor -->
+            <script type="text/javascript">
+                function setFocusOnLoad() {}
+
+                function performChange(ownerIsUser, ownerId) {
+                    showChangeOverlay();
+                    clearTextFieldErrors();
+                    hideAlert();
+
+                    var userId = null;
+                    var queueId = null;
+
+                    if(ownerId !== null && typeof(ownerId) !== 'undefined') {
+                        if(ownerIsUser) {
+                            userId = ownerId;
+                        }
+                        else {
+                            queueId = ownerId;
+                        }
+                    }
+
+                    // Assign if null regardless of what we are searching for, otherwise an existing value could be overriden with null.
+                    if(userId === null) {
+                        userId = getUsersSearchInputId();
+                    }
+
+                    if(queueId === null) {
+                        queueId = getQueuesSearchInputId();
+                    }
+                    
+                    // After the alert hiding animation finishes, begin the save.
+                    setTimeout(function() {
+                        changeCaseOwnerFromUI(userId, queueId, ownerIsUser,true);
+                    }, 400);
+                }
+
+                function clearTextFieldErrors() {
+                    var errorDivs = document.querySelectorAll('div.slds-has-error');
+                    for(var i = 0; i < errorDivs.length; i++) {
+                        errorDivs[i].classList.remove('slds-has-error');
+                    }
+                }
+
+                function showErrorAlert(errMsg) {
+                    var pageAlert = getPageAlert();
+                    if(pageAlert !== null) {
+                        pageAlert.classList.remove('sldsc-alert-is-closed');
+                        pageAlert.classList.add('slds-theme_error');
+                        var pageMessage = pageAlert.querySelector('h2');
+                        pageMessage.innerText = errMsg;
+                        var messageIcon = pageAlert.querySelector('img.slds-icon');
+                        messageIcon.src = "{!URLFOR($Resource.ChangeCaseOwner__Change_Case_Owner_Assets, 'change-case-owner-assets/img/custom-icons/ban_white_60.png')}";
+                    }
+                }
+
+                function hideAlert() {
+                    var pageAlert = getPageAlert();
+                    if(pageAlert !== null) {
+                        pageAlert.classList.add('sldsc-alert-is-closed');
+                        // Wait until animation finishes to change the theme.
+                        setTimeout(function() {
+                            pageAlert.classList.remove('slds-theme_error');
+                            pageAlert.classList.remove('slds-theme_success');
+                        },400);
+                    }
+                }
+
+                function getPageAlert() {
+                    return document.getElementById('pageAlert');
+                }
+                function showErrorForSLDSInput(sldsInputElement) {
+                    if(sldsInputElement !== null) {
+                         var divParent = sldsInputElement;
+                         while(divParent.nodeName !== 'DIV' && divParent !== null) {
+                            divParent = divParent.parentElement;
+                        }
+                        if(divParent !== null) {
+                            divParent.classList.add('slds-has-error');
+                        } 
+                    }
+                }
+
+                function getUsersSearchInput() {
+                    return document.getElementById('{!$Component.frm.userName}');
+                }
+
+                function getQueuesSearchInput() {
+                    return document.getElementById('{!$Component.frm.queueName}');
+                }
+
+                function getUsersSearchInputId() {
+                    if(document.getElementById('{!$Component.frm.userId}')) {
+                        return document.getElementById('{!$Component.frm.userId}').value;
+                    }
+                    return null;
+                }
+
+                function getQueuesSearchInputId() {
+                    if(document.getElementById('{!$Component.frm.queueId}') !== null) {
+                        return document.getElementById('{!$Component.frm.queueId}').value;
+                    }
+                    return null;
+                }
+
+                function showChangeOverlay() {
+                    var changeOverlay = document.getElementById('changeOverlay');
+                    changeOverlay.style.display = 'block';
+                    disableBackgroundListeners();
+                }
+
+                function hideChangeOverlay() {
+                    var changeOverlay = document.getElementById('changeOverlay');
+                    changeOverlay.style.display = 'none';
+                    enableBackgroundListeners();
+                }
+
+                // Ignore Tabs and Arrow Keys to change navigation tabs.
+                function disableBackgroundListeners() {
+                    ACTION_OVERLAYS.setEnableTabsForPage(false);
+                }
+
+                function enableBackgroundListeners() {
+                    ACTION_OVERLAYS.setEnableTabsForPage(true);
+                }
+
+                function postChange() {
+                    // Hide Overlay if errors found, otherwise close tab will hide it.
+                    if(checkForErrors()) {
+                        hideChangeOverlay();
+                    }
+                }
+
+                function showEmailsModal() {
+                    var emailsLimitModal = document.getElementById('email-limit-modal');
+                    emailsLimitModal.querySelector('.slds-modal').classList.add('slds-fade-in-open');
+                    emailsLimitModal.querySelector('.slds-backdrop').classList.add('slds-backdrop_open');
+                    disabledBackgroundListenersExceptModal();
+                }
+
+                function disabledBackgroundListenersExceptModal() {
+                    ACTION_OVERLAYS.setEnableTabsForPageExceptDiv(false, 'email-limit-modal');
+                }
+
+                // Run right away for error messages caused by constructor.
+                checkForErrors();
+            </script>
+        </apex:form>
+    </div>
+</apex:page>

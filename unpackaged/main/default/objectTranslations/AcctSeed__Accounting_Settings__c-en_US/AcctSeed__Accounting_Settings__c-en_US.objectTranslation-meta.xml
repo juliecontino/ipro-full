@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>PMA Main Layout</layout>
+        <sections>
+            <label><!-- Accounts Payable and Cash Disbursement Settings --></label>
+            <section>Accounts Payable and Cash Disbursement Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Receivable and Cash Receipts Settings --></label>
+            <section>Accounts Receivable and Cash Receipts Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Settings --></label>
+            <section>Billing Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Cash Disbursement PDF Offset Settings --></label>
+            <section>Cash Disbursement PDF Offset Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General Ledger Settings --></label>
+            <section>General Ledger Settings</section>
+        </sections>
+        <sections>
+            <label><!-- PDF Format Settings --></label>
+            <section>PDF Format Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Product Costing Settings --></label>
+            <section>Product Costing Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Project Accounting Settings --></label>
+            <section>Project Accounting Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Purchase Order Settings --></label>
+            <section>Purchase Order Settings</section>
+        </sections>
+        <sections>
+            <label><!-- Time Card Settings --></label>
+            <section>Time Card Settings</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

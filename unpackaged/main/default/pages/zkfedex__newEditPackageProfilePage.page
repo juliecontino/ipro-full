@@ -1,0 +1,189 @@
+<apex:page tabStyle="Package_Profiles__tab" standardController="zkfedex__Package__c" extensions="zkfedex.EditPackageProfileController" action="{! init }">
+    <apex:includeScript value="{!URLFOR($Resource.zkfedex__Jquery, '/jquery/jquery-1.4.2.js')}"/>
+
+    <apex:sectionHeader title="FedEx Package Profile New"  subtitle="New FedEx Package Profile" rendered="{! NOT(isEditMode) }"/>
+    <apex:sectionHeader title="FedEx Package Profile Edit"  subtitle="Edit FedEx Package Profile" rendered="{! isEditMode }" />
+
+    <style>
+        .inputFieldRequiredBar {
+            height:14px;
+            float:right;
+            display: inline;
+            font-size: 8pt;
+            color: #cc0000;
+            padding: 5px 0 2px 0;
+            margin-left: 16px;
+            margin-right: -19px;
+            margin-top:2px;
+            background-color: #cc0000;
+        }
+
+    </style>
+
+    <apex:form id="formId">
+        <apex:outputPanel id="requiredIndicatorScript">
+            <script>
+                $j = jQuery.noConflict();
+
+                function setRequiredFields() {
+                    $j('.inputFieldRequired').before('<span class="inputFieldRequiredBar">&nbsp;</span>');
+                }
+
+                $j(document).ready(function() {
+                    setRequiredFields();
+                });
+
+                
+            </script>
+        </apex:outputPanel>
+
+        <!-- Messages -->
+        <apex:outputPanel id="preferencePageMessages">
+            <c:MessageListDisplay msgList="{! messageList }"/>
+        </apex:outputPanel>
+
+        <apex:pageBlock id="mainInfoBlock" mode="maindetail">
+            
+
+            <!-- Page Block Buttons -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{! createProfile }" value="Create Package Profile" rendered="{! NOT(isEditMode) }"/>
+                <apex:commandButton action="{! saveProfile }" value="Update Package Profile" rendered="{! isEditMode }"/>
+                <apex:commandButton action="{! backToPreviousPage }" immediate="true" value="Cancel"/>
+            </apex:pageBlockButtons>
+
+            <!-- Main Information -->
+            <apex:pageBlockSection id="mainSection" collapsible="false" title="Main Information" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel styleClass="inputFieldRequired" value="Package Profile Description"/>
+                    <apex:inputField value="{! profileObject.PackageProfileDescription__c }"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <!-- Packaging Type -->
+            <apex:pageBlockSection id="packagingTypeSection" collapsible="false" title="Packaging Type" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel styleClass="inputFieldRequired" value="Packaging Type"/>
+                    <apex:selectList value="{! profileObject.PackagingType__c }" size="1" multiselect="false">
+                        <apex:selectOptions value="{! packagingTypeClassOptions }"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <!-- Freight Details -->
+            <apex:pageBlockSection id="freightDetailsSection" collapsible="false" title="Freight Details" columns="2">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Is a Freight"/>
+                    <apex:inputField value="{! profileObject.IsFreight__c }" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Total Pieces On Skid"/>
+                    <apex:inputField value="{! profileObject.TotalPiecesOnSkid__c}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <!-- Weigh -->
+            <apex:pageBlockSection id="weighSection" collapsible="false" title="Weigh" columns="2">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Weight"/>
+                    <apex:inputField value="{! profileObject.Weight__c }"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Weight Units"/>
+                    <apex:selectList value="{! profileObject.WeightUnits__c }" size="1" multiselect="false">
+                        <apex:selectOptions value="{! weightUnitsOptions }"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            
+            </apex:pageBlockSection>
+
+            <!-- Dimensions -->
+            <apex:pageBlockSection id="dimSection" collapsible="false" title="Dimensions" columns="1">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Length"/>
+                    <apex:inputField value="{! profileObject.Length__c }"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Width"/>
+                    <apex:inputField value="{! profileObject.Width__c }"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Height"/>
+                    <apex:inputField value="{! profileObject.Height__c }"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Dimension Units"/>
+                    <apex:selectList value="{! profileObject.DimensionUnits__c }" size="1" multiselect="false">
+                        <apex:selectOptions value="{! dimensionUnitsUnitOptions }"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            
+            </apex:pageBlockSection>
+
+            <!-- Declared/Carriage Value -->
+            <apex:pageBlockSection collapsible="false" title="Declared/Carriage Value" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Declared/Carriage Value"/>
+                    <apex:inputField value="{! profileObject.DeclaredValue__c }" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <!-- Special Services -->
+            <apex:pageBlockSection collapsible="false" title="Special Services" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Non Standard Packaging"/>
+                    <apex:inputField value="{! profileObject.SsNonStandardPackaging__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Dry Ice Weight"/>
+                    <apex:inputField value="{! profileObject.SsDryIceWeight__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="COD Collection Amount"/>
+                    <apex:inputField value="{! profileObject.SsCodAmount__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Priority Alert"/>
+                    <apex:inputField value="{! profileObject.SsPriorityAlert__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Priority Alert Plus"/>
+                    <apex:inputField value="{! profileObject.SsPriorityAlertPlus__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Priority Alert - Content"/>
+                    <apex:inputField value="{! profileObject.SsPriorityAlertContent__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Dangerous Goods Accessibility"/>
+                    <apex:inputField value="{! profileObject.SsDangerousGoodsAccessibility__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="HazMat Details"/>
+                    <apex:inputField value="{! profileObject.SsHazMatDetails__c }" />
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="ORM-D Details"/>
+                    <apex:inputField value="{! profileObject.SsOrmDDetails__c }" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

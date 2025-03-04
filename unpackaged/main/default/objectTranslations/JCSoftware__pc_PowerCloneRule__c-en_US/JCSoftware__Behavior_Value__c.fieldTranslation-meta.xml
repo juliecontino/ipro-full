@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Default Value of the Behavior.  Use #BLANK to have an empty default value when the object is cloned. --></help>
+        <label><!-- Behavior Value --></label>
+        <name>JCSoftware__Behavior_Value__c</name>
+    </CustomFieldTranslation>

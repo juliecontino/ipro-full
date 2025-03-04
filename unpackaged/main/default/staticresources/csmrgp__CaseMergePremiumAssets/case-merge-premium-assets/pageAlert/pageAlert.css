@@ -1,0 +1,296 @@
+/** Notification **/
+.page-alert .page-alert-notification {
+    position: relative;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    color: #FFF;
+    font-weight: 400;
+    text-align: center;
+    overflow-y: hidden;
+    padding: 0;
+}
+
+/** Icon **/
+.page-alert .page-alert-icon_info,
+.page-alert .page-alert-icon_success,
+.page-alert .page-alert-icon_error,
+.page-alert .page-alert-icon_warning,
+.page-alert .page-alert-icon_offline {
+    display: none;
+}
+
+.page-alert[data-theme="info"] .page-alert-icon_info,
+.page-alert[data-theme="success"] .page-alert-icon_success,
+.page-alert[data-theme="error"] .page-alert-icon_error,
+.page-alert[data-theme="warning"] .page-alert-icon_warning,
+.page-alert[data-theme="offline"] .page-alert-icon_offline  {
+    display: inline;
+}
+
+.page-alert[data-theme="warning"] .page-alert-icon_warning .slds-icon {
+    fill: #514f4d !important;
+}
+
+/** View Details Link **/
+.page-alert .page-alert-view-details-link {
+    white-space: nowrap;
+    color: #FFFFFF !important;
+}
+
+.page-alert .page-alert-view-details-link:hover,
+.page-alert .page-alert-view-details-link:focus {
+    color: #FFFFFF !important;
+}
+
+.page-alert[data-theme="warning"] .page-alert-view-details-link,
+.page-alert[data-theme="warning"] .page-alert-view-details-link:focus,
+.page-alert[data-theme="warning"] .page-alert-view-details-link:hover {
+    color: #181818 !important;
+}
+
+/** Sizing **/
+.page-alert .page-alert-notification[data-collapsed="true"] {
+    height: 0px !important;
+}
+
+.page-alert .page-alert-notification[data-collapsed="false"] {
+    height: 36px;
+}
+
+.page-alert .page-alert-notification[data-collapsed="false"][data-size="large"] {
+    height: 54px;
+}
+
+/** Columns **/
+.page-alert-close-button-col {
+    padding-top: 6px;
+}
+
+.page-alert-icon-col,
+.page-alert-message-col,
+.page-alert-view-details-col {
+    padding-top: 8.25px;
+}
+
+.page-alert-view-details-col {
+    padding-left: 0.5rem;
+}
+
+/** Message **/
+.page-alert .page-alert-message {
+    max-height: 36.5px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/** Modal **/
+.page-alert .page-alert-modal .slds-modal {
+    pointer-events: none;
+}
+
+.page-alert .page-alert-modal .slds-modal.slds-fade-in-open {
+    pointer-events: initial;
+}
+
+/** Modal Header **/
+.page-alert .page-alert-modal .page-alert-modal-header {
+    padding: 0 !important;
+    border-bottom: none !important;
+    color: #fff;
+    padding: .75rem !important;
+    position: relative;
+    height: 4.5rem !important;
+}
+
+.page-alert .page-alert-modal .page-alert-modal-header-text {
+    font-size: 2rem;
+}
+
+.page-alert .page-alert-modal .page-alert-modal-close-button {
+    position: absolute;
+    top: 1.25rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.page-alert .page-alert-modal .page-alert-modal-close-button svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+/** Modal Stack Trace Section **/
+.page-alert .page-alert-modal .page-alert-modal-details {
+    display: none;
+}
+
+.page-alert .page-alert-modal .page-alert-modal-details[data-show="true"] {
+    display: inherit;
+}
+
+.page-alert .page-alert-modal .slds-section__content {
+    overflow: hidden;
+}
+
+.page-alert .page-alert-modal .slds-section__title,
+.page-alert .page-alert-modal .slds-section__title-action,
+.page-alert .page-alert-modal .slds-section__title-action:hover,
+.page-alert .page-alert-modal .slds-section__title-action:focus {
+    background-color: #F3F3F3 !important;
+    fill: #000000 !important;
+    color: #000000 !important;
+    border-color: transparent !important;
+}
+
+.page-alert .page-alert-modal-details-section-button {
+    height: 100%;
+}
+
+/** Modal Copied Text Popover **/
+.page-alert .page-alert-modal .copied-text-popover {
+    position: absolute;
+    z-index: 1;
+    right: -32px;
+    top: 44px;
+    text-align: center;
+    width: 96px;
+    opacity: 0;
+    visibility: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+.page-alert .page-alert-modal .copied-text-popover[data-show="true"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+/** Modal Stack Trace Text **/
+.page-alert .page-alert-modal .page-alert-modal-details-text {
+    max-height: 250px !important;
+    word-break: break-all;
+}
+
+.page-alert .page-alert-modal .page-alert-modal-copyable-message {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    position: absolute;
+}
+
+.page-alert .page-alert-modal-message {
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.page-alert .modal-copy-button {
+    border-color: rgb(216, 221, 230) !important;
+}
+
+.page-alert .page-alert-modal-message-label {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    /** Modal Header **/
+    .page-alert .page-alert-modal .page-alert-modal-header {
+        height: 3.75rem !important;
+    }
+
+    .page-alert .page-alert-modal .page-alert-modal-header-text {
+        font-size: 1.5rem;
+    }
+
+    .page-alert .page-alert-modal .page-alert-modal-close-button {
+        top: .75rem;
+        height: 2.25rem;
+        width: 2.25rem;
+    }
+
+    .page-alert .page-alert-modal .page-alert-modal-close-button svg {
+        height: 1.75rem;
+        width: 1.75rem;
+    }
+
+    /** Modal Message **/
+    .page-alert .page-alert-modal .page-alert-modal-message-label {
+        font-size: .8rem;
+    }
+
+    .page-alert .page-alert-modal .page-alert-modal-message {
+        font-size: .75rem;
+        word-wrap: break-all;
+    }
+
+    /** Modal Stack Trace Text **/
+    .page-alert .page-alert-modal .page-alert-modal-details-text {
+        max-height: none;
+        font-size: .75rem;
+    }
+}
+
+/** The Horizontal "Barber Pole" Background **/
+.page-alert .horizontal-barber-pole-background {
+    background-color: #747474;
+    background-image: linear-gradient(45deg,rgba(0,0,0,.025) 25%,transparent 0,transparent 50%,rgba(0,0,0,.025) 0,rgba(0,0,0,.025) 75%,transparent 0,transparent);
+    background-size: 64px 64px;
+}
+
+.page-alert[data-theme="success"] .horizontal-barber-pole-background {
+    background-color: #04844B;
+}
+
+.page-alert[data-theme="error"] .horizontal-barber-pole-background {
+    background-color: #EA001E;
+}
+
+.page-alert[data-theme="warning"] .horizontal-barber-pole-background {
+    background-color: #FE9339;
+    color: #181818;
+}
+
+.page-alert[data-theme="info"] .horizontal-barber-pole-background {
+    background-color: #54698D;
+}
+
+.page-alert[data-theme="offline"] .horizontal-barber-pole-background {
+    background-color: #444;
+}
+
+.page-alert .horizontal-barber-pole-background[data-animated="true"]  {
+    animation: horizontal-barber-pole 1s infinite linear;
+    -webkit-animation: horizontal-barber-pole 1s infinite linear; /* Safari 4.0 - 8.0 */
+}
+
+/** Animations & Transitions **/
+@keyframes horizontal-barber-pole {
+    from {background-position-x: 0}
+    to {background-position-x: 63px;}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes horizontal-barber-pole {
+    from {background-position-x: 0}
+    to {background-position-x: 63px;}
+}
+
+.page-alert .transition-height {
+    transition: height 0.4s ease-out;
+    -webkit-transition: height 0.4s ease-out;
+    -moz-transition: height 0.4s ease-out;
+    -ms-transition: height 0.4s ease-out;
+    -o-transition: height 0.4s ease-out;
+}

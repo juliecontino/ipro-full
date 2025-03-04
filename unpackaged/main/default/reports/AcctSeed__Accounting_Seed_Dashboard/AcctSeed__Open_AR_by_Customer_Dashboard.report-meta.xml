@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Accounting_Period__c</field>
+    </columns>
+    <columns>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Status__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Amount__c</field>
+    </columns>
+    <description>Scheduled revenue backlog report</description>
+    <filter>
+        <criteriaItems>
+            <column>FK_$AcctSeed__GL_Account__c.AcctSeed__Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Revenue</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Project__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Revenue Backlog Dashboard Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$AcctSeed__Scheduled_Revenue_Expense__c@AcctSeed__Scheduled_Revenue_Expense__c.AcctSeed__Credit_GL_Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

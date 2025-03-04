@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>January_s_Journal_Entries</fullName>
+    <columns>NAME</columns>
+    <columns>AcctSeed__Accounting_Period__c</columns>
+    <columns>AcctSeed__Total_Credits__c</columns>
+    <columns>AcctSeed__Total_Debits__c</columns>
+    <columns>AcctSeed__Out_of_Balance__c</columns>
+    <columns>AcctSeed__Line_Count__c</columns>
+    <columns>AcctSeed__Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>AcctSeed__Accounting_Period__c</field>
+        <operation>equals</operation>
+        <value>2015-01</value>
+    </filters>
+    <label>January's Journal Entries</label>
+</ListView>

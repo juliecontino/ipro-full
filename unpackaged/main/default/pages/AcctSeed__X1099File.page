@@ -1,0 +1,66 @@
+<apex:page standardController="AcctSeed__Cash_Disbursement__c" title="Create 1099 Export | Accounting Seed" extensions="AcctSeed.X1099FileController" 
+    recordSetVar="cashDisbursement" showHeader="true" sidebar="false" docType="html-5.0" lightningStylesheets="true">
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/javascript/accounting-common.js')}" />
+    <script>
+        function setFocusOnLoad() {}
+    </script>
+     <apex:variable var="customLEX" value="customLEXOn" rendered="{!$User.UIThemeDisplayed = 'Theme4d' || $User.UIThemeDisplayed = 'Theme4u'}">
+        <apex:stylesheet value="{!URLFOR($Resource.AcctSeed__accounting_resources, '/css/visualforce-lex-ext.css')}" />
+    </apex:variable>
+
+    <apex:sectionHeader title="Cash Disbursements" subtitle="Create 1099 File"/>
+
+    <apex:form id="theForm">
+        <apex:actionFunction name="backAction" action="{!cancel}" immediate="true"/>
+        <apex:pageBlock id="thePageBlock" title="Create 1099 File">
+                <apex:pageMessage severity="info" strength="3" summary="<ul>The Create 1099 File utility operates by aggregating cash disbursements for a given 1099 year and providing a report. The criteria used is as follows:
+                                                                    <li>The 1099 Vendor field is checked on the Vendor or Contact associated with the Cash Disbursement.</li>
+                                                                    <li>The Disbursement Date occurs in the 1099 Year selected.</li>
+                                                                    <li>The cash disbursements relate to the Form 1099 Type selected</li><ul>" escape="false"/>
+            <apex:pageMessages escape="false"/>
+            <apex:pageBlockButtons id="buttons" >
+                <apex:actionStatus id="saveStatus" onstart="AcctSeed.ASModule.disableButtons('Processing...')"/>
+                <apex:commandButton value="Submit"
+                                    status="saveStatus"
+                                    action="{!create1099File}"
+                                    rendered="{!!jobStarted}" reRender="theForm"/>
+                <apex:commandButton onComplete="AcctSeed.ASModule.customBackToListAction('{!listViewId}', '', '{!SObjectApiName}');"
+                                    value="Back" id="cancelButton"/>
+            </apex:pageBlockButtons>
+            <br/>
+            <apex:pageBlockSection columns="1" title="Select 1099 Year " collapsible="false">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="1099 Reporting Year" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock"/>
+                        <apex:selectList value="{!selectedYear}" size="1">
+                            <apex:selectOptions value="{!availableYears}"/>
+                            <apex:actionSupport event="onchange" action="{!getApplicableFormTypes}" rerender="thePageBlock" />
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Form 1099 Type" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock"/>
+                        <apex:selectList value="{!selectedFormType}" size="1">
+                            <apex:selectOptions value="{!availableFormTypes}"/>
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Ledger"/>
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock"/>
+                        <apex:selectList value="{!selectedLedger}" size="1">
+                            <apex:selectOptions value="{!availableLedgers}"/>
+                        </apex:selectList>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

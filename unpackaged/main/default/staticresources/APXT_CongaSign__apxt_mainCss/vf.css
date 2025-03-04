@@ -1,0 +1,97 @@
+/* Cancel and Resend Visualforce Pages*/
+/*TODO - replace this with slds markup */
+body {
+  font-size: 14px;
+  color: #545861;
+}
+a.congaSetupLink{clear:right}
+a.congaInfoLink{float:right}
+.slds-theme--default:first{margin-left:0px !important;}
+.setupCongaContracts .outline {width:100%;}
+.slds-col {float:left}
+section > ul {padding-top:15px!important;}
+.ManualPanel { display:none }
+.success-status{background-color:#43C979 !important;}
+.failed-status{background-color:#A80C08 !important;}
+.success-status > center > h4 {
+    color:#fff !important;
+}
+.failed-status > center > h4 {
+    color:#fff !important;
+}
+.slds-icon_success {
+    background-color:#00c6b7;
+}
+.slds-icon_failed {
+    background-color:#ef6e64;
+}
+.full-width {
+    width:100%;
+}
+.modal-body-mins { min-height:300px;min-width:400px; }
+.centered { margin: 0 auto; }
+#selectManagedObjectsTitle{padding-bottom:5px;}
+.button-buffered {margin:10px;}
+.slds-select-wide{min-width:250px;}
+.slds-modal__container {
+    width:100%;
+}
+#statusSpan:not(.slds-text-color--error) { 
+  color: #27ae60;
+}
+.slds-text-color--error { 
+  color: #c0392b; 
+}
+#errorMsg, #pgNotifMsg, #setupStepTwo, #errorContainer, #footerStepTwo { 
+  display: none 
+}
+.sign-branding-page_header {
+  color: #000000;
+  font-size: 1.75rem;
+  font-family: "Montserrat", "Salesforce Sans", sans-serif
+}
+#sign-header-logo_mobile {
+  height: 12rem;
+}
+#sign-logo-mobile {
+  height: 4rem;
+}
+.sign-branding-page_button {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    width: 200px;
+  }
+.sign-branding-page_text {
+  color: #545861;
+  font-size: 21px;
+  line-height: 2rem;
+}
+.sign-branding-button_div {
+  width: fit-content;
+}
+.cancel-button {
+    color: #545861 !important;
+    border: 2px solid #b8b8b8 !important;
+}
+.cancel-transaction-button {
+    border: 2px solid #a61a14 !important;
+}
+.resend-button {
+  border: 2px solid #0070d2 !important;
+}
+.content-left img, .content-right img {
+  position: absolute;
+}
+.content-left img {
+    top: 145px;
+    left: 0px;
+}
+.content-right img {
+    top: 26px;
+    right: 0px;
+}
+@media all and (max-width: 1100px) {
+    .content-left img, .content-right img { 
+      display: none; 
+    }
+}

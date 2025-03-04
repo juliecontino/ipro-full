@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The name of the merchant associated with the transaction. --></help>
+        <label><!-- Merchant Name --></label>
+        <name>AcctSeed__Merchant_Name__c</name>
+    </CustomFieldTranslation>

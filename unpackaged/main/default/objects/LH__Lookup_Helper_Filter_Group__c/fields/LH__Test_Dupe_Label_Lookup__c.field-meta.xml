@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LH__Test_Dupe_Label_Lookup__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <label>Filter Logic</label>
+    <referenceTo>LH__Lookup_Helper_Filter_Group__c</referenceTo>
+    <relationshipLabel>Lookup Helper Filter Groups</relationshipLabel>
+    <relationshipName>TestFilterLogic</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

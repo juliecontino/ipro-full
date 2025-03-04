@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__HazMatDetails__c</fullName>
+    <deprecated>false</deprecated>
+    <label>HazMat Details</label>
+    <referenceTo>zkfedex__HazMatDetails__c</referenceTo>
+    <relationshipLabel>FedEx HazMat Containers</relationshipLabel>
+    <relationshipName>FedEx_HazMat_Containers</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

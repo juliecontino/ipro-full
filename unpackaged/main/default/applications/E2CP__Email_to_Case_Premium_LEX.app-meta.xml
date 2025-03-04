@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#E86D1F</headerColor>
+        <logo>E2CP__Email_to_Case_Premium</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>Robust Case Management Solution</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Email to Case Premium</label>
+    <navType>Standard</navType>
+    <tabs>E2CP__Email_to_Case_Premium_Setup</tabs>
+    <tabs>E2CP__Canned_Comment__c</tabs>
+    <tabs>E2CP__New_Comment_Action__c</tabs>
+    <tabs>E2CP__Widespread_Issue__c</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Case</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

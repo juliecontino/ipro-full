@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>AcctSeed__Time_Card_Day__c$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>AcctSeed__Time_Card_Day__c$AcctSeed__Hours__c</field>
+    </columns>
+    <description>Employee utilization based on time card hours reported</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Time_Card_Day__c$AcctSeed__Time_Card_Period__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>AcctSeed__Time_Card_Day__c$AcctSeed__Employee__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Utilization by Employee</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>AcctSeed__Time_Card_Days_with_Projects_and_Time_Card_Periods__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>AcctSeed__Time_Card_Day__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

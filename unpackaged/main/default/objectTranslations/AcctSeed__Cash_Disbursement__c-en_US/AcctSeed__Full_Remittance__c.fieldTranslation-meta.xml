@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The Accounting Seed Check printing PDF can support  up to the display of 5 AP Vouchers on the check remittance. If you consolidate over 5 AP Vouchers you need to print the Full Remittance. This field indicates if a Full Remittance is necessary. --></help>
+        <label><!-- Full Remittance --></label>
+        <name>AcctSeed__Full_Remittance__c</name>
+    </CustomFieldTranslation>

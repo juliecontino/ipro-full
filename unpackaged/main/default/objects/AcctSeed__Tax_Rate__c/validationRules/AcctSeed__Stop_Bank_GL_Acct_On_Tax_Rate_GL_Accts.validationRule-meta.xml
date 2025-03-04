@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AcctSeed__Stop_Bank_GL_Acct_On_Tax_Rate_GL_Accts</fullName>
+    <active>true</active>
+    <description>Ensures that a 'Bank' checked GL Account cannot be populated on the Sales Tax Liability GL Account and Purchase Tax Expense GL Account lookups. Deactivating this rule is likely to cause integrity issues with calculations on Bank Reconciliations.</description>
+    <errorConditionFormula>OR(AcctSeed__Sales_Tax_Liability_GL_Account__r.AcctSeed__Bank__c, AcctSeed__Purchase_Tax_Expense_GL_Account__r.AcctSeed__Bank__c)</errorConditionFormula>
+    <errorMessage>You cannot select a 'Bank' checked GL Account for the Sales Tax Liability GL Account or the Purchase Tax Expense GL Account.</errorMessage>
+</ValidationRule>

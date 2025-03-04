@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    <layouts>
+        <layout>FedEx Bulk Shipment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Shipmate Preference --></label>
+            <section>Shipmate Preference</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- PrintLabels --></label>
+        <name>zkfedex__PrintLabels</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Thermal_Labels --></label>
+        <name>zkfedex__Print_Thermal_Labels</name>
+    </webLinks>
+</CustomObjectTranslation>

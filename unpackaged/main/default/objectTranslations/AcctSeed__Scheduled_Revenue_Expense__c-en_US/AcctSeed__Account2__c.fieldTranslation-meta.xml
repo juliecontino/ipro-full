@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- The account associated with the scheduled revenue expense record --></help>
+        <label><!-- Account --></label>
+        <name>AcctSeed__Account2__c</name>
+        <relationshipLabel><!-- Amortization Entries --></relationshipLabel>
+    </CustomFieldTranslation>

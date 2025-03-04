@@ -1,0 +1,211 @@
+/* 
+    Document   : day
+    Created on : 28 лют 2012, 21:03:03
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+.JQ_CA ._inviteers{
+    position: relative;
+    min-width: 400px;
+    height:250px;
+    /*padding:0 5px;*/
+    /*border:1px solid red;*/
+}
+
+
+    .JQ_CA ._inviteers > input{
+        margin-top: 2px;
+        margin-right: 2px;
+        width: 70%;
+        margin: 0;
+        padding:0 2px;
+        border: 1px solid #ddd;
+        height: 22px;
+        display: inline-block;
+        background: white;
+        box-sizing: border-box;
+    }
+    .JQ_CA ._inviteers > select{
+        margin-top: 2px;
+        width: 29%;
+        margin: 0;
+        padding:0;
+        border: 1px solid #ddd;
+        height: 22px;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+    
+    
+    .JQ_CA ._inviteers > ._l_list,
+    .JQ_CA ._inviteers > ._r_list{
+        position: absolute;
+        top:40px;
+        bottom:0;
+        width:150px;
+        border:1px solid #eee;
+        overflow-y: auto;
+    }
+    
+    .JQ_CA ._inviteers > ._l_label,
+    .JQ_CA ._inviteers > ._r_label{
+        position: absolute;
+        top:25px;
+        width:150px;
+        font-weight: bolder;
+        height: 15px;
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    .JQ_CA ._inviteers._readonly > ._l_list,
+    .JQ_CA ._inviteers._readonly > ._l_label{
+        display: none;
+    }
+    .JQ_CA ._inviteers._readonly > ._r_list{
+        left:0;
+        width: auto;
+        top:15px;
+    }
+    .JQ_CA ._inviteers._readonly > ._r_label{
+        top:0;
+        left:0;
+        width: auto;
+    }
+    
+    .JQ_CA ._inviteers._readonly._acceptdecline > ._r_list{
+        bottom:50%;
+        
+    }
+    
+    
+    
+    .JQ_CA ._inviteers > ._l_list,
+    .JQ_CA ._inviteers > ._l_label{
+        left:0;
+    }
+    
+    .JQ_CA ._inviteers > ._r_list,
+    .JQ_CA ._inviteers > ._r_label{
+        right: 0px;
+    }
+    
+        .JQ_CA ._inviteers > ._l_list > a,
+        .JQ_CA ._inviteers > ._r_list > a{
+            display: block;
+            padding:2px;
+            margin:2px 0;
+            font-size: 80%;
+            margin:2px;
+            border:1px solid #ddd;
+            border-radius: 2px;
+        }
+        
+        .JQ_CA ._inviteers > ._r_list > a:hover,
+        .JQ_CA ._inviteers > ._l_list > a:hover{
+            background: #eee;
+            text-decoration: none;
+        }
+        
+        .JQ_CA ._inviteers > ._r_list > a.sel,
+        .JQ_CA ._inviteers > ._l_list > a.sel{
+            background: #cdcdcd;
+        }
+            .JQ_CA ._inviteers    a > b{
+                display: inline-block;
+                border: 2px solid transparent;
+                width: 14px;
+                height: 14px;
+                text-align: center;
+                vertical-align: middle;
+                border-radius: 8px;
+                margin:0 2px 0 0;
+            }
+            
+            .JQ_CA ._inviteers   a > b._status_A{
+                border-color:#159C1E;
+            }
+            .JQ_CA ._inviteers   a > b._status_N{
+                border-color:#FFFD38;
+            }
+            .JQ_CA ._inviteers   a > b._status_D{
+                border-color:#CD2C2E;
+            }
+            
+        
+    .JQ_CA ._inviteers > ._m_panel{
+        position: absolute;
+        left:150px;
+        width: 100px;
+        top:50px;
+        text-align: center;
+    }
+    
+    .JQ_CA ._inviteers._readonly > ._m_panel{
+        display: none;
+    }
+        .JQ_CA ._inviteers > ._m_panel > span[data-action="accept"],
+        .JQ_CA ._inviteers > ._m_panel > span[data-action="decline"]{
+            display: none;
+        }
+    .JQ_CA ._inviteers._readonly._acceptdecline > ._m_panel{
+        display: block;
+        bottom:0;
+        left:0;
+        right:0;
+        height:30px;
+        top:auto;
+        width: auto;
+    }
+
+    .JQ_CA ._inviteers._readonly._acceptdecline > ._m_panel{
+        display: none;
+    }
+        .JQ_CA ._inviteers._readonly._acceptdecline > ._m_panel > *{
+            display: none;
+        }
+/*        .JQ_CA ._inviteers._readonly._acceptdecline > ._m_panel > span[data-action="accept"],
+        .JQ_CA ._inviteers._readonly._acceptdecline > ._m_panel > span[data-action="decline"]{
+            display: inline-block;
+            margin-left: 10px;
+        }*/
+        
+    /*.JQ_CA ._inviteers._acceptdecline > ._l_list, 
+    .JQ_CA ._inviteers > ._r_list{
+        bottom: 30px;
+    }*/
+    
+    
+    
+    .JQ_CA ._inviteers > ._acceot_message{
+        display: none;
+    }
+    .JQ_CA ._inviteers._readonly._acceptdecline > ._acceot_message{
+        position: absolute;
+        top:50%;
+        /*bottom:30px;*/
+        bottom:0;
+        width:100%;
+        left:0;
+        right:0;
+        padding:2px;
+        margin:0;        
+        display: block;
+        border: 1px solid #ddd;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+    .JQ_CA ._inviteers._readonly._acceptdecline > ._acceot_message._as_message{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    
+    .JQ_CA ._inviteers._readonly > input,
+    .JQ_CA ._inviteers._readonly > select{
+        display: none;
+    }
+    

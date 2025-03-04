@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Invoices__c</fullName>
+    <description>##Conga created btn:00b400000011n6q
+##Conga updated btn:00b400000011n6q</description>
+    <externalId>false</externalId>
+    <formula>"&amp;id=" + Id +
+"&amp;templategroup=Billing" + 
+"&amp;defaultpdf=1" + 
+"&amp;queryid=[Billing]a3240000000HT78,[Account]a3240000000HT92,[Shipment]a3240000000UFkZ" + 
+"&amp;templateid=a014000000WNh2m" + 
+"&amp;qmode=Download"</formula>
+    <label>Conga Invoices</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

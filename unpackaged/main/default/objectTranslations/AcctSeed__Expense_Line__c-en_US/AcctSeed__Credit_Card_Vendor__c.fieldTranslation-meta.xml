@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field is required if the expense is not to be reimbursed to the employee, but a corporate credit card. --></help>
+        <label><!-- Credit Card Vendor --></label>
+        <name>AcctSeed__Credit_Card_Vendor__c</name>
+        <relationshipLabel><!-- Expense Lines --></relationshipLabel>
+    </CustomFieldTranslation>

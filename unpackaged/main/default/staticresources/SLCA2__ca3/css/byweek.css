@@ -1,0 +1,513 @@
+/* 
+    Document   : month
+    Created on : 28 лют 2012, 19:47:04
+    Author     : den
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* NEW CODE*/
+
+.JQ_CA > .CA_r > div.show[data-mode="byweek"]{
+    display:block !important;
+}
+
+.JQ_CA.width_week_1 > .CA_r > div.show[data-mode="byweek"] {right:1px;}
+.JQ_CA.width_week_2 > .CA_r > div.show[data-mode="byweek"] {right:2px;}
+.JQ_CA.width_week_3 > .CA_r > div.show[data-mode="byweek"] {right:3px;}
+.JQ_CA.width_week_4 > .CA_r > div.show[data-mode="byweek"] {right:4px;}
+.JQ_CA.width_week_5 > .CA_r > div.show[data-mode="byweek"] {right:5px;}
+.JQ_CA.width_week_6 > .CA_r > div.show[data-mode="byweek"] {right:6px;}
+
+.JQ_CA > .CA_r > div[data-mode="byweek"] > div.events
+{
+    position:absolute;
+    top:30px;
+/*    bottom:10px;*/
+    left:20px;
+    right:20px;
+
+}
+
+.JQ_CA > .CA_r > div[data-mode="byweek"] > div._scroll{
+    overflow-y:hidden;
+    position:absolute;
+    top:30px;left:20px;
+    right:20px;
+    bottom:0px;
+}
+.JQ_CA > .CA_r > div[data-mode="byweek"] > div._scroll > div.data{
+/*                min-height:300px;*/
+    position:relative;
+    overflow:hidden;
+    height:100%;width:100%;
+    padding:0px;margin:0px;
+    display:inline-block;
+/*    display:none;*/
+}
+
+.JQ_CA > .CA_r > div[data-mode="byweek"]  div.data.show{
+/*    top:30px;
+    bottom:10px;
+    height:auto;*/
+/*    display:block;*/
+}
+
+    .JQ_CA > .CA_r > div[data-mode="byweek"] > div.events > div{
+        position:absolute;
+        height:10px;
+        border-radius:2px;
+        border:1px solid #ddd;
+        background: -moz-linear-gradient(top,  green 0%, red 100%);
+        background: -webkit-linear-gradient(top,  green 0%, red 100%);
+        background: -ms-linear-gradient(top,  green 0%, red 100%);
+        background: -o-linear-gradient(top, green 0%, red 100%);
+        background: linear-gradient(top, green 0%, red 100%);
+    }
+
+    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div{
+        height:16%;
+        position:relative;
+        text-align: right;
+        min-height:50px;
+    }
+
+    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div:last-of-type{
+        height:1px;line-height:0px;font-size:0px;
+        min-height:1px;
+    }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div:last-of-type > ul > li{
+
+            }
+        .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul {
+            display:inline-block;
+            height:100%;
+            width:100%;
+/*                        overflow: hidden;*/
+            list-style: none;
+            border-collapse: collapse;
+            margin:0px;
+            padding:0px;
+            min-height: 50px;
+            text-align:left;
+        }
+        .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div:last-of-type > ul{
+            min-height: 0px;overflow-y: hidden;
+        }
+
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li{
+
+                border-collapse: collapse;
+/*                    float: left;*/
+                width: 14%;
+                border-right: 1px solid #ddd;
+                border-top:1px solid #ded;
+                text-align: right;
+                vertical-align: top;
+                color:#999;
+                height:100%;
+                display:inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+                position:relative;
+                font-size:80%;
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li:first-child{
+                width:2%;
+                background: white !important;
+                border-top:1px solid transparent !important;
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div:first-child > ul > li{
+                border-top:0px;
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li.current,
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li:hover
+            {
+                background: -moz-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -webkit-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -o-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: -ms-linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+                background: linear-gradient(top,  #fefefe 0%, #dddddd 100%);
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li.month{
+                color:#333;
+            }                                        
+
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div[data-week="6"] > ul > li{
+            }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li > span.more{
+                    position:absolute;
+                    z-index: 98;
+                    background-color: transparent;
+                    left:3px;top:1px;
+                    font-size:80%;
+                    text-align: center;
+                    cursor: pointer;
+                    display:none;
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li > span.more.on{
+                    left:8px;top:6px;
+                    display:inline-block;
+                    height:5px;width:5px;
+                    border-radius: 3px;
+                    background-color:  rgba(70,70,70, 0.5);
+                    color:transparent;
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]  div.data > div:hover > ul > li:hover > span.more.on,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]  div.data > div > ul > li.full_day > span.more.on{
+                    left:3px;top:1px;
+                    width:auto;height:10px;
+                    padding:0px 5px;
+                    border-radius: 3px;
+                    color:inherit;
+                    line-height: 10px;
+                    background-color:  #f0f0f0;
+                    border:1px solid #ccc;
+/*                                background: -moz-linear-gradient(top,  rgba(255,255,255,0.6) 0%, rgba(70,70,70, 0.9) 100%);*/
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li > span.daymore{
+                    position:absolute;
+                    top:14px;
+                    left:0px;
+                    right:0px;
+                    z-index:99;
+                    border:1px solid #ddd;
+                    border-top:0px;
+                    box-shadow: 0px 5px 5px #000;
+                    display:none;
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > ul > li.full_day > span.daymore{
+                    display:block;
+                    background-color:white;
+                    padding-top:1px;
+                }
+
+/*                                .JQ_CA > .CA_r > div[data-mode="byweek"] > div.data > div > ul > li > span.daymore > div{
+                        color:white;
+                        margin-top:3px;
+                        height:12px;
+                        line-height:12px;
+                        font-size: 80%;
+                        text-align: left;
+                        padding-left:3px;
+                    }*/
+
+        .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div div.events{
+            position:absolute;
+            top:15px;left:0px;
+            height:0px;right:0px;
+            overflow:hidden;
+/*                        background-image:url(pic/event_week_bg.png) ;
+            background-repeat: repeat-x;
+            background-position: bottom center;*/
+/*                        opacity: 0.7;*/
+        }
+
+        .JQ_CA.max_event_1 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:13px;}
+        .JQ_CA.max_event_2 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:28px;}
+        .JQ_CA.max_event_3 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:43px;}
+        .JQ_CA.max_event_4 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:58px;}
+        .JQ_CA.max_event_5 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:73px;}
+        .JQ_CA.max_event_6 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:88px;}
+        .JQ_CA.max_event_7 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:103px;}
+        .JQ_CA.max_event_8 > .CA_r > div[data-mode="byweek"]   div.data   div.events{height:118px;}
+
+        .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events:hover{
+/*                        opacity:1;*/
+        }
+
+        .JQ_CA > .CA_r > div[data-mode="byweek"]   div.sub_events{
+            max-height:200px;
+            overflow-y:auto;
+        }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.evt{
+                opacity:0.7;
+                display:inline-block;
+                position:absolute;
+                margin-bottom:2px;
+                height:12px;
+
+/*                            border:1px solid #ddd;*/
+/*                            box-shadow: 0px 0px 1px #333;*/
+/*                                -moz-linear-gradient(top,  transparent 0%, rgba(255,255,255,0.2) 100%);*/
+/*                            overflow:hidden;*/
+                top:999px;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.sub_events > div{
+                opacity:0.7;
+                display:block;
+                margin-bottom:2px;
+                height:12px;
+                position:relative;
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.events > div.on,
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.sub_events > div.on {
+                opacity:1;
+            }
+
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p0{width:14%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p1{width:28%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p2{width:42%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p3{width:56%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p4{width:70%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p5{width:84%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.p6{width:98%;}
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d0{left:2%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d1{left:16%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d2{left:30%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d3{left:44%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d4{left:58%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d5{left:72%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.d6{left:86%;}
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l0{top:0px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l1{top:15px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l2{top:30px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l3{top:45px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l4{top:60px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l5{top:75px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l6{top:90px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l7{top:105px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l8{top:120px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l9{top:135px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l10{top:150px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l11{top:165px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l12{top:180px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l13{top:195px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l14{top:210px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l15{top:225px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l16{top:240px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l17{top:255px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l18{top:270px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l19{top:285px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data   div.l20{top:300px;}
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.evt > span,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.evt > span > span,
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span, 
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span > span,
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on > span, 
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on > span > span
+                {
+                    position:absolute;
+                    top:0px;
+                    bottom:0px;
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.evt > span.title, 
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on > span.title
+                {
+                    overflow:hidden;
+                    border-radius:5px;
+                    z-index:1;
+                    left:5px;
+                    right:5px;
+                    padding-left:13px;
+                    background-image:url(../pic/event_bg.png) ;
+                    background-repeat: repeat-x;
+                    background-position: center center;
+                    font-size:70%;
+                    color:white;
+                    text-align: left;
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.on > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.sub_events > div.on > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.hand_on > span.title
+                {
+                    box-shadow: 0px 0px 3px #000;
+
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.full_l > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.sub_events > div.full_l > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.hand_on.full_l > span.title
+                {
+                    left:1px;padding-left: 17px;
+                    border-bottom-left-radius: 2px;
+                    border-top-left-radius: 2px;
+                }
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.full_r > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.sub_events > div.full_r > span.title,
+                .JQ_CA > .CA_r > div[data-mode="byweek"]   div.hand_on.full_r > span.title
+                {
+                    right:2px;
+                    border-bottom-right-radius: 2px;
+                    border-top-right-radius: 2px;
+                }
+
+                .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span.title {
+                    font-size:90%;
+                }
+
+                    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div > span > span.title{
+
+                    }
+                    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div > span > span.l{
+                        border-top-left-radius:5px;
+                        border-bottom-left-radius:5px;
+                        z-index:2;
+                        left:0px;width:10px;
+                        cursor:w-resize;
+/*                                opacity: 0.2;*/
+/*                                background-color:#000;*/
+                        background:url(../pic/event_week_l.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div > span > span.r{
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        z-index:2;
+                        right:0px;width:10px;
+                        cursor:e-resize;
+                        /*opacity: 0.2;8/
+                        /*background-color:#000;*/
+                        background:url(../pic/event_week_r.png) repeat-y top right;
+                    }
+
+                    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.full_l > span > span.l,
+                    .JQ_CA > .CA_r > div[data-mode="byweek"]   div.data > div > div.events > div.full_r > span > span.r,
+                    .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div.full_l > span.title > span.l, 
+                    .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div.full_r > span.title > span.r {
+                        display:none;
+                    }
+                    .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span.title > span.r,
+                    .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span.title > span.l{
+                        display:block;
+                        cursor:auto;
+                        background-color:rgba(0,0,0,0.2);
+                        position:absolute;
+                        top:0px;bottom:0px;width:10px;
+                    }
+                    .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span.title > span.r{right:0px;}
+                    .JQ_CA > .CA_r > div[data-mode="byweek"] div.sub_events > div > span.title > span.l{left:0px;}
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on{
+                cursor: move;
+                margin-left:2%;
+                position:absolute;
+                height:12px;
+                width:14%;
+                display: inline-block;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;  
+            }
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.w0{top:0%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.w1{top:16%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.w2{top:32%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.w3{top:48%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.w4{top:64%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.w5{top:80%;}
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d0{left:0%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d1{left:14%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d2{left:28%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d3{left:42%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d4{left:56%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d5{left:70%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.evt.d6{left:84%;}
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l0{margin-top:15px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l1{margin-top:30px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l2{margin-top:45px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l3{margin-top:55px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l4{margin-top:60px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l5{margin-top:75px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l6{margin-top:90px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l7{margin-top:105px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l8{margin-top:120px;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.l9{margin-top:135px;}
+
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p0{width:14%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p1{width:28%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p2{width:42%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p3{width:56%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p4{width:70%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p5{width:84%;}
+            .JQ_CA > .CA_r > div[data-mode="byweek"] div.hand_on.p6{width:98%;}
+
+
+
+
+.JQ_CA > .CA_r > div[data-mode="byweek"] > div.days{
+    display: block;
+    overflow: hidden;
+    position:absolute;top:5px;left:20px;right:20px;height:25px;
+    background: linear-gradient(top, #dddddd 0%,#ffffff 50%, #dddddd 100%);
+    background: -moz-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+    background: -ms-linear-gradient(top,  #ffffff 0%, #eeeeee 75%);
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+    background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
+    z-index:99;
+
+}
+    .JQ_CA > .CA_r > div[data-mode="byweek"] > div.days > ul {
+        height:25px;
+        display:block;
+        display:inline-block;
+        overflow: hidden;
+        list-style: none;
+        border-collapse: collapse;
+        margin:0px;
+        padding:0px;
+        vertical-align: top;
+        width:100%;
+    }
+
+        .JQ_CA > .CA_r > div[data-mode="byweek"] > div.days > ul > li:first-child{
+            line-height:19px;
+            width:2%;
+            background:white;
+            /*border-color:white;*/
+
+            border-left:1px solid transparent;
+            border-bottom-color: white;
+            height:25px;
+            line-height: 0px;
+            font-size: 0px;
+        }
+        .JQ_CA > .CA_r > div[data-mode="byweek"] > div.days > ul > li{
+            vertical-align: top;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;
+
+            padding:0px;
+            border-collapse: collapse;
+            display:inline-block;
+            width:14%;
+            text-align: center;
+            font-size:100%;
+            /*border:1px solid transparent;*/
+            border-right:1px dotted #ddd;
+            border-bottom:4px solid transparent;
+            line-height:19px;
+
+        }
+        .JQ_CA > .CA_r > div[data-mode="byweek"] > div.days > ul > li:last-child{
+            border-right:0px;
+        }

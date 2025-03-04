@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>zkfedex__AllowEditOfUsedNaftaCo__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>If Checked, user will be allowed to edit FedEx NAFTA Certificate of Origin records that have already been used in a Shipment. Any changes made will no longer reflect the data submitted to FedEx with the existing shipments.</description>
+    <inlineHelpText>If Checked, user will be allowed to edit FedEx NAFTA Certificate of Origin records that have already been used in a Shipment. Any changes made will no longer reflect the data submitted to FedEx with the existing shipments.</inlineHelpText>
+    <label>Allow Edit of Used NAFTA CO</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
